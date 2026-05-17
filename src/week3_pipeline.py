@@ -66,9 +66,9 @@ def run_week3_pipeline():
         with open("digests/job_evaluations_latest.json", "r") as f:
             evals = json.load(f)
 
-        apply = [e for e in evals if e.get("score", 0) >= 75]
-        review = [e for e in evals if 55 <= e.get("score", 0) < 75]
-        uncertain = [e for e in evals if e.get("score", 0) < 55]
+        apply = [e for e in evals if e.get("score", 0) >= 65]
+        review = [e for e in evals if 45 <= e.get("score", 0) < 75]
+        uncertain = [e for e in evals if e.get("score", 0) < 45]
 
         print(f"Total vagas avaliadas: {len(evals)}\n")
 
