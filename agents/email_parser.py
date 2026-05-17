@@ -1,16 +1,17 @@
 """
-email_parser.py  —  Subagente: extrai vagas de emails de alerta
-Usa Claude Haiku (barato, rápido) para parsear o HTML de cada portal.
+email_parser.py  —  Extracts job listings from job alert emails
+Uses Claude Haiku to parse HTML from each portal.
 """
 
 import json
 import os
 import re
 import anthropic
+from dotenv import load_dotenv
 
-client = anthropic.Anthropic()  # usa ANTHROPIC_API_KEY do ambiente
+load_dotenv()
+client = anthropic.Anthropic()
 
-# Mapeamento de remetente → nome do portal
 PORTAL_MAP = {
     "jobs.ch": "jobs.ch",
     "jobup.ch": "jobup.ch",
@@ -45,7 +46,7 @@ Never add fields beyond those listed above."""
 
 
 def detect_portal(email_from: str) -> str:
-    """Detecta o portal pelo campo 'from' do email."""
+    """Identifies the source portal from the email 'from' field."""
     from_lower = email_from.lower()
     for pattern, portal in PORTAL_MAP.items():
         if pattern in from_lower:
@@ -54,9 +55,8 @@ def detect_portal(email_from: str) -> str:
 
 
 def clean_json_response(raw: str) -> str:
-    """Remove markdown fences se o modelo as adicionar."""
+    """Strips markdown fences if the model adds them."""
     raw = raw.strip()
-    # Remove ```json ... ``` ou ``` ... ```
     raw = re.sub(r"^```(?:json)?\s*", "", raw)
     raw = re.sub(r"\s*```$", "", raw)
     return raw.strip()
@@ -64,21 +64,21 @@ def clean_json_response(raw: str) -> str:
 
 def parse_email(email: dict) -> list[dict]:
     """
-    Usa Claude Haiku para extrair vagas de um único email.
-    Retorna lista de vagas em formato padronizado.
+    Uses Claude Haiku to extract jobs from a single email.
+    Returns a list of jobs in a standardised format.
     """
     portal = detect_portal(email["from"])
 
-    # Prefere HTML (mais estruturado), fallback para texto
+    # Prefer HTML (more structured), fall back to plain text
     body = email.get("html_body") or email.get("text_body") or ""
 
-    # Trunca para caber no contexto do Haiku (evita custo desnecessário)
+    # Truncate to fit context window
     MAX_BODY = 25_000
     if len(body) > MAX_BODY:
-        body = body[:MAX_BODY] + "\n[conteúdo truncado]"
+        body = body[:MAX_BODY] + "\n[content truncated]"
 
     if not body.strip():
-        print(f"  ⚠️  Email {email['id']} sem corpo. Pulando.")
+        print(f"  Warning: email {email['id']} has no body, skipping.")
         return []
 
     user_prompt = f"""Portal: {portal}
@@ -101,7 +101,6 @@ Email content:
         clean = clean_json_response(raw_text)
         jobs = json.loads(clean)
 
-        # Garante que portal e source_email_id estejam preenchidos
         for job in jobs:
             job["portal"] = portal
             job["source_email_id"] = email["id"]
@@ -109,27 +108,25 @@ Email content:
         return jobs
 
     except json.JSONDecodeError as e:
-        print(f"  ❌ JSON inválido no email {email['id']}: {e}")
-        print(f"     Resposta bruta: {raw_text[:200]}")
+        print(f"  ❌ Invalid JSON for email {email['id']}: {e}")
+        print(f"     Raw response: {raw_text[:200]}")
         return []
     except Exception as e:
-        print(f"  ❌ Erro ao parsear email {email['id']}: {e}")
+        print(f"  ❌ Error parsing email {email['id']}: {e}")
         return []
 
 
 def parse_all_emails(emails: list[dict]) -> list[dict]:
-    """
-    Parseia todos os emails e retorna lista consolidada de vagas.
-    """
+    """Parses all emails and returns a consolidated list of jobs."""
     all_jobs = []
     total = len(emails)
 
     for i, email in enumerate(emails, 1):
         subject_preview = email.get("subject", "")[:55]
-        print(f"[{i}/{total}] Parseando: {subject_preview}...")
+        print(f"[{i}/{total}] Parsing: {subject_preview}...")
 
         jobs = parse_email(email)
-        print(f"        → {len(jobs)} vaga(s) extraída(s)")
+        print(f"        → {len(jobs)} job(s) extracted")
         all_jobs.extend(jobs)
 
     return all_jobs
@@ -141,14 +138,14 @@ if __name__ == "__main__":
     input_file = "digests/raw_emails_full.json"
 
     if not os.path.exists(input_file):
-        print(f"Arquivo não encontrado: {input_file}")
-        print("Rode primeiro: python src/email_ingestor.py")
+        print(f"File not found: {input_file}")
+        print("Run first: python src/email_ingestor.py")
         sys.exit(1)
 
     with open(input_file, "r", encoding="utf-8") as f:
         emails = json.load(f)
 
-    print(f"Parseando {len(emails)} emails...\n")
+    print(f"Parsing {len(emails)} emails...\n")
     jobs = parse_all_emails(emails)
 
     os.makedirs("digests", exist_ok=True)
@@ -156,10 +153,9 @@ if __name__ == "__main__":
     with open(output, "w", encoding="utf-8") as f:
         json.dump(jobs, f, ensure_ascii=False, indent=2)
 
-    print(f"\n✅ {len(jobs)} vagas extraídas → {output}")
+    print(f"\n✅ {len(jobs)} jobs extracted → {output}")
 
-    # Preview rápido
     if jobs:
-        print("\nPrimeiras vagas:")
+        print("\nTop jobs:")
         for j in jobs[:5]:
             print(f"  • {j.get('empresa', 'N/A')} — {j.get('titulo', 'N/A')} ({j.get('localizacao', '?')})")

@@ -1,6 +1,6 @@
 """
-followup_sender.py  —  Envia follow-ups por email
-Busca aplicações > 7 dias sem resposta + email de contato
+followup_sender.py  —  Sends follow-up emails for stale applications
+Targets applications > 7 days old with no response and a known recruiter email.
 """
 
 import sqlite3
@@ -20,21 +20,20 @@ DB_PATH = "tracker/jobs.db"
 
 def get_old_applications(days_threshold: int = 7) -> list[dict]:
     """
-    Busca aplicações que:
-    1. Não receberam resposta ainda
-    2. Foram enviadas > days_threshold dias atrás
-    3. Têm email de contato do recrutador
-    4. Não foram feitos follow-up ainda (ou última tentativa > 3 dias)
+    Returns applications that:
+    1. Have received no response yet
+    2. Were submitted more than days_threshold days ago
+    3. Have a known recruiter email
+    4. Have never had a follow-up, or the last attempt was > 3 days ago
     """
-    
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
-    
+
     cutoff_date = (datetime.now() - timedelta(days=days_threshold)).isoformat()
-    
-    # SQL pra buscar candidatos elegíveis
+    cutoff_3_days = (datetime.now() - timedelta(days=3)).isoformat()
+
     query = """
-    SELECT 
+    SELECT
         id,
         empresa,
         titulo,
@@ -43,49 +42,46 @@ def get_old_applications(days_threshold: int = 7) -> list[dict]:
         last_followup_date,
         followup_count
     FROM applications
-    WHERE 
-        response_type IS NULL  -- Sem resposta ainda
-        AND date_applied < ?   -- Mais de 7 dias atrás
-        AND recruiter_email IS NOT NULL  -- Tem email
+    WHERE
+        response_type IS NULL          -- no response yet
+        AND date_applied < ?           -- older than threshold
+        AND recruiter_email IS NOT NULL
         AND recruiter_email != ''
         AND (
-            last_followup_date IS NULL  -- Nunca foi feito follow-up
-            OR last_followup_date < ?   -- Última tentativa foi > 3 dias atrás
+            last_followup_date IS NULL  -- never followed up
+            OR last_followup_date < ?   -- last attempt > 3 days ago
         )
     ORDER BY date_applied ASC
     """
-    
-    cutoff_3_days = (datetime.now() - timedelta(days=3)).isoformat()
-    
+
     try:
         apps = conn.execute(query, (cutoff_date, cutoff_3_days)).fetchall()
         conn.close()
         return [dict(app) for app in apps]
     except Exception as e:
-        print(f"❌ Erro ao buscar aplicações: {e}")
+        print(f"❌ Error fetching applications: {e}")
         conn.close()
         return []
 
 
 def update_followup_status(app_id: int, success: bool = True):
-    """Atualiza tracker com info de follow-up enviado."""
-    
+    """Updates the tracker with follow-up information."""
     conn = sqlite3.connect(DB_PATH)
-    
+
     try:
         conn.execute("""
             UPDATE applications
-            SET 
+            SET
                 last_followup_date = ?,
                 followup_count = COALESCE(followup_count, 0) + 1
             WHERE id = ?
         """, (datetime.now().isoformat(), app_id))
-        
+
         conn.commit()
         conn.close()
         return True
     except Exception as e:
-        print(f"❌ Erro ao atualizar follow-up: {e}")
+        print(f"❌ Error updating follow-up: {e}")
         conn.close()
         return False
 
@@ -97,19 +93,17 @@ def send_followup_email(
     sender_email: str,
     app_password: str,
 ) -> bool:
-    """Envia follow-up por email via Gmail SMTP."""
-    
+    """Sends a follow-up email via Gmail SMTP."""
     try:
         server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
         server.login(sender_email, app_password)
-        
+
         message = MIMEMultipart("alternative")
         message["Subject"] = subject
         message["From"] = sender_email
         message["To"] = to_email
-        
-        # Cria versão com rodapé
+
         full_body = f"""{body}
 
 ---
@@ -121,7 +115,7 @@ linkedin.com/in/carlosedbaptista
 
 Swiss Work Permit B | Wallisellen, Zurich
 """
-        
+
         html_body = f"""
         <html>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
@@ -129,74 +123,68 @@ Swiss Work Permit B | Wallisellen, Zurich
         </body>
         </html>
         """
-        
+
         message.attach(MIMEText(full_body, "plain"))
         message.attach(MIMEText(html_body, "html"))
-        
+
         server.sendmail(sender_email, to_email, message.as_string())
         server.quit()
-        
+
         return True
-    
+
     except Exception as e:
-        print(f"❌ Erro ao enviar email: {e}")
+        print(f"❌ Failed to send email: {e}")
         return False
 
 
 def send_followups():
-    """Envia follow-ups para todas as aplicações elegíveis."""
-    
-    print("\n" + "="*70)
-    print("FOLLOW-UP SENDER — Semana 10")
-    print("="*70 + "\n")
-    
-    # Pega credenciais
+    """Sends follow-up emails for all eligible applications."""
+    print("\n" + "=" * 70)
+    print("FOLLOW-UP SENDER")
+    print("=" * 70 + "\n")
+
     sender_email = os.environ.get("GMAIL_SENDER", "carlosedbaptista@gmail.com")
     app_password = os.environ.get("GMAIL_APP_PASSWORD")
-    
+
     if not app_password:
-        print("⚠️  GMAIL_APP_PASSWORD não configurado")
+        print("⚠️  GMAIL_APP_PASSWORD not set")
         return False
-    
-    # Busca aplicações elegíveis
+
     old_apps = get_old_applications(days_threshold=7)
-    
+
     if not old_apps:
-        print("✅ Nenhuma aplicação elegível para follow-up")
+        print("✅ No eligible applications for follow-up")
         return True
-    
-    print(f"📧 Encontradas {len(old_apps)} aplicação(ões) elegível(is):\n")
-    
+
+    print(f"📧 Found {len(old_apps)} eligible application(s):\n")
+
     sent_count = 0
-    
+
     for app in old_apps:
         app_id = app["id"]
         empresa = app["empresa"]
         titulo = app["titulo"]
         recruiter_email = app["recruiter_email"]
         date_applied = app["date_applied"]
-        
-        # Calcula dias passados
+
         app_date = datetime.fromisoformat(date_applied)
-        dias_passados = (datetime.now() - app_date).days
-        
+        days_elapsed = (datetime.now() - app_date).days
+
         print(f"{sent_count + 1}. {empresa} — {titulo}")
         print(f"   Email: {recruiter_email}")
-        print(f"   Dias sem resposta: {dias_passados}")
-        
-        # Gera follow-up
+        print(f"   Days without response: {days_elapsed}")
+
         followup_package = generate_followup_email_package({
             "empresa": empresa,
             "titulo": titulo,
-            "dias_sem_resposta": dias_passados,
+            "days_without_response": days_elapsed,
             "date_applied": date_applied,
         })
-        
+
         if not followup_package:
-            print(f"   ❌ Erro ao gerar follow-up\n")
+            print(f"   ❌ Error generating follow-up\n")
             continue
-        
-        # Envia email
+
         success = send_followup_email(
             to_email=recruiter_email,
             subject=followup_package["subject"],
@@ -204,19 +192,18 @@ def send_followups():
             sender_email=sender_email,
             app_password=app_password,
         )
-        
+
         if success:
-            # Atualiza tracker
             update_followup_status(app_id)
-            print(f"   ✅ Follow-up enviado\n")
+            print(f"   ✅ Follow-up sent\n")
             sent_count += 1
         else:
-            print(f"   ❌ Erro ao enviar email\n")
-    
-    print("="*70)
-    print(f"✅ {sent_count} follow-up(s) enviado(s)")
-    print("="*70 + "\n")
-    
+            print(f"   ❌ Failed to send email\n")
+
+    print("=" * 70)
+    print(f"✅ {sent_count} follow-up(s) sent")
+    print("=" * 70 + "\n")
+
     return True
 
 

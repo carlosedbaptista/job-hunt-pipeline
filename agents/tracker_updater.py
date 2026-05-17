@@ -1,6 +1,6 @@
 """
-tracker_updater.py  —  Registra aplicações no banco de dados
-Quando você aprova vagas, este script registra no SQLite
+tracker_updater.py  —  Records applications to the SQLite database
+Called after user approves jobs to persist them.
 """
 
 import json
@@ -12,7 +12,7 @@ DB_PATH = os.environ.get("JOBS_DB_PATH", "tracker/jobs.db")
 
 
 def init_applications_table():
-    """Cria tabela de aplicações se não existir."""
+    """Creates the applications table if it doesn't exist."""
     conn = sqlite3.connect(DB_PATH)
 
     conn.execute("""
@@ -26,7 +26,8 @@ def init_applications_table():
             last_update     TEXT,
             response_date   TEXT,
             response_type   TEXT,
-            notes           TEXT
+            notes           TEXT,
+            recruiter_email TEXT
         )
     """)
 
@@ -36,24 +37,22 @@ def init_applications_table():
 
 def record_application(empresa: str, titulo: str, url: str) -> bool:
     """
-    Registra uma nova aplicação no banco.
-    Retorna True se sucesso, False se já existe.
+    Records a new application.
+    Returns True on success, False if a record already exists.
     """
     init_applications_table()
     conn = sqlite3.connect(DB_PATH)
 
-    # Verifica se já existe
     existing = conn.execute(
         "SELECT id FROM applications WHERE empresa = ? AND titulo = ?",
         (empresa, titulo),
     ).fetchone()
 
     if existing:
-        print(f"⚠️  Já existe registro para {empresa} — {titulo}")
+        print(f"⚠️  Already tracked: {empresa} — {titulo}")
         conn.close()
         return False
 
-    # Insere nova aplicação
     now = datetime.now().isoformat()
     conn.execute(
         """INSERT INTO applications
@@ -70,11 +69,11 @@ def record_application(empresa: str, titulo: str, url: str) -> bool:
 
 def record_applications_batch(approvals_file: str) -> int:
     """
-    Lê arquivo de aprovações e registra todas as aplicações.
-    Retorna número de aplicações registradas.
+    Reads an approvals file and records all applications.
+    Returns the number of applications successfully recorded.
     """
     if not os.path.exists(approvals_file):
-        print(f"❌ Arquivo não encontrado: {approvals_file}")
+        print(f"❌ File not found: {approvals_file}")
         return 0
 
     with open(approvals_file, "r", encoding="utf-8") as f:
@@ -95,7 +94,7 @@ def record_applications_batch(approvals_file: str) -> int:
 
 
 def update_application_status(empresa: str, titulo: str, status: str, notes: str = ""):
-    """Atualiza o status de uma aplicação."""
+    """Updates the status of an application."""
     init_applications_table()
     conn = sqlite3.connect(DB_PATH)
 
@@ -114,7 +113,7 @@ def record_response(
     empresa: str, titulo: str, response_type: str, notes: str = ""
 ):
     """
-    Registra uma resposta de recrutador.
+    Records a recruiter response.
     response_type: 'positive' | 'rejection' | 'interview_invite' | 'info_request'
     """
     init_applications_table()
@@ -149,7 +148,7 @@ def record_response(
 
 
 def get_all_applications() -> list:
-    """Retorna todas as aplicações do banco."""
+    """Returns all applications from the database."""
     init_applications_table()
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
@@ -164,7 +163,7 @@ def get_all_applications() -> list:
 
 
 def get_stats() -> dict:
-    """Retorna estatísticas das aplicações."""
+    """Returns application statistics."""
     init_applications_table()
     conn = sqlite3.connect(DB_PATH)
 
@@ -206,11 +205,10 @@ if __name__ == "__main__":
         apps = get_all_applications()
         print(json.dumps(apps, indent=2, ensure_ascii=False, default=str))
     elif len(sys.argv) > 2 and sys.argv[1] == "record":
-        # Modo batch a partir de arquivo de aprovação
         count = record_applications_batch(sys.argv[2])
-        print(f"✅ {count} aplicação(ões) registrada(s)")
+        print(f"✅ {count} application(s) recorded")
     else:
-        print("Uso:")
+        print("Usage:")
         print("  python agents/tracker_updater.py stats")
         print("  python agents/tracker_updater.py list")
         print("  python agents/tracker_updater.py record <approvals_file>")

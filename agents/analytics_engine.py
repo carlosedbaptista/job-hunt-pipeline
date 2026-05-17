@@ -1,6 +1,6 @@
 """
-analytics_engine.py  —  Analisa dados do pipeline
-Gera insights por ATS, indústria, tipo de vaga, tamanho de empresa
+analytics_engine.py  —  Analyses pipeline data
+Generates insights by industry, ATS platform, and job type.
 """
 
 import json
@@ -12,12 +12,11 @@ DB_PATH = "tracker/jobs.db"
 
 
 def get_db_connection():
-    """Conecta ao banco de dados."""
     return sqlite3.connect(DB_PATH)
 
 
 # ═════════════════════════════════════════════════════════════════════════════
-# CLASSIFICAÇÃO DE DADOS
+# DATA CLASSIFICATION
 # ═════════════════════════════════════════════════════════════════════════════
 
 INDUSTRY_KEYWORDS = {
@@ -51,16 +50,9 @@ ATS_KEYWORDS = {
     "generic": [],
 }
 
-COMPANY_SIZE = {
-    "startup": [1, 50],
-    "pme": [51, 500],
-    "large": [501, 10000],
-    "enterprise": [10001, 999999],
-}
-
 
 def classify_text(text: str, keywords_dict: dict) -> str:
-    """Classifica texto baseado em keywords."""
+    """Classifies text by matching against a keyword dictionary."""
     text_lower = text.lower()
     for category, keywords in keywords_dict.items():
         if category == "other":
@@ -72,7 +64,7 @@ def classify_text(text: str, keywords_dict: dict) -> str:
 
 
 def classify_application(app: dict) -> dict:
-    """Classifica uma aplicação por múltiplas dimensões."""
+    """Classifies an application across industry, job type, and ATS dimensions."""
     empresa = app.get("empresa", "")
     titulo = app.get("titulo", "")
 
@@ -84,11 +76,11 @@ def classify_application(app: dict) -> dict:
 
 
 # ═════════════════════════════════════════════════════════════════════════════
-# ANÁLISE POR DIMENSÃO
+# DIMENSION ANALYSIS
 # ═════════════════════════════════════════════════════════════════════════════
 
 def get_all_applications():
-    """Busca todas as aplicações do banco."""
+    """Fetches all applications from the database."""
     conn = get_db_connection()
     conn.row_factory = sqlite3.Row
 
@@ -101,10 +93,7 @@ def get_all_applications():
 
 
 def analyze_by_dimension(apps: list, dimension: str) -> dict:
-    """
-    Analisa taxa de resposta por dimensão.
-    dimension: 'industry', 'job_type', 'ats'
-    """
+    """Analyses response rate grouped by the given dimension (industry, job_type, ats)."""
     classified = defaultdict(lambda: {"total": 0, "responded": 0, "rejections": 0})
 
     for app in apps:
@@ -113,13 +102,11 @@ def analyze_by_dimension(apps: list, dimension: str) -> dict:
 
         classified[category]["total"] += 1
 
-        # Conta respostas
         if app.get("response_type"):
             classified[category]["responded"] += 1
             if app.get("status") == "rejected":
                 classified[category]["rejections"] += 1
 
-    # Calcula percentuais
     results = {}
     for category, stats in classified.items():
         total = stats["total"]
@@ -137,24 +124,8 @@ def analyze_by_dimension(apps: list, dimension: str) -> dict:
     return results
 
 
-def analyze_fit_vs_response(apps: list) -> dict:
-    """Analisa correlação entre score de fit e taxa de resposta."""
-    score_ranges = {
-        "0-25": {"count": 0, "responses": 0},
-        "25-50": {"count": 0, "responses": 0},
-        "50-75": {"count": 0, "responses": 0},
-        "75-100": {"count": 0, "responses": 0},
-    }
-
-    # Nota: o score não está armazenado no banco, só in-memory durante execução
-    # Esta é uma análise teórica baseada na rubrica
-    # Para dados reais, precisaríamos armazenar score no banco
-
-    return score_ranges
-
-
 def analyze_response_time(apps: list) -> dict:
-    """Analisa tempo médio de resposta por categoria."""
+    """Analyses average response time across all applications."""
     response_times = {"avg_days": 0, "min_days": 0, "max_days": 0}
 
     times = []
@@ -177,7 +148,7 @@ def analyze_response_time(apps: list) -> dict:
 
 
 def generate_analytics_report(apps: list) -> dict:
-    """Gera relatório completo de analytics."""
+    """Generates a full analytics report."""
     report = {
         "generated_at": datetime.now().isoformat(),
         "total_applications": len(apps),
@@ -189,7 +160,6 @@ def generate_analytics_report(apps: list) -> dict:
         "response_time": analyze_response_time(apps),
     }
 
-    # Calcula totals
     total_responses = sum(1 for a in apps if a.get("response_type"))
     report["overall_metrics"] = {
         "total_applications": len(apps),
@@ -203,43 +173,40 @@ def generate_analytics_report(apps: list) -> dict:
 
 
 def get_recommendations(report: dict) -> list:
-    """Gera recomendações baseadas na análise."""
+    """Generates recommendations based on the analytics report."""
     recommendations = []
 
-    # Recomendação por indústria
     by_industry = report["dimensions"]["by_industry"]
     if by_industry:
         best_industry = max(by_industry.items(), key=lambda x: x[1]["response_rate_percent"])
         recommendations.append(
-            f"🎯 Foco em {best_industry[0]}: {best_industry[1]['response_rate_percent']}% de taxa de resposta"
+            f"🎯 Focus on {best_industry[0]}: {best_industry[1]['response_rate_percent']}% response rate"
         )
 
-    # Recomendação por ATS
     by_ats = report["dimensions"]["by_ats"]
     if by_ats:
         best_ats = max(by_ats.items(), key=lambda x: x[1]["response_rate_percent"])
         recommendations.append(
-            f"🏢 Plataforma mais responsiva: {best_ats[0]} ({best_ats[1]['response_rate_percent']}%)"
+            f"🏢 Most responsive platform: {best_ats[0]} ({best_ats[1]['response_rate_percent']}%)"
         )
 
-    # Recomendação por tipo de vaga
     by_job = report["dimensions"]["by_job_type"]
     if by_job:
         best_job = max(by_job.items(), key=lambda x: x[1]["response_rate_percent"])
         recommendations.append(
-            f"💼 Role com melhor fit: {best_job[0]} ({best_job[1]['response_rate_percent']}%)"
+            f"💼 Best-fit role type: {best_job[0]} ({best_job[1]['response_rate_percent']}%)"
         )
 
     return recommendations
 
 
 if __name__ == "__main__":
-    print("Analisando dados...\n")
+    print("Analysing data...\n")
 
     apps = get_all_applications()
 
     if not apps:
-        print("❌ Nenhuma aplicação registrada ainda")
+        print("❌ No applications recorded yet")
         exit(1)
 
     report = generate_analytics_report(apps)
@@ -247,7 +214,7 @@ if __name__ == "__main__":
     print(json.dumps(report, indent=2, ensure_ascii=False))
 
     print("\n" + "=" * 70)
-    print("RECOMENDAÇÕES")
+    print("RECOMMENDATIONS")
     print("=" * 70 + "\n")
 
     recommendations = get_recommendations(report)

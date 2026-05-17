@@ -1,6 +1,6 @@
 """
-digest_generator.py  —  Gera digest diário com top 5 vagas
-Salva em arquivo + imprime no terminal pra você ler
+digest_generator.py  —  Generates a daily digest with the top N evaluated jobs
+Saves to file and prints to terminal.
 """
 
 import json
@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 def load_evaluations():
-    """Carrega as vagas avaliadas."""
+    """Loads the evaluated jobs from the latest evaluation file."""
     eval_file = "digests/job_evaluations_latest.json"
     if not os.path.exists(eval_file):
         return []
@@ -20,17 +20,13 @@ def load_evaluations():
 
 
 def generate_digest(max_jobs: int = 5):
-    """
-    Gera digest diário com as top N vagas.
-    Ordena por score (melhor primeiro).
-    """
+    """Generates a digest with the top N jobs, sorted by score descending."""
     evaluations = load_evaluations()
 
     if not evaluations:
-        print("❌ Nenhuma vaga avaliada. Rode primeiro: python agents/job_evaluator.py")
+        print("❌ No jobs evaluated. Run first: python agents/job_evaluator.py")
         return None
 
-    # Ordena por score (descendente)
     sorted_evals = sorted(evaluations, key=lambda x: x.get("score", 0), reverse=True)
     top_jobs = sorted_evals[:max_jobs]
 
@@ -45,19 +41,19 @@ def generate_digest(max_jobs: int = 5):
 
 
 def format_digest_text(digest: dict, top_jobs: list) -> str:
-    """Formata o digest em texto legível."""
+    """Formats the digest as readable plain text."""
     lines = []
 
     lines.append("=" * 70)
-    lines.append("JOB HUNT — DIGEST DIÁRIO")
-    lines.append(f"Gerado: {digest['generated_at'][:10]} {digest['generated_at'][11:16]}")
+    lines.append("JOB HUNT — DAILY DIGEST")
+    lines.append(f"Generated: {digest['generated_at'][:10]} {digest['generated_at'][11:16]}")
     lines.append("=" * 70)
     lines.append("")
 
-    lines.append(f"Total de vagas avaliadas: {digest['total_evaluated']}")
+    lines.append(f"Total jobs evaluated: {digest['total_evaluated']}")
     lines.append("")
 
-    lines.append("TOP 5 VAGAS (ordenadas por fit score):")
+    lines.append("TOP JOBS (sorted by fit score):")
     lines.append("-" * 70)
 
     for i, job_eval in enumerate(top_jobs, 1):
@@ -71,33 +67,30 @@ def format_digest_text(digest: dict, top_jobs: list) -> str:
         url = job.get("url", "")
         portal = job.get("portal", "")
 
-        # Emoji baseado no recommendation
         icon = "✅" if score >= 65 else "⚠️" if score >= 45 else "❌"
 
         lines.append("")
         lines.append(f"{i}. {icon} [{score}/100] {empresa}")
-        lines.append(f"   Título: {titulo}")
-        lines.append(f"   Local: {localizacao} | Portal: {portal}")
+        lines.append(f"   Title: {titulo}")
+        lines.append(f"   Location: {localizacao} | Source: {portal}")
         lines.append(f"   Status: {recommendation}")
 
-        # Inclui pontos-chave
         key_points = job_eval.get("key_match_points", [])
         if key_points:
-            lines.append(f"   Pontos positivos: {'; '.join(key_points[:2])}")
+            lines.append(f"   Highlights: {'; '.join(key_points[:2])}")
 
-        # Inclui red flags
         red_flags = job_eval.get("red_flags", [])
         if red_flags:
-            lines.append(f"   ⚠️  Problemas: {'; '.join(red_flags[:2])}")
+            lines.append(f"   ⚠️  Issues: {'; '.join(red_flags[:2])}")
 
         if url:
             lines.append(f"   Link: {url[:80]}...")
 
     lines.append("")
     lines.append("=" * 70)
-    lines.append("PRÓXIMO PASSO:")
+    lines.append("NEXT STEP:")
     lines.append('  python src/approval_handler.py --approve "1,3,5"')
-    lines.append("(Substitua 1,3,5 pelos números das vagas que quer aplicar)")
+    lines.append("(Replace 1,3,5 with the job numbers you want to apply to)")
     lines.append("=" * 70)
     lines.append("")
 
@@ -105,22 +98,19 @@ def format_digest_text(digest: dict, top_jobs: list) -> str:
 
 
 def save_digest(digest: dict, text: str):
-    """Salva o digest em arquivo."""
+    """Saves the digest as both JSON and plain text, plus overwrites the 'latest' files."""
     os.makedirs("digests", exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M")
 
-    # Salva JSON
     json_file = f"digests/digest_{timestamp}.json"
     with open(json_file, "w", encoding="utf-8") as f:
         json.dump(digest, f, ensure_ascii=False, indent=2)
 
-    # Salva texto
     txt_file = f"digests/digest_{timestamp}.txt"
     with open(txt_file, "w", encoding="utf-8") as f:
         f.write(text)
 
-    # Sobrescreve o "latest"
     with open("digests/digest_latest.json", "w", encoding="utf-8") as f:
         json.dump(digest, f, ensure_ascii=False, indent=2)
 
@@ -139,13 +129,11 @@ if __name__ == "__main__":
     digest, top_jobs = result
     text = format_digest_text(digest, top_jobs)
 
-    # Imprime no terminal
     print(text)
 
-    # Salva em arquivo
     json_file, txt_file = save_digest(digest, text)
 
-    print(f"\n✅ Digest salvo:")
+    print(f"\n✅ Digest saved:")
     print(f"   • {json_file}")
     print(f"   • {txt_file}")
     print(f"   • digests/digest_latest.json (latest)")

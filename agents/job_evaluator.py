@@ -1,16 +1,17 @@
 """
-job_evaluator.py  —  Subagente: avalia fit de cada vaga
-Score 0-100 usando rubrica, Haiku (barato, rápido)
+job_evaluator.py  —  Scores each job for fit against Carlos's profile
+Uses Claude Haiku for cost-efficient evaluation.
 """
 
 import json
 import os
 import sys
 import anthropic
+from dotenv import load_dotenv
 
+load_dotenv()
 client = anthropic.Anthropic()
 
-# Positioning de Carlos (resumido)
 CARLOS_PROFILE = """
 NAME: Carlos Eduardo Duarte Baptista
 POSITIONING: Data and business analysis professional, Analyst & AI User (not software developer)
@@ -96,13 +97,10 @@ SCORING THRESHOLDS:
 
 
 def evaluate_job(job: dict) -> dict:
-    """
-    Avalia uma vaga usando Claude Haiku.
-    Retorna score 0-100 + recomendações.
-    """
+    """Evaluates a single job using Claude Haiku. Returns score 0-100 plus analysis."""
     empresa = job.get("empresa", "Unknown")
     titulo = job.get("titulo", "Unknown")
-    descricao = job.get("descricao") or "[Sem descrição]"
+    descricao = job.get("descricao") or "[No description]"
     localizacao = job.get("localizacao", "Unknown")
     idioma = job.get("idioma", "Unknown")
     url = job.get("url", "")
@@ -130,7 +128,6 @@ Score this job against Carlos's profile and rubric."""
 
         raw_text = response.content[0].text.strip()
 
-        # Clean markdown if present
         if raw_text.startswith("```"):
             raw_text = raw_text.split("```")[1]
             if raw_text.startswith("json"):
@@ -138,7 +135,6 @@ Score this job against Carlos's profile and rubric."""
 
         evaluation = json.loads(raw_text)
 
-        # Preserve original job data
         evaluation["job"] = {
             "empresa": empresa,
             "titulo": titulo,
@@ -150,23 +146,21 @@ Score this job against Carlos's profile and rubric."""
         return evaluation
 
     except json.JSONDecodeError as e:
-        print(f"  ❌ JSON inválido: {e}")
+        print(f"  ❌ Invalid JSON: {e}")
         return None
     except Exception as e:
-        print(f"  ❌ Erro: {e}")
+        print(f"  ❌ Error: {e}")
         return None
 
 
 def evaluate_all_jobs(jobs: list[dict]) -> list[dict]:
-    """
-    Avalia todas as vagas e retorna scores ordenados.
-    """
+    """Evaluates all jobs and returns results sorted by score descending."""
     evaluations = []
     total = len(jobs)
 
     for i, job in enumerate(jobs, 1):
         titulo = job.get("titulo", "")[:50]
-        print(f"[{i}/{total}] Avaliando: {titulo}...")
+        print(f"[{i}/{total}] Evaluating: {titulo}...")
 
         eval_result = evaluate_job(job)
         if eval_result:
@@ -175,9 +169,8 @@ def evaluate_all_jobs(jobs: list[dict]) -> list[dict]:
             rec = eval_result.get("recommendation", "?")
             print(f"        → Score: {score}/100 ({rec})")
         else:
-            print(f"        → Erro na avaliação")
+            print(f"        → Evaluation error")
 
-    # Ordena por score descrescente
     evaluations.sort(key=lambda x: x.get("score", 0), reverse=True)
     return evaluations
 
@@ -186,18 +179,18 @@ if __name__ == "__main__":
     input_file = "digests/new_jobs_latest.json"
 
     if not os.path.exists(input_file):
-        print(f"Arquivo não encontrado: {input_file}")
-        print("Rode primeiro: python src/pipeline.py")
+        print(f"File not found: {input_file}")
+        print("Run first: python src/pipeline.py")
         sys.exit(1)
 
     with open(input_file, "r", encoding="utf-8") as f:
         jobs = json.load(f)
 
     if not jobs:
-        print("Nenhuma vaga para avaliar.")
+        print("No jobs to evaluate.")
         sys.exit(0)
 
-    print(f"Avaliando {len(jobs)} vagas...\n")
+    print(f"Evaluating {len(jobs)} jobs...\n")
     evaluations = evaluate_all_jobs(jobs)
 
     os.makedirs("digests", exist_ok=True)
@@ -205,14 +198,13 @@ if __name__ == "__main__":
     with open(output, "w", encoding="utf-8") as f:
         json.dump(evaluations, f, ensure_ascii=False, indent=2)
 
-    print(f"\n✅ {len(evaluations)} vagas avaliadas → {output}")
+    print(f"\n✅ {len(evaluations)} jobs evaluated → {output}")
 
-    # Resume
     apply_count = sum(1 for e in evaluations if e.get("score", 0) >= 65)
     review_count = sum(1 for e in evaluations if 45 <= e.get("score", 0) < 65)
     uncertain_count = sum(1 for e in evaluations if e.get("score", 0) < 45)
 
-    print(f"\nRESUMO:")
+    print(f"\nSUMMARY:")
     print(f"  ✅ APPLY ({apply_count}): {[e['job']['empresa'] for e in evaluations if e.get('score', 0) >= 65]}")
     print(f"  ⚠️  REVIEW ({review_count}): {[e['job']['empresa'] for e in evaluations if 45 <= e.get('score', 0) < 75]}")
     print(f"  ❌ UNCERTAIN ({uncertain_count}): {[e['job']['empresa'] for e in evaluations if e.get('score', 0) < 45]}")

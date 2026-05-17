@@ -1,10 +1,10 @@
 """
-email_monitor.py  —  Monitora respostas de recrutadores
-Busca no Gmail por respostas e classifica:
-- Resposta positiva
-- Rejeição
-- Convite para entrevista
-- Pedido de informação
+email_monitor.py  —  Monitors recruiter responses in Gmail
+Fetches emails and classifies them as:
+- Positive response
+- Rejection
+- Interview invite
+- Information request
 """
 
 import json
@@ -15,6 +15,7 @@ import sys
 from datetime import datetime
 
 import anthropic
+from dotenv import load_dotenv
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -23,9 +24,9 @@ from googleapiclient.discovery import build
 from agents.tracker_updater import record_response
 
 SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
+load_dotenv()
 client = anthropic.Anthropic()
 
-# Padrões simples pra detectar tipo de resposta
 RESPONSE_PATTERNS = {
     "rejection": [
         r"unfortunately",
@@ -40,7 +41,6 @@ RESPONSE_PATTERNS = {
     "interview_invite": [
         r"interview",
         r"entrevista",
-        r"interview",
         r"next step",
         r"próxima etapa",
         r"phone call",
@@ -58,7 +58,7 @@ RESPONSE_PATTERNS = {
 
 
 def get_gmail_service():
-    """Autentica e retorna serviço Gmail."""
+    """Authenticates and returns the Gmail service."""
     creds = None
     token_path = "token.pickle"
 
@@ -74,7 +74,7 @@ def get_gmail_service():
 
 
 def decode_email_body(payload: dict) -> str:
-    """Extrai texto do email."""
+    """Extracts plain text from the email payload."""
     import base64
 
     def walk(parts):
@@ -101,10 +101,10 @@ def decode_email_body(payload: dict) -> str:
 
 def classify_response_with_claude(email_subject: str, email_body: str) -> dict:
     """
-    Usa Claude pra classificar a resposta do recrutador.
-    Retorna: {'type': 'positive'|'rejection'|'interview_invite'|'info_request', 'confidence': 0-1}
+    Uses Claude to classify a recruiter response.
+    Returns: {'type': 'positive'|'rejection'|'interview_invite'|'info_request', 'confidence': 0-1}
     """
-    system = """You are a recruiter response classifier. 
+    system = """You are a recruiter response classifier.
 Classify the email from a recruiter as one of:
 - 'positive': job offer, positive feedback, moving forward
 - 'rejection': not selected, not a fit, goodbye
@@ -134,15 +134,14 @@ Body:
         result = json.loads(text)
         return result
     except Exception as e:
-        print(f"  ⚠️  Erro ao classificar: {e}")
+        print(f"  Warning: error classifying email: {e}")
         return {"type": "unknown", "confidence": 0, "reason": "classification error"}
 
 
 def fetch_recruiter_emails(hours_back: int = 48) -> list:
-    """Busca emails de recrutadores nos últimas N horas."""
+    """Fetches recruiter emails from the last N hours."""
     service = get_gmail_service()
 
-    # Busca por palavras-chave de recrutadores
     query = f'(from:hr@ OR from:recruit OR from:noreply OR subject:job OR subject:application) is:unread after:{int((datetime.now().timestamp() - hours_back*3600))}'
 
     try:
@@ -179,12 +178,12 @@ def fetch_recruiter_emails(hours_back: int = 48) -> list:
         return emails
 
     except Exception as e:
-        print(f"❌ Erro ao buscar emails: {e}")
+        print(f"❌ Error fetching emails: {e}")
         return []
 
 
 def process_recruiter_emails(emails: list) -> list:
-    """Processa emails de recrutadores e atualiza tracker."""
+    """Processes recruiter emails and updates the tracker."""
     processed = []
 
     for email in emails:
@@ -192,18 +191,18 @@ def process_recruiter_emails(emails: list) -> list:
         body = email.get("body", "")
         from_addr = email.get("from", "")
 
-        print(f"\n  Analisando: {subject[:60]}...")
-        print(f"  De: {from_addr[:40]}")
+        print(f"\n  Analysing: {subject[:60]}...")
+        print(f"  From: {from_addr[:40]}")
 
         classification = classify_response_with_claude(subject, body)
         response_type = classification.get("type", "unknown")
         confidence = classification.get("confidence", 0)
 
         if confidence < 0.5:
-            print(f"    ⚠️  Confiança baixa ({confidence}), ignorando")
+            print(f"    ⚠️  Low confidence ({confidence}), skipping")
             continue
 
-        print(f"    ✅ {response_type.upper()} (confiança: {confidence})")
+        print(f"    ✅ {response_type.upper()} (confidence: {confidence})")
 
         processed.append(
             {
@@ -219,27 +218,23 @@ def process_recruiter_emails(emails: list) -> list:
 
 
 def monitor_responses():
-    """
-    Monitora emails de recrutadores e atualiza tracker.
-    Roda a cada X horas (manualmente por enquanto).
-    """
+    """Monitors recruiter emails and updates the tracker."""
     print("\n" + "=" * 70)
-    print("EMAIL MONITOR — Detectando respostas de recrutadores")
+    print("EMAIL MONITOR — Detecting recruiter responses")
     print("=" * 70 + "\n")
 
-    print("Buscando emails nos últimas 48h...")
+    print("Searching emails from the last 48h...")
     emails = fetch_recruiter_emails(hours_back=48)
 
     if not emails:
-        print("Nenhum email de recrutador encontrado.")
+        print("No recruiter emails found.")
         return []
 
-    print(f"Encontrados {len(emails)} email(s). Classificando...\n")
+    print(f"Found {len(emails)} email(s). Classifying...\n")
 
     processed = process_recruiter_emails(emails)
 
     if processed:
-        # Salva resultado
         os.makedirs("digests", exist_ok=True)
         timestamp = datetime.now().strftime("%Y%m%d_%H%M")
         output = f"digests/email_monitor_{timestamp}.json"
@@ -247,9 +242,9 @@ def monitor_responses():
         with open(output, "w", encoding="utf-8") as f:
             json.dump(processed, f, ensure_ascii=False, indent=2)
 
-        print(f"\n✅ {len(processed)} resposta(s) processada(s) → {output}")
+        print(f"\n✅ {len(processed)} response(s) processed → {output}")
     else:
-        print("\n⚠️  Nenhuma resposta foi classificada.")
+        print("\n⚠️  No responses were classified.")
 
     return processed
 

@@ -1,15 +1,17 @@
 """
-followup_writer.py  —  Gera follow-ups personalizados com Claude Sonnet
-Usado pra vagas sem resposta > 7 dias
+followup_writer.py  —  Generates personalised follow-up emails with Claude Sonnet
+Used for applications with no response after 7+ days.
 """
 
 import json
 import os
 import sys
 import anthropic
+from dotenv import load_dotenv
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+load_dotenv()
 client = anthropic.Anthropic()
 
 FOLLOWUP_SYSTEM_PROMPT = """You are writing a professional follow-up email for a job application.
@@ -30,24 +32,15 @@ Return ONLY the email body (no subject line, no greeting, no signature yet)."""
 def generate_followup(
     empresa: str,
     titulo: str,
-    dias_passados: int,
+    days_elapsed: int,
     original_application_date: str,
 ) -> str | None:
-    """
-    Gera um follow-up personalizado.
-    
-    Args:
-        empresa: Nome da empresa
-        titulo: Título da vaga
-        dias_passados: Quantos dias passaram
-        original_application_date: Data da aplicação original
-    """
-    
+    """Generates a personalised follow-up email body."""
     prompt = f"""Generate a professional follow-up email for this job application:
 
 COMPANY: {empresa}
 JOB TITLE: {titulo}
-DAYS SINCE APPLICATION: {dias_passados}
+DAYS SINCE APPLICATION: {days_elapsed}
 ORIGINAL APPLICATION DATE: {original_application_date}
 
 The follow-up should:
@@ -66,58 +59,52 @@ Keep it concise and professional."""
             system=FOLLOWUP_SYSTEM_PROMPT,
             messages=[{"role": "user", "content": prompt}]
         )
-        
+
         return response.content[0].text.strip()
-    
+
     except Exception as e:
-        print(f"❌ Erro ao gerar follow-up: {e}")
+        print(f"❌ Error generating follow-up: {e}")
         return None
 
 
 def generate_followup_email_package(application: dict) -> dict | None:
     """
-    Gera pacote completo de follow-up (assunto + corpo).
-    
-    Args:
-        application: Dicionário com dados da aplicação do banco
+    Generates a complete follow-up package (subject + body).
+    Expects a dict with application data from the database.
     """
-    
     empresa = application.get("empresa", "Unknown")
     titulo = application.get("titulo", "Unknown")
-    dias_passados = application.get("dias_sem_resposta", 0)
-    data_aplicacao = application.get("date_applied", "Unknown")
-    
-    # Gera corpo do email
-    body = generate_followup(empresa, titulo, dias_passados, data_aplicacao)
-    
+    days_elapsed = application.get("days_without_response", 0)
+    date_applied = application.get("date_applied", "Unknown")
+
+    body = generate_followup(empresa, titulo, days_elapsed, date_applied)
+
     if not body:
         return None
-    
-    # Gera assunto
+
     subject = f"Following up: {titulo} at {empresa}"
-    
+
     return {
         "subject": subject,
         "body": body,
-        "dias_passados": dias_passados,
+        "days_elapsed": days_elapsed,
         "empresa": empresa,
         "titulo": titulo,
     }
 
 
 if __name__ == "__main__":
-    # Teste
     test_app = {
         "empresa": "Sika AG",
         "titulo": "Data Analyst",
-        "dias_sem_resposta": 10,
+        "days_without_response": 10,
         "date_applied": "2026-05-07"
     }
-    
+
     result = generate_followup_email_package(test_app)
-    
+
     if result:
         print(f"Subject: {result['subject']}\n")
         print(f"Body:\n{result['body']}")
     else:
-        print("❌ Erro ao gerar follow-up")
+        print("❌ Error generating follow-up")

@@ -1,16 +1,17 @@
 """
-cv_tailor.py  —  Subagente: adapta CV para cada role
-Mantém 1 página, ajusta ênfase, Sonnet pra qualidade
+cv_tailor.py  —  Tailors Carlos's CV for each specific role
+Keeps 1 page, adjusts emphasis. Uses Claude Sonnet for quality.
 """
 
 import json
 import os
 import sys
 import anthropic
+from dotenv import load_dotenv
 
+load_dotenv()
 client = anthropic.Anthropic()
 
-# CV base de Carlos (versão texto)
 CARLOS_CV_BASE = """
 CARLOS EDUARDO DUARTE BAPTISTA
 Alte Winterthurerstrasse 107, 8304 Wallisellen | +41 78 261 34 74
@@ -87,12 +88,10 @@ OUTPUT: Return the tailored CV as plain text, ready to save as .txt or paste int
 
 
 def tailor_cv(job: dict, evaluation: dict) -> str:
-    """
-    Adapta o CV de Carlos pra uma vaga específica.
-    """
+    """Tailors Carlos's CV for a specific job."""
     empresa = job.get("empresa", "")
     titulo = job.get("titulo", "")
-    descricao = job.get("descricao", "[Sem descrição]")
+    descricao = job.get("descricao", "[No description]")
     idioma = job.get("idioma", "en")
 
     suggested_angle = evaluation.get("suggested_angle", "")
@@ -127,39 +126,36 @@ Keep it concise, 1 page."""
             messages=[{"role": "user", "content": user_prompt}],
         )
 
-        tailored_cv = response.content[0].text.strip()
-        return tailored_cv
+        return response.content[0].text.strip()
 
     except Exception as e:
-        print(f"    ❌ Erro ao adaptar CV: {e}")
+        print(f"    ❌ Error tailoring CV: {e}")
         return None
 
 
 def tailor_all_cvs(evaluations: list[dict], jobs_dict: dict) -> list[dict]:
-    """
-    Adapta CVs apenas para vagas com score >= 65.
-    """
+    """Tailors CVs only for jobs with score >= 65 (APPLY)."""
     tailored = []
     apply_jobs = [e for e in evaluations if e.get("score", 0) >= 65]
 
     if not apply_jobs:
-        print("Nenhuma vaga com score >= 65. Nada pra adaptar.")
+        print("No jobs with score >= 65. Nothing to tailor.")
         return []
 
-    print(f"Adaptando CVs para {len(apply_jobs)} vaga(s)...\n")
+    print(f"Tailoring CVs for {len(apply_jobs)} job(s)...\n")
 
     for i, eval_result in enumerate(apply_jobs, 1):
         job_key = eval_result.get("job", {}).get("empresa", "")
         job = jobs_dict.get(job_key)
 
         if not job:
-            print(f"[{i}] ⚠️  Job data não encontrado para {job_key}")
+            print(f"[{i}] Warning: job data not found for {job_key}")
             continue
 
         empresa = job.get("empresa", "")
         titulo = job.get("titulo", "")[:50]
 
-        print(f"[{i}] Adaptando CV para {empresa} — {titulo}...")
+        print(f"[{i}] Tailoring CV for {empresa} — {titulo}...")
 
         cv = tailor_cv(job, eval_result)
 
@@ -172,9 +168,9 @@ def tailor_all_cvs(evaluations: list[dict], jobs_dict: dict) -> list[dict]:
                 "score": eval_result.get("score", 0),
             }
             tailored.append(cv_item)
-            print(f"    ✅ CV adaptado")
+            print(f"    ✅ CV tailored")
         else:
-            print(f"    ❌ Falha ao adaptar")
+            print(f"    ❌ Failed to tailor")
 
     return tailored
 
@@ -184,8 +180,8 @@ if __name__ == "__main__":
     jobs_file = "digests/new_jobs_latest.json"
 
     if not os.path.exists(eval_file) or not os.path.exists(jobs_file):
-        print(f"Arquivos não encontrados.")
-        print("Rode primeiro: python agents/job_evaluator.py")
+        print("Required files not found.")
+        print("Run first: python agents/job_evaluator.py")
         sys.exit(1)
 
     with open(eval_file, "r", encoding="utf-8") as f:
@@ -196,7 +192,7 @@ if __name__ == "__main__":
 
     jobs_dict = {j["empresa"]: j for j in jobs_list}
 
-    print(f"Adaptando CVs...\n")
+    print("Tailoring CVs...\n")
     tailored_cvs = tailor_all_cvs(evaluations, jobs_dict)
 
     if tailored_cvs:
@@ -205,12 +201,11 @@ if __name__ == "__main__":
         with open(output, "w", encoding="utf-8") as f:
             json.dump(tailored_cvs, f, ensure_ascii=False, indent=2)
 
-        print(f"\n✅ {len(tailored_cvs)} CV(s) adaptado(s) → {output}")
+        print(f"\n✅ {len(tailored_cvs)} CV(s) tailored → {output}")
 
-        # Preview
-        print(f"\nPrimeiro CV (primeiras linhas):")
+        print(f"\nFirst CV preview (first 10 lines):")
         print("=" * 60)
-        print(tailored_cvs[0]["cv_tailored"].split("\n")[:10])
+        print("\n".join(tailored_cvs[0]["cv_tailored"].split("\n")[:10]))
         print("=" * 60)
     else:
-        print("\nNenhum CV adaptado.")
+        print("\nNo CVs tailored.")
