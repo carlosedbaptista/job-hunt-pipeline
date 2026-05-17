@@ -1,5 +1,5 @@
 """
-SEMANA 6: CLAUDE IN CHROME - GUIA DE USO COMPLETO
+CLAUDE IN CHROME - GUIA DE USO COMPLETO
 
 Este guia explica como usar Claude in Chrome pra preencher formulários automaticamente.
 """
