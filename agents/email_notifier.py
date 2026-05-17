@@ -175,9 +175,9 @@ def format_digest_as_html(digest: dict) -> str:
         portal = job.get("portal", "")
 
         # Cor baseada no score
-        if score >= 75:
+        if score >= 65:
             color = "#32CD32"  # green
-        elif score >= 55:
+        elif score >= 45:
             color = "#FFA500"  # orange
         else:
             color = "#999"  # gray

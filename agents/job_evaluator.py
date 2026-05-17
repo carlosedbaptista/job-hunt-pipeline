@@ -89,9 +89,9 @@ Output format:
 }}
 
 SCORING THRESHOLDS:
-  - Score >= 75: APPLY immediately, generate materials
-  - Score 55-74: REVIEW — flag for Carlos to decide
-  - Score < 55: UNCERTAIN — describe the job, ask what to do
+  - Score >= 65: APPLY immediately, generate materials
+  - Score 45-64: REVIEW — flag for Carlos to decide
+  - Score < 45: UNCERTAIN — describe the job, ask what to do
 """
 
 
@@ -208,11 +208,11 @@ if __name__ == "__main__":
     print(f"\n✅ {len(evaluations)} vagas avaliadas → {output}")
 
     # Resume
-    apply_count = sum(1 for e in evaluations if e.get("score", 0) >= 75)
-    review_count = sum(1 for e in evaluations if 55 <= e.get("score", 0) < 75)
-    uncertain_count = sum(1 for e in evaluations if e.get("score", 0) < 55)
+    apply_count = sum(1 for e in evaluations if e.get("score", 0) >= 65)
+    review_count = sum(1 for e in evaluations if 45 <= e.get("score", 0) < 65)
+    uncertain_count = sum(1 for e in evaluations if e.get("score", 0) < 45)
 
     print(f"\nRESUMO:")
-    print(f"  ✅ APPLY ({apply_count}): {[e['job']['empresa'] for e in evaluations if e.get('score', 0) >= 75]}")
-    print(f"  ⚠️  REVIEW ({review_count}): {[e['job']['empresa'] for e in evaluations if 55 <= e.get('score', 0) < 75]}")
-    print(f"  ❌ UNCERTAIN ({uncertain_count}): {[e['job']['empresa'] for e in evaluations if e.get('score', 0) < 55]}")
+    print(f"  ✅ APPLY ({apply_count}): {[e['job']['empresa'] for e in evaluations if e.get('score', 0) >= 65]}")
+    print(f"  ⚠️  REVIEW ({review_count}): {[e['job']['empresa'] for e in evaluations if 45 <= e.get('score', 0) < 75]}")
+    print(f"  ❌ UNCERTAIN ({uncertain_count}): {[e['job']['empresa'] for e in evaluations if e.get('score', 0) < 45]}")

@@ -72,7 +72,7 @@ def format_digest_text(digest: dict, top_jobs: list) -> str:
         portal = job.get("portal", "")
 
         # Emoji baseado no recommendation
-        icon = "✅" if score >= 75 else "⚠️" if score >= 55 else "❌"
+        icon = "✅" if score >= 65 else "⚠️" if score >= 45 else "❌"
 
         lines.append("")
         lines.append(f"{i}. {icon} [{score}/100] {empresa}")

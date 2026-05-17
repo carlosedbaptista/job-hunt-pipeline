@@ -137,13 +137,13 @@ Keep it concise, 1 page."""
 
 def tailor_all_cvs(evaluations: list[dict], jobs_dict: dict) -> list[dict]:
     """
-    Adapta CVs apenas para vagas com score >= 75.
+    Adapta CVs apenas para vagas com score >= 65.
     """
     tailored = []
-    apply_jobs = [e for e in evaluations if e.get("score", 0) >= 75]
+    apply_jobs = [e for e in evaluations if e.get("score", 0) >= 65]
 
     if not apply_jobs:
-        print("Nenhuma vaga com score >= 75. Nada pra adaptar.")
+        print("Nenhuma vaga com score >= 65. Nada pra adaptar.")
         return []
 
     print(f"Adaptando CVs para {len(apply_jobs)} vaga(s)...\n")
