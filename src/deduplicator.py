@@ -1,7 +1,6 @@
 """
-deduplicator.py  —  Filtra vagas já vistas usando SQLite
-Hash = sha256(empresa_normalizada | titulo_normalizado | localizacao_normalizada)
-Persiste vagas por 7 dias.
+deduplicator.py  —  Filters already-seen jobs using SQLite
+Hash = sha256(company | title | location), retained for 7 days.
 """
 
 import hashlib
@@ -14,29 +13,28 @@ from datetime import datetime, timedelta
 DB_PATH = os.environ.get("JOBS_DB_PATH", "tracker/jobs.db")
 
 
-# ─── Normalização ────────────────────────────────────────────────────────────
+# ─── Normalisation ────────────────────────────────────────────────────────────
 
 def normalize(text: str) -> str:
-    """Remove acentos, pontuação e espaços extras para comparação."""
+    """Removes accents, punctuation and extra spaces for consistent comparison."""
     if not text:
         return ""
     text = text.lower().strip()
-    # Remove caracteres não-alfanuméricos (exceto espaços)
     text = re.sub(r"[^a-z0-9\s]", " ", text)
     text = re.sub(r"\s+", " ", text).strip()
     return text
 
 
 def make_hash(empresa: str, titulo: str, localizacao: str) -> str:
-    """Gera hash de deduplicação de 16 chars."""
+    """Generates a 16-char deduplication hash."""
     key = f"{normalize(empresa)}|{normalize(titulo)}|{normalize(localizacao)}"
     return hashlib.sha256(key.encode()).hexdigest()[:16]
 
 
-# ─── Banco de dados ───────────────────────────────────────────────────────────
+# ─── Database ─────────────────────────────────────────────────────────────────
 
 def init_db(db_path: str = DB_PATH):
-    """Cria tabelas se não existirem."""
+    """Creates tables if they don't exist."""
     os.makedirs(os.path.dirname(db_path), exist_ok=True)
     conn = sqlite3.connect(db_path)
 
@@ -73,7 +71,7 @@ def init_db(db_path: str = DB_PATH):
 
 
 def purge_old_records(conn: sqlite3.Connection, days: int = 7):
-    """Remove registros mais antigos que N dias (exceto aplicações)."""
+    """Removes records older than N days (applications are preserved)."""
     cutoff = (datetime.now() - timedelta(days=days)).isoformat()
     conn.execute(
         "DELETE FROM seen_jobs WHERE last_seen < ? AND status = 'new'",
@@ -81,7 +79,7 @@ def purge_old_records(conn: sqlite3.Connection, days: int = 7):
     )
 
 
-# ─── Deduplicação ─────────────────────────────────────────────────────────────
+# ─── Deduplication ────────────────────────────────────────────────────────────
 
 def filter_new_jobs(
     jobs: list[dict],
@@ -89,10 +87,9 @@ def filter_new_jobs(
     retention_days: int = 7,
 ) -> list[dict]:
     """
-    Filtra vagas já vistas nas últimas N dias.
-    - Insere novas vagas no DB
-    - Atualiza last_seen das duplicatas
-    - Retorna apenas vagas novas
+    Filters jobs already seen in the last N days.
+    Inserts new jobs into the DB; updates last_seen for duplicates.
+    Returns only new jobs.
     """
     init_db(db_path)
     conn = sqlite3.connect(db_path)
@@ -113,7 +110,6 @@ def filter_new_jobs(
         ).fetchone()
 
         if row is None:
-            # Nova vaga — insere no DB e adiciona ao resultado
             conn.execute(
                 """INSERT INTO seen_jobs
                    (hash, empresa, titulo, localizacao, url, portal, first_seen, last_seen)
@@ -132,7 +128,6 @@ def filter_new_jobs(
             job["hash"] = h
             new_jobs.append(job)
         else:
-            # Duplicata — só atualiza last_seen
             conn.execute(
                 "UPDATE seen_jobs SET last_seen = ? WHERE hash = ?",
                 (now, h),
@@ -143,12 +138,12 @@ def filter_new_jobs(
     return new_jobs
 
 
-# ─── Utilitários ──────────────────────────────────────────────────────────────
+# ─── Utilities ────────────────────────────────────────────────────────────────
 
 def get_stats(db_path: str = DB_PATH) -> dict:
-    """Retorna estatísticas do banco."""
+    """Returns database statistics."""
     if not os.path.exists(db_path):
-        return {"error": "DB não encontrado"}
+        return {"error": "Database not found"}
 
     conn = sqlite3.connect(db_path)
 
@@ -160,9 +155,9 @@ def get_stats(db_path: str = DB_PATH) -> dict:
 
     conn.close()
     return {
-        "total_vagas_vistas": total_seen,
-        "total_aplicacoes": total_applied,
-        "aplicacoes_pendentes": pending,
+        "total_jobs_seen": total_seen,
+        "total_applications": total_applied,
+        "pending_applications": pending,
     }
 
 
@@ -171,30 +166,28 @@ def get_stats(db_path: str = DB_PATH) -> dict:
 if __name__ == "__main__":
     import sys
 
-    # Modo stats
     if len(sys.argv) > 1 and sys.argv[1] == "stats":
         stats = get_stats()
         print(json.dumps(stats, indent=2, ensure_ascii=False))
         sys.exit(0)
 
-    # Modo dedup normal
     input_file = "digests/parsed_jobs_latest.json"
     if not os.path.exists(input_file):
-        print(f"Arquivo não encontrado: {input_file}")
-        print("Rode primeiro: python agents/email_parser.py")
+        print(f"File not found: {input_file}")
+        print("Run first: python agents/email_parser.py")
         sys.exit(1)
 
     with open(input_file, "r", encoding="utf-8") as f:
         jobs = json.load(f)
 
-    print(f"Vagas parseadas: {len(jobs)}")
+    print(f"Jobs parsed: {len(jobs)}")
     new_jobs = filter_new_jobs(jobs)
 
     duplicates = len(jobs) - len(new_jobs)
-    print(f"Novas: {len(new_jobs)}  |  Duplicatas filtradas: {duplicates}")
+    print(f"New: {len(new_jobs)}  |  Duplicates filtered: {duplicates}")
 
     output = "digests/new_jobs_latest.json"
     with open(output, "w", encoding="utf-8") as f:
         json.dump(new_jobs, f, ensure_ascii=False, indent=2)
 
-    print(f"\n✅ {len(new_jobs)} vagas novas → {output}")
+    print(f"\n✅ {len(new_jobs)} new jobs → {output}")

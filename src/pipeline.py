@@ -1,11 +1,11 @@
 """
-pipeline.py  —  Orquestrador principal da Semana 2
-Roda o pipeline completo: ingest → parse → dedup → output
+pipeline.py  —  Email ingestion orchestrator
+Runs: fetch emails → parse jobs → deduplicate → output
 
-Uso:
-  python src/pipeline.py           # últimas 24h
-  python src/pipeline.py --hours 48  # últimas 48h
-  python src/pipeline.py --dry-run   # sem salvar no DB (teste)
+Usage:
+  python src/pipeline.py              # last 24h
+  python src/pipeline.py --hours 48   # last 48h
+  python src/pipeline.py --dry-run    # without saving to DB (test mode)
 """
 
 import argparse
@@ -14,7 +14,6 @@ import os
 import sys
 from datetime import datetime
 
-# Adiciona o root do projeto ao path
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
@@ -30,42 +29,40 @@ def run_pipeline(hours_back: int = 24, dry_run: bool = False) -> list[dict]:
     print(f"\n{divider}")
     print(f"  JOB HUNT PIPELINE  —  {timestamp}")
     if dry_run:
-        print("  ⚠️  DRY RUN — nada será salvo no banco")
+        print("  ⚠️  DRY RUN — nothing will be saved to the database")
     print(f"{divider}\n")
 
     os.makedirs("digests", exist_ok=True)
     os.makedirs("tracker", exist_ok=True)
 
-    # ── STEP 1: Buscar emails ────────────────────────────────────────────────
-    print("STEP 1 › Buscando emails de alerta...")
+    # ── STEP 1: Fetch emails ─────────────────────────────────────────────────
+    print("STEP 1 › Fetching job alert emails...")
     emails = fetch_job_alert_emails(hours_back=hours_back)
 
     if not emails:
-        print("Nenhum email encontrado. Pipeline encerrado.\n")
+        print("No emails found. Pipeline stopped.\n")
         return []
 
-    # Salva raw para debug
     with open("digests/raw_emails_full.json", "w", encoding="utf-8") as f:
         json.dump(emails, f, ensure_ascii=False, indent=2)
 
-    # ── STEP 2: Parsear vagas ────────────────────────────────────────────────
-    print(f"\nSTEP 2 › Extraindo vagas com Claude Haiku ({len(emails)} emails)...")
+    # ── STEP 2: Parse jobs ───────────────────────────────────────────────────
+    print(f"\nSTEP 2 › Extracting jobs with Claude Haiku ({len(emails)} emails)...")
     all_jobs = parse_all_emails(emails)
 
     with open("digests/parsed_jobs_latest.json", "w", encoding="utf-8") as f:
         json.dump(all_jobs, f, ensure_ascii=False, indent=2)
 
-    print(f"\n  → {len(all_jobs)} vagas extraídas no total")
+    print(f"\n  → {len(all_jobs)} jobs extracted in total")
 
     if not all_jobs:
-        print("Nenhuma vaga extraída. Pipeline encerrado.\n")
+        print("No jobs extracted. Pipeline stopped.\n")
         return []
 
-    # ── STEP 3: Deduplicação ─────────────────────────────────────────────────
-    print("\nSTEP 3 › Filtrando duplicatas...")
+    # ── STEP 3: Deduplicate ──────────────────────────────────────────────────
+    print("\nSTEP 3 › Filtering duplicates...")
 
     if dry_run:
-        # Em dry-run, não salva no DB — usa dedup apenas em memória
         seen_keys = set()
         new_jobs = []
         for job in all_jobs:
@@ -77,7 +74,7 @@ def run_pipeline(hours_back: int = 24, dry_run: bool = False) -> list[dict]:
         new_jobs = filter_new_jobs(all_jobs)
 
     duplicates = len(all_jobs) - len(new_jobs)
-    print(f"  → {len(new_jobs)} novas  |  {duplicates} duplicatas filtradas")
+    print(f"  → {len(new_jobs)} new  |  {duplicates} duplicates filtered")
 
     # ── OUTPUT ───────────────────────────────────────────────────────────────
     run_ts = datetime.now().strftime("%Y%m%d_%H%M")
@@ -86,21 +83,20 @@ def run_pipeline(hours_back: int = 24, dry_run: bool = False) -> list[dict]:
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(new_jobs, f, ensure_ascii=False, indent=2)
 
-    # Também sobrescreve o "latest" para uso do próximo step
     with open("digests/new_jobs_latest.json", "w", encoding="utf-8") as f:
         json.dump(new_jobs, f, ensure_ascii=False, indent=2)
 
-    # ── RESUMO ───────────────────────────────────────────────────────────────
+    # ── SUMMARY ──────────────────────────────────────────────────────────────
     print(f"\n{divider}")
-    print(f"  RESULTADO")
+    print(f"  RESULTS")
     print(f"{divider}")
-    print(f"  Emails processados : {len(emails)}")
-    print(f"  Vagas extraídas    : {len(all_jobs)}")
-    print(f"  Vagas novas        : {len(new_jobs)}")
-    print(f"  Salvo em           : {output_path}")
+    print(f"  Emails processed : {len(emails)}")
+    print(f"  Jobs extracted   : {len(all_jobs)}")
+    print(f"  New jobs         : {len(new_jobs)}")
+    print(f"  Saved to         : {output_path}")
 
     if new_jobs:
-        print(f"\n  Top vagas novas:")
+        print(f"\n  Top new jobs:")
         for i, job in enumerate(new_jobs[:5], 1):
             empresa = job.get("empresa", "N/A")
             titulo = job.get("titulo", "N/A")
@@ -112,19 +108,19 @@ def run_pipeline(hours_back: int = 24, dry_run: bool = False) -> list[dict]:
         stats = get_stats()
         print(f"\n  DB stats: {stats}")
 
-    print(f"\n✅ Pipeline concluído às {datetime.now().strftime('%H:%M')}\n")
+    print(f"\n✅ Pipeline completed at {datetime.now().strftime('%H:%M')}\n")
     return new_jobs
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Job Hunt Pipeline — Semana 2")
+    parser = argparse.ArgumentParser(description="Job Hunt Pipeline")
     parser.add_argument(
-        "--hours", type=int, default=24, help="Janela de busca em horas (default: 24)"
+        "--hours", type=int, default=24, help="Search window in hours (default: 24)"
     )
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="Roda sem salvar no banco (útil para testes)",
+        help="Run without saving to database (useful for testing)",
     )
     args = parser.parse_args()
 

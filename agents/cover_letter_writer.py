@@ -1,16 +1,17 @@
 """
-cover_letter_writer.py  —  Subagente: gera cover letters customizadas
-Usa Claude Sonnet (qualidade melhor), roda apenas em vagas com score >= 65
+cover_letter_writer.py  —  Generates tailored cover letters for high-fit jobs
+Uses Claude Sonnet. Runs only for jobs with score >= 65.
 """
 
 import json
 import os
 import sys
 import anthropic
+from dotenv import load_dotenv
 
+load_dotenv()
 client = anthropic.Anthropic()
 
-# Positioning de Carlos (para tom e voz)
 CARLOS_VOICE = """
 TONE: Professional but human. Direct, specific, honest.
 STYLE: Shows genuine interest. Never generic.
@@ -20,7 +21,7 @@ BACKGROUND_SUMMARY:
   - Currently: Digital Marketing & Analytics Associate (pro bono at netzdenker.com)
   - Postgraduate in Data Science (expected Oct 2026)
   - STRONG AI integration: uses Claude, ChatGPT, Gemini daily as professional tools
-  
+
 KEY_SELLING_POINTS:
   1. Real AI integration — not just "familiar", uses as daily tools
   2. Cross-cultural & multilingual (Portuguese native, English C1, German improving)
@@ -58,17 +59,13 @@ OUTPUT: Return the cover letter as plain text, ready to copy-paste. No markdown,
 
 
 def generate_cover_letter(job: dict, evaluation: dict) -> str:
-    """
-    Gera uma cover letter customizada para uma vaga de alto fit.
-    """
+    """Generates a tailored cover letter for a high-fit job."""
     empresa = job.get("empresa", "")
     titulo = job.get("titulo", "")
     localizacao = job.get("localizacao", "")
     idioma = job.get("idioma", "en")
-    url = job.get("url", "")
-    descricao = job.get("descricao") or "[Sem descrição disponível]"
+    descricao = job.get("descricao") or "[No description available]"
 
-    # Detecta língua
     lang_name = "English" if idioma in ("en", "english") else "German" if idioma in ("de", "deutsch") else "English"
 
     suggested_angle = evaluation.get("suggested_angle", "")
@@ -96,39 +93,36 @@ Show genuine interest, not generic enthusiasm."""
             messages=[{"role": "user", "content": user_prompt}],
         )
 
-        cover_letter = response.content[0].text.strip()
-        return cover_letter
+        return response.content[0].text.strip()
 
     except Exception as e:
-        print(f"    ❌ Erro ao gerar cover letter: {e}")
+        print(f"    ❌ Error generating cover letter: {e}")
         return None
 
 
 def generate_materials(evaluations: list[dict], jobs_dict: dict) -> list[dict]:
-    """
-    Gera cover letters apenas para vagas com score >= 65 (APPLY).
-    """
+    """Generates cover letters only for jobs with score >= 65 (APPLY)."""
     materials = []
     apply_jobs = [e for e in evaluations if e.get("score", 0) >= 65]
 
     if not apply_jobs:
-        print("Nenhuma vaga com score >= 65. Nada pra gerar.")
+        print("No jobs with score >= 65. Nothing to generate.")
         return []
 
-    print(f"Gerando materiais para {len(apply_jobs)} vaga(s)...\n")
+    print(f"Generating cover letters for {len(apply_jobs)} job(s)...\n")
 
     for i, eval_result in enumerate(apply_jobs, 1):
         job_key = eval_result.get("job", {}).get("empresa", "")
         job = jobs_dict.get(job_key)
 
         if not job:
-            print(f"[{i}] ⚠️  Job data não encontrado para {job_key}")
+            print(f"[{i}] Warning: job data not found for {job_key}")
             continue
 
         empresa = job.get("empresa", "")
         titulo = job.get("titulo", "")[:50]
 
-        print(f"[{i}] Gerando cover letter para {empresa} — {titulo}...")
+        print(f"[{i}] Generating cover letter for {empresa} — {titulo}...")
 
         cover_letter = generate_cover_letter(job, eval_result)
 
@@ -143,9 +137,9 @@ def generate_materials(evaluations: list[dict], jobs_dict: dict) -> list[dict]:
                 "evaluation": eval_result,
             }
             materials.append(material)
-            print(f"    ✅ Cover letter gerada")
+            print(f"    ✅ Cover letter generated")
         else:
-            print(f"    ❌ Falha ao gerar")
+            print(f"    ❌ Failed to generate")
 
     return materials
 
@@ -155,8 +149,8 @@ if __name__ == "__main__":
     jobs_file = "digests/new_jobs_latest.json"
 
     if not os.path.exists(eval_file) or not os.path.exists(jobs_file):
-        print(f"Arquivos não encontrados.")
-        print("Rode primeiro: python agents/job_evaluator.py")
+        print("Required files not found.")
+        print("Run first: python agents/job_evaluator.py")
         sys.exit(1)
 
     with open(eval_file, "r", encoding="utf-8") as f:
@@ -165,10 +159,9 @@ if __name__ == "__main__":
     with open(jobs_file, "r", encoding="utf-8") as f:
         jobs_list = json.load(f)
 
-    # Index jobs by company name
     jobs_dict = {j["empresa"]: j for j in jobs_list}
 
-    print(f"Gerando cover letters...\n")
+    print("Generating cover letters...\n")
     materials = generate_materials(evaluations, jobs_dict)
 
     if materials:
@@ -177,12 +170,11 @@ if __name__ == "__main__":
         with open(output, "w", encoding="utf-8") as f:
             json.dump(materials, f, ensure_ascii=False, indent=2)
 
-        print(f"\n✅ {len(materials)} cover letter(s) gerada(s) → {output}")
+        print(f"\n✅ {len(materials)} cover letter(s) generated → {output}")
 
-        # Preview
-        print(f"\nPrimeira cover letter:")
+        print(f"\nFirst cover letter preview:")
         print("=" * 60)
         print(materials[0]["cover_letter"][:400] + "...")
         print("=" * 60)
     else:
-        print("\nNenhum material gerado.")
+        print("\nNo materials generated.")
