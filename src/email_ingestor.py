@@ -1,6 +1,5 @@
 """
-email_ingestor.py
-Busca emails de alertas de vagas das últimas N horas via Gmail API.
+email_ingestor.py  —  Fetches job alert emails from the last N hours via Gmail API
 """
 
 import os
@@ -16,7 +15,7 @@ from googleapiclient.discovery import build
 
 SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
 
-# Ajuste estes remetentes conforme seus alertas reais no Gmail
+# Update these senders to match your actual Gmail alert subscriptions
 JOB_ALERT_SENDERS = [
     "jobs.ch",
     "jobup.ch",
@@ -30,7 +29,7 @@ JOB_ALERT_SENDERS = [
 
 
 def get_gmail_service(credentials_path="credentials.json", token_path="token.pickle"):
-    """Autentica e retorna o serviço Gmail API."""
+    """Authenticates and returns the Gmail API service."""
     creds = None
 
     if os.path.exists(token_path):
@@ -50,7 +49,7 @@ def get_gmail_service(credentials_path="credentials.json", token_path="token.pic
 
 
 def decode_part(data: str) -> str:
-    """Decodifica base64url para string."""
+    """Decodes base64url to string."""
     padding = 4 - len(data) % 4
     if padding != 4:
         data += "=" * padding
@@ -58,7 +57,7 @@ def decode_part(data: str) -> str:
 
 
 def extract_body(payload: dict) -> tuple[str, str]:
-    """Extrai HTML e texto plano do payload do email."""
+    """Extracts HTML and plain text from the email payload."""
     html_body = ""
     text_body = ""
 
@@ -92,11 +91,7 @@ def extract_body(payload: dict) -> tuple[str, str]:
 
 
 def build_query(hours_back: int) -> str:
-    """
-    Monta a query de busca para o Gmail.
-    Tenta primeiro pelo label 'job-alerts'. Se não tiver esse label,
-    usa os remetentes conhecidos como fallback.
-    """
+    """Builds the Gmail search query filtering by known job alert senders."""
     after_ts = int(
         (datetime.now(timezone.utc) - timedelta(hours=hours_back)).timestamp()
     )
@@ -107,8 +102,8 @@ def build_query(hours_back: int) -> str:
 
 def fetch_job_alert_emails(hours_back: int = 24, max_results: int = 50) -> list[dict]:
     """
-    Busca emails de alertas de vagas nas últimas N horas.
-    Retorna lista de dicts com metadados e corpo do email.
+    Fetches job alert emails from the last N hours.
+    Returns a list of dicts with metadata and email body.
     """
     service = get_gmail_service()
     query = build_query(hours_back)
@@ -125,10 +120,10 @@ def fetch_job_alert_emails(hours_back: int = 24, max_results: int = 50) -> list[
     messages = result.get("messages", [])
 
     if not messages:
-        print(f"Nenhum email de alerta encontrado nas últimas {hours_back}h.")
+        print(f"No alert emails found in the last {hours_back}h.")
         return []
 
-    print(f"Encontrados {len(messages)} emails. Extraindo conteúdo...")
+    print(f"Found {len(messages)} emails. Extracting content...")
 
     emails = []
     for i, msg_ref in enumerate(messages):
@@ -154,9 +149,9 @@ def fetch_job_alert_emails(hours_back: int = 24, max_results: int = 50) -> list[
         emails.append(email)
 
         if (i + 1) % 10 == 0:
-            print(f"  {i + 1}/{len(messages)} emails processados...")
+            print(f"  {i + 1}/{len(messages)} emails processed...")
 
-    print(f"Total: {len(emails)} emails extraídos.")
+    print(f"Total: {len(emails)} emails extracted.")
     return emails
 
 
@@ -165,17 +160,15 @@ if __name__ == "__main__":
 
     emails = fetch_job_alert_emails(hours_back=24)
 
-    output_path = f"digests/raw_emails_latest.json"
+    output_path = "digests/raw_emails_latest.json"
     with open(output_path, "w", encoding="utf-8") as f:
-        # Salva sem html_body para inspeção rápida (pode ser grande)
         preview = [
             {k: v for k, v in e.items() if k not in ("html_body", "text_body")}
             for e in emails
         ]
         json.dump(preview, f, ensure_ascii=False, indent=2)
 
-    # Salva completo num arquivo separado
     with open("digests/raw_emails_full.json", "w", encoding="utf-8") as f:
         json.dump(emails, f, ensure_ascii=False, indent=2)
 
-    print(f"\n✅ {len(emails)} emails salvos em digests/")
+    print(f"\n✅ {len(emails)} emails saved to digests/")

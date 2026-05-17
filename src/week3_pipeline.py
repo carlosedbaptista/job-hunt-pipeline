@@ -1,6 +1,6 @@
 """
-week3_pipeline.py  —  Orquestrador Semana 3
-Roda: avaliação → cover letters → CV adaptados
+week3_pipeline.py  —  Evaluation and materials orchestrator
+Runs: job evaluation → cover letters → tailored CVs
 """
 
 import argparse
@@ -15,7 +15,7 @@ sys.path.insert(0, ROOT)
 
 
 def run_step(script: str, description: str) -> bool:
-    """Roda um script e retorna True se sucesso."""
+    """Runs a script and returns True on success."""
     print(f"\n{'='*60}")
     print(f"  {description}")
     print(f"{'='*60}\n")
@@ -29,37 +29,33 @@ def run_step(script: str, description: str) -> bool:
         )
         return result.returncode == 0
     except Exception as e:
-        print(f"❌ Erro ao rodar {script}: {e}")
+        print(f"❌ Error running {script}: {e}")
         return False
 
 
-def run_week3_pipeline():
+def run_evaluation_pipeline():
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
 
     print(f"\n{'='*60}")
-    print(f"  JOB HUNT — SEMANA 3  |  {timestamp}")
-    print(f"  Avaliação & Materiais")
+    print(f"  JOB HUNT — EVALUATION PIPELINE  |  {timestamp}")
+    print(f"  Evaluation & Materials")
     print(f"{'='*60}")
 
-    # Step 1: Evaluate all jobs
-    print("\nSTEP 1 › Avaliando vagas de fit...")
+    print("\nSTEP 1 › Evaluating job fit...")
     if not run_step("agents/job_evaluator.py", "Job Evaluator (Haiku)"):
-        print("❌ Avaliação falhou.")
+        print("❌ Evaluation failed.")
         return False
 
-    # Step 2: Generate cover letters for APPLY jobs
-    print("\nSTEP 2 › Gerando cover letters...")
+    print("\nSTEP 2 › Generating cover letters...")
     if not run_step("agents/cover_letter_writer.py", "Cover Letter Writer (Sonnet)"):
-        print("⚠️  Cover letters falharam (nem todas as vagas qualificam)")
+        print("⚠️  Cover letter generation failed (not all jobs qualify)")
 
-    # Step 3: Tailor CVs for APPLY jobs
-    print("\nSTEP 3 › Adaptando CVs...")
+    print("\nSTEP 3 › Tailoring CVs...")
     if not run_step("agents/cv_tailor.py", "CV Tailor (Sonnet)"):
-        print("⚠️  Tailoring CV falhou (nem todas as vagas qualificam)")
+        print("⚠️  CV tailoring failed (not all jobs qualify)")
 
-    # Load results and summary
     print(f"\n{'='*60}")
-    print(f"  RESULTADO FINAL")
+    print(f"  FINAL RESULTS")
     print(f"{'='*60}\n")
 
     if os.path.exists("digests/job_evaluations_latest.json"):
@@ -70,55 +66,55 @@ def run_week3_pipeline():
         review = [e for e in evals if 45 <= e.get("score", 0) < 75]
         uncertain = [e for e in evals if e.get("score", 0) < 45]
 
-        print(f"Total vagas avaliadas: {len(evals)}\n")
+        print(f"Total jobs evaluated: {len(evals)}\n")
 
         if apply:
-            print(f"✅ APPLY ({len(apply)}) — gerar cover letter + CV:")
+            print(f"✅ APPLY ({len(apply)}) — generating cover letter + CV:")
             for e in apply:
                 score = e.get("score", 0)
                 job = e.get("job", {})
                 print(f"   • [{score}/100] {job.get('empresa')} — {job.get('titulo')[:40]}")
 
         if review:
-            print(f"\n⚠️  REVIEW ({len(review)}) — Carlos decide:")
+            print(f"\n⚠️  REVIEW ({len(review)}) — needs your decision:")
             for e in review:
                 score = e.get("score", 0)
                 job = e.get("job", {})
                 print(f"   • [{score}/100] {job.get('empresa')} — {job.get('titulo')[:40]}")
 
         if uncertain:
-            print(f"\n❌ UNCERTAIN ({len(uncertain)}) — não preenche critérios:")
+            print(f"\n❌ UNCERTAIN ({len(uncertain)}) — does not meet criteria:")
             for e in uncertain:
                 score = e.get("score", 0)
                 job = e.get("job", {})
                 flags = e.get("red_flags", [])
                 print(f"   • [{score}/100] {job.get('empresa')} — {job.get('titulo')[:40]}")
                 if flags:
-                    print(f"      Problemas: {'; '.join(flags[:2])}")
+                    print(f"      Issues: {'; '.join(flags[:2])}")
 
         print(f"\n{'='*60}")
-        print(f"  Materiais gerados:")
-        print(f"  • Avaliações: digests/job_evaluations_latest.json")
+        print(f"  Generated files:")
+        print(f"  • Evaluations: digests/job_evaluations_latest.json")
 
         if os.path.exists("digests/cover_letters_latest.json"):
             with open("digests/cover_letters_latest.json", "r") as f:
                 letters = json.load(f)
-            print(f"  • Cover letters: digests/cover_letters_latest.json ({len(letters)} letras)")
+            print(f"  • Cover letters: digests/cover_letters_latest.json ({len(letters)} letters)")
 
         if os.path.exists("digests/tailored_cvs_latest.json"):
             with open("digests/tailored_cvs_latest.json", "r") as f:
                 cvs = json.load(f)
-            print(f"  • CVs tailored: digests/tailored_cvs_latest.json ({len(cvs)} CVs)")
+            print(f"  • Tailored CVs: digests/tailored_cvs_latest.json ({len(cvs)} CVs)")
 
-        print(f"\n✅ Semana 3 concluída às {datetime.now().strftime('%H:%M')}")
+        print(f"\n✅ Pipeline completed at {datetime.now().strftime('%H:%M')}")
         return True
 
     return False
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Job Hunt — Semana 3 Pipeline")
+    parser = argparse.ArgumentParser(description="Job Hunt — Evaluation Pipeline")
     args = parser.parse_args()
 
-    success = run_week3_pipeline()
+    success = run_evaluation_pipeline()
     sys.exit(0 if success else 1)
