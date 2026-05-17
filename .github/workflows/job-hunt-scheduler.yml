@@ -1,0 +1,40 @@
+name: Job Hunt Daily Pipeline
+
+on:
+  schedule:
+    - cron: "0 5 * * *"   # 7:00 AM CEST (UTC+2)
+    - cron: "0 12 * * *"  # 2:00 PM CEST (UTC+2)
+  workflow_dispatch:       # trigger manual pelo GitHub Actions UI
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          PYTHONIOENCODING: utf-8
+        run: python src/week4_pipeline.py
+
+      - name: Commit updated digests
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add digests/ tracker/jobs.db
+          git diff --cached --quiet || git commit -m "chore: auto-update digests [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+          git push
