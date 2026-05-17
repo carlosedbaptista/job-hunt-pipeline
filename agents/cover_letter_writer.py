@@ -1,6 +1,6 @@
 """
 cover_letter_writer.py  —  Subagente: gera cover letters customizadas
-Usa Claude Sonnet (qualidade melhor), roda apenas em vagas com score >= 75
+Usa Claude Sonnet (qualidade melhor), roda apenas em vagas com score >= 65
 """
 
 import json
@@ -106,13 +106,13 @@ Show genuine interest, not generic enthusiasm."""
 
 def generate_materials(evaluations: list[dict], jobs_dict: dict) -> list[dict]:
     """
-    Gera cover letters apenas para vagas com score >= 75 (APPLY).
+    Gera cover letters apenas para vagas com score >= 65 (APPLY).
     """
     materials = []
-    apply_jobs = [e for e in evaluations if e.get("score", 0) >= 75]
+    apply_jobs = [e for e in evaluations if e.get("score", 0) >= 65]
 
     if not apply_jobs:
-        print("Nenhuma vaga com score >= 75. Nada pra gerar.")
+        print("Nenhuma vaga com score >= 65. Nada pra gerar.")
         return []
 
     print(f"Gerando materiais para {len(apply_jobs)} vaga(s)...\n")
