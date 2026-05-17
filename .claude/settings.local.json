@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python test_complete_system.py)",
+      "PowerShell(cd \"C:\\\\Users\\\\carlo\\\\OneDrive\\\\Área de Trabalho\\\\Projects\\\\job-hunt-pipeline\"; $env:PYTHONIOENCODING=\"utf-8\"; python test_complete_system.py)",
+      "PowerShell(cd \"C:\\\\Users\\\\carlo\\\\OneDrive\\\\Área de Trabalho\\\\Projects\\\\job-hunt-pipeline\"; $env:PYTHONIOENCODING=\"utf-8\"; python test_complete_system.py 2>&1 | Select-String -Pattern \"TESTE 3|Banco|Tabela|Coluna|Diret\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(dir .github /s)",
+      "PowerShell(cd \"C:\\\\Users\\\\carlo\\\\OneDrive\\\\Área de Trabalho\\\\Projects\\\\job-hunt-pipeline\"; $env:PYTHONIOENCODING=\"utf-8\"; python src/week4_pipeline.py)",
+      "Bash(git stash *)",
+      "Bash(git pull *)",
+      "Bash(git checkout *)"
+    ]
+  }
+}
