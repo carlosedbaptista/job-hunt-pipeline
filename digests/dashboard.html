@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Hunt Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .applications-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f5f5f5;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #fafafa;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .status-sent {
+            background: #FFA500;
+        }
+
+        .status-rejected {
+            background: #DC143C;
+        }
+
+        .status-interview {
+            background: #32CD32;
+        }
+
+        .status-positive {
+            background: #00AA00;
+        }
+
+        .status-awaiting {
+            background: #4169E1;
+        }
+
+        .empresa {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .date {
+            color: #999;
+            font-size: 13px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .response-rate {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #32CD32 0deg 0.0deg,
+                #ddd 0.0deg
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Job Hunt Dashboard</h1>
+            <p class="subtitle">
+                Carlos Eduardo Duarte Baptista • Atualizado em 17/05/2026 21:52
+            </p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Aplicações</div>
+                <div class="stat-number">0</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Pendentes</div>
+                <div class="stat-number" style="color: #FFA500;">0</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Respondidas</div>
+                <div class="stat-number" style="color: #32CD32;">0</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Taxa de Resposta</div>
+                <div class="response-rate">0.0%</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Entrevistas</div>
+                <div class="stat-number" style="color: #32CD32;">0</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Rejeições</div>
+                <div class="stat-number" style="color: #DC143C;">0</div>
+            </div>
+        </div>
+
+        <div class="applications-section">
+            <h2>Histórico de Aplicações</h2>
+            
+            <div class="empty">Nenhuma aplicação registrada ainda</div>
+        </div>
+
+        <footer>
+            Job Hunt Pipeline • Carlos Eduardo Duarte Baptista • © 2026
+        </footer>
+    </div>
+</body>
+</html>
