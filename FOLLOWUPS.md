@@ -317,7 +317,7 @@ Se tudo marcado, **Semana 10 está completa!** ✅
 
 ---
 
-## Resumo: Sistema Após Semana 10
+## Resumo: Sistema
 
 ```
 PIPELINE COMPLETO + FOLLOW-UP AUTOMATION
