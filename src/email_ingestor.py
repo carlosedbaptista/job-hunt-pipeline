@@ -1,21 +1,21 @@
 """
-email_ingestor.py  —  Fetches job alert emails from the last N hours via Gmail API
+email_ingestor.py  —  Fetches job alert emails from Gmail via IMAP (App Password)
 """
 
-import os
-import base64
+import email
+import imaplib
 import json
-import pickle
+import os
 from datetime import datetime, timedelta, timezone
+from email.header import decode_header
 
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
-from googleapiclient.discovery import build
+from dotenv import load_dotenv
 
-SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
+load_dotenv()
 
-# Update these senders to match your actual Gmail alert subscriptions
+GMAIL_SENDER = os.environ.get("GMAIL_SENDER", "")
+GMAIL_APP_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD", "")
+
 JOB_ALERT_SENDERS = [
     "jobs.ch",
     "jobup.ch",
@@ -28,129 +28,113 @@ JOB_ALERT_SENDERS = [
 ]
 
 
-def get_gmail_service(credentials_path="credentials.json", token_path="token.pickle"):
-    """Authenticates and returns the Gmail API service."""
-    creds = None
-
-    if os.path.exists(token_path):
-        with open(token_path, "rb") as token:
-            creds = pickle.load(token)
-
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
+def decode_header_value(value: str) -> str:
+    parts = decode_header(value)
+    decoded = []
+    for part, charset in parts:
+        if isinstance(part, bytes):
+            decoded.append(part.decode(charset or "utf-8", errors="ignore"))
         else:
-            flow = InstalledAppFlow.from_client_secrets_file(credentials_path, SCOPES)
-            creds = flow.run_local_server(port=0)
-        with open(token_path, "wb") as token:
-            pickle.dump(creds, token)
-
-    return build("gmail", "v1", credentials=creds)
+            decoded.append(part)
+    return " ".join(decoded)
 
 
-def decode_part(data: str) -> str:
-    """Decodes base64url to string."""
-    padding = 4 - len(data) % 4
-    if padding != 4:
-        data += "=" * padding
-    return base64.urlsafe_b64decode(data).decode("utf-8", errors="ignore")
-
-
-def extract_body(payload: dict) -> tuple[str, str]:
-    """Extracts HTML and plain text from the email payload."""
+def extract_body(msg) -> tuple[str, str]:
     html_body = ""
     text_body = ""
 
-    def walk(parts):
-        nonlocal html_body, text_body
-        for part in parts:
-            mime = part.get("mimeType", "")
-            if "parts" in part:
-                walk(part["parts"])
-            elif mime == "text/html" and not html_body:
-                data = part.get("body", {}).get("data", "")
-                if data:
-                    html_body = decode_part(data)
-            elif mime == "text/plain" and not text_body:
-                data = part.get("body", {}).get("data", "")
-                if data:
-                    text_body = decode_part(data)
-
-    if "parts" in payload:
-        walk(payload["parts"])
+    if msg.is_multipart():
+        for part in msg.walk():
+            content_type = part.get_content_type()
+            if content_type == "text/html" and not html_body:
+                payload = part.get_payload(decode=True)
+                if payload:
+                    html_body = payload.decode(part.get_content_charset() or "utf-8", errors="ignore")
+            elif content_type == "text/plain" and not text_body:
+                payload = part.get_payload(decode=True)
+                if payload:
+                    text_body = payload.decode(part.get_content_charset() or "utf-8", errors="ignore")
     else:
-        data = payload.get("body", {}).get("data", "")
-        if data:
-            mime = payload.get("mimeType", "")
-            if mime == "text/html":
-                html_body = decode_part(data)
+        payload = msg.get_payload(decode=True)
+        if payload:
+            content_type = msg.get_content_type()
+            charset = msg.get_content_charset() or "utf-8"
+            decoded = payload.decode(charset, errors="ignore")
+            if content_type == "text/html":
+                html_body = decoded
             else:
-                text_body = decode_part(data)
+                text_body = decoded
 
     return html_body, text_body
 
 
-def build_query(hours_back: int) -> str:
-    """Builds the Gmail search query filtering by known job alert senders."""
-    after_ts = int(
-        (datetime.now(timezone.utc) - timedelta(hours=hours_back)).timestamp()
-    )
-
-    senders = " OR ".join(f"from:{s}" for s in JOB_ALERT_SENDERS)
-    return f"({senders}) after:{after_ts}"
-
-
 def fetch_job_alert_emails(hours_back: int = 24, max_results: int = 50) -> list[dict]:
-    """
-    Fetches job alert emails from the last N hours.
-    Returns a list of dicts with metadata and email body.
-    """
-    service = get_gmail_service()
-    query = build_query(hours_back)
-
-    print(f"Query Gmail: {query}")
-
-    result = (
-        service.users()
-        .messages()
-        .list(userId="me", q=query, maxResults=max_results)
-        .execute()
-    )
-
-    messages = result.get("messages", [])
-
-    if not messages:
-        print(f"No alert emails found in the last {hours_back}h.")
+    if not GMAIL_SENDER or not GMAIL_APP_PASSWORD:
+        print("❌ GMAIL_SENDER or GMAIL_APP_PASSWORD not set in environment.")
         return []
 
-    print(f"Found {len(messages)} emails. Extracting content...")
+    print(f"Connecting to Gmail IMAP as {GMAIL_SENDER}...")
+
+    try:
+        mail = imaplib.IMAP4_SSL("imap.gmail.com")
+        mail.login(GMAIL_SENDER, GMAIL_APP_PASSWORD)
+    except Exception as e:
+        print(f"❌ IMAP login failed: {e}")
+        return []
+
+    mail.select("inbox")
+
+    since_date = (datetime.now(timezone.utc) - timedelta(hours=hours_back)).strftime("%d-%b-%Y")
+
+    # Search for emails from any known job portal
+    all_message_ids = set()
+    for sender in JOB_ALERT_SENDERS:
+        _, data = mail.search(None, f'(FROM "{sender}" SINCE "{since_date}")')
+        ids = data[0].split()
+        all_message_ids.update(ids)
+
+    if not all_message_ids:
+        print(f"No alert emails found in the last {hours_back}h.")
+        mail.logout()
+        return []
+
+    # Limit results
+    message_ids = list(all_message_ids)[:max_results]
+    print(f"Found {len(message_ids)} emails. Extracting content...")
 
     emails = []
-    for i, msg_ref in enumerate(messages):
-        msg = (
-            service.users()
-            .messages()
-            .get(userId="me", id=msg_ref["id"], format="full")
-            .execute()
-        )
+    for i, msg_id in enumerate(message_ids):
+        try:
+            _, msg_data = mail.fetch(msg_id, "(RFC822)")
+            raw = msg_data[0][1]
+            msg = email.message_from_bytes(raw)
 
-        headers = {h["name"]: h["value"] for h in msg["payload"]["headers"]}
-        html_body, text_body = extract_body(msg["payload"])
+            subject = decode_header_value(msg.get("Subject", ""))
+            from_addr = decode_header_value(msg.get("From", ""))
+            date_str = msg.get("Date", "")
+            snippet = ""
 
-        email = {
-            "id": msg["id"],
-            "subject": headers.get("Subject", ""),
-            "from": headers.get("From", ""),
-            "date": headers.get("Date", ""),
-            "snippet": msg.get("snippet", ""),
-            "html_body": html_body,
-            "text_body": text_body,
-        }
-        emails.append(email)
+            html_body, text_body = extract_body(msg)
+            snippet = (text_body or html_body)[:200].replace("\n", " ").strip()
 
-        if (i + 1) % 10 == 0:
-            print(f"  {i + 1}/{len(messages)} emails processed...")
+            emails.append({
+                "id": msg_id.decode(),
+                "subject": subject,
+                "from": from_addr,
+                "date": date_str,
+                "snippet": snippet,
+                "html_body": html_body,
+                "text_body": text_body,
+            })
 
+            if (i + 1) % 10 == 0:
+                print(f"  {i + 1}/{len(message_ids)} emails processed...")
+
+        except Exception as e:
+            print(f"  ⚠️  Error processing email {msg_id}: {e}")
+            continue
+
+    mail.logout()
     print(f"Total: {len(emails)} emails extracted.")
     return emails
 
@@ -160,12 +144,11 @@ if __name__ == "__main__":
 
     emails = fetch_job_alert_emails(hours_back=24)
 
-    output_path = "digests/raw_emails_latest.json"
-    with open(output_path, "w", encoding="utf-8") as f:
-        preview = [
-            {k: v for k, v in e.items() if k not in ("html_body", "text_body")}
-            for e in emails
-        ]
+    preview = [
+        {k: v for k, v in e.items() if k not in ("html_body", "text_body")}
+        for e in emails
+    ]
+    with open("digests/raw_emails_latest.json", "w", encoding="utf-8") as f:
         json.dump(preview, f, ensure_ascii=False, indent=2)
 
     with open("digests/raw_emails_full.json", "w", encoding="utf-8") as f:
