@@ -74,6 +74,9 @@ def run_full_pipeline():
     if not run_step("agents/email_notifier.py", "Email Notifier"):
         print("⚠️  Email notification failed (digest still saved to file)")
 
+    if not run_step("agents/page_generator.py", "Page Generator (GitHub Pages)"):
+        print("⚠️  Dashboard page generation failed")
+
     # ── SUMMARY ──────────────────────────────────────────────────────────────
     print(f"\n{'='*70}")
     print(f"  ✅ PIPELINE COMPLETE")
