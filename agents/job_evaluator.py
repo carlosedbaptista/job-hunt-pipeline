@@ -159,7 +159,7 @@ def evaluate_all_jobs(jobs: list[dict]) -> list[dict]:
     total = len(jobs)
 
     for i, job in enumerate(jobs, 1):
-        titulo = job.get("titulo", "")[:50]
+        titulo = (job.get("titulo") or "")[:50]
         print(f"[{i}/{total}] Evaluating: {titulo}...")
 
         eval_result = evaluate_job(job)
