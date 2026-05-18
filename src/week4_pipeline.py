@@ -71,6 +71,9 @@ def run_full_pipeline():
         print("❌ Digest failed")
         return False
 
+    if not run_step("agents/email_notifier.py", "Email Notifier"):
+        print("⚠️  Email notification failed (digest still saved to file)")
+
     # ── SUMMARY ──────────────────────────────────────────────────────────────
     print(f"\n{'='*70}")
     print(f"  ✅ PIPELINE COMPLETE")
