@@ -1,9 +1,10 @@
 """
 week4_pipeline.py  —  Full pipeline orchestrator
-Runs: ingest → parse → evaluate → digest → notify
+Runs: jsearch → email → parse → unify → evaluate → digest → notify
 """
 
 import argparse
+import glob
 import json
 import os
 import subprocess
@@ -29,37 +30,56 @@ def run_step(script: str, description: str) -> bool:
         return False
 
 
+def load_unified_jobs() -> list[dict]:
+    """Loads the latest unified job file (JSearch + Email)."""
+    files = sorted(glob.glob("data/raw_jobs/all_jobs_*.json"))
+    if not files:
+        return []
+    latest = files[-1]
+    with open(latest, "r", encoding="utf-8") as f:
+        jobs = json.load(f)
+    print(f"📥 {len(jobs)} vagas carregadas de {latest}")
+    return jobs
+
+
 def run_full_pipeline():
     """Runs the full pipeline end-to-end."""
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
 
     print(f"\n{'='*70}")
     print(f"  JOB HUNT — FULL PIPELINE")
-    print(f"  Stage 1: Email → Parse → Dedup")
+    print(f"  Stage 1: JSearch + Email → Parse → Unify")
     print(f"  Stage 2: Evaluate → Cover Letters → CV Tailor")
     print(f"  Stage 3: Digest → Approval")
     print(f"  {timestamp}")
     print(f"{'='*70}")
 
     # ── STAGE 1: Ingestion ───────────────────────────────────────────────────
-    print("\n📧 STAGE 1: Email Ingestion & Parsing\n")
+    print("\n🔍 STAGE 1: Active Search & Email Ingestion\n")
+
+    run_step("agents/jsearch_ingestor.py", "JSearch — Active Job Search")
 
     if not run_step("src/email_ingestor.py", "Email Ingestor"):
-        print("❌ Email ingestor failed")
-        return False
+        print("⚠️  Email ingestor failed")
 
     if not run_step("agents/email_parser.py", "Email Parser"):
         print("⚠️  Parsing failed (no jobs in emails)")
 
-    if not run_step("src/deduplicator.py", "Deduplicator"):
-        print("⚠️  Dedup failed")
+    if not run_step("src/unified_ingestor.py", "Unified Ingestor (JSearch + Email)"):
+        print("❌ Unified ingestor failed")
+        return False
 
     # ── STAGE 2: Evaluation ──────────────────────────────────────────────────
     print("\n📊 STAGE 2: Evaluation & Materials\n")
 
-    if not run_step("agents/job_evaluator.py", "Job Evaluator"):
-        print("❌ Evaluator failed")
-        return False
+    jobs = load_unified_jobs()
+    if not jobs:
+        print("⚠️  No jobs to evaluate.")
+        # Still try digest in case old evaluations exist
+    else:
+        if not run_step("agents/job_evaluator.py", "Job Evaluator"):
+            print("❌ Evaluator failed")
+            return False
 
     run_step("agents/cover_letter_writer.py", "Cover Letter Writer (optional)")
     run_step("agents/cv_tailor.py", "CV Tailor (optional)")
@@ -89,9 +109,11 @@ def run_full_pipeline():
     print("     (replace 1,3,5 with the job numbers)")
     print("")
     print("GENERATED FILES:")
+    print("  • data/raw_jobs/all_jobs_*.json")
+    print("  • digests/new_jobs_latest.json")
+    print("  • digests/job_evaluations_latest.json")
     print("  • digests/digest_latest.json")
     print("  • digests/digest_latest.txt")
-    print("  • digests/job_evaluations_latest.json")
     print("")
 
     return True
