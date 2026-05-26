@@ -1,45 +1,66 @@
-name: Job Hunt Daily Pipeline
+name: Job Hunt Pipeline — Kimi K2.6 + JSearch + Email
 
 on:
   schedule:
-    - cron: "0 5 * * *"   # 7:00 AM CEST (UTC+2)
-    - cron: "0 12 * * *"  # 2:00 PM CEST (UTC+2)
-  workflow_dispatch:       # trigger manual pelo GitHub Actions UI
+    - cron: '0 5 * * *'
+  workflow_dispatch:
 
 jobs:
-  run-pipeline:
+  pipeline:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-          cache: "pip"
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Run pipeline
+      - name: 🔍 JSearch — Busca ativa
         env:
-          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+        run: python agents/jsearch_ingestor.py || true
+
+      - name: 📧 Gmail — Alertas por email
+        env:
+          GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
+          GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
-          PYTHONIOENCODING: utf-8
-        run: python src/week4_pipeline.py
+        run: python src/email_ingestor.py || true
 
-      - name: Commit updated digests
+      - name: 📧 Gmail — Parse de emails
+        run: python agents/email_parser.py || true
+
+      - name: 🔗 Unified Ingestor — Deduplicacao
+        run: python src/unified_ingestor.py || true
+
+      - name: 🤖 Kimi K2.6 — Avaliacao de fit
+        env:
+          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
+        run: python agents/job_evaluator.py || true
+
+      - name: 📋 Digest Generator
+        env:
+          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
+        run: python src/week4_pipeline.py --digest-only || true
+
+      - name: 📊 Dashboard
+        env:
+          DB_PATH: ./tracker/jobs.db
+        run: python src/dashboard.py || true
+
+      - name: 📬 Email notification
+        if: always()
+        env:
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+        run: python agents/email_notifier.py || true
+
+      - name: 💾 Commit resultados
+        if: always()
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add digests/ tracker/jobs.db docs/
-          git diff --cached --quiet || git commit -m "chore: auto-update digests [$(date -u '+%Y-%m-%d %H:%M UTC')]"
-          git push
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data/raw_jobs/ digests/ tracker/ || true
+          git diff --cached --quiet || git commit -m "📊 Daily — Kimi K2.6 + JSearch + Email"
+          git push || true
