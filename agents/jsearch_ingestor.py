@@ -16,11 +16,19 @@ RAPIDAPI_KEY = os.environ.get("RAPIDAPI_KEY", "")
 RAPIDAPI_HOST = "jsearch.p.rapidapi.com"
 
 SEARCH_QUERIES = [
-    "Data Analyst in Zurich, Switzerland",
-    "Business Analyst in Zurich, Switzerland",
-    "Data Analyst in Zug, Switzerland",
-    "Business Analyst in Zug, Switzerland",
-    "Analytics Associate in Zurich, Switzerland",
+    "Data Analyst Intern Zurich Switzerland",
+    "Business Analyst Intern Zurich Switzerland",
+    "Data Science Intern Zurich Switzerland",
+    "AI Intern Zurich Switzerland",
+    "Analytics Intern Zurich Switzerland",
+    "Junior Data Analyst Zurich Switzerland",
+    "Working Student Data Zurich Switzerland",
+    "Praktikum Data Zurich Switzerland",
+    "Data Analyst Intern Zug Switzerland",
+    "Business Analyst Intern Zug Switzerland",
+    "Praktikum Business Zug Switzerland",
+    "Data Intern Basel Switzerland",
+    "Werkstudent Data Winterthur Switzerland",
 ]
 
 

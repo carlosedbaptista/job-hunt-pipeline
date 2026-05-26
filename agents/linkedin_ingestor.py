@@ -14,11 +14,22 @@ from datetime import datetime
 from typing import List, Dict, Any
 
 SEARCH_QUERIES = [
-    ("Data Analyst", "Zurich, Switzerland"),
-    ("Business Analyst", "Zurich, Switzerland"),
-    ("Data Analyst", "Zug, Switzerland"),
-    ("Business Analyst", "Zug, Switzerland"),
+    # Zurich
+    ("Data Analyst Intern", "Zurich, Switzerland"),
+    ("Business Analyst Intern", "Zurich, Switzerland"),
+    ("Data Science Intern", "Zurich, Switzerland"),
+    ("AI Intern", "Zurich, Switzerland"),
     ("Analytics Intern", "Zurich, Switzerland"),
+    ("Junior Data Analyst", "Zurich, Switzerland"),
+    ("Working Student Data", "Zurich, Switzerland"),
+    ("Praktikum Data", "Zurich, Switzerland"),
+    # Zug
+    ("Data Analyst Intern", "Zug, Switzerland"),
+    ("Business Analyst Intern", "Zug, Switzerland"),
+    ("Praktikum Business", "Zug, Switzerland"),
+    # Basel / Winterthur / Bern (regiao proxima)
+    ("Data Intern", "Basel, Switzerland"),
+    ("Werkstudent Data", "Winterthur, Switzerland"),
 ]
 
 LINKEDIN_BASE = "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search"
