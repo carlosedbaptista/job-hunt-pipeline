@@ -20,6 +20,7 @@ SEARCH_QUERIES = [
     "Business Analyst Intern Zurich Switzerland",
     "Data Science Intern Zurich Switzerland",
     "AI Intern Zurich Switzerland",
+    "AI Agent Zurich Switzerland",
     "Analytics Intern Zurich Switzerland",
     "Junior Data Analyst Zurich Switzerland",
     "Working Student Data Zurich Switzerland",

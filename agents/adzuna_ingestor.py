@@ -24,6 +24,7 @@ SEARCH_QUERIES = [
     "Business Analyst Intern",
     "Data Science Intern",
     "AI Intern",
+    "AI Agent",
     "Analytics Intern",
     "Junior Data Analyst",
     "Working Student Data",
