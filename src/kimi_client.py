@@ -4,8 +4,8 @@ from typing import Optional, List, Dict, Any
 import httpx
 
 KIMI_BASE_URL = "https://api.moonshot.cn/v1"
-KIMI_MODEL_DEFAULT = "kimi-k2-6"
-PRICING = {"kimi-k2-6": {"input": 0.60, "output": 2.50}}
+KIMI_MODEL_DEFAULT = "kimi-k2.6"
+PRICING = {"kimi-k2.6": {"input": 0.60, "output": 2.50}}
 
 class KimiClient:
     def __init__(self, api_key=None):
@@ -31,10 +31,14 @@ class KimiClient:
                 print(f"  [Kimi] {u.get('prompt_tokens',0)}in/{u.get('completion_tokens',0)}out | ${cost:.4f}")
                 return content.strip()
             except httpx.HTTPStatusError as e:
-                if e.response.status_code == 429:
+                status = e.response.status_code
+                body = e.response.text[:500]
+                print(f"  [Kimi] HTTP {status}: {body}")
+                if status == 429:
                     time.sleep(2**attempt); continue
-                raise
+                raise RuntimeError(f"Kimi API HTTP {status}: {body}")
             except Exception as e:
+                print(f"  [Kimi] Erro: {e}")
                 if attempt < 2: time.sleep(2**attempt); continue
                 raise RuntimeError(f"Falha: {e}")
         raise RuntimeError("Falha inesperada")
