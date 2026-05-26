@@ -143,14 +143,18 @@ Score this job against Carlos's profile and rubric."""
         return None
 
 
-def evaluate_all_jobs(jobs: list[dict]) -> list[dict]:
-    """Evaluates all jobs and returns results sorted by score descending."""
+def evaluate_all_jobs(jobs: list[dict], max_jobs: int = 10) -> list[dict]:
+    """Evaluates jobs and returns results sorted by score descending."""
     evaluations = []
     total = len(jobs)
+    to_eval = jobs[:max_jobs]
 
-    for i, job in enumerate(jobs, 1):
+    if total > max_jobs:
+        print(f"⚡ Limitando a {max_jobs} vagas (de {total} total)")
+
+    for i, job in enumerate(to_eval, 1):
         titulo = (job.get("titulo") or "")[:50]
-        print(f"[{i}/{total}] Evaluating: {titulo}...")
+        print(f"[{i}/{len(to_eval)}] Evaluating: {titulo}...")
 
         eval_result = evaluate_job(job)
         if eval_result:

@@ -111,14 +111,18 @@ Email content:
         return []
 
 
-def parse_all_emails(emails: list[dict]) -> list[dict]:
-    """Parses all emails and returns a consolidated list of jobs."""
+def parse_all_emails(emails: list[dict], max_emails: int = 5) -> list[dict]:
+    """Parses emails and returns a consolidated list of jobs."""
     all_jobs = []
     total = len(emails)
+    to_parse = emails[:max_emails]
 
-    for i, email in enumerate(emails, 1):
+    if total > max_emails:
+        print(f"⚡ Limitando a {max_emails} emails mais recentes (de {total} total)")
+
+    for i, email in enumerate(to_parse, 1):
         subject_preview = email.get("subject", "")[:55]
-        print(f"[{i}/{total}] Parsing: {subject_preview}...")
+        print(f"[{i}/{len(to_parse)}] Parsing: {subject_preview}...")
 
         jobs = parse_email(email)
         print(f"        → {len(jobs)} job(s) extracted")
