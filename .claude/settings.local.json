@@ -11,7 +11,14 @@
       "PowerShell(cd \"C:\\\\Users\\\\carlo\\\\OneDrive\\\\Área de Trabalho\\\\Projects\\\\job-hunt-pipeline\"; $env:PYTHONIOENCODING=\"utf-8\"; python src/week4_pipeline.py)",
       "Bash(git stash *)",
       "Bash(git pull *)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Bash(gh run *)",
+      "PowerShell(gh run list --workflow=job-hunt-scheduler.yml --limit=5 2>&1)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\carlo\\\\OneDrive\\\\Área de Trabalho\\\\Projects\\\\job-hunt-pipeline\" -Force)",
+      "Bash(python digests/migrate.py)",
+      "Bash(python -c ' *)",
+      "Bash(python digests/migrate_clean.py)",
+      "Bash(python -X utf8 digests/migrate_clean.py)"
     ]
   }
 }
