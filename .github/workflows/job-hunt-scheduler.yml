@@ -29,6 +29,12 @@ jobs:
       - name: 💼 LinkedIn — Busca ativa
         run: python agents/linkedin_ingestor.py || true
 
+      - name: 🔍 Adzuna — API oficial (Suica)
+        env:
+          ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
+          ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
+        run: python agents/adzuna_ingestor.py || true
+
       - name: 📧 Gmail — Alertas por email
         env:
           GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
