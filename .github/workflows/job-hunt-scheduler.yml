@@ -26,6 +26,9 @@ jobs:
           RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
         run: python agents/jsearch_ingestor.py || true
 
+      - name: 💼 LinkedIn — Busca ativa
+        run: python agents/linkedin_ingestor.py || true
+
       - name: 📧 Gmail — Alertas por email
         env:
           GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
