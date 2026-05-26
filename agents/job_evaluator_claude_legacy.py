@@ -1,15 +1,16 @@
-#!/usr/bin/env python3
 """
 job_evaluator.py  —  Scores each job for fit against Carlos's profile
-Uses Kimi K2-6 for evaluation.
+Uses Claude Haiku for cost-efficient evaluation.
 """
 
 import json
 import os
 import sys
-sys.path.insert(0, "../src")
-sys.path.insert(0, "./src")
-from kimi_client import call_kimi_json
+# MIGRADO: usar from src.kimi_client import call_kimi
+from dotenv import load_dotenv
+
+load_dotenv()
+client = anthropic.Anthropic()
 
 CARLOS_PROFILE = """
 NAME: Carlos Eduardo Duarte Baptista
@@ -96,7 +97,7 @@ SCORING THRESHOLDS:
 
 
 def evaluate_job(job: dict) -> dict:
-    """Evaluates a single job using Kimi K2-6. Returns score 0-100 plus analysis."""
+    """Evaluates a single job using Claude Haiku. Returns score 0-100 plus analysis."""
     empresa = job.get("empresa", "Unknown")
     titulo = job.get("titulo", "Unknown")
     descricao = job.get("descricao") or "[No description]"
@@ -118,12 +119,21 @@ DESCRIPTION:
 Score this job against Carlos's profile and rubric."""
 
     try:
-        evaluation = call_kimi_json(
-            user_prompt,
-            system=SYSTEM_PROMPT,
-            temperature=0.1,
+        response = client.messages.create(
+            model="claude-haiku-4-5-20251001",
             max_tokens=1500,
+            system=SYSTEM_PROMPT,
+            messages=[{"role": "user", "content": user_prompt}],
         )
+
+        raw_text = response.content[0].text.strip()
+
+        if raw_text.startswith("```"):
+            raw_text = raw_text.split("```")[1]
+            if raw_text.startswith("json"):
+                raw_text = raw_text[4:]
+
+        evaluation = json.loads(raw_text)
 
         evaluation["job"] = {
             "empresa": empresa,
@@ -165,32 +175,6 @@ def evaluate_all_jobs(jobs: list[dict]) -> list[dict]:
     return evaluations
 
 
-def generate_cv(title: str, company: str, description: str) -> str:
-    """Generates a tailored CV markdown for a specific job."""
-    prompt = f"""Gere CV markdown 1 pagina para Carlos Eduardo Duarte Baptista (Data Analyst, Wallisellen CH, Permit B, 2 weeks notice, carlosedbaptista@gmail.com, +41 78 261 34 74, linkedin.com/in/carlosedbaptista). Experiencias: QUOD (40% reducao manual, SQL/Python/Power BI), netzdenker.com (Power BI/GA4/AI workflows). Educacao: Pos Data Science (out/2026), Bacharel Sistemas. Certificacoes: Google AI Essentials, Anthropic Claude, GA4. Idiomas: PT nativo, EN C1, ES B2, DE A2. Adapte para vaga: {title} em {company}. Descricao: {description[:2000]}. APENAS markdown."""
-
-    from kimi_client import call_kimi
-    return call_kimi(
-        prompt,
-        system="Redator de CV/cover letter. Tom profissional, direto. CV 1 pagina. Cover 3 paragrafos. NUNCA minta.",
-        temperature=0.3,
-        max_tokens=2048,
-    )
-
-
-def generate_cover_letter(title: str, company: str, description: str) -> str:
-    """Generates a tailored cover letter for a specific job."""
-    prompt = f"""Gere cover letter (3 paragrafos, max 250 palavras) de Carlos Eduardo Duarte Baptista para {company} - {title}. Paragrafo 1: por que empresa/role. Paragrafo 2: match habilidades (SQL, Python, Power BI, GA4, automacao IA), mencione 40% reducao QUOD e perfil cross-cultural BR->CH. Paragrafo 3: call to action, 2 weeks notice. Contato: carlosedbaptista@gmail.com | +41 78 261 34 74. APENAS texto."""
-
-    from kimi_client import call_kimi
-    return call_kimi(
-        prompt,
-        system="Redator de CV/cover letter. Tom profissional, direto. CV 1 pagina. Cover 3 paragrafos. NUNCA minta.",
-        temperature=0.4,
-        max_tokens=1024,
-    )
-
-
 if __name__ == "__main__":
     input_file = "digests/new_jobs_latest.json"
 
@@ -222,5 +206,5 @@ if __name__ == "__main__":
 
     print(f"\nSUMMARY:")
     print(f"  ✅ APPLY ({apply_count}): {[e['job']['empresa'] for e in evaluations if e.get('score', 0) >= 65]}")
-    print(f"  ⚠️  REVIEW ({review_count}): {[e['job']['empresa'] for e in evaluations if 45 <= e.get('score', 0) < 65]}")
+    print(f"  ⚠️  REVIEW ({review_count}): {[e['job']['empresa'] for e in evaluations if 45 <= e.get('score', 0) < 75]}")
     print(f"  ❌ UNCERTAIN ({uncertain_count}): {[e['job']['empresa'] for e in evaluations if e.get('score', 0) < 45]}")

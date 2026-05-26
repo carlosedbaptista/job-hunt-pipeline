@@ -6,13 +6,14 @@ Used for applications with no response after 7+ days.
 import json
 import os
 import sys
-# MIGRADO: usar from src.kimi_client import call_kimi
+sys.path.insert(0, "../src")
+sys.path.insert(0, "./src")
+from kimi_client import call_kimi
 from dotenv import load_dotenv
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 load_dotenv()
-client = anthropic.Anthropic()
 
 FOLLOWUP_SYSTEM_PROMPT = """You are writing a professional follow-up email for a job application.
 
@@ -53,14 +54,7 @@ The follow-up should:
 Keep it concise and professional."""
 
     try:
-        response = client.messages.create(
-            model="claude-sonnet-4-20250514",
-            max_tokens=800,
-            system=FOLLOWUP_SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": prompt}]
-        )
-
-        return response.content[0].text.strip()
+        return call_kimi(prompt, system=FOLLOWUP_SYSTEM_PROMPT, temperature=0.4, max_tokens=800).strip()
 
     except Exception as e:
         print(f"❌ Error generating follow-up: {e}")

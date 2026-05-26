@@ -6,11 +6,13 @@ Uses Claude Haiku to parse HTML from each portal.
 import json
 import os
 import re
-# MIGRADO: usar from src.kimi_client import call_kimi
+import sys
+sys.path.insert(0, "../src")
+sys.path.insert(0, "./src")
+from kimi_client import call_kimi
 from dotenv import load_dotenv
 
 load_dotenv()
-client = anthropic.Anthropic()
 
 PORTAL_MAP = {
     "jobs.ch": "jobs.ch",
@@ -90,14 +92,7 @@ Email content:
 {body}"""
 
     try:
-        response = client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=2000,
-            system=SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": user_prompt}],
-        )
-
-        raw_text = response.content[0].text
+        raw_text = call_kimi(user_prompt, system=SYSTEM_PROMPT, temperature=0.1, max_tokens=2000)
         clean = clean_json_response(raw_text)
         jobs = json.loads(clean)
 

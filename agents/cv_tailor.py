@@ -6,11 +6,12 @@ Keeps 1 page, adjusts emphasis. Uses Claude Sonnet for quality.
 import json
 import os
 import sys
-# MIGRADO: usar from src.kimi_client import call_kimi
+sys.path.insert(0, "../src")
+sys.path.insert(0, "./src")
+from kimi_client import call_kimi
 from dotenv import load_dotenv
 
 load_dotenv()
-client = anthropic.Anthropic()
 
 CARLOS_CV_BASE = """
 CARLOS EDUARDO DUARTE BAPTISTA
@@ -119,14 +120,12 @@ Reorder the Professional Experience and Skills sections to lead with the most re
 Keep it concise, 1 page."""
 
     try:
-        response = client.messages.create(
-            model="claude-sonnet-4-20250514",
-            max_tokens=1200,
+        return call_kimi(
+            user_prompt,
             system=SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": user_prompt}],
+            temperature=0.3,
+            max_tokens=1200,
         )
-
-        return response.content[0].text.strip()
 
     except Exception as e:
         print(f"    ❌ Error tailoring CV: {e}")

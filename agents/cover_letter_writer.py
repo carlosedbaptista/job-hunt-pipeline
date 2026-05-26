@@ -6,11 +6,12 @@ Uses Claude Sonnet. Runs only for jobs with score >= 65.
 import json
 import os
 import sys
-# MIGRADO: usar from src.kimi_client import call_kimi
+sys.path.insert(0, "../src")
+sys.path.insert(0, "./src")
+from kimi_client import call_kimi
 from dotenv import load_dotenv
 
 load_dotenv()
-client = anthropic.Anthropic()
 
 CARLOS_VOICE = """
 TONE: Professional but human. Direct, specific, honest.
@@ -86,14 +87,12 @@ Research fact: [{empresa} is likely in {localizacao}. What is their business?]
 Show genuine interest, not generic enthusiasm."""
 
     try:
-        response = client.messages.create(
-            model="claude-sonnet-4-20250514",
-            max_tokens=1000,
+        return call_kimi(
+            user_prompt,
             system=SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": user_prompt}],
+            temperature=0.4,
+            max_tokens=1000,
         )
-
-        return response.content[0].text.strip()
 
     except Exception as e:
         print(f"    ❌ Error generating cover letter: {e}")

@@ -14,7 +14,9 @@ import re
 import sys
 from datetime import datetime
 
-# MIGRADO: usar from src.kimi_client import call_kimi
+sys.path.insert(0, "../src")
+sys.path.insert(0, "./src")
+from kimi_client import call_kimi_json
 from dotenv import load_dotenv
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -25,7 +27,6 @@ from agents.tracker_updater import record_response
 
 SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
 load_dotenv()
-client = anthropic.Anthropic()
 
 RESPONSE_PATTERNS = {
     "rejection": [
@@ -99,9 +100,9 @@ def decode_email_body(payload: dict) -> str:
     return ""
 
 
-def classify_response_with_claude(email_subject: str, email_body: str) -> dict:
+def classify_response_with_kimi(email_subject: str, email_body: str) -> dict:
     """
-    Uses Claude to classify a recruiter response.
+    Uses Kimi to classify a recruiter response.
     Returns: {'type': 'positive'|'rejection'|'interview_invite'|'info_request', 'confidence': 0-1}
     """
     system = """You are a recruiter response classifier.
@@ -123,16 +124,7 @@ Body:
 {email_body[:1000]}"""
 
     try:
-        response = client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=200,
-            system=system,
-            messages=[{"role": "user", "content": prompt}],
-        )
-
-        text = response.content[0].text.strip()
-        result = json.loads(text)
-        return result
+        return call_kimi_json(prompt, system=system, temperature=0.1, max_tokens=200)
     except Exception as e:
         print(f"  Warning: error classifying email: {e}")
         return {"type": "unknown", "confidence": 0, "reason": "classification error"}
@@ -194,7 +186,7 @@ def process_recruiter_emails(emails: list) -> list:
         print(f"\n  Analysing: {subject[:60]}...")
         print(f"  From: {from_addr[:40]}")
 
-        classification = classify_response_with_claude(subject, body)
+        classification = classify_response_with_kimi(subject, body)
         response_type = classification.get("type", "unknown")
         confidence = classification.get("confidence", 0)
 
