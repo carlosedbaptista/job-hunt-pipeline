@@ -14,7 +14,7 @@ class KimiClient:
             raise ValueError("KIMI_API_KEY nao configurada.")
         self.base_url = KIMI_BASE_URL.rstrip("/")
         self.headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
-        self.client = httpx.Client(timeout=120.0)
+        self.client = httpx.Client(timeout=60.0)
 
     def chat_completion(self, messages, model=KIMI_MODEL_DEFAULT, temperature=0.3, max_tokens=4096, system=None, response_format=None):
         # Kimi K2.6 models only accept temperature=1
@@ -54,8 +54,8 @@ class KimiClient:
     def __exit__(self, *a): self.close()
 
 def call_kimi(prompt, system=None, model=KIMI_MODEL_DEFAULT, temperature=0.3, max_tokens=4096, response_format=None):
-    c = KimiClient()
-    return c.chat_completion([{"role":"user","content":prompt}], system=system, model=model, temperature=temperature, max_tokens=max_tokens, response_format=response_format)
+    with KimiClient() as c:
+        return c.chat_completion([{"role":"user","content":prompt}], system=system, model=model, temperature=temperature, max_tokens=max_tokens, response_format=response_format)
 
 def call_kimi_json(prompt, system=None, model=KIMI_MODEL_DEFAULT, temperature=0.1, max_tokens=4096):
     return json.loads(call_kimi(prompt, system, model, temperature, max_tokens, {"type":"json_object"}))
