@@ -6,7 +6,7 @@ Uses Claude Haiku to parse HTML from each portal.
 import json
 import os
 import re
-import anthropic
+# MIGRADO: usar from src.kimi_client import call_kimi
 from dotenv import load_dotenv
 
 load_dotenv()

@@ -4,7 +4,7 @@ Uses regex heuristics first, falls back to Claude if needed.
 """
 
 import re
-import anthropic
+# MIGRADO: usar from src.kimi_client import call_kimi
 from dotenv import load_dotenv
 
 load_dotenv()

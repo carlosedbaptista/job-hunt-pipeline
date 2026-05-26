@@ -6,7 +6,7 @@ Used for applications with no response after 7+ days.
 import json
 import os
 import sys
-import anthropic
+# MIGRADO: usar from src.kimi_client import call_kimi
 from dotenv import load_dotenv
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
