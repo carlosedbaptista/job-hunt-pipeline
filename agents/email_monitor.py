@@ -14,7 +14,7 @@ import re
 import sys
 from datetime import datetime
 
-import anthropic
+# MIGRADO: usar from src.kimi_client import call_kimi
 from dotenv import load_dotenv
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials

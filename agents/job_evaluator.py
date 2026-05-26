@@ -6,7 +6,7 @@ Uses Claude Haiku for cost-efficient evaluation.
 import json
 import os
 import sys
-import anthropic
+# MIGRADO: usar from src.kimi_client import call_kimi
 from dotenv import load_dotenv
 
 load_dotenv()

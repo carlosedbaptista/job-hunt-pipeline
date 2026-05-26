@@ -6,7 +6,7 @@ Keeps 1 page, adjusts emphasis. Uses Claude Sonnet for quality.
 import json
 import os
 import sys
-import anthropic
+# MIGRADO: usar from src.kimi_client import call_kimi
 from dotenv import load_dotenv
 
 load_dotenv()
