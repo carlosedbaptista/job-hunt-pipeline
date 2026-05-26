@@ -4,11 +4,13 @@ Uses regex heuristics first, falls back to Claude if needed.
 """
 
 import re
-# MIGRADO: usar from src.kimi_client import call_kimi
+import sys
+sys.path.insert(0, "../src")
+sys.path.insert(0, "./src")
+from kimi_client import call_kimi
 from dotenv import load_dotenv
 
 load_dotenv()
-client = anthropic.Anthropic()
 
 EMAIL_REGEX = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
@@ -75,19 +77,13 @@ JOB DESCRIPTION:
 Return format: email@example.com or NONE
 """
 
-        response = client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=100,
-            messages=[{"role": "user", "content": prompt}]
-        )
-
-        result = response.content[0].text.strip()
+        result = call_kimi(prompt, temperature=0.1, max_tokens=100).strip()
 
         if result.lower() != "none" and "@" in result:
             return result
 
     except Exception as e:
-        print(f"  Warning: error extracting email with Claude: {e}")
+        print(f"  Warning: error extracting email with Kimi: {e}")
 
     return None
 
