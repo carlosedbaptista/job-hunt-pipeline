@@ -47,6 +47,19 @@ def load_email_jobs() -> List[Dict[str, Any]]:
     return jobs
 
 
+def load_linkedin_jobs() -> List[Dict[str, Any]]:
+    """Carrega vagas do LinkedIn (gerado por agents/linkedin_ingestor.py)."""
+    files = sorted(glob.glob("data/raw_jobs/linkedin_*.json"))
+    if not files:
+        print("  ℹ️  Nenhum arquivo LinkedIn.")
+        return []
+    latest = files[-1]
+    with open(latest, "r", encoding="utf-8") as f:
+        jobs = json.load(f)
+    print(f"  ✅ LinkedIn: {len(jobs)} vagas de {latest}")
+    return jobs
+
+
 def normalize_to_legacy(job: Dict[str, Any]) -> Dict[str, Any]:
     """Converte campos do formato novo (JSearch) para o formato legado do pipeline."""
     return {
@@ -103,8 +116,9 @@ def main():
 
     jsearch_jobs = load_jsearch_jobs()
     email_jobs = load_email_jobs()
+    linkedin_jobs = load_linkedin_jobs()
 
-    all_jobs = jsearch_jobs + email_jobs
+    all_jobs = jsearch_jobs + email_jobs + linkedin_jobs
     if not all_jobs:
         print("\n⚠️  Nenhuma vaga de nenhuma fonte.")
         return None
