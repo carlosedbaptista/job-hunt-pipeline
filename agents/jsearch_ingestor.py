@@ -53,12 +53,14 @@ def fetch_jsearch(query: str, page: int = 1) -> List[Dict[str, Any]]:
         print(f"  🔍 {query[:45]:45} → {len(jobs):2} vagas")
         return jobs
     except httpx.HTTPStatusError as e:
-        if e.response.status_code == 429:
+        status = e.response.status_code
+        body = e.response.text[:500]
+        if status == 429:
             print(f"  ⚠️  Rate limit.")
-        elif e.response.status_code == 401:
+        elif status == 401:
             print(f"  ❌ API Key invalida.")
         else:
-            print(f"  ❌ HTTP {e.response.status_code}")
+            print(f"  ❌ HTTP {status}: {body}")
         return []
     except Exception as e:
         print(f"  ❌ Erro: {e}")
