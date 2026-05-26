@@ -38,9 +38,8 @@ def fetch_jsearch(query: str, page: int = 1) -> List[Dict[str, Any]]:
         "query": query,
         "page": str(page),
         "num_pages": "1",
-        "date_posted": "today",
-        "employment_types": "FULLTIME",
-        "job_requirements": "no_experience",
+        "date_posted": "week",
+        "employment_types": "FULLTIME,INTERN",
         "remote_jobs_only": "false",
     }
 

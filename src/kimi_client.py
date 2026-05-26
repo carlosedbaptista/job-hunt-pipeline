@@ -17,6 +17,9 @@ class KimiClient:
         self.client = httpx.Client(timeout=120.0)
 
     def chat_completion(self, messages, model=KIMI_MODEL_DEFAULT, temperature=0.3, max_tokens=4096, system=None, response_format=None):
+        # Kimi K2.6 models only accept temperature=1
+        if model.startswith("kimi-k2"):
+            temperature = 1
         payload = {"model": model, "messages": messages, "temperature": temperature, "max_tokens": max_tokens}
         if system: payload["messages"] = [{"role": "system", "content": system}] + messages
         if response_format: payload["response_format"] = response_format
