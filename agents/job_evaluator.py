@@ -1,227 +1,210 @@
-#!/usr/bin/env python3
+
 """
-job_evaluator.py  —  Scores each job for fit against Carlos's profile
-Uses Kimi K2-6 for evaluation.
+job_evaluator.py  -  Avalia fit de cada vaga usando Kimi K2-6
+                     AGORA: Todas as vagas em 1 chamada (batch)
 """
 
 import json
 import os
 import sys
-sys.path.insert(0, "../src")
-sys.path.insert(0, "./src")
+from datetime import datetime, timezone
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+
 from kimi_client import call_kimi_json
 
-CARLOS_PROFILE = """
-NAME: Carlos Eduardo Duarte Baptista
-POSITIONING: Data and business analysis professional, Analyst & AI User (not software developer)
-LOCATION: Wallisellen, Zurich (Switzerland)
-WORK_PERMIT: Swiss Work Permit B (valid)
 
-KEY_SKILLS:
-- Business process analysis & operational data
-- Power BI, GA4, Excel, SQL basics
-- AI tools daily: Claude, ChatGPT, Gemini
-- Stakeholder communication, data visualization
-- Cross-functional coordination
-
-BACKGROUND:
-- QUOD (Brazil): Business Process Analyst — 40% manual work reduction
-- netzdenker.com (Switzerland): Digital Marketing & Analytics Associate (pro bono)
-- Education: Postgraduate Data Science (expected Oct 2026)
-
-CERTIFICATIONS:
-- Google AI Essentials (2025)
-- Anthropic Claude Courses (2026)
-- GA4 Certification (2026)
-
-LANGUAGES: Portuguese (native), English (C1), Spanish (B2), German (A2, improving)
+PROFILE = """
+Candidate Profile:
+- Name: Carlos Eduardo Duarte Baptista
+- Role: Data and Business Analysis Professional
+- Location: Wallisellen, Switzerland (Permit B)
+- Notice period: 2 weeks
+- Languages: Portuguese (native), English (C1), Spanish (B2), German (A2)
+- Skills: SQL, Python, Power BI, GA4, automation with AI
+- Experience: QUOD (40% manual reduction), netzdenker.com (Analytics)
+- Education: Postgraduate Data Science (Oct 2026), Bachelor Systems
+- Certifications: Google AI Essentials, Anthropic Claude, GA4
 """
 
-EVALUATION_RUBRIC = """
-TECHNICAL FIT (40 points max):
-  - Role type matches targets (Analyst, BI, Data, Insights, AI): 20pts
-  - Tools mentioned match Carlos's skills (Power BI, GA4, Excel, SQL): 10pts
-  - AI/data component present: 10pts
+SYSTEM_PROMPT = """You are a job fit evaluator. Evaluate each job against the candidate profile.
+Respond ONLY with a valid JSON array. Each element must be an object with:
+{
+  "empresa": "same as input",
+  "titulo": "same as input",
+  "url": "same as input",
+  "score": 0-100,
+  "technical_fit": "brief justification",
+  "contextual_fit": "brief justification",
+  "salary_estimate": "salary range if mentioned, else 'Not disclosed'",
+  "culture_fit": "brief note on company culture alignment",
+  "concerns": ["list of concerns or empty list"],
+  "decision": "APPLY" or "REVIEW" or "SKIP",
+  "materials_needed": ["cv", "cover_letter", "recommendation"],
+  "portuguese_comment": "brief comment in Portuguese for the candidate"
+}
 
-CONTEXTUAL FIT (35 points max):
-  - Location matches (Zurich area or remote): 15pts
-  - Contract type is internship or entry-level: 10pts
-  - Language requirement is English (EN+DE where DE is nice-to-have): 10pts
+Scoring rules:
+- >= 65: APPLY
+- 45-64: REVIEW
+- < 45: SKIP
 
-OPPORTUNITY FIT (25 points max):
-  - Duration 6-12 months: 10pts
-  - Industry is accessible (no clearance, no specific degree required): 10pts
-  - Company brand/growth potential: 5pts
-
-DEAL-BREAKERS (auto-score 0, do not apply):
-  - Requires German B2+ or C1 as mandatory
-  - Location outside Zurich/Zug canton or not remote-friendly
-  - Role is pure software engineering, DevOps, or coding-only
-  - Requires completed degree Carlos does not have
-  - Requires Swiss nationality or clearance
-  - Salary below 1500 CHF/month (if stated)
-"""
-
-SYSTEM_PROMPT = f"""You are a job fit evaluator for Carlos, a Data & Business Analyst looking for internships in Switzerland.
-
-CARLOS'S PROFILE:
-{CARLOS_PROFILE}
-
-EVALUATION RUBRIC:
-{EVALUATION_RUBRIC}
-
-Your task: Score this job posting on fit (0-100) using the rubric above.
-
-Return ONLY a valid JSON object. No preamble, no explanation, no markdown.
-
-Output format:
-{{
-  "score": <0-100>,
-  "recommendation": "APPLY | REVIEW | UNCERTAIN",
-  "technical_fit": {{"score": <0-40>, "notes": "Brief explanation"}},
-  "contextual_fit": {{"score": <0-35>, "notes": "Brief explanation"}},
-  "opportunity_fit": {{"score": <0-25>, "notes": "Brief explanation"}},
-  "deal_breakers_found": <list of strings or empty list>,
-  "key_match_points": <list of 2-3 positive points>,
-  "red_flags": <list of 2-3 concerns if any>,
-  "suggested_angle": "One sentence on how to frame the cover letter for this role",
-  "job_summary_for_user": "2-3 sentence summary of the role"
-}}
-
-SCORING THRESHOLDS:
-  - Score >= 65: APPLY immediately, generate materials
-  - Score 45-64: REVIEW — flag for Carlos to decide
-  - Score < 45: UNCERTAIN — describe the job, ask what to do
+Hard constraints (auto-SKIP if violated):
+- NOT Zurich or Zug -> SKIP
+- NOT English-speaking -> SKIP
+- Pure software engineer / developer roles -> SKIP
 """
 
 
-def evaluate_job(job: dict) -> dict:
-    """Evaluates a single job using Kimi K2-6. Returns score 0-100 plus analysis."""
-    empresa = job.get("empresa", "Unknown")
-    titulo = job.get("titulo", "Unknown")
-    descricao = job.get("descricao") or "[No description]"
-    localizacao = job.get("localizacao", "Unknown")
-    idioma = job.get("idioma", "Unknown")
-    url = job.get("url", "")
+def build_batch_prompt(jobs: list) -> str:
+    prompt = "Evaluate ALL the following jobs against this candidate profile:\n\n"
+    prompt += PROFILE
+    prompt += "\n\n=== JOBS TO EVALUATE ===\n\n"
 
-    user_prompt = f"""Evaluate this job posting:
+    for i, job in enumerate(jobs, 1):
+        title = job.get("titulo", job.get("title", "Unknown"))
+        company = job.get("empresa", job.get("company", "Unknown"))
+        location = job.get("localizacao", job.get("location", "Unknown"))
+        desc = job.get("descricao", job.get("description", ""))[:500]
+        url = job.get("url", "")
 
-COMPANY: {empresa}
-TITLE: {titulo}
-LOCATION: {localizacao}
-LANGUAGE: {idioma}
-URL: {url}
+        prompt += f"\n--- JOB {i} ---\n"
+        prompt += f"Title: {title}\n"
+        prompt += f"Company: {company}\n"
+        prompt += f"Location: {location}\n"
+        prompt += f"Description: {desc}\n"
+        prompt += f"URL: {url}\n"
 
-DESCRIPTION:
-{descricao}
+    prompt += "\n\nRespond with a JSON array containing one evaluation object per job, in the SAME order."
+    return prompt
 
-Score this job against Carlos's profile and rubric."""
+
+def evaluate_all_jobs(jobs: list) -> list:
+    if not jobs:
+        return []
+
+    print(f"Evaluating {len(jobs)} jobs in a SINGLE batch call to Kimi K2-6...")
+
+    prompt = build_batch_prompt(jobs)
 
     try:
-        evaluation = call_kimi_json(
-            user_prompt,
-            system=SYSTEM_PROMPT,
-            max_tokens=1500,
-        )
+        result = call_kimi_json(prompt, system=SYSTEM_PROMPT, max_tokens=8000)
 
-        evaluation["job"] = {
-            "empresa": empresa,
-            "titulo": titulo,
-            "localizacao": localizacao,
-            "url": url,
-            "portal": job.get("portal", "unknown"),
-        }
-
-        return evaluation
-
-    except json.JSONDecodeError as e:
-        print(f"  ❌ Invalid JSON: {e}")
-        return None
-    except Exception as e:
-        print(f"  ❌ Error: {e}")
-        return None
-
-
-def evaluate_all_jobs(jobs: list[dict], max_jobs: int = 10) -> list[dict]:
-    """Evaluates jobs and returns results sorted by score descending."""
-    evaluations = []
-    total = len(jobs)
-    to_eval = jobs[:max_jobs]
-
-    if total > max_jobs:
-        print(f"⚡ Limitando a {max_jobs} vagas (de {total} total)")
-
-    for i, job in enumerate(to_eval, 1):
-        titulo = (job.get("titulo") or "")[:50]
-        print(f"[{i}/{len(to_eval)}] Evaluating: {titulo}...")
-
-        eval_result = evaluate_job(job)
-        if eval_result:
-            evaluations.append(eval_result)
-            score = eval_result.get("score", 0)
-            rec = eval_result.get("recommendation", "?")
-            print(f"        → Score: {score}/100 ({rec})")
+        if isinstance(result, list) and len(result) == len(jobs):
+            for i, ev in enumerate(result):
+                ev.setdefault("empresa", jobs[i].get("empresa", jobs[i].get("company", "")))
+                ev.setdefault("titulo", jobs[i].get("titulo", jobs[i].get("title", "")))
+                ev.setdefault("url", jobs[i].get("url", ""))
+                ev.setdefault("score", 50)
+                ev.setdefault("technical_fit", "Not evaluated")
+                ev.setdefault("contextual_fit", "Not evaluated")
+                ev.setdefault("salary_estimate", "Not disclosed")
+                ev.setdefault("culture_fit", "Not evaluated")
+                ev.setdefault("concerns", [])
+                ev.setdefault("decision", "REVIEW")
+                ev.setdefault("materials_needed", ["cv"])
+                ev.setdefault("portuguese_comment", "Sem comentario")
+            return result
         else:
-            print(f"        → Evaluation error")
+            print(f"  Unexpected response. Got {type(result).__name__}, expected list of {len(jobs)}.")
+            return fallback_evaluate(jobs)
 
-    evaluations.sort(key=lambda x: x.get("score", 0), reverse=True)
+    except Exception as e:
+        print(f"  Batch evaluation failed: {e}")
+        return fallback_evaluate(jobs)
+
+
+def fallback_evaluate(jobs: list) -> list:
+    """Fallback: evaluates 1 by 1 if batch fails."""
+    print("  Falling back to individual evaluation...")
+    evaluations = []
+    for i, job in enumerate(jobs):
+        title = job.get("titulo", job.get("title", "Unknown"))
+        print(f"  [{i+1}/{len(jobs)}] {title[:50]}...", end=" ")
+        try:
+            ev = evaluate_single_job(job)
+            evaluations.append(ev)
+            print(f"score={ev.get('score', '?')}")
+        except Exception as e:
+            print(f"ERROR: {e}")
+            evaluations.append({
+                "empresa": job.get("empresa", job.get("company", "")),
+                "titulo": title,
+                "url": job.get("url", ""),
+                "score": 50,
+                "decision": "REVIEW",
+                "technical_fit": "Evaluation error",
+                "contextual_fit": "Evaluation error",
+                "salary_estimate": "Not disclosed",
+                "culture_fit": "Unknown",
+                "concerns": [f"Evaluation error: {str(e)[:100]}"],
+                "materials_needed": ["cv"],
+                "portuguese_comment": "Erro na avaliacao",
+            })
     return evaluations
 
 
-def generate_cv(title: str, company: str, description: str) -> str:
-    """Generates a tailored CV markdown for a specific job."""
-    prompt = f"""Gere CV markdown 1 pagina para Carlos Eduardo Duarte Baptista (Data Analyst, Wallisellen CH, Permit B, 2 weeks notice, carlosedbaptista@gmail.com, +41 78 261 34 74, linkedin.com/in/carlosedbaptista). Experiencias: QUOD (40% reducao manual, SQL/Python/Power BI), netzdenker.com (Power BI/GA4/AI workflows). Educacao: Pos Data Science (out/2026), Bacharel Sistemas. Certificacoes: Google AI Essentials, Anthropic Claude, GA4. Idiomas: PT nativo, EN C1, ES B2, DE A2. Adapte para vaga: {title} em {company}. Descricao: {description[:2000]}. APENAS markdown."""
+def evaluate_single_job(job: dict) -> dict:
+    title = job.get("titulo", job.get("title", "Unknown"))
+    company = job.get("empresa", job.get("company", "Unknown"))
+    location = job.get("localizacao", job.get("location", "Unknown"))
+    desc = job.get("descricao", job.get("description", ""))[:800]
+    url = job.get("url", "")
 
-    from kimi_client import call_kimi
-    return call_kimi(
-        prompt,
-        system="Redator de CV/cover letter. Tom profissional, direto. CV 1 pagina. Cover 3 paragrafos. NUNCA minta.",
-        max_tokens=2048,
+    user_prompt = f"""Evaluate this job:
+Title: {title}
+Company: {company}
+Location: {location}
+Description: {desc}
+URL: {url}
+"""
+
+    evaluation = call_kimi_json(
+        user_prompt,
+        system=SYSTEM_PROMPT,
+        max_tokens=1500,
     )
 
-
-def generate_cover_letter(title: str, company: str, description: str) -> str:
-    """Generates a tailored cover letter for a specific job."""
-    prompt = f"""Gere cover letter (3 paragrafos, max 250 palavras) de Carlos Eduardo Duarte Baptista para {company} - {title}. Paragrafo 1: por que empresa/role. Paragrafo 2: match habilidades (SQL, Python, Power BI, GA4, automacao IA), mencione 40% reducao QUOD e perfil cross-cultural BR->CH. Paragrafo 3: call to action, 2 weeks notice. Contato: carlosedbaptista@gmail.com | +41 78 261 34 74. APENAS texto."""
-
-    from kimi_client import call_kimi
-    return call_kimi(
-        prompt,
-        system="Redator de CV/cover letter. Tom profissional, direto. CV 1 pagina. Cover 3 paragrafos. NUNCA minta.",
-        max_tokens=1024,
-    )
+    evaluation.setdefault("empresa", company)
+    evaluation.setdefault("titulo", title)
+    evaluation.setdefault("url", url)
+    evaluation.setdefault("score", 50)
+    evaluation.setdefault("decision", "REVIEW")
+    return evaluation
 
 
-if __name__ == "__main__":
-    input_file = "digests/new_jobs_latest.json"
+def main():
+    os.makedirs("digests", exist_ok=True)
 
-    if not os.path.exists(input_file):
-        print(f"File not found: {input_file}")
-        print("Run first: python src/pipeline.py")
-        sys.exit(1)
-
-    with open(input_file, "r", encoding="utf-8") as f:
-        jobs = json.load(f)
+    try:
+        with open("digests/new_jobs_latest.json", "r", encoding="utf-8") as f:
+            jobs = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        print("No jobs to evaluate.")
+        return
 
     if not jobs:
         print("No jobs to evaluate.")
-        sys.exit(0)
+        return
 
-    print(f"Evaluating {len(jobs)} jobs...\n")
+    print(f"Loaded {len(jobs)} jobs.\n")
+
     evaluations = evaluate_all_jobs(jobs)
 
-    os.makedirs("digests", exist_ok=True)
-    output = "digests/job_evaluations_latest.json"
-    with open(output, "w", encoding="utf-8") as f:
+    apply = [e for e in evaluations if e.get("score", 0) >= 65]
+    review = [e for e in evaluations if 45 <= e.get("score", 0) < 65]
+    skip = [e for e in evaluations if e.get("score", 0) < 45]
+
+    print(f"\nEVALUATION COMPLETE: {len(evaluations)} jobs")
+    print(f"  APPLY  (>=65): {len(apply)}")
+    print(f"  REVIEW (45-64): {len(review)}")
+    print(f"  SKIP   (<45): {len(skip)}")
+
+    with open("digests/job_evaluations_latest.json", "w", encoding="utf-8") as f:
         json.dump(evaluations, f, ensure_ascii=False, indent=2)
 
-    print(f"\n✅ {len(evaluations)} jobs evaluated → {output}")
+    print("Saved to digests/job_evaluations_latest.json")
 
-    apply_count = sum(1 for e in evaluations if e.get("score", 0) >= 65)
-    review_count = sum(1 for e in evaluations if 45 <= e.get("score", 0) < 65)
-    uncertain_count = sum(1 for e in evaluations if e.get("score", 0) < 45)
 
-    print(f"\nSUMMARY:")
-    print(f"  ✅ APPLY ({apply_count}): {[e['job']['empresa'] for e in evaluations if e.get('score', 0) >= 65]}")
-    print(f"  ⚠️  REVIEW ({review_count}): {[e['job']['empresa'] for e in evaluations if 45 <= e.get('score', 0) < 65]}")
-    print(f"  ❌ UNCERTAIN ({uncertain_count}): {[e['job']['empresa'] for e in evaluations if e.get('score', 0) < 45]}")
+if __name__ == "__main__":
+    main()
