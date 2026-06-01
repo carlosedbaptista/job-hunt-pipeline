@@ -1,6 +1,6 @@
 """
 email_parser.py  —  Extracts job listings from job alert emails
-Uses Claude Haiku to parse HTML from each portal.
+Uses Kimi K2-6 to parse HTML from each portal.
 """
 
 import json
@@ -66,7 +66,7 @@ def clean_json_response(raw: str) -> str:
 
 def parse_email(email: dict) -> list[dict]:
     """
-    Uses Claude Haiku to extract jobs from a single email.
+    Uses Kimi K2-6 to extract jobs from a single email.
     Returns a list of jobs in a standardised format.
     """
     portal = detect_portal(email["from"])
@@ -92,7 +92,7 @@ Email content:
 {body}"""
 
     try:
-        raw_text = call_kimi(user_prompt, system=SYSTEM_PROMPT, temperature=0.1, max_tokens=2000)
+        raw_text = call_kimi(user_prompt, system=SYSTEM_PROMPT, max_tokens=2000)
         clean = clean_json_response(raw_text)
         jobs = json.loads(clean)
 
