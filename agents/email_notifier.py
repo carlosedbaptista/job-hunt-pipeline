@@ -227,6 +227,13 @@ def notify_digest():
         print("❌ No digest to send")
         return False
 
+    # Validate digest has actual jobs before sending
+    top_jobs = digest.get("top_jobs", [])
+    total_evaluated = digest.get("total_evaluated", 0)
+    if not top_jobs or total_evaluated == 0:
+        print("📭 No jobs in digest — skipping email notification")
+        return False
+
     sender_email = os.environ.get("GMAIL_SENDER", "")
     recipient_email = os.environ.get("GMAIL_RECIPIENT", "")
     app_password = os.environ.get("GMAIL_APP_PASSWORD")
