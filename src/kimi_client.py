@@ -58,4 +58,19 @@ def call_kimi(prompt, system=None, model=KIMI_MODEL_DEFAULT, temperature=0.3, ma
         return c.chat_completion([{"role":"user","content":prompt}], system=system, model=model, temperature=temperature, max_tokens=max_tokens, response_format=response_format)
 
 def call_kimi_json(prompt, system=None, model=KIMI_MODEL_DEFAULT, temperature=0.1, max_tokens=4096):
-    return json.loads(call_kimi(prompt, system, model, temperature, max_tokens, {"type":"json_object"}))
+    """Calls Kimi with JSON response format, with retry for empty responses."""
+    for attempt in range(3):
+        raw = call_kimi(prompt, system, model, temperature, max_tokens, {"type":"json_object"})
+        if raw and raw.strip():
+            try:
+                return json.loads(raw)
+            except json.JSONDecodeError:
+                if attempt < 2:
+                    print(f"  [Kimi] Invalid JSON, retrying ({attempt + 1}/3)...")
+                    time.sleep(2 ** attempt)
+                    continue
+                raise
+        if attempt < 2:
+            print(f"  [Kimi] Empty response, retrying ({attempt + 1}/3)...")
+            time.sleep(2 ** attempt)
+    raise RuntimeError("Kimi returned empty response after 3 attempts")
