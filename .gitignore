@@ -2,18 +2,16 @@
 node_modules/
 *.log
 .DS_Store
-
-# Python
 __pycache__/
 *.pyc
 *.pyo
-
-# IDEs / Configs locais
 .vscode/
 .claude/
-
-# Tracker local (gerado)
-tracker/jobs.db
-
-# Logs pessoais
+credentials.json
+token.json
+token.pickle
 *.private.md
+gmail-credentials/
+oauth-secrets/
+archive/
+debug_*.py
