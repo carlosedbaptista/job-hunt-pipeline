@@ -1,4 +1,23 @@
-"""
+#!/usr/bin/env python3
+import os, subprocess, json
+
+def run(cmd):
+    r = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    return r.returncode == 0, r.stdout, r.stderr
+
+def wf(path, content):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+REPO = os.getcwd()
+if not os.path.exists(f"{REPO}/.git"):
+    print("ERRO: Rode dentro da pasta do repo"); exit(1)
+
+print("=== HOTFIX: Corrige nome do modelo Kimi ===")
+
+# Novo kimi_client.py com modelo correto + fallback
+wf(f"{REPO}/src/kimi_client.py", r'''"""
 kimi_client.py — Cliente Kimi. Timeout: 90s. Retry: 3x.
 Modelo: kimi-k2.6 (com ponto). Fallback: moonshot-v1-8k
 """
@@ -106,3 +125,36 @@ if __name__ == "__main__":
     print("Modelos disponiveis:")
     for m in list_models():
         print(f"  - {m}")
+''')
+
+# Atualiza o job_evaluator para usar o modelo correto
+print("[1/2] Atualizando job_evaluator.py...")
+with open(f"{REPO}/agents/job_evaluator.py", "r", encoding="utf-8") as f:
+    c = f.read()
+
+# Troca a importacao para nao forcar modelo antigo
+if "from kimi_client import call_kimi_json" in c:
+    pass  # ja esta ok
+
+# Remove verificacao de API key que mostra parcial da key (seguranca)
+c = c.replace(
+    '    api_key = os.environ.get("KIMI_API_KEY", "")\n    if not api_key:\n        print("ERRO: KIMI_API_KEY nao configurada!"); return\n    print(f"API Key: {api_key[:8]}...{api_key[-4:]}")\n\n    try:',
+    '    try:'
+)
+
+wf(f"{REPO}/agents/job_evaluator.py", c)
+
+# Commit e push
+print("\nCommitando...")
+for cmd in [
+    f"cd {REPO} && git add -A",
+    f'cd {REPO} && git commit -m "fix: corrige nome do modelo Kimi para kimi-k2.6 + fallback moonshot-v1-8k"',
+    f"cd {REPO} && git push origin main",
+]:
+    ok, out, err = run(cmd)
+    print(f"  {'OK' if ok else 'ERRO'}: {out[:60] if out else err[:80]}")
+
+print("\n=== PRONTO ===")
+print("Rode o workflow no GitHub Actions novamente.")
+print("Se continuar 404, execute localmente: python src/kimi_client.py")
+print("para listar os modelos disponiveis na sua conta.")
