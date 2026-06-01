@@ -6,7 +6,7 @@ Mostra status das aplicações, estatísticas, timeline
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -197,7 +197,6 @@ def generate_html_dashboard() -> str:
         }}
 
         .response-rate {{
-            display: inline-block;
             width: 100px;
             height: 100px;
             border-radius: 50%;
