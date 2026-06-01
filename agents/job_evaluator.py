@@ -5,6 +5,7 @@ job_evaluator.py — Mini-batches de 3 vagas por chamada Kimi
 import json
 import os
 import sys
+import time
 from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
