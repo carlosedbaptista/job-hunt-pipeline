@@ -37,10 +37,14 @@ def load_jsearch_jobs() -> List[Dict[str, Any]]:
         print("  ℹ️  Nenhum arquivo JSearch.")
         return []
     latest = files[-1]
-    with open(latest, "r", encoding="utf-8") as f:
-        jobs = json.load(f)
-    print(f"  ✅ JSearch: {len(jobs)} vagas de {latest}")
-    return jobs
+    try:
+        with open(latest, "r", encoding="utf-8") as f:
+            jobs = json.load(f)
+        print(f"  ✅ JSearch: {len(jobs)} jobs from {latest}")
+        return jobs
+    except (json.JSONDecodeError, IOError) as e:
+        print(f"  ⚠️  Error loading {latest}: {e}")
+        return []
 
 
 def load_email_jobs() -> List[Dict[str, Any]]:
@@ -62,10 +66,14 @@ def load_linkedin_jobs() -> List[Dict[str, Any]]:
         print("  ℹ️  Nenhum arquivo LinkedIn.")
         return []
     latest = files[-1]
-    with open(latest, "r", encoding="utf-8") as f:
-        jobs = json.load(f)
-    print(f"  ✅ LinkedIn: {len(jobs)} vagas de {latest}")
-    return jobs
+    try:
+        with open(latest, "r", encoding="utf-8") as f:
+            jobs = json.load(f)
+        print(f"  ✅ LinkedIn: {len(jobs)} jobs from {latest}")
+        return jobs
+    except (json.JSONDecodeError, IOError) as e:
+        print(f"  ⚠️  Error loading {latest}: {e}")
+        return []
 
 
 def load_adzuna_jobs() -> List[Dict[str, Any]]:
@@ -75,10 +83,14 @@ def load_adzuna_jobs() -> List[Dict[str, Any]]:
         print("  ℹ️  Nenhum arquivo Adzuna.")
         return []
     latest = files[-1]
-    with open(latest, "r", encoding="utf-8") as f:
-        jobs = json.load(f)
-    print(f"  ✅ Adzuna: {len(jobs)} vagas de {latest}")
-    return jobs
+    try:
+        with open(latest, "r", encoding="utf-8") as f:
+            jobs = json.load(f)
+        print(f"  ✅ Adzuna: {len(jobs)} jobs from {latest}")
+        return jobs
+    except (json.JSONDecodeError, IOError) as e:
+        print(f"  ⚠️  Error loading {latest}: {e}")
+        return []
 
 
 def normalize_to_legacy(job: Dict[str, Any]) -> Dict[str, Any]:
@@ -91,7 +103,7 @@ def normalize_to_legacy(job: Dict[str, Any]) -> Dict[str, Any]:
         "url": job.get("url", ""),
         "portal": job.get("portal", "unknown"),
         "idioma": job.get("idioma", "en"),
-        "data_post": job.get("posted_at") or job.get("data_post", datetime.now().isoformat()),
+        "data_post": job.get("posted_at") or job.get("data_post", datetime.now(timezone.utc).isoformat()),
     }
 
 
@@ -102,7 +114,7 @@ def deduplicate_all(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         key = (
             job.get("company", job.get("empresa", "")).lower().strip(),
             normalize_title(job.get("title", job.get("titulo", ""))),
-            job.get("location", job.get("localizacao", "")).lower().strip(),
+            (job.get("location") or job.get("localizacao") or "").lower().strip(),
         )
         if key not in seen:
             seen.add(key)

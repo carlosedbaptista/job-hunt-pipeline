@@ -347,5 +347,5 @@ def save_dashboard():
 
 if __name__ == "__main__":
     output = save_dashboard()
-    print(f"✅ Dashboard gerado: {output}")
+    print(f"Dashboard gerado: {output}")
     print(f"   Abra no navegador: file://{os.path.abspath(output)}")
