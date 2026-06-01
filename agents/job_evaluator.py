@@ -44,7 +44,7 @@ def build_prompt(jobs):
         title = job.get("titulo", job.get("title", "Unknown"))
         company = job.get("empresa", job.get("company", "Unknown"))
         location = job.get("localizacao", job.get("location", "Unknown"))
-        desc = job.get("descricao", job.get("description", ""))[:300]
+        desc = job.get("descricao", job.get("description", ""))[:150]
         url = job.get("url", "")
         prompt += f"\n--- JOB {i} ---\nTitle: {title}\nCompany: {company}\nLocation: {location}\nDescription: {desc}\nURL: {url}\n"
     prompt += "\n\nRespond with a JSON array of one evaluation object per job, in SAME order."
@@ -73,17 +73,21 @@ def evaluate_mini_batch(jobs):
     return fallback_individual(jobs)
 
 def fallback_individual(jobs):
-    print("  -> Fallback individual...")
+    print("  -> API lenta. Atribuindo REVIEW padrao para", len(jobs), "jobs.")
     evaluations = []
-    for i, job in enumerate(jobs):
-        title = job.get("titulo", job.get("title", "Unknown"))[:40]
-        print(f"    [{i+1}/{len(jobs)}] {title}...", end=" ", flush=True)
-        try:
-            ev = evaluate_single(job)
-            evaluations.append(ev); print(f"score={ev.get('score','?')}")
-        except Exception as e:
-            print(f"ERRO: {str(e)[:50]}")
-            evaluations.append({"empresa": job.get("empresa", job.get("company","")), "titulo": title, "url": job.get("url",""), "score": 50, "decision": "REVIEW", "technical_fit": "Error", "contextual_fit": "Error", "salary_estimate": "Not disclosed", "culture_fit": "Unknown", "concerns": [str(e)[:80]], "materials_needed": ["cv"], "portuguese_comment": "Erro"})
+    for job in jobs:
+        evaluations.append({
+            "empresa": job.get("empresa", job.get("company","")),
+            "titulo": job.get("titulo", job.get("title", "Unknown")),
+            "url": job.get("url",""),
+            "score": 55, "decision": "REVIEW",
+            "technical_fit": "Nao avaliado (API timeout)",
+            "contextual_fit": "Nao avaliado (API timeout)",
+            "salary_estimate": "Not disclosed", "culture_fit": "Nao avaliado",
+            "concerns": ["API Kimi timeout — verificar manualmente"],
+            "materials_needed": ["cv"],
+            "portuguese_comment": "API lenta — verificar vaga manualmente no link"
+        })
     return evaluations
 
 def evaluate_single(job):
@@ -108,8 +112,8 @@ def main():
     if not jobs:
         print("No jobs to evaluate."); return
 
-    print(f"Loaded {len(jobs)} jobs. Mini-batches of 3...\n")
-    BATCH_SIZE = 3
+    print(f"Loaded {len(jobs)} jobs. Mini-batches of 2...\n")
+    BATCH_SIZE = 2
     evaluations = []
     total_batches = (len(jobs) + BATCH_SIZE - 1) // BATCH_SIZE
     for i in range(0, len(jobs), BATCH_SIZE):
