@@ -20,14 +20,14 @@ class KimiClient:
     def __init__(self, api_key=None, base_url=None):
         self.api_key = api_key or KIMI_API_KEY
         self.base_url = base_url or KIMI_BASE_URL
-        self.client = httpx.Client(timeout=90.0)
+        self.client = httpx.Client(timeout=httpx.Timeout(45.0, connect=10.0, read=45.0))
         if not self.api_key:
             raise ValueError("KIMI_API_KEY nao configurada")
 
     def _post(self, endpoint, payload):
         headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
         url = f"{self.base_url}/{endpoint.lstrip('/')}"
-        r = self.client.post(url, headers=headers, json=payload)
+        r = self.client.post(url, headers=headers, json=payload, timeout=45.0)
         r.raise_for_status()
         return r.json()
 
