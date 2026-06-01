@@ -16,8 +16,16 @@ import os
 import sys
 import json
 import glob
-from datetime import datetime
+import re
+from datetime import datetime, timezone
 from typing import List, Dict, Any
+
+def normalize_title(title: str) -> str:
+    title = title.lower().strip()
+    title = re.sub(r"[^\w\s]", " ", title)
+    title = re.sub(r"\s+", " ", title)
+    return title.strip()
+
 
 sys.path.insert(0, "agents")
 sys.path.insert(0, "./agents")
@@ -93,7 +101,7 @@ def deduplicate_all(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     for job in jobs:
         key = (
             job.get("company", job.get("empresa", "")).lower().strip(),
-            job.get("title", job.get("titulo", "")).lower().strip(),
+            normalize_title(job.get("title", job.get("titulo", ""))),
             job.get("location", job.get("localizacao", "")).lower().strip(),
         )
         if key not in seen:

@@ -82,7 +82,15 @@ def fetch_job_alert_emails(hours_back: int = 24, max_results: int = 50) -> list[
         print(f"❌ IMAP login failed: {e}")
         return []
 
-    mail.select("inbox")
+    processed_ids = set()
+    if os.path.exists("digests/processed_email_ids.json"):
+        try:
+            import json
+            with open("digests/processed_email_ids.json") as f:
+                processed_ids = set(json.load(f))
+        except: pass
+    try:
+        mail.select("inbox")
 
     since_date = (datetime.now(timezone.utc) - timedelta(hours=hours_back)).strftime("%d-%b-%Y")
 
@@ -134,8 +142,13 @@ def fetch_job_alert_emails(hours_back: int = 24, max_results: int = 50) -> list[
             print(f"  ⚠️  Error processing email {msg_id}: {e}")
             continue
 
-    mail.logout()
-    print(f"Total: {len(emails)} emails extracted.")
+    finally:
+        try: mail.logout()
+        except: pass
+    with open("digests/processed_email_ids.json", "w") as f:
+        import json
+        json.dump(list(processed_ids), f)
+    print(f"Total: {len(emails)} new emails extracted.")
     return emails
 
 
