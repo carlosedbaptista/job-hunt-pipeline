@@ -1,84 +1,71 @@
-name: Job Hunt Pipeline — Kimi K2.6 + JSearch + Email
-
+name: Job Hunt Pipeline
 on:
   schedule:
     - cron: '0 5 * * *'
+    - cron: '0 12 * * *'
   workflow_dispatch:
-
 jobs:
   pipeline:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - run: pip install -r requirements.txt
-
-      - name: 🔍 JSearch — Busca ativa
-        env:
-          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
-        run: python agents/jsearch_ingestor.py || true
-
-      - name: 💼 LinkedIn — Busca ativa
-        run: python agents/linkedin_ingestor.py || true
-
-      - name: 🔍 Adzuna — API oficial (Suica)
+      - name: Adzuna
         env:
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
-        run: python agents/adzuna_ingestor.py || true
-
-      - name: 📧 Gmail — Alertas por email
+          ADZUNA_MAX_HITS: "35"
+        run: python agents/adzuna_ingestor.py
+      - name: LinkedIn
+        run: python agents/linkedin_ingestor.py
+        continue-on-error: true
+      - name: Gmail alerts
         env:
-          GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
-          GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
-        run: python src/email_ingestor.py || true
-
-      - name: 📧 Gmail — Parse de emails
+        run: python src/email_ingestor.py
+        continue-on-error: true
+      - name: Parse emails
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
-        run: python agents/email_parser.py || true
-
-      - name: 🔗 Unified Ingestor — Deduplicacao
-        run: python src/unified_ingestor.py || true
-
-      - name: 🤖 Kimi K2.6 — Avaliacao de fit
+        run: python agents/email_parser.py
+        continue-on-error: true
+      - name: Unified
+        run: python src/unified_ingestor.py
+        continue-on-error: true
+      - name: Evaluate
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
-        run: python agents/job_evaluator.py || true
-
-      - name: 📋 Digest Generator
+        run: python agents/job_evaluator.py
+        continue-on-error: true
+      - name: Digest
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
-        run: python src/week4_pipeline.py --digest-only || true
-
-      - name: 📊 Dashboard
+        run: python src/week4_pipeline.py --digest-only
+        continue-on-error: true
+      - name: Dashboard
         env:
           DB_PATH: ./tracker/jobs.db
-        run: python src/dashboard.py || true
-
-      - name: 📬 Email notification
+        run: python src/dashboard.py
+        continue-on-error: true
+      - name: Email notification
         if: always()
         env:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
-        run: python agents/email_notifier.py || true
-
-      - name: 💾 Commit resultados
+          GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
+        run: python agents/email_notifier.py
+        continue-on-error: true
+      - name: Commit results
         if: always()
         run: |
-          mkdir -p data/raw_jobs
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add data/raw_jobs/ digests/ tracker/ || true
-          git diff --cached --quiet || git commit -m "📊 Daily — Kimi K2.6 + JSearch + Email"
-          git push || true
+          git add data/raw_jobs/ digests/ tracker/jobs.db
+          git diff --cached --quiet || git commit -m "Daily update"
+          git push

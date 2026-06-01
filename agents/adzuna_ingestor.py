@@ -18,6 +18,7 @@ from typing import List, Dict, Any
 ADZUNA_APP_ID = os.environ.get("ADZUNA_APP_ID", "")
 ADZUNA_APP_KEY = os.environ.get("ADZUNA_APP_KEY", "")
 ADZUNA_BASE = "https://api.adzuna.com/v1/api/jobs/ch/search/1"
+ADZUNA_MAX_HITS = int(os.environ.get("ADZUNA_MAX_HITS", "35"))
 
 SEARCH_QUERIES = [
     "Data Analyst Intern",
@@ -121,11 +122,18 @@ def main():
     print("=" * 70)
 
     all_raw = []
-    locations = ["Zurich", "Zug", "Basel", "Winterthur"]
+    hit_count = 0
+    locations = ["Zurich", "Zug"]
 
     for what in SEARCH_QUERIES:
+        if hit_count >= ADZUNA_MAX_HITS:
+            print(f"  Quota limit reached, stopping.")
+            break
         for where in locations:
+            if hit_count >= ADZUNA_MAX_HITS:
+                break
             jobs = fetch_adzuna(what, where, max_days_old=7)
+            hit_count += 1
             all_raw.extend(jobs)
 
     if not all_raw:

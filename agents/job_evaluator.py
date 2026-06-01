@@ -121,7 +121,6 @@ Score this job against Carlos's profile and rubric."""
         evaluation = call_kimi_json(
             user_prompt,
             system=SYSTEM_PROMPT,
-            temperature=0.1,
             max_tokens=1500,
         )
 
@@ -177,7 +176,6 @@ def generate_cv(title: str, company: str, description: str) -> str:
     return call_kimi(
         prompt,
         system="Redator de CV/cover letter. Tom profissional, direto. CV 1 pagina. Cover 3 paragrafos. NUNCA minta.",
-        temperature=0.3,
         max_tokens=2048,
     )
 
@@ -190,7 +188,6 @@ def generate_cover_letter(title: str, company: str, description: str) -> str:
     return call_kimi(
         prompt,
         system="Redator de CV/cover letter. Tom profissional, direto. CV 1 pagina. Cover 3 paragrafos. NUNCA minta.",
-        temperature=0.4,
         max_tokens=1024,
     )
 

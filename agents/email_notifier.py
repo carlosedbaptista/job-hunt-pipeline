@@ -227,9 +227,12 @@ def notify_digest():
         print("❌ No digest to send")
         return False
 
-    sender_email = os.environ.get("GMAIL_SENDER", "carlosedbaptista@gmail.com")
+    sender_email = os.environ.get("GMAIL_SENDER", "")
+    recipient_email = os.environ.get("GMAIL_RECIPIENT", "")
     app_password = os.environ.get("GMAIL_APP_PASSWORD")
-    recipient_email = os.environ.get("GMAIL_RECIPIENT", "carlosedbaptista@gmail.com")
+    if not sender_email or not recipient_email:
+        print("GMAIL_SENDER and/or GMAIL_RECIPIENT not set")
+        return False
 
     if not app_password:
         print("⚠️  GMAIL_APP_PASSWORD not set")

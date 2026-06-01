@@ -23,8 +23,13 @@ def run_step(script: str, description: str) -> bool:
             [sys.executable, script],
             capture_output=False,
             text=True,
+            env=os.environ.copy(),
+            timeout=600,
         )
         return result.returncode == 0
+    except subprocess.TimeoutExpired:
+        print(f"  Timeout: {script}")
+        return False
     except Exception as e:
         print(f"❌ Error: {e}")
         return False
