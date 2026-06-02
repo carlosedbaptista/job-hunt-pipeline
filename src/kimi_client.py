@@ -1,67 +1,66 @@
 """
-kimi_client.py — Cliente Kimi. Timeout: 90s. Retry: 3x.
-Modelo: kimi-k2.6 (com ponto). Fallback: moonshot-v1-8k
+kimi_client.py — Cliente Kimi via requests + signal.alarm (timeout HARD 45s)
 """
-
 import json
 import os
+import signal
 import time
-import httpx
+import requests
 from dotenv import load_dotenv
 
 load_dotenv()
 
 KIMI_API_KEY = os.environ.get("KIMI_API_KEY", "")
 KIMI_BASE_URL = "https://api.moonshot.cn/v1"
-KIMI_MODEL_PRIMARY = "kimi-k2.6"
-KIMI_MODEL_FALLBACK = "moonshot-v1-8k"
+KIMI_MODEL_DEFAULT = "kimi-k2-6"
+
+class TimeoutError(Exception):
+    pass
+
+def _timeout_handler(signum, frame):
+    raise TimeoutError("Kimi API: 45s timeout")
 
 class KimiClient:
     def __init__(self, api_key=None, base_url=None):
         self.api_key = api_key or KIMI_API_KEY
         self.base_url = base_url or KIMI_BASE_URL
-        self.client = httpx.Client(timeout=httpx.Timeout(45.0, connect=10.0, read=45.0))
+        self.model = KIMI_MODEL_DEFAULT
+        self.session = requests.Session()
         if not self.api_key:
             raise ValueError("KIMI_API_KEY nao configurada")
 
     def _post(self, endpoint, payload):
         headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
         url = f"{self.base_url}/{endpoint.lstrip('/')}"
-        r = self.client.post(url, headers=headers, json=payload, timeout=45.0)
-        r.raise_for_status()
-        return r.json()
+        old = signal.signal(signal.SIGALRM, _timeout_handler)
+        signal.alarm(45)
+        try:
+            r = self.session.post(url, headers=headers, json=payload, timeout=50)
+            r.raise_for_status()
+            return r.json()
+        finally:
+            signal.alarm(0)
+            signal.signal(signal.SIGALRM, old)
 
-    def chat(self, messages, model=None, max_tokens=4096, response_format=None):
-        model = model or KIMI_MODEL_PRIMARY
+    def chat(self, messages, model=None, max_tokens=1000, response_format=None):
+        model = model or self.model
         payload = {"model": model, "messages": messages, "max_tokens": max_tokens}
         if response_format:
             payload["response_format"] = response_format
-
         last_error = None
         for attempt in range(3):
             try:
                 data = self._post("/chat/completions", payload)
                 return data["choices"][0]["message"]["content"]
-            except httpx.HTTPStatusError as e:
-                status = e.response.status_code
-                body = e.response.text[:200]
-                print(f"  [Kimi] HTTP {status}: {body}")
-                if status == 404 and model == KIMI_MODEL_PRIMARY:
-                    print(f"  [Kimi] Modelo {model} nao encontrado. Tentando fallback {KIMI_MODEL_FALLBACK}...")
-                    model = KIMI_MODEL_FALLBACK
-                    payload["model"] = model
-                    continue
-                last_error = e
-                wait = 2 ** attempt
-                time.sleep(wait)
             except Exception as e:
                 last_error = e
                 wait = 2 ** attempt
                 print(f"  [Kimi] Erro ({attempt+1}/3): {str(e)[:80]}")
-                time.sleep(wait)
+                if attempt < 2:
+                    time.sleep(wait)
         raise RuntimeError(f"Kimi falhou apos 3 tentativas: {last_error}")
 
-def call_kimi(prompt, system=None, model=None, max_tokens=4096, response_format=None):
+def call_kimi(prompt, system=None, model=KIMI_MODEL_DEFAULT, max_tokens=1000, response_format=None):
     client = KimiClient()
     messages = []
     if system:
@@ -69,7 +68,7 @@ def call_kimi(prompt, system=None, model=None, max_tokens=4096, response_format=
     messages.append({"role": "user", "content": prompt})
     return client.chat(messages, model, max_tokens, response_format)
 
-def call_kimi_json(prompt, system=None, model=None, max_tokens=4096):
+def call_kimi_json(prompt, system=None, model=KIMI_MODEL_DEFAULT, max_tokens=1000):
     for attempt in range(3):
         raw = call_kimi(prompt, system, model, max_tokens, {"type": "json_object"})
         if raw and raw.strip():
@@ -77,32 +76,9 @@ def call_kimi_json(prompt, system=None, model=None, max_tokens=4096):
                 return json.loads(raw)
             except json.JSONDecodeError:
                 if attempt < 2:
-                    wait = 2 ** attempt
-                    print(f"  [Kimi] JSON invalido, retry em {wait}s ({attempt+1}/3)...")
-                    time.sleep(wait)
+                    time.sleep(2 ** attempt)
                     continue
                 raise
         if attempt < 2:
-            wait = 2 ** attempt
-            print(f"  [Kimi] Vazio, retry em {wait}s ({attempt+1}/3)...")
-            time.sleep(wait)
-    raise RuntimeError("Kimi retornou vazio apos 3 tentativas")
-
-def list_models():
-    """Lista modelos disponiveis na conta."""
-    client = KimiClient()
-    headers = {"Authorization": f"Bearer {client.api_key}", "Content-Type": "application/json"}
-    try:
-        r = client.client.get(f"{client.base_url}/models", headers=headers)
-        r.raise_for_status()
-        data = r.json()
-        models = [m.get("id", m.get("name", "unknown")) for m in data.get("data", [])]
-        return models
-    except Exception as e:
-        print(f"  [Kimi] Erro ao listar modelos: {e}")
-        return []
-
-if __name__ == "__main__":
-    print("Modelos disponiveis:")
-    for m in list_models():
-        print(f"  - {m}")
+            time.sleep(2 ** attempt)
+    raise RuntimeError("Kimi vazio apos 3 tentativas")
