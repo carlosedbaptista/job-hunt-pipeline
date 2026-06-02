@@ -68,6 +68,10 @@ jobs:
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
           HIGH_SCORE_THRESHOLD: "85"
+        run: python agents/doc_generator.py
+        continue-on-error: true
+
+      - name: High-Score Alerts
         run: python agents/high_score_alert.py
         continue-on-error: true
 
