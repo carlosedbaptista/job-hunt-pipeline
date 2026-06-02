@@ -15,3 +15,14 @@ gmail-credentials/
 oauth-secrets/
 archive/
 debug_*.py
+
+# Scripts e artefatos temporarios
+scripts/
+docs/legacy/
+fix_*.py
+hotfix_*.py
+debug_*.py
+
+# Fix scripts na raiz (nao commitar)
+/*fix*.py
+/*hotfix*.py
