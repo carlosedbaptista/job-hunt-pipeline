@@ -176,7 +176,7 @@ def format_digest_as_html(digest):
                     <p style="margin: 10px 0; color: #555;">
                         Review the full digest and approve the jobs you want to apply to:
                     </p>
-                    <a href="https://github.com/carlosedbaptista/job-hunt-pipeline/blob/main/digests/dashboard.html" class="cta-button">
+                    <a href="https://carlosedbaptista.github.io/job-hunt-pipeline/digests/dashboard.html" class="cta-button">
                         Open Dashboard -&gt;
                     </a>
                 </div>
