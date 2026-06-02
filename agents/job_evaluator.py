@@ -1,6 +1,6 @@
 """
-job_evaluator.py -- 1 vaga por chamada, prompt pequeno, delay 2s
-Estrutura de saida compativel com digest_generator e email_notifier.
+job_evaluator.py -- 1 job per API call, small prompt, 2s delay
+Output structure compatible with digest_generator and email_notifier.
 """
 import json
 import os
@@ -68,7 +68,7 @@ def evaluate_job(job):
             "materials_needed": ["cv"] if decision == "APPLY" else [],
         }
     except Exception as e:
-        print(f"API timeout -> REVIEW padrao")
+        print(f"API timeout -> default REVIEW")
         return {
             "score": 55,
             "recommendation": "REVIEW",
@@ -81,13 +81,13 @@ def evaluate_job(job):
                 "url": url,
                 "portal": portal,
             },
-            "technical_fit": "Nao avaliado (timeout)",
-            "contextual_fit": "Nao avaliado (timeout)",
+            "technical_fit": "Not evaluated (timeout)",
+            "contextual_fit": "Not evaluated (timeout)",
             "salary_estimate": "Not disclosed",
             "culture_fit": "Nao avaliado",
             "concerns": ["API timeout"],
             "decision": "REVIEW",
-            "portuguese_comment": "Verificar manualmente no link",
+            "portuguese_comment": "Check manually via link",
             "materials_needed": ["cv"],
         }
 

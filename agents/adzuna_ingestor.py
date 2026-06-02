@@ -38,7 +38,7 @@ SEARCH_QUERIES = [
 
 def fetch_adzuna(what: str, where: str = "Zurich", max_days_old: int = 7) -> List[Dict[str, Any]]:
     if not ADZUNA_APP_ID or not ADZUNA_APP_KEY:
-        print("  ⚠️  ADZUNA_APP_ID ou ADZUNA_APP_KEY nao configuradas. Pulando Adzuna.")
+        print("  ⚠️  ADZUNA_APP_ID or ADZUNA_APP_KEY not set. Skipping Adzuna.")
         return []
 
     params = {
@@ -65,14 +65,14 @@ def fetch_adzuna(what: str, where: str = "Zurich", max_days_old: int = 7) -> Lis
         status = e.response.status_code
         body = e.response.text[:500]
         if status == 401:
-            print(f"  ❌ App ID/Key invalidos.")
+            print(f"  ❌ Invalid App ID/Key.")
         elif status == 429:
-            print(f"  ⚠️  Rate limit da Adzuna.")
+            print(f"  ⚠️  Adzuna rate limit hit.")
         else:
             print(f"  ❌ HTTP {status}: {body}")
         return []
     except Exception as e:
-        print(f"  ❌ Erro: {e}")
+        print(f"  ❌ Error: {e}")
         return []
 
 
@@ -137,20 +137,20 @@ def main():
             all_raw.extend(jobs)
 
     if not all_raw:
-        print("\n⚠️  Nenhuma vaga. Verifique ADZUNA_APP_ID e ADZUNA_APP_KEY.")
+        print("\n⚠️  No jobs found. Check ADZUNA_APP_ID and ADZUNA_APP_KEY.")
         return None
 
     normalized = [normalize_job(j) for j in all_raw]
     unique = deduplicate(normalized)
 
-    print(f"\n📊 Total bruto: {len(all_raw)} | Unicas: {len(unique)}")
+    print(f"\n📊 Raw: {len(all_raw)} | Unique: {len(unique)}")
     filepath = save(unique)
 
     print(f"💾 Salvo: {filepath}")
     print("\n🏆 Top 5:")
     for i, job in enumerate(unique[:5], 1):
         print(f"   {i}. [{job['company']}] {job['title']} ({job['location']})")
-    print("✅ Adzuna concluido")
+    print("✅ Adzuna done")
     return filepath
 
 
