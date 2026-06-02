@@ -61,13 +61,15 @@ jobs:
           DB_PATH: ./tracker/jobs.db
         run: python src/dashboard.py
 
-      - name: Send high-score alerts (>=85)
+      - name: Generate tailored CVs/CLs
         if: always()
         env:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
           HIGH_SCORE_THRESHOLD: "85"
+          GDRIVE_CREDENTIALS_JSON_B64: ${{ secrets.GDRIVE_CREDENTIALS_JSON_B64 }}
+          GDRIVE_PARENT_FOLDER_ID: ${{ secrets.GDRIVE_PARENT_FOLDER_ID }}
         run: python agents/doc_generator.py
         continue-on-error: true
 
