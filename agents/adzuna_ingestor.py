@@ -97,19 +97,13 @@ def normalize_job(raw: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-def deduplicate(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    seen = set()
-    unique = []
-    for job in jobs:
-        key = (job["company"].lower().strip(), job["title"].lower().strip(), job["location"].lower().strip())
-        if key not in seen:
-            seen.add(key)
-            unique.append(job)
-    return unique
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+from utils import deduplicate_jobs, ensure_dir
 
 
 def save(jobs: List[Dict[str, Any]]) -> str:
-    os.makedirs("data/raw_jobs", exist_ok=True)
+    ensure_dir("data/raw_jobs")
     filepath = f"data/raw_jobs/adzuna_{datetime.now().strftime('%Y%m%d')}.json"
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(jobs, f, ensure_ascii=False, indent=2)
@@ -141,7 +135,7 @@ def main():
         return None
 
     normalized = [normalize_job(j) for j in all_raw]
-    unique = deduplicate(normalized)
+    unique = deduplicate_jobs(normalized)
 
     print(f"\n📊 Raw: {len(all_raw)} | Unique: {len(unique)}")
     filepath = save(unique)

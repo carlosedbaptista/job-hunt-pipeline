@@ -27,8 +27,6 @@ def normalize_title(title: str) -> str:
     return title.strip()
 
 
-sys.path.insert(0, "agents")
-sys.path.insert(0, "./agents")
 
 
 def load_jsearch_jobs() -> List[Dict[str, Any]]:
@@ -107,19 +105,7 @@ def normalize_to_legacy(job: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-def deduplicate_all(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    seen = set()
-    unique = []
-    for job in jobs:
-        key = (
-            job.get("company", job.get("empresa", "")).lower().strip(),
-            normalize_title(job.get("title", job.get("titulo", ""))),
-            (job.get("location") or job.get("localizacao") or "").lower().strip(),
-        )
-        if key not in seen:
-            seen.add(key)
-            unique.append(job)
-    return unique
+from utils import deduplicate_jobs
 
 
 def save_unified(jobs: List[Dict[str, Any]]) -> str:
@@ -157,7 +143,7 @@ def main():
         print("\n⚠️  No jobs from any source.")
         return None
 
-    unique = deduplicate_all(all_jobs)
+    unique = deduplicate_jobs(all_jobs)
     print(f"\n📊 Total: {len(all_jobs)} | Após dedup: {len(unique)}")
 
     save_unified(unique)
