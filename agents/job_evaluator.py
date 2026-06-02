@@ -52,7 +52,7 @@ def main():
         evaluations.append(ev)
         print(f"score={ev.get('score','?')} ({ev.get('decision','?')})")
         if i < len(jobs):
-            time.sleep(5)
+            time.sleep(2)
 
     apply = [e for e in evaluations if e.get("score",0) >= 65]
     review = [e for e in evaluations if 45 <= e.get("score",0) < 65]
