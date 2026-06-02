@@ -1,5 +1,5 @@
 """
-kimi_client.py — Cliente Kimi via requests + signal.alarm (timeout HARD 45s)
+kimi_client.py — Cliente Kimi via requests + signal.alarm (timeout HARD 120s)
 Modelo: kimi-k2.6 (com ponto) — serie k2-6 foi descontinuada em 25/05/2026
 Fallback: moonshot-v1-8k se k2.6 falhar
 """
@@ -21,7 +21,7 @@ class TimeoutError(Exception):
     pass
 
 def _timeout_handler(signum, frame):
-    raise TimeoutError("Kimi API: 45s timeout")
+    raise TimeoutError("Kimi API: 120s timeout")
 
 class KimiClient:
     def __init__(self, api_key=None, base_url=None):
@@ -38,9 +38,9 @@ class KimiClient:
         }
         url = f"{self.base_url}/{endpoint.lstrip('/')}"
         old = signal.signal(signal.SIGALRM, _timeout_handler)
-        signal.alarm(45)
+        signal.alarm(120)
         try:
-            r = self.session.post(url, headers=headers, json=payload, timeout=50)
+            r = self.session.post(url, headers=headers, json=payload, timeout=130)
             r.raise_for_status()
             return r.json()
         finally:
@@ -84,7 +84,7 @@ class KimiClient:
         raise RuntimeError(f"Kimi falhou apos todos os modelos: {last_error}")
 
 
-def call_kimi(prompt, system=None, max_tokens=1000, response_format=None):
+def call_kimi(prompt, system=None, max_tokens=4096, response_format=None):
     """Chama a API Kimi e retorna a string de resposta."""
     client = KimiClient()
     messages = []
@@ -94,10 +94,11 @@ def call_kimi(prompt, system=None, max_tokens=1000, response_format=None):
     return client.chat(messages, max_tokens=max_tokens, response_format=response_format)
 
 
-def call_kimi_json(prompt, system=None, max_tokens=1000):
+def call_kimi_json(prompt, system=None, max_tokens=4096):
     """Chama a API Kimi e retorna a resposta parseada como JSON."""
     import json as _json
-    raw = call_kimi(prompt, system=system, max_tokens=max_tokens, response_format={"type": "json_object"})
+    response_format = {"type": "json_object"}
+    raw = call_kimi(prompt, system=system, max_tokens=max_tokens, response_format=response_format)
     # Se vier com markdown code block, remove
     text = raw.strip()
     if text.startswith("```"):
