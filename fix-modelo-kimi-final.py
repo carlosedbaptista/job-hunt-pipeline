@@ -1,4 +1,33 @@
+#!/usr/bin/env python3
 """
+=== HOTFIX FINAL: Corrige modelo Kimi k2-6 → k2.6 + fallback ===
+
+Problema: A serie kimi-k2 foi descontinuada em 25/05/2026.
+O modelo 'kimi-k2-6' (com hifen) retorna 404.
+O correto eh 'kimi-k2.6' (com ponto).
+
+Este script sobrescreve src/kimi_client.py com a correcao definitiva.
+"""
+import os
+import subprocess
+
+def run(cmd):
+    r = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    return r.returncode == 0, r.stdout, r.stderr
+
+def wf(path, content):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+REPO = os.getcwd()
+if not os.path.exists(f"{REPO}/.git"):
+    print("ERRO: Rode dentro da pasta do repo"); exit(1)
+
+print("=== HOTFIX FINAL: Modelo Kimi k2-6 -> k2.6 ===")
+
+# Novo kimi_client.py: requests + signal.alarm + modelo correto + fallback
+wf(f"{REPO}/src/kimi_client.py", r'''"""
 kimi_client.py — Cliente Kimi via requests + signal.alarm (timeout HARD 45s)
 Modelo: kimi-k2.6 (com ponto) — serie k2-6 foi descontinuada em 25/05/2026
 Fallback: moonshot-v1-8k se k2.6 falhar
@@ -108,3 +137,29 @@ def call_kimi_json(prompt, system=None, max_tokens=1000):
         else:
             text = text.replace("```json", "").replace("```", "").strip()
     return _json.loads(text)
+''')
+
+# Commit e push
+print("\nCommitando...")
+for cmd in [
+    f"cd {REPO} && git add -A",
+    f'cd {REPO} && git commit -m "fix FINAL: modelo kimi-k2.6 (ponto) + fallback moonshot-v1-8k"',
+    f"cd {REPO} && git push origin main",
+]:
+    ok, out, err = run(cmd)
+    if ok:
+        print(f"  OK")
+    else:
+        print(f"  ERRO: {err[:150]}")
+        if "rejected" in err.lower():
+            print("  Tentando rebase...")
+            run(f"cd {REPO} && git pull --rebase origin main")
+            ok2, out2, err2 = run(f"cd {REPO} && git push origin main")
+            print(f"  {'OK' if ok2 else 'ERRO'}: {err2[:100] if not ok2 else 'push feito'}")
+
+print("\n" + "=" * 60)
+print("PRONTO!")
+print("=" * 60)
+print("\nANTES: modelo='kimi-k2-6'  (com hifen) -> DESCONTINUADO -> 404")
+print("DEPOIS: modelo='kimi-k2.6'  (com ponto)  -> MODELO ATUAL")
+print("        fallback='moonshot-v1-8k'          -> SE k2.6 FALHAR")
