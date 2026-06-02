@@ -2,6 +2,7 @@ import os, sys, json, re, textwrap, time
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 from utils import load_json, save_json, ensure_dir, now_iso
 from kimi_client import KimiClient
+from gdrive_uploader import upload_cv_cl, GDRIVE_AVAILABLE as GDRIVE_UPLOADER_AVAILABLE
 
 KIMI_TIMEOUT = 30
 
@@ -252,6 +253,13 @@ def main():
             cl_pdf(profile, letter, title, company, location, os.path.join(folder, f"CL_{safe_name}.pdf"))
             save_json(os.path.join(folder, "ai_summary.json"), {"summary": summary, "letter": letter, "score": score})
             print(f"  Saved to {folder}/")
+
+            # Upload to Google Drive
+            if GDRIVE_UPLOADER_AVAILABLE:
+                try:
+                    upload_cv_cl(folder, company, title)
+                except Exception as e:
+                    print(f"  [GDrive] Upload failed (continuing): {e}")
         else:
             save_json(os.path.join(folder, "ai_summary.json"), {"summary": summary, "letter": letter, "score": score})
             print(f"  Saved JSON only (fpdf2 missing): {folder}/")
