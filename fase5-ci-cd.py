@@ -1,4 +1,29 @@
-name: Job Hunt Daily Pipeline
+#!/usr/bin/env python3
+"""
+=== PHASE 5: CI/CD MODERNIZATION ===
+Updates GitHub Actions workflow: Node.js 24, descriptive commits,
+conditional continue-on-error, and professional job naming.
+"""
+import os
+import subprocess
+
+def run(cmd):
+    r = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    return r.returncode == 0, r.stdout, r.stderr
+
+REPO = os.getcwd()
+if not os.path.exists(f"{REPO}/.git"):
+    print("ERROR: Run this script from the repo root directory"); exit(1)
+
+print("=== PHASE 5: CI/CD MODERNIZATION ===\n")
+
+WORKFLOW_PATH = f"{REPO}/.github/workflows/job-hunt-scheduler.yml"
+
+if not os.path.exists(WORKFLOW_PATH):
+    print(f"ERROR: Workflow file not found at {WORKFLOW_PATH}")
+    exit(1)
+
+NEW_WORKFLOW = """name: Job Hunt Daily Pipeline
 
 on:
   schedule:
@@ -86,3 +111,24 @@ jobs:
           TIMESTAMP=$(date -u +'%Y-%m-%d %H:%M UTC')
           git commit -m "chore: daily digest [$TIMESTAMP | $JOB_COUNT jobs | $APPLY_COUNT APPLY]"
           git push
+"""
+
+with open(WORKFLOW_PATH, "w", encoding="utf-8") as f:
+    f.write(NEW_WORKFLOW)
+print("[OK] .github/workflows/job-hunt-scheduler.yml -> updated")
+
+# Commit
+run("git add -A")
+ok, _, err = run('git commit -m "ci: modernize workflow - descriptive commits, conditional error handling"')
+if ok:
+    print("\n[OK] Commit successful! Next: git push origin main")
+else:
+    print(f"\n[!] Commit issue: {err[:200]}")
+
+print("\n=== PHASE 5 COMPLETE ===")
+print("Changes:")
+print("  - Job name: pipeline -> daily-pipeline")
+print("  - Continue-on-error: removed from critical steps (unify, evaluate, digest, dashboard)")
+print("  - Continue-on-error: kept for optional steps (linkedin, gmail, email_parser)")
+print("  - Commit message: now includes timestamp, job count, and APPLY count")
+print("  - Added 'No changes to commit' guard for empty runs")
