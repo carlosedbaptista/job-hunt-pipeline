@@ -28,9 +28,10 @@ jobs:
           ADZUNA_MAX_HITS: "35"
         run: python agents/adzuna_ingestor.py
 
-      - name: Fetch LinkedIn jobs
-        run: python agents/linkedin_ingestor.py
-        continue-on-error: true
+      # LinkedIn ingestion disabled -- consistently returns 0 jobs
+      # - name: Fetch LinkedIn jobs
+      #   run: python agents/linkedin_ingestor.py
+      #   continue-on-error: true
 
       - name: Fetch Gmail alerts
         env:
@@ -39,11 +40,8 @@ jobs:
         run: python src/email_ingestor.py
         continue-on-error: true
 
-      - name: Parse job emails
-        env:
-          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
-        run: python agents/email_parser.py
-        continue-on-error: true
+      - name: Parse job emails (local, no API)
+        run: python agents/email_parser_local.py
 
       - name: Unify job sources
         run: python src/unified_ingestor.py
@@ -62,6 +60,16 @@ jobs:
         env:
           DB_PATH: ./tracker/jobs.db
         run: python src/dashboard.py
+
+      - name: Send high-score alerts (>=85)
+        if: always()
+        env:
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
+          HIGH_SCORE_THRESHOLD: "85"
+        run: python agents/high_score_alert.py
+        continue-on-error: true
 
       - name: Send email notification
         if: always()
