@@ -2,18 +2,35 @@
 node_modules/
 *.log
 .DS_Store
-
-# Python
 __pycache__/
 *.pyc
 *.pyo
-
-# IDEs / Configs locais
 .vscode/
 .claude/
-
-# Tracker local (gerado)
-tracker/jobs.db
-
-# Logs pessoais
+credentials.json
+token.json
+token.pickle
 *.private.md
+gmail-credentials/
+oauth-secrets/
+archive/
+debug_*.py
+
+# Scripts e artefatos temporarios
+scripts/
+docs/legacy/
+fix_*.py
+hotfix_*.py
+debug_*.py
+
+# Fix scripts na raiz (nao commitar)
+/*fix*.py
+/*hotfix*.py
+
+# Google Drive credentials (sensitive)
+config/gdrive_credentials.json
+config/gdrive_refresh_token.json
+config/oauth2_client_secret.json
+
+# Generated docs (CVs/CLs)
+generated_docs/

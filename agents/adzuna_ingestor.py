@@ -18,6 +18,7 @@ from typing import List, Dict, Any
 ADZUNA_APP_ID = os.environ.get("ADZUNA_APP_ID", "")
 ADZUNA_APP_KEY = os.environ.get("ADZUNA_APP_KEY", "")
 ADZUNA_BASE = "https://api.adzuna.com/v1/api/jobs/ch/search/1"
+ADZUNA_MAX_HITS = int(os.environ.get("ADZUNA_MAX_HITS", "35"))
 
 SEARCH_QUERIES = [
     "Data Analyst Intern",
@@ -37,7 +38,7 @@ SEARCH_QUERIES = [
 
 def fetch_adzuna(what: str, where: str = "Zurich", max_days_old: int = 7) -> List[Dict[str, Any]]:
     if not ADZUNA_APP_ID or not ADZUNA_APP_KEY:
-        print("  ⚠️  ADZUNA_APP_ID ou ADZUNA_APP_KEY nao configuradas. Pulando Adzuna.")
+        print("  ⚠️  ADZUNA_APP_ID or ADZUNA_APP_KEY not set. Skipping Adzuna.")
         return []
 
     params = {
@@ -64,14 +65,14 @@ def fetch_adzuna(what: str, where: str = "Zurich", max_days_old: int = 7) -> Lis
         status = e.response.status_code
         body = e.response.text[:500]
         if status == 401:
-            print(f"  ❌ App ID/Key invalidos.")
+            print(f"  ❌ Invalid App ID/Key.")
         elif status == 429:
-            print(f"  ⚠️  Rate limit da Adzuna.")
+            print(f"  ⚠️  Adzuna rate limit hit.")
         else:
             print(f"  ❌ HTTP {status}: {body}")
         return []
     except Exception as e:
-        print(f"  ❌ Erro: {e}")
+        print(f"  ❌ Error: {e}")
         return []
 
 
@@ -96,19 +97,13 @@ def normalize_job(raw: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-def deduplicate(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    seen = set()
-    unique = []
-    for job in jobs:
-        key = (job["company"].lower().strip(), job["title"].lower().strip(), job["location"].lower().strip())
-        if key not in seen:
-            seen.add(key)
-            unique.append(job)
-    return unique
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+from utils import deduplicate_jobs, ensure_dir
 
 
 def save(jobs: List[Dict[str, Any]]) -> str:
-    os.makedirs("data/raw_jobs", exist_ok=True)
+    ensure_dir("data/raw_jobs")
     filepath = f"data/raw_jobs/adzuna_{datetime.now().strftime('%Y%m%d')}.json"
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(jobs, f, ensure_ascii=False, indent=2)
@@ -121,28 +116,35 @@ def main():
     print("=" * 70)
 
     all_raw = []
-    locations = ["Zurich", "Zug", "Basel", "Winterthur"]
+    hit_count = 0
+    locations = ["Zurich", "Zug"]
 
     for what in SEARCH_QUERIES:
+        if hit_count >= ADZUNA_MAX_HITS:
+            print(f"  Quota limit reached, stopping.")
+            break
         for where in locations:
+            if hit_count >= ADZUNA_MAX_HITS:
+                break
             jobs = fetch_adzuna(what, where, max_days_old=7)
+            hit_count += 1
             all_raw.extend(jobs)
 
     if not all_raw:
-        print("\n⚠️  Nenhuma vaga. Verifique ADZUNA_APP_ID e ADZUNA_APP_KEY.")
+        print("\n⚠️  No jobs found. Check ADZUNA_APP_ID and ADZUNA_APP_KEY.")
         return None
 
     normalized = [normalize_job(j) for j in all_raw]
-    unique = deduplicate(normalized)
+    unique = deduplicate_jobs(normalized)
 
-    print(f"\n📊 Total bruto: {len(all_raw)} | Unicas: {len(unique)}")
+    print(f"\n📊 Raw: {len(all_raw)} | Unique: {len(unique)}")
     filepath = save(unique)
 
     print(f"💾 Salvo: {filepath}")
     print("\n🏆 Top 5:")
     for i, job in enumerate(unique[:5], 1):
         print(f"   {i}. [{job['company']}] {job['title']} ({job['location']})")
-    print("✅ Adzuna concluido")
+    print("✅ Adzuna done")
     return filepath
 
 
