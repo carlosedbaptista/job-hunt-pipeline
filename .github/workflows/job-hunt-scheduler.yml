@@ -64,6 +64,7 @@ jobs:
       - name: Generate tailored CVs/CLs
         if: always()
         env:
+          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
