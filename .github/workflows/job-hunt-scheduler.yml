@@ -56,6 +56,21 @@ jobs:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
         run: python agents/job_evaluator.py || true
 
+      - name: 📝 Cover Letter Writer (APPLY >= 65)
+        env:
+          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
+        run: python agents/cover_letter_writer.py || true
+
+      - name: 📄 CV Tailor (APPLY >= 65)
+        env:
+          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
+        run: python agents/cv_tailor.py || true
+
+      - name: ☁️ Google Drive — Upload CV/CL
+        env:
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+        run: python agents/gdrive_uploader.py || true
+
       - name: 📋 Digest Generator
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
