@@ -1,7 +1,6 @@
 """
-email_notifier.py  —  Sends the daily digest by email via Gmail SMTP
+email_notifier.py  --  Sends the daily digest by email via Gmail SMTP
 """
-
 import json
 import os
 import smtplib
@@ -11,18 +10,38 @@ from email.mime.text import MIMEText
 
 
 def load_digest():
-    """Loads the latest digest file."""
     digest_file = "digests/digest_latest.json"
     if not os.path.exists(digest_file):
-        print("❌ Digest not found.")
+        print("X Digest not found.")
         return None
-
     with open(digest_file, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
-def format_digest_as_html(digest: dict) -> str:
-    """Formats the digest as HTML for email delivery."""
+def _get_field(job_eval, field, default="N/A"):
+    """Extrai campo da avaliacao -- suporta aninhado OU direto."""
+    job = job_eval.get("job")
+    if job and isinstance(job, dict):
+        val = job.get(field)
+        if val:
+            return val
+        en_map = {"empresa": "company", "titulo": "title", "localizacao": "location"}
+        if field in en_map:
+            val = job.get(en_map[field])
+            if val:
+                return val
+    val = job_eval.get(field)
+    if val:
+        return val
+    en_map = {"empresa": "company", "titulo": "title", "localizacao": "location"}
+    if field in en_map:
+        val = job_eval.get(en_map[field])
+        if val:
+            return val
+    return default
+
+
+def format_digest_as_html(digest):
     top_jobs = digest.get("top_jobs", [])
     total = digest.get("total_evaluated", 0)
 
@@ -112,8 +131,8 @@ def format_digest_as_html(digest: dict) -> str:
     <body>
         <div class="container">
             <div class="header">
-                <h1>📊 Job Hunt Daily Digest</h1>
-                <p>Your personalised job opportunities • {datetime.now().strftime('%B %d, %Y')}</p>
+                <h1>Job Hunt Daily Digest</h1>
+                <p>Your personalised job opportunities - {datetime.now().strftime('%B %d, %Y')}</p>
             </div>
 
             <div class="content">
@@ -122,17 +141,16 @@ def format_digest_as_html(digest: dict) -> str:
                     <div class="stats-number">{total}</div>
                 </div>
 
-                <h2 style="color: #333; margin-top: 0;">🎯 Top Jobs (Sorted by Fit Score)</h2>
+                <h2 style="color: #333; margin-top: 0;">Top Jobs (Sorted by Fit Score)</h2>
     """
 
     for i, job_eval in enumerate(top_jobs, 1):
         score = job_eval.get("score", 0)
-        job = job_eval.get("job", {})
-        empresa = job.get("empresa", "N/A")
-        titulo = job.get("titulo", "N/A")
-        localizacao = job.get("localizacao", "N/A")
-        url = job.get("url", "")
-        portal = job.get("portal", "")
+        empresa = _get_field(job_eval, "empresa")
+        titulo = _get_field(job_eval, "titulo")
+        localizacao = _get_field(job_eval, "localizacao")
+        url = _get_field(job_eval, "url")
+        portal = _get_field(job_eval, "portal")
 
         color = "#32CD32" if score >= 65 else "#FFA500" if score >= 45 else "#999"
 
@@ -141,20 +159,16 @@ def format_digest_as_html(digest: dict) -> str:
                     <div class="job-number">#{i}</div>
                     <div class="job-company">{empresa}</div>
                     <div class="job-title">{titulo}</div>
-                    <div class="job-location">📍 {localizacao} • 🏢 {portal}</div>
+                    <div class="job-location">{localizacao} - {portal}</div>
                     <div>
                         <span class="job-score" style="background-color: {color};">
                             {score}/100 Fit Score
                         </span>
                     </div>
         """
-
-        if url:
-            html += f'<a href="{url}" class="job-link">View job →</a>'
-
-        html += """
-                </div>
-        """
+        if url and url != "N/A":
+            html += f'<a href="{url}" class="job-link">View job -&gt;</a>'
+        html += "</div>"
 
     html += f"""
                 <div style="margin-top: 30px; padding: 20px; background-color: #f0f4ff; border-radius: 8px; border-left: 4px solid #667eea;">
@@ -162,15 +176,15 @@ def format_digest_as_html(digest: dict) -> str:
                     <p style="margin: 10px 0; color: #555;">
                         Review the full digest and approve the jobs you want to apply to:
                     </p>
-                    <a href="https://carlosedbaptista.github.io/job-hunt-pipeline/" class="cta-button">
-                        Open Dashboard →
+                    <a href="https://carlosedbaptista.github.io/job-hunt-pipeline/digests/dashboard.html" class="cta-button">
+                        Open Dashboard -&gt;
                     </a>
                 </div>
             </div>
 
             <div class="footer">
                 <p style="margin: 0;">
-                    Job Hunt Pipeline • Automated Notifications<br>
+                    Job Hunt Pipeline - Automated Notifications<br>
                     Generated at {datetime.now().strftime('%H:%M UTC')}
                 </p>
             </div>
@@ -178,92 +192,71 @@ def format_digest_as_html(digest: dict) -> str:
     </body>
     </html>
     """
-
     return html
 
 
-def send_email(
-    recipient_email: str,
-    subject: str,
-    html_content: str,
-    sender_email: str,
-    app_password: str,
-) -> bool:
-    """Sends an email via Gmail SMTP using an App Password."""
+def send_email(recipient_email, subject, html_content, sender_email, app_password):
     try:
         server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
         server.login(sender_email, app_password)
-
         message = MIMEMultipart("alternative")
         message["Subject"] = subject
         message["From"] = sender_email
         message["To"] = recipient_email
-
-        # Plain text fallback
-        text = f"Subject: {subject}\n\nView the HTML digest in your email client."
-
         html_part = MIMEText(html_content, "html")
         message.attach(html_part)
-
         server.sendmail(sender_email, recipient_email, message.as_string())
         server.quit()
-
         return True
-
     except Exception as e:
-        print(f"❌ Failed to send email: {e}")
+        print(f"X Failed to send email: {e}")
         return False
 
 
 def notify_digest():
-    """Loads the latest digest and sends it by email."""
     print("\n" + "=" * 70)
     print("EMAIL NOTIFIER")
     print("=" * 70 + "\n")
 
     digest = load_digest()
     if not digest:
-        print("❌ No digest to send")
+        print("X No digest to send")
         return False
 
-    sender_email = os.environ.get("GMAIL_SENDER", "carlosedbaptista@gmail.com")
-    app_password = os.environ.get("GMAIL_APP_PASSWORD")
-    recipient_email = os.environ.get("GMAIL_RECIPIENT", "carlosedbaptista@gmail.com")
+    top_jobs = digest.get("top_jobs", [])
+    total_evaluated = digest.get("total_evaluated", 0)
+    if not top_jobs or total_evaluated == 0:
+        print("No jobs in digest -- skipping email notification")
+        return False
 
+    sender_email = os.environ.get("GMAIL_SENDER", "")
+    recipient_email = os.environ.get("GMAIL_RECIPIENT", "")
+    app_password = os.environ.get("GMAIL_APP_PASSWORD")
+    if not sender_email or not recipient_email:
+        print("GMAIL_SENDER and/or GMAIL_RECIPIENT not set")
+        return False
     if not app_password:
-        print("⚠️  GMAIL_APP_PASSWORD not set")
-        print("   Configure it in GitHub Secrets or your environment variables.")
-        print("   Guide: https://support.google.com/accounts/answer/185833")
+        print("GMAIL_APP_PASSWORD not set")
         return False
 
     print("Formatting digest as HTML...")
     html_content = format_digest_as_html(digest)
-
-    subject = f"📊 Job Hunt Digest — {datetime.now().strftime('%B %d')}"
-
+    subject = f"Job Hunt Digest - {datetime.now().strftime('%B %d')}"
     print(f"Sending email to {recipient_email}...")
-
-    success = send_email(
-        recipient_email=recipient_email,
-        subject=subject,
-        html_content=html_content,
-        sender_email=sender_email,
-        app_password=app_password,
-    )
+    success = send_email(recipient_email, subject, html_content, sender_email, app_password)
 
     if success:
-        print(f"✅ Email sent successfully!")
+        print(f"OK Email sent successfully!")
         print(f"   To: {recipient_email}")
         print(f"   Subject: {subject}")
         return True
     else:
-        print("❌ Failed to send email")
+        print("X Failed to send email")
         return False
 
 
 if __name__ == "__main__":
     import sys
-
     success = notify_digest()
     sys.exit(0 if success else 1)

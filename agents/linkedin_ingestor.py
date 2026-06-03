@@ -9,8 +9,9 @@ Saida: data/raw_jobs/linkedin_{data}.json
 import os
 import json
 import re
+import time
 import httpx
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Dict, Any
 
 SEARCH_QUERIES = [
@@ -98,7 +99,7 @@ def parse_jobs_html(html: str) -> List[Dict[str, Any]]:
 
         job["portal"] = "linkedin"
         job["description"] = ""  # requer fetch extra, deixamos vazio por enquanto
-        job["posted_at"] = datetime.now().isoformat()
+        job["posted_at"] = datetime.now(timezone.utc).isoformat()
 
         if job["title"] != "Unknown":
             jobs.append(job)
@@ -143,6 +144,7 @@ def main():
         jobs = fetch_linkedin_jobs(keywords, location)
         print(f"  🔍 {keywords[:30]:30} em {location[:25]:25} → {len(jobs):2} vagas")
         all_jobs.extend(jobs)
+        time.sleep(2)
 
     if not all_jobs:
         print("\n⚠️  Nenhuma vaga encontrada no LinkedIn.")

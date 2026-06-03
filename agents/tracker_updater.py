@@ -6,7 +6,7 @@ Called after user approves jobs to persist them.
 import json
 import os
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timezone
 
 DB_PATH = os.environ.get("JOBS_DB_PATH", "tracker/jobs.db")
 
@@ -53,7 +53,7 @@ def record_application(empresa: str, titulo: str, url: str) -> bool:
         conn.close()
         return False
 
-    now = datetime.now().isoformat()
+    now = datetime.now(timezone.utc).isoformat()
     conn.execute(
         """INSERT INTO applications
            (empresa, titulo, url, date_applied, status, last_update)
@@ -102,7 +102,7 @@ def update_application_status(empresa: str, titulo: str, status: str, notes: str
         """UPDATE applications
            SET status = ?, last_update = ?, notes = ?
            WHERE empresa = ? AND titulo = ?""",
-        (status, datetime.now().isoformat(), notes, empresa, titulo),
+        (status, datetime.now(timezone.utc).isoformat(), notes, empresa, titulo),
     )
 
     conn.commit()
@@ -135,8 +135,8 @@ def record_response(
         (
             status,
             response_type,
-            datetime.now().isoformat(),
-            datetime.now().isoformat(),
+            datetime.now(timezone.utc).isoformat(),
+            datetime.now(timezone.utc).isoformat(),
             notes,
             empresa,
             titulo,

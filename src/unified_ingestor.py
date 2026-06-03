@@ -16,30 +16,40 @@ import os
 import sys
 import json
 import glob
-from datetime import datetime
+import re
+from datetime import datetime, timezone
 from typing import List, Dict, Any
 
-sys.path.insert(0, "agents")
-sys.path.insert(0, "./agents")
+def normalize_title(title: str) -> str:
+    title = title.lower().strip()
+    title = re.sub(r"[^\w\s]", " ", title)
+    title = re.sub(r"\s+", " ", title)
+    return title.strip()
+
+
 
 
 def load_jsearch_jobs() -> List[Dict[str, Any]]:
     files = sorted(glob.glob("data/raw_jobs/jsearch_*.json"))
     if not files:
-        print("  ℹ️  Nenhum arquivo JSearch.")
+        print("  ℹ️  No JSearch file.")
         return []
     latest = files[-1]
-    with open(latest, "r", encoding="utf-8") as f:
-        jobs = json.load(f)
-    print(f"  ✅ JSearch: {len(jobs)} vagas de {latest}")
-    return jobs
+    try:
+        with open(latest, "r", encoding="utf-8") as f:
+            jobs = json.load(f)
+        print(f"  ✅ JSearch: {len(jobs)} jobs from {latest}")
+        return jobs
+    except (json.JSONDecodeError, IOError) as e:
+        print(f"  ⚠️  Error loading {latest}: {e}")
+        return []
 
 
 def load_email_jobs() -> List[Dict[str, Any]]:
     """Carrega vagas parseadas de emails (gerado por agents/email_parser.py)."""
     filepath = "digests/parsed_jobs_latest.json"
     if not os.path.exists(filepath):
-        print("  ℹ️  Nenhum arquivo de email parseado.")
+        print("  ℹ️  No parsed email file.")
         return []
     with open(filepath, "r", encoding="utf-8") as f:
         jobs = json.load(f)
@@ -51,26 +61,34 @@ def load_linkedin_jobs() -> List[Dict[str, Any]]:
     """Carrega vagas do LinkedIn (gerado por agents/linkedin_ingestor.py)."""
     files = sorted(glob.glob("data/raw_jobs/linkedin_*.json"))
     if not files:
-        print("  ℹ️  Nenhum arquivo LinkedIn.")
+        print("  ℹ️  No LinkedIn file.")
         return []
     latest = files[-1]
-    with open(latest, "r", encoding="utf-8") as f:
-        jobs = json.load(f)
-    print(f"  ✅ LinkedIn: {len(jobs)} vagas de {latest}")
-    return jobs
+    try:
+        with open(latest, "r", encoding="utf-8") as f:
+            jobs = json.load(f)
+        print(f"  ✅ LinkedIn: {len(jobs)} jobs from {latest}")
+        return jobs
+    except (json.JSONDecodeError, IOError) as e:
+        print(f"  ⚠️  Error loading {latest}: {e}")
+        return []
 
 
 def load_adzuna_jobs() -> List[Dict[str, Any]]:
     """Carrega vagas da Adzuna (gerado por agents/adzuna_ingestor.py)."""
     files = sorted(glob.glob("data/raw_jobs/adzuna_*.json"))
     if not files:
-        print("  ℹ️  Nenhum arquivo Adzuna.")
+        print("  ℹ️  No Adzuna file.")
         return []
     latest = files[-1]
-    with open(latest, "r", encoding="utf-8") as f:
-        jobs = json.load(f)
-    print(f"  ✅ Adzuna: {len(jobs)} vagas de {latest}")
-    return jobs
+    try:
+        with open(latest, "r", encoding="utf-8") as f:
+            jobs = json.load(f)
+        print(f"  ✅ Adzuna: {len(jobs)} jobs from {latest}")
+        return jobs
+    except (json.JSONDecodeError, IOError) as e:
+        print(f"  ⚠️  Error loading {latest}: {e}")
+        return []
 
 
 def normalize_to_legacy(job: Dict[str, Any]) -> Dict[str, Any]:
@@ -83,23 +101,11 @@ def normalize_to_legacy(job: Dict[str, Any]) -> Dict[str, Any]:
         "url": job.get("url", ""),
         "portal": job.get("portal", "unknown"),
         "idioma": job.get("idioma", "en"),
-        "data_post": job.get("posted_at") or job.get("data_post", datetime.now().isoformat()),
+        "data_post": job.get("posted_at") or job.get("data_post", datetime.now(timezone.utc).isoformat()),
     }
 
 
-def deduplicate_all(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    seen = set()
-    unique = []
-    for job in jobs:
-        key = (
-            job.get("company", job.get("empresa", "")).lower().strip(),
-            job.get("title", job.get("titulo", "")).lower().strip(),
-            job.get("location", job.get("localizacao", "")).lower().strip(),
-        )
-        if key not in seen:
-            seen.add(key)
-            unique.append(job)
-    return unique
+from utils import deduplicate_jobs
 
 
 def save_unified(jobs: List[Dict[str, Any]]) -> str:
@@ -107,7 +113,7 @@ def save_unified(jobs: List[Dict[str, Any]]) -> str:
     filepath = f"data/raw_jobs/all_jobs_{datetime.now().strftime('%Y%m%d_%H%M')}.json"
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(jobs, f, ensure_ascii=False, indent=2)
-    print(f"  💾 {len(jobs)} vagas unificadas → {filepath}")
+    print(f"  💾 {len(jobs)} unified jobs → {filepath}")
     return filepath
 
 
@@ -118,7 +124,7 @@ def save_legacy_format(jobs: List[Dict[str, Any]]) -> str:
     legacy_jobs = [normalize_to_legacy(j) for j in jobs]
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(legacy_jobs, f, ensure_ascii=False, indent=2)
-    print(f"  💾 {len(legacy_jobs)} vagas (formato legado) → {filepath}")
+    print(f"  💾 {len(legacy_jobs)} jobs (legacy format) → {filepath}")
     return filepath
 
 
@@ -134,10 +140,10 @@ def main():
 
     all_jobs = jsearch_jobs + email_jobs + linkedin_jobs + adzuna_jobs
     if not all_jobs:
-        print("\n⚠️  Nenhuma vaga de nenhuma fonte.")
+        print("\n⚠️  No jobs from any source.")
         return None
 
-    unique = deduplicate_all(all_jobs)
+    unique = deduplicate_jobs(all_jobs)
     print(f"\n📊 Total: {len(all_jobs)} | Após dedup: {len(unique)}")
 
     save_unified(unique)

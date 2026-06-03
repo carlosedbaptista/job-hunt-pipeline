@@ -1,99 +1,103 @@
-name: Job Hunt Pipeline — Kimi K2.6 + JSearch + Email
+name: Job Hunt Daily Pipeline
 
 on:
   schedule:
-    - cron: '0 5 * * *'
+    - cron: '0 5 * * *'   # 05:00 UTC = 07:00 CEST
+    - cron: '0 12 * * *'  # 12:00 UTC = 14:00 CEST
   workflow_dispatch:
 
 jobs:
-  pipeline:
+  daily-pipeline:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install -r requirements.txt
 
-      - name: 🔍 JSearch — Busca ativa
-        env:
-          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
-        run: python agents/jsearch_ingestor.py || true
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-      - name: 💼 LinkedIn — Busca ativa
-        run: python agents/linkedin_ingestor.py || true
-
-      - name: 🔍 Adzuna — API oficial (Suica)
+      - name: Fetch Adzuna jobs
         env:
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
-        run: python agents/adzuna_ingestor.py || true
+          ADZUNA_MAX_HITS: "35"
+        run: python agents/adzuna_ingestor.py
 
-      - name: 📧 Gmail — Alertas por email
+      # LinkedIn ingestion disabled -- consistently returns 0 jobs
+      # - name: Fetch LinkedIn jobs
+      #   run: python agents/linkedin_ingestor.py
+      #   continue-on-error: true
+
+      - name: Fetch Gmail alerts
         env:
-          GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
-          GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
-        run: python src/email_ingestor.py || true
+        run: python src/email_ingestor.py
+        continue-on-error: true
 
-      - name: 📧 Gmail — Parse de emails
+      - name: Parse job emails (local, no API)
+        run: python agents/email_parser_local.py
+
+      - name: Unify job sources
+        run: python src/unified_ingestor.py
+
+      - name: Evaluate job fit with AI
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
-        run: python agents/email_parser.py || true
+        run: python agents/job_evaluator.py
 
-      - name: 🔗 Unified Ingestor — Deduplicacao
-        run: python src/unified_ingestor.py || true
-
-      - name: 🤖 Kimi K2.6 — Avaliacao de fit
+      - name: Generate daily digest
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
-        run: python agents/job_evaluator.py || true
+        run: python src/week4_pipeline.py --digest-only
 
-      - name: 📝 Cover Letter Writer (APPLY >= 65)
-        env:
-          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
-        run: python agents/cover_letter_writer.py || true
-
-      - name: 📄 CV Tailor (APPLY >= 65)
-        env:
-          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
-        run: python agents/cv_tailor.py || true
-
-      - name: ☁️ Google Drive — Upload CV/CL
-        env:
-          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
-        run: python agents/gdrive_uploader.py || true
-
-      - name: 📋 Digest Generator
-        env:
-          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
-        run: python src/week4_pipeline.py --digest-only || true
-
-      - name: 📊 Dashboard
+      - name: Generate dashboard
         env:
           DB_PATH: ./tracker/jobs.db
-        run: python src/dashboard.py || true
+        run: python src/dashboard.py
 
-      - name: 📬 Email notification
+      - name: Generate tailored CVs/CLs
         if: always()
         env:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
-        run: python agents/email_notifier.py || true
+          GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
+          HIGH_SCORE_THRESHOLD: "85"
+          GDRIVE_PARENT_FOLDER_ID: ${{ secrets.GDRIVE_PARENT_FOLDER_ID }}
+          GDRIVE_REFRESH_TOKEN_B64: ${{ secrets.GDRIVE_REFRESH_TOKEN_B64 }}
+          GDRIVE_CREDENTIALS_JSON_B64: ${{ secrets.GDRIVE_CREDENTIALS_JSON_B64 }}
+        run: python agents/doc_generator.py
+        continue-on-error: true
 
-      - name: 💾 Commit resultados
+      - name: High-Score Alerts
+        run: python agents/high_score_alert.py
+        continue-on-error: true
+
+      - name: Send email notification
+        if: always()
+        env:
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
+        run: python agents/email_notifier.py
+
+      - name: Commit and push results
         if: always()
         run: |
-          mkdir -p data/raw_jobs
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add data/raw_jobs/ digests/ tracker/ || true
-          git diff --cached --quiet || git commit -m "📊 Daily — Kimi K2.6 + JSearch + Email"
-          git push || true
+          git add data/raw_jobs/ digests/ tracker/jobs.db
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          JOB_COUNT=$(python -c "import json; d=json.load(open('digests/digest_latest.json')); print(d.get('total_evaluated', 0))" 2>/dev/null || echo 0)
+          APPLY_COUNT=$(python -c "import json; d=json.load(open('digests/digest_latest.json')); jobs=d.get('top_jobs',[]); print(sum(1 for j in jobs if j.get('score',0)>=65))" 2>/dev/null || echo 0)
+          TIMESTAMP=$(date -u +'%Y-%m-%d %H:%M UTC')
+          git commit -m "chore: daily digest [$TIMESTAMP | $JOB_COUNT jobs | $APPLY_COUNT APPLY]"
+          git push
