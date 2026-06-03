@@ -219,7 +219,7 @@ def cl_pdf(profile, letter, title, company, location, path):
     pdf.output(path)
 
 def main():
-    evals = load_json("job_evaluations_latest.json")
+    evals = load_json("digests/job_evaluations_latest.json")
     profile = load_json("config/candidate_profile.json")
     client = KimiClient()
     gen_dir = "generated_docs"
