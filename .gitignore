@@ -26,3 +26,11 @@ debug_*.py
 # Fix scripts na raiz (nao commitar)
 /*fix*.py
 /*hotfix*.py
+
+# Google Drive credentials (sensitive)
+config/gdrive_credentials.json
+config/gdrive_refresh_token.json
+config/oauth2_client_secret.json
+
+# Generated docs (CVs/CLs)
+generated_docs/
