@@ -1,6 +1,6 @@
 """
 cover_letter_writer.py  —  Generates tailored cover letters for high-fit jobs
-Uses Claude Sonnet. Runs only for jobs with score >= 75.
+Uses Claude Sonnet. Runs only for jobs with score >= 80.
 """
 
 import json
@@ -127,12 +127,12 @@ Show genuine interest, not generic enthusiasm."""
 
 
 def generate_materials(evaluations: list[dict], jobs_dict: dict) -> list[dict]:
-    """Generates cover letters only for jobs with score >= 75 (APPLY)."""
+    """Generates cover letters only for jobs with score >= 80 (APPLY)."""
     materials = []
-    apply_jobs = [e for e in evaluations if e.get("score", 0) >= 75]
+    apply_jobs = [e for e in evaluations if e.get("score", 0) >= 80]
 
     if not apply_jobs:
-        print("No jobs with score >= 75. Nothing to generate.")
+        print("No jobs with score >= 80. Nothing to generate.")
         return []
 
     print(f"Generating cover letters for {len(apply_jobs)} job(s)...\n")

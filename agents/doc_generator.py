@@ -230,7 +230,7 @@ def main():
 
     for ev in evals:
         score = ev.get("score", 0)
-        if score < 75:  # only APPLY jobs get tailored materials
+        if score < 80:  # only APPLY jobs get tailored materials
             continue
         job = ev.get("job", ev)
         title = job.get("titulo", job.get("title", "Job"))

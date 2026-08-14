@@ -17,9 +17,9 @@ def load_digest():
 
 
 def score_color(score: int) -> str:
-    if score >= 75:
+    if score >= 80:
         return "#22c55e"
-    if score >= 45:
+    if score >= 70:
         return "#f59e0b"
     return "#ef4444"
 
@@ -27,9 +27,9 @@ def score_color(score: int) -> str:
 def score_label(score: int, recommendation: str) -> str:
     if recommendation == "DO NOT APPLY":
         return "DO NOT APPLY"
-    if score >= 75:
+    if score >= 80:
         return "APPLY"
-    if score >= 45:
+    if score >= 70:
         return "REVIEW"
     return "UNCERTAIN"
 
@@ -56,9 +56,9 @@ def generate_html(digest: dict) -> str:
     except Exception:
         date_str = generated_at[:16]
 
-    apply_count = sum(1 for j in top_jobs if j.get("score", 0) >= 75)
+    apply_count = sum(1 for j in top_jobs if j.get("score", 0) >= 80)
     review_count = sum(1 for j in top_jobs if 45 <= j.get("score", 0) < 65)
-    uncertain_count = sum(1 for j in top_jobs if j.get("score", 0) < 45)
+    uncertain_count = sum(1 for j in top_jobs if j.get("score", 0) < 70)
 
     job_cards = ""
     for i, job_eval in enumerate(top_jobs, 1):

@@ -1,0 +1,87 @@
+name: Add Job (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Job URL (optional if you paste the description; LinkedIn/Indeed may block scraping)"
+        required: false
+        type: string
+      title:
+        description: "Job title"
+        required: false
+        type: string
+      company:
+        description: "Company"
+        required: false
+        type: string
+      location:
+        description: "Location"
+        required: false
+        type: string
+      text:
+        description: "Full job description text (most reliable — paste it here)"
+        required: false
+        type: string
+
+jobs:
+  add-job:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4 (pinned SHA)
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5 (pinned SHA)
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Restore candidate profile from secrets
+        env:
+          CANDIDATE_PROFILE_B64: ${{ secrets.CANDIDATE_PROFILE_B64 }}
+        run: |
+          mkdir -p config
+          if [ -n "$CANDIDATE_PROFILE_B64" ]; then
+            echo "$CANDIDATE_PROFILE_B64" | base64 -d > config/candidate_profile.json
+          fi
+
+      - name: Evaluate job
+        env:
+          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
+          KIMI_BASE_URL: ${{ secrets.KIMI_BASE_URL }}
+          JOB_URL: ${{ inputs.url }}
+          JOB_TITLE: ${{ inputs.title }}
+          JOB_COMPANY: ${{ inputs.company }}
+          JOB_LOCATION: ${{ inputs.location }}
+          JOB_TEXT: ${{ inputs.text }}
+        run: |
+          if [ -n "$JOB_TEXT" ]; then
+            printf '%s' "$JOB_TEXT" > /tmp/job_input.txt
+            python agents/add_job.py --file /tmp/job_input.txt --title "$JOB_TITLE" --company "$JOB_COMPANY" --location "$JOB_LOCATION" ${JOB_URL:+--url "$JOB_URL"}
+          elif [ -n "$JOB_URL" ]; then
+            python agents/add_job.py --url "$JOB_URL" --title "$JOB_TITLE" --company "$JOB_COMPANY" --location "$JOB_LOCATION"
+          else
+            echo "Provide at least the job URL or the description text."
+            exit 1
+          fi
+
+      - name: Regenerate dashboard
+        env:
+          DB_PATH: ./tracker/jobs.db
+        run: python src/dashboard.py
+        continue-on-error: true
+
+      - name: Commit result
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add digests/manual_evaluations.json digests/dashboard.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: manual job evaluation [${{ inputs.title }} @ ${{ inputs.company }}]"
+          git push

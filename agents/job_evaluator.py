@@ -43,7 +43,7 @@ def load_profile_summary() -> str:
 
 PROFILE = load_profile_summary()
 
-SYSTEM_PROMPT = """Evaluate job vs candidate. Return JSON: {"score":0-100,"technical_fit":"brief","contextual_fit":"brief","salary_estimate":"range or Not disclosed","culture_fit":"brief","concerns":[],"decision":"APPLY|REVIEW|SKIP","portuguese_comment":"PT brief"}. Rules: >=75 APPLY, 45-74 REVIEW, <45 SKIP. Auto-SKIP: not Zurich/Zug, not English, pure SWE."""
+SYSTEM_PROMPT = """Evaluate job vs candidate. Return JSON: {"score":0-100,"technical_fit":"brief","contextual_fit":"brief","salary_estimate":"range or Not disclosed","culture_fit":"brief","concerns":[],"decision":"APPLY|REVIEW|SKIP","portuguese_comment":"PT brief"}. Rules: >=80 APPLY, 70-79 REVIEW, <70 SKIP. Auto-SKIP: not Zurich/Zug, not English, pure SWE."""
 
 ERROR_LOG = os.path.join("digests", "evaluation_errors.txt")  # .txt: *.log is in .gitignore and would not be committed
 
@@ -78,10 +78,10 @@ def evaluate_job(job):
         key_match_points = []
         red_flags = []
 
-        if score >= 75:
+        if score >= 80:
             key_match_points = [ev.get("technical_fit", ""), ev.get("contextual_fit", "")]
             key_match_points = [p for p in key_match_points if p]
-        elif score >= 45:
+        elif score >= 70:
             key_match_points = [ev.get("technical_fit", "")]
             key_match_points = [p for p in key_match_points if p]
             red_flags = ev.get("concerns", [])
@@ -157,9 +157,9 @@ def main():
         if i < len(jobs):
             time.sleep(2)
 
-    apply = [e for e in evaluations if e.get("score", 0) >= 75]
-    review = [e for e in evaluations if 45 <= e.get("score", 0) < 75]
-    skip = [e for e in evaluations if e.get("score", 0) < 45]
+    apply = [e for e in evaluations if e.get("score", 0) >= 80]
+    review = [e for e in evaluations if 70 <= e.get("score", 0) < 80]
+    skip = [e for e in evaluations if e.get("score", 0) < 70]
     api_errors = [e for e in evaluations
                   if any("API error" in str(f) for f in e.get("red_flags", []))]
     print(f"\n{'='*50}")

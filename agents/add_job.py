@@ -87,6 +87,10 @@ def main():
             job = fetch_job_from_url(args.url)
         except Exception as e:
             print(f"Could not extract the job from the link ({e}).")
+            if not sys.stdin.isatty():
+                print("Non-interactive mode: rerun pasting the description text "
+                      "(locally: --text/--file; in GitHub Actions: fill the 'text' input).")
+                sys.exit(1)
             print("Paste the job description text below (Ctrl+Z+Enter on Windows to finish):")
             text = sys.stdin.read()
             if not text.strip():
@@ -121,7 +125,7 @@ def main():
     score = ev.get("score", 0)
     decision = ev.get("decision", "?")
     print("\n" + "=" * 60)
-    print(f"SCORE: {score}/100  ->  {decision}  (APPLY >= 75)")
+    print(f"SCORE: {score}/100  ->  {decision}  (APPLY >= 80)")
     print("=" * 60)
     print(f"Technical fit : {ev.get('technical_fit', '')}")
     print(f"Contextual fit: {ev.get('contextual_fit', '')}")
@@ -135,7 +139,7 @@ def main():
     save_evaluation(ev)
     print(f"\nSaved to {OUTPUT}")
 
-    if decision == "APPLY" or score >= 75:
+    if decision == "APPLY" or score >= 80:
         print("\nHigh match! To generate tailored CV/CL, include this job in")
         print("digests/new_jobs_latest.json or run the normal pipeline.")
 
