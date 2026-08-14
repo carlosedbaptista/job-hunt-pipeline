@@ -1,5 +1,5 @@
 """
-email_parser.py — Batch parsing: 5 emails por chamada Kimi
+email_parser.py — Batch parsing: 5 emails per Kimi call
 """
 
 import json

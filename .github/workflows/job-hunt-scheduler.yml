@@ -32,7 +32,7 @@ jobs:
           if [ -n "$CANDIDATE_PROFILE_B64" ]; then
             echo "$CANDIDATE_PROFILE_B64" | base64 -d > config/candidate_profile.json
           else
-            echo "CANDIDATE_PROFILE_B64 nao configurado -- usando fallback sem PII"
+            echo "CANDIDATE_PROFILE_B64 not configured -- using fallback without PII"
           fi
           if [ -n "$CANDIDATE_PHOTO_B64" ]; then
             echo "$CANDIDATE_PHOTO_B64" | base64 -d > config/photo.png

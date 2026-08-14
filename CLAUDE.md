@@ -18,7 +18,7 @@
 - **Claude API**: Haiku 4.5 (screening/cheap), Sonnet 4.6 (materials), Opus 4.6 (if needed)
 - **Gmail API**: OAuth2 for email integration
 - **Storage**: SQLite for application tracking (local), Google Sheets for dashboard (optional)
-- **File Organization**: Local filesystem at `/aplicacoes/{empresa}/{vaga-data}/`
+- **File Organization**: Local filesystem at `/applications/{company}/{job-date}/`
 - **Scheduling**: Node.js cron or external scheduler for daily runs
 - **Version Control**: Git, hosted at https://github.com/carlosedbaptista/job-hunt-pipeline
 
@@ -42,7 +42,7 @@
 3. **Deduplication**: Same job on multiple portals = track only once (by company + title + city + 7-day window)
 4. **Email handling**: Parse emails case-insensitively; erring on the side of caution for recruiter responses
 5. **Scoring is input, not gospel**: Score < 75 can still be applied if user overrides
-6. **Rate limiting**: Max 30 vagas processed per day to control costs
+6. **Rate limiting**: Max 30 jobs processed per day to control costs
 7. **Cost optimization**: Haiku >> Sonnet >> Opus (use cheapest model first)
 
 ---
@@ -58,7 +58,7 @@
 - Education: Postgraduate in Data Science (expected Oct 2026), Technologist degree in Systems Analysis
 - Languages: Portuguese (native), English (C1), Spanish (B2), German (A2 -> B1, intensive course)
 
-**Contact**: ver `config/candidate_profile.json` (arquivo local, fora do git — nao commitar PII)
+**Contact**: see `config/candidate_profile.json` (local file, not in git — do not commit PII)
 
 **Work Status**: Swiss Work Permit B (no sponsorship required), based in Zurich Area, available on 2 weeks' notice
 
@@ -68,12 +68,12 @@
 
 ## Materials Base
 
-Fontes da verdade (arquivos locais, fora do git):
+Sources of truth (local files, not in git):
 
-- **CV modelo**: `config/cv_model.txt` — CV real (1 pagina, posicionamento AI Platform Engineer)
-- **Cover Letter modelo**: `config/cover_letter_model.txt` — CL real usado numa aplicacao (estrutura/voz de referencia)
-- **Perfil estruturado**: `config/candidate_profile.json` — alinhado ao CV modelo; usado por evaluator, doc_generator, cv_tailor e cover_letter_writer
-- **Rubrica de avaliacao**: score 0-100 via LLM, thresholds (>=75 APPLY, 45-74 REVIEW, <45 SKIP)
+- **Model CV**: `config/cv_model.txt` — real CV (1 page, AI Platform Engineer positioning)
+- **Model Cover Letter**: `config/cover_letter_model.txt` — real CL used in an application (reference structure/voice)
+- **Structured profile**: `config/candidate_profile.json` — aligned with the model CV; used by evaluator, doc_generator, cv_tailor and cover_letter_writer
+- **Evaluation rubric**: score 0-100 via LLM, thresholds (>=75 APPLY, 45-74 REVIEW, <45 SKIP)
 
 **Key positioning**: AI Platform Engineer (agentic AI, LLM workflows, data pipelines). Career changer (Law -> tech). Swiss Permit B, Zurich area. Quantified results (~40% at QUOD).
 
@@ -98,9 +98,9 @@ job-hunt-pipeline/
 │   ├── cv-tailor.js         # Adjust CV per role
 │   ├── tracker-updater.js   # Database updates
 │   └── email-monitor.js     # Detect recruiter responses
-├── aplicacoes/              # User's applications (organized by company)
-│   └── {empresa-slug}/
-│       └── {vaga-slug-date}/
+├── applications/            # User applications (organized by company)
+│   └── {company-slug}/
+│       └── {job-slug-date}/
 │           ├── cv.pdf
 │           ├── cover.pdf
 │           ├── job_description.md
@@ -144,7 +144,7 @@ Each subagent:
 3. **6:30 AM**: User receives email digest with top 5 jobs, scores, reasoning
 4. **User action**: Replies "1, 3, 5 approved" (or manually reviews in dashboard)
 5. **Materials generation**: Sonnet generates customized CV/cover letters for approved jobs
-6. **Storage**: Files organized in /aplicacoes/{empresa}/{vaga}/ with standardized names
+6. **Storage**: Files organized in /applications/{company}/{job}/ with standardized names
 7. **2:00 PM & 6:00 PM**: Email monitor checks for recruiter responses
 8. **Dashboard**: Real-time view of submission status, response rate, pending follow-ups
 
@@ -155,7 +155,7 @@ Each subagent:
 **Never commit these files:**
 - `.env` (contains Gmail OAuth token, API keys)
 - `tracker/applications.db` (contains personal data)
-- Any PDFs in `aplicacoes/`
+- Any PDFs in `applications/`
 
 **Setup .env template**:
 GMAIL_CLIENT_ID=your_client_id_here

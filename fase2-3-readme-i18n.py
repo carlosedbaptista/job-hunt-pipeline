@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-=== FASE 2+3: README.md + Documentacao + Padronizacao EN ===
-Cria README.md profissional, .env.example, candidate_profile.json,
-e traduz prints principais para ingles.
+=== PHASE 2+3: README.md + Documentation + EN Standardization ===
+Creates a professional README.md, .env.example, candidate_profile.json,
+and translates the main print messages to English.
 """
 import os
 import subprocess
@@ -18,9 +18,9 @@ def wf(path, content):
 
 REPO = os.getcwd()
 if not os.path.exists(f"{REPO}/.git"):
-    print("ERRO: Rode dentro da pasta do repo"); exit(1)
+    print("ERROR: Run this script from inside the repo folder"); exit(1)
 
-print("=== FASE 2+3: README + Docs + EN Padronization ===\n")
+print("=== PHASE 2+3: README + Docs + EN Standardization ===\n")
 
 # 1. README.md
 wf(f"{REPO}/README.md", r"""# Job Hunt Pipeline
@@ -192,7 +192,7 @@ wf(f"{REPO}/config/candidate_profile.json", r"""{
 }
 """)
 
-# 4. Traduzir Adzuna ingestor prints
+# 4. Translate Adzuna ingestor prints
 ADZUNA_PATH = f"{REPO}/agents/adzuna_ingestor.py"
 if os.path.exists(ADZUNA_PATH):
     with open(ADZUNA_PATH, "r", encoding="utf-8") as f:
@@ -209,7 +209,7 @@ if os.path.exists(ADZUNA_PATH):
         f.write(c)
     print("[OK] agents/adzuna_ingestor.py translated")
 
-# 5. Traduzir Unified ingestor prints
+# 5. Translate Unified ingestor prints
 UNIFIED_PATH = f"{REPO}/src/unified_ingestor.py"
 if os.path.exists(UNIFIED_PATH):
     with open(UNIFIED_PATH, "r", encoding="utf-8") as f:
@@ -227,7 +227,7 @@ if os.path.exists(UNIFIED_PATH):
         f.write(c)
     print("[OK] src/unified_ingestor.py translated")
 
-# 6. Traduzir Job Evaluator prints
+# 6. Translate Job Evaluator prints
 EVAL_PATH = f"{REPO}/agents/job_evaluator.py"
 if os.path.exists(EVAL_PATH):
     with open(EVAL_PATH, "r", encoding="utf-8") as f:
@@ -245,10 +245,10 @@ if os.path.exists(EVAL_PATH):
 run("git add -A")
 ok, _, err = run('git commit -m "docs: add README.md, .env.example, candidate profile; i18n: translate prints to English"')
 if ok:
-    print("\n[OK] Commit feito! Proximo: git push origin main")
+    print("\n[OK] Commit done! Next: git push origin main")
 else:
     print(f"\n[!] Commit: {err[:200]}")
 
-print("\n=== FASE 2+3 CONCLUIDA ===")
-print("Criado: README.md, .env.example, config/candidate_profile.json")
-print("Traduzido: adzuna_ingestor.py, unified_ingestor.py, job_evaluator.py")
+print("\n=== PHASE 2+3 COMPLETE ===")
+print("Created: README.md, .env.example, config/candidate_profile.json")
+print("Translated: adzuna_ingestor.py, unified_ingestor.py, job_evaluator.py")

@@ -70,7 +70,7 @@ def _candidate_name() -> str:
 
 
 def _cl_model() -> str:
-    """Modelo real de cover letter do candidato (config/cover_letter_model.txt, fora do git)."""
+    """Candidate's real cover letter model (config/cover_letter_model.txt, not in git)."""
     if os.path.exists("config/cover_letter_model.txt"):
         with open("config/cover_letter_model.txt", encoding="utf-8") as f:
             return f.read().strip()

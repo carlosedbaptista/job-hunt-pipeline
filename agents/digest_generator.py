@@ -15,7 +15,7 @@ def load_evaluations():
 
 
 def _get_job_field(eval_item, field, default="N/A"):
-    """Extrai campo da avaliacao -- suporta formato aninhado OU direto."""
+    """Extracts a field from the evaluation -- supports nested OR flat format."""
     job = eval_item.get("job")
     if job and isinstance(job, dict):
         val = job.get(field)

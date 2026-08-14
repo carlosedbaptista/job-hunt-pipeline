@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-=== FASE 1: LIMPEZA IMEDIATA ===
-Remove artefatos mortos, move scripts para pasta correta, atualiza .gitignore.
+=== PHASE 1: IMMEDIATE CLEANUP ===
+Remove dead artifacts, move scripts to the correct folder, update .gitignore.
 """
 import os
 import shutil
@@ -13,16 +13,16 @@ def run(cmd):
 
 REPO = os.getcwd()
 if not os.path.exists(f"{REPO}/.git"):
-    print("ERRO: Rode dentro da pasta do repo"); exit(1)
+    print("ERROR: Run inside the repo folder"); exit(1)
 
-print("=== FASE 1: LIMPEZA IMEDIATA ===\n")
+print("=== PHASE 1: IMMEDIATE CLEANUP ===\n")
 
-# 1. Criar pastas necessarias
+# 1. Create required folders
 for d in ["scripts", "docs/legacy", "config", "data/history"]:
     os.makedirs(os.path.join(REPO, d), exist_ok=True)
-print("[OK] Pastas criadas: scripts/, docs/legacy/, config/, data/history/")
+print("[OK] Folders created: scripts/, docs/legacy/, config/, data/history/")
 
-# 2. Remover fix_*.py e hotfix_*.py da raiz
+# 2. Remove fix_*.py and hotfix_*.py from the root
 removed = []
 for f in os.listdir(REPO):
     if f.startswith("fix_") and f.endswith(".py"):
@@ -32,73 +32,73 @@ for f in os.listdir(REPO):
         os.remove(os.path.join(REPO, f))
         removed.append(f)
 if removed:
-    print(f"[OK] Removidos {len(removed)} arquivos de fix: {', '.join(removed)}")
+    print(f"[OK] Removed {len(removed)} fix files: {', '.join(removed)}")
 else:
-    print("[OK] Nenhum arquivo de fix encontrado na raiz")
+    print("[OK] No fix files found in the root")
 
-# 3. Remover package.json e setup-gmail.js
+# 3. Remove package.json and setup-gmail.js
 for f in ["package.json", "setup-gmail.js"]:
     fp = os.path.join(REPO, f)
     if os.path.exists(fp):
         os.remove(fp)
-        print(f"[OK] Removido: {f}")
+        print(f"[OK] Removed: {f}")
     else:
-        print(f"[OK] Ja nao existe: {f}")
+        print(f"[OK] Already gone: {f}")
 
-# 4. Mover scripts de debug para scripts/
+# 4. Move debug scripts to scripts/
 for f in ["debug_jsearch.py", "add_followup_columns.py"]:
     src = os.path.join(REPO, f)
     dst = os.path.join(REPO, "scripts", f)
     if os.path.exists(src):
         shutil.move(src, dst)
-        print(f"[OK] Movido: {f} -> scripts/")
+        print(f"[OK] Moved: {f} -> scripts/")
     else:
-        print(f"[OK] Ja nao existe na raiz: {f}")
+        print(f"[OK] Not present in root: {f}")
 
-# 5. Mover .md desatualizados para docs/legacy/
+# 5. Move outdated .md files to docs/legacy/
 legacy_docs = ["GUIDE.md", "FOLLOWUPS.md", "ANALYTICS.md"]
 for f in legacy_docs:
     src = os.path.join(REPO, f)
     dst = os.path.join(REPO, "docs/legacy", f)
     if os.path.exists(src):
         shutil.move(src, dst)
-        print(f"[OK] Movido: {f} -> docs/legacy/")
+        print(f"[OK] Moved: {f} -> docs/legacy/")
     else:
-        print(f"[OK] Ja nao existe na raiz: {f}")
+        print(f"[OK] Not present in root: {f}")
 
-# 6. Atualizar .gitignore
+# 6. Update .gitignore
 gitignore_path = os.path.join(REPO, ".gitignore")
 if os.path.exists(gitignore_path):
     with open(gitignore_path, "r") as f:
         content = f.read()
     additions = """
-# Scripts e artefatos temporarios
+# Temporary scripts and artifacts
 scripts/
 docs/legacy/
 fix_*.py
 hotfix_*.py
 debug_*.py
 
-# Fix scripts na raiz (nao commitar)
+# Fix scripts in the root (do not commit)
 /*fix*.py
 /*hotfix*.py
 """
     if "scripts/" not in content:
         with open(gitignore_path, "a") as f:
             f.write(additions)
-        print("[OK] .gitignore atualizado")
+        print("[OK] .gitignore updated")
     else:
-        print("[OK] .gitignore ja contem regras")
+        print("[OK] .gitignore already has the rules")
 
-# 7. Stage e commit
+# 7. Stage and commit
 run("git add -A")
 ok, out, err = run('git commit -m "chore: cleanup dead artifacts, move legacy docs to docs/legacy/"')
 if ok:
-    print("\n[OK] Commit feito com sucesso!")
-    print("     Proximo passo: git push origin main")
+    print("\n[OK] Commit successful!")
+    print("     Next step: git push origin main")
 else:
-    print(f"\n[!] Commit falhou (pode ser nada para commitar): {err[:200]}")
+    print(f"\n[!] Commit failed (maybe nothing to commit): {err[:200]}")
 
-print("\n=== FASE 1 CONCLUIDA ===")
-print("Artefatos removidos, pastas organizadas, .gitignore atualizado.")
-print("Execute 'git push origin main' para enviar as mudancas.")
+print("\n=== PHASE 1 COMPLETE ===")
+print("Artifacts removed, folders organized, .gitignore updated.")
+print("Run 'git push origin main' to push the changes.")

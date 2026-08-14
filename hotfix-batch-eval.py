@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-hotfix-batch-eval.py  -  Corrige job_evaluator para avaliar TODAS vagas em 1 chamada Kimi
+hotfix-batch-eval.py  -  Fixes job_evaluator to evaluate ALL jobs in 1 Kimi call
 """
 
 import os
@@ -17,15 +17,15 @@ def write_file(path, content):
 
 REPO = os.getcwd()
 if not os.path.exists(f"{REPO}/.git"):
-    print("ERRO: Rode dentro da pasta do repo")
+    print("ERROR: Run from inside the repo folder")
     exit(1)
 
-print("HOTFIX - Batch Evaluation (1 chamada para todas vagas)")
+print("HOTFIX - Batch Evaluation (1 call for all jobs)")
 
 write_file(f"{REPO}/agents/job_evaluator.py", r'''
 """
-job_evaluator.py  -  Avalia fit de cada vaga usando Kimi K2-6
-                     AGORA: Todas as vagas em 1 chamada (batch)
+job_evaluator.py  -  Evaluates fit of each job using Kimi K2-6
+                     NOW: All jobs in 1 call (batch)
 """
 
 import json
@@ -234,16 +234,16 @@ if __name__ == "__main__":
     main()
 ''')
 
-print("  job_evaluator.py reescrito com batch evaluation")
+print("  job_evaluator.py rewritten with batch evaluation")
 
 ok, out, err = run(f'cd {REPO} && git add agents/job_evaluator.py')
-ok, out, err = run(f'cd {REPO} && git commit -m "perf: batch evaluation - todas vagas em 1 chamada Kimi"')
+ok, out, err = run(f'cd {REPO} && git commit -m "perf: batch evaluation - all jobs in 1 Kimi call"')
 if ok:
-    print("  Commit feito")
+    print("  Commit done")
     run(f'cd {REPO} && git push origin main')
-    print("  Push feito!")
+    print("  Push done!")
 else:
-    print(f"  Erro: {err[:200]}")
+    print(f"  Error: {err[:200]}")
 
-print("\nPronto! Rode o workflow no GitHub Actions para testar.")
-print("Esperado: Evaluator completa em ~30s em vez de 10-50min")
+print("\nDone! Run the workflow in GitHub Actions to test.")
+print("Expected: Evaluator completes in ~30s instead of 10-50min")

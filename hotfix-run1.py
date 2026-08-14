@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-hotfix-run1.py  —  Corrige 4 bugs encontrados no primeiro run real do pipeline
+hotfix-run1.py  —  Fixes 4 bugs found in the first real pipeline run
 
-Execute:  python hotfix-run1.py
-dentro da pasta C:\tmp\job-hunt-pipeline-FIXED
+Run:  python hotfix-run1.py
+from inside the C:\tmp\job-hunt-pipeline-FIXED folder
 """
 
 import os
@@ -17,23 +17,23 @@ def write_file(path, content):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         f.write(content)
-    print(f"  Escrito: {path}")
+    print(f"  Written: {path}")
 
-# Diretorio do repo
+# Repo directory
 REPO = os.getcwd()
 if not os.path.exists(f"{REPO}/.git"):
-    print("ERRO: Rode este script dentro da pasta do repo (job-hunt-pipeline-FIXED)")
+    print("ERROR: Run this script from inside the repo folder (job-hunt-pipeline-FIXED)")
     exit(1)
 
 print("=" * 60)
-print("  HOTFIX — Bugs do Primeiro Run")
+print("  HOTFIX — First Run Bugs")
 print("=" * 60)
 print()
 
 # ======================================================================
-# BUG 1: email_ingestor.py — SINTATICAMENTE QUEBRADO
+# BUG 1: email_ingestor.py — SYNTACTICALLY BROKEN
 # ======================================================================
-print("[1/4] email_ingestor.py — reescrevendo completo...")
+print("[1/4] email_ingestor.py — rewriting in full...")
 write_file(f"{REPO}/src/email_ingestor.py", '''"""
 email_ingestor.py  —  Fetches job alert emails from Gmail via IMAP (App Password)
 """
@@ -227,16 +227,16 @@ if __name__ == "__main__":
 # ======================================================================
 # BUG 2: unified_ingestor.py — NoneType.lower()
 # ======================================================================
-print("[2/4] unified_ingestor.py — fix NoneType em dedup...")
+print("[2/4] unified_ingestor.py — fix NoneType in dedup...")
 content = open(f"{REPO}/src/unified_ingestor.py", "r", encoding="utf-8").read()
 
-# Fix 1: location pode ser None
+# Fix 1: location can be None
 content = content.replace(
     '''            job.get("location", job.get("localizacao", "")).lower().strip(),''',
     '''            (job.get("location") or job.get("localizacao") or "").lower().strip(),'''
 )
 
-# Fix 2: timezone.utc em normalize_to_legacy
+# Fix 2: timezone.utc in normalize_to_legacy
 content = content.replace(
     '''        "data_post": job.get("posted_at") or job.get("data_post", datetime.now().isoformat()),''',
     '''        "data_post": job.get("posted_at") or job.get("data_post", datetime.now(timezone.utc).isoformat()),'''
@@ -292,9 +292,9 @@ for old, new in [
 write_file(f"{REPO}/src/unified_ingestor.py", content)
 
 # ======================================================================
-# BUG 3: kimi_client.py — call_kimi_json sem retry para respostas vazias
+# BUG 3: kimi_client.py — call_kimi_json without retry for empty responses
 # ======================================================================
-print("[3/4] kimi_client.py — retry em call_kimi_json para respostas vazias...")
+print("[3/4] kimi_client.py — retry in call_kimi_json for empty responses...")
 content = open(f"{REPO}/src/kimi_client.py", "r", encoding="utf-8").read()
 
 old_call_kimi_json = '''def call_kimi_json(prompt, system=None, model=KIMI_MODEL_DEFAULT, temperature=0.1, max_tokens=4096):
@@ -322,12 +322,12 @@ content = content.replace(old_call_kimi_json, new_call_kimi_json)
 write_file(f"{REPO}/src/kimi_client.py", content)
 
 # ======================================================================
-# BUG 4: email_notifier.py — validar se digest tem vagas e é do dia
+# BUG 4: email_notifier.py — validate digest has jobs and is from today
 # ======================================================================
-print("[4/4] email_notifier.py — validar conteudo antes de enviar...")
+print("[4/4] email_notifier.py — validate content before sending...")
 content = open(f"{REPO}/agents/email_notifier.py", "r", encoding="utf-8").read()
 
-# Garantir que a validacao de vagas está correta
+# Ensure the job validation is correct
 old_section = '''    digest = load_digest()
     if not digest:
         print("❌ No digest to send")
@@ -340,7 +340,7 @@ old_section = '''    digest = load_digest()
         print("📭 No jobs in digest — skipping email notification")
         return False'''
 
-# Se a secao nova nao existe, adiciona
+# If the new section does not exist, add it
 if "📭 No jobs in digest" not in content:
     content = content.replace(
         '''    digest = load_digest()
@@ -363,31 +363,31 @@ if "📭 No jobs in digest" not in content:
 write_file(f"{REPO}/agents/email_notifier.py", content)
 
 # ======================================================================
-# COMMIT E PUSH
+# COMMIT AND PUSH
 # ======================================================================
 print()
-print("Commitando hotfix...")
+print("Committing hotfix...")
 ok, out, err = run(f"cd {REPO} && git add -A && git diff --cached --stat")
 if ok:
-    print(f"  Arquivos modificados:\n{out}")
+    print(f"  Modified files:\n{out}")
 
-ok, out, err = run(f'cd {REPO} && git commit -m "hotfix: corrige 4 bugs do primeiro run real" -m "- email_ingestor.py: reescrito - SyntaxError no try/finally do IMAP" -m "- unified_ingestor.py: fix NoneType em dedup (location=None)" -m "- kimi_client.py: retry em call_kimi_json para respostas vazias" -m "- email_notifier.py: valida vagas antes de enviar email"')
+ok, out, err = run(f'cd {REPO} && git commit -m "hotfix: fixes 4 bugs from the first real run" -m "- email_ingestor.py: rewritten - SyntaxError in the IMAP try/finally" -m "- unified_ingestor.py: fix NoneType in dedup (location=None)" -m "- kimi_client.py: retry in call_kimi_json for empty responses" -m "- email_notifier.py: validates jobs before sending email"')
 if ok:
-    print(f"  ✅ Commit feito")
+    print(f"  ✅ Commit created")
 else:
-    print(f"  Erro no commit: {err[:200]}")
+    print(f"  Commit error: {err[:200]}")
 
 print()
 print("=" * 60)
-print("  HOTFIX APLICADO!")
+print("  HOTFIX APPLIED!")
 print("=" * 60)
 print()
-print("Para enviar pro GitHub:")
+print("To push to GitHub:")
 print("   git push origin main")
 print()
-print("Depois, no GitHub Actions, rode o workflow novamente.")
+print("Then, in GitHub Actions, run the workflow again.")
 print()
-print("⚠️  Nao esqueca de adicionar os Secrets no GitHub:")
-print("   - ADZUNA_APP_ID  e  ADZUNA_APP_KEY  (para vagas Adzuna funcionar)")
-print("   - GMAIL_RECIPIENT  (para saber para quem enviar o email)")
+print("⚠️  Do not forget to add the Secrets on GitHub:")
+print("   - ADZUNA_APP_ID  and  ADZUNA_APP_KEY  (for Adzuna jobs to work)")
+print("   - GMAIL_RECIPIENT  (to know who to send the email to)")
 print()

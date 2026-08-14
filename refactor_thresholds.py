@@ -2,20 +2,20 @@
 """
 refactor_thresholds.py
 
-Script pra atualizar TODOS os thresholds de scoring no pipeline
-De: 75+ APPLY, 55-74 REVIEW, <55 UNCERTAIN
-Para: 65+ APPLY, 45-64 REVIEW, <45 UNCERTAIN
+Script to update ALL scoring thresholds in the pipeline
+From: 75+ APPLY, 55-74 REVIEW, <55 UNCERTAIN
+To: 65+ APPLY, 45-64 REVIEW, <45 UNCERTAIN
 
-Roda em todos os arquivos Python do projeto.
+Runs on all Python files in the project.
 """
 
 import os
 import re
 from pathlib import Path
 
-# Mapeamento de mudanças (old -> new)
+# Change mapping (old -> new)
 REPLACEMENTS = [
-    # Thresholds numéricos
+    # Numeric thresholds
     (r">= 75", ">= 65"),
     (r"<= 75", "<= 65"),
     (r">75", ">65"),
@@ -29,7 +29,7 @@ REPLACEMENTS = [
     (r"\(55,", "(45,"),
     (r"55,", "45,"),
     
-    # Mensagens e comentários
+    # Messages and comments
     (r"score >= 75", "score >= 65"),
     (r"score >= 55", "score >= 45"),
     (r"score < 55", "score < 45"),
@@ -47,12 +47,12 @@ REPLACEMENTS = [
     (r"Score 55-74: REVIEW", "Score 45-64: REVIEW"),
     (r"Score < 55: UNCERTAIN", "Score < 45: UNCERTAIN"),
     
-    # Ranges em strings
+    # Ranges in strings
     (r"55-74", "45-64"),
     (r"75\+", "65+"),
 ]
 
-# Arquivos para processar
+# Files to process
 TARGET_FILES = [
     "agents/job_evaluator.py",
     "agents/email_notifier.py",
@@ -68,11 +68,11 @@ TARGET_FILES = [
 
 def process_file(filepath: str) -> tuple[int, list[str]]:
     """
-    Processa um arquivo e aplica todas as substituições.
-    Retorna: (número de mudanças, lista de mudanças realizadas)
+    Process a file and apply all replacements.
+    Returns: (number of changes, list of changes made)
     """
     if not os.path.exists(filepath):
-        return 0, [f"⚠️  Arquivo não encontrado: {filepath}"]
+        return 0, [f"WARNING: File not found: {filepath}"]
     
     with open(filepath, "r", encoding="utf-8") as f:
         original_content = f.read()
@@ -81,17 +81,17 @@ def process_file(filepath: str) -> tuple[int, list[str]]:
     changes_made = []
     
     for old_pattern, new_pattern in REPLACEMENTS:
-        # Usa regex pra substituir
+        # Use regex to replace
         new_content = re.sub(old_pattern, new_pattern, content)
         
         if new_content != content:
-            # Conta quantas mudanças
+            # Count how many changes
             count = len(re.findall(old_pattern, content))
             if count > 0:
-                changes_made.append(f"  • {old_pattern:30} → {new_pattern:30} ({count}x)")
+                changes_made.append(f"  - {old_pattern:30} -> {new_pattern:30} ({count}x)")
             content = new_content
     
-    # Se houve mudanças, salva o arquivo
+    # If there were changes, save the file
     if content != original_content:
         with open(filepath, "w", encoding="utf-8") as f:
             f.write(content)
@@ -102,7 +102,7 @@ def process_file(filepath: str) -> tuple[int, list[str]]:
 
 def main():
     print("\n" + "="*80)
-    print("🔄 REFACTOR: Atualizar Thresholds 75→65 e 55→45")
+    print("REFACTOR: Update Thresholds 75->65 and 55->45")
     print("="*80 + "\n")
     
     total_changes = 0
@@ -117,31 +117,31 @@ def main():
             files_modified += 1
             total_changes += num_changes
             
-            print(f"✅ {filepath}")
+            print(f"[OK] {filepath}")
             for change in changes:
                 print(f"   {change}")
             print()
     
     print("="*80)
-    print(f"📊 RESUMO:")
-    print(f"   • Arquivos modificados: {files_modified}/{len(TARGET_FILES)}")
-    print(f"   • Total de mudanças: {total_changes}")
+    print(f"SUMMARY:")
+    print(f"   - Files modified: {files_modified}/{len(TARGET_FILES)}")
+    print(f"   - Total changes: {total_changes}")
     print("="*80 + "\n")
     
     if files_modified > 0:
-        print("✅ Refactor completo! Agora:\n")
-        print("   1. Revise as mudanças:")
+        print("Refactor complete! Now:\n")
+        print("   1. Review the changes:")
         print("      git diff")
         print()
-        print("   2. Testa o pipeline:")
+        print("   2. Test the pipeline:")
         print("      python agents/job_evaluator.py")
         print()
-        print("   3. Faz commit:")
+        print("   3. Commit:")
         print("      git add .")
-        print('      git commit -m "Refactor: Update thresholds 75→65, 55→45"')
+        print('      git commit -m "Refactor: Update thresholds 75->65, 55->45"')
         print("      git push")
     else:
-        print("⚠️  Nenhum arquivo foi modificado (já está atualizado?)")
+        print("WARNING: No files were modified (already up to date?)")
 
 
 if __name__ == "__main__":
