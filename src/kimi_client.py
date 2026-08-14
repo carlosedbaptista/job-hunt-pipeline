@@ -88,6 +88,11 @@ class KimiClient:
             payload["response_format"] = response_format
         if temperature is not None:
             payload["temperature"] = temperature
+        # kimi-k2.* models think by default and reasoning tokens eat the
+        # max_tokens budget, which can leave "content" empty (JSONDecodeError).
+        # Disable thinking: this pipeline needs short, structured outputs.
+        if str(model).startswith("kimi-k2"):
+            payload["thinking"] = {"type": "disabled"}
         data = self._post("/chat/completions", payload, timeout_sec=60)
         return data["choices"][0]["message"]["content"]
 
