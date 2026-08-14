@@ -8,6 +8,7 @@ import json
 import os
 import re
 import sqlite3
+import unicodedata
 from datetime import datetime, timedelta
 
 DB_PATH = os.environ.get("JOBS_DB_PATH", "tracker/jobs.db")
@@ -15,19 +16,42 @@ DB_PATH = os.environ.get("JOBS_DB_PATH", "tracker/jobs.db")
 
 # ─── Normalisation ────────────────────────────────────────────────────────────
 
+# Legal suffixes that vary between sources for the same company
+# (e.g. "BLP Digital AG" on Adzuna vs "BLP Digital" in an email alert).
+LEGAL_SUFFIXES = {"ag", "gmbh", "sa", "sarl", "sagl", "ltd", "llc", "inc", "plc", "co", "kg", "se", "holding"}
+
+
 def normalize(text: str) -> str:
-    """Removes accents, punctuation and extra spaces for consistent comparison."""
+    """Transliterates accents, removes punctuation and extra spaces."""
     if not text:
         return ""
+    # NFKD + strip combining marks: "Zürich" -> "zurich" (not "z rich")
+    text = unicodedata.normalize("NFKD", text)
+    text = "".join(c for c in text if not unicodedata.combining(c))
     text = text.lower().strip()
     text = re.sub(r"[^a-z0-9\s]", " ", text)
     text = re.sub(r"\s+", " ", text).strip()
     return text
 
 
+def normalize_company(text: str) -> str:
+    """Company normalisation: also drops trailing legal suffixes."""
+    tokens = normalize(text).split()
+    while len(tokens) > 1 and tokens[-1] in LEGAL_SUFFIXES:
+        tokens.pop()
+    return " ".join(tokens)
+
+
+def normalize_location(text: str) -> str:
+    """Location normalisation: keeps only the first locality token so
+    'Zurich', 'Zurich, Zurich' and 'Zurich, Switzerland' all match."""
+    normalized = normalize(text)
+    return normalized.split()[0] if normalized else ""
+
+
 def make_hash(empresa: str, titulo: str, localizacao: str) -> str:
     """Generates a 16-char deduplication hash."""
-    key = f"{normalize(empresa)}|{normalize(titulo)}|{normalize(localizacao)}"
+    key = f"{normalize_company(empresa)}|{normalize(titulo)}|{normalize_location(localizacao)}"
     return hashlib.sha256(key.encode()).hexdigest()[:16]
 
 

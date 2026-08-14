@@ -108,9 +108,12 @@ def fetch_job_alert_emails(hours_back: int = 24, max_results: int = 50) -> list[
 
         since_date = (datetime.now(timezone.utc) - timedelta(hours=hours_back)).strftime("%d-%b-%Y")
 
+        # UID search/fetch: sequence numbers shift whenever the mailbox
+        # changes, so tracking them can skip new emails or reprocess old
+        # ones. UIDs are stable within the mailbox.
         all_message_ids = set()
         for sender in JOB_ALERT_SENDERS:
-            _, data = mail.search(None, f'(FROM "{sender}" SINCE "{since_date}")')
+            _, data = mail.uid("search", None, f'(FROM "{sender}" SINCE "{since_date}")')
             ids = data[0].split()
             all_message_ids.update(ids)
 
@@ -118,7 +121,9 @@ def fetch_job_alert_emails(hours_back: int = 24, max_results: int = 50) -> list[
             print(f"No alert emails found in the last {hours_back}h.")
             return []
 
-        new_message_ids = [mid for mid in all_message_ids if mid.decode() not in processed_ids]
+        # "uid-" prefix invalidates legacy entries that stored sequence numbers
+        new_message_ids = [mid for mid in all_message_ids
+                           if f"uid-{mid.decode()}" not in processed_ids]
         if not new_message_ids:
             print(f"No new emails (all {len(all_message_ids)} already processed).")
             return []
@@ -129,7 +134,7 @@ def fetch_job_alert_emails(hours_back: int = 24, max_results: int = 50) -> list[
 
         for i, msg_id in enumerate(message_ids):
             try:
-                _, msg_data = mail.fetch(msg_id, "(RFC822)")
+                _, msg_data = mail.uid("fetch", msg_id, "(RFC822)")
                 raw = msg_data[0][1]
                 msg = email.message_from_bytes(raw)
 
@@ -141,7 +146,7 @@ def fetch_job_alert_emails(hours_back: int = 24, max_results: int = 50) -> list[
                 snippet = (text_body or html_body)[:200].replace("\n", " ").strip()
 
                 emails.append({
-                    "id": msg_id.decode(),
+                    "id": f"uid-{msg_id.decode()}",
                     "subject": subject,
                     "from": from_addr,
                     "date": date_str,
@@ -150,7 +155,7 @@ def fetch_job_alert_emails(hours_back: int = 24, max_results: int = 50) -> list[
                     "text_body": text_body,
                 })
 
-                processed_ids.add(msg_id.decode())
+                processed_ids.add(f"uid-{msg_id.decode()}")
 
                 if (i + 1) % 10 == 0:
                     print(f"  {i + 1}/{len(message_ids)} emails processed...")

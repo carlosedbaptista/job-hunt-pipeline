@@ -4,6 +4,22 @@ import os
 from datetime import datetime, timezone
 from typing import List, Dict, Any
 
+# Single source of truth for scoring thresholds. Evaluator, digest, dashboard,
+# email notifier and alerts must all read from here (overridable via env).
+THRESHOLD_APPLY = int(os.environ.get("THRESHOLD_APPLY", "80"))
+THRESHOLD_REVIEW = int(os.environ.get("THRESHOLD_REVIEW", "70"))
+
+
+def decision_from_score(score) -> str:
+    """Maps a numeric score to a decision. None (API error) maps to ERROR."""
+    if score is None:
+        return "ERROR"
+    if score >= THRESHOLD_APPLY:
+        return "APPLY"
+    if score >= THRESHOLD_REVIEW:
+        return "REVIEW"
+    return "SKIP"
+
 
 def deduplicate_jobs(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Remove duplicate jobs based on company + title + location."""
