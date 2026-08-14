@@ -1,204 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Hunt Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <style>
-        :root {
-            --bg: #f5f5f5; --card: #fff; --text: #333; --muted: #666;
-            --accent: #667eea; --accent2: #764ba2; --success: #32CD32;
-            --warning: #FFA500; --danger: #ff4444; --border: #e0e0e0;
-        }
-        body.dark {
-            --bg: #1a1a2e; --card: #16213e; --text: #eee; --muted: #aaa;
-            --border: #2a2a4a;
-        }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s;
-        }
-        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
-        header {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-            color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;
-        }
-        header h1 { font-size: 28px; margin-bottom: 5px; }
-        header p { opacity: 0.9; font-size: 14px; }
-        .toggle-btn {
-            float: right; background: rgba(255,255,255,0.2); border: none;
-            color: white; padding: 8px 16px; border-radius: 6px; cursor: pointer;
-        }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 20px; }
-        .card {
-            background: var(--card); border-radius: 10px; padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid var(--border);
-        }
-        .card h3 { font-size: 14px; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .metric { font-size: 36px; font-weight: 700; color: var(--accent); }
-        .metric.green { color: var(--success); }
-        .metric.orange { color: var(--warning); }
-        .metric.red { color: var(--danger); }
-        .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
-        .filters input, .filters select {
-            padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px;
-            background: var(--card); color: var(--text); font-size: 14px;
-        }
-        .filters input { flex: 1; min-width: 200px; }
-        .btn {
-            padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;
-            font-size: 14px; font-weight: 600; transition: opacity 0.2s;
-        }
-        .btn:hover { opacity: 0.85; }
-        .btn-primary { background: var(--accent); color: white; }
-        .btn-success { background: var(--success); color: white; }
-        table { width: 100%; border-collapse: collapse; }
-        th { text-align: left; padding: 12px; font-size: 12px; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--border); }
-        td { padding: 12px; border-bottom: 1px solid var(--border); }
-        tr:hover { background: rgba(102,126,234,0.05); }
-        .badge { padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; }
-        .badge-apply { background: #e8f5e9; color: #2e7d32; }
-        .dark .badge-apply { background: #1b5e20; color: #a5d6a7; }
-        .badge-review { background: #fff3e0; color: #ef6c00; }
-        .dark .badge-review { background: #e65100; color: #ffcc80; }
-        .badge-skip { background: #ffebee; color: #c62828; }
-        .dark .badge-skip { background: #b71c1c; color: #ef9a9a; }
-        .score { font-weight: 700; }
-        .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 15px; margin-bottom: 20px; }
-        .charts .card { padding: 15px; }
-        canvas { max-height: 250px; }
-        .profile { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-        .profile-item { font-size: 13px; color: var(--muted); }
-        .profile-item strong { color: var(--text); display: block; margin-bottom: 2px; }
-        .empty { text-align: center; padding: 60px 20px; color: var(--muted); }
-        .hidden { display: none; }
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
-            .charts { grid-template-columns: 1fr; }
-            .filters { flex-direction: column; }
-            th, td { font-size: 13px; padding: 8px; }
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <header>
-        <button class="toggle-btn" onclick="toggleDark()">Dark Mode</button>
-        <h1>Job Hunt Dashboard</h1>
-        <p>Automated job search &amp; evaluation pipeline &middot; <a href="https://github.com/carlosedbaptista/job-hunt-pipeline/actions/workflows/add-job.yml" target="_blank">+ Add a job manually</a> (Actions &rarr; Add Job &rarr; Run workflow)</p>
-    </header>
-
-    <!-- Candidate Profile (only data the owner explicitly chose to show) -->
-    <div class="card" style="margin-bottom: 20px;">
-        <h3>Candidate Profile</h3>
-        <div class="profile">
-            <div class="profile-item"><strong>Name</strong>Carlos Baptista</div>
-            <div class="profile-item"><strong>Role</strong>AI &amp; Data Engineer Intern</div>
-            <div class="profile-item"><strong>Location</strong>Zürich Area, CH</div>
-            <div class="profile-item"><strong>Permit</strong>Swiss Work Permit B (valid)</div>
-            <div class="profile-item"><strong>Notice</strong>2 weeks</div>
-            <div class="profile-item"><strong>Languages</strong>EN (C1) | PT (Native) | ES (B2) | DE (A2→B1)</div>
-            <div class="profile-item"><strong>LinkedIn</strong><a href="https://www.linkedin.com/in/carlosedbaptista/" target="_blank">linkedin.com/in/carlosedbaptista</a></div>
-        </div>
-    </div>
-
-    <!-- Metrics -->
-    <div class="grid">
-        <div class="card">
-            <h3>Total Evaluated</h3>
-            <div class="metric" id="metric-total">0</div>
-        </div>
-        <div class="card">
-            <h3>APPLY</h3>
-            <div class="metric green" id="metric-apply">0</div>
-        </div>
-        <div class="card">
-            <h3>REVIEW</h3>
-            <div class="metric orange" id="metric-review">0</div>
-        </div>
-        <div class="card">
-            <h3>SKIP</h3>
-            <div class="metric red" id="metric-skip">0</div>
-        </div>
-        <div class="card">
-            <h3>Apply Rate</h3>
-            <div class="metric" id="metric-rate">0%</div>
-        </div>
-    </div>
-
-    <!-- Charts -->
-    <div class="charts">
-        <div class="card">
-            <h3>Daily Trend (30d)</h3>
-            <canvas id="chart-daily"></canvas>
-        </div>
-        <div class="card">
-            <h3>Decision Distribution</h3>
-            <canvas id="chart-pie"></canvas>
-        </div>
-        <div class="card">
-            <h3>Top Companies</h3>
-            <canvas id="chart-companies"></canvas>
-        </div>
-    </div>
-
-    <!-- Filters -->
-    <div class="filters">
-        <input type="text" id="search" placeholder="Search company, title, location..." oninput="filterTable()">
-        <select id="filter-decision" onchange="filterTable()">
-            <option value="">All Decisions</option>
-            <option value="APPLY">APPLY</option>
-            <option value="REVIEW">REVIEW</option>
-            <option value="SKIP">SKIP</option>
-        </select>
-        <select id="filter-score" onchange="filterTable()">
-            <option value="">All Scores</option>
-            <option value="80-100">High (80-100)</option>
-            <option value="70-79">Medium (70-79)</option>
-            <option value="0-69">Low (0-69)</option>
-        </select>
-        <select id="filter-source" onchange="filterTable()">
-            <option value="">All Sources</option>
-            <option value="adzuna">Adzuna</option>
-            <option value="gmail">Gmail</option>
-            <option value="linkedin">LinkedIn</option>
-        </select>
-        <button class="btn btn-success" onclick="exportCSV()">Export CSV</button>
-    </div>
-
-    <!-- Jobs Table -->
-    <div class="card">
-        <h3>Jobs</h3>
-        <div style="overflow-x:auto;">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Company</th>
-                        <th>Title</th>
-                        <th>Location</th>
-                        <th>Source</th>
-                        <th>Score</th>
-                        <th>Decision</th>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-                <tbody id="jobs-table">
-                </tbody>
-            </table>
-        </div>
-        <div class="empty hidden" id="empty-msg">
-            <p>No jobs match your filters.</p>
-        </div>
-    </div>
-</div>
-
-<script>
-const TH_APPLY = 80;
-const TH_REVIEW = 70;
-const JOBS = [
+[
   {
     "score": 0,
     "recommendation": "SKIP",
@@ -233,8 +33,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga sem descrição, localização desconhecida e título genérico de 'Backend Developer'. Perfil do candidato é especializado em AI/LLM/Data, não alinhado com desenvolvimento backend puro. Auto-SKIP por falta de informações mínimas e possível incompatibilidade com regras de localização (Zurich/Zug obrigatório).",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 0,
@@ -272,8 +71,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga sem informações mínimas para avaliação. Título de Business Analyst não alinha com especialização em IA/Engenharia de Dados do candidato. Link parece ser perfil do Xing, não descrição de vaga. Dados insuficientes para aplicar regras de filtro.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 0,
@@ -307,8 +105,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga descartada: título sugere função de negócios/produto (Proposition Manager), não engenharia de dados/IA. Localização desconhecida, sem descrição técnica. Não atende critérios mínimos para aplicação.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 25,
@@ -344,8 +141,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga completamente fora do perfil: atendimento de sinistros em seguradora, sem qualquer componente técnico de IA/dados. Provavelmente na Alemanha, não Zurique. Título em alemão exige fluência que o candidato não tem. Descartar imediatamente.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 25,
@@ -381,8 +177,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga de cobrança/crédito financeiro sem qualquer relação com IA, dados ou engenharia. Localização desconhecida, provável exigência de alemão, e total desalinhamento de carreira. Não aplicar.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 55,
@@ -418,8 +213,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga de Analista de Negócios tradicional em operações aéreas, não engenharia de dados ou IA. Salário baixo para sua especialização, requer conhecimento de sistemas legados de aviação. Foco em requisitos e processos, não em pipelines de dados ou LLMs. Não vale a candidatura.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 45,
@@ -455,8 +249,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga sênior de consultoria estratégica em serviços financeiros, completamente desalinhada com perfil técnico-júnior em engenharia de dados/IA. Candidato busca roles hands-on de implementação, não consultoria de transformação enterprise. Experiência insuficiente para nível Senior Consultant na Big 4.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 25,
@@ -492,8 +285,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga de marketing puro, zero relação com engenharia de dados/IA do candidato. Mesmo com permissão de trabalho e localização em Zurique, é desvio completo da carreira. Não vale a candidatura.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 35,
@@ -529,8 +321,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga de estágio em suporte de negócios para sortimentos locais em cooperativa agrícola, zero relação com IA, dados ou automação. Perfil do candidato é fortemente técnico em engenharia de IA/LLMs. Não faz sentido aplicar.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 15,
@@ -566,8 +357,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga de comunicação corporativa pura, sem nenhuma relação com IA/dados. Requer alemão fluente e salário muito abaixo do mercado para suas habilidades. Não faz sentido aplicar.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 65,
@@ -603,8 +393,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga em Zurich combina localização, mas falta alinhamento de domínio (aviacão/risco), possível desajuste de perfil técnico avançado (LLM/Agentic AI) para estágio tradicional de analytics, e data de início distante (dez/2026). Risco de subutilização das habilidades ou desinteresse do candidato. Melhor focar em vagas de AI/ML aplicadas ou data engineering em setores mais alinhados à sua experiência.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 72,
@@ -642,8 +431,7 @@ const JOBS = [
     "decision": "REVIEW",
     "portuguese_comment": "Vaga em Zurique com alinhamento técnico moderado: Python/ML/pipelines batem, mas falta visão computacional e alemão (A2 é insuficiente para ZEISS). Permissão B e disponibilidade rápida são pontos fortes. Vale enviar se adaptar o CV para destacar modelagem estatística robusta e projetos industriais, minimizando o viés de LLM/agentes. Entrevista em inglês é provável, mas expectativa de aprendizado de DE alto.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 35,
@@ -679,8 +467,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga completamente descartável: estágio de suporte administrativo/comercial em cooperativa agrícola tradicional, em Winterthur, exigindo alemão. Nenhuma relação com IA, engenharia de dados ou pipelines. Perfil do candidato é totalmente sobrequalificado e na direção errada.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 35,
@@ -714,8 +501,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga de Excelência Operacional em empresa de defesa, não engenharia de dados/IA. Skills do candidato (LLM, LangChain, pipelines de dados) não se aplicam. Pular.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 0,
@@ -749,8 +535,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga inválida - apenas link genérico de alerta do LinkedIn sem descrição, título ou localização definida. Impossível avaliar qualquer critério.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 72,
@@ -788,8 +573,7 @@ const JOBS = [
     "decision": "REVIEW",
     "portuguese_comment": "Boa combinação técnica em dados e IA emergente, com vantagem do permit B suíço. Falta experiência em aviação e gestão de portfólio de inovação corporativa. Recomendo verificar localização exata e destacar adaptabilidade a grandes corporações na candidatura.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 55,
@@ -825,8 +609,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga sem localização ou descrição definida. Título sugere foco em inovação/portfólio, possivelmente mais estratégico que técnico. Sem confirmar Zurique/Zug e inglês como requisito, não vale o risco. Candidato tem skills fortes demais para possível papel de PM/gestão.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 72,
@@ -864,8 +647,7 @@ const JOBS = [
     "decision": "REVIEW",
     "portuguese_comment": "Estágio de pesquisa provavelmente exige perfil acadêmico mais forte (mestrado/doutorado). Candidato tem experiência aplicada em agentes LLM, mas falta fundamentos em voz, world models e pesquisa propriamente dita. Vale enviar se houver interesse genuíno em transição para pesquisa, mas expectativa de conversão baixa.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 45,
@@ -899,8 +681,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga de pesquisa em modelos de mundo para voz, provavelmente fora da Suíça e voltada a acadêmicos. Candidato tem perfil aplicado em pipelines de IA, não pesquisa fundamental. Localização desconhecida dispara regra de SKIP automático. Não recomendo aplicar.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 25,
@@ -934,8 +715,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga de QA/Testing puro, sem qualquer relação com IA, LLMs, pipelines de dados ou automação inteligente. Mesmo na área de Zurique, é desvio completo da trajetória do candidato. Não vale a candidatura.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 15,
@@ -971,8 +751,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga de Teste/QA sem localização definida, sem relação com IA/LLM/dados do candidato. Desvio de carreira significativo. Pular imediatamente.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 30,
@@ -1008,8 +787,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "VAGAR DESCARTAR: 'Founders Associate' é papel de negócios/estratégia, não técnico. Localização desconhecida (fora de Zurique/Zug). Suas habilidades em IA/LLM/pipelines não seriam aproveitadas. Não vale a pena aplicar.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 35,
@@ -1045,8 +823,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga de estágio em ecommerce operacional, não engenharia. Candidato é AI/Data Engineer com foco em LLMs e pipelines — completa incompatibilidade de carreira e skills. Pular.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 35,
@@ -1084,8 +861,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga de estágio em ecommerce operacional, zero relação com IA/LLM/data engineering. Local desconhecido, provavelmente fora de Zurique/Zug. Perfil do candidato é overqualified e mals direcionado. Pular imediatamente.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 0,
@@ -1121,8 +897,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga de RH/educação corporativa, zero relação com IA/dados. Local desconhecido, sem descrição. Perfil técnico do candidato é completamente descasado. SKIP imediato.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 65,
@@ -1158,8 +933,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Empresa desconhecida, descrição vaga e URL suspeita indicam possível fraude ou anúncio de baixa qualidade. Além disso, foco do candidato em LLM/Agentic AI pode não alinhar com DS tradicional. Sem informações mínimas para avaliação segura.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 15,
@@ -1195,8 +969,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga de Gerente de Projetos em Marketing — totalmente fora da área do candidato (IA/Dados). Sem experiência em marketing ou gestão de projetos tradicional. Localização desconhecida, provavelmente não atende o critério Zurich/Zug. Pular imediatamente.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 25,
@@ -1234,8 +1007,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga claramente de RH/experiência do funcionário, não engenharia. Sem relação com IA, dados ou automação. Localização desconhecida. Descartar imediatamente.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 45,
@@ -1269,8 +1041,7 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga muito vaga: empresa e localização desconhecidas, título sugere automação tradicional/RPAnão AI agentic. Risco alto de não ser Zurique/Zug e de subutilizar suas skills em LLM/orquestração. Melhor focar em vagas claras de AI/ML Engineering na região.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   },
   {
     "score": 45,
@@ -1306,425 +1077,6 @@ const JOBS = [
     "decision": "SKIP",
     "portuguese_comment": "Vaga de ML para autonomia (robótica/veículos autônomos) não combina com perfil de engenheiro de dados/LLM. Sem experiência em visão computacional, ROS ou sistemas embarcados. Localização desconhecida. Pular.",
     "materials_needed": [],
-    "evaluated_at": "2026-08-14T13:26:13.424445+00:00",
-    "_digest_date": "2026-08-14"
-  },
-  {
-    "score": 68,
-    "recommendation": "REVIEW",
-    "key_match_points": [
-      "Moderate. The candidate has relevant ERP experience (Oracle NetSuite), Python for automation pipelines, and AI tools/APIs (Claude, ChatGPT) that align with BLP's agentic AI focus. However, this is an Engineering internship requiring likely deeper SWE skills (the role may expect more systems/backend engineering), and the candidate's Python is academic/applied rather than production-grade. JavaScript/Node.js is relevant but SuiteScript is NetSuite-specific."
-    ],
-    "red_flags": [
-      "Role level mismatch: Candidate has substantial work experience and postgraduate studies; may be overqualified for internship",
-      "Engineering vs. Analytics tilt: Job is 'Engineering' internship; candidate profile is stronger on business/data side than core software engineering",
-      "No explicit German mention in requirements, but A2 German may limit integration in Swiss-German founded company",
-      "NetSuite (ERP) vs. SAP/generic ERP: BLP likely SAP-focused given Swiss enterprise market; candidate's Oracle NetSuite may not transfer directly",
-      "Postgraduate studies until 2026 suggest limited full-time availability post-internship"
-    ],
-    "job": {
-      "empresa": "BLP Digital AG",
-      "titulo": "Internship - Engineering",
-      "localizacao": "Zürich",
-      "url": "https://www.adzuna.ch/details/5839017723",
-      "portal": "adzuna"
-    },
-    "technical_fit": "Moderate. The candidate has relevant ERP experience (Oracle NetSuite), Python for automation pipelines, and AI tools/APIs (Claude, ChatGPT) that align with BLP's agentic AI focus. However, this is an Engineering internship requiring likely deeper SWE skills (the role may expect more systems/backend engineering), and the candidate's Python is academic/applied rather than production-grade. JavaScript/Node.js is relevant but SuiteScript is NetSuite-specific.",
-    "contextual_fit": "Good. ETH Zurich/HSG spinout in Zürich matches candidate's location and permit situation. The candidate's 2-week notice is ideal for internship timing. Their pro bono analytics work and Coople freelancing show adaptability. Postgraduate Data Science studies (until 2026) fit internship structure. However, candidate appears career-experienced (not typical intern profile) and may be overqualified or seeking wrong level.",
-    "salary_estimate": "CHF 2,500-3,500/month (typical Zurich tech internship range)",
-    "culture_fit": "Moderate-Positive. Startup/scale-up environment with \"strong sense of ownership\" matches candidate's freelance background and multi-role experience. AI-first culture aligns with their certifications (Claude, Google AI). Enterprise customer focus matches their NetSuite enterprise exposure.",
-    "concerns": [
-      "Role level mismatch: Candidate has substantial work experience and postgraduate studies; may be overqualified for internship",
-      "Engineering vs. Analytics tilt: Job is 'Engineering' internship; candidate profile is stronger on business/data side than core software engineering",
-      "No explicit German mention in requirements, but A2 German may limit integration in Swiss-German founded company",
-      "NetSuite (ERP) vs. SAP/generic ERP: BLP likely SAP-focused given Swiss enterprise market; candidate's Oracle NetSuite may not transfer directly",
-      "Postgraduate studies until 2026 suggest limited full-time availability post-internship"
-    ],
-    "decision": "REVIEW",
-    "portuguese_comment": "Vaga interessante em Zurique com foco em IA agentiva para ERP, alinhada à experiência NetSuite e certificações em IA do candidato. Porém, é estágio de Engenharia e o perfil é mais analista/dados; experiência pode ser excessiva para nível de estágio. Recomendo revisar descrição completa da vaga para confirmar se aceita perfis mais seniores ou híbridos, e se há possibilidade de contratação após o estágio dado o período de pós-graduação até 2026.",
-    "materials_needed": [],
-    "_digest_date": "2026-08-14"
-  },
-  {
-    "score": 68,
-    "recommendation": "REVIEW",
-    "key_match_points": [
-      "Good. Python (academic + applied) and AI tools/APIs (Claude, ChatGPT) align well with BLP's agentic AI focus. ERP automation experience via NetSuite (Oracle) is directly relevant. Missing: no explicit RPA/ERP automation tools like UiPath, SAP, or Microsoft Power Automate mentioned."
-    ],
-    "red_flags": [
-      "Title says 'Business' but description is heavily technical/AI — candidate may need to clarify if role is business-facing or technical",
-      "No formal corporate experience; mostly freelance/pro bono + internship",
-      "German only A2; role may require German given Swiss enterprise clients",
-      "Postgraduate studies until 2026 may limit full-time commitment post-internship"
-    ],
-    "job": {
-      "empresa": "BLP Digital AG",
-      "titulo": "Internship Business",
-      "localizacao": "Zürich",
-      "url": "https://www.adzuna.ch/details/5834044156",
-      "portal": "adzuna"
-    },
-    "technical_fit": "Good. Python (academic + applied) and AI tools/APIs (Claude, ChatGPT) align well with BLP's agentic AI focus. ERP automation experience via NetSuite (Oracle) is directly relevant. Missing: no explicit RPA/ERP automation tools like UiPath, SAP, or Microsoft Power Automate mentioned.",
-    "contextual_fit": "Strong. ETH/HSG spin-out in Zurich matches candidate's location (Zurich area, Swiss B permit). 2-week notice is excellent for internship timing. Startup/scale-up environment fits pro bono/freelance background. Postgraduate Data Science studies show upward trajectory.",
-    "salary_estimate": "CHF 2,500 - 3,500/month (typical Zurich tech internship range)",
-    "culture_fit": "Good match. BLP emphasizes ownership, cutting-edge tech, solving real problems — aligns with candidate's multi-agent pipeline project and self-driven pro bono work. International team fits multilingual profile (PT/EN/ES/DE).",
-    "concerns": [
-      "Title says 'Business' but description is heavily technical/AI — candidate may need to clarify if role is business-facing or technical",
-      "No formal corporate experience; mostly freelance/pro bono + internship",
-      "German only A2; role may require German given Swiss enterprise clients",
-      "Postgraduate studies until 2026 may limit full-time commitment post-internship"
-    ],
-    "decision": "REVIEW",
-    "portuguese_comment": "Bom alinhamento técnico com IA e automação ERP, mas necessita esclarecer se a vaga é mais comercial ou técnica. Permissão de trabalho e localização são ideais. Candidatura válida após verificar requisitos de idioma e carga horária compatível com pós-graduação.",
-    "materials_needed": [],
-    "_digest_date": "2026-08-14"
-  },
-  {
-    "score": 68,
-    "recommendation": "REVIEW",
-    "key_match_points": [
-      "Good. Python (academic + applied with multi-agent pipeline) aligns with BLP's agentic AI focus. NetSuite/ERP experience is highly relevant for ERP automation company. Power BI and data modeling skills fit business analytics needs. Missing: no explicit ML/AI framework experience (PyTorch, LangChain, etc.), though Claude API exposure helps."
-    ],
-    "red_flags": [
-      "Role is internship-level; candidate has significant applied experience (NetSuite dev, multi-agent pipeline, pro bono consulting) that may be underleveraged",
-      "No German fluency; Zurich startup may have German-speaking clients/internal communication",
-      "No explicit RAG, LLM orchestration, or enterprise AI deployment experience beyond API usage",
-      "Postgraduate studies until 2026 suggests part-time availability constraint"
-    ],
-    "job": {
-      "empresa": "BLP Digital",
-      "titulo": "Internship Business",
-      "localizacao": "Zürich",
-      "url": "https://www.adzuna.ch/details/5834956312",
-      "portal": "adzuna"
-    },
-    "technical_fit": "Good. Python (academic + applied with multi-agent pipeline) aligns with BLP's agentic AI focus. NetSuite/ERP experience is highly relevant for ERP automation company. Power BI and data modeling skills fit business analytics needs. Missing: no explicit ML/AI framework experience (PyTorch, LangChain, etc.), though Claude API exposure helps.",
-    "contextual_fit": "Strong. ETH/HSG spin-out in Zurich matches candidate's Zurich location and B-permit. Startup environment with \"strong sense of ownership\" fits pro bono/freelance background. 2-week notice is excellent for internship. Postgraduate Data Science studies show growth trajectory aligned with company's cutting-edge positioning.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Good. Candidate's mixed academic/applied background, pro bono work, and freelance flexibility suggest adaptability and hustle needed at early-stage startup. Multi-agent project shows self-directed learning. However, pure internship role may underutilize experience level.",
-    "concerns": [
-      "Role is internship-level; candidate has significant applied experience (NetSuite dev, multi-agent pipeline, pro bono consulting) that may be underleveraged",
-      "No German fluency; Zurich startup may have German-speaking clients/internal communication",
-      "No explicit RAG, LLM orchestration, or enterprise AI deployment experience beyond API usage",
-      "Postgraduate studies until 2026 suggests part-time availability constraint"
-    ],
-    "decision": "REVIEW",
-    "portuguese_comment": "Boa aderência técnica com ERP/NetSuite e Python, mas vaga de estágio pode subutilizar experiência. Empresa ETH/HSG em Zurique combina bem com perfil e permissão B. Recomendo revisar se há possibilidade de posição junior ou estágio com perspectiva de conversão, dado o background sólido.",
-    "materials_needed": [],
-    "_digest_date": "2026-08-14"
-  },
-  {
-    "score": 62,
-    "recommendation": "REVIEW",
-    "key_match_points": [
-      "Moderate. Candidate has Python (academic + applied), AI tools/APIs (Claude, ChatGPT, Kimi), and ongoing Data Science postgraduate studies. However, role likely requires deeper ML frameworks (TensorFlow/PyTorch, scikit-learn) which aren't listed. Academic multi-agent project shows relevant foundation but limited production ML experience."
-    ],
-    "red_flags": [
-      "No explicit ML framework experience (PyTorch, TensorFlow, scikit-learn)",
-      "No cloud platform or MLOps tools mentioned",
-      "Internship level but candidate has postgraduate studies and prior internship—may be overqualified or seeking permanent role",
-      "A2 German could limit internal communication in Zurich corporate environment",
-      "No domain knowledge in aviation, engineering, or predictive maintenance"
-    ],
-    "job": {
-      "empresa": "SR Technics Holding",
-      "titulo": "Internship: AI & Machine Learning",
-      "localizacao": "Zürich",
-      "url": "https://www.adzuna.ch/land/ad/5834453501",
-      "portal": "adzuna"
-    },
-    "technical_fit": "Moderate. Candidate has Python (academic + applied), AI tools/APIs (Claude, ChatGPT, Kimi), and ongoing Data Science postgraduate studies. However, role likely requires deeper ML frameworks (TensorFlow/PyTorch, scikit-learn) which aren't listed. Academic multi-agent project shows relevant foundation but limited production ML experience.",
-    "contextual_fit": "Good. Zurich-based internship matches permit B, 2-week notice is irrelevant for internship. Aviation/MRO domain is new to candidate but operations support experience shows adaptability to industrial contexts.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Moderate. Large established industrial company (90 years, 300+ customers) may value structured processes; candidate's freelance/pro bono background suggests flexibility but less corporate exposure. Strong innovation/sustainability messaging aligns with candidate's AI-forward profile.",
-    "concerns": [
-      "No explicit ML framework experience (PyTorch, TensorFlow, scikit-learn)",
-      "No cloud platform or MLOps tools mentioned",
-      "Internship level but candidate has postgraduate studies and prior internship—may be overqualified or seeking permanent role",
-      "A2 German could limit internal communication in Zurich corporate environment",
-      "No domain knowledge in aviation, engineering, or predictive maintenance"
-    ],
-    "decision": "REVIEW",
-    "portuguese_comment": "Estágio em ML/AI na SR Technics, Zürich. Candidato tem base sólida em Python e APIs de IA, mas falta experiência com frameworks de ML tradicionais e domínio aeronáutico. Perfil de pós-graduação pode ser overqualified para estágio. Vale enviar se buscar transição para área, mas não é match ótimo.",
-    "materials_needed": [],
-    "_digest_date": "2026-08-14"
-  },
-  {
-    "score": 62,
-    "recommendation": "REVIEW",
-    "key_match_points": [
-      "Moderate. Candidate has Python (including multi-agent pipeline project), AI tools/APIs experience (Claude API, ChatGPT), and JavaScript/Node.js — all relevant to Porters' AI agent platform. However, lacks explicit backend engineering at scale, no mention of TypeScript, cloud infrastructure, or financial/regulatory domain experience. The multi-agent project is a strong signal, but overall profile leans more data/analytics than product engineering."
-    ],
-    "red_flags": [
-      "No banking/financial services or regulated industry experience",
-      "No clear full-time professional software engineering role; mostly internships, freelance, and pro bono",
-      "Postgraduate studies ongoing until 2026 — availability and focus questions",
-      "No TypeScript, cloud platforms (AWS/GCP), or infrastructure experience mentioned",
-      "NetSuite/SuiteScript specialization is niche and not obviously transferable",
-      "Digital marketing role (even pro bono) dilutes engineering narrative"
-    ],
-    "job": {
-      "empresa": "Porters",
-      "titulo": "Product Engineer",
-      "localizacao": "Zürich",
-      "url": "https://www.adzuna.ch/details/5835046770",
-      "portal": "adzuna"
-    },
-    "technical_fit": "Moderate. Candidate has Python (including multi-agent pipeline project), AI tools/APIs experience (Claude API, ChatGPT), and JavaScript/Node.js — all relevant to Porters' AI agent platform. However, lacks explicit backend engineering at scale, no mention of TypeScript, cloud infrastructure, or financial/regulatory domain experience. The multi-agent project is a strong signal, but overall profile leans more data/analytics than product engineering.",
-    "contextual_fit": "Mixed. Zurich-based with valid permit and short notice period are strong pluses. However, Porters is a startup building AI agents for banking — candidate's experience is split across pro bono digital marketing, freelancing operations support, and a NetSuite internship. No fintech/banking exposure, no startup experience, and still in postgraduate studies until 2026 suggests limited full-time professional depth.",
-    "salary_estimate": "CHF 90k-120k (typical Zurich startup product engineer range, likely equity component)",
-    "culture_fit": "Uncertain. Porters is solving tedious, regulated banking work with AI — likely fast-paced, high ownership, engineering-first culture. Candidate's scattered experience (marketing, operations, NetSuite) and part-time pro bono work suggest unclear trajectory. Strong self-starter signal from multi-agent project and AI certifications, but may struggle with senior engineering expectations.",
-    "concerns": [
-      "No banking/financial services or regulated industry experience",
-      "No clear full-time professional software engineering role; mostly internships, freelance, and pro bono",
-      "Postgraduate studies ongoing until 2026 — availability and focus questions",
-      "No TypeScript, cloud platforms (AWS/GCP), or infrastructure experience mentioned",
-      "NetSuite/SuiteScript specialization is niche and not obviously transferable",
-      "Digital marketing role (even pro bono) dilutes engineering narrative"
-    ],
-    "decision": "REVIEW",
-    "portuguese_comment": "Perfil com potencial mas arriscado: experiência em Python e APIs de IA é relevante para agentes de IA, mas falta engenharia de produto sólida, experiência em fintech/bancos e trajetória profissional consistente. Vale entrevista se buscam perfil júnior com aptidão para IA, mas não é match óbvio.",
-    "materials_needed": [],
-    "_digest_date": "2026-08-14"
+    "evaluated_at": "2026-08-14T13:26:13.424445+00:00"
   }
-];
-
-function getJobField(job, field, fallback="N/A") {
-    const j = job.job || {};
-    return j[field] || job[field] || fallback;
-}
-
-// Job data comes from third-party emails and APIs: always escape before
-// inserting into HTML, and only allow http(s) links.
-function esc(value) {
-    return String(value)
-        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
-}
-
-function safeUrl(url) {
-    const u = String(url || "").trim();
-    return /^https?:\/\//i.test(u) ? u : "";
-}
-
-function getDecision(score) {
-    if (score >= TH_APPLY) return "APPLY";
-    if (score >= TH_REVIEW) return "REVIEW";
-    return "SKIP";
-}
-
-function renderTable(jobs) {
-    const tbody = document.getElementById("jobs-table");
-    const empty = document.getElementById("empty-msg");
-    tbody.innerHTML = "";
-    
-    if (jobs.length === 0) {
-        empty.classList.remove("hidden");
-        return;
-    }
-    empty.classList.add("hidden");
-    
-    jobs.sort((a,b) => (b.score||0) - (a.score||0));
-    
-    jobs.forEach(job => {
-        const company = getJobField(job, "empresa", getJobField(job, "company"));
-        const title = getJobField(job, "titulo", getJobField(job, "title"));
-        const location = getJobField(job, "localizacao", getJobField(job, "location"));
-        const url = getJobField(job, "url");
-        const portal = getJobField(job, "portal", "unknown");
-        const score = job.score || 0;
-        const decision = getDecision(score);
-        const date = job._digest_date || "Today";
-        
-        const badgeClass = decision === "APPLY" ? "badge-apply" : decision === "REVIEW" ? "badge-review" : "badge-skip";
-        
-        const link = safeUrl(url);
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td>${esc(date)}</td>
-            <td><strong>${esc(company)}</strong></td>
-            <td>${esc(title)}</td>
-            <td>${esc(location)}</td>
-            <td>${esc(portal)}</td>
-            <td class="score">${esc(score)}</td>
-            <td><span class="badge ${badgeClass}">${esc(decision)}</span></td>
-            <td>${link ? `<a href="${esc(link)}" target="_blank" rel="noopener noreferrer">View ></a>` : "-"}</td>
-        `;
-        tbody.appendChild(tr);
-    });
-    
-    updateMetrics(jobs);
-}
-
-function filterTable() {
-    const search = document.getElementById("search").value.toLowerCase();
-    const decision = document.getElementById("filter-decision").value;
-    const scoreRange = document.getElementById("filter-score").value;
-    const source = document.getElementById("filter-source").value;
-    
-    let filtered = JOBS.filter(job => {
-        const company = getJobField(job, "empresa", getJobField(job, "company")).toLowerCase();
-        const title = getJobField(job, "titulo", getJobField(job, "title")).toLowerCase();
-        const location = getJobField(job, "localizacao", getJobField(job, "location")).toLowerCase();
-        const portal = getJobField(job, "portal", "unknown").toLowerCase();
-        const score = job.score || 0;
-        const dec = getDecision(score);
-        
-        if (search && !company.includes(search) && !title.includes(search) && !location.includes(search)) return false;
-        if (decision && dec !== decision) return false;
-        if (source && !portal.includes(source)) return false;
-        if (scoreRange) {
-            if (scoreRange === "80-100" && score < 80) return false;
-            if (scoreRange === "70-79" && (score < 70 || score >= 80)) return false;
-            if (scoreRange === "0-69" && score >= 70) return false;
-        }
-        return true;
-    });
-    
-    renderTable(filtered);
-    updateCharts(filtered);
-}
-
-function updateMetrics(jobs) {
-    const total = jobs.length;
-    const apply = jobs.filter(j => (j.score||0) >= TH_APPLY).length;
-    const review = jobs.filter(j => { const s=j.score||0; return s>=TH_REVIEW && s<TH_APPLY; }).length;
-    const skip = jobs.filter(j => (j.score||0) < TH_REVIEW).length;
-    const rate = total > 0 ? Math.round(apply/total*100) : 0;
-    
-    document.getElementById("metric-total").textContent = total;
-    document.getElementById("metric-apply").textContent = apply;
-    document.getElementById("metric-review").textContent = review;
-    document.getElementById("metric-skip").textContent = skip;
-    document.getElementById("metric-rate").textContent = rate + "%";
-}
-
-function updateCharts(jobs) {
-    const daily = {};
-    jobs.forEach(j => {
-        const d = j._digest_date || "Unknown";
-        daily[d] = (daily[d] || 0) + 1;
-    });
-    const dailyLabels = Object.keys(daily).sort();
-    const dailyData = dailyLabels.map(d => daily[d]);
-    
-    if (window.chartDaily) window.chartDaily.destroy();
-    window.chartDaily = new Chart(document.getElementById("chart-daily"), {
-        type: "line",
-        data: {
-            labels: dailyLabels,
-            datasets: [{
-                label: "Jobs Evaluated",
-                data: dailyData,
-                borderColor: "#667eea",
-                backgroundColor: "rgba(102,126,234,0.1)",
-                fill: true,
-                tension: 0.3
-            }]
-        },
-        options: { responsive: true, maintainAspectRatio: false }
-    });
-    
-    const apply = jobs.filter(j => (j.score||0) >= TH_APPLY).length;
-    const review = jobs.filter(j => { const s=j.score||0; return s>=TH_REVIEW && s<TH_APPLY; }).length;
-    const skip = jobs.filter(j => (j.score||0) < TH_REVIEW).length;
-    
-    if (window.chartPie) window.chartPie.destroy();
-    window.chartPie = new Chart(document.getElementById("chart-pie"), {
-        type: "doughnut",
-        data: {
-            labels: ["APPLY", "REVIEW", "SKIP"],
-            datasets: [{
-                data: [apply, review, skip],
-                backgroundColor: ["#32CD32", "#FFA500", "#ff4444"]
-            }]
-        },
-        options: { responsive: true, maintainAspectRatio: false }
-    });
-    
-    const companies = {};
-    jobs.forEach(j => {
-        const c = getJobField(j, "empresa", getJobField(j, "company"));
-        companies[c] = (companies[c] || 0) + 1;
-    });
-    const topCompanies = Object.entries(companies).sort((a,b) => b[1]-a[1]).slice(0, 8);
-    
-    if (window.chartCompanies) window.chartCompanies.destroy();
-    window.chartCompanies = new Chart(document.getElementById("chart-companies"), {
-        type: "bar",
-        data: {
-            labels: topCompanies.map(x => x[0]),
-            datasets: [{
-                label: "Jobs",
-                data: topCompanies.map(x => x[1]),
-                backgroundColor: "#667eea"
-            }]
-        },
-        options: { responsive: true, maintainAspectRatio: false, indexAxis: "y" }
-    });
-}
-
-function exportCSV() {
-    let filtered = JOBS.filter(job => {
-        const search = document.getElementById("search").value.toLowerCase();
-        const decision = document.getElementById("filter-decision").value;
-        const scoreRange = document.getElementById("filter-score").value;
-        const source = document.getElementById("filter-source").value;
-        
-        const company = getJobField(job, "empresa", getJobField(job, "company")).toLowerCase();
-        const title = getJobField(job, "titulo", getJobField(job, "title")).toLowerCase();
-        const location = getJobField(job, "localizacao", getJobField(job, "location")).toLowerCase();
-        const portal = getJobField(job, "portal", "unknown").toLowerCase();
-        const score = job.score || 0;
-        const dec = getDecision(score);
-        
-        if (search && !company.includes(search) && !title.includes(search) && !location.includes(search)) return false;
-        if (decision && dec !== decision) return false;
-        if (source && !portal.includes(source)) return false;
-        if (scoreRange) {
-            if (scoreRange === "80-100" && score < 80) return false;
-            if (scoreRange === "70-79" && (score < 70 || score >= 80)) return false;
-            if (scoreRange === "0-69" && score >= 70) return false;
-        }
-        return true;
-    });
-    
-    // Escape quotes and neutralise formula injection (=, +, -, @) for Excel
-    function csvCell(value) {
-        let v = String(value == null ? "" : value).replace(/"/g, '""');
-        if (/^[=+\-@]/.test(v)) v = "'" + v;
-        return `"${v}"`;
-    }
-
-    let csv = "Date,Company,Title,Location,Source,Score,Decision,URL\n";
-    filtered.sort((a,b) => (b.score||0) - (a.score||0));
-    filtered.forEach(job => {
-        const company = getJobField(job, "empresa", getJobField(job, "company"));
-        const title = getJobField(job, "titulo", getJobField(job, "title"));
-        const location = getJobField(job, "localizacao", getJobField(job, "location"));
-        const url = getJobField(job, "url");
-        const portal = getJobField(job, "portal", "unknown");
-        const score = job.score || 0;
-        const decision = getDecision(score);
-        const date = job._digest_date || "Today";
-        csv += [csvCell(date), csvCell(company), csvCell(title), csvCell(location), csvCell(portal), score, decision, csvCell(url)].join(",") + "\n";
-    });
-    
-    const blob = new Blob([csv], {type: "text/csv"});
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = `job-hunt-export-${new Date().toISOString().split("T")[0]}.csv`;
-    a.click();
-}
-
-function toggleDark() {
-    document.body.classList.toggle("dark");
-    localStorage.setItem("dark", document.body.classList.contains("dark"));
-}
-
-if (localStorage.getItem("dark") === "true") document.body.classList.add("dark");
-renderTable(JOBS);
-updateCharts(JOBS);
-</script>
-</body>
-</html>
+]
