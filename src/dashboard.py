@@ -84,6 +84,21 @@ def collect_jobs(days=30):
             ev_copy["_digest_date"] = today
             all_jobs.append(ev_copy)
 
+    # 3. Manually added jobs (via the "Add Job" workflow or agents/add_job.py)
+    manual = load_json(os.path.join(DIGESTS_DIR, "manual_evaluations.json"))
+    if manual and isinstance(manual, list):
+        for ev in manual:
+            job = ev.get("job", ev)
+            url = job.get("url", job.get("link", ""))
+            key = url or f"{job.get('empresa','')}_{job.get('titulo','')}"
+            if key in seen_urls:
+                continue
+            seen_urls.add(key)
+            ev_copy = dict(ev)
+            ev_copy["_digest_date"] = str(ev.get("evaluated_at", ""))[:10] or datetime.now().strftime("%Y-%m-%d")
+            ev_copy["_manual"] = True
+            all_jobs.append(ev_copy)
+
     return all_jobs
 
 
@@ -178,7 +193,7 @@ def get_template_head():
     <header>
         <button class="toggle-btn" onclick="toggleDark()">Dark Mode</button>
         <h1>Job Hunt Dashboard</h1>
-        <p>Automated job search & evaluation pipeline</p>
+        <p>Automated job search &amp; evaluation pipeline &middot; <a href="https://github.com/carlosedbaptista/job-hunt-pipeline/actions/workflows/add-job.yml" target="_blank">+ Add a job manually</a> (Actions &rarr; Add Job &rarr; Run workflow)</p>
     </header>
 
     <!-- Candidate Profile (only data the owner explicitly chose to show) -->
@@ -246,9 +261,9 @@ def get_template_head():
         </select>
         <select id="filter-score" onchange="filterTable()">
             <option value="">All Scores</option>
-            <option value="75-100">High (75-100)</option>
-            <option value="45-74">Medium (45-74)</option>
-            <option value="0-44">Low (0-44)</option>
+            <option value="80-100">High (80-100)</option>
+            <option value="70-79">Medium (70-79)</option>
+            <option value="0-69">Low (0-69)</option>
         </select>
         <select id="filter-source" onchange="filterTable()">
             <option value="">All Sources</option>
@@ -299,8 +314,8 @@ function getJobField(job, field, fallback="N/A") {
 }
 
 function getDecision(score) {
-    if (score >= 75) return "APPLY";
-    if (score >= 45) return "REVIEW";
+    if (score >= 80) return "APPLY";
+    if (score >= 70) return "REVIEW";
     return "SKIP";
 }
 
@@ -364,9 +379,9 @@ function filterTable() {
         if (decision && dec !== decision) return false;
         if (source && !portal.includes(source)) return false;
         if (scoreRange) {
-            if (scoreRange === "75-100" && score < 75) return false;
-            if (scoreRange === "45-74" && (score < 45 || score >= 75)) return false;
-            if (scoreRange === "0-44" && score >= 45) return false;
+            if (scoreRange === "80-100" && score < 80) return false;
+            if (scoreRange === "70-79" && (score < 70 || score >= 80)) return false;
+            if (scoreRange === "0-69" && score >= 70) return false;
         }
         return true;
     });
@@ -377,9 +392,9 @@ function filterTable() {
 
 function updateMetrics(jobs) {
     const total = jobs.length;
-    const apply = jobs.filter(j => (j.score||0) >= 75).length;
-    const review = jobs.filter(j => { const s=j.score||0; return s>=45 && s<75; }).length;
-    const skip = jobs.filter(j => (j.score||0) < 45).length;
+    const apply = jobs.filter(j => (j.score||0) >= 80).length;
+    const review = jobs.filter(j => { const s=j.score||0; return s>=70 && s<80; }).length;
+    const skip = jobs.filter(j => (j.score||0) < 70).length;
     const rate = total > 0 ? Math.round(apply/total*100) : 0;
     
     document.getElementById("metric-total").textContent = total;
@@ -415,9 +430,9 @@ function updateCharts(jobs) {
         options: { responsive: true, maintainAspectRatio: false }
     });
     
-    const apply = jobs.filter(j => (j.score||0) >= 75).length;
-    const review = jobs.filter(j => { const s=j.score||0; return s>=45 && s<75; }).length;
-    const skip = jobs.filter(j => (j.score||0) < 45).length;
+    const apply = jobs.filter(j => (j.score||0) >= 80).length;
+    const review = jobs.filter(j => { const s=j.score||0; return s>=70 && s<80; }).length;
+    const skip = jobs.filter(j => (j.score||0) < 70).length;
     
     if (window.chartPie) window.chartPie.destroy();
     window.chartPie = new Chart(document.getElementById("chart-pie"), {
@@ -472,9 +487,9 @@ function exportCSV() {
         if (decision && dec !== decision) return false;
         if (source && !portal.includes(source)) return false;
         if (scoreRange) {
-            if (scoreRange === "75-100" && score < 75) return false;
-            if (scoreRange === "45-74" && (score < 45 || score >= 75)) return false;
-            if (scoreRange === "0-44" && score >= 45) return false;
+            if (scoreRange === "80-100" && score < 80) return false;
+            if (scoreRange === "70-79" && (score < 70 || score >= 80)) return false;
+            if (scoreRange === "0-69" && score >= 70) return false;
         }
         return true;
     });

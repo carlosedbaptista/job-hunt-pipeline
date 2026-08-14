@@ -77,7 +77,7 @@ def format_digest_text(digest, top_jobs):
         url = _get_job_field(job_eval, "url")
         portal = _get_job_field(job_eval, "portal")
 
-        icon = ">>>" if score >= 75 else "!!" if score >= 45 else "XXX"
+        icon = ">>>" if score >= 80 else "!!" if score >= 70 else "XXX"
 
         lines.append("")
         lines.append(f"{i}. {icon} [{score}/100] {empresa}")

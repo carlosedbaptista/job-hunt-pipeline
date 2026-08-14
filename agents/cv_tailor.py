@@ -123,12 +123,12 @@ Keep it concise, 1 page."""
 
 
 def tailor_all_cvs(evaluations: list[dict], jobs_dict: dict) -> list[dict]:
-    """Tailors CVs only for jobs with score >= 75 (APPLY)."""
+    """Tailors CVs only for jobs with score >= 80 (APPLY)."""
     tailored = []
-    apply_jobs = [e for e in evaluations if e.get("score", 0) >= 75]
+    apply_jobs = [e for e in evaluations if e.get("score", 0) >= 80]
 
     if not apply_jobs:
-        print("No jobs with score >= 75. Nothing to tailor.")
+        print("No jobs with score >= 80. Nothing to tailor.")
         return []
 
     print(f"Tailoring CVs for {len(apply_jobs)} job(s)...\n")

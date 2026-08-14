@@ -62,9 +62,9 @@ def run_evaluation_pipeline():
         with open("digests/job_evaluations_latest.json", "r") as f:
             evals = json.load(f)
 
-        apply = [e for e in evals if e.get("score", 0) >= 75]
-        review = [e for e in evals if 45 <= e.get("score", 0) < 75]
-        uncertain = [e for e in evals if e.get("score", 0) < 45]
+        apply = [e for e in evals if e.get("score", 0) >= 80]
+        review = [e for e in evals if 70 <= e.get("score", 0) < 80]
+        uncertain = [e for e in evals if e.get("score", 0) < 70]
 
         print(f"Total jobs evaluated: {len(evals)}\n")
 

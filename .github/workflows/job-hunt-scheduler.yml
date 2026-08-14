@@ -124,7 +124,7 @@ jobs:
             exit 0
           fi
           JOB_COUNT=$(python -c "import json; d=json.load(open('digests/digest_latest.json')); print(d.get('total_evaluated', 0))" 2>/dev/null || echo 0)
-          APPLY_COUNT=$(python -c "import json; d=json.load(open('digests/digest_latest.json')); jobs=d.get('top_jobs',[]); print(sum(1 for j in jobs if j.get('score',0)>=75))" 2>/dev/null || echo 0)
+          APPLY_COUNT=$(python -c "import json; d=json.load(open('digests/digest_latest.json')); jobs=d.get('top_jobs',[]); print(sum(1 for j in jobs if j.get('score',0)>=80))" 2>/dev/null || echo 0)
           TIMESTAMP=$(date -u +'%Y-%m-%d %H:%M UTC')
           git commit -m "chore: daily digest [$TIMESTAMP | $JOB_COUNT jobs | $APPLY_COUNT APPLY]"
           git push
