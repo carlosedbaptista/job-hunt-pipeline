@@ -25,13 +25,13 @@ print("=== PHASE 8v2: TAILORED CV + COVER LETTER ===\n")
 # 1. Create structured candidate profile with experience, education, skill variants
 wf(f"{REPO}/config/candidate_profile.json", r"""{
   "name": "Carlos Eduardo Duarte Baptista",
-  "address": "[redacted]",
-  "phone": "[redacted]",
-  "email": "[redacted]",
-  "email_icloud": "[redacted]",
+  "address": "[endereco-redacted]",
+  "phone": "[telefone-redacted]",
+  "email": "[email-redacted]",
+  "email_icloud": "[email-redacted]",
   "linkedin": "linkedin.com/in/carlosedbaptista",
   "github": "github.com/carlosedbaptista",
-  "dob": "[redacted]",
+  "dob": "[dob-redacted]",
   "nationality": "Brazilian",
   "permit": "Swiss Work Permit B (valid)",
   "relocation_date": "April 2025",

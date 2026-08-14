@@ -17,7 +17,7 @@ def load_digest():
 
 
 def score_color(score: int) -> str:
-    if score >= 65:
+    if score >= 75:
         return "#22c55e"
     if score >= 45:
         return "#f59e0b"
@@ -27,7 +27,7 @@ def score_color(score: int) -> str:
 def score_label(score: int, recommendation: str) -> str:
     if recommendation == "DO NOT APPLY":
         return "DO NOT APPLY"
-    if score >= 65:
+    if score >= 75:
         return "APPLY"
     if score >= 45:
         return "REVIEW"
@@ -56,7 +56,7 @@ def generate_html(digest: dict) -> str:
     except Exception:
         date_str = generated_at[:16]
 
-    apply_count = sum(1 for j in top_jobs if j.get("score", 0) >= 65)
+    apply_count = sum(1 for j in top_jobs if j.get("score", 0) >= 75)
     review_count = sum(1 for j in top_jobs if 45 <= j.get("score", 0) < 65)
     uncertain_count = sum(1 for j in top_jobs if j.get("score", 0) < 45)
 
@@ -83,6 +83,14 @@ def generate_html(digest: dict) -> str:
         tech = job_eval.get("technical_fit", {})
         ctx = job_eval.get("contextual_fit", {})
         opp = job_eval.get("opportunity_fit", {})
+
+        # Compat: newer evaluations provide these fields as text, not dict
+        def sub_score(val):
+            return val.get("score", 0) if isinstance(val, dict) else "—"
+
+        tech_score = sub_score(tech)
+        ctx_score = sub_score(ctx)
+        opp_score = sub_score(opp)
 
         view_link = (
             f'<a href="{url}" target="_blank" style="display:inline-block;'
@@ -113,15 +121,15 @@ def generate_html(digest: dict) -> str:
           <div style="margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
             <div style="background:#f8fafc;border-radius:8px;padding:10px;text-align:center;">
               <div style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;">Technical</div>
-              <div style="font-size:20px;font-weight:700;color:#1e293b;">{tech.get("score",0)}<span style="font-size:11px;color:#94a3b8;">/40</span></div>
+              <div style="font-size:20px;font-weight:700;color:#1e293b;">{tech_score}<span style="font-size:11px;color:#94a3b8;">/40</span></div>
             </div>
             <div style="background:#f8fafc;border-radius:8px;padding:10px;text-align:center;">
               <div style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;">Contextual</div>
-              <div style="font-size:20px;font-weight:700;color:#1e293b;">{ctx.get("score",0)}<span style="font-size:11px;color:#94a3b8;">/35</span></div>
+              <div style="font-size:20px;font-weight:700;color:#1e293b;">{ctx_score}<span style="font-size:11px;color:#94a3b8;">/35</span></div>
             </div>
             <div style="background:#f8fafc;border-radius:8px;padding:10px;text-align:center;">
               <div style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;">Opportunity</div>
-              <div style="font-size:20px;font-weight:700;color:#1e293b;">{opp.get("score",0)}<span style="font-size:11px;color:#94a3b8;">/25</span></div>
+              <div style="font-size:20px;font-weight:700;color:#1e293b;">{opp_score}<span style="font-size:11px;color:#94a3b8;">/25</span></div>
             </div>
           </div>
 
@@ -144,7 +152,7 @@ def generate_html(digest: dict) -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Hunt Dashboard — Carlos Baptista</title>
+  <title>Job Hunt Dashboard</title>
   <style>
     * {{ box-sizing: border-box; margin: 0; padding: 0; }}
     body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -162,7 +170,7 @@ def generate_html(digest: dict) -> str:
     <div style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;
                 border-radius:14px;padding:28px;margin-bottom:24px;">
       <div style="font-size:22px;font-weight:800;">📊 Job Hunt Dashboard</div>
-      <div style="font-size:13px;opacity:.85;margin-top:6px;">Carlos Baptista · Wallisellen, Zürich</div>
+      <div style="font-size:13px;opacity:.85;margin-top:6px;">Data/Business Analyst · Zürich Area</div>
       <div style="font-size:12px;opacity:.7;margin-top:4px;">Updated: {date_str}</div>
     </div>
 
@@ -192,7 +200,7 @@ def generate_html(digest: dict) -> str:
     {job_cards}
 
     <div style="text-align:center;padding:20px;font-size:12px;color:#94a3b8;">
-      Job Hunt Pipeline · Auto-updated daily · Carlos Baptista
+      Job Hunt Pipeline · Auto-updated daily
     </div>
 
   </div>
@@ -213,10 +221,10 @@ if __name__ == "__main__":
 
     digest = load_digest()
     if not digest:
-        print("❌ No digest found. Run digest_generator.py first.")
+        print("No digest found. Run digest_generator.py first.")
         sys.exit(1)
 
     html = generate_html(digest)
     path = save_page(html)
-    print(f"✅ Dashboard saved → {path}")
+    print(f"Dashboard saved -> {path}")
     print(f"   Jobs shown: {len(digest.get('top_jobs', []))}")

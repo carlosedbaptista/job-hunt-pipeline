@@ -6,6 +6,7 @@ Targets applications > 7 days old with no response and a known recruiter email.
 import sqlite3
 import os
 import sys
+import json
 import smtplib
 from datetime import datetime, timedelta
 from email.mime.multipart import MIMEMultipart
@@ -86,6 +87,22 @@ def update_followup_status(app_id: int, success: bool = True):
         return False
 
 
+def _email_signature() -> str:
+    """Assinatura montada de config/candidate_profile.json (PII fora do git)."""
+    try:
+        with open("config/candidate_profile.json", encoding="utf-8") as f:
+            p = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        p = {}
+    return (
+        f"{p.get('name', '')}\n"
+        f"{p.get('phone', '')}\n"
+        f"{p.get('email', '')}\n"
+        f"{p.get('linkedin', '')}\n\n"
+        f"{p.get('permit', '')} | {p.get('location', '')}"
+    )
+
+
 def send_followup_email(
     to_email: str,
     subject: str,
@@ -108,12 +125,7 @@ def send_followup_email(
 
 ---
 Best regards,
-Carlos Eduardo Duarte Baptista
-[redacted]
-[redacted]
-linkedin.com/in/carlosedbaptista
-
-Swiss Work Permit B | Wallisellen, Zurich
+{_email_signature()}
 """
 
         html_body = f"""
@@ -143,7 +155,7 @@ def send_followups():
     print("FOLLOW-UP SENDER")
     print("=" * 70 + "\n")
 
-    sender_email = os.environ.get("GMAIL_SENDER", "[redacted]")
+    sender_email = os.environ.get("GMAIL_SENDER", "")
     app_password = os.environ.get("GMAIL_APP_PASSWORD")
 
     if not app_password:

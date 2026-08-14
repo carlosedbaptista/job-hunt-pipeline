@@ -1,6 +1,6 @@
 """
-dashboard.py  —  Gera dashboard HTML interativo (versão melhorada)
-Features: Chart.js, dark mode, filtros, CSV export, 30-day history
+dashboard.py  —  Generates the interactive HTML dashboard (improved version)
+Features: Chart.js, dark mode, filters, CSV export, 30-day history
 """
 
 import json
@@ -25,7 +25,7 @@ def load_json(path):
 
 
 def parse_digest_date(filename):
-    """Extrai data do nome do arquivo digest_YYYYMMDD_HHMM.json"""
+    """Extracts the date from the digest_YYYYMMDD_HHMM.json filename."""
     basename = os.path.basename(filename)
     if basename == "digest_latest.json":
         return datetime.now().strftime("%Y-%m-%d")
@@ -38,14 +38,14 @@ def parse_digest_date(filename):
 
 
 def collect_jobs(days=30):
-    """Coleta avaliações dos últimos N dias a partir dos digests históricos."""
+    """Collects evaluations from the last N days from the historical digests."""
     cutoff = datetime.now() - timedelta(days=days)
     cutoff_str = cutoff.strftime("%Y-%m-%d")
 
     all_jobs = []
     seen_urls = set()
 
-    # 1. Digests históricos
+    # 1. Historical digests
     digest_files = sorted(glob.glob(os.path.join(DIGESTS_DIR, "digest_*.json")))
     for dfile in digest_files:
         digest_date = parse_digest_date(dfile)
@@ -69,7 +69,7 @@ def collect_jobs(days=30):
             ev_copy["_digest_date"] = digest_date
             all_jobs.append(ev_copy)
 
-    # 2. Avaliações atuais (job_evaluations_latest.json)
+    # 2. Current evaluations (job_evaluations_latest.json)
     evals = load_json(os.path.join(DIGESTS_DIR, "job_evaluations_latest.json"))
     if evals and isinstance(evals, list):
         today = datetime.now().strftime("%Y-%m-%d")
@@ -88,13 +88,13 @@ def collect_jobs(days=30):
 
 
 def get_template_head():
-    """Retorna a parte inicial do template HTML (até const JOBS)."""
+    """Returns the first part of the HTML template (up to const JOBS)."""
     return r'''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Hunt Dashboard - Carlos Eduardo Duarte Baptista</title>
+    <title>Job Hunt Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         :root {
@@ -181,18 +181,15 @@ def get_template_head():
         <p>Automated job search & evaluation pipeline</p>
     </header>
 
-    <!-- Candidate Profile -->
+    <!-- Candidate Profile (anonymized -- this HTML goes to a public repo) -->
     <div class="card" style="margin-bottom: 20px;">
         <h3>Candidate Profile</h3>
         <div class="profile">
-            <div class="profile-item"><strong>Name</strong>Carlos Eduardo Duarte Baptista</div>
             <div class="profile-item"><strong>Role</strong>Data/Business Analyst</div>
-            <div class="profile-item"><strong>Location</strong>Wallisellen, CH</div>
+            <div class="profile-item"><strong>Location</strong>Zürich Area, CH</div>
             <div class="profile-item"><strong>Permit</strong>Swiss Work Permit B (valid)</div>
             <div class="profile-item"><strong>Notice</strong>2 weeks</div>
             <div class="profile-item"><strong>Languages</strong>EN (Professional) | PT (Native) | DE (A2)</div>
-            <div class="profile-item"><strong>LinkedIn</strong>linkedin.com/in/carlosedbaptista</div>
-            <div class="profile-item"><strong>GitHub</strong>github.com/carlosedbaptista</div>
         </div>
     </div>
 
@@ -247,8 +244,8 @@ def get_template_head():
         </select>
         <select id="filter-score" onchange="filterTable()">
             <option value="">All Scores</option>
-            <option value="65-100">High (65-100)</option>
-            <option value="45-64">Medium (45-64)</option>
+            <option value="75-100">High (75-100)</option>
+            <option value="45-74">Medium (45-74)</option>
             <option value="0-44">Low (0-44)</option>
         </select>
         <select id="filter-source" onchange="filterTable()">
@@ -292,7 +289,7 @@ def get_template_head():
 
 
 def get_template_tail():
-    """Retorna a parte final do template HTML (após const JOBS)."""
+    """Returns the final part of the HTML template (after const JOBS)."""
     return r'''
 function getJobField(job, field, fallback="N/A") {
     const j = job.job || {};
@@ -300,7 +297,7 @@ function getJobField(job, field, fallback="N/A") {
 }
 
 function getDecision(score) {
-    if (score >= 65) return "APPLY";
+    if (score >= 75) return "APPLY";
     if (score >= 45) return "REVIEW";
     return "SKIP";
 }
@@ -365,8 +362,8 @@ function filterTable() {
         if (decision && dec !== decision) return false;
         if (source && !portal.includes(source)) return false;
         if (scoreRange) {
-            if (scoreRange === "65-100" && score < 65) return false;
-            if (scoreRange === "45-64" && (score < 45 || score >= 65)) return false;
+            if (scoreRange === "75-100" && score < 75) return false;
+            if (scoreRange === "45-74" && (score < 45 || score >= 75)) return false;
             if (scoreRange === "0-44" && score >= 45) return false;
         }
         return true;
@@ -378,8 +375,8 @@ function filterTable() {
 
 function updateMetrics(jobs) {
     const total = jobs.length;
-    const apply = jobs.filter(j => (j.score||0) >= 65).length;
-    const review = jobs.filter(j => { const s=j.score||0; return s>=45 && s<65; }).length;
+    const apply = jobs.filter(j => (j.score||0) >= 75).length;
+    const review = jobs.filter(j => { const s=j.score||0; return s>=45 && s<75; }).length;
     const skip = jobs.filter(j => (j.score||0) < 45).length;
     const rate = total > 0 ? Math.round(apply/total*100) : 0;
     
@@ -416,8 +413,8 @@ function updateCharts(jobs) {
         options: { responsive: true, maintainAspectRatio: false }
     });
     
-    const apply = jobs.filter(j => (j.score||0) >= 65).length;
-    const review = jobs.filter(j => { const s=j.score||0; return s>=45 && s<65; }).length;
+    const apply = jobs.filter(j => (j.score||0) >= 75).length;
+    const review = jobs.filter(j => { const s=j.score||0; return s>=45 && s<75; }).length;
     const skip = jobs.filter(j => (j.score||0) < 45).length;
     
     if (window.chartPie) window.chartPie.destroy();
@@ -473,8 +470,8 @@ function exportCSV() {
         if (decision && dec !== decision) return false;
         if (source && !portal.includes(source)) return false;
         if (scoreRange) {
-            if (scoreRange === "65-100" && score < 65) return false;
-            if (scoreRange === "45-64" && (score < 45 || score >= 65)) return false;
+            if (scoreRange === "75-100" && score < 75) return false;
+            if (scoreRange === "45-74" && (score < 45 || score >= 75)) return false;
             if (scoreRange === "0-44" && score >= 45) return false;
         }
         return true;
@@ -516,13 +513,13 @@ updateCharts(JOBS);
 
 
 def generate_dashboard():
-    """Gera o dashboard HTML completo."""
+    """Generates the complete HTML dashboard."""
     jobs = collect_jobs(days=30)
     head = get_template_head()
     tail = get_template_tail()
 
     jobs_json = json.dumps(jobs, ensure_ascii=False, indent=2)
-    # Limita tamanho para evitar HTML gigante
+    # Limit size to avoid a giant HTML file
     if len(jobs_json) > 500_000:
         jobs_json = json.dumps(jobs, ensure_ascii=False)
 
@@ -538,6 +535,6 @@ def generate_dashboard():
 
 if __name__ == "__main__":
     path, count = generate_dashboard()
-    print(f"Dashboard gerado: {path}")
-    print(f"Jobs incluidos: {count}")
-    print(f"Abra no navegador: file://{os.path.abspath(path)}")
+    print(f"Dashboard generated: {path}")
+    print(f"Jobs included: {count}")
+    print(f"Open in the browser: file://{os.path.abspath(path)}")

@@ -42,12 +42,19 @@ def parse_html_emails(emails: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         for link in soup.find_all("a", href=True):
             href = link.get("href", "")
             link_text = link.get_text(strip=True)
-            
+
             if not link_text or len(link_text) < 5:
                 continue
-            
+
+            # Skip mailto links and texts that are emails (alert footer,
+            # e.g.: "Diese Nachricht wurde gesendet an <email>") -- avoids
+            # leaking the candidate's email as if it were a job
+            if href.lower().startswith("mailto:") or "@" in link_text:
+                continue
+
             title_lower = link_text.lower()
-            if not any(kw in title_lower for kw in job_keywords):
+            # \b avoids false positives like "ai" inside "gmail"
+            if not any(re.search(r"\b" + re.escape(kw) + r"\b", title_lower) for kw in job_keywords):
                 continue
             
             # Find nearby company and location

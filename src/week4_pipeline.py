@@ -43,7 +43,7 @@ def load_unified_jobs() -> list[dict]:
     latest = files[-1]
     with open(latest, "r", encoding="utf-8") as f:
         jobs = json.load(f)
-    print(f"📥 {len(jobs)} vagas carregadas de {latest}")
+    print(f"📥 {len(jobs)} jobs loaded from {latest}")
     return jobs
 
 

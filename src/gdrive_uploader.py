@@ -1,22 +1,22 @@
 """
-gdrive_uploader.py  —  Upload de CVs e CLs para Google Drive
-Suporta: Service Account (CI) ou OAuth2 refresh token (local/pessoal)
-Organiza por pasta:  Job Hunt Pipeline / {Empresa} - {Cargo} / [arquivos]
+gdrive_uploader.py  —  Upload CVs and CLs to Google Drive
+Supports: Service Account (CI) or OAuth2 refresh token (local/personal)
+Organizes by folder:  Job Hunt Pipeline / {Company} - {Title} / [files]
 
-Setup Service Account:
-  1. Crie uma Service Account em https://console.cloud.google.com/
-  2. Ative a Google Drive API
-  3. Baixe a chave JSON e salve como config/gdrive_credentials.json
-  4. Compartilhe uma pasta do seu Drive com a Service Account (Editor)
-  5. Configure GDRIVE_PARENT_FOLDER_ID
+Service Account setup:
+  1. Create a Service Account at https://console.cloud.google.com/
+  2. Enable the Google Drive API
+  3. Download the JSON key and save it as config/gdrive_credentials.json
+  4. Share a folder in your Drive with the Service Account (Editor)
+  5. Set GDRIVE_PARENT_FOLDER_ID
 
-Setup OAuth2 (fallback para contas pessoais sem Workspace):
-  1. Crie credenciais OAuth2 (Desktop app) no Google Cloud Console
-  2. Rode: python config/setup_oauth2.py
-  3. Autorize no navegador e cole o code
-  4. O refresh token sera salvo em config/gdrive_refresh_token.json
+OAuth2 setup (fallback for personal accounts without Workspace):
+  1. Create OAuth2 credentials (Desktop app) in the Google Cloud Console
+  2. Run: python config/setup_oauth2.py
+  3. Authorize in the browser and paste the code
+  4. The refresh token will be saved to config/gdrive_refresh_token.json
 
-Em CI (GitHub Actions):
+In CI (GitHub Actions):
   - Service Account: GDRIVE_CREDENTIALS_JSON_B64 + GDRIVE_PARENT_FOLDER_ID
   - OAuth2: GDRIVE_REFRESH_TOKEN_B64 + GDRIVE_PARENT_FOLDER_ID
 """
@@ -50,7 +50,7 @@ PARENT_FOLDER_ENV = "GDRIVE_PARENT_FOLDER_ID"
 
 
 def _get_service_account_credentials():
-    """Carrega credenciais da Service Account."""
+    """Load Service Account credentials."""
     env_b64 = os.environ.get("GDRIVE_CREDENTIALS_JSON_B64")
     if env_b64:
         try:
@@ -58,7 +58,7 @@ def _get_service_account_credentials():
             info = json.loads(decoded)
             return service_account.Credentials.from_service_account_info(info, scopes=SCOPES)
         except Exception as e:
-            print(f"  [GDrive] Erro ao decodificar GDRIVE_CREDENTIALS_JSON_B64: {e}")
+            print(f"  [GDrive] Error decoding GDRIVE_CREDENTIALS_JSON_B64: {e}")
 
     env_raw = os.environ.get("GDRIVE_CREDENTIALS_JSON")
     if env_raw:
@@ -66,19 +66,19 @@ def _get_service_account_credentials():
             info = json.loads(env_raw)
             return service_account.Credentials.from_service_account_info(info, scopes=SCOPES)
         except Exception as e:
-            print(f"  [GDrive] Erro ao parsear GDRIVE_CREDENTIALS_JSON: {e}")
+            print(f"  [GDrive] Error parsing GDRIVE_CREDENTIALS_JSON: {e}")
 
     if os.path.exists(CREDENTIALS_PATH):
         try:
             return service_account.Credentials.from_service_account_file(CREDENTIALS_PATH, scopes=SCOPES)
         except Exception as e:
-            print(f"  [GDrive] Erro ao ler {CREDENTIALS_PATH}: {e}")
+            print(f"  [GDrive] Error reading {CREDENTIALS_PATH}: {e}")
     return None
 
 
 def _get_oauth2_credentials():
-    """Carrega credenciais OAuth2 via refresh token."""
-    # Tenta via env var base64
+    """Load OAuth2 credentials via refresh token."""
+    # Try via base64 env var
     env_b64 = os.environ.get("GDRIVE_REFRESH_TOKEN_B64")
     if env_b64:
         try:
@@ -86,9 +86,9 @@ def _get_oauth2_credentials():
             data = json.loads(decoded)
             return _refresh_access_token(data)
         except Exception as e:
-            print(f"  [GDrive] Erro ao decodificar GDRIVE_REFRESH_TOKEN_B64: {e}")
+            print(f"  [GDrive] Error decoding GDRIVE_REFRESH_TOKEN_B64: {e}")
 
-    # Tenta via arquivo
+    # Try via file
     if not os.path.exists(REFRESH_TOKEN_PATH):
         return None
     try:
@@ -96,12 +96,12 @@ def _get_oauth2_credentials():
             data = json.load(f)
         return _refresh_access_token(data)
     except Exception as e:
-        print(f"  [GDrive] Erro ao ler refresh token: {e}")
+        print(f"  [GDrive] Error reading refresh token: {e}")
         return None
 
 
 def _refresh_access_token(data):
-    """Usa refresh token para obter access token. Retorna dict com access_token."""
+    """Use refresh token to obtain an access token. Returns dict with access_token."""
     token_uri = data.get("token_uri", "https://oauth2.googleapis.com/token")
     payload = urllib.parse.urlencode({
         "client_id": data["client_id"],
@@ -119,23 +119,23 @@ def _refresh_access_token(data):
                 "token_type": result.get("token_type", "Bearer"),
             }
     except Exception as e:
-        print(f"  [GDrive] Erro ao refresh token: {e}")
+        print(f"  [GDrive] Error refreshing token: {e}")
         return None
 
 
 def _get_drive_service():
-    """Retorna o servico do Google Drive (tenta Service Account, depois OAuth2)."""
+    """Return the Google Drive service (tries Service Account, then OAuth2)."""
     if not GDRIVE_AVAILABLE:
         return None
 
-    # Tenta OAuth2 primeiro (funciona para contas pessoais)
+    # Try OAuth2 first (works for personal accounts)
     oauth2 = _get_oauth2_credentials()
     if oauth2:
         from google.oauth2.credentials import Credentials
         gcreds = Credentials(token=oauth2["access_token"], scopes=SCOPES)
         return build("drive", "v3", credentials=gcreds, cache_discovery=False)
 
-    # Fallback para Service Account (requer Workspace/Shared Drive)
+    # Fallback to Service Account (requires Workspace/Shared Drive)
     creds = _get_service_account_credentials()
     if creds:
         return build("drive", "v3", credentials=creds, cache_discovery=False)
@@ -152,7 +152,7 @@ def _find_folder(service, name, parent_id=None):
         files = results.get("files", [])
         return files[0]["id"] if files else None
     except Exception as e:
-        print(f"  [GDrive] Erro ao procurar pasta '{name}': {e}")
+        print(f"  [GDrive] Error searching for folder '{name}': {e}")
         return None
 
 
@@ -166,7 +166,7 @@ def _create_folder(service, name, parent_id=None):
         folder = service.files().create(body=metadata, fields="id", supportsAllDrives=True).execute()
         return folder["id"]
     except Exception as e:
-        print(f"  [GDrive] Erro ao criar pasta '{name}': {e}")
+        print(f"  [GDrive] Error creating folder '{name}': {e}")
         return None
 
 
@@ -184,7 +184,7 @@ def _find_file(service, name, parent_id):
         files = results.get("files", [])
         return files[0]["id"] if files else None
     except Exception as e:
-        print(f"  [GDrive] Erro ao procurar arquivo '{name}': {e}")
+        print(f"  [GDrive] Error searching for file '{name}': {e}")
         return None
 
 
@@ -196,7 +196,7 @@ def _upload_file(service, local_path, parent_id, mime_type="application/pdf"):
     try:
         if file_id:
             service.files().update(fileId=file_id, media_body=media, supportsAllDrives=True).execute()
-            print(f"    [GDrive] Atualizado: {name}")
+            print(f"    [GDrive] Updated: {name}")
             return file_id
         else:
             metadata = {"name": name, "parents": [parent_id]}
@@ -204,37 +204,37 @@ def _upload_file(service, local_path, parent_id, mime_type="application/pdf"):
             print(f"    [GDrive] Upload: {name}")
             return file["id"]
     except Exception as e:
-        print(f"    [GDrive] Erro no upload de '{name}': {e}")
+        print(f"    [GDrive] Error uploading '{name}': {e}")
         return None
 
 
 def upload_cv_cl(folder_local_path, company, title):
     """
-    Faz upload dos PDFs de CV e CL para o Google Drive.
-    Cria pasta: {Empresa} - {Cargo}
+    Upload the CV and CL PDFs to Google Drive.
+    Creates folder: {Company} - {Title}
     """
     if not GDRIVE_AVAILABLE:
-        print("[GDrive] Bibliotecas do Google nao instaladas.")
+        print("[GDrive] Google libraries not installed.")
         return None
 
     parent_folder_id = os.environ.get(PARENT_FOLDER_ENV, "")
     if not parent_folder_id:
-        print(f"[GDrive] Variavel {PARENT_FOLDER_ENV} nao configurada. Skipping upload.")
+        print(f"[GDrive] Variable {PARENT_FOLDER_ENV} not set. Skipping upload.")
         return None
 
     service = _get_drive_service()
     if not service:
-        print("[GDrive] Nao foi possivel autenticar. Verifique as credenciais.")
+        print("[GDrive] Could not authenticate. Check the credentials.")
         return None
 
     safe_company = company.strip()[:40]
     safe_title = title.strip()[:40]
     subfolder_name = f"{safe_company} - {safe_title}"
 
-    print(f"[GDrive] Garantindo pasta: {subfolder_name}")
+    print(f"[GDrive] Ensuring folder: {subfolder_name}")
     subfolder_id = _get_or_create_folder(service, subfolder_name, parent_folder_id)
     if not subfolder_id:
-        print(f"[GDrive] Falha ao criar pasta '{subfolder_name}'")
+        print(f"[GDrive] Failed to create folder '{subfolder_name}'")
         return None
 
     result = {}
@@ -242,7 +242,7 @@ def upload_cv_cl(folder_local_path, company, title):
     pdf_files = sorted(folder.glob("*.pdf"))
 
     if not pdf_files:
-        print(f"[GDrive] Nenhum PDF encontrado em {folder_local_path}")
+        print(f"[GDrive] No PDF found in {folder_local_path}")
         return result
 
     for pdf in pdf_files:
@@ -254,23 +254,23 @@ def upload_cv_cl(folder_local_path, company, title):
 
 
 def test_connection():
-    """Testa a conexao com o Google Drive."""
+    """Test the Google Drive connection."""
     if not GDRIVE_AVAILABLE:
-        print("[GDrive] Bibliotecas nao instaladas.")
+        print("[GDrive] Libraries not installed.")
         return False
 
     service = _get_drive_service()
     if not service:
-        print("[GDrive] Falha na autenticacao.")
+        print("[GDrive] Authentication failed.")
         return False
 
     try:
         about = service.about().get(fields="user(displayName), storageQuota").execute()
         user = about.get("user", {}).get("displayName", "Unknown")
-        print(f"[GDrive] Conectado como: {user}")
+        print(f"[GDrive] Connected as: {user}")
         return True
     except Exception as e:
-        print(f"[GDrive] Erro ao testar conexao: {e}")
+        print(f"[GDrive] Error testing connection: {e}")
         return False
 
 

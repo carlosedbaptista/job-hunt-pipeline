@@ -1,6 +1,6 @@
 """
-analytics_dashboard.py  —  Gera dashboard HTML com gráficos de análise
-Mostra insights por indústria, ATS, tipo de vaga, etc
+analytics_dashboard.py  —  Generates an HTML dashboard with analytics charts
+Shows insights by industry, ATS, job type, etc.
 """
 
 import json
@@ -18,14 +18,14 @@ from agents.analytics_engine import (
 
 
 def generate_analytics_html(report: dict, recommendations: list) -> str:
-    """Gera HTML do dashboard de analytics."""
+    """Generates the analytics dashboard HTML."""
     
     by_industry = report["dimensions"]["by_industry"]
     by_ats = report["dimensions"]["by_ats"]
     by_job = report["dimensions"]["by_job_type"]
     overall = report["overall_metrics"]
     
-    # Prepara dados pra gráficos
+    # Prepare chart data
     industry_labels = list(by_industry.keys())
     industry_responses = [by_industry[k]["response_rate_percent"] for k in industry_labels]
     
@@ -37,7 +37,7 @@ def generate_analytics_html(report: dict, recommendations: list) -> str:
 
     html = f"""
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -184,69 +184,69 @@ def generate_analytics_html(report: dict, recommendations: list) -> str:
         <header>
             <h1>📊 Job Hunt Analytics Dashboard</h1>
             <p class="subtitle">
-                Carlos Eduardo Duarte Baptista • Atualizado em {datetime.now().strftime('%d/%m/%Y %H:%M')}
+                Data/Business Analyst • Updated at {datetime.now().strftime('%d/%m/%Y %H:%M')}
             </p>
         </header>
 
         <div class="grid">
             <div class="card metric">
-                <div class="metric-label">Total Aplicações</div>
+                <div class="metric-label">Total Applications</div>
                 <div class="metric-number">{overall['total_applications']}</div>
             </div>
 
             <div class="card metric">
-                <div class="metric-label">Respostas</div>
+                <div class="metric-label">Responses</div>
                 <div class="metric-number">{overall['total_responses']}</div>
             </div>
 
             <div class="card metric">
-                <div class="metric-label">Taxa de Resposta</div>
+                <div class="metric-label">Response Rate</div>
                 <div class="metric-number">{overall['overall_response_rate']:.1f}%</div>
             </div>
 
             <div class="card metric">
-                <div class="metric-label">Tempo Médio Resposta</div>
+                <div class="metric-label">Avg Response Time</div>
                 <div class="metric-number">{report.get('response_time', {}).get('avg_days', 0):.0f}d</div>
             </div>
         </div>
 
         <div class="charts">
             <div class="chart-container">
-                <h2>Taxa de Resposta por Indústria</h2>
+                <h2>Response Rate by Industry</h2>
                 <canvas id="industryChart"></canvas>
             </div>
 
             <div class="chart-container">
-                <h2>Taxa de Resposta por ATS</h2>
+                <h2>Response Rate by ATS</h2>
                 <canvas id="atsChart"></canvas>
             </div>
 
             <div class="chart-container">
-                <h2>Taxa de Resposta por Tipo de Vaga</h2>
+                <h2>Response Rate by Job Type</h2>
                 <canvas id="jobChart"></canvas>
             </div>
 
             <div class="chart-container">
-                <h2>Aplicações por Indústria</h2>
+                <h2>Applications by Industry</h2>
                 <canvas id="industryCountChart"></canvas>
             </div>
         </div>
 
-        {generate_recommendations_html(recommendations) if recommendations else '<div class="empty">Sem recomendações ainda — adicione mais aplicações!</div>'}
+        {generate_recommendations_html(recommendations) if recommendations else '<div class="empty">No recommendations yet — add more applications!</div>'}
 
         <footer>
-            Job Hunt Pipeline • Semana 9 Analytics • © 2026
+            Job Hunt Pipeline • Week 9 Analytics • © 2026
         </footer>
     </div>
 
     <script>
-        // Gráfico: Taxa de Resposta por Indústria
+        // Chart: Response Rate by Industry
         new Chart(document.getElementById('industryChart'), {{
             type: 'bar',
             data: {{
                 labels: {json.dumps(industry_labels)},
                 datasets: [{{
-                    label: 'Taxa de Resposta (%)',
+                    label: 'Response Rate (%)',
                     data: {json.dumps(industry_responses)},
                     backgroundColor: '#667eea',
                     borderColor: '#667eea',
@@ -260,13 +260,13 @@ def generate_analytics_html(report: dict, recommendations: list) -> str:
             }}
         }});
 
-        // Gráfico: Taxa de Resposta por ATS
+        // Chart: Response Rate by ATS
         new Chart(document.getElementById('atsChart'), {{
             type: 'bar',
             data: {{
                 labels: {json.dumps(ats_labels)},
                 datasets: [{{
-                    label: 'Taxa de Resposta (%)',
+                    label: 'Response Rate (%)',
                     data: {json.dumps(ats_responses)},
                     backgroundColor: '#764ba2',
                     borderColor: '#764ba2',
@@ -280,13 +280,13 @@ def generate_analytics_html(report: dict, recommendations: list) -> str:
             }}
         }});
 
-        // Gráfico: Taxa de Resposta por Tipo de Vaga
+        // Chart: Response Rate by Job Type
         new Chart(document.getElementById('jobChart'), {{
             type: 'bar',
             data: {{
                 labels: {json.dumps(job_labels)},
                 datasets: [{{
-                    label: 'Taxa de Resposta (%)',
+                    label: 'Response Rate (%)',
                     data: {json.dumps(job_responses)},
                     backgroundColor: '#32CD32',
                     borderColor: '#32CD32',
@@ -300,7 +300,7 @@ def generate_analytics_html(report: dict, recommendations: list) -> str:
             }}
         }});
 
-        // Gráfico: Contagem por Indústria
+        // Chart: Count by Industry
         new Chart(document.getElementById('industryCountChart'), {{
             type: 'doughnut',
             data: {{
@@ -331,7 +331,7 @@ def generate_analytics_html(report: dict, recommendations: list) -> str:
 
 
 def generate_recommendations_html(recommendations: list) -> str:
-    """Gera seção HTML com recomendações."""
+    """Generates the HTML section with recommendations."""
     if not recommendations:
         return ""
 
@@ -341,21 +341,21 @@ def generate_recommendations_html(recommendations: list) -> str:
 
     return f"""
         <div class="recommendations">
-            <h2>💡 Recomendações</h2>
+            <h2>💡 Recommendations</h2>
             {items}
         </div>
     """
 
 
 def save_analytics_dashboard():
-    """Gera e salva o dashboard de analytics."""
+    """Generates and saves the analytics dashboard."""
     apps = get_all_applications()
 
     if not apps:
-        print("❌ Nenhuma aplicação registrada ainda")
+        print("❌ No applications registered yet")
         return False
 
-    print(f"Analisando {len(apps)} aplicação(ões)...")
+    print(f"Analyzing {len(apps)} application(s)...")
 
     report = generate_analytics_report(apps)
     recommendations = get_recommendations(report)
@@ -368,12 +368,12 @@ def save_analytics_dashboard():
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)
 
-    # Salva JSON também
+    # Save JSON as well
     json_path = "digests/analytics_report.json"
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
 
-    print(f"\n✅ Analytics dashboard gerado:")
+    print(f"\n✅ Analytics dashboard generated:")
     print(f"   • {output_path}")
     print(f"   • {json_path}")
 

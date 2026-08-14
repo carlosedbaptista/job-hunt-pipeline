@@ -2,9 +2,9 @@
 """
 adzuna_ingestor.py
 
-Busca ativa de vagas via Adzuna API (oficial, gratuita ate 100 calls/dia).
-Cobre a Suica (country=ch) e toda a Europa.
-Saida: data/raw_jobs/adzuna_{data}.json
+Active job search via the Adzuna API (official, free up to 100 calls/day).
+Covers Switzerland (country=ch) and all of Europe.
+Output: data/raw_jobs/adzuna_{date}.json
 
 Docs: https://developer.adzuna.com/
 """
@@ -58,7 +58,7 @@ def fetch_adzuna(what: str, where: str = "Zurich", max_days_old: int = 7) -> Lis
             data = response.json()
 
         results = data.get("results", [])
-        print(f"  🔍 {what[:40]:40} em {where[:15]:15} → {len(results):2} vagas")
+        print(f"  🔍 {what[:40]:40} in {where[:15]:15} → {len(results):2} jobs")
         return results
 
     except httpx.HTTPStatusError as e:
@@ -112,7 +112,7 @@ def save(jobs: List[Dict[str, Any]]) -> str:
 
 def main():
     print("=" * 70)
-    print("🔍 ADZUNA — Busca ativa de vagas (Suica)")
+    print("🔍 ADZUNA — Active job search (Switzerland)")
     print("=" * 70)
 
     all_raw = []
@@ -140,7 +140,7 @@ def main():
     print(f"\n📊 Raw: {len(all_raw)} | Unique: {len(unique)}")
     filepath = save(unique)
 
-    print(f"💾 Salvo: {filepath}")
+    print(f"💾 Saved: {filepath}")
     print("\n🏆 Top 5:")
     for i, job in enumerate(unique[:5], 1):
         print(f"   {i}. [{job['company']}] {job['title']} ({job['location']})")

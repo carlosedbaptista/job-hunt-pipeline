@@ -2,8 +2,8 @@
 """
 jsearch_ingestor.py
 
-Busca ativa de vagas via JSearch API (RapidAPI).
-Saida: data/raw_jobs/jsearch_{data}.json
+Active job search via JSearch API (RapidAPI).
+Output: data/raw_jobs/jsearch_{data}.json
 """
 
 import os
@@ -35,7 +35,7 @@ SEARCH_QUERIES = [
 
 def fetch_jsearch(query: str, page: int = 1) -> List[Dict[str, Any]]:
     if not RAPIDAPI_KEY:
-        print("  ⚠️  RAPIDAPI_KEY nao configurada. Pulando JSearch.")
+        print("  ⚠️  RAPIDAPI_KEY not configured. Skipping JSearch.")
         return []
 
     url = "https://jsearch.p.rapidapi.com/search"
@@ -58,7 +58,7 @@ def fetch_jsearch(query: str, page: int = 1) -> List[Dict[str, Any]]:
             response.raise_for_status()
             data = response.json()
         jobs = data.get("data", [])
-        print(f"  🔍 {query[:45]:45} → {len(jobs):2} vagas")
+        print(f"  🔍 {query[:45]:45} → {len(jobs):2} jobs")
         return jobs
     except httpx.HTTPStatusError as e:
         status = e.response.status_code
@@ -66,12 +66,12 @@ def fetch_jsearch(query: str, page: int = 1) -> List[Dict[str, Any]]:
         if status == 429:
             print(f"  ⚠️  Rate limit.")
         elif status == 401:
-            print(f"  ❌ API Key invalida.")
+            print(f"  ❌ Invalid API key.")
         else:
             print(f"  ❌ HTTP {status}: {body}")
         return []
     except Exception as e:
-        print(f"  ❌ Erro: {e}")
+        print(f"  ❌ Error: {e}")
         return []
 
 
@@ -112,7 +112,7 @@ def save(jobs: List[Dict[str, Any]]) -> str:
 
 def main():
     print("=" * 70)
-    print("🔍 JSEARCH — Busca ativa de vagas")
+    print("🔍 JSEARCH — Active job search")
     print("=" * 70)
 
     all_raw = []
@@ -121,20 +121,20 @@ def main():
         all_raw.extend(jobs)
 
     if not all_raw:
-        print("\n⚠️  Nenhuma vaga. Verifique RAPIDAPI_KEY.")
+        print("\n⚠️  No jobs found. Check RAPIDAPI_KEY.")
         return None
 
     normalized = [normalize_job(j) for j in all_raw]
     unique = deduplicate(normalized)
 
-    print(f"\n📊 Total bruto: {len(all_raw)} | Unicas: {len(unique)}")
+    print(f"\n📊 Raw total: {len(all_raw)} | Unique: {len(unique)}")
     filepath = save(unique)
 
-    print(f"💾 Salvo: {filepath}")
+    print(f"💾 Saved: {filepath}")
     print("\n🏆 Top 5:")
     for i, job in enumerate(unique[:5], 1):
         print(f"   {i}. [{job['company']}] {job['title']}")
-    print("✅ JSearch concluido")
+    print("✅ JSearch completed")
     return filepath
 
 
