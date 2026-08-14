@@ -1,6 +1,6 @@
 import os, sys, json, re, textwrap, time
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
-from utils import load_json, save_json, ensure_dir, now_iso
+from utils import load_json, save_json, ensure_dir, now_iso, THRESHOLD_APPLY
 from kimi_client import KimiClient
 from gdrive_uploader import upload_cv_cl, GDRIVE_AVAILABLE as GDRIVE_UPLOADER_AVAILABLE
 
@@ -227,10 +227,13 @@ def main():
 
     if not evals:
         print("No evaluations found."); return
+    if not profile:
+        print("config/candidate_profile.json missing or invalid (check CANDIDATE_PROFILE_B64 secret) -- skipping doc generation")
+        return
 
     for ev in evals:
-        score = ev.get("score", 0)
-        if score < 80:  # only APPLY jobs get tailored materials
+        score = ev.get("score") or 0  # ERROR evaluations carry score None
+        if score < THRESHOLD_APPLY:  # only APPLY jobs get tailored materials
             continue
         job = ev.get("job", ev)
         title = job.get("titulo", job.get("title", "Job"))
