@@ -1,12 +1,29 @@
 """
 email_notifier.py  --  Sends the daily digest by email via Gmail SMTP
 """
+import html
 import json
 import os
 import smtplib
+import sys
 from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
+from utils import THRESHOLD_APPLY, THRESHOLD_REVIEW
+
+
+def esc(value) -> str:
+    """HTML-escapes a field before interpolation. Job titles/companies come
+    from third-party emails and APIs -- never trust them in HTML."""
+    return html.escape(str(value), quote=True)
+
+
+def safe_url(url) -> str:
+    """Returns the URL only if it uses http(s); blocks javascript: and data:."""
+    u = str(url or "").strip()
+    return u if u.lower().startswith(("http://", "https://")) else ""
 
 
 def load_digest():
@@ -145,14 +162,14 @@ def format_digest_as_html(digest):
     """
 
     for i, job_eval in enumerate(top_jobs, 1):
-        score = job_eval.get("score", 0)
-        empresa = _get_field(job_eval, "empresa")
-        titulo = _get_field(job_eval, "titulo")
-        localizacao = _get_field(job_eval, "localizacao")
-        url = _get_field(job_eval, "url")
-        portal = _get_field(job_eval, "portal")
+        score = job_eval.get("score") or 0
+        empresa = esc(_get_field(job_eval, "empresa"))
+        titulo = esc(_get_field(job_eval, "titulo"))
+        localizacao = esc(_get_field(job_eval, "localizacao"))
+        url = safe_url(_get_field(job_eval, "url", default=""))
+        portal = esc(_get_field(job_eval, "portal"))
 
-        color = "#32CD32" if score >= 80 else "#FFA500" if score >= 70 else "#999"
+        color = "#32CD32" if score >= THRESHOLD_APPLY else "#FFA500" if score >= THRESHOLD_REVIEW else "#999"
 
         html += f"""
                 <div class="job">
@@ -166,9 +183,18 @@ def format_digest_as_html(digest):
                         </span>
                     </div>
         """
-        if url and url != "N/A":
-            html += f'<a href="{url}" class="job-link">View job -&gt;</a>'
+        if url:
+            html += f'<a href="{esc(url)}" class="job-link">View job -&gt;</a>'
         html += "</div>"
+
+    errors = digest.get("evaluation_errors", 0)
+    if errors:
+        html += f"""
+                <div style="margin-top: 20px; padding: 15px; background-color: #fff3e0; border-radius: 8px; border-left: 4px solid #FFA500;">
+                    <strong>{errors} job(s) could not be evaluated</strong> due to API errors
+                    (check Kimi credits and digests/evaluation_errors.txt).
+                </div>
+        """
 
     html += f"""
                 <div style="margin-top: 30px; padding: 20px; background-color: #f0f4ff; border-radius: 8px; border-left: 4px solid #667eea;">

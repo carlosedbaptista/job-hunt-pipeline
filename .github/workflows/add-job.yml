@@ -75,6 +75,11 @@ jobs:
         continue-on-error: true
 
       - name: Commit result
+        env:
+          # Passed via env, never interpolated into the script: inline
+          # ${{ inputs.* }} in run blocks is a shell injection vector.
+          JOB_TITLE: ${{ inputs.title }}
+          JOB_COMPANY: ${{ inputs.company }}
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
@@ -83,5 +88,5 @@ jobs:
             echo "No changes to commit"
             exit 0
           fi
-          git commit -m "chore: manual job evaluation [${{ inputs.title }} @ ${{ inputs.company }}]"
+          git commit -m "chore: manual job evaluation [$JOB_TITLE @ $JOB_COMPANY]"
           git push
