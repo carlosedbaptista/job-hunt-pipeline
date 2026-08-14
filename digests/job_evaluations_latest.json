@@ -1,64 +1,88 @@
 [
   {
-    "score": 55,
+    "score": 62,
     "recommendation": "REVIEW",
-    "key_match_points": [],
+    "key_match_points": [
+      "Moderate. Candidate has Python (academic + applied), AI tools/APIs (Claude, ChatGPT, Kimi), and ongoing Data Science postgraduate studies. However, role likely requires deeper ML frameworks (TensorFlow/PyTorch, scikit-learn) which aren't listed. Academic multi-agent project shows relevant foundation but limited production ML experience."
+    ],
     "red_flags": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "No explicit ML framework experience (PyTorch, TensorFlow, scikit-learn)",
+      "No cloud platform or MLOps tools mentioned",
+      "Internship level but candidate has postgraduate studies and prior internship—may be overqualified or seeking permanent role",
+      "A2 German could limit internal communication in Zurich corporate environment",
+      "No domain knowledge in aviation, engineering, or predictive maintenance"
     ],
     "job": {
       "empresa": "SR Technics Holding",
       "titulo": "Internship: AI & Machine Learning",
       "localizacao": "Zürich",
-      "url": "https://www.adzuna.ch/land/ad/5834453501?se=Slz5aKOX8RGEv9vgDIeD8g&utm_medium=api&utm_source=50d7ee77&v=D704DE5677D7C2B5C1A28D0FE7ECA60EF3C159D7",
+      "url": "https://www.adzuna.ch/land/ad/5834453501?se=1kXDcKeX8RG5ePwGNubQ1Q&utm_medium=api&utm_source=50d7ee77&v=D704DE5677D7C2B5C1A28D0FE7ECA60EF3C159D7",
       "portal": "adzuna"
     },
-    "technical_fit": "Not evaluated (API error)",
-    "contextual_fit": "Not evaluated (API error)",
+    "technical_fit": "Moderate. Candidate has Python (academic + applied), AI tools/APIs (Claude, ChatGPT, Kimi), and ongoing Data Science postgraduate studies. However, role likely requires deeper ML frameworks (TensorFlow/PyTorch, scikit-learn) which aren't listed. Academic multi-agent project shows relevant foundation but limited production ML experience.",
+    "contextual_fit": "Good. Zurich-based internship matches permit B, 2-week notice is irrelevant for internship. Aviation/MRO domain is new to candidate but operations support experience shows adaptability to industrial contexts.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Not evaluated",
+    "culture_fit": "Moderate. Large established industrial company (90 years, 300+ customers) may value structured processes; candidate's freelance/pro bono background suggests flexibility but less corporate exposure. Strong innovation/sustainability messaging aligns with candidate's AI-forward profile.",
     "concerns": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "No explicit ML framework experience (PyTorch, TensorFlow, scikit-learn)",
+      "No cloud platform or MLOps tools mentioned",
+      "Internship level but candidate has postgraduate studies and prior internship—may be overqualified or seeking permanent role",
+      "A2 German could limit internal communication in Zurich corporate environment",
+      "No domain knowledge in aviation, engineering, or predictive maintenance"
     ],
     "decision": "REVIEW",
-    "portuguese_comment": "Check manually via link",
-    "materials_needed": [
-      "cv"
-    ]
+    "portuguese_comment": "Estágio em ML/AI na SR Technics, Zürich. Candidato tem base sólida em Python e APIs de IA, mas falta experiência com frameworks de ML tradicionais e domínio aeronáutico. Perfil de pós-graduação pode ser overqualified para estágio. Vale enviar se buscar transição para área, mas não é match ótimo.",
+    "materials_needed": []
   },
   {
-    "score": 55,
-    "recommendation": "REVIEW",
+    "score": 15,
+    "recommendation": "SKIP",
     "key_match_points": [],
     "red_flags": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "Zero identity/security platform experience (Okta, Azure AD, SailPoint, CyberArk)",
+      "No IAM protocol knowledge (SAML, OAuth, OIDC, SCIM)",
+      "No infrastructure-as-code or cloud platform engineering background (Terraform, AWS/Azure/GCP)",
+      "'Senior' title requires 5+ years specialized experience; candidate has ~2 years mixed non-technical roles",
+      "No evidence of security certifications (CISSP, CISM, or even Security+)",
+      "Python experience is data-oriented, not automation/platform engineering oriented",
+      "Risk of immediate rejection due to keyword mismatch with ATS"
     ],
     "job": {
       "empresa": "Zürich Versicherungs-Gesellschaft AG / Zurich Insurance Company Ltd / Zurich Compagnie d'Assurances SA",
       "titulo": "Senior Platform Engineer - Identity & Security 80-100%",
       "localizacao": "Zürich",
-      "url": "https://www.adzuna.ch/land/ad/5840295435?se=AjVeaaOX8RGhteErNNB1ww&utm_medium=api&utm_source=50d7ee77&v=B1A05C794F6457E48AC0C31157EA9803A7CDB392",
+      "url": "https://www.adzuna.ch/land/ad/5840295435?se=VnQocaeX8RGEv9vgDIeD8g&utm_medium=api&utm_source=50d7ee77&v=B1A05C794F6457E48AC0C31157EA9803A7CDB392",
       "portal": "adzuna"
     },
-    "technical_fit": "Not evaluated (API error)",
-    "contextual_fit": "Not evaluated (API error)",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Not evaluated",
+    "technical_fit": "Very poor. The role requires deep expertise in identity/security platforms (Okta, Azure AD, SailPoint, CyberArk), IAM protocols (SAML, OAuth, OIDC), and infrastructure as code (Terraform, Ansible). The candidate has zero demonstrated experience in these areas. Their technical stack is data analysis, NetSuite, and basic web development — completely misaligned with platform engineering and cybersecurity.",
+    "contextual_fit": "Moderate on surface, poor in substance. Zurich location and English-language role match the candidate's constraints. However, the 'Senior' level and specialized security domain make this a massive stretch. The candidate's 2-week notice and permit B are logistical positives, but irrelevant given the skill mismatch.",
+    "salary_estimate": "CHF 120,000 - 160,000 (typical range for senior platform engineering roles at large insurers in Zurich)",
+    "culture_fit": "Unknown. Large corporate insurance environment with strict compliance/regulatory culture. Candidate's background in startups, pro bono work, and freelance operations doesn't clearly align or conflict — but the seniority expectation and formal structure may be challenging.",
     "concerns": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "Zero identity/security platform experience (Okta, Azure AD, SailPoint, CyberArk)",
+      "No IAM protocol knowledge (SAML, OAuth, OIDC, SCIM)",
+      "No infrastructure-as-code or cloud platform engineering background (Terraform, AWS/Azure/GCP)",
+      "'Senior' title requires 5+ years specialized experience; candidate has ~2 years mixed non-technical roles",
+      "No evidence of security certifications (CISSP, CISM, or even Security+)",
+      "Python experience is data-oriented, not automation/platform engineering oriented",
+      "Risk of immediate rejection due to keyword mismatch with ATS"
     ],
-    "decision": "REVIEW",
-    "portuguese_comment": "Check manually via link",
-    "materials_needed": [
-      "cv"
-    ]
+    "decision": "SKIP",
+    "portuguese_comment": "Vaga sênior em engenharia de plataforma de identidade e segurança — domínio técnico completamente ausente no perfil do candidato. Experiência em Python é para dados, não automação de infraestrutura. Sem conhecimento em IAM, SAML, OAuth, Terraform, ou qualquer ferramenta de segurança. Localização e idioma combinam, mas o gap técnico é intransponível para uma posição sênior. Não aplicar.",
+    "materials_needed": []
   },
   {
-    "score": 55,
+    "score": 68,
     "recommendation": "REVIEW",
-    "key_match_points": [],
+    "key_match_points": [
+      "Moderate. The candidate has relevant ERP experience (Oracle NetSuite), Python for automation pipelines, and AI tools/APIs (Claude, ChatGPT) that align with BLP's agentic AI focus. However, this is an Engineering internship requiring likely deeper SWE skills (the role may expect more systems/backend engineering), and the candidate's Python is academic/applied rather than production-grade. JavaScript/Node.js is relevant but SuiteScript is NetSuite-specific."
+    ],
     "red_flags": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "Role level mismatch: Candidate has substantial work experience and postgraduate studies; may be overqualified for internship",
+      "Engineering vs. Analytics tilt: Job is 'Engineering' internship; candidate profile is stronger on business/data side than core software engineering",
+      "No explicit German mention in requirements, but A2 German may limit integration in Swiss-German founded company",
+      "NetSuite (ERP) vs. SAP/generic ERP: BLP likely SAP-focused given Swiss enterprise market; candidate's Oracle NetSuite may not transfer directly",
+      "Postgraduate studies until 2026 suggest limited full-time availability post-internship"
     ],
     "job": {
       "empresa": "BLP Digital AG",
@@ -67,25 +91,31 @@
       "url": "https://www.adzuna.ch/details/5839017723?utm_medium=api&utm_source=50d7ee77",
       "portal": "adzuna"
     },
-    "technical_fit": "Not evaluated (API error)",
-    "contextual_fit": "Not evaluated (API error)",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Not evaluated",
+    "technical_fit": "Moderate. The candidate has relevant ERP experience (Oracle NetSuite), Python for automation pipelines, and AI tools/APIs (Claude, ChatGPT) that align with BLP's agentic AI focus. However, this is an Engineering internship requiring likely deeper SWE skills (the role may expect more systems/backend engineering), and the candidate's Python is academic/applied rather than production-grade. JavaScript/Node.js is relevant but SuiteScript is NetSuite-specific.",
+    "contextual_fit": "Good. ETH Zurich/HSG spinout in Zürich matches candidate's location and permit situation. The candidate's 2-week notice is ideal for internship timing. Their pro bono analytics work and Coople freelancing show adaptability. Postgraduate Data Science studies (until 2026) fit internship structure. However, candidate appears career-experienced (not typical intern profile) and may be overqualified or seeking wrong level.",
+    "salary_estimate": "CHF 2,500-3,500/month (typical Zurich tech internship range)",
+    "culture_fit": "Moderate-Positive. Startup/scale-up environment with \"strong sense of ownership\" matches candidate's freelance background and multi-role experience. AI-first culture aligns with their certifications (Claude, Google AI). Enterprise customer focus matches their NetSuite enterprise exposure.",
     "concerns": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "Role level mismatch: Candidate has substantial work experience and postgraduate studies; may be overqualified for internship",
+      "Engineering vs. Analytics tilt: Job is 'Engineering' internship; candidate profile is stronger on business/data side than core software engineering",
+      "No explicit German mention in requirements, but A2 German may limit integration in Swiss-German founded company",
+      "NetSuite (ERP) vs. SAP/generic ERP: BLP likely SAP-focused given Swiss enterprise market; candidate's Oracle NetSuite may not transfer directly",
+      "Postgraduate studies until 2026 suggest limited full-time availability post-internship"
     ],
     "decision": "REVIEW",
-    "portuguese_comment": "Check manually via link",
-    "materials_needed": [
-      "cv"
-    ]
+    "portuguese_comment": "Vaga interessante em Zurique com foco em IA agentiva para ERP, alinhada à experiência NetSuite e certificações em IA do candidato. Porém, é estágio de Engenharia e o perfil é mais analista/dados; experiência pode ser excessiva para nível de estágio. Recomendo revisar descrição completa da vaga para confirmar se aceita perfis mais seniores ou híbridos, e se há possibilidade de contratação após o estágio dado o período de pós-graduação até 2026.",
+    "materials_needed": []
   },
   {
-    "score": 55,
-    "recommendation": "REVIEW",
+    "score": 32,
+    "recommendation": "SKIP",
     "key_match_points": [],
     "red_flags": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "Zero GTM, sales enablement, or revenue operations experience",
+      "No CRM platform expertise (Salesforce/HubSpot) listed—core requirement",
+      "'Founding' implies senior individual contributor or leader; candidate's experience level is junior/mid",
+      "NetSuite background is ERP-side, not customer-facing GTM for ERP automation sales",
+      "Postgraduate studies until 2026 suggest limited full-time availability"
     ],
     "job": {
       "empresa": "BLP Digital AG",
@@ -94,25 +124,32 @@
       "url": "https://www.adzuna.ch/details/5835047193?utm_medium=api&utm_source=50d7ee77",
       "portal": "adzuna"
     },
-    "technical_fit": "Not evaluated (API error)",
-    "contextual_fit": "Not evaluated (API error)",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Not evaluated",
+    "technical_fit": "Poor. Role requires deep GTM/enablement expertise (sales methodology, Salesforce/HubSpot, content strategy, revenue operations) which candidate lacks. Technical skills (Python, NetSuite, Power BI) are misaligned with enablement tooling stack.",
+    "contextual_fit": "Weak. 'Founding' role implies building function from scratch with senior-level GTM experience. Candidate's background is data/ops analytics with no sales, customer success, or revenue team enablement exposure. Swiss permit B and Zurich location match.",
+    "salary_estimate": "CHF 110,000 - 150,000 (typical for founding enablement roles at ETH spin-offs)",
+    "culture_fit": "Moderate mismatch. Startup ownership mentality fits, but role demands enterprise SaaS GTM fluency and cross-functional leadership with sales/marketing teams—untested in candidate's profile.",
     "concerns": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "Zero GTM, sales enablement, or revenue operations experience",
+      "No CRM platform expertise (Salesforce/HubSpot) listed—core requirement",
+      "'Founding' implies senior individual contributor or leader; candidate's experience level is junior/mid",
+      "NetSuite background is ERP-side, not customer-facing GTM for ERP automation sales",
+      "Postgraduate studies until 2026 suggest limited full-time availability"
     ],
-    "decision": "REVIEW",
-    "portuguese_comment": "Check manually via link",
-    "materials_needed": [
-      "cv"
-    ]
+    "decision": "SKIP",
+    "portuguese_comment": "Vaga de GTM Enablement exige experiência em vendas/enablement que o candidato não possui. Perfil técnico em dados/NetSuite não alinha com função de fundador de enablement. Localização e permissão combinam, mas fit muito fraco.",
+    "materials_needed": []
   },
   {
-    "score": 55,
+    "score": 68,
     "recommendation": "REVIEW",
-    "key_match_points": [],
+    "key_match_points": [
+      "Good. Python (academic + applied) and AI tools/APIs (Claude, ChatGPT) align well with BLP's agentic AI focus. ERP automation experience via NetSuite (Oracle) is directly relevant. Missing: no explicit RPA/ERP automation tools like UiPath, SAP, or Microsoft Power Automate mentioned."
+    ],
     "red_flags": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "Title says 'Business' but description is heavily technical/AI — candidate may need to clarify if role is business-facing or technical",
+      "No formal corporate experience; mostly freelance/pro bono + internship",
+      "German only A2; role may require German given Swiss enterprise clients",
+      "Postgraduate studies until 2026 may limit full-time commitment post-internship"
     ],
     "job": {
       "empresa": "BLP Digital AG",
@@ -121,25 +158,31 @@
       "url": "https://www.adzuna.ch/details/5834044156?utm_medium=api&utm_source=50d7ee77",
       "portal": "adzuna"
     },
-    "technical_fit": "Not evaluated (API error)",
-    "contextual_fit": "Not evaluated (API error)",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Not evaluated",
+    "technical_fit": "Good. Python (academic + applied) and AI tools/APIs (Claude, ChatGPT) align well with BLP's agentic AI focus. ERP automation experience via NetSuite (Oracle) is directly relevant. Missing: no explicit RPA/ERP automation tools like UiPath, SAP, or Microsoft Power Automate mentioned.",
+    "contextual_fit": "Strong. ETH/HSG spin-out in Zurich matches candidate's location (Zurich area, Swiss B permit). 2-week notice is excellent for internship timing. Startup/scale-up environment fits pro bono/freelance background. Postgraduate Data Science studies show upward trajectory.",
+    "salary_estimate": "CHF 2,500 - 3,500/month (typical Zurich tech internship range)",
+    "culture_fit": "Good match. BLP emphasizes ownership, cutting-edge tech, solving real problems — aligns with candidate's multi-agent pipeline project and self-driven pro bono work. International team fits multilingual profile (PT/EN/ES/DE).",
     "concerns": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "Title says 'Business' but description is heavily technical/AI — candidate may need to clarify if role is business-facing or technical",
+      "No formal corporate experience; mostly freelance/pro bono + internship",
+      "German only A2; role may require German given Swiss enterprise clients",
+      "Postgraduate studies until 2026 may limit full-time commitment post-internship"
     ],
     "decision": "REVIEW",
-    "portuguese_comment": "Check manually via link",
-    "materials_needed": [
-      "cv"
-    ]
+    "portuguese_comment": "Bom alinhamento técnico com IA e automação ERP, mas necessita esclarecer se a vaga é mais comercial ou técnica. Permissão de trabalho e localização são ideais. Candidatura válida após verificar requisitos de idioma e carga horária compatível com pós-graduação.",
+    "materials_needed": []
   },
   {
-    "score": 55,
+    "score": 68,
     "recommendation": "REVIEW",
-    "key_match_points": [],
+    "key_match_points": [
+      "Good. Python (academic + applied with multi-agent pipeline) aligns with BLP's agentic AI focus. NetSuite/ERP experience is highly relevant for ERP automation company. Power BI and data modeling skills fit business analytics needs. Missing: no explicit ML/AI framework experience (PyTorch, LangChain, etc.), though Claude API exposure helps."
+    ],
     "red_flags": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "Role is internship-level; candidate has significant applied experience (NetSuite dev, multi-agent pipeline, pro bono consulting) that may be underleveraged",
+      "No German fluency; Zurich startup may have German-speaking clients/internal communication",
+      "No explicit RAG, LLM orchestration, or enterprise AI deployment experience beyond API usage",
+      "Postgraduate studies until 2026 suggests part-time availability constraint"
     ],
     "job": {
       "empresa": "BLP Digital",
@@ -148,25 +191,32 @@
       "url": "https://www.adzuna.ch/details/5834956312?utm_medium=api&utm_source=50d7ee77",
       "portal": "adzuna"
     },
-    "technical_fit": "Not evaluated (API error)",
-    "contextual_fit": "Not evaluated (API error)",
+    "technical_fit": "Good. Python (academic + applied with multi-agent pipeline) aligns with BLP's agentic AI focus. NetSuite/ERP experience is highly relevant for ERP automation company. Power BI and data modeling skills fit business analytics needs. Missing: no explicit ML/AI framework experience (PyTorch, LangChain, etc.), though Claude API exposure helps.",
+    "contextual_fit": "Strong. ETH/HSG spin-out in Zurich matches candidate's Zurich location and B-permit. Startup environment with \"strong sense of ownership\" fits pro bono/freelance background. 2-week notice is excellent for internship. Postgraduate Data Science studies show growth trajectory aligned with company's cutting-edge positioning.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Not evaluated",
+    "culture_fit": "Good. Candidate's mixed academic/applied background, pro bono work, and freelance flexibility suggest adaptability and hustle needed at early-stage startup. Multi-agent project shows self-directed learning. However, pure internship role may underutilize experience level.",
     "concerns": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "Role is internship-level; candidate has significant applied experience (NetSuite dev, multi-agent pipeline, pro bono consulting) that may be underleveraged",
+      "No German fluency; Zurich startup may have German-speaking clients/internal communication",
+      "No explicit RAG, LLM orchestration, or enterprise AI deployment experience beyond API usage",
+      "Postgraduate studies until 2026 suggests part-time availability constraint"
     ],
     "decision": "REVIEW",
-    "portuguese_comment": "Check manually via link",
-    "materials_needed": [
-      "cv"
-    ]
+    "portuguese_comment": "Boa aderência técnica com ERP/NetSuite e Python, mas vaga de estágio pode subutilizar experiência. Empresa ETH/HSG em Zurique combina bem com perfil e permissão B. Recomendo revisar se há possibilidade de posição junior ou estágio com perspectiva de conversão, dado o background sólido.",
+    "materials_needed": []
   },
   {
-    "score": 55,
-    "recommendation": "REVIEW",
+    "score": 5,
+    "recommendation": "SKIP",
     "key_match_points": [],
     "red_flags": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "Massive seniority gap: Staff Engineer vs. candidate's junior experience",
+      "Zero C/C++ or systems programming in skillset",
+      "No kernel, performance engineering, or ML infrastructure background",
+      "Postgraduate studies until 2026 indicates not available for full-time demanding role",
+      "Likely visa/sponsorship complexity despite Swiss B permit for Google-level compensation",
+      "Role is pure SWE (systems/performance), candidate is data/business analyst profile",
+      "San Francisco conviction record note suggests US-heavy role, Zurich may be secondary location"
     ],
     "job": {
       "empresa": "Job-Room",
@@ -175,25 +225,36 @@
       "url": "https://www.adzuna.ch/details/5833385584?utm_medium=api&utm_source=50d7ee77",
       "portal": "adzuna"
     },
-    "technical_fit": "Not evaluated (API error)",
-    "contextual_fit": "Not evaluated (API error)",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Not evaluated",
+    "technical_fit": "Extremely poor. Role requires deep expertise in kernel-level systems, performance engineering, C/C++, and low-level optimization for ML infrastructure. Candidate has Python (academic), JavaScript/Node.js, and business analytics skills—no systems programming, kernel, or hardware-level experience.",
+    "contextual_fit": "Poor. DeepMind Staff SWE roles require PhD-level or equivalent industry experience in high-performance computing/ML systems. Candidate is early-career with freelance/pro bono experience, pursuing postgraduate studies, and has 2-week notice suggesting junior/entry-level status. 'Staff' level implies 8+ years of specialized systems engineering.",
+    "salary_estimate": "CHF 250k-400k+ (Google L6-L7 equivalent)",
+    "culture_fit": "Mismatch. DeepMind engineering culture demands research-minded systems engineers who can publish and build cutting-edge infrastructure. Candidate's profile is business/data-oriented, not research/engineering-oriented.",
     "concerns": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "Massive seniority gap: Staff Engineer vs. candidate's junior experience",
+      "Zero C/C++ or systems programming in skillset",
+      "No kernel, performance engineering, or ML infrastructure background",
+      "Postgraduate studies until 2026 indicates not available for full-time demanding role",
+      "Likely visa/sponsorship complexity despite Swiss B permit for Google-level compensation",
+      "Role is pure SWE (systems/performance), candidate is data/business analyst profile",
+      "San Francisco conviction record note suggests US-heavy role, Zurich may be secondary location"
     ],
-    "decision": "REVIEW",
-    "portuguese_comment": "Check manually via link",
-    "materials_needed": [
-      "cv"
-    ]
+    "decision": "SKIP",
+    "portuguese_comment": "Vaga completamente incompatível. É posição sênior de engenharia de sistemas/kernel na DeepMind; candidato tem perfil de analista de dados/negócios júnior. Skip imediato.",
+    "materials_needed": []
   },
   {
-    "score": 55,
+    "score": 62,
     "recommendation": "REVIEW",
-    "key_match_points": [],
+    "key_match_points": [
+      "Moderate. Candidate has Python (including multi-agent pipeline project), AI tools/APIs experience (Claude API, ChatGPT), and JavaScript/Node.js — all relevant to Porters' AI agent platform. However, lacks explicit backend engineering at scale, no mention of TypeScript, cloud infrastructure, or financial/regulatory domain experience. The multi-agent project is a strong signal, but overall profile leans more data/analytics than product engineering."
+    ],
     "red_flags": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "No banking/financial services or regulated industry experience",
+      "No clear full-time professional software engineering role; mostly internships, freelance, and pro bono",
+      "Postgraduate studies ongoing until 2026 — availability and focus questions",
+      "No TypeScript, cloud platforms (AWS/GCP), or infrastructure experience mentioned",
+      "NetSuite/SuiteScript specialization is niche and not obviously transferable",
+      "Digital marketing role (even pro bono) dilutes engineering narrative"
     ],
     "job": {
       "empresa": "Porters",
@@ -202,25 +263,34 @@
       "url": "https://www.adzuna.ch/details/5835046770?utm_medium=api&utm_source=50d7ee77",
       "portal": "adzuna"
     },
-    "technical_fit": "Not evaluated (API error)",
-    "contextual_fit": "Not evaluated (API error)",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Not evaluated",
+    "technical_fit": "Moderate. Candidate has Python (including multi-agent pipeline project), AI tools/APIs experience (Claude API, ChatGPT), and JavaScript/Node.js — all relevant to Porters' AI agent platform. However, lacks explicit backend engineering at scale, no mention of TypeScript, cloud infrastructure, or financial/regulatory domain experience. The multi-agent project is a strong signal, but overall profile leans more data/analytics than product engineering.",
+    "contextual_fit": "Mixed. Zurich-based with valid permit and short notice period are strong pluses. However, Porters is a startup building AI agents for banking — candidate's experience is split across pro bono digital marketing, freelancing operations support, and a NetSuite internship. No fintech/banking exposure, no startup experience, and still in postgraduate studies until 2026 suggests limited full-time professional depth.",
+    "salary_estimate": "CHF 90k-120k (typical Zurich startup product engineer range, likely equity component)",
+    "culture_fit": "Uncertain. Porters is solving tedious, regulated banking work with AI — likely fast-paced, high ownership, engineering-first culture. Candidate's scattered experience (marketing, operations, NetSuite) and part-time pro bono work suggest unclear trajectory. Strong self-starter signal from multi-agent project and AI certifications, but may struggle with senior engineering expectations.",
     "concerns": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "No banking/financial services or regulated industry experience",
+      "No clear full-time professional software engineering role; mostly internships, freelance, and pro bono",
+      "Postgraduate studies ongoing until 2026 — availability and focus questions",
+      "No TypeScript, cloud platforms (AWS/GCP), or infrastructure experience mentioned",
+      "NetSuite/SuiteScript specialization is niche and not obviously transferable",
+      "Digital marketing role (even pro bono) dilutes engineering narrative"
     ],
     "decision": "REVIEW",
-    "portuguese_comment": "Check manually via link",
-    "materials_needed": [
-      "cv"
-    ]
+    "portuguese_comment": "Perfil com potencial mas arriscado: experiência em Python e APIs de IA é relevante para agentes de IA, mas falta engenharia de produto sólida, experiência em fintech/bancos e trajetória profissional consistente. Vale entrevista se buscam perfil júnior com aptidão para IA, mas não é match óbvio.",
+    "materials_needed": []
   },
   {
-    "score": 55,
-    "recommendation": "REVIEW",
+    "score": 35,
+    "recommendation": "SKIP",
     "key_match_points": [],
     "red_flags": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "Title inflation risk: 'Founding Engineer/Tech Lead' requires 5-10y experience typically; candidate appears <3y",
+      "No fintech/banking/regulatory domain knowledge (core to product)",
+      "No evidence of production AI/ML systems or infrastructure engineering",
+      "Part-time pro bono + freelance history doesn't signal startup intensity",
+      "Postgraduate studies until 2026 creates time conflict with founding role",
+      "No mention of Go/Rust/K8s/cloud infrastructure likely needed for this platform",
+      "A2 German limits client-facing regulatory work in Swiss banking context"
     ],
     "job": {
       "empresa": "Porters",
@@ -229,17 +299,21 @@
       "url": "https://www.adzuna.ch/details/5835046521?utm_medium=api&utm_source=50d7ee77",
       "portal": "adzuna"
     },
-    "technical_fit": "Not evaluated (API error)",
-    "contextual_fit": "Not evaluated (API error)",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Not evaluated",
+    "technical_fit": "Mismatched. Role requires senior/lead-level engineering (building core platform, likely distributed systems, security/compliance architecture) and hands-on AI agent infrastructure at production scale. Candidate has academic Python (multi-agent pipeline) and no evidence of production backend systems, fintech experience, or team leadership. NetSuite/JS background is irrelevant to this stack.",
+    "contextual_fit": "Poor. 'Founding Engineer / Tech Lead' implies equity-bearing, high-ownership, hire-and-build-team role at seed-stage fintech. Candidate is early-career (internship + freelance + pro bono), 2-week notice suggests job-seeking urgency not founder-level commitment, and no Zurich fintech/regulatory domain knowledge. Postgrad studies until 2026 signal availability constraints.",
+    "salary_estimate": "CHF 120k-160k + significant equity (typical seed-stage lead in Zurich)",
+    "culture_fit": "Doubtful. Startup demands extreme ownership, rapid iteration, and likely 50-60h weeks. Candidate's profile suggests structured learning path (certifications, part-time pro bono, multi-year degree) rather than burn-the-ships founding energy.",
     "concerns": [
-      "API error: RuntimeError: Kimi failed after all models: Kimi API: all URLs failed"
+      "Title inflation risk: 'Founding Engineer/Tech Lead' requires 5-10y experience typically; candidate appears <3y",
+      "No fintech/banking/regulatory domain knowledge (core to product)",
+      "No evidence of production AI/ML systems or infrastructure engineering",
+      "Part-time pro bono + freelance history doesn't signal startup intensity",
+      "Postgraduate studies until 2026 creates time conflict with founding role",
+      "No mention of Go/Rust/K8s/cloud infrastructure likely needed for this platform",
+      "A2 German limits client-facing regulatory work in Swiss banking context"
     ],
-    "decision": "REVIEW",
-    "portuguese_comment": "Check manually via link",
-    "materials_needed": [
-      "cv"
-    ]
+    "decision": "SKIP",
+    "portuguese_comment": "Vaga de 'Founding Engineer' exige perfil sênior com experiência em fintech/infraestrutura de IA em produção. Candidato é iniciante, com histórico de freelance/pro bono e formação em andamento. Nível técnico e de maturidade profissional inadequados para liderança técnica em startup de fase inicial. Melhor focar em vagas de analista júnior ou data analyst.",
+    "materials_needed": []
   }
 ]
