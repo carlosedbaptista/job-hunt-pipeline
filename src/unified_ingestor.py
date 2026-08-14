@@ -106,6 +106,7 @@ def normalize_to_legacy(job: Dict[str, Any]) -> Dict[str, Any]:
 
 
 from utils import deduplicate_jobs
+from deduplicator import filter_new_jobs
 
 
 def save_unified(jobs: List[Dict[str, Any]]) -> str:
@@ -118,13 +119,23 @@ def save_unified(jobs: List[Dict[str, Any]]) -> str:
 
 
 def save_legacy_format(jobs: List[Dict[str, Any]]) -> str:
-    """Saves in the format the legacy pipeline (evaluator, digest, etc.) expects."""
+    """Saves in the format the legacy pipeline (evaluator, digest, etc.) expects.
+
+    Applies the persistent (SQLite) deduplication: jobs already seen in a
+    previous run within the retention window are filtered out, so the
+    evaluator only spends API calls on genuinely new jobs.
+    """
     os.makedirs("digests", exist_ok=True)
     filepath = "digests/new_jobs_latest.json"
     legacy_jobs = [normalize_to_legacy(j) for j in jobs]
+
+    fresh_jobs = filter_new_jobs(legacy_jobs)
+    already_seen = len(legacy_jobs) - len(fresh_jobs)
+    print(f"  🔁 Cross-run dedup: {len(fresh_jobs)} new | {already_seen} already seen (tracker/jobs.db)")
+
     with open(filepath, "w", encoding="utf-8") as f:
-        json.dump(legacy_jobs, f, ensure_ascii=False, indent=2)
-    print(f"  💾 {len(legacy_jobs)} jobs (legacy format) → {filepath}")
+        json.dump(fresh_jobs, f, ensure_ascii=False, indent=2)
+    print(f"  💾 {len(fresh_jobs)} jobs (legacy format) → {filepath}")
     return filepath
 
 

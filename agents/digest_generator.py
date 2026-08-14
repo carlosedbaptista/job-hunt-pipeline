@@ -3,7 +3,11 @@ digest_generator.py  --  Generates a daily digest with the top N evaluated jobs
 """
 import json
 import os
+import sys
 from datetime import datetime
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
+from utils import THRESHOLD_APPLY, THRESHOLD_REVIEW
 
 
 def load_evaluations():
@@ -43,13 +47,19 @@ def generate_digest(max_jobs=5):
         print("X No jobs evaluated. Run first: python agents/job_evaluator.py")
         return None
 
-    sorted_evals = sorted(evaluations, key=lambda x: x.get("score", 0), reverse=True)
+    # ERROR entries (API failures, score None) are excluded from the ranking:
+    # they carry no signal and once polluted 8 weeks of history as fake 55s.
+    scored = [e for e in evaluations if e.get("score") is not None and e.get("decision") != "ERROR"]
+    errors = len(evaluations) - len(scored)
+
+    sorted_evals = sorted(scored, key=lambda x: x.get("score") or 0, reverse=True)
     top_jobs = sorted_evals[:max_jobs]
 
     timestamp = datetime.now()
     digest = {
         "generated_at": timestamp.isoformat(),
-        "total_evaluated": len(evaluations),
+        "total_evaluated": len(scored),
+        "evaluation_errors": errors,
         "top_jobs": top_jobs,
     }
     return digest, top_jobs
@@ -63,6 +73,9 @@ def format_digest_text(digest, top_jobs):
     lines.append("=" * 70)
     lines.append("")
     lines.append(f"Total jobs evaluated: {digest['total_evaluated']}")
+    if digest.get("evaluation_errors"):
+        lines.append(f"!! NOT evaluated (API errors): {digest['evaluation_errors']} "
+                     f"-- check digests/evaluation_errors.txt and API credits")
     lines.append("")
     lines.append("TOP JOBS (sorted by fit score):")
     lines.append("-" * 70)
@@ -77,7 +90,7 @@ def format_digest_text(digest, top_jobs):
         url = _get_job_field(job_eval, "url")
         portal = _get_job_field(job_eval, "portal")
 
-        icon = ">>>" if score >= 80 else "!!" if score >= 70 else "XXX"
+        icon = ">>>" if score >= THRESHOLD_APPLY else "!!" if score >= THRESHOLD_REVIEW else "XXX"
 
         lines.append("")
         lines.append(f"{i}. {icon} [{score}/100] {empresa}")
