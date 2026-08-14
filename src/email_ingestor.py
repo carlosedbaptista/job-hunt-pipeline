@@ -91,7 +91,7 @@ def fetch_job_alert_emails(hours_back: int = 24, max_results: int = 50) -> list[
         print("GMAIL_SENDER or GMAIL_APP_PASSWORD not set.")
         return []
 
-    print(f"Connecting to Gmail IMAP as {GMAIL_SENDER}...")
+    print("Connecting to Gmail IMAP...")
 
     try:
         mail = imaplib.IMAP4_SSL("imap.gmail.com")
