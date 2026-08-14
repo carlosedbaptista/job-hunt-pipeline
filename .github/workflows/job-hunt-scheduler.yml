@@ -72,11 +72,13 @@ jobs:
       - name: Evaluate job fit with AI
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
+          KIMI_BASE_URL: ${{ secrets.KIMI_BASE_URL }}
         run: python agents/job_evaluator.py
 
       - name: Generate daily digest
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
+          KIMI_BASE_URL: ${{ secrets.KIMI_BASE_URL }}
         run: python src/week4_pipeline.py --digest-only
 
       - name: Generate dashboard
@@ -88,6 +90,7 @@ jobs:
         if: always()
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
+          KIMI_BASE_URL: ${{ secrets.KIMI_BASE_URL }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
