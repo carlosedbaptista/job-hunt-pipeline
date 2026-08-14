@@ -37,13 +37,15 @@ def deduplicate_jobs(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 
 
 def load_json(filepath: str, default: Any = None) -> Any:
-    """Load JSON from file, return default if file missing or invalid."""
+    """Load JSON from file, return default if file missing or invalid.
+    ValueError covers JSONDecodeError AND UnicodeDecodeError (a corrupt
+    secret-restored file once crashed doc_generator with the latter)."""
     if not os.path.exists(filepath):
         return default
     try:
         with open(filepath, "r", encoding="utf-8") as f:
             return json.load(f)
-    except (json.JSONDecodeError, IOError):
+    except (ValueError, OSError):
         return default
 
 

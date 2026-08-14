@@ -33,21 +33,40 @@ jobs:
           CV_MODEL_B64: ${{ secrets.CV_MODEL_B64 }}
           CL_MODEL_B64: ${{ secrets.CL_MODEL_B64 }}
         run: |
+          # Tolerant restore: strips whitespace/CR before decoding, validates
+          # the result (UTF-8/JSON), and degrades with a warning instead of
+          # failing the whole run when a secret is malformed.
+          restore_b64() {
+            local name="$1" dest="$2" kind="${3:-binary}"
+            local val="${!name}"
+            if [ -z "$val" ]; then
+              echo "$name not configured -- skipping $dest"
+              return 0
+            fi
+            if ! printf '%s' "$val" | tr -d ' \t\r\n' | base64 -d > "$dest" 2>/dev/null; then
+              echo "::warning::$name is not valid base64 -- $dest not restored. Re-create the secret from the raw file bytes without line wraps."
+              rm -f "$dest"
+              return 0
+            fi
+            # The NUL check catches UTF-16 files, whose ASCII portion would
+            # otherwise pass plain UTF-8 validation
+            if [ "$kind" = "text" ] && ! python -c "b=open('$dest','rb').read(); b.decode('utf-8'); assert b'\x00' not in b" 2>/dev/null; then
+              echo "::warning::$name decoded but is not valid UTF-8 text -- $dest removed. Encode the file as UTF-8 before base64."
+              rm -f "$dest"
+              return 0
+            fi
+            if [ "$kind" = "json" ] && ! python -c "import json; json.load(open('$dest', encoding='utf-8'))" 2>/dev/null; then
+              echo "::warning::$name decoded but is not valid UTF-8 JSON -- $dest removed. Encode the file as UTF-8 before base64."
+              rm -f "$dest"
+              return 0
+            fi
+            echo "Restored $dest"
+          }
           mkdir -p config
-          if [ -n "$CANDIDATE_PROFILE_B64" ]; then
-            echo "$CANDIDATE_PROFILE_B64" | base64 -d > config/candidate_profile.json
-          else
-            echo "CANDIDATE_PROFILE_B64 not configured -- using fallback without PII"
-          fi
-          if [ -n "$CANDIDATE_PHOTO_B64" ]; then
-            echo "$CANDIDATE_PHOTO_B64" | base64 -d > config/photo.jpg
-          fi
-          if [ -n "$CV_MODEL_B64" ]; then
-            echo "$CV_MODEL_B64" | base64 -d > config/cv_model.txt
-          fi
-          if [ -n "$CL_MODEL_B64" ]; then
-            echo "$CL_MODEL_B64" | base64 -d > config/cover_letter_model.txt
-          fi
+          restore_b64 CANDIDATE_PROFILE_B64 config/candidate_profile.json json
+          restore_b64 CANDIDATE_PHOTO_B64 config/photo.jpg binary
+          restore_b64 CV_MODEL_B64 config/cv_model.txt text
+          restore_b64 CL_MODEL_B64 config/cover_letter_model.txt text
 
       - name: Fetch Adzuna jobs
         env:
