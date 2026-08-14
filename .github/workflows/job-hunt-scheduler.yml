@@ -35,7 +35,7 @@ jobs:
             echo "CANDIDATE_PROFILE_B64 not configured -- using fallback without PII"
           fi
           if [ -n "$CANDIDATE_PHOTO_B64" ]; then
-            echo "$CANDIDATE_PHOTO_B64" | base64 -d > config/photo.png
+            echo "$CANDIDATE_PHOTO_B64" | base64 -d > config/photo.jpg
           fi
           if [ -n "$CV_MODEL_B64" ]; then
             echo "$CV_MODEL_B64" | base64 -d > config/cv_model.txt
