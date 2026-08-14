@@ -230,7 +230,7 @@ def main():
 
     for ev in evals:
         score = ev.get("score", 0)
-        if score < 45:
+        if score < 75:  # only APPLY jobs get tailored materials
             continue
         job = ev.get("job", ev)
         title = job.get("titulo", job.get("title", "Job"))
@@ -244,8 +244,12 @@ def main():
 
         print(f"[doc_generator] Generating for {title} @ {company} (score {score})")
 
-        summary = _generate_summary(client, profile, title, company, desc)
-        letter = _generate_cover_letter(client, profile, title, company, location, desc, score)
+        try:
+            summary = _generate_summary(client, profile, title, company, desc)
+            letter = _generate_cover_letter(client, profile, title, company, location, desc, score)
+        except Exception as e:
+            print(f"  [doc_generator] API error for {company} -- skipping ({type(e).__name__}: {str(e)[:120]})")
+            continue
         time.sleep(1.5)
 
         if FPDF_AVAILABLE:

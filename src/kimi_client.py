@@ -13,9 +13,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 KIMI_API_KEY = os.environ.get("KIMI_API_KEY", "")
-# Try international endpoint first, then China
+# Try international endpoint first, then China.
+# Set KIMI_BASE_URL to force the platform where YOUR key was created
+# (a .cn key returns 401 on .ai and vice versa).
 KIMI_BASE_URLS = [
-    os.environ.get("KIMI_BASE_URL", "https://api.moonshot.ai/v1"),
+    os.environ.get("KIMI_BASE_URL") or "https://api.moonshot.ai/v1",
     "https://api.moonshot.cn/v1",
 ]
 # moonshot-v1-* sunsets on 2026-08-31 -> kimi-k2.6 becomes the primary
