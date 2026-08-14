@@ -181,15 +181,17 @@ def get_template_head():
         <p>Automated job search & evaluation pipeline</p>
     </header>
 
-    <!-- Candidate Profile (anonymized -- this HTML goes to a public repo) -->
+    <!-- Candidate Profile (only data the owner explicitly chose to show) -->
     <div class="card" style="margin-bottom: 20px;">
         <h3>Candidate Profile</h3>
         <div class="profile">
-            <div class="profile-item"><strong>Role</strong>Data/Business Analyst</div>
+            <div class="profile-item"><strong>Name</strong>Carlos Baptista</div>
+            <div class="profile-item"><strong>Role</strong>AI &amp; Data Engineer Intern</div>
             <div class="profile-item"><strong>Location</strong>Zürich Area, CH</div>
             <div class="profile-item"><strong>Permit</strong>Swiss Work Permit B (valid)</div>
             <div class="profile-item"><strong>Notice</strong>2 weeks</div>
-            <div class="profile-item"><strong>Languages</strong>EN (Professional) | PT (Native) | DE (A2)</div>
+            <div class="profile-item"><strong>Languages</strong>EN (C1) | PT (Native) | ES (B2) | DE (A2→B1)</div>
+            <div class="profile-item"><strong>LinkedIn</strong><a href="https://www.linkedin.com/in/carlosedbaptista/" target="_blank">linkedin.com/in/carlosedbaptista</a></div>
         </div>
     </div>
 

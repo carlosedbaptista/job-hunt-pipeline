@@ -170,7 +170,7 @@ def generate_html(digest: dict) -> str:
     <div style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;
                 border-radius:14px;padding:28px;margin-bottom:24px;">
       <div style="font-size:22px;font-weight:800;">📊 Job Hunt Dashboard</div>
-      <div style="font-size:13px;opacity:.85;margin-top:6px;">Data/Business Analyst · Zürich Area</div>
+      <div style="font-size:13px;opacity:.85;margin-top:6px;">Carlos Baptista · AI &amp; Data Engineer Intern · Zürich Area</div>
       <div style="font-size:12px;opacity:.7;margin-top:4px;">Updated: {date_str}</div>
     </div>
 
@@ -200,7 +200,7 @@ def generate_html(digest: dict) -> str:
     {job_cards}
 
     <div style="text-align:center;padding:20px;font-size:12px;color:#94a3b8;">
-      Job Hunt Pipeline · Auto-updated daily
+      Job Hunt Pipeline · Auto-updated daily · <a href="https://www.linkedin.com/in/carlosedbaptista/" target="_blank" style="color:#6366f1;text-decoration:none;">Carlos Baptista</a>
     </div>
 
   </div>
