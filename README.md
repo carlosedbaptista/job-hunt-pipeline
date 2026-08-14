@@ -9,11 +9,12 @@ Automated job search and evaluation pipeline for Data/Business Analyst positions
 This pipeline automates the tedious parts of job hunting:
 
 1. **Ingest** -- Fetches jobs from Adzuna API + Gmail job alerts
-2. **Evaluate** -- Scores each job for fit using Kimi LLM (0-100 scale)
-3. **Decide** -- Classifies as APPLY (>=65), REVIEW (45-64), or SKIP (<45)
-4. **Digest** -- Generates a ranked daily digest with top 5 jobs
-5. **Notify** -- Sends a formatted HTML email with results
-6. **Track** -- Stores application history in SQLite
+2. **Deduplicate** -- Cross-run dedup via SQLite (21-day window), so each job is evaluated once
+3. **Evaluate** -- Scores each job for fit using Kimi LLM (0-100 scale); API failures are marked ERROR, never scored
+4. **Decide** -- Classifies as APPLY (>=80), REVIEW (70-79), or SKIP (<70)
+5. **Digest** -- Generates a ranked daily digest with top 5 jobs
+6. **Notify** -- Sends a formatted HTML email with results
+7. **Track** -- Persists seen jobs in SQLite and full evaluation history in `data/history/`
 
 ---
 
@@ -45,7 +46,7 @@ GitHub Actions (2x/day: 05:00 & 12:00 UTC)
 |-----------|------------|
 | Language | Python 3.11 |
 | Job Sources | Adzuna API, Gmail IMAP |
-| AI Evaluation | Kimi API (moonshot-v1-8k) |
+| AI Evaluation | Kimi API (kimi-k2.6; fallback via `KIMI_MODEL_FALLBACK`) |
 | Workflow | GitHub Actions |
 | Email | Gmail SMTP (App Password) |
 | Storage | SQLite + JSON files |
@@ -94,11 +95,14 @@ Edit `config/candidate_profile.json` to customize your profile for job evaluatio
 
 ## Scoring Rubric
 
+Thresholds live in one place: `src/utils.py` (`THRESHOLD_APPLY` / `THRESHOLD_REVIEW`, overridable via env). Evaluator, digest, dashboard, email and alerts all read from there.
+
 | Score | Decision | Action |
 |-------|----------|--------|
-| 65-100 | APPLY | Strong fit |
-| 45-64 | REVIEW | Moderate fit -- review manually |
-| 0-44 | SKIP | Low fit |
+| 80-100 | APPLY | Strong fit |
+| 70-79 | REVIEW | Moderate fit -- review manually |
+| 0-69 | SKIP | Low fit |
+| (no score) | ERROR | API failure -- job not evaluated, excluded from metrics |
 
 ## Project Structure
 
