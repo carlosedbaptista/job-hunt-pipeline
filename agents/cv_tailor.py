@@ -14,10 +14,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def load_cv_base() -> str:
-    """CV base para tailoring.
+    """Base CV for tailoring.
 
-    Prioridade: config/cv_model.txt (modelo real do candidato, fora do git).
-    Fallback: monta a partir de config/candidate_profile.json.
+    Priority: config/cv_model.txt (the candidate's real template, kept out of git).
+    Fallback: builds it from config/candidate_profile.json.
     """
     if os.path.exists("config/cv_model.txt"):
         with open("config/cv_model.txt", encoding="utf-8") as f:

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-=== HOTFIX FINAL: Corrige modelo Kimi k2-6 → k2.6 + fallback ===
+=== FINAL HOTFIX: Fix Kimi model k2-6 -> k2.6 + fallback ===
 
-Problema: A serie kimi-k2 foi descontinuada em 25/05/2026.
-O modelo 'kimi-k2-6' (com hifen) retorna 404.
-O correto eh 'kimi-k2.6' (com ponto).
+Problem: The kimi-k2 series was discontinued on 2026-05-25.
+The model 'kimi-k2-6' (with a hyphen) returns 404.
+The correct name is 'kimi-k2.6' (with a dot).
 
-Este script sobrescreve src/kimi_client.py com a correcao definitiva.
+This script overwrites src/kimi_client.py with the definitive fix.
 """
 import os
 import subprocess
@@ -22,15 +22,15 @@ def wf(path, content):
 
 REPO = os.getcwd()
 if not os.path.exists(f"{REPO}/.git"):
-    print("ERRO: Rode dentro da pasta do repo"); exit(1)
+    print("ERROR: Run this from inside the repo folder"); exit(1)
 
-print("=== HOTFIX FINAL: Modelo Kimi k2-6 -> k2.6 ===")
+print("=== FINAL HOTFIX: Kimi model k2-6 -> k2.6 ===")
 
-# Novo kimi_client.py: requests + signal.alarm + modelo correto + fallback
+# New kimi_client.py: requests + signal.alarm + correct model + fallback
 wf(f"{REPO}/src/kimi_client.py", r'''"""
-kimi_client.py — Cliente Kimi via requests + signal.alarm (timeout HARD 45s)
-Modelo: kimi-k2.6 (com ponto) — serie k2-6 foi descontinuada em 25/05/2026
-Fallback: moonshot-v1-8k se k2.6 falhar
+kimi_client.py — Kimi client via requests + signal.alarm (HARD 45s timeout)
+Model: kimi-k2.6 (with a dot) — the k2-6 series was discontinued on 2026-05-25
+Fallback: moonshot-v1-8k if k2.6 fails
 """
 import json
 import os
@@ -43,8 +43,8 @@ load_dotenv()
 
 KIMI_API_KEY = os.environ.get("KIMI_API_KEY", "")
 KIMI_BASE_URL = "https://api.moonshot.cn/v1"
-KIMI_MODEL_PRIMARY = "kimi-k2.6"       # <-- CORRECAO: ponto, nao hifen
-KIMI_MODEL_FALLBACK = "moonshot-v1-8k" # Fallback caso k2.6 falhe
+KIMI_MODEL_PRIMARY = "kimi-k2.6"       # <-- FIX: dot, not hyphen
+KIMI_MODEL_FALLBACK = "moonshot-v1-8k" # Fallback in case k2.6 fails
 
 class TimeoutError(Exception):
     pass
@@ -58,7 +58,7 @@ class KimiClient:
         self.base_url = base_url or KIMI_BASE_URL
         self.session = requests.Session()
         if not self.api_key:
-            raise ValueError("KIMI_API_KEY nao configurada")
+            raise ValueError("KIMI_API_KEY not configured")
 
     def _post(self, endpoint, payload):
         headers = {
@@ -77,7 +77,7 @@ class KimiClient:
             signal.signal(signal.SIGALRM, old)
 
     def _try_model(self, model, messages, max_tokens, response_format):
-        """Tenta uma chamada com um modelo especifico."""
+        """Tries a call with a specific model."""
         payload = {
             "model": model,
             "messages": messages,
@@ -101,20 +101,20 @@ class KimiClient:
                 except Exception as e:
                     last_error = e
                     error_str = str(e).lower()
-                    # Se for 404 de modelo nao encontrado, pula pro proximo modelo
+                    # If it's a 404 model-not-found, skip to the next model
                     if "404" in error_str and "not found" in error_str and attempt == 0:
-                        print(f"  [Kimi] Modelo {m} nao encontrado (404), tentando fallback...")
-                        break  # Sai do retry, vai pro proximo modelo
+                        print(f"  [Kimi] Model {m} not found (404), trying fallback...")
+                        break  # Exit the retry loop, move to the next model
                     wait = 2 ** attempt
-                    print(f"  [Kimi] Erro ({attempt+1}/3) com {m}: {str(e)[:80]}")
+                    print(f"  [Kimi] Error ({attempt+1}/3) with {m}: {str(e)[:80]}")
                     if attempt < 2:
                         time.sleep(wait)
 
-        raise RuntimeError(f"Kimi falhou apos todos os modelos: {last_error}")
+        raise RuntimeError(f"Kimi failed after all models: {last_error}")
 
 
 def call_kimi(prompt, system=None, max_tokens=1000, response_format=None):
-    """Chama a API Kimi e retorna a string de resposta."""
+    """Calls the Kimi API and returns the response string."""
     client = KimiClient()
     messages = []
     if system:
@@ -124,14 +124,14 @@ def call_kimi(prompt, system=None, max_tokens=1000, response_format=None):
 
 
 def call_kimi_json(prompt, system=None, max_tokens=1000):
-    """Chama a API Kimi e retorna a resposta parseada como JSON."""
+    """Calls the Kimi API and returns the response parsed as JSON."""
     import json as _json
     raw = call_kimi(prompt, system=system, max_tokens=max_tokens, response_format={"type": "json_object"})
-    # Se vier com markdown code block, remove
+    # If it comes wrapped in a markdown code block, strip it
     text = raw.strip()
     if text.startswith("```"):
         lines = text.splitlines()
-        # Remove primeira linha (```json) e ultima (```)
+        # Remove the first line (```json) and the last one (```)
         if len(lines) > 2:
             text = "\n".join(lines[1:-1]).strip()
         else:
@@ -139,27 +139,27 @@ def call_kimi_json(prompt, system=None, max_tokens=1000):
     return _json.loads(text)
 ''')
 
-# Commit e push
-print("\nCommitando...")
+# Commit and push
+print("\nCommitting...")
 for cmd in [
     f"cd {REPO} && git add -A",
-    f'cd {REPO} && git commit -m "fix FINAL: modelo kimi-k2.6 (ponto) + fallback moonshot-v1-8k"',
+    f'cd {REPO} && git commit -m "FINAL fix: kimi-k2.6 model (dot) + moonshot-v1-8k fallback"',
     f"cd {REPO} && git push origin main",
 ]:
     ok, out, err = run(cmd)
     if ok:
         print(f"  OK")
     else:
-        print(f"  ERRO: {err[:150]}")
+        print(f"  ERROR: {err[:150]}")
         if "rejected" in err.lower():
-            print("  Tentando rebase...")
+            print("  Trying rebase...")
             run(f"cd {REPO} && git pull --rebase origin main")
             ok2, out2, err2 = run(f"cd {REPO} && git push origin main")
-            print(f"  {'OK' if ok2 else 'ERRO'}: {err2[:100] if not ok2 else 'push feito'}")
+            print(f"  {'OK' if ok2 else 'ERROR'}: {err2[:100] if not ok2 else 'push done'}")
 
 print("\n" + "=" * 60)
-print("PRONTO!")
+print("DONE!")
 print("=" * 60)
-print("\nANTES: modelo='kimi-k2-6'  (com hifen) -> DESCONTINUADO -> 404")
-print("DEPOIS: modelo='kimi-k2.6'  (com ponto)  -> MODELO ATUAL")
-print("        fallback='moonshot-v1-8k'          -> SE k2.6 FALHAR")
+print("\nBEFORE: model='kimi-k2-6'  (with hyphen) -> DISCONTINUED -> 404")
+print("AFTER:  model='kimi-k2.6'  (with dot)    -> CURRENT MODEL")
+print("        fallback='moonshot-v1-8k'          -> IF k2.6 FAILS")

@@ -19,7 +19,7 @@ def load_digest():
 
 
 def _get_field(job_eval, field, default="N/A"):
-    """Extrai campo da avaliacao -- suporta aninhado OU direto."""
+    """Extracts a field from the evaluation -- supports nested OR direct."""
     job = job_eval.get("job")
     if job and isinstance(job, dict):
         val = job.get(field)

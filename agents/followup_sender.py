@@ -88,7 +88,7 @@ def update_followup_status(app_id: int, success: bool = True):
 
 
 def _email_signature() -> str:
-    """Assinatura montada de config/candidate_profile.json (PII fora do git)."""
+    """Signature assembled from config/candidate_profile.json (PII kept out of git)."""
     try:
         with open("config/candidate_profile.json", encoding="utf-8") as f:
             p = json.load(f)

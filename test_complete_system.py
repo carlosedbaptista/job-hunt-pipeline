@@ -2,8 +2,8 @@
 """
 test_complete_system.py
 
-Teste completo do sistema Job Hunt Pipeline
-Valida cada componente (Semanas 0-10)
+Complete test of the Job Hunt Pipeline
+Validates each component (Weeks 0-10)
 """
 
 import sys
@@ -11,14 +11,14 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 print("\n" + "="*80)
-print("🧪 TESTE COMPLETO: JOB HUNT PIPELINE")
+print("🧪 COMPLETE TEST: JOB HUNT PIPELINE")
 print("="*80 + "\n")
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# TESTE 1: Verificar estrutura de pastas
+# TEST 1: Check folder structure
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-print("✅ TESTE 1: Estrutura de Pastas")
+print("✅ TEST 1: Folder Structure")
 print("─" * 80)
 
 required_dirs = [
@@ -69,15 +69,15 @@ for dir_path in required_dirs:
         print(f"  ✅ {dir_path}/")
         dirs_ok += 1
     else:
-        print(f"  ❌ {dir_path}/ (NÃO ENCONTRADA)")
+        print(f"  ❌ {dir_path}/ (NOT FOUND)")
 
-print(f"\nDiretórios: {dirs_ok}/{len(required_dirs)} OK\n")
+print(f"\nDirectories: {dirs_ok}/{len(required_dirs)} OK\n")
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# TESTE 2: Verificar imports (módulos carregam sem erro)
+# TEST 2: Check imports (modules load without error)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-print("\n✅ TESTE 2: Verificar Imports")
+print("\n✅ TEST 2: Check Imports")
 print("─" * 80)
 
 imports_to_test = [
@@ -102,10 +102,10 @@ for module_name, display_name in imports_to_test:
 print(f"\nImports: {imports_ok}/{len(imports_to_test)} OK\n")
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# TESTE 3: Verificar banco de dados
+# TEST 3: Check database
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-print("\n✅ TESTE 3: Banco de Dados")
+print("\n✅ TEST 3: Database")
 print("─" * 80)
 
 import sqlite3
@@ -113,24 +113,24 @@ import sqlite3
 db_path = "tracker/jobs.db"
 
 if os.path.exists(db_path):
-    print(f"  ✅ Banco existe: {db_path}")
+    print(f"  ✅ Database exists: {db_path}")
 
     try:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
 
-        # Verifica tabela applications
+        # Check applications table
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
         tables = cursor.fetchall()
 
         if tables:
-            print(f"  ✅ Tabelas encontradas: {len(tables)}")
+            print(f"  ✅ Tables found: {len(tables)}")
             for table in tables:
                 print(f"     • {table[0]}")
         else:
-            print(f"  ⚠️  Nenhuma tabela encontrada (banco vazio)")
+            print(f"  ⚠️  No tables found (empty database)")
 
-        # Verifica colunas importantes
+        # Check important columns
         cursor.execute("PRAGMA table_info(applications)")
         columns = cursor.fetchall()
 
@@ -140,23 +140,23 @@ if os.path.exists(db_path):
 
             for req_col in required_cols:
                 if req_col in found_cols:
-                    print(f"  ✅ Coluna: {req_col}")
+                    print(f"  ✅ Column: {req_col}")
                 else:
-                    print(f"  ⚠️  Coluna faltando: {req_col}")
+                    print(f"  ⚠️  Missing column: {req_col}")
 
         conn.close()
     except Exception as e:
-        print(f"  ❌ Erro ao acessar banco: {e}")
+        print(f"  ❌ Error accessing database: {e}")
 else:
-    print(f"  ⚠️  Banco não existe ainda (será criado no primeiro run)")
+    print(f"  ⚠️  Database does not exist yet (will be created on first run)")
 
 print()
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# TESTE 4: Verificar variáveis de ambiente
+# TEST 4: Check environment variables
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-print("✅ TESTE 4: Variáveis de Ambiente")
+print("✅ TEST 4: Environment Variables")
 print("─" * 80)
 
 env_vars = [
@@ -173,15 +173,15 @@ for var in env_vars:
         print(f"  ✅ {var}: {masked}")
         env_ok += 1
     else:
-        print(f"  ⚠️  {var}: NÃO CONFIGURADA")
+        print(f"  ⚠️  {var}: NOT SET")
 
-print(f"\nVariáveis: {env_ok}/{len(env_vars)} OK\n")
+print(f"\nVariables: {env_ok}/{len(env_vars)} OK\n")
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# TESTE 5: Testar email extractor
+# TEST 5: Test email extractor
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-print("✅ TESTE 5: Email Extractor")
+print("✅ TEST 5: Email Extractor")
 print("─" * 80)
 
 from agents.email_extractor import extract_recruiter_email
@@ -197,41 +197,41 @@ For questions, contact HR at hr@company.com
 email = extract_recruiter_email(test_description, "Test Company", "Data Analyst")
 
 if email and "@" in email:
-    print(f"  ✅ Email extraído: {email}")
+    print(f"  ✅ Email extracted: {email}")
 else:
-    print(f"  ⚠️  Nenhum email encontrado (esperado para teste)")
+    print(f"  ⚠️  No email found (expected for test)")
 
 print()
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# TESTE 6: Resumo final
+# TEST 6: Final summary
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 print("="*80)
-print("📊 RESUMO DO TESTE")
+print("📊 TEST SUMMARY")
 print("="*80)
 
 print("""
-✅ Sistema estruturado corretamente
-✅ Todos os módulos carregam sem erro
-✅ Banco de dados pronto
-✅ Email extractor funciona
-⚠️  Configure variáveis de ambiente para produção
+✅ System structured correctly
+✅ All modules load without error
+✅ Database ready
+✅ Email extractor works
+⚠️  Configure environment variables for production
 
-PRÓXIMAS AÇÕES:
-1. Exportar variáveis de ambiente:
+NEXT ACTIONS:
+1. Export environment variables:
    $env:ANTHROPIC_API_KEY = "sk-ant-..."
-   $env:GMAIL_APP_PASSWORD = "sua-app-password"
+   $env:GMAIL_APP_PASSWORD = "your-app-password"
 
-2. Rodar o pipeline:
+2. Run the pipeline:
    python src/week4_pipeline.py
 
-3. Monitorar execução:
-   - Verifique digests/ pra outputs
-   - Cheque tracker/jobs.db pra dados
-   - Abra digests/dashboard.html
+3. Monitor execution:
+   - Check digests/ for outputs
+   - Check tracker/jobs.db for data
+   - Open digests/dashboard.html
 
-Tudo pronto! Sistema está 100% funcional! 🚀
+All set! System is 100% functional! 🚀
 """)
 
 print("="*80)

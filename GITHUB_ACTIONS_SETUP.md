@@ -1,193 +1,193 @@
-# Semana 7: GitHub Actions Scheduler — Setup Completo
+# Week 7: GitHub Actions Scheduler — Complete Setup
 
-> **ATUALIZAÇÃO (2026-08):** o pipeline usa a API do **Kimi/Moonshot** (não mais Anthropic).
-> Secrets necessários em *Settings → Secrets and variables → Actions*:
+> **UPDATE (2026-08):** the pipeline uses the **Kimi/Moonshot** API (no longer Anthropic).
+> Required secrets in *Settings → Secrets and variables → Actions*:
 >
-> | Secret | Obrigatório | Descrição |
+> | Secret | Required | Description |
 > |---|---|---|
-> | `KIMI_API_KEY` | sim | Chave de platform.moonshot.ai (precisa ter saldo!) |
-> | `ADZUNA_APP_ID` / `ADZUNA_APP_KEY` | sim | API de vagas Adzuna |
-> | `GMAIL_SENDER` / `GMAIL_APP_PASSWORD` / `GMAIL_RECIPIENT` | sim | Envio de emails (App Password de 16 chars) |
-> | `CANDIDATE_PROFILE_B64` | recomendado | `candidate_profile.json` em base64 (PII fica fora do git) |
-> | `CANDIDATE_PHOTO_B64` | opcional | `photo.png` em base64 (foto do CV) |
-> | `CV_MODEL_B64` | opcional | `cv_model.txt` em base64 (modelo real de CV usado no tailoring) |
-> | `CL_MODEL_B64` | opcional | `cover_letter_model.txt` em base64 (modelo real de CL) |
-> | `GDRIVE_PARENT_FOLDER_ID` / `GDRIVE_REFRESH_TOKEN_B64` / `GDRIVE_CREDENTIALS_JSON_B64` | opcional | Upload de CVs/CLs ao Drive |
+> | `KIMI_API_KEY` | yes | Key from platform.moonshot.ai (must have balance!) |
+> | `ADZUNA_APP_ID` / `ADZUNA_APP_KEY` | yes | Adzuna jobs API |
+> | `GMAIL_SENDER` / `GMAIL_APP_PASSWORD` / `GMAIL_RECIPIENT` | yes | Email sending (16-char App Password) |
+> | `CANDIDATE_PROFILE_B64` | recommended | `candidate_profile.json` in base64 (keeps PII out of git) |
+> | `CANDIDATE_PHOTO_B64` | optional | `photo.png` in base64 (CV photo) |
+> | `CV_MODEL_B64` | optional | `cv_model.txt` in base64 (real CV template used for tailoring) |
+> | `CL_MODEL_B64` | optional | `cover_letter_model.txt` in base64 (real CL template) |
+> | `GDRIVE_PARENT_FOLDER_ID` / `GDRIVE_REFRESH_TOKEN_B64` / `GDRIVE_CREDENTIALS_JSON_B64` | optional | Upload of CVs/CLs to Drive |
 >
-> Gerar os valores base64 (Git Bash):
+> Generate the base64 values (Git Bash):
 > ```bash
-> base64 -w0 config/candidate_profile.json   # cole como CANDIDATE_PROFILE_B64
-> base64 -w0 config/photo.png                # cole como CANDIDATE_PHOTO_B64
-> base64 -w0 config/cv_model.txt             # cole como CV_MODEL_B64
-> base64 -w0 config/cover_letter_model.txt   # cole como CL_MODEL_B64
+> base64 -w0 config/candidate_profile.json   # paste as CANDIDATE_PROFILE_B64
+> base64 -w0 config/photo.png                # paste as CANDIDATE_PHOTO_B64
+> base64 -w0 config/cv_model.txt             # paste as CV_MODEL_B64
+> base64 -w0 config/cover_letter_model.txt   # paste as CL_MODEL_B64
 > ```
 >
-> Sem `CANDIDATE_PROFILE_B64` o pipeline roda com um perfil fallback genérico
-> (match pior e sem geração de CV/CL personalizados).
+> Without `CANDIDATE_PROFILE_B64` the pipeline runs with a generic fallback profile
+> (worse matching and no personalized CV/CL generation).
 
-## O que você fez
+## What you did
 
-Criou um **workflow do GitHub Actions** que:
-- ✅ Roda automaticamente todo dia às **7:00 AM** (hora da Suíça)
-- ✅ Executa o pipeline completo (ingest → parse → eval → digest)
-- ✅ Gera o dashboard automaticamente
-- ✅ Faz commit dos arquivos atualizados no repo
-
----
-
-## Configuração Necessária
-
-### PASSO 1: Adicionar Secret no GitHub
-
-Seu workflow já está configurado pra ler a chave da Anthropic API de um **Secret** do GitHub.
-
-1. Vá em: https://github.com/seu-usuario/job-hunt-pipeline/settings/secrets/actions
-
-2. Clica em **"New repository secret"**
-
-3. Nome: `ANTHROPIC_API_KEY`
-   Valor: `sk-ant-seu-chave-aqui`
-
-4. Clica em **"Add secret"**
-
-✅ Pronto! GitHub Actions agora consegue rodar Claude.
+You created a **GitHub Actions workflow** that:
+- ✅ Runs automatically every day at **7:00 AM** (Switzerland time)
+- ✅ Executes the full pipeline (ingest → parse → eval → digest)
+- ✅ Generates the dashboard automatically
+- ✅ Commits the updated files to the repo
 
 ---
 
-### PASSO 2: Problema do Gmail API (Importante!)
+## Required Configuration
 
-⚠️ **AVISO:** GitHub Actions roda em servidor Linux sem acesso a seu computador.
+### STEP 1: Add Secret on GitHub
 
-**Problema:**
-- Gmail API precisa de `token.pickle` (gerado no seu computador)
-- GitHub não consegue acessar seu arquivo local
+Your workflow is already configured to read the Anthropic API key from a GitHub **Secret**.
 
-**Soluções:**
+1. Go to: https://github.com/your-username/job-hunt-pipeline/settings/secrets/actions
 
-#### Opção A: Rodar localmente via Cron/Task Scheduler (Recomendado)
-Se você quer garantir que funciona:
+2. Click **"New repository secret"**
 
-**No Windows:**
-1. Abra "Task Scheduler"
-2. Cria uma task que roda: `python src/week4_pipeline.py`
-3. Agenda pra 7:00 AM todos os dias
+3. Name: `ANTHROPIC_API_KEY`
+   Value: `sk-ant-your-key-here`
 
-**No Mac/Linux:**
+4. Click **"Add secret"**
+
+✅ Done! GitHub Actions can now run Claude.
+
+---
+
+### STEP 2: The Gmail API Problem (Important!)
+
+⚠️ **WARNING:** GitHub Actions runs on a Linux server with no access to your computer.
+
+**Problem:**
+- Gmail API needs `token.pickle` (generated on your computer)
+- GitHub cannot access your local file
+
+**Solutions:**
+
+#### Option A: Run locally via Cron/Task Scheduler (Recommended)
+If you want to make sure it works:
+
+**On Windows:**
+1. Open "Task Scheduler"
+2. Create a task that runs: `python src/week4_pipeline.py`
+3. Schedule it for 7:00 AM every day
+
+**On Mac/Linux:**
 ```bash
-# Cria um cron job
+# Create a cron job
 crontab -e
 
-# Adiciona (7 AM todo dia):
+# Add (7 AM every day):
 0 7 * * * cd ~/job-hunt-pipeline && python src/week4_pipeline.py
 ```
 
-#### Opção B: GitHub Actions + Fallback Manual
-Deixa o GitHub Actions ligado, mas:
-- Se falhar (por causa do Gmail), você roda manualmente no fim de semana
-- Pelo menos gera digest com vagas antigos (útil mesmo sem novos emails)
+#### Option B: GitHub Actions + Manual Fallback
+Keep GitHub Actions enabled, but:
+- If it fails (because of Gmail), you run it manually on the weekend
+- At least it generates a digest with older jobs (useful even without new emails)
 
-#### Opção C: Usar Google Cloud para Gmail (Avançado)
-- Configura Google Cloud Scheduler
-- Dispara uma função que roda o pipeline
-- Caro, mas 100% automático
-
----
-
-## Teste o Workflow
-
-### Teste 1: Rodar Manualmente no GitHub
-
-1. Vai em: https://github.com/seu-usuario/job-hunt-pipeline/actions
-
-2. Clica em **"Job Hunt Daily Pipeline"**
-
-3. Clica em **"Run workflow"** → **"Run workflow"**
-
-4. Aguarda 2-5 minutos
-
-5. Se tiver ✅ verde = sucesso, se ❌ vermelho = falhou
-
-### Teste 2: Verificar os arquivos atualizados
-
-Se rodou com sucesso, deve ter feito commit com:
-- `digests/digest_latest.json` atualizado
-- `digests/dashboard.html` atualizado
+#### Option C: Use Google Cloud for Gmail (Advanced)
+- Set up Google Cloud Scheduler
+- Trigger a function that runs the pipeline
+- Expensive, but 100% automatic
 
 ---
 
-## Cronograma (Cron)
+## Test the Workflow
 
-Seu workflow está configurado pra:
+### Test 1: Run Manually on GitHub
+
+1. Go to: https://github.com/your-username/job-hunt-pipeline/actions
+
+2. Click **"Job Hunt Daily Pipeline"**
+
+3. Click **"Run workflow"** → **"Run workflow"**
+
+4. Wait 2-5 minutes
+
+5. If it shows ✅ green = success, if ❌ red = failed
+
+### Test 2: Check the updated files
+
+If it ran successfully, it should have committed:
+- `digests/digest_latest.json` updated
+- `digests/dashboard.html` updated
+
+---
+
+## Schedule (Cron)
+
+Your workflow is configured for:
 
 ```
 0 5 * * *
-│ │ │ │ └─ Dia da semana (0-6, 0 é domingo)
-│ │ │ └─── Mês (1-12)
-│ │ └───── Dia do mês (1-31)
-│ └─────── Hora (UTC, 0-23)
-└───────── Minuto (0-59)
+│ │ │ │ └─ Day of week (0-6, 0 is Sunday)
+│ │ │ └─── Month (1-12)
+│ │ └───── Day of month (1-31)
+│ └─────── Hour (UTC, 0-23)
+└───────── Minute (0-59)
 ```
 
-**0 5 * * * = 5:00 AM UTC = 7:00 AM CEST (verão na Suíça)**
+**0 5 * * * = 5:00 AM UTC = 7:00 AM CEST (summer in Switzerland)**
 
-Se quiser mudar pra outra hora, edita `.github/workflows/job-hunt-scheduler.yml`
+If you want to change the time, edit `.github/workflows/job-hunt-scheduler.yml`
 
-Exemplos:
+Examples:
 - `0 6 * * *` = 8:00 AM CEST
 - `0 8 * * *` = 10:00 AM CEST
 - `0 20 * * *` = 22:00 (10 PM) CEST
 
 ---
 
-## O que acontece quando roda
+## What happens when it runs
 
-1. ✅ GitHub faz pull do seu repo
-2. ✅ Instala dependências (pip install -r requirements.txt)
-3. ✅ Roda `python src/week4_pipeline.py`
-   - Busca emails do Gmail
-   - Parsia vagas com Claude
-   - Avalia fit
-   - Gera digest
-4. ✅ Faz commit e push dos arquivos atualizados
-5. ✅ Você recebe notificação (opcional, via GitHub)
-
----
-
-## Logs e Debugging
-
-Se algo der errado:
-
-1. Vá em: GitHub → Actions → Job Hunt Daily Pipeline
-
-2. Clica no run que falhou
-
-3. Clica em **"job-hunt-pipeline"**
-
-4. Vê o output (onde está o erro)
-
-Erros comuns:
-- `ModuleNotFoundError` = requirements.txt não tem um pacote
-- `authentication_error` = Secret não foi adicionado
-- `Gmail error` = token.pickle não está acessível (esperado)
+1. ✅ GitHub pulls your repo
+2. ✅ Installs dependencies (pip install -r requirements.txt)
+3. ✅ Runs `python src/week4_pipeline.py`
+   - Fetches emails from Gmail
+   - Parses jobs with Claude
+   - Evaluates fit
+   - Generates digest
+4. ✅ Commits and pushes the updated files
+5. ✅ You receive a notification (optional, via GitHub)
 
 ---
 
-## Recomendação Final
+## Logs and Debugging
 
-**Use GitHub Actions APENAS como backup.** 
+If something goes wrong:
 
-Para garantir que funciona 100%, configure um **Cron Job local** (Option A acima) no seu computador.
+1. Go to: GitHub → Actions → Job Hunt Daily Pipeline
 
-Assim:
-- ✅ GitHub Actions roda (gera digest mesmo sem novos emails)
-- ✅ Cron local roda (busca novos emails toda manhã)
-- ✅ Sistema robusto com redundância
+2. Click the failed run
+
+3. Click **"job-hunt-pipeline"**
+
+4. View the output (where the error is)
+
+Common errors:
+- `ModuleNotFoundError` = requirements.txt is missing a package
+- `authentication_error` = Secret was not added
+- `Gmail error` = token.pickle is not accessible (expected)
 
 ---
 
-## Próximas Otimizações (Semana 8+)
+## Final Recommendation
 
-- [ ] Configurar notificações (email quando há novas vagas)
-- [ ] Adicionar Google Cloud Function pra Gmail (remover necessidade de token.pickle)
-- [ ] Criar webhook pra enviar digest por email
-- [ ] Analytics: qual tipo de vaga tem melhor resposta?
+**Use GitHub Actions ONLY as a backup.**
+
+To guarantee it works 100%, set up a **local Cron Job** (Option A above) on your computer.
+
+That way:
+- ✅ GitHub Actions runs (generates digest even without new emails)
+- ✅ Local cron runs (fetches new emails every morning)
+- ✅ Robust system with redundancy
+
+---
+
+## Next Optimizations (Week 8+)
+
+- [ ] Set up notifications (email when there are new jobs)
+- [ ] Add Google Cloud Function for Gmail (remove the need for token.pickle)
+- [ ] Create webhook to send digest by email
+- [ ] Analytics: which type of job gets the best response?
