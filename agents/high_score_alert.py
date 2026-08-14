@@ -2,13 +2,48 @@
 """
 high_score_alert.py -- Send immediate email alert for jobs scoring >= 85.
 Runs after job evaluation to catch top opportunities instantly.
+Alerted jobs are recorded in digests/alerted_jobs.json so the same job
+never triggers a second alert on later runs.
 """
+import html as html_mod
 import json
 import os
 import smtplib
+import sys
 from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
+from utils import THRESHOLD_APPLY
+from deduplicator import make_hash
+
+ALERTED_FILE = "digests/alerted_jobs.json"
+
+
+def esc(value) -> str:
+    return html_mod.escape(str(value), quote=True)
+
+
+def safe_url(url) -> str:
+    u = str(url or "").strip()
+    return u if u.lower().startswith(("http://", "https://")) else ""
+
+
+def load_alerted() -> set:
+    if os.path.exists(ALERTED_FILE):
+        try:
+            with open(ALERTED_FILE, "r", encoding="utf-8") as f:
+                return set(json.load(f))
+        except (json.JSONDecodeError, IOError):
+            return set()
+    return set()
+
+
+def save_alerted(hashes: set):
+    os.makedirs("digests", exist_ok=True)
+    with open(ALERTED_FILE, "w", encoding="utf-8") as f:
+        json.dump(sorted(hashes), f)
 
 
 def get_job_field(job_eval, field, default="N/A"):
@@ -37,13 +72,13 @@ def send_alert(job_eval):
         print("  [Alert] Gmail credentials not configured")
         return False
     
-    company = get_job_field(job_eval, "empresa")
-    title = get_job_field(job_eval, "titulo")
-    location = get_job_field(job_eval, "localizacao")
-    url = get_job_field(job_eval, "url")
-    score = job_eval.get("score", 0)
-    
-    subject = f"HIGH SCORE ALERT: {title} at {company} -- {score}/100"
+    company = esc(get_job_field(job_eval, "empresa"))
+    title = esc(get_job_field(job_eval, "titulo"))
+    location = esc(get_job_field(job_eval, "localizacao"))
+    url = safe_url(get_job_field(job_eval, "url", default=""))
+    score = job_eval.get("score") or 0
+
+    subject = f"HIGH SCORE ALERT: {get_job_field(job_eval, 'titulo')} at {get_job_field(job_eval, 'empresa')} -- {score}/100"
     
     html = f"""<html><head><meta charset="UTF-8"><style>
         body {{ font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }}
@@ -53,7 +88,7 @@ def send_alert(job_eval):
         .btn {{ display: inline-block; background: #667eea; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; margin-top: 15px; }}
     </style></head><body>
         <div class="alert"><h1>HIGH SCORE JOB ALERT</h1><div class="score">{score}/100</div><p>Top match detected! Apply quickly.</p></div>
-        <div class="details"><h2>{title}</h2><p><strong>Company:</strong> {company}</p><p><strong>Location:</strong> {location}</p><p><strong>Score:</strong> {score} (APPLY threshold: 65)</p>{f'<a href="{url}" class="btn">View Job Posting</a>' if url and url != "N/A" else ""}</div>
+        <div class="details"><h2>{title}</h2><p><strong>Company:</strong> {company}</p><p><strong>Location:</strong> {location}</p><p><strong>Score:</strong> {score} (APPLY threshold: {THRESHOLD_APPLY})</p>{f'<a href="{esc(url)}" class="btn">View Job Posting</a>' if url else ""}</div>
         <p style="color:#999;font-size:12px;margin-top:20px;text-align:center;">Job Hunt Pipeline Alert | {datetime.now().strftime("%Y-%m-%d %H:%M UTC")}</p>
     </body></html>"""
     
@@ -85,15 +120,34 @@ def main():
         evaluations = json.load(f)
     
     threshold = int(os.environ.get("HIGH_SCORE_THRESHOLD", "85"))
-    high_scores = [e for e in evaluations if e.get("score", 0) >= threshold]
-    
+    high_scores = [e for e in evaluations if (e.get("score") or 0) >= threshold]
+
     if not high_scores:
         print(f"  [Alert] No jobs >= {threshold} today")
         return
-    
-    print(f"  [Alert] Found {len(high_scores)} job(s) with score >= {threshold}")
-    for job in high_scores:
-        send_alert(job)
+
+    alerted = load_alerted()
+    new_alerts = []
+    for ev in high_scores:
+        h = make_hash(
+            get_job_field(ev, "empresa", ""),
+            get_job_field(ev, "titulo", ""),
+            get_job_field(ev, "localizacao", ""),
+        )
+        if h in alerted:
+            print(f"  [Alert] Already alerted, skipping: {get_job_field(ev, 'titulo')}")
+            continue
+        new_alerts.append((h, ev))
+
+    if not new_alerts:
+        print(f"  [Alert] All {len(high_scores)} high-score job(s) were already alerted")
+        return
+
+    print(f"  [Alert] Found {len(new_alerts)} new job(s) with score >= {threshold}")
+    for h, job in new_alerts:
+        if send_alert(job):
+            alerted.add(h)
+    save_alerted(alerted)
 
 
 if __name__ == "__main__":

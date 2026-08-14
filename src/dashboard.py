@@ -11,6 +11,8 @@ from datetime import datetime, timezone, timedelta
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from src.utils import THRESHOLD_APPLY, THRESHOLD_REVIEW
+
 # Paths
 DIGESTS_DIR = "digests"
 DATA_DIR = "data"
@@ -45,6 +47,38 @@ def collect_jobs(days=30):
     all_jobs = []
     seen_urls = set()
 
+    def add_eval(ev, digest_date, manual=False):
+        """Adds one evaluation to the list, skipping duplicates and API errors."""
+        if ev.get("decision") == "ERROR" or ev.get("score") is None:
+            return
+        job = ev.get("job", ev)
+        url = job.get("url", job.get("link", ""))
+        key = url or f"{job.get('empresa','')}_{job.get('titulo','')}"
+        if key in seen_urls:
+            return
+        seen_urls.add(key)
+        ev_copy = dict(ev)
+        ev_copy["_digest_date"] = digest_date
+        if manual:
+            ev_copy["_manual"] = True
+        all_jobs.append(ev_copy)
+
+    # 0. Full evaluation history (data/history/evaluations_YYYYMMDD.json),
+    # written by job_evaluator -- richer than the top-5 kept in digests.
+    for hfile in sorted(glob.glob(os.path.join(HISTORY_DIR, "evaluations_*.json"))):
+        basename = os.path.basename(hfile)
+        try:
+            d = basename.replace("evaluations_", "").replace(".json", "")
+            hist_date = f"{d[:4]}-{d[4:6]}-{d[6:8]}"
+        except Exception:
+            hist_date = datetime.now().strftime("%Y-%m-%d")
+        if hist_date < cutoff_str:
+            continue
+        data = load_json(hfile)
+        if data and isinstance(data, list):
+            for ev in data:
+                add_eval(ev, hist_date)
+
     # 1. Historical digests
     digest_files = sorted(glob.glob(os.path.join(DIGESTS_DIR, "digest_*.json")))
     for dfile in digest_files:
@@ -58,46 +92,21 @@ def collect_jobs(days=30):
 
         jobs = data.get("top_jobs", [])
         for ev in jobs:
-            job = ev.get("job", ev)
-            url = job.get("url", job.get("link", ""))
-            key = url or f"{job.get('empresa','')}_{job.get('titulo','')}"
-            if key in seen_urls:
-                continue
-            seen_urls.add(key)
-
-            ev_copy = dict(ev)
-            ev_copy["_digest_date"] = digest_date
-            all_jobs.append(ev_copy)
+            add_eval(ev, digest_date)
 
     # 2. Current evaluations (job_evaluations_latest.json)
     evals = load_json(os.path.join(DIGESTS_DIR, "job_evaluations_latest.json"))
     if evals and isinstance(evals, list):
         today = datetime.now().strftime("%Y-%m-%d")
         for ev in evals:
-            job = ev.get("job", ev)
-            url = job.get("url", job.get("link", ""))
-            key = url or f"{job.get('empresa','')}_{job.get('titulo','')}"
-            if key in seen_urls:
-                continue
-            seen_urls.add(key)
-            ev_copy = dict(ev)
-            ev_copy["_digest_date"] = today
-            all_jobs.append(ev_copy)
+            add_eval(ev, today)
 
     # 3. Manually added jobs (via the "Add Job" workflow or agents/add_job.py)
     manual = load_json(os.path.join(DIGESTS_DIR, "manual_evaluations.json"))
     if manual and isinstance(manual, list):
         for ev in manual:
-            job = ev.get("job", ev)
-            url = job.get("url", job.get("link", ""))
-            key = url or f"{job.get('empresa','')}_{job.get('titulo','')}"
-            if key in seen_urls:
-                continue
-            seen_urls.add(key)
-            ev_copy = dict(ev)
-            ev_copy["_digest_date"] = str(ev.get("evaluated_at", ""))[:10] or datetime.now().strftime("%Y-%m-%d")
-            ev_copy["_manual"] = True
-            all_jobs.append(ev_copy)
+            manual_date = str(ev.get("evaluated_at", ""))[:10] or datetime.now().strftime("%Y-%m-%d")
+            add_eval(ev, manual_date, manual=True)
 
     return all_jobs
 
@@ -313,9 +322,22 @@ function getJobField(job, field, fallback="N/A") {
     return j[field] || job[field] || fallback;
 }
 
+// Job data comes from third-party emails and APIs: always escape before
+// inserting into HTML, and only allow http(s) links.
+function esc(value) {
+    return String(value)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+
+function safeUrl(url) {
+    const u = String(url || "").trim();
+    return /^https?:\/\//i.test(u) ? u : "";
+}
+
 function getDecision(score) {
-    if (score >= 80) return "APPLY";
-    if (score >= 70) return "REVIEW";
+    if (score >= TH_APPLY) return "APPLY";
+    if (score >= TH_REVIEW) return "REVIEW";
     return "SKIP";
 }
 
@@ -344,16 +366,17 @@ function renderTable(jobs) {
         
         const badgeClass = decision === "APPLY" ? "badge-apply" : decision === "REVIEW" ? "badge-review" : "badge-skip";
         
+        const link = safeUrl(url);
         const tr = document.createElement("tr");
         tr.innerHTML = `
-            <td>${date}</td>
-            <td><strong>${company}</strong></td>
-            <td>${title}</td>
-            <td>${location}</td>
-            <td>${portal}</td>
-            <td class="score">${score}</td>
-            <td><span class="badge ${badgeClass}">${decision}</span></td>
-            <td>${url !== "N/A" ? `<a href="${url}" target="_blank">View ></a>` : "-"}</td>
+            <td>${esc(date)}</td>
+            <td><strong>${esc(company)}</strong></td>
+            <td>${esc(title)}</td>
+            <td>${esc(location)}</td>
+            <td>${esc(portal)}</td>
+            <td class="score">${esc(score)}</td>
+            <td><span class="badge ${badgeClass}">${esc(decision)}</span></td>
+            <td>${link ? `<a href="${esc(link)}" target="_blank" rel="noopener noreferrer">View ></a>` : "-"}</td>
         `;
         tbody.appendChild(tr);
     });
@@ -392,9 +415,9 @@ function filterTable() {
 
 function updateMetrics(jobs) {
     const total = jobs.length;
-    const apply = jobs.filter(j => (j.score||0) >= 80).length;
-    const review = jobs.filter(j => { const s=j.score||0; return s>=70 && s<80; }).length;
-    const skip = jobs.filter(j => (j.score||0) < 70).length;
+    const apply = jobs.filter(j => (j.score||0) >= TH_APPLY).length;
+    const review = jobs.filter(j => { const s=j.score||0; return s>=TH_REVIEW && s<TH_APPLY; }).length;
+    const skip = jobs.filter(j => (j.score||0) < TH_REVIEW).length;
     const rate = total > 0 ? Math.round(apply/total*100) : 0;
     
     document.getElementById("metric-total").textContent = total;
@@ -430,9 +453,9 @@ function updateCharts(jobs) {
         options: { responsive: true, maintainAspectRatio: false }
     });
     
-    const apply = jobs.filter(j => (j.score||0) >= 80).length;
-    const review = jobs.filter(j => { const s=j.score||0; return s>=70 && s<80; }).length;
-    const skip = jobs.filter(j => (j.score||0) < 70).length;
+    const apply = jobs.filter(j => (j.score||0) >= TH_APPLY).length;
+    const review = jobs.filter(j => { const s=j.score||0; return s>=TH_REVIEW && s<TH_APPLY; }).length;
+    const skip = jobs.filter(j => (j.score||0) < TH_REVIEW).length;
     
     if (window.chartPie) window.chartPie.destroy();
     window.chartPie = new Chart(document.getElementById("chart-pie"), {
@@ -494,6 +517,13 @@ function exportCSV() {
         return true;
     });
     
+    // Escape quotes and neutralise formula injection (=, +, -, @) for Excel
+    function csvCell(value) {
+        let v = String(value == null ? "" : value).replace(/"/g, '""');
+        if (/^[=+\-@]/.test(v)) v = "'" + v;
+        return `"${v}"`;
+    }
+
     let csv = "Date,Company,Title,Location,Source,Score,Decision,URL\n";
     filtered.sort((a,b) => (b.score||0) - (a.score||0));
     filtered.forEach(job => {
@@ -505,7 +535,7 @@ function exportCSV() {
         const score = job.score || 0;
         const decision = getDecision(score);
         const date = job._digest_date || "Today";
-        csv += `"${date}","${company}","${title}","${location}","${portal}",${score},${decision},"${url}"\n`;
+        csv += [csvCell(date), csvCell(company), csvCell(title), csvCell(location), csvCell(portal), score, decision, csvCell(url)].join(",") + "\n";
     });
     
     const blob = new Blob([csv], {type: "text/csv"});
@@ -540,7 +570,8 @@ def generate_dashboard():
     if len(jobs_json) > 500_000:
         jobs_json = json.dumps(jobs, ensure_ascii=False)
 
-    html = head + "const JOBS = " + jobs_json + ";\n" + tail
+    thresholds_js = f"const TH_APPLY = {THRESHOLD_APPLY};\nconst TH_REVIEW = {THRESHOLD_REVIEW};\n"
+    html = head + thresholds_js + "const JOBS = " + jobs_json + ";\n" + tail
 
     os.makedirs(DIGESTS_DIR, exist_ok=True)
     output_path = os.path.join(DIGESTS_DIR, "dashboard.html")
