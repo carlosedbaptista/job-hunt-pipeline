@@ -58,7 +58,7 @@ Exemplo: abcdefghijklmnop
 
 ```
 Nome: GMAIL_RECIPIENT
-Valor: [redacted]
+Valor: seu.email@gmail.com
 ```
 
 ---

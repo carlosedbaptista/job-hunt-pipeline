@@ -11,16 +11,58 @@ from datetime import datetime, timezone
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 from kimi_client import call_kimi_json
 
-PROFILE = "Candidate: Carlos Eduardo Baptista -- Data/Business Analyst, Wallisellen CH (Permit B), 2 weeks notice. Skills: SQL, Python, Power BI, GA4. Languages: PT, EN(C1), ES, DE(A2)."
+def load_profile_summary() -> str:
+    """Builds the candidate summary from config/candidate_profile.json,
+    so the match criteria reflect the real CV (not a fixed summary)."""
+    try:
+        with open("config/candidate_profile.json", encoding="utf-8") as f:
+            p = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        # Fallback: minimal summary without PII
+        return ("Candidate: Data/Business Analyst, Zurich Area CH (Permit B), 2 weeks notice. "
+                "Skills: SQL, Python, Power BI, GA4. Languages: PT, EN(C1), ES, DE(A2).")
 
-SYSTEM_PROMPT = """Evaluate job vs candidate. Return JSON: {"score":0-100,"technical_fit":"brief","contextual_fit":"brief","salary_estimate":"range or Not disclosed","culture_fit":"brief","concerns":[],"decision":"APPLY|REVIEW|SKIP","portuguese_comment":"PT brief"}. Rules: >=65 APPLY, 45-64 REVIEW, <45 SKIP. Auto-SKIP: not Zurich/Zug, not English, pure SWE."""
+    skills = p.get("skills", {})
+    tech = skills.get("technical_default", [])
+    certs = skills.get("certifications", [])
+    exp = p.get("experience", [])
+    exp_summary = "; ".join(f"{e.get('title', '')} @ {e.get('company', '').split('--')[0].strip()}" for e in exp[:3])
+    edu = p.get("education", [])
+    edu_summary = edu[0].get("degree", "") if edu else ""
+
+    return (
+        f"Candidate: {p.get('role', 'Data/Business Analyst')}, Zurich Area CH "
+        f"({p.get('permit', 'Permit B')}), notice {p.get('notice_period', '2 weeks')}. "
+        f"Skills: {', '.join(tech[:8])}. "
+        f"Experience: {exp_summary}. "
+        f"Education: {edu_summary}. "
+        f"Certifications: {', '.join(certs)}. "
+        f"Languages: PT native, EN C1, ES B2, DE A2."
+    )
+
+
+PROFILE = load_profile_summary()
+
+SYSTEM_PROMPT = """Evaluate job vs candidate. Return JSON: {"score":0-100,"technical_fit":"brief","contextual_fit":"brief","salary_estimate":"range or Not disclosed","culture_fit":"brief","concerns":[],"decision":"APPLY|REVIEW|SKIP","portuguese_comment":"PT brief"}. Rules: >=75 APPLY, 45-74 REVIEW, <45 SKIP. Auto-SKIP: not Zurich/Zug, not English, pure SWE."""
+
+ERROR_LOG = os.path.join("digests", "evaluation_errors.txt")  # .txt: *.log is in .gitignore and would not be committed
+
+
+def log_error(msg):
+    """Logs real API errors for diagnosis (committed by the workflow)."""
+    try:
+        ts = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+        with open(ERROR_LOG, "a", encoding="utf-8") as f:
+            f.write(f"[{ts}] {msg}\n")
+    except OSError:
+        pass
 
 
 def evaluate_job(job):
     title = job.get("titulo", job.get("title", "Unknown"))
     company = job.get("empresa", job.get("company", "Unknown"))
     location = job.get("localizacao", job.get("location", "Unknown"))
-    desc = job.get("descricao", job.get("description", ""))[:200]
+    desc = job.get("descricao", job.get("description", ""))[:1500]
     url = job.get("url", "")
     portal = job.get("portal", job.get("source", "adzuna"))
 
@@ -36,7 +78,7 @@ def evaluate_job(job):
         key_match_points = []
         red_flags = []
 
-        if score >= 65:
+        if score >= 75:
             key_match_points = [ev.get("technical_fit", ""), ev.get("contextual_fit", "")]
             key_match_points = [p for p in key_match_points if p]
         elif score >= 45:
@@ -68,12 +110,14 @@ def evaluate_job(job):
             "materials_needed": ["cv"] if decision == "APPLY" else [],
         }
     except Exception as e:
-        print(f"API timeout -> default REVIEW")
+        err_msg = f"{type(e).__name__}: {e}"
+        print(f"API ERROR -> default REVIEW | {err_msg[:200]}")
+        log_error(f"{title} @ {company}: {err_msg}")
         return {
             "score": 55,
             "recommendation": "REVIEW",
             "key_match_points": [],
-            "red_flags": ["API timeout"],
+            "red_flags": [f"API error: {err_msg[:150]}"],
             "job": {
                 "empresa": company,
                 "titulo": title,
@@ -81,11 +125,11 @@ def evaluate_job(job):
                 "url": url,
                 "portal": portal,
             },
-            "technical_fit": "Not evaluated (timeout)",
-            "contextual_fit": "Not evaluated (timeout)",
+            "technical_fit": "Not evaluated (API error)",
+            "contextual_fit": "Not evaluated (API error)",
             "salary_estimate": "Not disclosed",
-            "culture_fit": "Nao avaliado",
-            "concerns": ["API timeout"],
+            "culture_fit": "Not evaluated",
+            "concerns": [f"API error: {err_msg[:150]}"],
             "decision": "REVIEW",
             "portuguese_comment": "Check manually via link",
             "materials_needed": ["cv"],
@@ -113,7 +157,7 @@ def main():
         if i < len(jobs):
             time.sleep(2)
 
-    apply = [e for e in evaluations if e.get("score", 0) >= 65]
+    apply = [e for e in evaluations if e.get("score", 0) >= 75]
     review = [e for e in evaluations if 45 <= e.get("score", 0) < 65]
     skip = [e for e in evaluations if e.get("score", 0) < 45]
     print(f"\n{'='*50}")

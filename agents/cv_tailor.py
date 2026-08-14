@@ -13,61 +13,47 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-CARLOS_CV_BASE = """
-CARLOS EDUARDO DUARTE BAPTISTA
-[redacted] | [redacted]
-[redacted] | linkedin.com/in/carlosedbaptista
-DOB: [redacted] | Nationality: Brazilian | Swiss Work Permit B (valid)
+def load_cv_base() -> str:
+    """CV base para tailoring.
 
-PROFILE
-Data and business analysis professional completing a Postgraduate degree in Data Science. Experienced in translating operational data into structured insights that support business decisions. Uses Claude, ChatGPT, and Gemini as core professional tools daily to improve analytical workflows and content quality.
+    Prioridade: config/cv_model.txt (modelo real do candidato, fora do git).
+    Fallback: monta a partir de config/candidate_profile.json.
+    """
+    if os.path.exists("config/cv_model.txt"):
+        with open("config/cv_model.txt", encoding="utf-8") as f:
+            return f.read().strip()
 
-PROFESSIONAL EXPERIENCE
+    try:
+        with open("config/candidate_profile.json", encoding="utf-8") as f:
+            p = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return ""
 
-Digital Marketing & Analytics Associate (Pro Bono, 20h/week)
-netzdenker.com — Wallisellen, Switzerland | 06.2025–Present
-- Produced presentations and structured documentation to support stakeholder engagement
-- Used AI tools to improve content quality, automate reporting workflows, adapt communication
-- Coordinated operational workflows and supported cross-functional collaboration
-
-Operations Support Associate (Freelancer)
-Coople (Schweiz) AG — Switzerland | 06.2025–Present
-- Customer-facing service and operations support in dynamic event environments
-- Adapted quickly to diverse operational contexts in multilingual Swiss work environment
-
-NetSuite Developer & Business Process Analyst (Internship)
-Gestora de Inteligência de Crédito S.A. (QUOD) — São Paulo, Brazil | 03.2023–11.2024
-- Worked as Business Process Analyst coordinating cross-functional teams
-- Contributed to process transformation initiative that reduced manual work by 40%
-- Coordinated stakeholder communication and supported user adoption
-
-IT Resident (Technology Training Program)
-BRISA / CIEDS — Rio de Janeiro, Brazil | 05.2023–01.2024
-- Co-developed full-stack event management platform including data modeling, backend logic, workflow structure
-- Delivered 65% of project scope within program timeline
-
-Administrative Support Intern
-Criminal Registry — High Court of Rio de Janeiro, Brazil | 04.2021–01.2023
-- Contributed to digitization of criminal case archive: team virtualized 90% of physical records (2,000+ cases)
-- Managed digital workflow within electronic case management system
-
-EDUCATION
-
-Postgraduate Studies in Data Science (expected 10.2026)
-UNIAMERICA University — Remote
-
-Bachelor's Degree in System Analysis and Development (12.2024)
-UNIAMERICA University — Rio de Janeiro, Brazil
-
-TECHNICAL SKILLS
-MS Office (PowerPoint, Excel, SharePoint), AI Tools (Claude, ChatGPT, Gemini), Jira, Power BI, GA4, Data Modeling, Oracle NetSuite
-
-CERTIFICATIONS
-Google AI Essentials (2025) | Anthropic Claude Courses (2026) | GA4 Certification (2026)
-
-LANGUAGES
-Portuguese (native) | English (C1 Advanced) | Spanish (B2 Intermediate) | German (A2, improving)
-"""
+    lines = [
+        p.get("name", "").upper(),
+        f"{p.get('address', '')} | {p.get('phone', '')}",
+        f"{p.get('email', '')} | {p.get('linkedin', '')}",
+        f"DOB: {p.get('dob', '')} | Nationality: {p.get('nationality', '')} | {p.get('permit', '')}",
+        "",
+        "PROFESSIONAL EXPERIENCE",
+    ]
+    for exp in p.get("experience", []):
+        lines.append(f"\n{exp.get('title', '')}")
+        lines.append(f"{exp.get('company', '')} | {exp.get('period', '')}")
+        for b in exp.get("bullets", []):
+            lines.append(f"- {b}")
+    lines.append("\nEDUCATION")
+    for edu in p.get("education", []):
+        lines.append(f"\n{edu.get('degree', '')}")
+        lines.append(f"{edu.get('institution', '')} | {edu.get('period', '')}")
+    skills = p.get("skills", {})
+    lines.append("\nTECHNICAL SKILLS")
+    lines.append(", ".join(skills.get("technical_default", [])))
+    certs = skills.get("certifications", [])
+    if certs:
+        lines.append("\nCERTIFICATIONS")
+        lines.append(" | ".join(certs))
+    return "\n".join(lines)
 
 SYSTEM_PROMPT = """You are a CV tailor for Carlos. Your task:
 
@@ -79,6 +65,7 @@ SYSTEM_PROMPT = """You are a CV tailor for Carlos. Your task:
 RULES:
 - Never add fake experience
 - Never change dates or facts
+- Follow the STRUCTURE, tone and formatting of the BASE CV exactly (same sections, same style)
 - Keep certifications section (always valuable)
 - Keep skills section, but REORDER by relevance to job
 - Adjust language to match job posting language
@@ -97,7 +84,10 @@ def tailor_cv(job: dict, evaluation: dict) -> str:
 
     suggested_angle = evaluation.get("suggested_angle", "")
 
-    user_prompt = f"""Tailor Carlos's CV for this job:
+    user_prompt = f"""Tailor this CV for the job below:
+
+BASE CV:
+{load_cv_base()}
 
 COMPANY: {empresa}
 TITLE: {titulo}
@@ -133,12 +123,12 @@ Keep it concise, 1 page."""
 
 
 def tailor_all_cvs(evaluations: list[dict], jobs_dict: dict) -> list[dict]:
-    """Tailors CVs only for jobs with score >= 65 (APPLY)."""
+    """Tailors CVs only for jobs with score >= 75 (APPLY)."""
     tailored = []
-    apply_jobs = [e for e in evaluations if e.get("score", 0) >= 65]
+    apply_jobs = [e for e in evaluations if e.get("score", 0) >= 75]
 
     if not apply_jobs:
-        print("No jobs with score >= 65. Nothing to tailor.")
+        print("No jobs with score >= 75. Nothing to tailor.")
         return []
 
     print(f"Tailoring CVs for {len(apply_jobs)} job(s)...\n")

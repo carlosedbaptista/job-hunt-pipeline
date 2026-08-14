@@ -152,7 +152,7 @@ def format_digest_as_html(digest):
         url = _get_field(job_eval, "url")
         portal = _get_field(job_eval, "portal")
 
-        color = "#32CD32" if score >= 65 else "#FFA500" if score >= 45 else "#999"
+        color = "#32CD32" if score >= 75 else "#FFA500" if score >= 45 else "#999"
 
         html += f"""
                 <div class="job">

@@ -166,7 +166,7 @@ def cv_pdf(profile, job, summary, path):
     pdf.set_font("Helvetica", "B", 11)
     pdf.cell(0, 6, "LANGUAGES", ln=True)
     pdf.set_font("Helvetica", "", 10)
-    pdf.cell(0, 5, "English (Professional) | Portuguese (Native) | German (A2, learning)", ln=True)
+    pdf.cell(0, 5, _safe_text(profile.get("languages", "English (Professional) | Portuguese (Native) | German (A2, learning)")), ln=True)
     pdf.ln(2)
 
     # Hobbies

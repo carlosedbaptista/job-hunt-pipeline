@@ -1,6 +1,6 @@
 """
-form_fill_guide.py  —  Gera guias pra Claude in Chrome preencher formulários
-Analisa a vaga e cria instruções otimizadas
+form_fill_guide.py  —  Generates guides for Claude in Chrome to fill out forms
+Analyzes the job and creates optimized instructions
 """
 
 import json
@@ -8,31 +8,42 @@ import os
 from datetime import datetime
 
 
-# Dados pessoais de Carlos (pré-preenchidos)
-CARLOS_DATA = {
-    "full_name": "Carlos Eduardo Duarte Baptista",
-    "email": "[redacted]",
-    "phone": "[redacted]",
-    "location": "Wallisellen, Switzerland",
-    "linkedin": "linkedin.com/in/carlosedbaptista",
-    "github": "",  # Adicionar se tiver
-    "website": "",  # Adicionar se tiver
-    "cv_path": "Carlos_Baptista_CV_Master_v3.docx",
-    "work_permit": "Swiss Work Permit B (valid)",
-    "nationality": "Brazilian",
-    "languages": {
-        "portuguese": "Native",
-        "english": "C1 Advanced",
-        "spanish": "B2 Intermediate",
-        "german": "A2 (improving)",
-    },
-    "availability": "On 2 weeks' notice",
-}
+# Personal data loaded from config/candidate_profile.json (not in git)
+# -- never hardcode PII here, this file goes to a public repo
+def _load_personal_data() -> dict:
+    try:
+        with open("config/candidate_profile.json", encoding="utf-8") as f:
+            p = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        p = {}
+    return {
+        "full_name": p.get("name", ""),
+        "email": p.get("email", ""),
+        "phone": p.get("phone", ""),
+        "location": p.get("location", ""),
+        "linkedin": p.get("linkedin", ""),
+        "github": p.get("github", ""),
+        "website": "",
+        "cv_path": "Carlos_Baptista_CV_Master_v3.docx",
+        "work_permit": p.get("permit", ""),
+        "nationality": p.get("nationality", ""),
+        "languages": {
+            "portuguese": "Native",
+            "english": "C1 Advanced",
+            "spanish": "B2 Intermediate",
+            "german": "A2 (improving)",
+        },
+        "availability": f"On {p.get('notice_period', '2 weeks')}' notice",
+    }
 
-# Mapeamento de campos comuns em ATS
+
+CARLOS_DATA = _load_personal_data()
+
+# Mapping of common ATS fields
+_name_parts = CARLOS_DATA["full_name"].split()
 COMMON_FIELDS = {
-    "first_name": "Carlos",
-    "last_name": "Baptista",
+    "first_name": _name_parts[0] if _name_parts else "",
+    "last_name": _name_parts[-1] if _name_parts else "",
     "email": CARLOS_DATA["email"],
     "phone": CARLOS_DATA["phone"],
     "location": CARLOS_DATA["location"],
@@ -42,15 +53,15 @@ COMMON_FIELDS = {
     "education": "Postgraduate in Data Science (expected Oct 2026), Bachelor in Systems Analysis",
     "skills": "Power BI, GA4, Data Analysis, Business Analysis, AI Tools (Claude, ChatGPT)",
     "certifications": "Google AI Essentials, Anthropic Claude Courses, GA4 Certification",
-    "cover_letter": "",  # Será preenchido da aprovação
+    "cover_letter": "",  # Will be filled from the approval
     "resume": CARLOS_DATA["cv_path"],
 }
 
 
 def generate_form_fill_guide(job_eval: dict, approval: dict) -> dict:
     """
-    Gera um guia estruturado pra Claude in Chrome preencher o formulário.
-    Retorna instruções passo a passo otimizadas.
+    Generates a structured guide for Claude in Chrome to fill out the form.
+    Returns optimized step-by-step instructions.
     """
     job = approval.get("job", {})
     empresa = job.get("empresa", "")
@@ -68,18 +79,18 @@ def generate_form_fill_guide(job_eval: dict, approval: dict) -> dict:
         "data_to_fill": COMMON_FIELDS.copy(),
     }
 
-    # Instruções genéricas (funcionam pra maioria dos ATS)
+    # Generic instructions (work for most ATS)
     guide["instructions"] = [
-        f"1. Abra este link no navegador: {url}",
-        "2. Aguarde a página carregar completamente",
-        "3. Se houver um botão 'Apply' ou 'Candidatar-se', clique",
-        "4. Preencha os campos obrigatórios com os dados abaixo",
-        "5. Para campos de arquivo (CV/Resume), faça upload de: CV_Master.docx",
-        "6. Revise todas as informações",
-        "7. Clique em 'Submit' ou 'Enviar Candidatura'",
+        f"1. Open this link in the browser: {url}",
+        "2. Wait for the page to fully load",
+        "3. If there is an 'Apply' button, click it",
+        "4. Fill in the required fields with the data below",
+        "5. For file fields (CV/Resume), upload: CV_Master.docx",
+        "6. Review all information",
+        "7. Click 'Submit' or 'Send Application'",
     ]
 
-    # Campos comuns esperados
+    # Expected common fields
     guide["form_fields"] = {
         "personal_info": {
             "first_name": "Carlos",
@@ -108,29 +119,29 @@ def generate_form_fill_guide(job_eval: dict, approval: dict) -> dict:
         },
     }
 
-    # Dicas por tipo de ATS (detecção automática)
+    # Hints by ATS type (automatic detection)
     ats_hints = {
         "workday": [
-            "Workday é formal e estruturado",
-            "Preencha 'First Name' e 'Last Name' separadamente",
-            "Procure por 'Phone Number (Country Code)' format",
-            "Geralmente pede LinkedIn URL",
+            "Workday is formal and structured",
+            "Fill in 'First Name' and 'Last Name' separately",
+            "Look for 'Phone Number (Country Code)' format",
+            "Usually asks for LinkedIn URL",
         ],
         "greenhouse": [
-            "Greenhouse é cleanear e moderno",
-            "Campos aparecem progressivamente",
-            "Se pedir 'Authorized to work in Switzerland', marque SIM",
-            "Resume é obrigatório",
+            "Greenhouse is clean and modern",
+            "Fields appear progressively",
+            "If asked 'Authorized to work in Switzerland', answer YES",
+            "Resume is required",
         ],
         "lever": [
-            "Lever é intuitivo e mobile-friendly",
-            "Procure por dropdown de 'How did you hear about us?'",
-            "Se houver campo de 'Portfolio' ou 'Website', deixe em branco se não tiver",
+            "Lever is intuitive and mobile-friendly",
+            "Look for the 'How did you hear about us?' dropdown",
+            "If there is a 'Portfolio' or 'Website' field, leave it blank if you don't have one",
         ],
         "generic": [
-            "Se o formulário não for reconhecido, preencha campos básicos",
-            "Priorize: email, phone, location, resume",
-            "Para campos opcionais, deixe em branco se não tiver dado",
+            "If the form is not recognized, fill in the basic fields",
+            "Prioritize: email, phone, location, resume",
+            "For optional fields, leave blank if you don't have the data",
         ],
     }
 
@@ -140,7 +151,7 @@ def generate_form_fill_guide(job_eval: dict, approval: dict) -> dict:
 
 
 def save_form_guides(approvals: list, evals_dict: dict) -> list:
-    """Salva guias pra todas as aplicações aprovadas."""
+    """Saves guides for all approved applications."""
     guides = []
     os.makedirs("digests", exist_ok=True)
 
@@ -151,12 +162,12 @@ def save_form_guides(approvals: list, evals_dict: dict) -> list:
         guide = generate_form_fill_guide(eval_data, approval)
         guides.append(guide)
 
-        # Salva guia individual
+        # Save individual guide
         filename = f"digests/form_guide_{empresa.replace(' ', '_')}.json"
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(guide, f, ensure_ascii=False, indent=2)
 
-    # Salva todos os guias num arquivo
+    # Save all guides to a single file
     if guides:
         all_guides_file = "digests/form_guides_latest.json"
         with open(all_guides_file, "w", encoding="utf-8") as f:
@@ -167,7 +178,7 @@ def save_form_guides(approvals: list, evals_dict: dict) -> list:
 
 def generate_claude_in_chrome_prompt(guide: dict) -> str:
     """
-    Gera um prompt otimizado pra colar direto no Claude in Chrome.
+    Generates an optimized prompt to paste directly into Claude in Chrome.
     """
     empresa = guide["empresa"]
     titulo = guide["titulo"]
@@ -216,7 +227,7 @@ After completing the form, confirm that all information is correct and take a fi
 if __name__ == "__main__":
     import sys
 
-    # Teste: gera guia de exemplo
+    # Test: generate a sample guide
     sample_approval = {
         "empresa": "Test Company",
         "titulo": "Data Analyst Internship",
@@ -231,10 +242,10 @@ if __name__ == "__main__":
 
     guide = generate_form_fill_guide(sample_eval, sample_approval)
 
-    print("✅ Form Fill Guide Generated:")
+    print("[OK] Form Fill Guide Generated:")
     print(json.dumps(guide, indent=2, ensure_ascii=False))
 
     print("\n" + "=" * 70)
-    print("PROMPT PRA CLAUDE IN CHROME:")
+    print("PROMPT FOR CLAUDE IN CHROME:")
     print("=" * 70)
     print(generate_claude_in_chrome_prompt(guide))

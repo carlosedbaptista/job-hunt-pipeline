@@ -1,6 +1,6 @@
 """
 cover_letter_writer.py  —  Generates tailored cover letters for high-fit jobs
-Uses Claude Sonnet. Runs only for jobs with score >= 65.
+Uses Claude Sonnet. Runs only for jobs with score >= 75.
 """
 
 import json
@@ -17,27 +17,29 @@ CARLOS_VOICE = """
 TONE: Professional but human. Direct, specific, honest.
 STYLE: Shows genuine interest. Never generic.
 BACKGROUND_SUMMARY:
-  - Brazilian based in Zurich (Wallisellen)
-  - Business process analyst at QUOD (Brazil) — 40% manual work reduction
-  - Currently: Digital Marketing & Analytics Associate (pro bono at netzdenker.com)
-  - Postgraduate in Data Science (expected Oct 2026)
-  - STRONG AI integration: uses Claude, ChatGPT, Gemini daily as professional tools
+  - Brazilian based in Zurich Area, Swiss Work Permit B (no sponsorship), 2 weeks' notice
+  - Career changer: Law (Brazilian High Court) -> software engineering, driven by data & automation
+  - Currently: Data & Analytics Intern at netzdenker.com (Swiss digital agency) -- builds and maintains
+    agentic AI workflows, LLM tool-use and data pipelines in production (Python, JavaScript, CI/CD)
+  - Before: Business Process & NetSuite Developer at QUOD (credit bureau, Brazil) -- ~40% less manual data entry
+  - Postgraduate specialisation in Data Science (ML, statistical modelling) -- expected Oct 2026
+  - Built a full agentic AI pipeline solo (ingestion -> LLM scoring -> dashboard -> alerts, CI/CD on GitHub Actions)
 
 KEY_SELLING_POINTS:
-  1. Real AI integration — not just "familiar", uses as daily tools
-  2. Cross-cultural & multilingual (Portuguese native, English C1, German improving)
+  1. Hands-on agentic AI in production — builds and maintains LLM workflows, not just "familiar with AI"
+  2. Career-change story (Law -> tech) — learns new domains fast
   3. Swiss Work Permit B valid — zero complications
-  4. Quantified results (40% reduction in manual work)
-  5. Actively learning (AI Essentials, Claude Courses, GA4)
+  4. Quantified results (~40% reduction in manual data entry at QUOD)
+  5. Actively learning (Data Science postgrad, AI Essentials, Claude Courses, GA4)
 
 WHAT TO EMPHASIZE:
-  - For Data/BI roles: Power BI, GA4, data storytelling
+  - For AI/platform roles: agentic workflows, LLM tool-use orchestration, CI/CD for AI, own pipeline project
+  - For Data/BI roles: data pipelines, Power BI, GA4, statistical modelling
   - For Analytics roles: business insights, stakeholder communication
-  - For AI roles: daily Claude/ChatGPT usage, prompt engineering
   - Always: genuine interest in THIS company (research 2-3 facts)
 """
 
-SYSTEM_PROMPT = f"""You are a cover letter writer for Carlos, a Data & Business Analyst.
+SYSTEM_PROMPT = f"""You are a cover letter writer for Carlos, an AI Platform Engineer (agentic AI, LLM workflows, data pipelines).
 
 CARLOS'S VOICE & POSITIONING:
 {CARLOS_VOICE}
@@ -54,9 +56,25 @@ RULES:
   - Tone: Professional but warm, like talking to a smart colleague
   - Never generic phrases ("I am excited to...")
   - Always specific: "Your analytics work on X impressed me because..."
-  - Signed: "Carlos Eduardo Duarte Baptista"
+  - Signed with the candidate full name from the candidate profile
 
 OUTPUT: Return the cover letter as plain text, ready to copy-paste. No markdown, no headers."""
+
+
+def _candidate_name() -> str:
+    try:
+        with open("config/candidate_profile.json", encoding="utf-8") as f:
+            return json.load(f).get("name", "")
+    except (FileNotFoundError, json.JSONDecodeError):
+        return ""
+
+
+def _cl_model() -> str:
+    """Modelo real de cover letter do candidato (config/cover_letter_model.txt, fora do git)."""
+    if os.path.exists("config/cover_letter_model.txt"):
+        with open("config/cover_letter_model.txt", encoding="utf-8") as f:
+            return f.read().strip()
+    return ""
 
 
 def generate_cover_letter(job: dict, evaluation: dict) -> str:
@@ -71,7 +89,16 @@ def generate_cover_letter(job: dict, evaluation: dict) -> str:
 
     suggested_angle = evaluation.get("suggested_angle", "")
 
+    cl_model = _cl_model()
+    model_block = (
+        f"\n\nREFERENCE COVER LETTER (match this structure, voice and opening style — personal story hook, "
+        f"concrete achievements, honest motivation — but write about THIS company):\n{cl_model}\n"
+        if cl_model else ""
+    )
+
     user_prompt = f"""Write a cover letter for this job:
+
+CANDIDATE NAME (sign the letter with it): {_candidate_name()}
 
 COMPANY: {empresa}
 TITLE: {titulo}
@@ -81,7 +108,7 @@ JOB_DESCRIPTION: {descricao}
 
 SUGGESTED ANGLE (from fit evaluation):
 {suggested_angle}
-
+{model_block}
 Write in {lang_name}. Make it specific to {empresa} and this {titulo} role.
 Research fact: [{empresa} is likely in {localizacao}. What is their business?]
 Show genuine interest, not generic enthusiasm."""
@@ -100,12 +127,12 @@ Show genuine interest, not generic enthusiasm."""
 
 
 def generate_materials(evaluations: list[dict], jobs_dict: dict) -> list[dict]:
-    """Generates cover letters only for jobs with score >= 65 (APPLY)."""
+    """Generates cover letters only for jobs with score >= 75 (APPLY)."""
     materials = []
-    apply_jobs = [e for e in evaluations if e.get("score", 0) >= 65]
+    apply_jobs = [e for e in evaluations if e.get("score", 0) >= 75]
 
     if not apply_jobs:
-        print("No jobs with score >= 65. Nothing to generate.")
+        print("No jobs with score >= 75. Nothing to generate.")
         return []
 
     print(f"Generating cover letters for {len(apply_jobs)} job(s)...\n")

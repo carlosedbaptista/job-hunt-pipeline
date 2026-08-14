@@ -49,17 +49,18 @@
 
 ## User Context — Cadu (Carlos Eduardo Duarte Baptista)
 
-**Role**: Data and business analysis professional, positioning as Analyst/AI User (NOT developer)
+**Role**: AI Platform Engineer — Agentic AI, LLM Workflows, CI/CD, Data Pipelines, Automation
 
 **Background**: 
-- QUOD (Brazil, Business Process Analyst): 40% manual work reduction
-- netzdenker.com (Switzerland, Analytics Associate): Power BI, GA4, AI-assisted workflows
-- Education: Postgraduate in Data Science (expected Oct 2026), Bachelor's in Systems Analysis
-- Languages: Portuguese (native), English (C1), Spanish (B2), German (A2, ongoing)
+- Career changer: Law (Brazilian High Court) -> software engineering
+- netzdenker.com (Switzerland, Data & Analytics Intern): agentic AI workflows and data pipelines in production (Python, LLMs, CI/CD)
+- QUOD (Brazil, Business Process & NetSuite Developer): ~40% manual data entry reduction
+- Education: Postgraduate in Data Science (expected Oct 2026), Technologist degree in Systems Analysis
+- Languages: Portuguese (native), English (C1), Spanish (B2), German (A2 -> B1, intensive course)
 
-**Contact**: [redacted] | LinkedIn: linkedin.com/in/carlosedbaptista | Phone: [redacted]
+**Contact**: ver `config/candidate_profile.json` (arquivo local, fora do git — nao commitar PII)
 
-**Work Status**: Swiss Work Permit B (valid), based in Wallisellen, available on 2 weeks' notice
+**Work Status**: Swiss Work Permit B (no sponsorship required), based in Zurich Area, available on 2 weeks' notice
 
 **Certifications**: Google AI Essentials (2025) | Anthropic Claude Courses (2026) | GA4 Certification (2026)
 
@@ -67,14 +68,14 @@
 
 ## Materials Base
 
-All base materials are in `/mnt/user-data/outputs/` on Claude's system. When building agents, reference these:
+Fontes da verdade (arquivos locais, fora do git):
 
-- **CV Master**: `Carlos_Baptista_CV_Master_v3.docx` — 1 page, data analyst positioning, "available on 2 weeks' notice"
-- **Cover Letter Template**: `Carlos_Baptista_CoverLetter_Template.docx` — Base template with placeholders for company-specific customization
-- **Positioning**: `positioning.md` — Analyst/AI User profile, hard constraints (Zurich/Zug location, English required, no dev-only roles), target roles
-- **Evaluation Rubric**: `evaluation_rubric.md` — Scoring 0-100 (technical 40pts, contextual 35pts, opportunity 25pts), thresholds (>=75 APPLY, 55-74 REVIEW, <55 UNCERTAIN ask user)
+- **CV modelo**: `config/cv_model.txt` — CV real (1 pagina, posicionamento AI Platform Engineer)
+- **Cover Letter modelo**: `config/cover_letter_model.txt` — CL real usado numa aplicacao (estrutura/voz de referencia)
+- **Perfil estruturado**: `config/candidate_profile.json` — alinhado ao CV modelo; usado por evaluator, doc_generator, cv_tailor e cover_letter_writer
+- **Rubrica de avaliacao**: score 0-100 via LLM, thresholds (>=75 APPLY, 45-74 REVIEW, <45 SKIP)
 
-**Key positioning**: Data analyst, not software engineer. Uses Claude/ChatGPT/Gemini daily as professional tools. Cross-cultural profile (Brazilian, based in Zurich area, polyglot). Quantified results (40% reduction at QUOD).
+**Key positioning**: AI Platform Engineer (agentic AI, LLM workflows, data pipelines). Career changer (Law -> tech). Swiss Permit B, Zurich area. Quantified results (~40% at QUOD).
 
 ---
 

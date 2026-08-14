@@ -32,5 +32,13 @@ config/gdrive_credentials.json
 config/gdrive_refresh_token.json
 config/oauth2_client_secret.json
 
+# Dados pessoais do candidato (PII) -- restaurados via secrets no CI
+config/candidate_profile.json
+config/photo.png
+
 # Generated docs (CVs/CLs)
 generated_docs/
+digests/raw_emails*.json
+config/cv_model.txt
+config/cover_letter_model.txt
+.venv-tools/

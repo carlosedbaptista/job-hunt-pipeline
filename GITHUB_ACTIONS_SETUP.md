@@ -1,5 +1,30 @@
 # Semana 7: GitHub Actions Scheduler — Setup Completo
 
+> **ATUALIZAÇÃO (2026-08):** o pipeline usa a API do **Kimi/Moonshot** (não mais Anthropic).
+> Secrets necessários em *Settings → Secrets and variables → Actions*:
+>
+> | Secret | Obrigatório | Descrição |
+> |---|---|---|
+> | `KIMI_API_KEY` | sim | Chave de platform.moonshot.ai (precisa ter saldo!) |
+> | `ADZUNA_APP_ID` / `ADZUNA_APP_KEY` | sim | API de vagas Adzuna |
+> | `GMAIL_SENDER` / `GMAIL_APP_PASSWORD` / `GMAIL_RECIPIENT` | sim | Envio de emails (App Password de 16 chars) |
+> | `CANDIDATE_PROFILE_B64` | recomendado | `candidate_profile.json` em base64 (PII fica fora do git) |
+> | `CANDIDATE_PHOTO_B64` | opcional | `photo.png` em base64 (foto do CV) |
+> | `CV_MODEL_B64` | opcional | `cv_model.txt` em base64 (modelo real de CV usado no tailoring) |
+> | `CL_MODEL_B64` | opcional | `cover_letter_model.txt` em base64 (modelo real de CL) |
+> | `GDRIVE_PARENT_FOLDER_ID` / `GDRIVE_REFRESH_TOKEN_B64` / `GDRIVE_CREDENTIALS_JSON_B64` | opcional | Upload de CVs/CLs ao Drive |
+>
+> Gerar os valores base64 (Git Bash):
+> ```bash
+> base64 -w0 config/candidate_profile.json   # cole como CANDIDATE_PROFILE_B64
+> base64 -w0 config/photo.png                # cole como CANDIDATE_PHOTO_B64
+> base64 -w0 config/cv_model.txt             # cole como CV_MODEL_B64
+> base64 -w0 config/cover_letter_model.txt   # cole como CL_MODEL_B64
+> ```
+>
+> Sem `CANDIDATE_PROFILE_B64` o pipeline roda com um perfil fallback genérico
+> (match pior e sem geração de CV/CL personalizados).
+
 ## O que você fez
 
 Criou um **workflow do GitHub Actions** que:

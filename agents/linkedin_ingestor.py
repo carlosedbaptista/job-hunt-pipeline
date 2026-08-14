@@ -2,8 +2,8 @@
 """
 linkedin_ingestor.py
 
-Busca ativa de vagas no LinkedIn via endpoint publico (sem API key).
-Saida: data/raw_jobs/linkedin_{data}.json
+Active LinkedIn job search via public endpoint (no API key).
+Output: data/raw_jobs/linkedin_{data}.json
 """
 
 import os
@@ -29,7 +29,7 @@ SEARCH_QUERIES = [
     ("Data Analyst Intern", "Zug, Switzerland"),
     ("Business Analyst Intern", "Zug, Switzerland"),
     ("Praktikum Business", "Zug, Switzerland"),
-    # Basel / Winterthur / Bern (regiao proxima)
+    # Basel / Winterthur / Bern (nearby region)
     ("Data Intern", "Basel, Switzerland"),
     ("Werkstudent Data", "Winterthur, Switzerland"),
 ]
@@ -42,7 +42,7 @@ def fetch_linkedin_jobs(keywords: str, location: str, start: int = 0) -> List[Di
         "keywords": keywords,
         "location": location,
         "start": str(start),
-        "f_TPR": "r86400",  # ultimas 24h
+        "f_TPR": "r86400",  # last 24h
     }
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -56,31 +56,31 @@ def fetch_linkedin_jobs(keywords: str, location: str, start: int = 0) -> List[Di
         html = response.text
         return parse_jobs_html(html)
     except httpx.HTTPStatusError as e:
-        print(f"  ❌ HTTP {e.response.status_code} para '{keywords}' em {location}")
+        print(f"  [X] HTTP {e.response.status_code} for '{keywords}' in {location}")
         return []
     except Exception as e:
-        print(f"  ❌ Erro: {e}")
+        print(f"  [X] Error: {e}")
         return []
 
 
 def parse_jobs_html(html: str) -> List[Dict[str, Any]]:
-    """Parseia o HTML retornado pelo LinkedIn e extrai vagas."""
+    """Parses the HTML returned by LinkedIn and extracts jobs."""
     jobs = []
-    # Cada job vem em um <li> com classe base-search-result
+    # Each job comes in an <li> with class base-search-result
     job_blocks = re.findall(r'<li[^>]*class="base-search-result__info"[^>]*>(.*?)</li>', html, re.DOTALL)
 
     for block in job_blocks:
         job = {}
 
-        # Titulo
+        # Title
         title_match = re.search(r'class="base-search-result__title"[^>]*>.*?<span[^>]*>(.*?)</span>', block, re.DOTALL)
         job["title"] = clean_html(title_match.group(1)) if title_match else "Unknown"
 
-        # Empresa
+        # Company
         company_match = re.search(r'class="base-search-result__subtitle"[^>]*>.*?<span[^>]*>(.*?)</span>', block, re.DOTALL)
         job["company"] = clean_html(company_match.group(1)) if company_match else "Unknown"
 
-        # Localizacao
+        # Location
         loc_match = re.search(r'class="job-search-card__location"[^>]*>(.*?)</span>', block, re.DOTALL)
         if not loc_match:
             loc_match = re.search(r'class="base-search-result__metadata"[^>]*>.*?<span[^>]*>(.*?)</span>', block, re.DOTALL)
@@ -93,12 +93,12 @@ def parse_jobs_html(html: str) -> List[Dict[str, Any]]:
         else:
             job["url"] = ""
 
-        # ID da vaga (do URL)
+        # Job ID (from URL)
         id_match = re.search(r'/jobs/view/(\d+)', job.get("url", ""))
         job["linkedin_id"] = id_match.group(1) if id_match else ""
 
         job["portal"] = "linkedin"
-        job["description"] = ""  # requer fetch extra, deixamos vazio por enquanto
+        job["description"] = ""  # requires an extra fetch; left empty for now
         job["posted_at"] = datetime.now(timezone.utc).isoformat()
 
         if job["title"] != "Unknown":
@@ -108,7 +108,7 @@ def parse_jobs_html(html: str) -> List[Dict[str, Any]]:
 
 
 def clean_html(raw: str) -> str:
-    """Remove tags HTML e entidades."""
+    """Removes HTML tags and entities."""
     text = re.sub(r'<[^>]+>', '', raw)
     text = text.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">")
     text = text.strip()
@@ -136,29 +136,29 @@ def save(jobs: List[Dict[str, Any]]) -> str:
 
 def main():
     print("=" * 70)
-    print("💼 LINKEDIN — Busca ativa de vagas")
+    print("LINKEDIN -- Active job search")
     print("=" * 70)
 
     all_jobs = []
     for keywords, location in SEARCH_QUERIES:
         jobs = fetch_linkedin_jobs(keywords, location)
-        print(f"  🔍 {keywords[:30]:30} em {location[:25]:25} → {len(jobs):2} vagas")
+        print(f"  > {keywords[:30]:30} in {location[:25]:25} -> {len(jobs):2} jobs")
         all_jobs.extend(jobs)
         time.sleep(2)
 
     if not all_jobs:
-        print("\n⚠️  Nenhuma vaga encontrada no LinkedIn.")
+        print("\n[!] No jobs found on LinkedIn.")
         return None
 
     unique = deduplicate(all_jobs)
-    print(f"\n📊 Total bruto: {len(all_jobs)} | Unicas: {len(unique)}")
+    print(f"\n[stats] Raw total: {len(all_jobs)} | Unique: {len(unique)}")
     filepath = save(unique)
 
-    print(f"💾 Salvo: {filepath}")
-    print("\n🏆 Top 5:")
+    print(f"[saved] {filepath}")
+    print("\nTop 5:")
     for i, job in enumerate(unique[:5], 1):
         print(f"   {i}. [{job['company']}] {job['title']} ({job['location']})")
-    print("✅ LinkedIn concluido")
+    print("[OK] LinkedIn done")
     return filepath
 
 
