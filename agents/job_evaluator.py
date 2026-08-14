@@ -158,13 +158,22 @@ def main():
             time.sleep(2)
 
     apply = [e for e in evaluations if e.get("score", 0) >= 75]
-    review = [e for e in evaluations if 45 <= e.get("score", 0) < 65]
+    review = [e for e in evaluations if 45 <= e.get("score", 0) < 75]
     skip = [e for e in evaluations if e.get("score", 0) < 45]
+    api_errors = [e for e in evaluations
+                  if any("API error" in str(f) for f in e.get("red_flags", []))]
     print(f"\n{'='*50}")
     print(f"DONE: {len(evaluations)} jobs | APPLY: {len(apply)} | REVIEW: {len(review)} | SKIP: {len(skip)}")
     print(f"{'='*50}")
     with open("digests/job_evaluations_latest.json", "w", encoding="utf-8") as f:
         json.dump(evaluations, f, ensure_ascii=False, indent=2)
+
+    # Fail loud: if EVERY evaluation fell back to the default score, the LLM
+    # provider is down/misconfigured -- a green "0 APPLY" run hides outages.
+    if api_errors and len(api_errors) == len(evaluations):
+        print(f"FATAL: all {len(api_errors)} evaluations failed (see digests/evaluation_errors.txt). "
+              f"Check KIMI_API_KEY / KIMI_BASE_URL and account balance.")
+        sys.exit(1)
 
 
 if __name__ == "__main__":

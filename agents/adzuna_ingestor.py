@@ -14,6 +14,7 @@ import json
 import httpx
 from datetime import datetime
 from typing import List, Dict, Any
+from urllib.parse import urlsplit
 
 ADZUNA_APP_ID = os.environ.get("ADZUNA_APP_ID", "")
 ADZUNA_APP_KEY = os.environ.get("ADZUNA_APP_KEY", "")
@@ -80,14 +81,20 @@ def normalize_job(raw: Dict[str, Any]) -> Dict[str, Any]:
     company = raw.get("company", {}) or {}
     location = raw.get("location", {}) or {}
     loc_display = location.get("display_name", "")
-    
+
+    # Strip tracking params: Adzuna embeds our app_id (half of the credential
+    # pair) as utm_source in redirect_url -- do not persist it.
+    url = raw.get("redirect_url", raw.get("url", ""))
+    if url:
+        url = urlsplit(url)._replace(query="").geturl()
+
     return {
         "portal": "adzuna",
         "title": raw.get("title", "Unknown"),
         "company": company.get("display_name", "Unknown") if isinstance(company, dict) else str(company),
         "location": loc_display,
         "description": raw.get("description", "")[:4000],
-        "url": raw.get("redirect_url", raw.get("url", "")),
+        "url": url,
         "posted_at": raw.get("created_at", datetime.now().isoformat()),
         "salary_min": raw.get("salary_min"),
         "salary_max": raw.get("salary_max"),

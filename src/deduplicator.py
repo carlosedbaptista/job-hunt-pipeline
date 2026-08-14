@@ -1,6 +1,6 @@
 """
 deduplicator.py  —  Filters already-seen jobs using SQLite
-Hash = sha256(company | title | location), retained for 7 days.
+Hash = sha256(company | title | location), retained for 21 days.
 """
 
 import hashlib
@@ -70,7 +70,7 @@ def init_db(db_path: str = DB_PATH):
     conn.close()
 
 
-def purge_old_records(conn: sqlite3.Connection, days: int = 7):
+def purge_old_records(conn: sqlite3.Connection, days: int = 21):
     """Removes records older than N days (applications are preserved)."""
     cutoff = (datetime.now() - timedelta(days=days)).isoformat()
     conn.execute(
@@ -84,7 +84,7 @@ def purge_old_records(conn: sqlite3.Connection, days: int = 7):
 def filter_new_jobs(
     jobs: list[dict],
     db_path: str = DB_PATH,
-    retention_days: int = 7,
+    retention_days: int = 21,
 ) -> list[dict]:
     """
     Filters jobs already seen in the last N days.
