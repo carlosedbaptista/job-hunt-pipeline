@@ -1,63 +1,63 @@
 # Google Drive Upload Setup
 
-O pipeline pode fazer upload automatico dos CVs e Cover Letters gerados para o Google Drive, organizados por pasta (`Empresa - Cargo`).
+The pipeline can automatically upload the generated CVs and Cover Letters to Google Drive, organized by folder (`Company - Role`).
 
-## 1. Criar Service Account (Google Cloud Console)
+## 1. Create a Service Account (Google Cloud Console)
 
-1. Acesse https://console.cloud.google.com/
-2. Crie um novo projeto (ou use um existente)
-3. Ative a **Google Drive API**:
+1. Go to https://console.cloud.google.com/
+2. Create a new project (or use an existing one)
+3. Enable the **Google Drive API**:
    - Menu ≡ → APIs & Services → Library
-   - Pesquise "Google Drive API" → Enable
-4. Crie uma Service Account:
+   - Search "Google Drive API" → Enable
+4. Create a Service Account:
    - APIs & Services → Credentials → Create Credentials → Service Account
-   - De um nome (ex: `job-hunt-pipeline`)
-   - Role: `Editor` (ou `Owner`)
-   - Crie e baixe uma chave JSON: Keys → Add Key → JSON
+   - Give it a name (e.g. `job-hunt-pipeline`)
+   - Role: `Editor` (or `Owner`)
+   - Create and download a JSON key: Keys → Add Key → JSON
 
-## 2. Configurar Pasta no Drive
+## 2. Configure the Drive Folder
 
-1. No Google Drive, crie uma pasta raiz (ex: `Job Hunt Pipeline`)
-2. Compartilhe essa pasta com o **email da Service Account** (encontrado no JSON, campo `client_email`)
-3. De permissao de **Editor**
-4. Copie o **ID da pasta** da URL:
+1. In Google Drive, create a root folder (e.g. `Job Hunt Pipeline`)
+2. Share that folder with the **Service Account's email** (found in the JSON, field `client_email`)
+3. Grant **Editor** permission
+4. Copy the **folder ID** from the URL:
    - `https://drive.google.com/drive/folders/1ABC...xyz` → ID = `1ABC...xyz`
 
-## 3. Configuracao Local
+## 3. Local Configuration
 
-Opcao A - Arquivo JSON:
+Option A - JSON file:
 ```bash
-# Copie o JSON baixado
-mv sua-chave.json config/gdrive_credentials.json
+# Move the downloaded JSON key
+mv your-key.json config/gdrive_credentials.json
 
-# Configure o ID da pasta no .env
+# Set the folder ID in .env
 echo "GDRIVE_PARENT_FOLDER_ID=1ABC...xyz" >> .env
 ```
 
-Opcao B - Variavel de ambiente (recomendado para CI):
+Option B - Environment variable (recommended for CI):
 ```bash
-# Codifique o JSON em base64
-cat sua-chave.json | base64 -w 0
+# Base64-encode the JSON key
+cat your-key.json | base64 -w 0
 
-# Adicione ao .env
-echo "GDRIVE_CREDENTIALS_JSON_B64=<base64_do_json>" >> .env
+# Add to .env
+echo "GDRIVE_CREDENTIALS_JSON_B64=<base64_of_the_json>" >> .env
 echo "GDRIVE_PARENT_FOLDER_ID=1ABC...xyz" >> .env
 ```
 
-## 4. Testar
+## 4. Test
 
 ```bash
 cd job-hunt-pipeline
 python src/gdrive_uploader.py
 ```
 
-Se aparecer `[GDrive] Conectado como: ...`, esta funcionando.
+If you see `[GDrive] Connected as: ...`, it's working.
 
 ## 5. GitHub Actions (CI)
 
-No repositorio, va em Settings → Secrets and variables → Actions → New repository secret:
+In the repository, go to Settings → Secrets and variables → Actions → New repository secret:
 
-1. `GDRIVE_CREDENTIALS_JSON_B64` = conteudo do JSON codificado em base64
-2. `GDRIVE_PARENT_FOLDER_ID` = ID da pasta no Drive
+1. `GDRIVE_CREDENTIALS_JSON_B64` = the JSON key content, base64-encoded
+2. `GDRIVE_PARENT_FOLDER_ID` = the Drive folder ID
 
-O workflow ja esta configurado para usar essas variaveis.
+The workflow is already configured to use these variables.
