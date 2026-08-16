@@ -41,7 +41,7 @@ def load_profile_summary() -> str:
     return (
         f"Candidate: {p.get('role', 'Data/Business Analyst')}, Zurich Area CH "
         f"({p.get('permit', 'Permit B')}), notice {p.get('notice_period', '2 weeks')}. "
-        f"Skills: {', '.join(tech[:8])}. "
+        f"Skills: {', '.join(tech)}. "
         f"Experience: {exp_summary}. "
         f"Education: {edu_summary}. "
         f"Certifications: {', '.join(certs)}. "
@@ -56,7 +56,23 @@ SYSTEM_PROMPT = (
     '"contextual_fit":"brief","salary_estimate":"range or Not disclosed","culture_fit":"brief",'
     '"concerns":[],"decision":"APPLY|REVIEW|SKIP","portuguese_comment":"PT brief"}. '
     f"Rules: >={THRESHOLD_APPLY} APPLY, {THRESHOLD_REVIEW}-{THRESHOLD_APPLY - 1} REVIEW, "
-    f"<{THRESHOLD_REVIEW} SKIP. Auto-SKIP: not Zurich/Zug, not English, pure SWE."
+    f"<{THRESHOLD_REVIEW} SKIP. Auto-SKIP: not Zurich/Zug, not English, pure SWE. "
+    "Weighting: candidate is a deliberate career changer, open to unfamiliar business "
+    "domains (finance, healthcare, retail, etc.) -- do NOT penalize lack of domain "
+    "experience if the technical/functional role itself matches. Technical fit and "
+    "logistics (location, permit, availability) should drive the score; culture_fit and "
+    "domain unfamiliarity are minor, non-decisive signals and should rarely by "
+    "themselves keep a technically strong match out of APPLY. "
+    "Perspective: score as the candidate would score it for himself -- how excited he'd "
+    "be, how much he'd grow -- not as an HR recruiter filtering out risk. "
+    "Calibration example (candidate-rated 100/APPLY): 'AI Platform Engineer Intern' at a "
+    "small regulated investment firm, no finance background required of him and some "
+    "tools in the stack (Microsoft no-code) he'd never used. Rated 100 because: hands-on "
+    "ownership from day one ('junior builder, not support hand'), greenfield AI/"
+    "automation building on a real platform, direct work with LLMs and agentic "
+    "workflows in production. Role SHAPE -- ownership, building vs. maintaining, "
+    "hands-on AI/automation work -- matters more than a perfect skills or domain "
+    "checklist match. Weigh it accordingly."
 )
 
 ERROR_LOG = os.path.join("digests", "evaluation_errors.txt")  # .txt: *.log is in .gitignore and would not be committed
