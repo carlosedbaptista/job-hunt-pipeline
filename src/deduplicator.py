@@ -76,19 +76,16 @@ def init_db(db_path: str = DB_PATH):
         )
     """)
 
-    conn.execute("""
-        CREATE TABLE IF NOT EXISTS applications (
-            id           INTEGER PRIMARY KEY AUTOINCREMENT,
-            job_hash     TEXT,
-            empresa      TEXT,
-            titulo       TEXT,
-            url          TEXT,
-            date_applied TEXT,
-            status       TEXT DEFAULT 'sent',
-            notes        TEXT,
-            FOREIGN KEY (job_hash) REFERENCES seen_jobs(hash)
-        )
-    """)
+    # The `applications` table is owned by agents/tracker_updater.py (see
+    # its init_applications_table()) -- it used to also be defined here
+    # with an incompatible, never-populated job_hash-based schema. Since
+    # this init_db() runs on every CI execution (via unified_ingestor)
+    # and tracker_updater's init only on the manual track-application
+    # workflow, on a fresh DB this file's CREATE TABLE would have won the
+    # race and silently broken every applications-table read/write
+    # downstream (followup_sender, tracker_updater). Do not redefine it
+    # here; call agents.tracker_updater.init_applications_table() if a
+    # caller in this module ever needs the table to exist.
 
     conn.commit()
     conn.close()
