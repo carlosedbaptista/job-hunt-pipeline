@@ -49,7 +49,7 @@ def record_application(empresa: str, titulo: str, url: str) -> bool:
     ).fetchone()
 
     if existing:
-        print(f"⚠️  Already tracked: {empresa} — {titulo}")
+        print(f"WARNING: Already tracked: {empresa} — {titulo}")
         conn.close()
         return False
 
@@ -73,7 +73,7 @@ def record_applications_batch(approvals_file: str) -> int:
     Returns the number of applications successfully recorded.
     """
     if not os.path.exists(approvals_file):
-        print(f"❌ File not found: {approvals_file}")
+        print(f"ERROR: File not found: {approvals_file}")
         return 0
 
     with open(approvals_file, "r", encoding="utf-8") as f:
@@ -196,19 +196,42 @@ def get_stats() -> dict:
 
 
 if __name__ == "__main__":
-    import sys
+    import argparse
 
-    if len(sys.argv) > 1 and sys.argv[1] == "stats":
-        stats = get_stats()
-        print(json.dumps(stats, indent=2))
-    elif len(sys.argv) > 1 and sys.argv[1] == "list":
-        apps = get_all_applications()
-        print(json.dumps(apps, indent=2, ensure_ascii=False, default=str))
-    elif len(sys.argv) > 2 and sys.argv[1] == "record":
-        count = record_applications_batch(sys.argv[2])
-        print(f"✅ {count} application(s) recorded")
-    else:
-        print("Usage:")
-        print("  python agents/tracker_updater.py stats")
-        print("  python agents/tracker_updater.py list")
-        print("  python agents/tracker_updater.py record <approvals_file>")
+    parser = argparse.ArgumentParser(description="Manage the applications tracker.")
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    sub.add_parser("stats", help="Print application statistics.")
+    sub.add_parser("list", help="List all tracked applications.")
+
+    p_record = sub.add_parser("record", help="Batch-record applications from an approvals JSON file.")
+    p_record.add_argument("approvals_file")
+
+    p_apply = sub.add_parser("apply", help="Record that you applied to a job.")
+    p_apply.add_argument("--company", required=True)
+    p_apply.add_argument("--title", required=True)
+    p_apply.add_argument("--url", default="")
+
+    p_response = sub.add_parser("response", help="Record a recruiter response for a tracked application.")
+    p_response.add_argument("--company", required=True)
+    p_response.add_argument("--title", required=True)
+    p_response.add_argument("--type", required=True, choices=["positive", "rejection", "interview_invite", "info_request"])
+    p_response.add_argument("--notes", default="")
+
+    args = parser.parse_args()
+
+    if args.command == "stats":
+        print(json.dumps(get_stats(), indent=2))
+    elif args.command == "list":
+        print(json.dumps(get_all_applications(), indent=2, ensure_ascii=False, default=str))
+    elif args.command == "record":
+        count = record_applications_batch(args.approvals_file)
+        print(f"OK: {count} application(s) recorded")
+    elif args.command == "apply":
+        if record_application(empresa=args.company, titulo=args.title, url=args.url):
+            print(f"OK: Recorded: {args.company} — {args.title}")
+        else:
+            print(f"WARNING: Already tracked: {args.company} — {args.title}")
+    elif args.command == "response":
+        record_response(empresa=args.company, titulo=args.title, response_type=args.type, notes=args.notes)
+        print(f"OK: Response recorded ({args.type}): {args.company} — {args.title}")
