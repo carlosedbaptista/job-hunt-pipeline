@@ -7,7 +7,7 @@ import sys
 from datetime import datetime
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
-from utils import THRESHOLD_APPLY, THRESHOLD_REVIEW
+from utils import THRESHOLD_APPLY, THRESHOLD_REVIEW, decision_from_score
 
 
 def load_evaluations():
@@ -82,7 +82,11 @@ def format_digest_text(digest, top_jobs):
 
     for i, job_eval in enumerate(top_jobs, 1):
         score = job_eval.get("score", 0)
-        recommendation = job_eval.get("recommendation", job_eval.get("decision", "?"))
+        # Always derived from score, never trusted from the stored
+        # recommendation/decision field: the model's freeform decision text
+        # can drift from what its own score implies (thresholds are the
+        # single source of truth -- see src/utils.py).
+        recommendation = decision_from_score(score)
 
         company = _get_job_field(job_eval, "company")
         title = _get_job_field(job_eval, "title")
@@ -90,7 +94,7 @@ def format_digest_text(digest, top_jobs):
         url = _get_job_field(job_eval, "url")
         portal = _get_job_field(job_eval, "portal")
 
-        icon = ">>>" if score >= THRESHOLD_APPLY else "!!" if score >= THRESHOLD_REVIEW else "XXX"
+        icon = ">>>" if recommendation == "APPLY" else "!!" if recommendation == "REVIEW" else "XXX"
 
         lines.append("")
         lines.append(f"{i}. {icon} [{score}/100] {company}")

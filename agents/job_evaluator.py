@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 from kimi_client import call_kimi_json
-from utils import THRESHOLD_APPLY, THRESHOLD_REVIEW
+from utils import THRESHOLD_APPLY, THRESHOLD_REVIEW, decision_from_score
 
 # Cost guard: cap LLM calls per run (business rule: control daily spend).
 MAX_EVALUATIONS_PER_RUN = int(os.environ.get("MAX_EVALUATIONS_PER_RUN", "30"))
@@ -117,7 +117,16 @@ def evaluate_job(job):
         ev = call_kimi_json(prompt, system=PROFILE + "\n" + SYSTEM_PROMPT, max_tokens=1000)
 
         score = ev.get("score", 50)
-        decision = ev.get("decision", "REVIEW")
+        # Decision is always derived from score, never trusted verbatim from
+        # the model: the model's own "decision" field regularly drifts from
+        # what its own score implies (e.g. score=68 with decision="REVIEW",
+        # when 68 is below THRESHOLD_REVIEW=70) since it's freeform text, not
+        # a constrained field. Thresholds are the single source of truth.
+        decision = decision_from_score(score)
+        model_decision = ev.get("decision")
+        if model_decision and model_decision != decision:
+            print(f"  Note: model said decision={model_decision} but score={score} "
+                  f"maps to {decision}; using {decision}.")
 
         recommendation = decision
         key_match_points = []
