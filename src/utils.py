@@ -26,9 +26,9 @@ def deduplicate_jobs(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     seen = set()
     unique = []
     for job in jobs:
-        company = (job.get("company") or job.get("empresa", "")).lower().strip()
-        title = (job.get("title") or job.get("titulo", "")).lower().strip()
-        location = (job.get("location") or job.get("localizacao", "")).lower().strip()
+        company = (job.get("company") or job.get("company", "")).lower().strip()
+        title = (job.get("title") or job.get("title", "")).lower().strip()
+        location = (job.get("location") or job.get("location", "")).lower().strip()
         key = (company, title, location)
         if key not in seen:
             seen.add(key)

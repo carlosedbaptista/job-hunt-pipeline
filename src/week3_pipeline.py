@@ -73,14 +73,14 @@ def run_evaluation_pipeline():
             for e in apply:
                 score = e.get("score", 0)
                 job = e.get("job", {})
-                print(f"   • [{score}/100] {job.get('empresa')} — {job.get('titulo')[:40]}")
+                print(f"   • [{score}/100] {job.get('company')} — {job.get('title')[:40]}")
 
         if review:
             print(f"\n⚠️  REVIEW ({len(review)}) — needs your decision:")
             for e in review:
                 score = e.get("score", 0)
                 job = e.get("job", {})
-                print(f"   • [{score}/100] {job.get('empresa')} — {job.get('titulo')[:40]}")
+                print(f"   • [{score}/100] {job.get('company')} — {job.get('title')[:40]}")
 
         if uncertain:
             print(f"\n❌ UNCERTAIN ({len(uncertain)}) — does not meet criteria:")
@@ -88,7 +88,7 @@ def run_evaluation_pipeline():
                 score = e.get("score", 0)
                 job = e.get("job", {})
                 flags = e.get("red_flags", [])
-                print(f"   • [{score}/100] {job.get('empresa')} — {job.get('titulo')[:40]}")
+                print(f"   • [{score}/100] {job.get('company')} — {job.get('title')[:40]}")
                 if flags:
                     print(f"      Issues: {'; '.join(flags[:2])}")
 

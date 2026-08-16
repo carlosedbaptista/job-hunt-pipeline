@@ -46,7 +46,7 @@ def is_contact_email(email: str, context: str) -> bool:
     return False
 
 
-def extract_recruiter_email(job_description: str, empresa: str, titulo: str) -> str | None:
+def extract_recruiter_email(job_description: str, company: str, title: str) -> str | None:
     """
     Extracts the recruiter contact email.
     Step 1: regex + heuristics.
@@ -68,8 +68,8 @@ def extract_recruiter_email(job_description: str, empresa: str, titulo: str) -> 
         prompt = f"""Extract the recruiter/hiring contact email from this job description.
 Return ONLY the email address, or "NONE" if not found.
 
-COMPANY: {empresa}
-JOB TITLE: {titulo}
+COMPANY: {company}
+JOB TITLE: {title}
 
 JOB DESCRIPTION:
 {job_description[:2000]}

@@ -52,7 +52,7 @@ def get_job_field(job_eval, field, default="N/A"):
         val = job.get(field)
         if val:
             return val
-        en_map = {"empresa": "company", "titulo": "title", "localizacao": "location"}
+        en_map = {"company": "company", "title": "title", "location": "location"}
         if field in en_map:
             val = job.get(en_map[field])
             if val:
@@ -72,13 +72,13 @@ def send_alert(job_eval):
         print("  [Alert] Gmail credentials not configured")
         return False
     
-    company = esc(get_job_field(job_eval, "empresa"))
-    title = esc(get_job_field(job_eval, "titulo"))
-    location = esc(get_job_field(job_eval, "localizacao"))
+    company = esc(get_job_field(job_eval, "company"))
+    title = esc(get_job_field(job_eval, "title"))
+    location = esc(get_job_field(job_eval, "location"))
     url = safe_url(get_job_field(job_eval, "url", default=""))
     score = job_eval.get("score") or 0
 
-    subject = f"HIGH SCORE ALERT: {get_job_field(job_eval, 'titulo')} at {get_job_field(job_eval, 'empresa')} -- {score}/100"
+    subject = f"HIGH SCORE ALERT: {get_job_field(job_eval, 'title')} at {get_job_field(job_eval, 'company')} -- {score}/100"
     
     html = f"""<html><head><meta charset="UTF-8"><style>
         body {{ font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }}
@@ -130,12 +130,12 @@ def main():
     new_alerts = []
     for ev in high_scores:
         h = make_hash(
-            get_job_field(ev, "empresa", ""),
-            get_job_field(ev, "titulo", ""),
-            get_job_field(ev, "localizacao", ""),
+            get_job_field(ev, "company", ""),
+            get_job_field(ev, "title", ""),
+            get_job_field(ev, "location", ""),
         )
         if h in alerted:
-            print(f"  [Alert] Already alerted, skipping: {get_job_field(ev, 'titulo')}")
+            print(f"  [Alert] Already alerted, skipping: {get_job_field(ev, 'title')}")
             continue
         new_alerts.append((h, ev))
 

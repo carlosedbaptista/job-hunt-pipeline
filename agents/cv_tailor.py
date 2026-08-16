@@ -77,10 +77,10 @@ OUTPUT: Return the tailored CV as plain text, ready to save as .txt or paste int
 
 def tailor_cv(job: dict, evaluation: dict) -> str:
     """Tailors Carlos's CV for a specific job."""
-    empresa = job.get("empresa", "")
-    titulo = job.get("titulo", "")
-    descricao = job.get("descricao", "[No description]")
-    idioma = job.get("idioma", "en")
+    company = job.get("company", "")
+    title = job.get("title", "")
+    description = job.get("description", "[No description]")
+    language = job.get("language", "en")
 
     suggested_angle = evaluation.get("suggested_angle", "")
 
@@ -89,14 +89,14 @@ def tailor_cv(job: dict, evaluation: dict) -> str:
 BASE CV:
 {load_cv_base()}
 
-COMPANY: {empresa}
-TITLE: {titulo}
-JOB_DESCRIPTION: {descricao}
+COMPANY: {company}
+TITLE: {title}
+JOB_DESCRIPTION: {description}
 
 SUGGESTED ANGLE:
 {suggested_angle}
 
-Language: Use {'German' if idioma.lower() == 'de' else 'English'} in the CV.
+Language: Use {'German' if language.lower() == 'de' else 'English'} in the CV.
 
 Emphasize:
 - Data analysis & insights experience
@@ -105,7 +105,7 @@ Emphasize:
 - Business stakeholder communication
 - Relevant certifications
 
-Reorder the Professional Experience and Skills sections to lead with the most relevant items for this {titulo} role.
+Reorder the Professional Experience and Skills sections to lead with the most relevant items for this {title} role.
 
 Keep it concise, 1 page."""
 
@@ -134,24 +134,24 @@ def tailor_all_cvs(evaluations: list[dict], jobs_dict: dict) -> list[dict]:
     print(f"Tailoring CVs for {len(apply_jobs)} job(s)...\n")
 
     for i, eval_result in enumerate(apply_jobs, 1):
-        job_key = eval_result.get("job", {}).get("empresa", "")
+        job_key = eval_result.get("job", {}).get("company", "")
         job = jobs_dict.get(job_key)
 
         if not job:
             print(f"[{i}] Warning: job data not found for {job_key}")
             continue
 
-        empresa = job.get("empresa", "")
-        titulo = job.get("titulo", "")[:50]
+        company = job.get("company", "")
+        title = job.get("title", "")[:50]
 
-        print(f"[{i}] Tailoring CV for {empresa} — {titulo}...")
+        print(f"[{i}] Tailoring CV for {company} — {title}...")
 
         cv = tailor_cv(job, eval_result)
 
         if cv:
             cv_item = {
-                "empresa": empresa,
-                "titulo": job.get("titulo", ""),
+                "company": company,
+                "title": job.get("title", ""),
                 "cv_tailored": cv,
                 "url": job.get("url", ""),
                 "score": eval_result.get("score", 0),
@@ -179,7 +179,7 @@ if __name__ == "__main__":
     with open(jobs_file, "r", encoding="utf-8") as f:
         jobs_list = json.load(f)
 
-    jobs_dict = {j["empresa"]: j for j in jobs_list}
+    jobs_dict = {j["company"]: j for j in jobs_list}
 
     print("Tailoring CVs...\n")
     tailored_cvs = tailor_all_cvs(evaluations, jobs_dict)

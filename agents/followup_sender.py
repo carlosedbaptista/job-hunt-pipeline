@@ -43,8 +43,8 @@ def get_stale_applications(days_threshold: int = 7) -> list[dict]:
     query = """
     SELECT
         id,
-        empresa,
-        titulo,
+        company,
+        title,
         date_applied,
         recruiter_email,
         last_followup_date,
@@ -89,8 +89,8 @@ def update_followup_status(app_id: int):
 
 
 def send_draft_to_candidate(
-    empresa: str,
-    titulo: str,
+    company: str,
+    title: str,
     days_elapsed: int,
     recruiter_email: str,
     subject: str,
@@ -106,7 +106,7 @@ def send_draft_to_candidate(
         server.login(sender_email, app_password)
 
         message = MIMEMultipart("alternative")
-        message["Subject"] = f"[Draft] Follow-up ready: {titulo} at {empresa}"
+        message["Subject"] = f"[Draft] Follow-up ready: {title} at {company}"
         message["From"] = sender_email
         message["To"] = recipient_email
 
@@ -115,8 +115,8 @@ def send_draft_to_candidate(
             "DRAFT FOLLOW-UP -- REVIEW BEFORE SENDING\n\n"
             "This is an auto-generated draft. Read it, edit it if needed, "
             "and forward it yourself to the recruiter.\n\n"
-            f"Company: {empresa}\n"
-            f"Role: {titulo}\n"
+            f"Company: {company}\n"
+            f"Role: {title}\n"
             f"Days since application: {days_elapsed}\n"
             f"Recruiter email on file: {recruiter_line}\n\n"
             "---\n\n"
@@ -173,19 +173,19 @@ def draft_followups():
 
     for app in stale_apps:
         app_id = app["id"]
-        empresa = app["empresa"]
-        titulo = app["titulo"]
+        company = app["company"]
+        title = app["title"]
         recruiter_email = app.get("recruiter_email") or ""
         date_applied = app["date_applied"]
 
         app_date = datetime.fromisoformat(date_applied)
         days_elapsed = (datetime.now() - app_date).days
 
-        print(f"{drafted_count + 1}. {empresa} - {titulo} ({days_elapsed} days)")
+        print(f"{drafted_count + 1}. {company} - {title} ({days_elapsed} days)")
 
         followup_package = generate_followup_email_package({
-            "empresa": empresa,
-            "titulo": titulo,
+            "company": company,
+            "title": title,
             "days_without_response": days_elapsed,
             "date_applied": date_applied,
         })
@@ -195,8 +195,8 @@ def draft_followups():
             continue
 
         success = send_draft_to_candidate(
-            empresa=empresa,
-            titulo=titulo,
+            company=company,
+            title=title,
             days_elapsed=days_elapsed,
             recruiter_email=recruiter_email,
             subject=followup_package["subject"],

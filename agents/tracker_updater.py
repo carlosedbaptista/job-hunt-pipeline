@@ -19,8 +19,8 @@ def init_applications_table():
     conn.execute("""
         CREATE TABLE IF NOT EXISTS applications (
             id                  INTEGER PRIMARY KEY AUTOINCREMENT,
-            empresa             TEXT,
-            titulo              TEXT,
+            company             TEXT,
+            title              TEXT,
             url                 TEXT,
             date_applied        TEXT,
             status              TEXT DEFAULT 'sent',
@@ -40,11 +40,18 @@ def init_applications_table():
     if "followup_count" not in existing_cols:
         conn.execute("ALTER TABLE applications ADD COLUMN followup_count INTEGER DEFAULT 0")
 
+    # Migration: the data contract used to be PT-BR (empresa/titulo).
+    # Rename in place so existing rows survive.
+    if "empresa" in existing_cols and "company" not in existing_cols:
+        conn.execute("ALTER TABLE applications RENAME COLUMN empresa TO company")
+    if "titulo" in existing_cols and "title" not in existing_cols:
+        conn.execute("ALTER TABLE applications RENAME COLUMN titulo TO title")
+
     conn.commit()
     conn.close()
 
 
-def record_application(empresa: str, titulo: str, url: str) -> bool:
+def record_application(company: str, title: str, url: str) -> bool:
     """
     Records a new application.
     Returns True on success, False if a record already exists.
@@ -53,21 +60,21 @@ def record_application(empresa: str, titulo: str, url: str) -> bool:
     conn = sqlite3.connect(DB_PATH)
 
     existing = conn.execute(
-        "SELECT id FROM applications WHERE empresa = ? AND titulo = ?",
-        (empresa, titulo),
+        "SELECT id FROM applications WHERE company = ? AND title = ?",
+        (company, title),
     ).fetchone()
 
     if existing:
-        print(f"WARNING: Already tracked: {empresa} — {titulo}")
+        print(f"WARNING: Already tracked: {company} — {title}")
         conn.close()
         return False
 
     now = datetime.now(timezone.utc).isoformat()
     conn.execute(
         """INSERT INTO applications
-           (empresa, titulo, url, date_applied, status, last_update)
+           (company, title, url, date_applied, status, last_update)
            VALUES (?, ?, ?, ?, 'sent', ?)""",
-        (empresa, titulo, url, now, now),
+        (company, title, url, now, now),
     )
 
     conn.commit()
@@ -93,8 +100,8 @@ def record_applications_batch(approvals_file: str) -> int:
 
     for job in approved_jobs:
         if record_application(
-            empresa=job.get("empresa", ""),
-            titulo=job.get("titulo", ""),
+            company=job.get("company", ""),
+            title=job.get("title", ""),
             url=job.get("url", ""),
         ):
             count += 1
@@ -102,7 +109,7 @@ def record_applications_batch(approvals_file: str) -> int:
     return count
 
 
-def update_application_status(empresa: str, titulo: str, status: str, notes: str = ""):
+def update_application_status(company: str, title: str, status: str, notes: str = ""):
     """Updates the status of an application."""
     init_applications_table()
     conn = sqlite3.connect(DB_PATH)
@@ -110,8 +117,8 @@ def update_application_status(empresa: str, titulo: str, status: str, notes: str
     conn.execute(
         """UPDATE applications
            SET status = ?, last_update = ?, notes = ?
-           WHERE empresa = ? AND titulo = ?""",
-        (status, datetime.now(timezone.utc).isoformat(), notes, empresa, titulo),
+           WHERE company = ? AND title = ?""",
+        (status, datetime.now(timezone.utc).isoformat(), notes, company, title),
     )
 
     conn.commit()
@@ -119,7 +126,7 @@ def update_application_status(empresa: str, titulo: str, status: str, notes: str
 
 
 def record_response(
-    empresa: str, titulo: str, response_type: str, notes: str = ""
+    company: str, title: str, response_type: str, notes: str = ""
 ):
     """
     Records a recruiter response.
@@ -140,15 +147,15 @@ def record_response(
     conn.execute(
         """UPDATE applications
            SET status = ?, response_type = ?, response_date = ?, last_update = ?, notes = ?
-           WHERE empresa = ? AND titulo = ?""",
+           WHERE company = ? AND title = ?""",
         (
             status,
             response_type,
             datetime.now(timezone.utc).isoformat(),
             datetime.now(timezone.utc).isoformat(),
             notes,
-            empresa,
-            titulo,
+            company,
+            title,
         ),
     )
 
@@ -237,10 +244,10 @@ if __name__ == "__main__":
         count = record_applications_batch(args.approvals_file)
         print(f"OK: {count} application(s) recorded")
     elif args.command == "apply":
-        if record_application(empresa=args.company, titulo=args.title, url=args.url):
+        if record_application(company=args.company, title=args.title, url=args.url):
             print(f"OK: Recorded: {args.company} — {args.title}")
         else:
             print(f"WARNING: Already tracked: {args.company} — {args.title}")
     elif args.command == "response":
-        record_response(empresa=args.company, titulo=args.title, response_type=args.type, notes=args.notes)
+        record_response(company=args.company, title=args.title, response_type=args.type, notes=args.notes)
         print(f"OK: Response recorded ({args.type}): {args.company} — {args.title}")

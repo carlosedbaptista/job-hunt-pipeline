@@ -47,7 +47,7 @@
 - **No em dashes** in generated text: use commas, colons, or restructure
 - **Error handling**: try-except on every API call; errors must stay visible (log to `digests/evaluation_errors.txt`), never silently swallowed
 - **Security**: HTML-escape any job field before putting it in HTML (dashboard, emails); URLs must be http(s)-validated; never interpolate `${{ inputs.* }}` into workflow `run:` blocks (use `env:`)
-- **Naming**: snake_case files, PT-BR legacy field names (`empresa`, `titulo`, `localizacao`) in the data contract; new-format keys (`company`, `title`, `location`) are normalized in `unified_ingestor.normalize_to_legacy`
+- **Naming**: snake_case files. The data contract is English-only: `company`/`title`/`location`/`description`/`language`/`posted_at`. It used to be PT-BR (`empresa`/`titulo`/`localizacao`/`descricao`/`idioma`/`data_post`), normalized via `unified_ingestor.normalize_job_fields`; this was fully migrated to English, including the live `tracker/jobs.db` schema (via `ALTER TABLE ... RENAME COLUMN` in `init_db()`/`init_applications_table()`, safe to re-run) and every committed historical JSON file. Never reintroduce PT-BR field names or content anywhere in the pipeline.
 - **Commits**: atomic, descriptive
 
 ## Business Rules (CRITICAL)

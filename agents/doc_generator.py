@@ -128,7 +128,7 @@ def cv_pdf(profile, job, summary, path):
     pdf.ln(2)
 
     # Skills
-    role_key = _role_keywords(job.get("titulo", ""))
+    role_key = _role_keywords(job.get("title", ""))
     skill_key = f"technical_{role_key}" if f"technical_{role_key}" in profile["skills"] else "technical_default"
     tech_skills = profile["skills"].get(skill_key, profile["skills"]["technical_default"])
     pdf.set_font("Helvetica", "B", 11)
@@ -236,10 +236,10 @@ def main():
         if score < THRESHOLD_APPLY:  # only APPLY jobs get tailored materials
             continue
         job = ev.get("job", ev)
-        title = job.get("titulo", job.get("title", "Job"))
-        company = job.get("empresa", job.get("company", "Company"))
-        location = job.get("localizacao", job.get("location", ""))
-        desc = job.get("descricao", job.get("description", ""))
+        title = job.get("title", "Job")
+        company = job.get("company", "Company")
+        location = job.get("location", "")
+        desc = job.get("description", "")
 
         safe_name = re.sub(r"[^\w\-]", "_", f"{company}_{title}")[:60]
         folder = os.path.join(gen_dir, safe_name)

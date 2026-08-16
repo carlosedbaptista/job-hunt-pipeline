@@ -135,7 +135,7 @@ if os.path.exists(db_path):
         columns = cursor.fetchall()
 
         if columns:
-            required_cols = ["empresa", "titulo", "recruiter_email", "response_type"]
+            required_cols = ["company", "title", "recruiter_email", "response_type"]
             found_cols = [col[1] for col in columns]
 
             for req_col in required_cols:

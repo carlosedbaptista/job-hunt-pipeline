@@ -59,7 +59,7 @@ PROFILE = load_profile_summary()
 SYSTEM_PROMPT = (
     'Evaluate job vs candidate. Return JSON: {"score":0-100,"technical_fit":"brief",'
     '"contextual_fit":"brief","salary_estimate":"range or Not disclosed","culture_fit":"brief",'
-    '"concerns":[],"decision":"APPLY|REVIEW|SKIP","portuguese_comment":"PT brief"}. '
+    '"concerns":[],"decision":"APPLY|REVIEW|SKIP"}. '
     f"Rules: >={THRESHOLD_APPLY} APPLY, {THRESHOLD_REVIEW}-{THRESHOLD_APPLY - 1} REVIEW, "
     f"<{THRESHOLD_REVIEW} SKIP. Auto-SKIP: not Zurich/Zug, not English, pure SWE. "
     "Weighting: candidate is a deliberate career changer, open to unfamiliar business "
@@ -96,19 +96,19 @@ def log_error(msg):
 
 def _job_block(job):
     return {
-        "empresa": job.get("empresa", job.get("company", "Unknown")),
-        "titulo": job.get("titulo", job.get("title", "Unknown")),
-        "localizacao": job.get("localizacao", job.get("location", "Unknown")),
+        "company": job.get("company", "Unknown"),
+        "title": job.get("title", "Unknown"),
+        "location": job.get("location", "Unknown"),
         "url": job.get("url", ""),
         "portal": job.get("portal", job.get("source", "adzuna")),
     }
 
 
 def evaluate_job(job):
-    title = job.get("titulo", job.get("title", "Unknown"))
-    company = job.get("empresa", job.get("company", "Unknown"))
-    location = job.get("localizacao", job.get("location", "Unknown"))
-    desc = job.get("descricao", job.get("description", ""))[:1500]
+    title = job.get("title", "Unknown")
+    company = job.get("company", "Unknown")
+    location = job.get("location", "Unknown")
+    desc = job.get("description", "")[:1500]
     url = job.get("url", "")
 
     prompt = f"Job: {title} at {company}\nLocation: {location}\nDesc: {desc}\nURL: {url}\nEvaluate."
@@ -145,7 +145,6 @@ def evaluate_job(job):
             "culture_fit": ev.get("culture_fit", ""),
             "concerns": ev.get("concerns", []),
             "decision": decision,
-            "portuguese_comment": ev.get("portuguese_comment", ""),
             "materials_needed": ["cv"] if decision == "APPLY" else [],
         }
     except Exception as e:
@@ -166,7 +165,6 @@ def evaluate_job(job):
             "culture_fit": "Not evaluated",
             "concerns": [f"API error: {err_msg[:150]}"],
             "decision": "ERROR",
-            "portuguese_comment": "Nao avaliada: erro de API. Verifique creditos/chave.",
             "materials_needed": [],
         }
 
@@ -215,7 +213,7 @@ def main():
     print(f"Loaded {len(jobs)} jobs. 1 by 1 with 2s delay...\n")
     evaluations = []
     for i, job in enumerate(jobs, 1):
-        title = job.get("titulo", job.get("title", "Unknown"))[:50]
+        title = job.get("title", "Unknown")[:50]
         print(f"[{i}/{len(jobs)}] {title}...", end=" ", flush=True)
         ev = evaluate_job(job)
         evaluations.append(ev)

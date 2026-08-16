@@ -42,7 +42,7 @@ def _get_field(job_eval, field, default="N/A"):
         val = job.get(field)
         if val:
             return val
-        en_map = {"empresa": "company", "titulo": "title", "localizacao": "location"}
+        en_map = {"company": "company", "title": "title", "location": "location"}
         if field in en_map:
             val = job.get(en_map[field])
             if val:
@@ -50,7 +50,7 @@ def _get_field(job_eval, field, default="N/A"):
     val = job_eval.get(field)
     if val:
         return val
-    en_map = {"empresa": "company", "titulo": "title", "localizacao": "location"}
+    en_map = {"company": "company", "title": "title", "location": "location"}
     if field in en_map:
         val = job_eval.get(en_map[field])
         if val:
@@ -163,9 +163,9 @@ def format_digest_as_html(digest):
 
     for i, job_eval in enumerate(top_jobs, 1):
         score = job_eval.get("score") or 0
-        empresa = esc(_get_field(job_eval, "empresa"))
-        titulo = esc(_get_field(job_eval, "titulo"))
-        localizacao = esc(_get_field(job_eval, "localizacao"))
+        company = esc(_get_field(job_eval, "company"))
+        title = esc(_get_field(job_eval, "title"))
+        location = esc(_get_field(job_eval, "location"))
         url = safe_url(_get_field(job_eval, "url", default=""))
         portal = esc(_get_field(job_eval, "portal"))
 
@@ -174,9 +174,9 @@ def format_digest_as_html(digest):
         html += f"""
                 <div class="job">
                     <div class="job-number">#{i}</div>
-                    <div class="job-company">{empresa}</div>
-                    <div class="job-title">{titulo}</div>
-                    <div class="job-location">{localizacao} - {portal}</div>
+                    <div class="job-company">{company}</div>
+                    <div class="job-title">{title}</div>
+                    <div class="job-location">{location} - {portal}</div>
                     <div>
                         <span class="job-score" style="background-color: {color};">
                             {score}/100 Fit Score

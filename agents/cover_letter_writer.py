@@ -79,13 +79,13 @@ def _cl_model() -> str:
 
 def generate_cover_letter(job: dict, evaluation: dict) -> str:
     """Generates a tailored cover letter for a high-fit job."""
-    empresa = job.get("empresa", "")
-    titulo = job.get("titulo", "")
-    localizacao = job.get("localizacao", "")
-    idioma = job.get("idioma", "en")
-    descricao = job.get("descricao") or "[No description available]"
+    company = job.get("company", "")
+    title = job.get("title", "")
+    location = job.get("location", "")
+    language = job.get("language", "en")
+    description = job.get("description") or "[No description available]"
 
-    lang_name = "English" if idioma in ("en", "english") else "German" if idioma in ("de", "deutsch") else "English"
+    lang_name = "English" if language in ("en", "english") else "German" if language in ("de", "deutsch") else "English"
 
     suggested_angle = evaluation.get("suggested_angle", "")
 
@@ -100,17 +100,17 @@ def generate_cover_letter(job: dict, evaluation: dict) -> str:
 
 CANDIDATE NAME (sign the letter with it): {_candidate_name()}
 
-COMPANY: {empresa}
-TITLE: {titulo}
-LOCATION: {localizacao}
+COMPANY: {company}
+TITLE: {title}
+LOCATION: {location}
 LANGUAGE: {lang_name}
-JOB_DESCRIPTION: {descricao}
+JOB_DESCRIPTION: {description}
 
 SUGGESTED ANGLE (from fit evaluation):
 {suggested_angle}
 {model_block}
-Write in {lang_name}. Make it specific to {empresa} and this {titulo} role.
-Research fact: [{empresa} is likely in {localizacao}. What is their business?]
+Write in {lang_name}. Make it specific to {company} and this {title} role.
+Research fact: [{company} is likely in {location}. What is their business?]
 Show genuine interest, not generic enthusiasm."""
 
     try:
@@ -138,25 +138,25 @@ def generate_materials(evaluations: list[dict], jobs_dict: dict) -> list[dict]:
     print(f"Generating cover letters for {len(apply_jobs)} job(s)...\n")
 
     for i, eval_result in enumerate(apply_jobs, 1):
-        job_key = eval_result.get("job", {}).get("empresa", "")
+        job_key = eval_result.get("job", {}).get("company", "")
         job = jobs_dict.get(job_key)
 
         if not job:
             print(f"[{i}] Warning: job data not found for {job_key}")
             continue
 
-        empresa = job.get("empresa", "")
-        titulo = job.get("titulo", "")[:50]
+        company = job.get("company", "")
+        title = job.get("title", "")[:50]
 
-        print(f"[{i}] Generating cover letter for {empresa} — {titulo}...")
+        print(f"[{i}] Generating cover letter for {company} — {title}...")
 
         cover_letter = generate_cover_letter(job, eval_result)
 
         if cover_letter:
             material = {
-                "empresa": empresa,
-                "titulo": job.get("titulo", ""),
-                "localizacao": job.get("localizacao", ""),
+                "company": company,
+                "title": job.get("title", ""),
+                "location": job.get("location", ""),
                 "score": eval_result.get("score", 0),
                 "cover_letter": cover_letter,
                 "url": job.get("url", ""),
@@ -185,7 +185,7 @@ if __name__ == "__main__":
     with open(jobs_file, "r", encoding="utf-8") as f:
         jobs_list = json.load(f)
 
-    jobs_dict = {j["empresa"]: j for j in jobs_list}
+    jobs_dict = {j["company"]: j for j in jobs_list}
 
     print("Generating cover letters...\n")
     materials = generate_materials(evaluations, jobs_dict)

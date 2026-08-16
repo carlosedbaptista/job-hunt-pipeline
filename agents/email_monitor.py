@@ -33,27 +33,19 @@ RESPONSE_PATTERNS = {
         r"unfortunately",
         r"not selected",
         r"we regret",
-        r"não foi selecionado",
-        r"infelizmente",
-        r"não podemos prosseguir",
         r"leider",
         r"bedauern",
     ],
     "interview_invite": [
         r"interview",
-        r"entrevista",
         r"next step",
-        r"próxima etapa",
         r"phone call",
-        r"chamada",
     ],
     "positive": [
         r"excited to have you",
         r"welcome to",
         r"offer",
-        r"oferta",
         r"we are pleased",
-        r"estamos felizes",
     ],
 }
 

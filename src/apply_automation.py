@@ -38,7 +38,7 @@ def load_evaluations():
 
     with open(eval_file, "r", encoding="utf-8") as f:
         evals = json.load(f)
-        return {e.get("job", {}).get("empresa", ""): e for e in evals}
+        return {e.get("job", {}).get("company", ""): e for e in evals}
 
 
 def generate_apply_guides(approvals_data: dict) -> list:
@@ -52,17 +52,17 @@ def generate_apply_guides(approvals_data: dict) -> list:
     print(f"\nGenerating guides for {len(approved_jobs)} job(s)...\n")
 
     for i, job in enumerate(approved_jobs, 1):
-        empresa = job.get("empresa", "")
-        titulo = job.get("titulo", "")
+        company = job.get("company", "")
+        title = job.get("title", "")
         url = job.get("url", "")
 
-        print(f"[{i}] {empresa} — {titulo}")
+        print(f"[{i}] {company} — {title}")
 
-        eval_data = evals.get(empresa, {})
+        eval_data = evals.get(company, {})
         guide = generate_form_fill_guide(eval_data, job)
         guides.append(guide)
 
-        safe_name = empresa.replace(" ", "_").replace("/", "-")
+        safe_name = company.replace(" ", "_").replace("/", "-")
         guide_file = f"digests/form_guide_{safe_name}_{i}.json"
         with open(guide_file, "w", encoding="utf-8") as f:
             json.dump(guide, f, ensure_ascii=False, indent=2)
@@ -79,7 +79,7 @@ def display_apply_instructions(guides: list):
     print("=" * 70)
 
     for i, guide in enumerate(guides, 1):
-        print(f"\nJOB {i}: {guide['empresa']} — {guide['titulo']}")
+        print(f"\nJOB {i}: {guide['company']} — {guide['title']}")
         print("-" * 70)
 
         prompt = generate_claude_in_chrome_prompt(guide)
@@ -104,14 +104,14 @@ STEPS:
         input("Press ENTER once you have completed the application: ")
 
         record_application(
-            empresa=guide["empresa"],
-            titulo=guide["titulo"],
+            company=guide["company"],
+            title=guide["title"],
             url=guide["url"],
         )
 
         update_application_status(
-            empresa=guide["empresa"],
-            titulo=guide["titulo"],
+            company=guide["company"],
+            title=guide["title"],
             status="submitted_via_chrome",
             notes=f"Filled with Claude in Chrome at {datetime.now().isoformat()}",
         )

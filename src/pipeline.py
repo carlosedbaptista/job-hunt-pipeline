@@ -66,7 +66,7 @@ def run_pipeline(hours_back: int = 24, dry_run: bool = False) -> list[dict]:
         seen_keys = set()
         new_jobs = []
         for job in all_jobs:
-            key = f"{job.get('empresa','').lower()}|{job.get('titulo','').lower()}"
+            key = f"{job.get('company','').lower()}|{job.get('title','').lower()}"
             if key not in seen_keys:
                 seen_keys.add(key)
                 new_jobs.append(job)
@@ -98,11 +98,11 @@ def run_pipeline(hours_back: int = 24, dry_run: bool = False) -> list[dict]:
     if new_jobs:
         print(f"\n  Top new jobs:")
         for i, job in enumerate(new_jobs[:5], 1):
-            empresa = job.get("empresa", "N/A")
-            titulo = job.get("titulo", "N/A")
-            local = job.get("localizacao", "?")
+            company = job.get("company", "N/A")
+            title = job.get("title", "N/A")
+            local = job.get("location", "?")
             portal = job.get("portal", "")
-            print(f"  {i}. [{portal}] {empresa} — {titulo} ({local})")
+            print(f"  {i}. [{portal}] {company} — {title} ({local})")
 
     if not dry_run:
         stats = get_stats()
