@@ -12,6 +12,7 @@ from datetime import datetime, timezone, timedelta
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.utils import THRESHOLD_APPLY, THRESHOLD_REVIEW
+from src.deduplicator import normalize, normalize_company
 
 # Paths
 DIGESTS_DIR = "digests"
@@ -111,6 +112,43 @@ def collect_jobs(days=30):
     return all_jobs
 
 
+def load_application_status() -> dict:
+    """Loads applications from tracker/jobs.db, keyed by normalized
+    company+title (same normalisation as the dedup hash), so dashboard
+    rows can show whether -- and how -- the user acted on each job.
+    Only structured fields are surfaced (status, response_type,
+    date_applied): free-text `notes` are excluded on purpose, since this
+    dashboard is published to a public GitHub Pages site."""
+    try:
+        from agents.tracker_updater import get_all_applications
+        lookup = {}
+        for app in get_all_applications():
+            key = f"{normalize_company(app.get('empresa', ''))}|{normalize(app.get('titulo', ''))}"
+            lookup[key] = {
+                "status": app.get("status"),
+                "response_type": app.get("response_type"),
+                "date_applied": app.get("date_applied"),
+            }
+        return lookup
+    except Exception as e:
+        print(f"WARNING: could not load application status: {e}")
+        return {}
+
+
+def attach_application_status(jobs: list, app_lookup: dict) -> list:
+    """Annotates each job with `_application_status` when a tracked
+    application matches it by normalized company+title."""
+    for job in jobs:
+        j = job.get("job", job)
+        company = j.get("empresa", j.get("company", ""))
+        title = j.get("titulo", j.get("title", ""))
+        key = f"{normalize_company(company)}|{normalize(title)}"
+        match = app_lookup.get(key)
+        if match:
+            job["_application_status"] = match
+    return jobs
+
+
 def get_template_head():
     """Returns the first part of the HTML template (up to const JOBS)."""
     return r'''<!DOCTYPE html>
@@ -180,6 +218,13 @@ def get_template_head():
         .dark .badge-review { background: #e65100; color: #ffcc80; }
         .badge-skip { background: #ffebee; color: #c62828; }
         .dark .badge-skip { background: #b71c1c; color: #ef9a9a; }
+        .badge-applied { background: #e3f2fd; color: #1565c0; }
+        .dark .badge-applied { background: #0d47a1; color: #90caf9; }
+        .badge-interview { background: #e8f5e9; color: #1b5e20; }
+        .dark .badge-interview { background: #1b5e20; color: #a5d6a7; }
+        .badge-rejected { background: #ffebee; color: #b71c1c; }
+        .dark .badge-rejected { background: #4a0e0e; color: #ef9a9a; }
+        .badge-noaction { background: transparent; color: var(--muted); border: 1px dashed var(--border); }
         .score { font-weight: 700; }
         .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 15px; margin-bottom: 20px; }
         .charts .card { padding: 15px; }
@@ -202,7 +247,7 @@ def get_template_head():
     <header>
         <button class="toggle-btn" onclick="toggleDark()">Dark Mode</button>
         <h1>Job Hunt Dashboard</h1>
-        <p>Automated job search &amp; evaluation pipeline &middot; <a href="https://github.com/carlosedbaptista/job-hunt-pipeline/actions/workflows/add-job.yml" target="_blank">+ Add a job manually</a> (Actions &rarr; Add Job &rarr; Run workflow)</p>
+        <p>Automated job search &amp; evaluation pipeline &middot; <a href="https://github.com/carlosedbaptista/job-hunt-pipeline/actions/workflows/add-job.yml" target="_blank">+ Add a job manually</a> &middot; <a href="https://github.com/carlosedbaptista/job-hunt-pipeline/actions/workflows/track-application.yml" target="_blank">+ Track an application</a> (Actions &rarr; Run workflow)</p>
     </header>
 
     <!-- Candidate Profile (only data the owner explicitly chose to show) -->
@@ -280,6 +325,12 @@ def get_template_head():
             <option value="gmail">Gmail</option>
             <option value="linkedin">LinkedIn</option>
         </select>
+        <select id="filter-application" onchange="filterTable()">
+            <option value="">All Applications</option>
+            <option value="applied">Applied</option>
+            <option value="responded">Got a response</option>
+            <option value="no_action">No action taken</option>
+        </select>
         <button class="btn btn-success" onclick="exportCSV()">Export CSV</button>
     </div>
 
@@ -297,6 +348,7 @@ def get_template_head():
                         <th>Source</th>
                         <th>Score</th>
                         <th>Decision</th>
+                        <th>Application</th>
                         <th>Link</th>
                     </tr>
                 </thead>
@@ -341,6 +393,40 @@ function getDecision(score) {
     return "SKIP";
 }
 
+// Status recorded via the "Track Application" workflow takes priority.
+// With no tracked record, a REVIEW/APPLY job left untouched for 10+ days
+// is treated as implicitly passed on -- no explicit "ignored" click
+// required, since requiring one for every skipped job doesn't scale.
+const RESPONSE_LABELS = {
+    interview_scheduled: "Interview!",
+    positive_response: "Positive response",
+    rejected: "Rejected",
+    awaiting_info: "Info requested",
+    responded: "Responded",
+};
+
+function getApplicationInfo(job, decision) {
+    const app = job._application_status;
+    if (app && app.status) {
+        if (app.status === "sent") {
+            return { label: "Applied", badgeClass: "badge-applied", filterKey: "applied" };
+        }
+        const label = RESPONSE_LABELS[app.status] || RESPONSE_LABELS[app.response_type] || "Responded";
+        const badgeClass = app.status === "rejected" ? "badge-rejected" : "badge-interview";
+        return { label, badgeClass, filterKey: "responded" };
+    }
+
+    if (decision === "APPLY" || decision === "REVIEW") {
+        const digestDate = new Date(job._digest_date || "");
+        const daysElapsed = isNaN(digestDate) ? 0 : Math.floor((Date.now() - digestDate) / 86400000);
+        if (daysElapsed >= 10) {
+            return { label: "No action", badgeClass: "badge-noaction", filterKey: "no_action" };
+        }
+    }
+
+    return { label: "", badgeClass: "", filterKey: "" };
+}
+
 function renderTable(jobs) {
     const tbody = document.getElementById("jobs-table");
     const empty = document.getElementById("empty-msg");
@@ -365,7 +451,8 @@ function renderTable(jobs) {
         const date = job._digest_date || "Today";
         
         const badgeClass = decision === "APPLY" ? "badge-apply" : decision === "REVIEW" ? "badge-review" : "badge-skip";
-        
+        const appInfo = getApplicationInfo(job, decision);
+
         const link = safeUrl(url);
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -376,6 +463,7 @@ function renderTable(jobs) {
             <td>${esc(portal)}</td>
             <td class="score">${esc(score)}</td>
             <td><span class="badge ${badgeClass}">${esc(decision)}</span></td>
+            <td>${appInfo.label ? `<span class="badge ${appInfo.badgeClass}">${esc(appInfo.label)}</span>` : "-"}</td>
             <td>${link ? `<a href="${esc(link)}" target="_blank" rel="noopener noreferrer">View ></a>` : "-"}</td>
         `;
         tbody.appendChild(tr);
@@ -389,7 +477,8 @@ function filterTable() {
     const decision = document.getElementById("filter-decision").value;
     const scoreRange = document.getElementById("filter-score").value;
     const source = document.getElementById("filter-source").value;
-    
+    const application = document.getElementById("filter-application").value;
+
     let filtered = JOBS.filter(job => {
         const company = getJobField(job, "empresa", getJobField(job, "company")).toLowerCase();
         const title = getJobField(job, "titulo", getJobField(job, "title")).toLowerCase();
@@ -397,10 +486,11 @@ function filterTable() {
         const portal = getJobField(job, "portal", "unknown").toLowerCase();
         const score = job.score || 0;
         const dec = getDecision(score);
-        
+
         if (search && !company.includes(search) && !title.includes(search) && !location.includes(search)) return false;
         if (decision && dec !== decision) return false;
         if (source && !portal.includes(source)) return false;
+        if (application && getApplicationInfo(job, dec).filterKey !== application) return false;
         if (scoreRange) {
             if (scoreRange === "80-100" && score < 80) return false;
             if (scoreRange === "70-79" && (score < 70 || score >= 80)) return false;
@@ -408,7 +498,7 @@ function filterTable() {
         }
         return true;
     });
-    
+
     renderTable(filtered);
     updateCharts(filtered);
 }
@@ -498,17 +588,19 @@ function exportCSV() {
         const decision = document.getElementById("filter-decision").value;
         const scoreRange = document.getElementById("filter-score").value;
         const source = document.getElementById("filter-source").value;
-        
+        const application = document.getElementById("filter-application").value;
+
         const company = getJobField(job, "empresa", getJobField(job, "company")).toLowerCase();
         const title = getJobField(job, "titulo", getJobField(job, "title")).toLowerCase();
         const location = getJobField(job, "localizacao", getJobField(job, "location")).toLowerCase();
         const portal = getJobField(job, "portal", "unknown").toLowerCase();
         const score = job.score || 0;
         const dec = getDecision(score);
-        
+
         if (search && !company.includes(search) && !title.includes(search) && !location.includes(search)) return false;
         if (decision && dec !== decision) return false;
         if (source && !portal.includes(source)) return false;
+        if (application && getApplicationInfo(job, dec).filterKey !== application) return false;
         if (scoreRange) {
             if (scoreRange === "80-100" && score < 80) return false;
             if (scoreRange === "70-79" && (score < 70 || score >= 80)) return false;
@@ -516,7 +608,7 @@ function exportCSV() {
         }
         return true;
     });
-    
+
     // Escape quotes and neutralise formula injection (=, +, -, @) for Excel
     function csvCell(value) {
         let v = String(value == null ? "" : value).replace(/"/g, '""');
@@ -524,7 +616,7 @@ function exportCSV() {
         return `"${v}"`;
     }
 
-    let csv = "Date,Company,Title,Location,Source,Score,Decision,URL\n";
+    let csv = "Date,Company,Title,Location,Source,Score,Decision,Application,URL\n";
     filtered.sort((a,b) => (b.score||0) - (a.score||0));
     filtered.forEach(job => {
         const company = getJobField(job, "empresa", getJobField(job, "company"));
@@ -535,7 +627,8 @@ function exportCSV() {
         const score = job.score || 0;
         const decision = getDecision(score);
         const date = job._digest_date || "Today";
-        csv += [csvCell(date), csvCell(company), csvCell(title), csvCell(location), csvCell(portal), score, decision, csvCell(url)].join(",") + "\n";
+        const application = getApplicationInfo(job, decision).label || "-";
+        csv += [csvCell(date), csvCell(company), csvCell(title), csvCell(location), csvCell(portal), score, decision, csvCell(application), csvCell(url)].join(",") + "\n";
     });
     
     const blob = new Blob([csv], {type: "text/csv"});
@@ -562,6 +655,8 @@ updateCharts(JOBS);
 def generate_dashboard():
     """Generates the complete HTML dashboard."""
     jobs = collect_jobs(days=30)
+    app_lookup = load_application_status()
+    jobs = attach_application_status(jobs, app_lookup)
     head = get_template_head()
     tail = get_template_tail()
 
