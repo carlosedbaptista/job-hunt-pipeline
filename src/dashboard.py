@@ -54,7 +54,7 @@ def collect_jobs(days=30):
             return
         job = ev.get("job", ev)
         url = job.get("url", job.get("link", ""))
-        key = url or f"{job.get('empresa','')}_{job.get('titulo','')}"
+        key = url or f"{job.get('company','')}_{job.get('title','')}"
         if key in seen_urls:
             return
         seen_urls.add(key)
@@ -123,7 +123,7 @@ def load_application_status() -> dict:
         from agents.tracker_updater import get_all_applications
         lookup = {}
         for app in get_all_applications():
-            key = f"{normalize_company(app.get('empresa', ''))}|{normalize(app.get('titulo', ''))}"
+            key = f"{normalize_company(app.get('company', ''))}|{normalize(app.get('title', ''))}"
             lookup[key] = {
                 "status": app.get("status"),
                 "response_type": app.get("response_type"),
@@ -140,8 +140,8 @@ def attach_application_status(jobs: list, app_lookup: dict) -> list:
     application matches it by normalized company+title."""
     for job in jobs:
         j = job.get("job", job)
-        company = j.get("empresa", j.get("company", ""))
-        title = j.get("titulo", j.get("title", ""))
+        company = j.get("company", "")
+        title = j.get("title", "")
         key = f"{normalize_company(company)}|{normalize(title)}"
         match = app_lookup.get(key)
         if match:
@@ -441,9 +441,9 @@ function renderTable(jobs) {
     jobs.sort((a,b) => (b.score||0) - (a.score||0));
     
     jobs.forEach(job => {
-        const company = getJobField(job, "empresa", getJobField(job, "company"));
-        const title = getJobField(job, "titulo", getJobField(job, "title"));
-        const location = getJobField(job, "localizacao", getJobField(job, "location"));
+        const company = getJobField(job, "company");
+        const title = getJobField(job, "title");
+        const location = getJobField(job, "location");
         const url = getJobField(job, "url");
         const portal = getJobField(job, "portal", "unknown");
         const score = job.score || 0;
@@ -480,9 +480,9 @@ function filterTable() {
     const application = document.getElementById("filter-application").value;
 
     let filtered = JOBS.filter(job => {
-        const company = getJobField(job, "empresa", getJobField(job, "company")).toLowerCase();
-        const title = getJobField(job, "titulo", getJobField(job, "title")).toLowerCase();
-        const location = getJobField(job, "localizacao", getJobField(job, "location")).toLowerCase();
+        const company = getJobField(job, "company").toLowerCase();
+        const title = getJobField(job, "title").toLowerCase();
+        const location = getJobField(job, "location").toLowerCase();
         const portal = getJobField(job, "portal", "unknown").toLowerCase();
         const score = job.score || 0;
         const dec = getDecision(score);
@@ -562,7 +562,7 @@ function updateCharts(jobs) {
     
     const companies = {};
     jobs.forEach(j => {
-        const c = getJobField(j, "empresa", getJobField(j, "company"));
+        const c = getJobField(j, "company");
         companies[c] = (companies[c] || 0) + 1;
     });
     const topCompanies = Object.entries(companies).sort((a,b) => b[1]-a[1]).slice(0, 8);
@@ -590,9 +590,9 @@ function exportCSV() {
         const source = document.getElementById("filter-source").value;
         const application = document.getElementById("filter-application").value;
 
-        const company = getJobField(job, "empresa", getJobField(job, "company")).toLowerCase();
-        const title = getJobField(job, "titulo", getJobField(job, "title")).toLowerCase();
-        const location = getJobField(job, "localizacao", getJobField(job, "location")).toLowerCase();
+        const company = getJobField(job, "company").toLowerCase();
+        const title = getJobField(job, "title").toLowerCase();
+        const location = getJobField(job, "location").toLowerCase();
         const portal = getJobField(job, "portal", "unknown").toLowerCase();
         const score = job.score || 0;
         const dec = getDecision(score);
@@ -619,9 +619,9 @@ function exportCSV() {
     let csv = "Date,Company,Title,Location,Source,Score,Decision,Application,URL\n";
     filtered.sort((a,b) => (b.score||0) - (a.score||0));
     filtered.forEach(job => {
-        const company = getJobField(job, "empresa", getJobField(job, "company"));
-        const title = getJobField(job, "titulo", getJobField(job, "title"));
-        const location = getJobField(job, "localizacao", getJobField(job, "location"));
+        const company = getJobField(job, "company");
+        const title = getJobField(job, "title");
+        const location = getJobField(job, "location");
         const url = getJobField(job, "url");
         const portal = getJobField(job, "portal", "unknown");
         const score = job.score || 0;

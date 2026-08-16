@@ -3,7 +3,7 @@
 add_job.py -- Manually adds a job posting and evaluates the match right away.
 
 Usage:
-  python agents/add_job.py --url "https://empresa.com/vaga"
+  python agents/add_job.py --url "https://company.com/job"
   python agents/add_job.py --text "job description..." --title "Data Engineer" --company "ACME"
   python agents/add_job.py --file job.txt
   python agents/add_job.py            # interactive mode (paste text)
@@ -53,8 +53,8 @@ def fetch_job_from_url(url: str) -> dict:
     if len(desc) < 200:
         raise RuntimeError("Page has insufficient content (likely an anti-bot block).")
 
-    return {"titulo": title, "empresa": "Unknown", "localizacao": "Unknown",
-            "descricao": desc, "url": url, "portal": "manual"}
+    return {"title": title, "company": "Unknown", "location": "Unknown",
+            "description": desc, "url": url, "portal": "manual"}
 
 
 def save_evaluation(ev: dict):
@@ -96,13 +96,13 @@ def main():
             if not text.strip():
                 print("No text provided. Aborting.")
                 sys.exit(1)
-            job = {"titulo": args.title or "Unknown", "empresa": args.company or "Unknown",
-                   "localizacao": args.location or "Unknown", "descricao": text,
+            job = {"title": args.title or "Unknown", "company": args.company or "Unknown",
+                   "location": args.location or "Unknown", "description": text,
                    "url": args.url, "portal": "manual"}
     elif args.text or args.file:
         text = args.text or open(args.file, encoding="utf-8").read()
-        job = {"titulo": args.title or "Unknown", "empresa": args.company or "Unknown",
-               "localizacao": args.location or "Unknown", "descricao": text,
+        job = {"title": args.title or "Unknown", "company": args.company or "Unknown",
+               "location": args.location or "Unknown", "description": text,
                "url": args.url or "", "portal": "manual"}
     else:
         print("Paste the job text below (Ctrl+Z+Enter on Windows to finish):")
@@ -110,16 +110,16 @@ def main():
         if not text.strip():
             print("No text provided. Aborting.")
             sys.exit(1)
-        job = {"titulo": args.title or "Unknown", "empresa": args.company or "Unknown",
-               "localizacao": args.location or "Unknown", "descricao": text,
+        job = {"title": args.title or "Unknown", "company": args.company or "Unknown",
+               "location": args.location or "Unknown", "description": text,
                "url": "", "portal": "manual"}
 
     if args.title:
-        job["titulo"] = args.title
+        job["title"] = args.title
     if args.company:
-        job["empresa"] = args.company
+        job["company"] = args.company
 
-    print(f"\nEvaluating: {job['titulo'][:60]} @ {job['empresa']} ...")
+    print(f"\nEvaluating: {job['title'][:60]} @ {job['company']} ...")
     ev = evaluate_job(job)
 
     score = ev.get("score", 0)
@@ -134,7 +134,6 @@ def main():
     concerns = ev.get("concerns") or []
     if concerns:
         print(f"Concerns      : {', '.join(map(str, concerns))}")
-    print(f"Comment       : {ev.get('portuguese_comment', '')}")
 
     save_evaluation(ev)
     print(f"\nSaved to {OUTPUT}")

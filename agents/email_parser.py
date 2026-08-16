@@ -32,7 +32,7 @@ def parse_batch(emails):
         if isinstance(result, list):
             for job in result:
                 job.setdefault("url", ""); job.setdefault("portal", job.get("source", "email"))
-                job.setdefault("idioma", "en"); job.setdefault("data_post", datetime.now(timezone.utc).isoformat())
+                job.setdefault("language", "en"); job.setdefault("posted_at", datetime.now(timezone.utc).isoformat())
             return result
     except Exception as e:
         print(f"  Batch failed: {str(e)[:80]}")

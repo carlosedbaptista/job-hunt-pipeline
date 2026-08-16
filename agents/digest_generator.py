@@ -25,7 +25,7 @@ def _get_job_field(eval_item, field, default="N/A"):
         val = job.get(field)
         if val:
             return val
-        en_map = {"empresa": "company", "titulo": "title", "localizacao": "location"}
+        en_map = {"company": "company", "title": "title", "location": "location"}
         if field in en_map:
             val = job.get(en_map[field])
             if val:
@@ -33,7 +33,7 @@ def _get_job_field(eval_item, field, default="N/A"):
     val = eval_item.get(field)
     if val:
         return val
-    en_map = {"empresa": "company", "titulo": "title", "localizacao": "location"}
+    en_map = {"company": "company", "title": "title", "location": "location"}
     if field in en_map:
         val = eval_item.get(en_map[field])
         if val:
@@ -84,18 +84,18 @@ def format_digest_text(digest, top_jobs):
         score = job_eval.get("score", 0)
         recommendation = job_eval.get("recommendation", job_eval.get("decision", "?"))
 
-        empresa = _get_job_field(job_eval, "empresa")
-        titulo = _get_job_field(job_eval, "titulo")
-        localizacao = _get_job_field(job_eval, "localizacao")
+        company = _get_job_field(job_eval, "company")
+        title = _get_job_field(job_eval, "title")
+        location = _get_job_field(job_eval, "location")
         url = _get_job_field(job_eval, "url")
         portal = _get_job_field(job_eval, "portal")
 
         icon = ">>>" if score >= THRESHOLD_APPLY else "!!" if score >= THRESHOLD_REVIEW else "XXX"
 
         lines.append("")
-        lines.append(f"{i}. {icon} [{score}/100] {empresa}")
-        lines.append(f"   Title: {titulo}")
-        lines.append(f"   Location: {localizacao} | Source: {portal}")
+        lines.append(f"{i}. {icon} [{score}/100] {company}")
+        lines.append(f"   Title: {title}")
+        lines.append(f"   Location: {location} | Source: {portal}")
         lines.append(f"   Status: {recommendation}")
 
         key_points = job_eval.get("key_match_points", [])

@@ -55,8 +55,8 @@ def process_approvals(approval_string: str):
             job = job_eval.get("job", {})
             approved_jobs.append({
                 "position": i,
-                "empresa": job.get("empresa", ""),
-                "titulo": job.get("titulo", ""),
+                "company": job.get("company", ""),
+                "title": job.get("title", ""),
                 "url": job.get("url", ""),
                 "score": job_eval.get("score", 0),
                 "approved_at": datetime.now().isoformat(),
@@ -69,8 +69,8 @@ def process_approvals(approval_string: str):
     print()
 
     for job in approved_jobs:
-        print(f"  ✅ #{job['position']} [{job['score']}/100] {job['empresa']}")
-        print(f"     {job['titulo']}")
+        print(f"  ✅ #{job['position']} [{job['score']}/100] {job['company']}")
+        print(f"     {job['title']}")
         print(f"     Link: {job['url'][:60]}...")
         print()
 
@@ -114,10 +114,10 @@ def list_digest():
     for i, job_eval in enumerate(digest.get("top_jobs", []), 1):
         score = job_eval.get("score", 0)
         job = job_eval.get("job", {})
-        empresa = job.get("empresa", "")
-        titulo = job.get("titulo", "")
+        company = job.get("company", "")
+        title = job.get("title", "")
 
-        print(f"{i}. [{score}/100] {empresa} — {titulo}")
+        print(f"{i}. [{score}/100] {company} — {title}")
 
     print("\n" + "=" * 70)
 

@@ -31,16 +31,16 @@ Return ONLY the email body (no subject line, no greeting, no signature yet)."""
 
 
 def generate_followup(
-    empresa: str,
-    titulo: str,
+    company: str,
+    title: str,
     days_elapsed: int,
     original_application_date: str,
 ) -> str | None:
     """Generates a personalised follow-up email body."""
     prompt = f"""Generate a professional follow-up email for this job application:
 
-COMPANY: {empresa}
-JOB TITLE: {titulo}
+COMPANY: {company}
+JOB TITLE: {title}
 DAYS SINCE APPLICATION: {days_elapsed}
 ORIGINAL APPLICATION DATE: {original_application_date}
 
@@ -66,31 +66,31 @@ def generate_followup_email_package(application: dict) -> dict | None:
     Generates a complete follow-up package (subject + body).
     Expects a dict with application data from the database.
     """
-    empresa = application.get("empresa", "Unknown")
-    titulo = application.get("titulo", "Unknown")
+    company = application.get("company", "Unknown")
+    title = application.get("title", "Unknown")
     days_elapsed = application.get("days_without_response", 0)
     date_applied = application.get("date_applied", "Unknown")
 
-    body = generate_followup(empresa, titulo, days_elapsed, date_applied)
+    body = generate_followup(company, title, days_elapsed, date_applied)
 
     if not body:
         return None
 
-    subject = f"Following up: {titulo} at {empresa}"
+    subject = f"Following up: {title} at {company}"
 
     return {
         "subject": subject,
         "body": body,
         "days_elapsed": days_elapsed,
-        "empresa": empresa,
-        "titulo": titulo,
+        "company": company,
+        "title": title,
     }
 
 
 if __name__ == "__main__":
     test_app = {
-        "empresa": "Sika AG",
-        "titulo": "Data Analyst",
+        "company": "Sika AG",
+        "title": "Data Analyst",
         "days_without_response": 10,
         "date_applied": "2026-05-07"
     }

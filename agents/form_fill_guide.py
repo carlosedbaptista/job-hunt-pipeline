@@ -64,14 +64,14 @@ def generate_form_fill_guide(job_eval: dict, approval: dict) -> dict:
     Returns optimized step-by-step instructions.
     """
     job = approval.get("job", {})
-    empresa = job.get("empresa", "")
-    titulo = job.get("titulo", "")
+    company = job.get("company", "")
+    title = job.get("title", "")
     url = job.get("url", "")
 
     guide = {
         "generated_at": datetime.now().isoformat(),
-        "empresa": empresa,
-        "titulo": titulo,
+        "company": company,
+        "title": title,
         "url": url,
         "score": approval.get("score", 0),
         "instructions": [],
@@ -156,14 +156,14 @@ def save_form_guides(approvals: list, evals_dict: dict) -> list:
     os.makedirs("digests", exist_ok=True)
 
     for approval in approvals:
-        empresa = approval.get("empresa", "")
-        eval_data = evals_dict.get(empresa, {})
+        company = approval.get("company", "")
+        eval_data = evals_dict.get(company, {})
 
         guide = generate_form_fill_guide(eval_data, approval)
         guides.append(guide)
 
         # Save individual guide
-        filename = f"digests/form_guide_{empresa.replace(' ', '_')}.json"
+        filename = f"digests/form_guide_{company.replace(' ', '_')}.json"
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(guide, f, ensure_ascii=False, indent=2)
 
@@ -180,8 +180,8 @@ def generate_claude_in_chrome_prompt(guide: dict) -> str:
     """
     Generates an optimized prompt to paste directly into Claude in Chrome.
     """
-    empresa = guide["empresa"]
-    titulo = guide["titulo"]
+    company = guide["company"]
+    title = guide["title"]
     url = guide["url"]
     data = guide["data_to_fill"]
     form_fields = guide["form_fields"]
@@ -190,8 +190,8 @@ def generate_claude_in_chrome_prompt(guide: dict) -> str:
 You are a form-filling assistant. Your task is to fill out a job application form.
 
 JOB DETAILS:
-- Company: {empresa}
-- Position: {titulo}
+- Company: {company}
+- Position: {title}
 - URL: {url}
 
 INSTRUCTIONS:
@@ -229,8 +229,8 @@ if __name__ == "__main__":
 
     # Test: generate a sample guide
     sample_approval = {
-        "empresa": "Test Company",
-        "titulo": "Data Analyst Internship",
+        "company": "Test Company",
+        "title": "Data Analyst Internship",
         "url": "https://example.com/jobs/123",
         "score": 85,
     }

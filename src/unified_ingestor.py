@@ -91,17 +91,17 @@ def load_adzuna_jobs() -> List[Dict[str, Any]]:
         return []
 
 
-def normalize_to_legacy(job: Dict[str, Any]) -> Dict[str, Any]:
-    """Converts fields from the new format (JSearch) to the pipeline's legacy format."""
+def normalize_job_fields(job: Dict[str, Any]) -> Dict[str, Any]:
+    """Normalizes job fields to the pipeline's canonical English keys, filling defaults."""
     return {
-        "empresa": job.get("company") or job.get("empresa", "Unknown"),
-        "titulo": job.get("title") or job.get("titulo", "Unknown"),
-        "localizacao": job.get("location") or job.get("localizacao", "Unknown"),
-        "descricao": job.get("description") or job.get("descricao", ""),
+        "company": job.get("company") or job.get("company", "Unknown"),
+        "title": job.get("title") or job.get("title", "Unknown"),
+        "location": job.get("location") or job.get("location", "Unknown"),
+        "description": job.get("description") or job.get("description", ""),
         "url": job.get("url", ""),
         "portal": job.get("portal", "unknown"),
-        "idioma": job.get("idioma", "en"),
-        "data_post": job.get("posted_at") or job.get("data_post", datetime.now(timezone.utc).isoformat()),
+        "language": job.get("language", "en"),
+        "posted_at": job.get("posted_at") or job.get("posted_at", datetime.now(timezone.utc).isoformat()),
     }
 
 
@@ -118,8 +118,8 @@ def save_unified(jobs: List[Dict[str, Any]]) -> str:
     return filepath
 
 
-def save_legacy_format(jobs: List[Dict[str, Any]]) -> str:
-    """Saves in the format the legacy pipeline (evaluator, digest, etc.) expects.
+def save_evaluator_input(jobs: List[Dict[str, Any]]) -> str:
+    """Saves in the format the evaluator/digest/dashboard expect.
 
     Applies the persistent (SQLite) deduplication: jobs already seen in a
     previous run within the retention window are filtered out, so the
@@ -127,15 +127,15 @@ def save_legacy_format(jobs: List[Dict[str, Any]]) -> str:
     """
     os.makedirs("digests", exist_ok=True)
     filepath = "digests/new_jobs_latest.json"
-    legacy_jobs = [normalize_to_legacy(j) for j in jobs]
+    normalized_jobs = [normalize_job_fields(j) for j in jobs]
 
-    fresh_jobs = filter_new_jobs(legacy_jobs)
-    already_seen = len(legacy_jobs) - len(fresh_jobs)
+    fresh_jobs = filter_new_jobs(normalized_jobs)
+    already_seen = len(normalized_jobs) - len(fresh_jobs)
     print(f"  🔁 Cross-run dedup: {len(fresh_jobs)} new | {already_seen} already seen (tracker/jobs.db)")
 
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(fresh_jobs, f, ensure_ascii=False, indent=2)
-    print(f"  💾 {len(fresh_jobs)} jobs (legacy format) → {filepath}")
+    print(f"  💾 {len(fresh_jobs)} jobs → {filepath}")
     return filepath
 
 
@@ -158,7 +158,7 @@ def main():
     print(f"\n📊 Total: {len(all_jobs)} | After dedup: {len(unique)}")
 
     save_unified(unique)
-    filepath = save_legacy_format(unique)
+    filepath = save_evaluator_input(unique)
     return filepath
 
 

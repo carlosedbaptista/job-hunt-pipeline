@@ -68,9 +68,9 @@ def generate_html(digest: dict) -> str:
         color = score_color(score)
         job = job_eval.get("job", {})
 
-        empresa = job.get("empresa") or "Unknown"
-        titulo = job.get("titulo") or "No title"
-        localizacao = job.get("localizacao") or "Unknown"
+        company = job.get("company") or "Unknown"
+        title = job.get("title") or "No title"
+        location = job.get("location") or "Unknown"
         portal = job.get("portal") or ""
         url = job.get("url") or ""
 
@@ -107,9 +107,9 @@ def generate_html(digest: dict) -> str:
             <div>
               <div style="font-size:12px;color:#94a3b8;font-weight:600;letter-spacing:.05em;
                           text-transform:uppercase;margin-bottom:4px;">#{i} · {portal}</div>
-              <div style="font-size:18px;font-weight:700;color:#1e293b;">{empresa}</div>
-              <div style="font-size:14px;color:#475569;margin-top:2px;">{titulo}</div>
-              <div style="font-size:13px;color:#94a3b8;margin-top:2px;">📍 {localizacao}</div>
+              <div style="font-size:18px;font-weight:700;color:#1e293b;">{company}</div>
+              <div style="font-size:14px;color:#475569;margin-top:2px;">{title}</div>
+              <div style="font-size:13px;color:#94a3b8;margin-top:2px;">📍 {location}</div>
             </div>
             <div style="text-align:right;">
               <div style="font-size:28px;font-weight:800;color:{color};">{score}<span style="font-size:14px;font-weight:400;color:#94a3b8;">/100</span></div>

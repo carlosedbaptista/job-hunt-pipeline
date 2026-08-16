@@ -65,13 +65,13 @@ def classify_text(text: str, keywords_dict: dict) -> str:
 
 def classify_application(app: dict) -> dict:
     """Classifies an application across industry, job type, and ATS dimensions."""
-    empresa = app.get("empresa", "")
-    titulo = app.get("titulo", "")
+    company = app.get("company", "")
+    title = app.get("title", "")
 
     return {
-        "industry": classify_text(empresa + " " + titulo, INDUSTRY_KEYWORDS),
-        "job_type": classify_text(titulo, JOB_TYPE_KEYWORDS),
-        "ats": classify_text(empresa, ATS_KEYWORDS),
+        "industry": classify_text(company + " " + title, INDUSTRY_KEYWORDS),
+        "job_type": classify_text(title, JOB_TYPE_KEYWORDS),
+        "ats": classify_text(company, ATS_KEYWORDS),
     }
 
 

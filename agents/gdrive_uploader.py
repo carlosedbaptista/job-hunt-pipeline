@@ -107,8 +107,8 @@ def upload_cv_cl_files():
             cover_letters = json.load(f)
 
         for item in cover_letters:
-            empresa = item.get("empresa", "Unknown").replace("/", "-")
-            titulo = item.get("titulo", "Unknown").replace("/", "-")[:60]
+            company = item.get("company", "Unknown").replace("/", "-")
+            title = item.get("title", "Unknown").replace("/", "-")[:60]
             score = item.get("score", 0)
             cl_text = item.get("cover_letter", "")
             url = item.get("url", "")
@@ -117,15 +117,15 @@ def upload_cv_cl_files():
                 continue
 
             # Create subfolder per job
-            job_folder_name = f"{score:02d} - {empresa} - {titulo}"
+            job_folder_name = f"{score:02d} - {company} - {title}"
             job_folder_id = ensure_folder(service, job_folder_name, date_folder_id)
 
             # Upload cover letter
             try:
                 cl_content = f"""COVER LETTER
 Generated: {timestamp}
-Company: {empresa}
-Title: {titulo}
+Company: {company}
+Title: {title}
 Score: {score}/100
 URL: {url}
 
@@ -133,11 +133,11 @@ URL: {url}
 
 {cl_text}
 """
-                upload_text_file(service, job_folder_id, f"Cover Letter - {empresa}.txt", cl_content)
-                print(f"  ✅ CL uploaded: {empresa} — {titulo} (score: {score})")
+                upload_text_file(service, job_folder_id, f"Cover Letter - {company}.txt", cl_content)
+                print(f"  ✅ CL uploaded: {company} — {title} (score: {score})")
                 uploaded += 1
             except Exception as e:
-                print(f"  ❌ CL upload failed: {empresa} — {e}")
+                print(f"  ❌ CL upload failed: {company} — {e}")
                 errors += 1
 
     # Upload Tailored CVs
@@ -146,8 +146,8 @@ URL: {url}
             cvs = json.load(f)
 
         for item in cvs:
-            empresa = item.get("empresa", "Unknown").replace("/", "-")
-            titulo = item.get("titulo", "Unknown").replace("/", "-")[:60]
+            company = item.get("company", "Unknown").replace("/", "-")
+            title = item.get("title", "Unknown").replace("/", "-")[:60]
             score = item.get("score", 0)
             cv_text = item.get("cv_tailored", "")
             url = item.get("url", "")
@@ -155,14 +155,14 @@ URL: {url}
             if not cv_text:
                 continue
 
-            job_folder_name = f"{score:02d} - {empresa} - {titulo}"
+            job_folder_name = f"{score:02d} - {company} - {title}"
             job_folder_id = ensure_folder(service, job_folder_name, date_folder_id)
 
             try:
                 cv_content = f"""TAILORED CV
 Generated: {timestamp}
-Company: {empresa}
-Title: {titulo}
+Company: {company}
+Title: {title}
 Score: {score}/100
 URL: {url}
 
@@ -170,11 +170,11 @@ URL: {url}
 
 {cv_text}
 """
-                upload_text_file(service, job_folder_id, f"CV - {empresa}.txt", cv_content)
-                print(f"  ✅ CV uploaded: {empresa} — {titulo} (score: {score})")
+                upload_text_file(service, job_folder_id, f"CV - {company}.txt", cv_content)
+                print(f"  ✅ CV uploaded: {company} — {title} (score: {score})")
                 uploaded += 1
             except Exception as e:
-                print(f"  ❌ CV upload failed: {empresa} — {e}")
+                print(f"  ❌ CV upload failed: {company} — {e}")
                 errors += 1
 
     print(f"\n📊 Upload summary: {uploaded} files uploaded, {errors} errors")

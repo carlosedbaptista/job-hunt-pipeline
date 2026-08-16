@@ -49,9 +49,9 @@ def normalize_location(text: str) -> str:
     return normalized.split()[0] if normalized else ""
 
 
-def make_hash(empresa: str, titulo: str, localizacao: str) -> str:
+def make_hash(company: str, title: str, location: str) -> str:
     """Generates a 16-char deduplication hash."""
-    key = f"{normalize_company(empresa)}|{normalize(titulo)}|{normalize_location(localizacao)}"
+    key = f"{normalize_company(company)}|{normalize(title)}|{normalize_location(location)}"
     return hashlib.sha256(key.encode()).hexdigest()[:16]
 
 
@@ -65,9 +65,9 @@ def init_db(db_path: str = DB_PATH):
     conn.execute("""
         CREATE TABLE IF NOT EXISTS seen_jobs (
             hash        TEXT PRIMARY KEY,
-            empresa     TEXT,
-            titulo      TEXT,
-            localizacao TEXT,
+            company     TEXT,
+            title       TEXT,
+            location    TEXT,
             url         TEXT,
             portal      TEXT,
             first_seen  TEXT,
@@ -75,6 +75,16 @@ def init_db(db_path: str = DB_PATH):
             status      TEXT DEFAULT 'new'
         )
     """)
+
+    # Migration: the data contract used to be PT-BR (empresa/titulo/
+    # localizacao). Rename in place so existing rows survive.
+    existing_cols = {row[1] for row in conn.execute("PRAGMA table_info(seen_jobs)")}
+    if "empresa" in existing_cols and "company" not in existing_cols:
+        conn.execute("ALTER TABLE seen_jobs RENAME COLUMN empresa TO company")
+    if "titulo" in existing_cols and "title" not in existing_cols:
+        conn.execute("ALTER TABLE seen_jobs RENAME COLUMN titulo TO title")
+    if "localizacao" in existing_cols and "location" not in existing_cols:
+        conn.execute("ALTER TABLE seen_jobs RENAME COLUMN localizacao TO location")
 
     # The `applications` table is owned by agents/tracker_updater.py (see
     # its init_applications_table()) -- it used to also be defined here
@@ -121,9 +131,9 @@ def filter_new_jobs(
 
     for job in jobs:
         h = make_hash(
-            job.get("empresa", ""),
-            job.get("titulo", ""),
-            job.get("localizacao", ""),
+            job.get("company", ""),
+            job.get("title", ""),
+            job.get("location", ""),
         )
 
         row = conn.execute(
@@ -133,13 +143,13 @@ def filter_new_jobs(
         if row is None:
             conn.execute(
                 """INSERT INTO seen_jobs
-                   (hash, empresa, titulo, localizacao, url, portal, first_seen, last_seen)
+                   (hash, company, title, location, url, portal, first_seen, last_seen)
                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
                 (
                     h,
-                    job.get("empresa", ""),
-                    job.get("titulo", ""),
-                    job.get("localizacao", ""),
+                    job.get("company", ""),
+                    job.get("title", ""),
+                    job.get("location", ""),
                     job.get("url", ""),
                     job.get("portal", ""),
                     now,
