@@ -37,12 +37,17 @@ def load_profile_summary() -> str:
     exp_summary = "; ".join(f"{e.get('title', '')} @ {e.get('company', '').split('--')[0].strip()}" for e in exp[:3])
     edu = p.get("education", [])
     edu_summary = edu[0].get("degree", "") if edu else ""
+    motivation = p.get("summary", "")
+    projects = p.get("projects", [])
+    project_summary = "; ".join(pr.get("title", "") for pr in projects[:2])
 
     return (
         f"Candidate: {p.get('role', 'Data/Business Analyst')}, Zurich Area CH "
         f"({p.get('permit', 'Permit B')}), notice {p.get('notice_period', '2 weeks')}. "
+        f"Motivation (in his own words, weigh this for role-shape/excitement fit): {motivation} "
         f"Skills: {', '.join(tech)}. "
         f"Experience: {exp_summary}. "
+        f"Projects: {project_summary}. "
         f"Education: {edu_summary}. "
         f"Certifications: {', '.join(certs)}. "
         f"Languages: PT native, EN C1, ES B2, DE A2."
