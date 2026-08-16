@@ -1,0 +1,92 @@
+name: Track Application (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "What are you recording?"
+        required: true
+        type: choice
+        options:
+          - applied
+          - response
+      company:
+        description: "Company"
+        required: true
+        type: string
+      title:
+        description: "Job title"
+        required: true
+        type: string
+      url:
+        description: "Job URL (used for 'applied')"
+        required: false
+        type: string
+      response_type:
+        description: "Response type (used for 'response')"
+        required: false
+        type: choice
+        options:
+          - positive
+          - rejection
+          - interview_invite
+          - info_request
+      notes:
+        description: "Notes (optional)"
+        required: false
+        type: string
+
+jobs:
+  track-application:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4 (pinned SHA)
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5 (pinned SHA)
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Record application state
+        env:
+          ACTION: ${{ inputs.action }}
+          COMPANY: ${{ inputs.company }}
+          TITLE: ${{ inputs.title }}
+          URL: ${{ inputs.url }}
+          RESPONSE_TYPE: ${{ inputs.response_type }}
+          NOTES: ${{ inputs.notes }}
+        run: |
+          if [ "$ACTION" = "applied" ]; then
+            python agents/tracker_updater.py apply --company "$COMPANY" --title "$TITLE" --url "$URL"
+          elif [ "$ACTION" = "response" ]; then
+            if [ -z "$RESPONSE_TYPE" ]; then
+              echo "response_type is required when action=response"
+              exit 1
+            fi
+            python agents/tracker_updater.py response --company "$COMPANY" --title "$TITLE" --type "$RESPONSE_TYPE" --notes "$NOTES"
+          else
+            echo "Unknown action: $ACTION"
+            exit 1
+          fi
+
+      - name: Commit result
+        env:
+          # Passed via env, never interpolated into the script: inline
+          # ${{ inputs.* }} in run blocks is a shell injection vector.
+          ACTION: ${{ inputs.action }}
+          COMPANY: ${{ inputs.company }}
+          TITLE: ${{ inputs.title }}
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add tracker/jobs.db
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: track application [$ACTION | $TITLE @ $COMPANY]"
+          git push
