@@ -1,12 +1,16 @@
 """
-followup_sender.py  —  Sends follow-up emails for stale applications
-Targets applications > 7 days old with no response and a known recruiter email.
+followup_sender.py  —  Drafts follow-up emails for stale applications
+Targets applications > 7 days old with no response.
+
+Does NOT email the recruiter. The draft is emailed to the candidate
+(GMAIL_RECIPIENT) for review; the candidate forwards it themselves.
+This keeps the step safe to run unsupervised in the daily pipeline
+without breaking the "never submit without approval" rule -- the
+approval is the act of forwarding.
 """
 
-import sqlite3
 import os
 import sys
-import json
 import smtplib
 from datetime import datetime, timedelta
 from email.mime.multipart import MIMEMultipart
@@ -15,18 +19,21 @@ from email.mime.text import MIMEText
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from agents.followup_writer import generate_followup_email_package
+from agents.tracker_updater import DB_PATH, init_applications_table
+import sqlite3
 
-DB_PATH = "tracker/jobs.db"
 
-
-def get_old_applications(days_threshold: int = 7) -> list[dict]:
+def get_stale_applications(days_threshold: int = 7) -> list[dict]:
     """
     Returns applications that:
     1. Have received no response yet
     2. Were submitted more than days_threshold days ago
-    3. Have a known recruiter email
-    4. Have never had a follow-up, or the last attempt was > 3 days ago
+    3. Have never had a follow-up drafted, or the last draft was > 3 days ago
+
+    A known recruiter email is NOT required: the draft goes to the
+    candidate, who decides where and whether to forward it.
     """
+    init_applications_table()
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
 
@@ -46,145 +53,135 @@ def get_old_applications(days_threshold: int = 7) -> list[dict]:
     WHERE
         response_type IS NULL          -- no response yet
         AND date_applied < ?           -- older than threshold
-        AND recruiter_email IS NOT NULL
-        AND recruiter_email != ''
         AND (
-            last_followup_date IS NULL  -- never followed up
-            OR last_followup_date < ?   -- last attempt > 3 days ago
+            last_followup_date IS NULL  -- never drafted
+            OR last_followup_date < ?   -- last draft > 3 days ago
         )
     ORDER BY date_applied ASC
     """
 
     try:
         apps = conn.execute(query, (cutoff_date, cutoff_3_days)).fetchall()
-        conn.close()
         return [dict(app) for app in apps]
     except Exception as e:
-        print(f"❌ Error fetching applications: {e}")
-        conn.close()
+        print(f"ERROR: could not fetch applications: {e}")
         return []
+    finally:
+        conn.close()
 
 
-def update_followup_status(app_id: int, success: bool = True):
-    """Updates the tracker with follow-up information."""
+def update_followup_status(app_id: int):
+    """Marks that a draft was surfaced for this application, so it doesn't
+    get re-drafted every single day."""
     conn = sqlite3.connect(DB_PATH)
-
     try:
-        conn.execute("""
-            UPDATE applications
-            SET
-                last_followup_date = ?,
-                followup_count = COALESCE(followup_count, 0) + 1
-            WHERE id = ?
-        """, (datetime.now().isoformat(), app_id))
-
+        conn.execute(
+            """UPDATE applications
+               SET last_followup_date = ?, followup_count = COALESCE(followup_count, 0) + 1
+               WHERE id = ?""",
+            (datetime.now().isoformat(), app_id),
+        )
         conn.commit()
-        conn.close()
-        return True
     except Exception as e:
-        print(f"❌ Error updating follow-up: {e}")
+        print(f"ERROR: could not update follow-up status: {e}")
+    finally:
         conn.close()
-        return False
 
 
-def _email_signature() -> str:
-    """Signature assembled from config/candidate_profile.json (PII kept out of git)."""
-    try:
-        with open("config/candidate_profile.json", encoding="utf-8") as f:
-            p = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        p = {}
-    return (
-        f"{p.get('name', '')}\n"
-        f"{p.get('phone', '')}\n"
-        f"{p.get('email', '')}\n"
-        f"{p.get('linkedin', '')}\n\n"
-        f"{p.get('permit', '')} | {p.get('location', '')}"
-    )
-
-
-def send_followup_email(
-    to_email: str,
+def send_draft_to_candidate(
+    empresa: str,
+    titulo: str,
+    days_elapsed: int,
+    recruiter_email: str,
     subject: str,
     body: str,
+    recipient_email: str,
     sender_email: str,
     app_password: str,
 ) -> bool:
-    """Sends a follow-up email via Gmail SMTP."""
+    """Emails a follow-up draft to the candidate for review (not to the recruiter)."""
     try:
         server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
         server.login(sender_email, app_password)
 
         message = MIMEMultipart("alternative")
-        message["Subject"] = subject
+        message["Subject"] = f"[Draft] Follow-up ready: {titulo} at {empresa}"
         message["From"] = sender_email
-        message["To"] = to_email
+        message["To"] = recipient_email
 
-        full_body = f"""{body}
-
----
-Best regards,
-{_email_signature()}
-"""
+        recruiter_line = recruiter_email or "not recorded -- check the original job posting"
+        intro = (
+            "DRAFT FOLLOW-UP -- REVIEW BEFORE SENDING\n\n"
+            "This is an auto-generated draft. Read it, edit it if needed, "
+            "and forward it yourself to the recruiter.\n\n"
+            f"Company: {empresa}\n"
+            f"Role: {titulo}\n"
+            f"Days since application: {days_elapsed}\n"
+            f"Recruiter email on file: {recruiter_line}\n\n"
+            "---\n\n"
+            f"Suggested subject line:\n{subject}\n\n"
+            f"Suggested body:\n{body}\n\n"
+            "---\n"
+        )
 
         html_body = f"""
         <html>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-            <div style="white-space: pre-wrap;">{full_body}</div>
+            <div style="white-space: pre-wrap;">{intro}</div>
         </body>
         </html>
         """
 
-        message.attach(MIMEText(full_body, "plain"))
+        message.attach(MIMEText(intro, "plain"))
         message.attach(MIMEText(html_body, "html"))
 
-        server.sendmail(sender_email, to_email, message.as_string())
+        server.sendmail(sender_email, recipient_email, message.as_string())
         server.quit()
 
         return True
 
     except Exception as e:
-        print(f"❌ Failed to send email: {e}")
+        print(f"ERROR: failed to send draft: {e}")
         return False
 
 
-def send_followups():
-    """Sends follow-up emails for all eligible applications."""
+def draft_followups():
+    """Drafts and emails (to the candidate) follow-up suggestions for all
+    eligible stale applications."""
     print("\n" + "=" * 70)
-    print("FOLLOW-UP SENDER")
+    print("FOLLOW-UP DRAFTER")
     print("=" * 70 + "\n")
 
     sender_email = os.environ.get("GMAIL_SENDER", "")
+    recipient_email = os.environ.get("GMAIL_RECIPIENT", sender_email)
     app_password = os.environ.get("GMAIL_APP_PASSWORD")
 
-    if not app_password:
-        print("⚠️  GMAIL_APP_PASSWORD not set")
-        return False
-
-    old_apps = get_old_applications(days_threshold=7)
-
-    if not old_apps:
-        print("✅ No eligible applications for follow-up")
+    if not app_password or not sender_email:
+        print("WARNING: GMAIL_SENDER/GMAIL_APP_PASSWORD not set -- skipping.")
         return True
 
-    print(f"📧 Found {len(old_apps)} eligible application(s):\n")
+    stale_apps = get_stale_applications(days_threshold=7)
 
-    sent_count = 0
+    if not stale_apps:
+        print("OK: no eligible applications for follow-up.")
+        return True
 
-    for app in old_apps:
+    print(f"Found {len(stale_apps)} eligible application(s):\n")
+
+    drafted_count = 0
+
+    for app in stale_apps:
         app_id = app["id"]
         empresa = app["empresa"]
         titulo = app["titulo"]
-        recruiter_email = app["recruiter_email"]
+        recruiter_email = app.get("recruiter_email") or ""
         date_applied = app["date_applied"]
 
         app_date = datetime.fromisoformat(date_applied)
         days_elapsed = (datetime.now() - app_date).days
 
-        print(f"{sent_count + 1}. {empresa} — {titulo}")
-        print(f"   Email: {recruiter_email}")
-        print(f"   Days without response: {days_elapsed}")
+        print(f"{drafted_count + 1}. {empresa} - {titulo} ({days_elapsed} days)")
 
         followup_package = generate_followup_email_package({
             "empresa": empresa,
@@ -194,31 +191,35 @@ def send_followups():
         })
 
         if not followup_package:
-            print(f"   ❌ Error generating follow-up\n")
+            print("   ERROR: could not generate draft\n")
             continue
 
-        success = send_followup_email(
-            to_email=recruiter_email,
+        success = send_draft_to_candidate(
+            empresa=empresa,
+            titulo=titulo,
+            days_elapsed=days_elapsed,
+            recruiter_email=recruiter_email,
             subject=followup_package["subject"],
             body=followup_package["body"],
+            recipient_email=recipient_email,
             sender_email=sender_email,
             app_password=app_password,
         )
 
         if success:
             update_followup_status(app_id)
-            print(f"   ✅ Follow-up sent\n")
-            sent_count += 1
+            print("   OK: draft sent for review\n")
+            drafted_count += 1
         else:
-            print(f"   ❌ Failed to send email\n")
+            print("   ERROR: failed to send draft\n")
 
     print("=" * 70)
-    print(f"✅ {sent_count} follow-up(s) sent")
+    print(f"OK: {drafted_count} draft(s) sent for review")
     print("=" * 70 + "\n")
 
     return True
 
 
 if __name__ == "__main__":
-    success = send_followups()
+    success = draft_followups()
     sys.exit(0 if success else 1)

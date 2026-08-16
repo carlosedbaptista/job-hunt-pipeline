@@ -1,5 +1,5 @@
 """
-followup_writer.py  —  Generates personalised follow-up emails with Claude Sonnet
+followup_writer.py  —  Generates personalised follow-up emails with Kimi
 Used for applications with no response after 7+ days.
 """
 

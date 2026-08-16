@@ -32,8 +32,9 @@
 7. `src/dashboard.py` — regenerate dashboard
 8. `agents/doc_generator.py` — tailored CV/CL for APPLY jobs (continue-on-error)
 9. `agents/high_score_alert.py` — alert once per job >= 85 (dedup in `digests/alerted_jobs.json`)
-10. `agents/email_notifier.py` — send digest email
-11. Commit `data/raw_jobs/`, `data/history/`, `digests/`, `tracker/jobs.db`
+10. `agents/followup_sender.py` — for `applications` rows with no response after 7+ days, drafts a follow-up with Kimi and emails the **draft to the candidate** (`GMAIL_RECIPIENT`), never to the recruiter; the candidate reviews and forwards it manually (continue-on-error)
+11. `agents/email_notifier.py` — send digest email
+12. Commit `data/raw_jobs/`, `data/history/`, `digests/`, `tracker/jobs.db`
 
 ## Scoring
 
@@ -78,7 +79,9 @@ Known caveat: the repo is public. Everything committed (digests, dashboard, raw 
 
 ## Legacy / dead code warning
 
-`src/pipeline.py`, `src/week3_pipeline.py`, `agents/email_parser.py`, `agents/jsearch_ingestor.py`, `agents/linkedin_ingestor.py` (disabled), `agents/cover_letter_writer.py`, `agents/cv_tailor.py`, `src/apply_automation.py`, `src/approval_handler.py`, `agents/followup_writer.py`, `agents/followup_sender.py` (references `last_followup_date`/`followup_count` columns that do not exist in the `applications` schema -- would crash if run), `agents/form_fill_guide.py`, `agents/analytics_engine.py`, `agents/email_extractor.py`, `agents/email_monitor.py`, `agents/page_generator.py` and others are NOT part of the CI flow. Before editing a module, confirm it is actually invoked by a workflow in `.github/workflows/`. The `applications` table in SQLite is populated manually via `.github/workflows/track-application.yml` (user-triggered only, mirrors `add-job.yml`'s manual pattern -- never wire real application/response tracking into the unsupervised daily scheduler).
+`src/pipeline.py`, `src/week3_pipeline.py`, `agents/email_parser.py`, `agents/jsearch_ingestor.py`, `agents/linkedin_ingestor.py` (disabled), `agents/cover_letter_writer.py`, `agents/cv_tailor.py`, `src/apply_automation.py`, `src/approval_handler.py`, `agents/form_fill_guide.py`, `agents/analytics_engine.py`, `agents/email_extractor.py`, `agents/email_monitor.py`, `agents/page_generator.py` and others are NOT part of the CI flow. Before editing a module, confirm it is actually invoked by a workflow in `.github/workflows/`.
+
+`agents/tracker_updater.py` and `agents/followup_sender.py`/`agents/followup_writer.py` ARE part of the CI flow now (added to close the score-vs-outcome feedback loop): the `applications` table is written to only via the user-triggered `.github/workflows/track-application.yml` (mirrors `add-job.yml`'s manual pattern), and read by `followup_sender.py` in the unsupervised daily scheduler to draft follow-ups. That daily step is safe to run unsupervised specifically because it only ever emails the candidate (`GMAIL_RECIPIENT`), never the recruiter -- do not change its send target without re-checking the "never submit without approval" rule above.
 
 ---
 
