@@ -150,8 +150,15 @@ if __name__ == "__main__":
         exit(1)
     digest, top_jobs = result
     text = format_digest_text(digest, top_jobs)
-    print(text)
+    # Save before printing: job text can contain arbitrary Unicode (e.g. a
+    # model response with "*"), and a narrow console encoding (Windows
+    # cp1252) can raise UnicodeEncodeError on print -- that must never cost
+    # the saved digest.
     json_file, txt_file = save_digest(digest, text)
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        print(text.encode(sys.stdout.encoding or "utf-8", errors="replace").decode(sys.stdout.encoding or "utf-8"))
     print(f"\nOK Digest saved:")
     print(f"   * {json_file}")
     print(f"   * {txt_file}")
