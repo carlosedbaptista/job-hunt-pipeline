@@ -129,6 +129,16 @@ jobs:
         run: python agents/high_score_alert.py
         continue-on-error: true
 
+      - name: Draft follow-ups for stale applications
+        env:
+          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
+          KIMI_BASE_URL: ${{ secrets.KIMI_BASE_URL }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
+        run: python agents/followup_sender.py
+        continue-on-error: true
+
       - name: Send email notification
         if: always()
         env:

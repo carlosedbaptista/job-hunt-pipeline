@@ -12,24 +12,33 @@ DB_PATH = os.environ.get("JOBS_DB_PATH", "tracker/jobs.db")
 
 
 def init_applications_table():
-    """Creates the applications table if it doesn't exist."""
+    """Creates the applications table if it doesn't exist, and migrates
+    older databases (created before follow-up tracking existed) forward."""
     conn = sqlite3.connect(DB_PATH)
 
     conn.execute("""
         CREATE TABLE IF NOT EXISTS applications (
-            id              INTEGER PRIMARY KEY AUTOINCREMENT,
-            empresa         TEXT,
-            titulo          TEXT,
-            url             TEXT,
-            date_applied    TEXT,
-            status          TEXT DEFAULT 'sent',
-            last_update     TEXT,
-            response_date   TEXT,
-            response_type   TEXT,
-            notes           TEXT,
-            recruiter_email TEXT
+            id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+            empresa             TEXT,
+            titulo              TEXT,
+            url                 TEXT,
+            date_applied        TEXT,
+            status              TEXT DEFAULT 'sent',
+            last_update         TEXT,
+            response_date       TEXT,
+            response_type       TEXT,
+            notes               TEXT,
+            recruiter_email     TEXT,
+            last_followup_date  TEXT,
+            followup_count      INTEGER DEFAULT 0
         )
     """)
+
+    existing_cols = {row[1] for row in conn.execute("PRAGMA table_info(applications)")}
+    if "last_followup_date" not in existing_cols:
+        conn.execute("ALTER TABLE applications ADD COLUMN last_followup_date TEXT")
+    if "followup_count" not in existing_cols:
+        conn.execute("ALTER TABLE applications ADD COLUMN followup_count INTEGER DEFAULT 0")
 
     conn.commit()
     conn.close()
