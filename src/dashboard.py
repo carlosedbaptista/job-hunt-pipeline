@@ -46,25 +46,44 @@ def collect_jobs(days=30):
     cutoff_str = cutoff.strftime("%Y-%m-%d")
 
     all_jobs = []
-    seen_urls = set()
+    seen_keys = set()
 
     def add_eval(ev, digest_date, manual=False):
         """Adds one evaluation to the list, skipping duplicates and API errors."""
         if ev.get("decision") == "ERROR" or ev.get("score") is None:
             return
         job = ev.get("job", ev)
-        url = job.get("url", job.get("link", ""))
-        key = url or f"{job.get('company','')}_{job.get('title','')}"
-        if key in seen_urls:
+        # Identity is normalized company+title -- NOT the URL: the same
+        # posting arrives with a different tracking URL per source/visit,
+        # and a manual re-evaluation (which REPLACES the old record by
+        # design) used to be shadowed by the older history entry that
+        # happened to share the URL. Manual entries are added first below
+        # precisely so the newest evaluation wins the dedup race.
+        key = f"{normalize_company(job.get('company', ''))}|{normalize(job.get('title', ''))}"
+        if key in seen_keys:
             return
-        seen_urls.add(key)
+        seen_keys.add(key)
         ev_copy = dict(ev)
         ev_copy["_digest_date"] = digest_date
+        # Precomputed for the JS: hard-blocker lock and low-confidence cap
+        # (mirrors utils.effective_decision, incl. legacy records without
+        # the structured hard_blockers field).
+        ev_copy["_has_blocker"] = has_hard_blocker(ev)
+        ev_copy["_insufficient"] = bool(ev.get("insufficient_info"))
         if manual:
             ev_copy["_manual"] = True
         all_jobs.append(ev_copy)
 
-    # 0. Full evaluation history (data/history/evaluations_YYYYMMDD.json),
+    # 0. Manually added jobs FIRST (via the "Add Job" workflow or
+    # agents/add_job.py): re-evaluating a posting deliberately replaces the
+    # old record, so the newest score must win against history/digests.
+    manual = load_json(os.path.join(DIGESTS_DIR, "manual_evaluations.json"))
+    if manual and isinstance(manual, list):
+        for ev in manual:
+            manual_date = str(ev.get("evaluated_at", ""))[:10] or datetime.now().strftime("%Y-%m-%d")
+            add_eval(ev, manual_date, manual=True)
+
+    # 1. Full evaluation history (data/history/evaluations_YYYYMMDD.json),
     # written by job_evaluator -- richer than the top-5 kept in digests.
     for hfile in sorted(glob.glob(os.path.join(HISTORY_DIR, "evaluations_*.json"))):
         basename = os.path.basename(hfile)
@@ -80,7 +99,7 @@ def collect_jobs(days=30):
             for ev in data:
                 add_eval(ev, hist_date)
 
-    # 1. Historical digests
+    # 2. Historical digests
     digest_files = sorted(glob.glob(os.path.join(DIGESTS_DIR, "digest_*.json")))
     for dfile in digest_files:
         digest_date = parse_digest_date(dfile)
@@ -95,19 +114,12 @@ def collect_jobs(days=30):
         for ev in jobs:
             add_eval(ev, digest_date)
 
-    # 2. Current evaluations (job_evaluations_latest.json)
+    # 3. Current evaluations (job_evaluations_latest.json)
     evals = load_json(os.path.join(DIGESTS_DIR, "job_evaluations_latest.json"))
     if evals and isinstance(evals, list):
         today = datetime.now().strftime("%Y-%m-%d")
         for ev in evals:
             add_eval(ev, today)
-
-    # 3. Manually added jobs (via the "Add Job" workflow or agents/add_job.py)
-    manual = load_json(os.path.join(DIGESTS_DIR, "manual_evaluations.json"))
-    if manual and isinstance(manual, list):
-        for ev in manual:
-            manual_date = str(ev.get("evaluated_at", ""))[:10] or datetime.now().strftime("%Y-%m-%d")
-            add_eval(ev, manual_date, manual=True)
 
     return all_jobs
 
@@ -387,10 +399,14 @@ function safeUrl(url) {
     return /^https?:\/\//i.test(u) ? u : "";
 }
 
-function getDecision(score) {
-    if (score >= TH_APPLY) return "APPLY";
-    if (score >= TH_REVIEW) return "REVIEW";
-    return "SKIP";
+// Mirrors utils.effective_decision on the Python side: thresholds, then
+// the hard-blocker lock, then the low-confidence cap (both precomputed
+// per job by dashboard.py as _has_blocker / _insufficient).
+function getDecision(score, hasBlocker, insufficient) {
+    if (hasBlocker) return "SKIP";
+    let d = score >= TH_APPLY ? "APPLY" : score >= TH_REVIEW ? "REVIEW" : "SKIP";
+    if (d === "APPLY" && insufficient) d = "REVIEW";
+    return d;
 }
 
 // Status recorded via the "Track Application" workflow takes priority.
@@ -447,7 +463,7 @@ function renderTable(jobs) {
         const url = getJobField(job, "url");
         const portal = getJobField(job, "portal", "unknown");
         const score = job.score || 0;
-        const decision = getDecision(score);
+        const decision = getDecision(score, job._has_blocker, job._insufficient);
         const date = job._digest_date || "Today";
         
         const badgeClass = decision === "APPLY" ? "badge-apply" : decision === "REVIEW" ? "badge-review" : "badge-skip";
@@ -485,16 +501,16 @@ function filterTable() {
         const location = getJobField(job, "location").toLowerCase();
         const portal = getJobField(job, "portal", "unknown").toLowerCase();
         const score = job.score || 0;
-        const dec = getDecision(score);
+        const dec = getDecision(score, job._has_blocker, job._insufficient);
 
         if (search && !company.includes(search) && !title.includes(search) && !location.includes(search)) return false;
         if (decision && dec !== decision) return false;
         if (source && !portal.includes(source)) return false;
         if (application && getApplicationInfo(job, dec).filterKey !== application) return false;
         if (scoreRange) {
-            if (scoreRange === "80-100" && score < 80) return false;
-            if (scoreRange === "70-79" && (score < 70 || score >= 80)) return false;
-            if (scoreRange === "0-69" && score >= 70) return false;
+            if (scoreRange === "80-100" && score < TH_APPLY) return false;
+            if (scoreRange === "70-79" && (score < TH_REVIEW || score >= TH_APPLY)) return false;
+            if (scoreRange === "0-69" && score >= TH_REVIEW) return false;
         }
         return true;
     });
@@ -505,9 +521,9 @@ function filterTable() {
 
 function updateMetrics(jobs) {
     const total = jobs.length;
-    const apply = jobs.filter(j => (j.score||0) >= TH_APPLY).length;
-    const review = jobs.filter(j => { const s=j.score||0; return s>=TH_REVIEW && s<TH_APPLY; }).length;
-    const skip = jobs.filter(j => (j.score||0) < TH_REVIEW).length;
+    const apply = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient) === "APPLY").length;
+    const review = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient) === "REVIEW").length;
+    const skip = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient) === "SKIP").length;
     const rate = total > 0 ? Math.round(apply/total*100) : 0;
     
     document.getElementById("metric-total").textContent = total;
@@ -543,9 +559,9 @@ function updateCharts(jobs) {
         options: { responsive: true, maintainAspectRatio: false }
     });
     
-    const apply = jobs.filter(j => (j.score||0) >= TH_APPLY).length;
-    const review = jobs.filter(j => { const s=j.score||0; return s>=TH_REVIEW && s<TH_APPLY; }).length;
-    const skip = jobs.filter(j => (j.score||0) < TH_REVIEW).length;
+    const apply = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient) === "APPLY").length;
+    const review = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient) === "REVIEW").length;
+    const skip = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient) === "SKIP").length;
     
     if (window.chartPie) window.chartPie.destroy();
     window.chartPie = new Chart(document.getElementById("chart-pie"), {
@@ -595,16 +611,16 @@ function exportCSV() {
         const location = getJobField(job, "location").toLowerCase();
         const portal = getJobField(job, "portal", "unknown").toLowerCase();
         const score = job.score || 0;
-        const dec = getDecision(score);
+        const dec = getDecision(score, job._has_blocker, job._insufficient);
 
         if (search && !company.includes(search) && !title.includes(search) && !location.includes(search)) return false;
         if (decision && dec !== decision) return false;
         if (source && !portal.includes(source)) return false;
         if (application && getApplicationInfo(job, dec).filterKey !== application) return false;
         if (scoreRange) {
-            if (scoreRange === "80-100" && score < 80) return false;
-            if (scoreRange === "70-79" && (score < 70 || score >= 80)) return false;
-            if (scoreRange === "0-69" && score >= 70) return false;
+            if (scoreRange === "80-100" && score < TH_APPLY) return false;
+            if (scoreRange === "70-79" && (score < TH_REVIEW || score >= TH_APPLY)) return false;
+            if (scoreRange === "0-69" && score >= TH_REVIEW) return false;
         }
         return true;
     });
@@ -625,7 +641,7 @@ function exportCSV() {
         const url = getJobField(job, "url");
         const portal = getJobField(job, "portal", "unknown");
         const score = job.score || 0;
-        const decision = getDecision(score);
+        const decision = getDecision(score, job._has_blocker, job._insufficient);
         const date = job._digest_date || "Today";
         const application = getApplicationInfo(job, decision).label || "-";
         csv += [csvCell(date), csvCell(company), csvCell(title), csvCell(location), csvCell(portal), score, decision, csvCell(application), csvCell(url)].join(",") + "\n";
