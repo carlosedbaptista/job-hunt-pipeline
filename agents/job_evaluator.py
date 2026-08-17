@@ -59,9 +59,21 @@ PROFILE = load_profile_summary()
 SYSTEM_PROMPT = (
     'Evaluate job vs candidate. Return JSON: {"score":0-100,"technical_fit":"brief",'
     '"contextual_fit":"brief","salary_estimate":"range or Not disclosed","culture_fit":"brief",'
-    '"concerns":[],"decision":"APPLY|REVIEW|SKIP"}. '
+    '"concerns":[],"decision":"APPLY|REVIEW|SKIP",'
+    '"detected_company":"company name from the job text, or empty if not clearly stated",'
+    '"detected_title":"job title from the job text, or empty if not clearly stated",'
+    '"detected_location":"city/canton the role is based in, inferred from the job text '
+    '(office address, \'based in\', regulatory/site mentions), or empty if not clearly stated"}. '
     f"Rules: >={THRESHOLD_APPLY} APPLY, {THRESHOLD_REVIEW}-{THRESHOLD_APPLY - 1} REVIEW, "
     f"<{THRESHOLD_REVIEW} SKIP. Auto-SKIP: not Zurich/Zug, not English, pure SWE. "
+    "Also auto-SKIP (or cap well below APPLY) when the role explicitly REQUIRES fluent/"
+    "native German (or any language beyond English) for the candidate to do the job -- "
+    "his German is A2, not fluent. Distinguish a HARD requirement ('fluent German "
+    "required', 'German native speaker', 'verhandlungssicheres Deutsch') from a SOFT one "
+    "('German is a plus', 'German helpful but not required', role explicitly says English "
+    "is the working language) -- only the former should meaningfully lower the score; the "
+    "latter is a minor signal like any other soft criterion. A hard language requirement he "
+    "does not meet is a real eligibility blocker, not a 'domain gap' to wave off. "
     "Weighting: candidate is a deliberate career changer, open to unfamiliar business "
     "domains (finance, healthcare, retail, etc.) -- do NOT penalize lack of domain "
     "experience if the technical/functional role itself matches. Technical fit and "
@@ -130,7 +142,13 @@ def evaluate_job(job):
 
         recommendation = decision
         key_match_points = []
-        red_flags = []
+        # Concerns always surface, regardless of tier -- they used to be
+        # dropped for APPLY-tier jobs (score >= THRESHOLD_APPLY never copied
+        # them from ev["concerns"]), which meant digest_generator.py (reads
+        # only "red_flags") silently hid real caveats -- e.g. a hard German-
+        # fluency requirement -- on exactly the highest-scoring jobs, where
+        # they matter most.
+        red_flags = ev.get("concerns", [] if score >= THRESHOLD_REVIEW else ["Score below threshold"])
 
         if score >= THRESHOLD_APPLY:
             key_match_points = [ev.get("technical_fit", ""), ev.get("contextual_fit", "")]
@@ -138,16 +156,27 @@ def evaluate_job(job):
         elif score >= THRESHOLD_REVIEW:
             key_match_points = [ev.get("technical_fit", "")]
             key_match_points = [p for p in key_match_points if p]
-            red_flags = ev.get("concerns", [])
-        else:
-            red_flags = ev.get("concerns", ["Score below threshold"])
+
+        # Backfill company/title/location from what the model detected in
+        # the description when the caller didn't supply them: this is the
+        # same reasoning the model already does for technical_fit/
+        # contextual_fit (e.g. it correctly wrote "Zurich area (Wallisellen)"
+        # in contextual_fit while the structured `location` field stayed
+        # "Unknown" -- manually-added jobs in particular never had any
+        # location-extraction logic at all).
+        resolved_job = dict(job)
+        for field, detected_key in (("company", "detected_company"), ("title", "detected_title"), ("location", "detected_location")):
+            if resolved_job.get(field, "Unknown") in ("Unknown", "", None):
+                detected = ev.get(detected_key)
+                if detected and detected.strip() and detected.strip().lower() != "unknown":
+                    resolved_job[field] = detected.strip()
 
         return {
             "score": score,
             "recommendation": recommendation,
             "key_match_points": key_match_points,
             "red_flags": red_flags,
-            "job": _job_block(job),
+            "job": _job_block(resolved_job),
             "technical_fit": ev.get("technical_fit", ""),
             "contextual_fit": ev.get("contextual_fit", ""),
             "salary_estimate": ev.get("salary_estimate", "Not disclosed"),
