@@ -105,7 +105,7 @@ def normalize_job_fields(job: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-from utils import deduplicate_jobs
+from utils import deduplicate_jobs, max_evaluations_per_run
 from deduplicator import filter_new_jobs
 
 
@@ -118,20 +118,36 @@ def save_unified(jobs: List[Dict[str, Any]]) -> str:
     return filepath
 
 
-def save_evaluator_input(jobs: List[Dict[str, Any]]) -> str:
+def save_evaluator_input(jobs: List[Dict[str, Any]], db_path: str = None) -> str:
     """Saves in the format the evaluator/digest/dashboard expect.
 
     Applies the persistent (SQLite) deduplication: jobs already seen in a
     previous run within the retention window are filtered out, so the
     evaluator only spends API calls on genuinely new jobs.
+
+    Cost cap WITHOUT silent loss: jobs beyond the per-run cap are NOT
+    marked as seen -- they resurface as new on the next run (a queue).
+    The old order (dedup marked everything as seen, then the evaluator
+    sliced [:30]) silently swallowed jobs 31+ forever: never evaluated,
+    and filtered out of every later run as "already seen".
     """
     os.makedirs("digests", exist_ok=True)
     filepath = "digests/new_jobs_latest.json"
     normalized_jobs = [normalize_job_fields(j) for j in jobs]
 
-    fresh_jobs = filter_new_jobs(normalized_jobs)
+    db_kwargs = {"db_path": db_path} if db_path else {}
+    fresh_jobs = filter_new_jobs(normalized_jobs, mark_seen=False, **db_kwargs)
     already_seen = len(normalized_jobs) - len(fresh_jobs)
     print(f"  🔁 Cross-run dedup: {len(fresh_jobs)} new | {already_seen} already seen (tracker/jobs.db)")
+
+    cap = max_evaluations_per_run()
+    if len(fresh_jobs) > cap:
+        print(f"  💰 Cost guard: {len(fresh_jobs)} new jobs, evaluating the first {cap}; "
+              f"{len(fresh_jobs) - cap} stay unseen and come back next run.")
+        fresh_jobs = fresh_jobs[:cap]
+
+    # Only the jobs that WILL be evaluated get marked as seen.
+    filter_new_jobs(fresh_jobs, mark_seen=True, **db_kwargs)
 
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(fresh_jobs, f, ensure_ascii=False, indent=2)
