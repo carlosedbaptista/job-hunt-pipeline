@@ -10,6 +10,38 @@ from typing import List, Dict, Any
 
 from bs4 import BeautifulSoup
 
+# Glassdoor/LinkedIn job-alert cards wrap the whole card (rating, salary
+# estimate, apply CTA, "posted N ago" freshness label) in a single <a>,
+# so get_text() pulls all of it in as one blob. The freshness/CTA suffix
+# changes on every re-send of the same listing (e.g. "1T" -> "2T" -> "3T"),
+# which was silently defeating deduplicator.make_hash() -- the same job
+# kept re-entering the pipeline as "new" and getting re-evaluated by Kimi.
+# Patterns below are stripped before a card's text is used as title/company,
+# derived from real polluted rows found in tracker/jobs.db (Climeworks,
+# Tethys Robotics, Unisers, Alpine Technology and others all hit this).
+_NOISE_PATTERNS = [
+    r"\d\.\d\s*★",                                    # rating, e.g. "3.6 ★"
+    r"CHF\s*[\d.,’']+\s*-\s*CHF\s*[\d.,’']+\s*\(Arbeitgeber-Schätz\.?\)",  # salary estimate
+    r"Schnell bewerben",
+    r"Jetzt bewerben",
+    r"Quick apply",
+    r"Gerade gepostet",
+    r"Actively recruiting",
+    r"vor \d+\s*(?:Tag|Stunde|Woche)[en]?",
+    r"\d+\s*(?:T|Std|h|d)\b\s*$",                          # trailing "1T" / "13Std" freshness suffix -- no \b
+                                                            # before \d+: it's glued to the CTA text with no
+                                                            # separator ("bewerben1T"), so letter->digit is not
+                                                            # a word boundary and \b would never match there
+]
+_NOISE_RE = re.compile("|".join(_NOISE_PATTERNS), re.IGNORECASE)
+
+
+def _strip_scraped_noise(text: str) -> str:
+    """Removes known job-alert UI noise (rating, salary badge, apply CTA,
+    freshness label) from scraped card text -- see _NOISE_PATTERNS."""
+    cleaned = _NOISE_RE.sub(" ", text)
+    return re.sub(r"\s+", " ", cleaned).strip()
+
 
 def parse_html_emails(emails: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Extract job listings from HTML email bodies using regex + BeautifulSoup."""
@@ -41,31 +73,37 @@ def parse_html_emails(emails: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         # Pattern 1: Job title links
         for link in soup.find_all("a", href=True):
             href = link.get("href", "")
-            link_text = link.get_text(strip=True)
+            # separator=" ": without it, adjacent text nodes inside a
+            # multi-element card (rating, title, location, CTA button all
+            # in one <a>) get jammed together with no whitespace at all.
+            raw_link_text = link.get_text(separator=" ", strip=True)
 
-            if not link_text or len(link_text) < 5:
+            if not raw_link_text or len(raw_link_text) < 5:
                 continue
 
             # Skip mailto links and texts that are emails (alert footer,
             # e.g.: "Diese Nachricht wurde gesendet an <email>") -- avoids
             # leaking the candidate's email as if it were a job
-            if href.lower().startswith("mailto:") or "@" in link_text:
+            if href.lower().startswith("mailto:") or "@" in raw_link_text:
                 continue
 
-            title_lower = link_text.lower()
+            title_lower = raw_link_text.lower()
             # \b avoids false positives like "ai" inside "gmail"
             if not any(re.search(r"\b" + re.escape(kw) + r"\b", title_lower) for kw in job_keywords):
                 continue
-            
+
+            link_text = _strip_scraped_noise(raw_link_text)
+
             # Find nearby company and location
             parent = link.find_parent(["td", "div", "p", "li"])
             company = "Unknown"
             location = "Unknown"
-            
+
             if parent:
                 parent_text = parent.get_text(separator="\n", strip=True)
-                lines = [l.strip() for l in parent_text.split("\n") if l.strip()]
-                
+                lines = [_strip_scraped_noise(l) for l in parent_text.split("\n") if l.strip()]
+                lines = [l for l in lines if l]
+
                 for line in lines:
                     if line != link_text and len(line) > 2 and len(line) < 100:
                         if company == "Unknown":
@@ -73,7 +111,7 @@ def parse_html_emails(emails: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                         elif location == "Unknown":
                             if any(loc in line.lower() for loc in location_keywords):
                                 location = line
-            
+
             job_blocks.append({
                 "title": link_text,
                 "company": company if company != link_text else "Unknown",

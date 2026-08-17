@@ -46,11 +46,18 @@ def get_drive_service():
         return None
 
 
+def _escape_drive_query_value(value: str) -> str:
+    """Escapes a value for safe interpolation into a Drive API `q=` filter
+    string (backslash-escape `\\` and `'`) -- names here derive from
+    scraped job postings, not trusted input."""
+    return value.replace("\\", "\\\\").replace("'", "\\'")
+
+
 def ensure_folder(service, name, parent_id=None):
     """Creates a folder if it doesn't exist, returns folder ID."""
-    query = f"mimeType='application/vnd.google-apps.folder' and name='{name}' and trashed=false"
+    query = f"mimeType='application/vnd.google-apps.folder' and name='{_escape_drive_query_value(name)}' and trashed=false"
     if parent_id:
-        query += f" and '{parent_id}' in parents"
+        query += f" and '{_escape_drive_query_value(parent_id)}' in parents"
 
     results = service.files().list(q=query, spaces="drive", fields="files(id, name)").execute()
     files = results.get("files", [])

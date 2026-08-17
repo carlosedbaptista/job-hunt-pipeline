@@ -54,7 +54,7 @@
 
 1. **NEVER submit an application without explicit user approval**
 2. **Always ask before deleting or overwriting files**
-3. **Deduplication**: hash of normalized company+title+location (accents transliterated, legal suffixes like AG/GmbH stripped), 21-day retention in SQLite
+3. **Deduplication**: hash of normalized company+title+location (accents transliterated, legal suffixes like AG/GmbH stripped), 21-day retention in SQLite. `agents/email_parser_local.py._strip_scraped_noise()` strips Glassdoor/LinkedIn job-card UI noise (rating, salary badge, apply CTA, "posted N ago" freshness label) from scraped title/company before hashing -- that noise used to change on every re-send of the same listing and silently defeated the hash, re-evaluating the same job with Kimi repeatedly (found ~19% of `seen_jobs` were this kind of duplicate).
 4. **Scoring is input, not gospel**: user can override any decision
 5. **Cost control**: `MAX_EVALUATIONS_PER_RUN=30` caps LLM calls per run
 6. **Provider**: Kimi only. Do not switch the pipeline to Claude/OpenAI/etc.
@@ -79,7 +79,7 @@ Known caveat: the repo is public. Everything committed (digests, dashboard, raw 
 
 ## Legacy / dead code warning
 
-`src/pipeline.py`, `src/week3_pipeline.py`, `agents/email_parser.py`, `agents/jsearch_ingestor.py`, `agents/linkedin_ingestor.py` (disabled), `agents/cover_letter_writer.py`, `agents/cv_tailor.py`, `src/apply_automation.py`, `src/approval_handler.py`, `agents/form_fill_guide.py`, `agents/analytics_engine.py`, `agents/email_extractor.py`, `agents/email_monitor.py`, `agents/page_generator.py` and others are NOT part of the CI flow. Before editing a module, confirm it is actually invoked by a workflow in `.github/workflows/`.
+`src/pipeline.py`, `src/week3_pipeline.py`, `agents/email_parser.py`, `agents/jsearch_ingestor.py`, `agents/linkedin_ingestor.py` (disabled), `agents/cover_letter_writer.py`, `agents/cv_tailor.py`, `src/apply_automation.py`, `src/approval_handler.py`, `agents/form_fill_guide.py`, `agents/analytics_engine.py`, `agents/email_extractor.py`, `agents/email_monitor.py`, `agents/page_generator.py`, `agents/gdrive_uploader.py` (a stale duplicate of `src/gdrive_uploader.py` with different, non-functional env var names -- `doc_generator.py` inserts `src/` onto `sys.path`, so `src/gdrive_uploader.py` is the one actually imported; candidate for deletion) and others are NOT part of the CI flow. Before editing a module, confirm it is actually invoked by a workflow in `.github/workflows/`.
 
 `agents/tracker_updater.py` and `agents/followup_sender.py`/`agents/followup_writer.py` ARE part of the CI flow now (added to close the score-vs-outcome feedback loop): the `applications` table is written to only via the user-triggered `.github/workflows/track-application.yml` (mirrors `add-job.yml`'s manual pattern), and read by `followup_sender.py` in the unsupervised daily scheduler to draft follow-ups. That daily step is safe to run unsupervised specifically because it only ever emails the candidate (`GMAIL_RECIPIENT`), never the recruiter -- do not change its send target without re-checking the "never submit without approval" rule above.
 
