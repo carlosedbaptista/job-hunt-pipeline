@@ -9,7 +9,7 @@ import os
 import re
 import sqlite3
 import unicodedata
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 DB_PATH = os.environ.get("JOBS_DB_PATH", "tracker/jobs.db")
 
@@ -103,7 +103,10 @@ def init_db(db_path: str = DB_PATH):
 
 def purge_old_records(conn: sqlite3.Connection, days: int = 21):
     """Removes records older than N days (applications are preserved)."""
-    cutoff = (datetime.now() - timedelta(days=days)).isoformat()
+    # UTC-aware. Legacy rows stored naive local timestamps; comparing those
+    # against an aware ISO cutoff is off by a couple of hours at most on the
+    # boundary day -- harmless for a 21-day retention window.
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
     conn.execute(
         "DELETE FROM seen_jobs WHERE last_seen < ? AND status = 'new'",
         (cutoff,)
@@ -116,10 +119,14 @@ def filter_new_jobs(
     jobs: list[dict],
     db_path: str = DB_PATH,
     retention_days: int = 21,
+    mark_seen: bool = True,
 ) -> list[dict]:
     """
     Filters jobs already seen in the last N days.
-    Inserts new jobs into the DB; updates last_seen for duplicates.
+    With mark_seen=True (default), inserts new jobs into the DB and updates
+    last_seen for duplicates. With mark_seen=False it only filters -- used
+    by unified_ingestor so jobs beyond the per-run evaluation cap stay
+    unseen and resurface next run instead of being silently swallowed.
     Returns only new jobs.
     """
     init_db(db_path)
@@ -127,7 +134,7 @@ def filter_new_jobs(
     purge_old_records(conn, retention_days)
 
     new_jobs = []
-    now = datetime.now().isoformat()
+    now = datetime.now(timezone.utc).isoformat()
 
     for job in jobs:
         h = make_hash(
@@ -141,24 +148,25 @@ def filter_new_jobs(
         ).fetchone()
 
         if row is None:
-            conn.execute(
-                """INSERT INTO seen_jobs
-                   (hash, company, title, location, url, portal, first_seen, last_seen)
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
-                (
-                    h,
-                    job.get("company", ""),
-                    job.get("title", ""),
-                    job.get("location", ""),
-                    job.get("url", ""),
-                    job.get("portal", ""),
-                    now,
-                    now,
-                ),
-            )
+            if mark_seen:
+                conn.execute(
+                    """INSERT INTO seen_jobs
+                       (hash, company, title, location, url, portal, first_seen, last_seen)
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+                    (
+                        h,
+                        job.get("company", ""),
+                        job.get("title", ""),
+                        job.get("location", ""),
+                        job.get("url", ""),
+                        job.get("portal", ""),
+                        now,
+                        now,
+                    ),
+                )
             job["hash"] = h
             new_jobs.append(job)
-        else:
+        elif mark_seen:
             conn.execute(
                 "UPDATE seen_jobs SET last_seen = ? WHERE hash = ?",
                 (now, h),
