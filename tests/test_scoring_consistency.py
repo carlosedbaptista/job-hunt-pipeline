@@ -12,6 +12,8 @@ commit history and docstrings tell which is which.
 Nothing here calls the Kimi API. The real-model behaviour probe lives in
 scripts/smoke_kimi_brain.py (gitignored, costs API calls).
 """
+import os
+
 import pytest
 
 import job_evaluator
@@ -431,6 +433,39 @@ class TestManualSameJob:
 
 
 # ─── 8. Ingestion normalisation & excerpt window ─────────────────────────────
+
+class TestDashboardSmoke:
+    def test_collect_and_generate_dashboard(self, tmp_path, monkeypatch):
+        """Regression for the 2026-08-17 CI failure: collect_jobs referenced
+        has_hard_blocker without importing it (NameError broke the dashboard
+        step). The suite had zero dashboard coverage -- this exercises
+        collect_jobs and generate_dashboard end to end on seeded inputs."""
+        import json
+        import src.dashboard as dashboard
+
+        monkeypatch.chdir(tmp_path)
+        os.makedirs("digests", exist_ok=True)
+        os.makedirs("data/history", exist_ok=True)
+        blocked = digest_eval(96, hard_blockers=["Role requires fluent German (C1)"],
+                              red_flags=["Blocker: Role requires fluent German (C1)"])
+        clean = digest_eval(85, job=make_job(company="Other Corp", title="Data Engineer"))
+        with open("digests/manual_evaluations.json", "w", encoding="utf-8") as f:
+            json.dump([blocked, clean], f)
+
+        jobs = dashboard.collect_jobs(days=30)
+        assert len(jobs) == 2
+        by_score = {j["score"]: j for j in jobs}
+        assert by_score[96]["_has_blocker"] is True
+        assert by_score[85]["_has_blocker"] is False
+
+        path, count = dashboard.generate_dashboard()
+        assert count == 2
+        with open(path, encoding="utf-8") as f:
+            html = f.read()
+        assert "const JOBS = " in html  # page renders with the seeded jobs
+
+
+# ─── 9. Ingestion normalisation & excerpt window ─────────────────────────────
 
 class TestIngestionNormalisation:
     def test_defaults(self):
