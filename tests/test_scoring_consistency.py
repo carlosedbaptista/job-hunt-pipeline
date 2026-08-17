@@ -103,6 +103,13 @@ class TestEffectiveDecision:
         ev = {"score": 95, "hard_blockers": [], "insufficient_info": True}
         assert effective_decision(ev) == "REVIEW"
 
+    def test_intermediate_language_gap_caps_at_review(self):
+        """2026-08-17 product decision: working proficiency / B2 required is
+        above the candidate's B1 but below fluent -- never auto-APPLY, never
+        auto-generate CV/CL; he judges case by case."""
+        ev = {"score": 92, "hard_blockers": [], "language_gap_intermediate": True}
+        assert effective_decision(ev) == "REVIEW"
+
     def test_none_score_is_error(self):
         assert effective_decision({"score": None}) == "ERROR"
         assert effective_decision({"score": None, "decision": "ERROR"}) == "ERROR"
@@ -140,13 +147,21 @@ class TestLanguageDetector:
         "You must be a native German speaker.",
         "Deutsch: Muttersprache oder C1-Niveau",
         "French C2 level mandatory for this position",
+        # Intermediate zone: above the candidate's B1, below fluent. Evidence
+        # is injected; the MODEL judges severity (a 'working proficiency in
+        # German' clause sat past the excerpt of a 92/APPLY posting on
+        # 2026-08-17 and reached the scorer invisibly).
+        "Working proficiency in German is expected.",
+        "German B2 required for client contact.",
+        # Evidence, not a verdict: the snippet shows 'acceptable' and the
+        # model correctly does not block on it.
+        "B1/B2 German acceptable.",
     ])
     def test_matches_hard_requirements(self, text):
         assert job_evaluator.detect_hard_language_requirement(text) is not None
 
     @pytest.mark.parametrize("text", [
         "German is a plus; English is our working language.",
-        "B1/B2 German acceptable.",
         "Fluent English required.",
         "Our working language is English.",
         "",
@@ -169,6 +184,16 @@ class TestLanguageDetector:
         job_evaluator.evaluate_job(make_job(description=long_desc))
         assert "Pipeline note" in captured["prompt"]
         assert "verhandlungssicher" in captured["prompt"]
+
+
+class TestLanguageTier:
+    def test_tiers(self):
+        assert job_evaluator.detect_language_requirement_tier("fluent German required") == "hard"
+        assert job_evaluator.detect_language_requirement_tier("verhandlungssicheres Deutsch") == "hard"
+        assert job_evaluator.detect_language_requirement_tier("working proficiency in German expected") == "intermediate"
+        assert job_evaluator.detect_language_requirement_tier("German B2 required") == "intermediate"
+        assert job_evaluator.detect_language_requirement_tier("German is a plus") is None
+        assert job_evaluator.detect_language_requirement_tier("") is None
 
 
 # ─── 4. evaluate_job robustness (mocked LLM) ─────────────────────────────────
@@ -280,6 +305,40 @@ class TestEvaluateJobRobustness:
         mp.setattr(job_evaluator, "call_kimi_json", spy)
         job_evaluator.evaluate_job(make_job())
         assert "Today's date:" in captured["prompt"]
+
+    def test_intermediate_language_requirement_caps_at_review(self):
+        """Model marks language_requirement='intermediate' (working
+        proficiency/B2): score 92 -> REVIEW, no auto materials."""
+        ev = eval_with({"score": 92, "concerns": [], "hard_blockers": [],
+                        "language_requirement": "intermediate"})
+        assert ev["language_gap_intermediate"] is True
+        assert ev["decision"] == "REVIEW"
+        assert ev["materials_needed"] == []
+
+    def test_hard_language_requirement_field_backstops_missing_blocker(self):
+        """Defence in depth: language_requirement='hard' with an empty
+        hard_blockers list still locks the job at SKIP."""
+        ev = eval_with({"score": 90, "concerns": [], "hard_blockers": [],
+                        "language_requirement": "hard"})
+        assert ev["decision"] == "SKIP"
+        assert ev["hard_blockers"]
+
+    def test_intermediate_fallback_via_detector(self):
+        """Older model contract (no language_requirement field): the
+        deterministic detector catches 'working proficiency in German'
+        even past the excerpt window and caps at REVIEW."""
+        long_desc = ("Great AI role. " * 150) + " Working proficiency in German is expected."
+        ev = eval_with({"score": 92, "concerns": [], "hard_blockers": []},
+                       job=make_job(description=long_desc))
+        assert ev["language_gap_intermediate"] is True
+        assert ev["decision"] == "REVIEW"
+        assert any("Intermediate language" in str(f) for f in ev["red_flags"])
+
+    def test_soft_language_mention_does_not_cap(self):
+        ev = eval_with({"score": 92, "concerns": [], "hard_blockers": [],
+                        "language_requirement": "soft"})
+        assert ev["language_gap_intermediate"] is False
+        assert ev["decision"] == "APPLY"
 
 
 # ─── 5. Digest rendering ─────────────────────────────────────────────────────
@@ -478,11 +537,10 @@ class TestIngestionNormalisation:
         assert j["language"] == "en"
         assert j["posted_at"]
 
-    def test_excerpt_window_matches_adzuna_storage(self):
-        """The model sees description[:4000] -- the same 4000 Adzuna keeps --
-        so a requirement block at the end of a long posting is visible.
-        (Was 1500 before the audit: a C1-German clause past char 1500 scored
-        96/APPLY instead of auto-SKIP.)"""
+    def test_excerpt_window_head_plus_tail(self):
+        """Postings longer than the window are excerpted head(2/3)+tail(1/3):
+        Swiss requirement blocks live at the END of long postings, so the
+        tail must always reach the scorer."""
         captured = {}
 
         def spy(prompt, system=None, max_tokens=4096):
@@ -491,6 +549,8 @@ class TestIngestionNormalisation:
 
         mp = pytest.MonkeyPatch()
         mp.setattr(job_evaluator, "call_kimi_json", spy)
-        job_evaluator.evaluate_job(make_job(description="x" * 5000))
-        assert "x" * 4000 in captured["prompt"]
-        assert "x" * 4001 not in captured["prompt"]
+        job_evaluator.evaluate_job(make_job(description="h" * 3000 + "m" * 1000 + "t" * 1000))
+        assert "h" * 2666 in captured["prompt"]          # head kept
+        assert "[... middle of the posting omitted ...]" in captured["prompt"]
+        assert "t" * 1000 in captured["prompt"]          # tail kept
+        assert "m" * 500 not in captured["prompt"]       # middle dropped

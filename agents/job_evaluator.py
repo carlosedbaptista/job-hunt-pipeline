@@ -20,10 +20,10 @@ from utils import (THRESHOLD_APPLY, THRESHOLD_REVIEW,
 # Cost guard: cap LLM calls per run (business rule: control daily spend).
 MAX_EVALUATIONS_PER_RUN = max_evaluations_per_run()
 
-# The model only sees description[:DESCRIPTION_WINDOW]. Matches the window
-# Adzuna keeps (4000); the old 1500-char window cut off exactly the final
-# "Requirements/Anforderungen" block where Swiss postings put their hard
-# language requirements -- a C1-German clause past char 1500 invisibly
+# The model sees an excerpt of the description (see _excerpt). Window sized
+# to Adzuna's storage (4000); the old 1500-char window cut off exactly the
+# final "Requirements/Anforderungen" block where Swiss postings put their
+# hard language requirements -- a C1-German clause past char 1500 invisibly
 # flipped an auto-SKIP job to a 96/APPLY (2026-08-17 audit, scenario 4).
 DESCRIPTION_WINDOW = 4000
 
@@ -85,6 +85,11 @@ PROFILE = load_profile_summary()
 SYSTEM_PROMPT = (
     'Evaluate job vs candidate. Return JSON: {"score":0-100,"technical_fit":"brief",'
     '"contextual_fit":"brief","salary_estimate":"range or Not disclosed","culture_fit":"brief",'
+    '"language_requirement":"none|soft|intermediate|hard -- hard ONLY for a mandatory '
+    'fluent/native/C1-C2 language beyond English (also list it in hard_blockers); '
+    'intermediate for working/professional proficiency or B2-required wording in a language '
+    'beyond English (above his B1, below fluent); soft for plus/acceptable/B1-level mentions '
+    'or when English is the working language; none if languages are never mentioned",'
     '"hard_blockers":["ONLY true hard eligibility blockers: an unmet HARD language requirement, '
     'wrong permit/location. EMPTY LIST when none -- never write None/no-blocker text here"],'
     '"concerns":["soft signals only: skill-depth notes, minor gaps, things merely worth '
@@ -109,6 +114,10 @@ SYSTEM_PROMPT = (
     "German acceptable, or the role states English as the working language) -- a soft or "
     "B1-level requirement is a minor signal like any other soft criterion, stays out of "
     "hard_blockers, and should NOT trigger this auto-SKIP. "
+    "The INTERMEDIATE zone ('working/professional proficiency in German', 'German B2 "
+    "required') is also NOT a blocker: it is above his B1 but below fluent -- set "
+    "language_requirement='intermediate', report it as a prominent concern, and score "
+    "normally; the pipeline caps such jobs at REVIEW so he judges case by case. "
     "Weighting: candidate is a deliberate career changer, open to unfamiliar business "
     "domains (finance, healthcare, retail, etc.) -- do NOT penalize lack of domain "
     "experience if the technical/functional role itself matches. Technical fit and "
@@ -141,33 +150,68 @@ def log_error(msg):
         pass
 
 
-# Hard language requirements in Swiss postings live in the final
-# 'Requirements/Anforderungen' block -- past the excerpt window on long
+# Hard or significant language requirements in Swiss postings live in the
+# final 'Requirements/Anforderungen' block -- past the excerpt window on long
 # descriptions. This deterministic pre-check scans the FULL text so such a
 # clause is never invisible to the scorer. English is deliberately absent
-# (the candidate is C1); German/French/Italian are the local risks.
-_HARD_LANGUAGE_RE = re.compile(
-    r"(?:fluent|native|mother[\s-]?tongue|verhandlungssicher\w*|\bc1\b|\bc2\b)"
-    r"[^.\n]{0,80}(?:german|deutsch|french|fran[cç]ais|franz[oö]sisch|italian\w*|italienisch)"
-    r"|(?:german|deutsch|french|fran[cç]ais|franz[oö]sisch|italian\w*|italienisch)"
-    r"[^.\n]{0,80}(?:fluent|native|mother[\s-]?tongue|verhandlungssicher\w*|\bc1\b|\bc2\b)",
-    re.IGNORECASE,
-)
+# (the candidate is C1); German/French/Italian are the local risks. Two
+# tiers: HARD (fluent/native/C1-C2/verhandlungssicher) and INTERMEDIATE
+# (working/professional proficiency, B2 -- above his B1, below fluent; a
+# 'working proficiency in German' clause sat past the excerpt of a 92/APPLY
+# posting on 2026-08-17 and reached the scorer invisibly).
+_HARD_LEVEL_RE = r"fluent|native|mother[\s-]?tongue|verhandlungssicher\w*|\bc1\b|\bc2\b"
+_INTERMEDIATE_LEVEL_RE = r"(?:professional|working)[\s-]proficienc\w*|\bb2\b"
+_LANG_NAME_RE = r"german|deutsch|french|fran[cç]ais|franz[oö]sisch|italian\w*|italienisch"
+
+
+def _lang_re(level: str):
+    return re.compile(
+        rf"(?:{level})[^.\n]{{0,80}}(?:{_LANG_NAME_RE})"
+        rf"|(?:{_LANG_NAME_RE})[^.\n]{{0,80}}(?:{level})",
+        re.IGNORECASE,
+    )
+
+
+_HARD_LANGUAGE_RE = _lang_re(_HARD_LEVEL_RE)
+_INTERMEDIATE_LANGUAGE_RE = _lang_re(_INTERMEDIATE_LEVEL_RE)
+
+
+def detect_language_requirement_tier(full_description: str):
+    """'hard' | 'intermediate' | None -- deterministic, scans the FULL text."""
+    text = full_description or ""
+    if _HARD_LANGUAGE_RE.search(text):
+        return "hard"
+    if _INTERMEDIATE_LANGUAGE_RE.search(text):
+        return "intermediate"
+    return None
 
 
 def detect_hard_language_requirement(full_description: str):
-    """Scans the FULL description for what looks like a hard language
-    requirement beyond English/B1-German, returning a short evidence
-    snippet (or None). Soft mentions ('German is a plus', B1/B2 acceptable)
-    deliberately do not match. The snippet is injected into the prompt as
-    pipeline evidence -- the model still judges, but can no longer be blind
-    to a requirement past the truncation window."""
-    m = _HARD_LANGUAGE_RE.search(full_description or "")
+    """Scans the FULL description for what looks like a hard (or significant
+    intermediate) language requirement beyond English/B1-German, returning a
+    short evidence snippet (or None). Soft mentions without a level marker
+    ('German is a plus') deliberately do not match. The snippet is injected
+    into the prompt as pipeline evidence -- the model still judges severity,
+    but can no longer be blind to a requirement past the excerpt window."""
+    text = full_description or ""
+    m = _HARD_LANGUAGE_RE.search(text) or _INTERMEDIATE_LANGUAGE_RE.search(text)
     if not m:
         return None
     start = max(0, m.start() - 80)
-    end = min(len(full_description), m.end() + 80)
-    return re.sub(r"\s+", " ", full_description[start:end]).strip()
+    end = min(len(text), m.end() + 80)
+    return re.sub(r"\s+", " ", text[start:end]).strip()
+
+
+def _excerpt(text: str) -> str:
+    """Head+tail window: Swiss postings put the Requirements/Anforderungen
+    block at the END, so a single head window hides exactly the block that
+    decides eligibility. For postings longer than the window, keep the
+    first 2/3 and the last 1/3."""
+    if len(text) <= DESCRIPTION_WINDOW:
+        return text
+    head = DESCRIPTION_WINDOW * 2 // 3
+    tail = DESCRIPTION_WINDOW - head
+    return text[:head] + "\n[... middle of the posting omitted ...]\n" + text[-tail:]
 
 
 def _job_block(job):
@@ -177,12 +221,12 @@ def _job_block(job):
         "location": job.get("location", "Unknown"),
         "url": job.get("url", ""),
         "portal": job.get("portal", job.get("source", "adzuna")),
-        # Persisted (truncated, same window the score itself was based on)
-        # so doc_generator.py can write a CV/CL grounded in the actual
-        # posting -- it used to only have title/company/location to work
-        # with, since this was never saved, producing generic-sounding
-        # materials regardless of how good the underlying description was.
-        "description": (job.get("description") or "")[:DESCRIPTION_WINDOW],
+        # Persisted (same excerpt the score was based on) so doc_generator.py
+        # can write a CV/CL grounded in the actual posting -- it used to only
+        # have title/company/location to work with, since this was never
+        # saved, producing generic-sounding materials regardless of how good
+        # the underlying description was.
+        "description": _excerpt(job.get("description") or ""),
     }
 
 
@@ -213,6 +257,7 @@ def _error_record(job, err_msg):
         "recommendation": "ERROR",
         "hard_blockers": [],
         "insufficient_info": False,
+        "language_gap_intermediate": False,
         "key_match_points": [],
         "red_flags": [err_msg[:150]],
         "job": _job_block(job),
@@ -231,7 +276,7 @@ def evaluate_job(job):
     company = job.get("company", "Unknown")
     location = job.get("location", "Unknown")
     desc_full = job.get("description", "") or ""
-    desc = desc_full[:DESCRIPTION_WINDOW]
+    desc = _excerpt(desc_full)
     insufficient_info = len(desc_full.strip()) < MIN_DESCRIPTION_CHARS
     url = job.get("url", "")
 
@@ -243,10 +288,17 @@ def evaluate_job(job):
               f"Job: {title} at {company}\nLocation: {location}\nDesc: {desc}\nURL: {url}")
     lang_evidence = detect_hard_language_requirement(desc_full)
     if lang_evidence:
-        prompt += (f"\n[Pipeline note: the full posting contains this text, possibly beyond "
-                   f"the excerpt above: \"{lang_evidence}\" -- if it is a HARD language "
-                   f"requirement beyond English (or beyond B1-level German), the auto-SKIP "
-                   f"rule applies and it belongs in hard_blockers.]")
+        if detect_language_requirement_tier(desc_full) == "hard":
+            prompt += (f"\n[Pipeline note: the full posting contains this text, possibly beyond "
+                       f"the excerpt above: \"{lang_evidence}\" -- if it is a HARD language "
+                       f"requirement beyond English (or beyond B1-level German), the auto-SKIP "
+                       f"rule applies and it belongs in hard_blockers.]")
+        else:
+            prompt += (f"\n[Pipeline note: the full posting contains this text, possibly beyond "
+                       f"the excerpt above: \"{lang_evidence}\" -- this looks like an "
+                       f"INTERMEDIATE language requirement (working proficiency / B2: above his "
+                       f"B1, below fluent). NOT a hard blocker: set language_requirement="
+                       f"'intermediate' and report it as a prominent concern.]")
     prompt += "\nEvaluate."
 
     try:
@@ -281,6 +333,23 @@ def evaluate_job(job):
         # literally would SKIP the best jobs (2026-08-17 smoke, scenario 1).
         real_blockers = [b for b in (str(x).strip() for x in model_blockers)
                          if b and not is_spurious_blocker(b)]
+
+        # Intermediate language zone (working proficiency / B2 required):
+        # above his B1, below fluent -> never a blocker, but APPLY is capped
+        # at REVIEW so the call stays his (2026-08-17 product decision).
+        lang_req = str(ev.get("language_requirement", "") or "").strip().lower()
+        if lang_req in ("none", "soft", "intermediate", "hard"):
+            language_gap_intermediate = lang_req == "intermediate"
+            # Defence in depth: 'hard' in language_requirement must always
+            # come with a matching hard_blocker entry.
+            if lang_req == "hard" and not real_blockers:
+                real_blockers = [lang_evidence or "Hard language requirement flagged by model"]
+        else:
+            # Field absent/invalid (older model contract): deterministic fallback.
+            language_gap_intermediate = detect_language_requirement_tier(desc_full) == "intermediate"
+            if language_gap_intermediate:
+                soft_concerns.append("Intermediate language requirement detected "
+                                     "(working proficiency/B2): above his B1, below fluent")
 
         # Concerns always surface, regardless of tier (a real bug used to
         # drop them for APPLY-tier jobs -- exactly where they matter most).
@@ -317,6 +386,7 @@ def evaluate_job(job):
             "score": score,
             "hard_blockers": real_blockers,
             "insufficient_info": insufficient_info,
+            "language_gap_intermediate": language_gap_intermediate,
             "key_match_points": key_match_points,
             "red_flags": red_flags,
             "job": _job_block(resolved_job),
