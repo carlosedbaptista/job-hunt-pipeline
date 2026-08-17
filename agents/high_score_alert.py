@@ -15,7 +15,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
-from utils import THRESHOLD_APPLY
+from utils import THRESHOLD_APPLY, has_hard_blocker
 from deduplicator import make_hash
 
 ALERTED_FILE = "digests/alerted_jobs.json"
@@ -120,7 +120,10 @@ def main():
         evaluations = json.load(f)
     
     threshold = int(os.environ.get("HIGH_SCORE_THRESHOLD", "85"))
-    high_scores = [e for e in evaluations if (e.get("score") or 0) >= threshold]
+    # Hard-blocked jobs keep their (high) score but are capped at SKIP --
+    # alerting them would be noise about roles the candidate is barred from.
+    high_scores = [e for e in evaluations
+                   if (e.get("score") or 0) >= threshold and not has_hard_blocker(e)]
 
     if not high_scores:
         print(f"  [Alert] No jobs >= {threshold} today")

@@ -1,6 +1,6 @@
 import os, sys, json, re, textwrap, time
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
-from utils import load_json, save_json, ensure_dir, now_iso, THRESHOLD_APPLY
+from utils import load_json, save_json, ensure_dir, now_iso, effective_decision
 from kimi_client import KimiClient
 from gdrive_uploader import upload_cv_cl, GDRIVE_AVAILABLE as GDRIVE_UPLOADER_AVAILABLE
 
@@ -227,7 +227,10 @@ def generate_docs_for_job(client, profile, ev: dict, gen_dir: str = "generated_d
     matter how high it scored. Returns the output folder, or None on
     failure/skip."""
     score = ev.get("score") or 0  # ERROR evaluations carry score None
-    if score < THRESHOLD_APPLY:  # only APPLY jobs get tailored materials
+    # Only APPLY jobs get tailored materials -- the EFFECTIVE decision:
+    # a hard-blocked or low-confidence (insufficient_info) job keeps its
+    # high score visible but must never trigger automatic CV/CL generation.
+    if effective_decision(ev) != "APPLY":
         return None
 
     job = ev.get("job", ev)
