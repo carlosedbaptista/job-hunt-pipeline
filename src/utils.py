@@ -77,7 +77,11 @@ def effective_decision(ev) -> str:
     if has_hard_blocker(ev):
         return "SKIP"
     decision = decision_from_score(score)
-    if decision == "APPLY" and ev.get("insufficient_info"):
+    # Low-confidence caps: never auto-APPLY (nor auto-generate CV/CL) on a
+    # bare title, and never on an intermediate language gap (working
+    # proficiency / B2 required is above the candidate's B1 but below
+    # fluent -- his call, case by case; 2026-08-17 product decision).
+    if decision == "APPLY" and (ev.get("insufficient_info") or ev.get("language_gap_intermediate")):
         return "REVIEW"
     return decision
 
