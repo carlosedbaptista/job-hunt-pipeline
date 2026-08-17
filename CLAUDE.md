@@ -75,7 +75,7 @@ Known caveat: the repo is public. Everything committed (digests, dashboard, raw 
 
 ## User Context — Cadu (Carlos Eduardo Duarte Baptista)
 
-- Career changer: Law (Brazilian High Court) -> software engineering
+- Career changer: studied Law for 2.5 years, interned at the Court of Justice of Rio de Janeiro (criminal division) -> switched to a technology degree -> software engineering. Did not complete the Law degree; not a lawyer.
 - Positioning: AI Platform Engineer / AI & Data Engineer Intern (agentic AI, LLM workflows, data pipelines)
 - netzdenker.com (CH): agentic AI workflows and data pipelines in production; QUOD (BR): ~40% manual data entry reduction
 - Education: Postgraduate in Data Science (expected Oct 2026)

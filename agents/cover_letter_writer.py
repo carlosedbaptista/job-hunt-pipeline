@@ -18,7 +18,7 @@ TONE: Professional but human. Direct, specific, honest.
 STYLE: Shows genuine interest. Never generic.
 BACKGROUND_SUMMARY:
   - Brazilian based in Zurich Area, Swiss Work Permit B (no sponsorship), 2 weeks' notice
-  - Career changer: Law (Brazilian High Court) -> software engineering, driven by data & automation
+  - Career changer: studied Law 2.5 years, interned at the Court of Justice of Rio de Janeiro (criminal division) -> technology degree -> software engineering, driven by data & automation
   - Currently: Data & Analytics Intern at netzdenker.com (Swiss digital agency) -- builds and maintains
     agentic AI workflows, LLM tool-use and data pipelines in production (Python, JavaScript, CI/CD)
   - Before: Business Process & NetSuite Developer at QUOD (credit bureau, Brazil) -- ~40% less manual data entry
