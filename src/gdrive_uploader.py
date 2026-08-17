@@ -143,10 +143,21 @@ def _get_drive_service():
     return None
 
 
+def _escape_drive_query_value(value: str) -> str:
+    """Escapes a value for safe interpolation into a Drive API `q=` filter
+    string (per Google's documented convention: backslash-escape `\\` and
+    `'`). Folder/file names here derive from scraped job postings (company,
+    title) -- untrusted, external input -- so an apostrophe in a company
+    name (or a deliberately crafted one) must not be able to break out of
+    the quoted value and alter the query."""
+    return value.replace("\\", "\\\\").replace("'", "\\'")
+
+
 def _find_folder(service, name, parent_id=None):
-    query = f"mimeType='application/vnd.google-apps.folder' and name='{name}' and trashed=false"
+    safe_name = _escape_drive_query_value(name)
+    query = f"mimeType='application/vnd.google-apps.folder' and name='{safe_name}' and trashed=false"
     if parent_id:
-        query += f" and '{parent_id}' in parents"
+        query += f" and '{_escape_drive_query_value(parent_id)}' in parents"
     try:
         results = service.files().list(q=query, spaces="drive", fields="files(id, name)", pageSize=10, supportsAllDrives=True).execute()
         files = results.get("files", [])
@@ -178,7 +189,7 @@ def _get_or_create_folder(service, name, parent_id=None):
 
 
 def _find_file(service, name, parent_id):
-    query = f"name='{name}' and '{parent_id}' in parents and trashed=false"
+    query = f"name='{_escape_drive_query_value(name)}' and '{_escape_drive_query_value(parent_id)}' in parents and trashed=false"
     try:
         results = service.files().list(q=query, spaces="drive", fields="files(id, name)", pageSize=5, supportsAllDrives=True).execute()
         files = results.get("files", [])
