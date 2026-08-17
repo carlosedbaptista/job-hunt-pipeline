@@ -7,26 +7,52 @@ ranking/metrics downstream instead of polluting history with fake scores.
 """
 import json
 import os
+import re
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 from kimi_client import call_kimi_json
-from utils import THRESHOLD_APPLY, THRESHOLD_REVIEW, decision_from_score
+from utils import (THRESHOLD_APPLY, THRESHOLD_REVIEW,
+                   effective_decision, is_spurious_blocker, max_evaluations_per_run)
 
 # Cost guard: cap LLM calls per run (business rule: control daily spend).
-MAX_EVALUATIONS_PER_RUN = int(os.environ.get("MAX_EVALUATIONS_PER_RUN", "30"))
+MAX_EVALUATIONS_PER_RUN = max_evaluations_per_run()
+
+# The model only sees description[:DESCRIPTION_WINDOW]. Matches the window
+# Adzuna keeps (4000); the old 1500-char window cut off exactly the final
+# "Requirements/Anforderungen" block where Swiss postings put their hard
+# language requirements -- a C1-German clause past char 1500 invisibly
+# flipped an auto-SKIP job to a 96/APPLY (2026-08-17 audit, scenario 4).
+DESCRIPTION_WINDOW = 4000
+
+# Below this much real posting text there is not enough signal for a
+# confident evaluation -- evaluate_job caps such jobs at REVIEW so a bare
+# title never earns automatic APPLY / CV-CL generation (the model otherwise
+# fabricates confidence: a title-only "AI Engineer" posting scored 78 with
+# "Technical fit: Strong" in the 2026-08-17 audit).
+MIN_DESCRIPTION_CHARS = 200
+
+PROFILE_IS_FALLBACK = False
 
 
 def load_profile_summary() -> str:
     """Builds the candidate summary from config/candidate_profile.json,
     so the match criteria reflect the real CV (not a fixed summary)."""
+    global PROFILE_IS_FALLBACK
     try:
         with open("config/candidate_profile.json", encoding="utf-8") as f:
             p = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        # Fallback: minimal summary without PII
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        # Fallback: minimal summary without PII. Loud, because scoring the
+        # whole run against a generic profile silently distorts every score
+        # (main() refuses to run in this state; single-job callers like
+        # add_job.py only get this warning).
+        PROFILE_IS_FALLBACK = True
+        print(f"WARNING: config/candidate_profile.json unavailable ({type(e).__name__}) -- "
+              "using the generic fallback profile; scores will NOT reflect the real candidate.",
+              file=sys.stderr)
         return ("Candidate: Data/Business Analyst, Zurich Area CH (Permit B), 2 weeks notice. "
                 "Skills: SQL, Python, Power BI, GA4. Languages: PT, EN(C1), ES, DE(B1).")
 
@@ -59,27 +85,30 @@ PROFILE = load_profile_summary()
 SYSTEM_PROMPT = (
     'Evaluate job vs candidate. Return JSON: {"score":0-100,"technical_fit":"brief",'
     '"contextual_fit":"brief","salary_estimate":"range or Not disclosed","culture_fit":"brief",'
-    '"concerns":["prefix hard eligibility blockers (unmet hard language requirement, '
-    'wrong permit/location, etc.) with \'Blocker: \'; everything else (skill-depth notes, '
-    'minor gaps, things merely worth knowing) stays unprefixed -- do not call a soft note '
-    'a blocker just to sound thorough"],"decision":"APPLY|REVIEW|SKIP",'
+    '"hard_blockers":["ONLY true hard eligibility blockers: an unmet HARD language requirement, '
+    'wrong permit/location. EMPTY LIST when none -- never write None/no-blocker text here"],'
+    '"concerns":["soft signals only: skill-depth notes, minor gaps, things merely worth '
+    'knowing -- hard blockers belong in hard_blockers, not here"],'
+    '"decision":"APPLY|REVIEW|SKIP",'
     '"detected_company":"company name from the job text, or empty if not clearly stated",'
     '"detected_title":"job title from the job text, or empty if not clearly stated",'
     '"detected_location":"city/canton the role is based in, inferred from the job text '
     '(office address, \'based in\', regulatory/site mentions), or empty if not clearly stated"}. '
     f"Rules: >={THRESHOLD_APPLY} APPLY, {THRESHOLD_REVIEW}-{THRESHOLD_APPLY - 1} REVIEW, "
-    f"<{THRESHOLD_REVIEW} SKIP. Auto-SKIP: not Zurich/Zug, not English, pure SWE. "
-    "Also always auto-SKIP -- score below the SKIP threshold, no exception, regardless of "
-    "how strong the rest of the match is -- when the role explicitly REQUIRES fluent/native "
-    "German (or any language beyond English) for the candidate to do the job: his German is "
-    "B1 (solid but not fluent), so a native/C1-fluent requirement is a hard eligibility "
-    "blocker he cannot currently meet, not a 'domain gap' to wave off. This is deliberate: "
-    "an otherwise-perfect job he is disqualified from is worse than useless to surface, it's "
-    "noise. Distinguish that HARD requirement ('fluent German required', 'German native "
-    "speaker', 'verhandlungssicheres Deutsch', 'C1/C2 German') from a SOFT one ('German is a "
-    "plus', 'German helpful but not required', B1/B2 German acceptable, or the role states "
-    "English as the working language) -- a soft or B1-level requirement is a minor signal "
-    "like any other soft criterion and should NOT trigger this auto-SKIP. "
+    f"<{THRESHOLD_REVIEW} SKIP. Auto-SKIP: not Zurich/Zug (a fully-remote role based in "
+    "Switzerland counts as Zurich-area -- do NOT skip it for location), not English, pure SWE. "
+    "Also always auto-SKIP -- score below the SKIP threshold AND an entry in hard_blockers, "
+    "no exception, regardless of how strong the rest of the match is -- when the role "
+    "explicitly REQUIRES fluent/native German (or any language beyond English) for the "
+    "candidate to do the job: his German is B1 (solid but not fluent), so a native/C1-fluent "
+    "requirement is a hard eligibility blocker he cannot currently meet, not a 'domain gap' "
+    "to wave off. This is deliberate: an otherwise-perfect job he is disqualified from is "
+    "worse than useless to surface, it's noise. Distinguish that HARD requirement ('fluent "
+    "German required', 'German native speaker', 'verhandlungssicheres Deutsch', 'C1/C2 "
+    "German') from a SOFT one ('German is a plus', 'German helpful but not required', B1/B2 "
+    "German acceptable, or the role states English as the working language) -- a soft or "
+    "B1-level requirement is a minor signal like any other soft criterion, stays out of "
+    "hard_blockers, and should NOT trigger this auto-SKIP. "
     "Weighting: candidate is a deliberate career changer, open to unfamiliar business "
     "domains (finance, healthcare, retail, etc.) -- do NOT penalize lack of domain "
     "experience if the technical/functional role itself matches. Technical fit and "
@@ -112,6 +141,35 @@ def log_error(msg):
         pass
 
 
+# Hard language requirements in Swiss postings live in the final
+# 'Requirements/Anforderungen' block -- past the excerpt window on long
+# descriptions. This deterministic pre-check scans the FULL text so such a
+# clause is never invisible to the scorer. English is deliberately absent
+# (the candidate is C1); German/French/Italian are the local risks.
+_HARD_LANGUAGE_RE = re.compile(
+    r"(?:fluent|native|mother[\s-]?tongue|verhandlungssicher\w*|\bc1\b|\bc2\b)"
+    r"[^.\n]{0,80}(?:german|deutsch|french|fran[cç]ais|franz[oö]sisch|italian\w*|italienisch)"
+    r"|(?:german|deutsch|french|fran[cç]ais|franz[oö]sisch|italian\w*|italienisch)"
+    r"[^.\n]{0,80}(?:fluent|native|mother[\s-]?tongue|verhandlungssicher\w*|\bc1\b|\bc2\b)",
+    re.IGNORECASE,
+)
+
+
+def detect_hard_language_requirement(full_description: str):
+    """Scans the FULL description for what looks like a hard language
+    requirement beyond English/B1-German, returning a short evidence
+    snippet (or None). Soft mentions ('German is a plus', B1/B2 acceptable)
+    deliberately do not match. The snippet is injected into the prompt as
+    pipeline evidence -- the model still judges, but can no longer be blind
+    to a requirement past the truncation window."""
+    m = _HARD_LANGUAGE_RE.search(full_description or "")
+    if not m:
+        return None
+    start = max(0, m.start() - 80)
+    end = min(len(full_description), m.end() + 80)
+    return re.sub(r"\s+", " ", full_description[start:end]).strip()
+
+
 def _job_block(job):
     return {
         "company": job.get("company", "Unknown"),
@@ -124,7 +182,47 @@ def _job_block(job):
         # posting -- it used to only have title/company/location to work
         # with, since this was never saved, producing generic-sounding
         # materials regardless of how good the underlying description was.
-        "description": job.get("description", "")[:1500],
+        "description": (job.get("description") or "")[:DESCRIPTION_WINDOW],
+    }
+
+
+def _sanitize_score(raw):
+    """Coerces the model's score to an int in [0, 100]; None when absent or
+    unparseable. The model sometimes returns "85" (a string -- used to crash
+    the threshold comparison and turn a good evaluation into ERROR) or 120
+    (passed straight through as APPLY)."""
+    if raw is None or isinstance(raw, bool):
+        return None
+    if isinstance(raw, (int, float)):
+        value = raw
+    elif isinstance(raw, str):
+        try:
+            value = float(raw.strip())
+        except ValueError:
+            return None
+    else:
+        return None
+    return max(0, min(100, int(round(value))))
+
+
+def _error_record(job, err_msg):
+    """No invented score: ERROR entries are excluded from ranking and
+    metrics downstream. A fake 55/REVIEW once polluted 8 weeks of data."""
+    return {
+        "score": None,
+        "recommendation": "ERROR",
+        "hard_blockers": [],
+        "insufficient_info": False,
+        "key_match_points": [],
+        "red_flags": [err_msg[:150]],
+        "job": _job_block(job),
+        "technical_fit": "Not evaluated",
+        "contextual_fit": "Not evaluated",
+        "salary_estimate": "Not disclosed",
+        "culture_fit": "Not evaluated",
+        "concerns": [err_msg[:150]],
+        "decision": "ERROR",
+        "materials_needed": [],
     }
 
 
@@ -132,36 +230,68 @@ def evaluate_job(job):
     title = job.get("title", "Unknown")
     company = job.get("company", "Unknown")
     location = job.get("location", "Unknown")
-    desc = job.get("description", "")[:1500]
+    desc_full = job.get("description", "") or ""
+    desc = desc_full[:DESCRIPTION_WINDOW]
+    insufficient_info = len(desc_full.strip()) < MIN_DESCRIPTION_CHARS
     url = job.get("url", "")
 
-    prompt = f"Job: {title} at {company}\nLocation: {location}\nDesc: {desc}\nURL: {url}\nEvaluate."
+    # Today's date grounds any timeline reasoning (notice period vs start
+    # date, posting age) -- without it the model works off its training
+    # cutoff and once invented a "start date 16+ months away" blocker for a
+    # start 2 months out.
+    prompt = (f"Today's date: {date.today().isoformat()}\n"
+              f"Job: {title} at {company}\nLocation: {location}\nDesc: {desc}\nURL: {url}")
+    lang_evidence = detect_hard_language_requirement(desc_full)
+    if lang_evidence:
+        prompt += (f"\n[Pipeline note: the full posting contains this text, possibly beyond "
+                   f"the excerpt above: \"{lang_evidence}\" -- if it is a HARD language "
+                   f"requirement beyond English (or beyond B1-level German), the auto-SKIP "
+                   f"rule applies and it belongs in hard_blockers.]")
+    prompt += "\nEvaluate."
 
     try:
         ev = call_kimi_json(prompt, system=PROFILE + "\n" + SYSTEM_PROMPT, max_tokens=1000)
 
-        score = ev.get("score", 50)
-        # Decision is always derived from score, never trusted verbatim from
-        # the model: the model's own "decision" field regularly drifts from
-        # what its own score implies (e.g. score=68 with decision="REVIEW",
-        # when 68 is below THRESHOLD_REVIEW=70) since it's freeform text, not
-        # a constrained field. Thresholds are the single source of truth.
-        decision = decision_from_score(score)
-        model_decision = ev.get("decision")
-        if model_decision and model_decision != decision:
-            print(f"  Note: model said decision={model_decision} but score={score} "
-                  f"maps to {decision}; using {decision}.")
+        score = _sanitize_score(ev.get("score"))
+        if score is None:
+            # A missing/invalid score is an evaluation failure, NOT a silent
+            # 50/SKIP -- the old default fabricated exactly the kind of score
+            # the no-fake-scores rule exists to prevent.
+            msg = f"Model returned no usable score: {ev.get('score')!r}"
+            print(f"EVALUATION ERROR -> {msg}")
+            log_error(f"{title} @ {company}: {msg}")
+            return _error_record(job, f"Evaluation error: {msg}")
 
-        recommendation = decision
+        raw_concerns = ev.get("concerns") or []  # 'concerns': null must not propagate None
+        if not isinstance(raw_concerns, list):
+            raw_concerns = [raw_concerns]
+        concerns = [str(c) for c in raw_concerns]
+        soft_concerns = [c for c in concerns if not c.startswith("Blocker:")]
+
+        model_blockers = ev.get("hard_blockers")
+        if model_blockers is None:
+            # Backward compat: a model still on the old contract reports
+            # blockers as 'Blocker: '-prefixed concerns.
+            model_blockers = [c[len("Blocker:"):].strip() for c in concerns
+                              if c.startswith("Blocker:")]
+        if not isinstance(model_blockers, list):
+            model_blockers = [model_blockers]
+        # Spurious 'Blocker: None -- ...' entries are filtered: the model
+        # uses the prefix to say there is NO blocker, and taking the prefix
+        # literally would SKIP the best jobs (2026-08-17 smoke, scenario 1).
+        real_blockers = [b for b in (str(x).strip() for x in model_blockers)
+                         if b and not is_spurious_blocker(b)]
+
+        # Concerns always surface, regardless of tier (a real bug used to
+        # drop them for APPLY-tier jobs -- exactly where they matter most).
+        red_flags = [f"Blocker: {b}" for b in real_blockers] + soft_concerns
+        if insufficient_info:
+            red_flags.append("Low confidence: posting text under "
+                             f"{MIN_DESCRIPTION_CHARS} chars -- score is title-based")
+        if not red_flags and score < THRESHOLD_REVIEW:
+            red_flags = ["Score below threshold"]
+
         key_match_points = []
-        # Concerns always surface, regardless of tier -- they used to be
-        # dropped for APPLY-tier jobs (score >= THRESHOLD_APPLY never copied
-        # them from ev["concerns"]), which meant digest_generator.py (reads
-        # only "red_flags") silently hid real caveats -- e.g. a hard German-
-        # fluency requirement -- on exactly the highest-scoring jobs, where
-        # they matter most.
-        red_flags = ev.get("concerns", [] if score >= THRESHOLD_REVIEW else ["Score below threshold"])
-
         if score >= THRESHOLD_APPLY:
             key_match_points = [ev.get("technical_fit", ""), ev.get("contextual_fit", "")]
             key_match_points = [p for p in key_match_points if p]
@@ -183,9 +313,10 @@ def evaluate_job(job):
                 if detected and detected.strip() and detected.strip().lower() != "unknown":
                     resolved_job[field] = detected.strip()
 
-        return {
+        record = {
             "score": score,
-            "recommendation": recommendation,
+            "hard_blockers": real_blockers,
+            "insufficient_info": insufficient_info,
             "key_match_points": key_match_points,
             "red_flags": red_flags,
             "job": _job_block(resolved_job),
@@ -193,30 +324,28 @@ def evaluate_job(job):
             "contextual_fit": ev.get("contextual_fit", ""),
             "salary_estimate": ev.get("salary_estimate", "Not disclosed"),
             "culture_fit": ev.get("culture_fit", ""),
-            "concerns": ev.get("concerns", []),
-            "decision": decision,
-            "materials_needed": ["cv"] if decision == "APPLY" else [],
+            "concerns": concerns,
         }
+
+        # Decision is ALWAYS derived locally, never trusted verbatim from the
+        # model: thresholds on the score + the hard-blocker lock (business
+        # rule, no exception) + the low-confidence cap. See utils.py.
+        decision = effective_decision(record)
+        model_decision = ev.get("decision")
+        if model_decision and model_decision != decision:
+            print(f"  Note: model said decision={model_decision} but local rules map to "
+                  f"{decision} (score={score}, blockers={len(real_blockers)}, "
+                  f"insufficient={insufficient_info}); using {decision}.")
+
+        record["recommendation"] = decision
+        record["decision"] = decision
+        record["materials_needed"] = ["cv"] if decision == "APPLY" else []
+        return record
     except Exception as e:
         err_msg = f"{type(e).__name__}: {e}"
         print(f"API ERROR -> decision ERROR (no fake score) | {err_msg[:200]}")
         log_error(f"{title} @ {company}: {err_msg}")
-        # No invented score: ERROR entries are excluded from ranking and
-        # metrics downstream. A fake 55/REVIEW once polluted 8 weeks of data.
-        return {
-            "score": None,
-            "recommendation": "ERROR",
-            "key_match_points": [],
-            "red_flags": [f"API error: {err_msg[:150]}"],
-            "job": _job_block(job),
-            "technical_fit": "Not evaluated (API error)",
-            "contextual_fit": "Not evaluated (API error)",
-            "salary_estimate": "Not disclosed",
-            "culture_fit": "Not evaluated",
-            "concerns": [f"API error: {err_msg[:150]}"],
-            "decision": "ERROR",
-            "materials_needed": [],
-        }
+        return _error_record(job, f"API error: {err_msg}")
 
 
 def append_history(evaluations):
@@ -246,6 +375,14 @@ def append_history(evaluations):
 
 
 def main():
+    if PROFILE_IS_FALLBACK:
+        # Scoring the whole run against a generic profile would silently
+        # distort every score -- fail loud instead (usually means the
+        # CANDIDATE_PROFILE_B64 secret was not restored in CI).
+        print("FATAL: config/candidate_profile.json missing/invalid. "
+              "Refusing to evaluate with the generic fallback profile.")
+        sys.exit(1)
+
     os.makedirs("digests", exist_ok=True)
     try:
         with open("digests/new_jobs_latest.json", "r", encoding="utf-8") as f:
