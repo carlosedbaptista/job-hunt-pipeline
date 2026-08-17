@@ -1,218 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Hunt Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <style>
-        :root {
-            --bg: #f5f5f5; --card: #fff; --text: #333; --muted: #666;
-            --accent: #667eea; --accent2: #764ba2; --success: #32CD32;
-            --warning: #FFA500; --danger: #ff4444; --border: #e0e0e0;
-        }
-        body.dark {
-            --bg: #1a1a2e; --card: #16213e; --text: #eee; --muted: #aaa;
-            --border: #2a2a4a;
-        }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s;
-        }
-        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
-        header {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-            color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;
-        }
-        header h1 { font-size: 28px; margin-bottom: 5px; }
-        header p { opacity: 0.9; font-size: 14px; }
-        .toggle-btn {
-            float: right; background: rgba(255,255,255,0.2); border: none;
-            color: white; padding: 8px 16px; border-radius: 6px; cursor: pointer;
-        }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 20px; }
-        .card {
-            background: var(--card); border-radius: 10px; padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid var(--border);
-        }
-        .card h3 { font-size: 14px; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .metric { font-size: 36px; font-weight: 700; color: var(--accent); }
-        .metric.green { color: var(--success); }
-        .metric.orange { color: var(--warning); }
-        .metric.red { color: var(--danger); }
-        .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
-        .filters input, .filters select {
-            padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px;
-            background: var(--card); color: var(--text); font-size: 14px;
-        }
-        .filters input { flex: 1; min-width: 200px; }
-        .btn {
-            padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;
-            font-size: 14px; font-weight: 600; transition: opacity 0.2s;
-        }
-        .btn:hover { opacity: 0.85; }
-        .btn-primary { background: var(--accent); color: white; }
-        .btn-success { background: var(--success); color: white; }
-        table { width: 100%; border-collapse: collapse; }
-        th { text-align: left; padding: 12px; font-size: 12px; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--border); }
-        td { padding: 12px; border-bottom: 1px solid var(--border); }
-        tr:hover { background: rgba(102,126,234,0.05); }
-        .badge { padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; }
-        .badge-apply { background: #e8f5e9; color: #2e7d32; }
-        .dark .badge-apply { background: #1b5e20; color: #a5d6a7; }
-        .badge-review { background: #fff3e0; color: #ef6c00; }
-        .dark .badge-review { background: #e65100; color: #ffcc80; }
-        .badge-skip { background: #ffebee; color: #c62828; }
-        .dark .badge-skip { background: #b71c1c; color: #ef9a9a; }
-        .badge-applied { background: #e3f2fd; color: #1565c0; }
-        .dark .badge-applied { background: #0d47a1; color: #90caf9; }
-        .badge-interview { background: #e8f5e9; color: #1b5e20; }
-        .dark .badge-interview { background: #1b5e20; color: #a5d6a7; }
-        .badge-rejected { background: #ffebee; color: #b71c1c; }
-        .dark .badge-rejected { background: #4a0e0e; color: #ef9a9a; }
-        .badge-noaction { background: transparent; color: var(--muted); border: 1px dashed var(--border); }
-        .score { font-weight: 700; }
-        .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 15px; margin-bottom: 20px; }
-        .charts .card { padding: 15px; }
-        canvas { max-height: 250px; }
-        .profile { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-        .profile-item { font-size: 13px; color: var(--muted); }
-        .profile-item strong { color: var(--text); display: block; margin-bottom: 2px; }
-        .empty { text-align: center; padding: 60px 20px; color: var(--muted); }
-        .hidden { display: none; }
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
-            .charts { grid-template-columns: 1fr; }
-            .filters { flex-direction: column; }
-            th, td { font-size: 13px; padding: 8px; }
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <header>
-        <button class="toggle-btn" onclick="toggleDark()">Dark Mode</button>
-        <h1>Job Hunt Dashboard</h1>
-        <p>Automated job search &amp; evaluation pipeline &middot; <a href="https://github.com/carlosedbaptista/job-hunt-pipeline/actions/workflows/add-job.yml" target="_blank">+ Add a job manually</a> &middot; <a href="https://github.com/carlosedbaptista/job-hunt-pipeline/actions/workflows/track-application.yml" target="_blank">+ Track an application</a> (Actions &rarr; Run workflow)</p>
-    </header>
-
-    <!-- Candidate Profile (only data the owner explicitly chose to show) -->
-    <div class="card" style="margin-bottom: 20px;">
-        <h3>Candidate Profile</h3>
-        <div class="profile">
-            <div class="profile-item"><strong>Name</strong>Carlos Baptista</div>
-            <div class="profile-item"><strong>Role</strong>AI &amp; Data Engineer Intern</div>
-            <div class="profile-item"><strong>Location</strong>Zürich Area, CH</div>
-            <div class="profile-item"><strong>Permit</strong>Swiss Work Permit B (valid)</div>
-            <div class="profile-item"><strong>Notice</strong>2 weeks</div>
-            <div class="profile-item"><strong>Languages</strong>EN (C1) | PT (Native) | ES (B2) | DE (A2→B1)</div>
-            <div class="profile-item"><strong>LinkedIn</strong><a href="https://www.linkedin.com/in/carlosedbaptista/" target="_blank">linkedin.com/in/carlosedbaptista</a></div>
-        </div>
-    </div>
-
-    <!-- Metrics -->
-    <div class="grid">
-        <div class="card">
-            <h3>Total Evaluated</h3>
-            <div class="metric" id="metric-total">0</div>
-        </div>
-        <div class="card">
-            <h3>APPLY</h3>
-            <div class="metric green" id="metric-apply">0</div>
-        </div>
-        <div class="card">
-            <h3>REVIEW</h3>
-            <div class="metric orange" id="metric-review">0</div>
-        </div>
-        <div class="card">
-            <h3>SKIP</h3>
-            <div class="metric red" id="metric-skip">0</div>
-        </div>
-        <div class="card">
-            <h3>Apply Rate</h3>
-            <div class="metric" id="metric-rate">0%</div>
-        </div>
-    </div>
-
-    <!-- Charts -->
-    <div class="charts">
-        <div class="card">
-            <h3>Daily Trend (30d)</h3>
-            <canvas id="chart-daily"></canvas>
-        </div>
-        <div class="card">
-            <h3>Decision Distribution</h3>
-            <canvas id="chart-pie"></canvas>
-        </div>
-        <div class="card">
-            <h3>Top Companies</h3>
-            <canvas id="chart-companies"></canvas>
-        </div>
-    </div>
-
-    <!-- Filters -->
-    <div class="filters">
-        <input type="text" id="search" placeholder="Search company, title, location..." oninput="filterTable()">
-        <select id="filter-decision" onchange="filterTable()">
-            <option value="">All Decisions</option>
-            <option value="APPLY">APPLY</option>
-            <option value="REVIEW">REVIEW</option>
-            <option value="SKIP">SKIP</option>
-        </select>
-        <select id="filter-score" onchange="filterTable()">
-            <option value="">All Scores</option>
-            <option value="80-100">High (80-100)</option>
-            <option value="70-79">Medium (70-79)</option>
-            <option value="0-69">Low (0-69)</option>
-        </select>
-        <select id="filter-source" onchange="filterTable()">
-            <option value="">All Sources</option>
-            <option value="adzuna">Adzuna</option>
-            <option value="gmail">Gmail</option>
-            <option value="linkedin">LinkedIn</option>
-        </select>
-        <select id="filter-application" onchange="filterTable()">
-            <option value="">All Applications</option>
-            <option value="applied">Applied</option>
-            <option value="responded">Got a response</option>
-            <option value="no_action">No action taken</option>
-        </select>
-        <button class="btn btn-success" onclick="exportCSV()">Export CSV</button>
-    </div>
-
-    <!-- Jobs Table -->
-    <div class="card">
-        <h3>Jobs</h3>
-        <div style="overflow-x:auto;">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Company</th>
-                        <th>Title</th>
-                        <th>Location</th>
-                        <th>Source</th>
-                        <th>Score</th>
-                        <th>Decision</th>
-                        <th>Application</th>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-                <tbody id="jobs-table">
-                </tbody>
-            </table>
-        </div>
-        <div class="empty hidden" id="empty-msg">
-            <p>No jobs match your filters.</p>
-        </div>
-    </div>
-</div>
-
-<script>
-const TH_APPLY = 80;
-const TH_REVIEW = 70;
-const JOBS = [
+[
   {
     "score": 0,
     "hard_blockers": [],
@@ -246,10 +32,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 72,
@@ -288,10 +71,7 @@ const JOBS = [
     "recommendation": "REVIEW",
     "decision": "REVIEW",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 42,
@@ -331,10 +111,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": true,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 15,
@@ -372,10 +149,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": true,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 15,
@@ -413,10 +187,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": true,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 35,
@@ -453,10 +224,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 15,
@@ -494,10 +262,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": true,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 15,
@@ -534,10 +299,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 15,
@@ -577,10 +339,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": true,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 25,
@@ -617,10 +376,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 15,
@@ -657,10 +413,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 0,
@@ -700,10 +453,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": true,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 0,
@@ -735,10 +485,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": true,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 0,
@@ -767,10 +514,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 35,
@@ -807,10 +551,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 15,
@@ -847,10 +588,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 0,
@@ -882,10 +620,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": true,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 0,
@@ -921,10 +656,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": true,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 0,
@@ -959,10 +691,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 25,
@@ -1001,10 +730,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 15,
@@ -1039,10 +765,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 25,
@@ -1079,10 +802,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 45,
@@ -1119,10 +839,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 72,
@@ -1159,10 +876,7 @@ const JOBS = [
     "recommendation": "REVIEW",
     "decision": "REVIEW",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 35,
@@ -1199,10 +913,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 35,
@@ -1237,10 +948,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 25,
@@ -1276,10 +984,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": true,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 25,
@@ -1319,10 +1024,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": true,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 45,
@@ -1362,10 +1064,7 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": true,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   },
   {
     "score": 0,
@@ -1394,294 +1093,6 @@ const JOBS = [
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-17T04:28:34.184811+00:00",
-    "_digest_date": "2026-08-17",
-    "_has_blocker": false,
-    "_insufficient": true
+    "evaluated_at": "2026-08-17T04:28:34.184811+00:00"
   }
-];
-
-function getJobField(job, field, fallback="N/A") {
-    const j = job.job || {};
-    return j[field] || job[field] || fallback;
-}
-
-// Job data comes from third-party emails and APIs: always escape before
-// inserting into HTML, and only allow http(s) links.
-function esc(value) {
-    return String(value)
-        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
-}
-
-function safeUrl(url) {
-    const u = String(url || "").trim();
-    return /^https?:\/\//i.test(u) ? u : "";
-}
-
-// Mirrors utils.effective_decision on the Python side: thresholds, then
-// the hard-blocker lock, then the low-confidence cap (both precomputed
-// per job by dashboard.py as _has_blocker / _insufficient).
-function getDecision(score, hasBlocker, insufficient) {
-    if (hasBlocker) return "SKIP";
-    let d = score >= TH_APPLY ? "APPLY" : score >= TH_REVIEW ? "REVIEW" : "SKIP";
-    if (d === "APPLY" && insufficient) d = "REVIEW";
-    return d;
-}
-
-// Status recorded via the "Track Application" workflow takes priority.
-// With no tracked record, a REVIEW/APPLY job left untouched for 10+ days
-// is treated as implicitly passed on -- no explicit "ignored" click
-// required, since requiring one for every skipped job doesn't scale.
-const RESPONSE_LABELS = {
-    interview_scheduled: "Interview!",
-    positive_response: "Positive response",
-    rejected: "Rejected",
-    awaiting_info: "Info requested",
-    responded: "Responded",
-};
-
-function getApplicationInfo(job, decision) {
-    const app = job._application_status;
-    if (app && app.status) {
-        if (app.status === "sent") {
-            return { label: "Applied", badgeClass: "badge-applied", filterKey: "applied" };
-        }
-        const label = RESPONSE_LABELS[app.status] || RESPONSE_LABELS[app.response_type] || "Responded";
-        const badgeClass = app.status === "rejected" ? "badge-rejected" : "badge-interview";
-        return { label, badgeClass, filterKey: "responded" };
-    }
-
-    if (decision === "APPLY" || decision === "REVIEW") {
-        const digestDate = new Date(job._digest_date || "");
-        const daysElapsed = isNaN(digestDate) ? 0 : Math.floor((Date.now() - digestDate) / 86400000);
-        if (daysElapsed >= 10) {
-            return { label: "No action", badgeClass: "badge-noaction", filterKey: "no_action" };
-        }
-    }
-
-    return { label: "", badgeClass: "", filterKey: "" };
-}
-
-function renderTable(jobs) {
-    const tbody = document.getElementById("jobs-table");
-    const empty = document.getElementById("empty-msg");
-    tbody.innerHTML = "";
-    
-    if (jobs.length === 0) {
-        empty.classList.remove("hidden");
-        return;
-    }
-    empty.classList.add("hidden");
-    
-    jobs.sort((a,b) => (b.score||0) - (a.score||0));
-    
-    jobs.forEach(job => {
-        const company = getJobField(job, "company");
-        const title = getJobField(job, "title");
-        const location = getJobField(job, "location");
-        const url = getJobField(job, "url");
-        const portal = getJobField(job, "portal", "unknown");
-        const score = job.score || 0;
-        const decision = getDecision(score, job._has_blocker, job._insufficient);
-        const date = job._digest_date || "Today";
-        
-        const badgeClass = decision === "APPLY" ? "badge-apply" : decision === "REVIEW" ? "badge-review" : "badge-skip";
-        const appInfo = getApplicationInfo(job, decision);
-
-        const link = safeUrl(url);
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td>${esc(date)}</td>
-            <td><strong>${esc(company)}</strong></td>
-            <td>${esc(title)}</td>
-            <td>${esc(location)}</td>
-            <td>${esc(portal)}</td>
-            <td class="score">${esc(score)}</td>
-            <td><span class="badge ${badgeClass}">${esc(decision)}</span></td>
-            <td>${appInfo.label ? `<span class="badge ${appInfo.badgeClass}">${esc(appInfo.label)}</span>` : "-"}</td>
-            <td>${link ? `<a href="${esc(link)}" target="_blank" rel="noopener noreferrer">View ></a>` : "-"}</td>
-        `;
-        tbody.appendChild(tr);
-    });
-    
-    updateMetrics(jobs);
-}
-
-function filterTable() {
-    const search = document.getElementById("search").value.toLowerCase();
-    const decision = document.getElementById("filter-decision").value;
-    const scoreRange = document.getElementById("filter-score").value;
-    const source = document.getElementById("filter-source").value;
-    const application = document.getElementById("filter-application").value;
-
-    let filtered = JOBS.filter(job => {
-        const company = getJobField(job, "company").toLowerCase();
-        const title = getJobField(job, "title").toLowerCase();
-        const location = getJobField(job, "location").toLowerCase();
-        const portal = getJobField(job, "portal", "unknown").toLowerCase();
-        const score = job.score || 0;
-        const dec = getDecision(score, job._has_blocker, job._insufficient);
-
-        if (search && !company.includes(search) && !title.includes(search) && !location.includes(search)) return false;
-        if (decision && dec !== decision) return false;
-        if (source && !portal.includes(source)) return false;
-        if (application && getApplicationInfo(job, dec).filterKey !== application) return false;
-        if (scoreRange) {
-            if (scoreRange === "80-100" && score < TH_APPLY) return false;
-            if (scoreRange === "70-79" && (score < TH_REVIEW || score >= TH_APPLY)) return false;
-            if (scoreRange === "0-69" && score >= TH_REVIEW) return false;
-        }
-        return true;
-    });
-
-    renderTable(filtered);
-    updateCharts(filtered);
-}
-
-function updateMetrics(jobs) {
-    const total = jobs.length;
-    const apply = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient) === "APPLY").length;
-    const review = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient) === "REVIEW").length;
-    const skip = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient) === "SKIP").length;
-    const rate = total > 0 ? Math.round(apply/total*100) : 0;
-    
-    document.getElementById("metric-total").textContent = total;
-    document.getElementById("metric-apply").textContent = apply;
-    document.getElementById("metric-review").textContent = review;
-    document.getElementById("metric-skip").textContent = skip;
-    document.getElementById("metric-rate").textContent = rate + "%";
-}
-
-function updateCharts(jobs) {
-    const daily = {};
-    jobs.forEach(j => {
-        const d = j._digest_date || "Unknown";
-        daily[d] = (daily[d] || 0) + 1;
-    });
-    const dailyLabels = Object.keys(daily).sort();
-    const dailyData = dailyLabels.map(d => daily[d]);
-    
-    if (window.chartDaily) window.chartDaily.destroy();
-    window.chartDaily = new Chart(document.getElementById("chart-daily"), {
-        type: "line",
-        data: {
-            labels: dailyLabels,
-            datasets: [{
-                label: "Jobs Evaluated",
-                data: dailyData,
-                borderColor: "#667eea",
-                backgroundColor: "rgba(102,126,234,0.1)",
-                fill: true,
-                tension: 0.3
-            }]
-        },
-        options: { responsive: true, maintainAspectRatio: false }
-    });
-    
-    const apply = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient) === "APPLY").length;
-    const review = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient) === "REVIEW").length;
-    const skip = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient) === "SKIP").length;
-    
-    if (window.chartPie) window.chartPie.destroy();
-    window.chartPie = new Chart(document.getElementById("chart-pie"), {
-        type: "doughnut",
-        data: {
-            labels: ["APPLY", "REVIEW", "SKIP"],
-            datasets: [{
-                data: [apply, review, skip],
-                backgroundColor: ["#32CD32", "#FFA500", "#ff4444"]
-            }]
-        },
-        options: { responsive: true, maintainAspectRatio: false }
-    });
-    
-    const companies = {};
-    jobs.forEach(j => {
-        const c = getJobField(j, "company");
-        companies[c] = (companies[c] || 0) + 1;
-    });
-    const topCompanies = Object.entries(companies).sort((a,b) => b[1]-a[1]).slice(0, 8);
-    
-    if (window.chartCompanies) window.chartCompanies.destroy();
-    window.chartCompanies = new Chart(document.getElementById("chart-companies"), {
-        type: "bar",
-        data: {
-            labels: topCompanies.map(x => x[0]),
-            datasets: [{
-                label: "Jobs",
-                data: topCompanies.map(x => x[1]),
-                backgroundColor: "#667eea"
-            }]
-        },
-        options: { responsive: true, maintainAspectRatio: false, indexAxis: "y" }
-    });
-}
-
-function exportCSV() {
-    let filtered = JOBS.filter(job => {
-        const search = document.getElementById("search").value.toLowerCase();
-        const decision = document.getElementById("filter-decision").value;
-        const scoreRange = document.getElementById("filter-score").value;
-        const source = document.getElementById("filter-source").value;
-        const application = document.getElementById("filter-application").value;
-
-        const company = getJobField(job, "company").toLowerCase();
-        const title = getJobField(job, "title").toLowerCase();
-        const location = getJobField(job, "location").toLowerCase();
-        const portal = getJobField(job, "portal", "unknown").toLowerCase();
-        const score = job.score || 0;
-        const dec = getDecision(score, job._has_blocker, job._insufficient);
-
-        if (search && !company.includes(search) && !title.includes(search) && !location.includes(search)) return false;
-        if (decision && dec !== decision) return false;
-        if (source && !portal.includes(source)) return false;
-        if (application && getApplicationInfo(job, dec).filterKey !== application) return false;
-        if (scoreRange) {
-            if (scoreRange === "80-100" && score < TH_APPLY) return false;
-            if (scoreRange === "70-79" && (score < TH_REVIEW || score >= TH_APPLY)) return false;
-            if (scoreRange === "0-69" && score >= TH_REVIEW) return false;
-        }
-        return true;
-    });
-
-    // Escape quotes and neutralise formula injection (=, +, -, @) for Excel
-    function csvCell(value) {
-        let v = String(value == null ? "" : value).replace(/"/g, '""');
-        if (/^[=+\-@]/.test(v)) v = "'" + v;
-        return `"${v}"`;
-    }
-
-    let csv = "Date,Company,Title,Location,Source,Score,Decision,Application,URL\n";
-    filtered.sort((a,b) => (b.score||0) - (a.score||0));
-    filtered.forEach(job => {
-        const company = getJobField(job, "company");
-        const title = getJobField(job, "title");
-        const location = getJobField(job, "location");
-        const url = getJobField(job, "url");
-        const portal = getJobField(job, "portal", "unknown");
-        const score = job.score || 0;
-        const decision = getDecision(score, job._has_blocker, job._insufficient);
-        const date = job._digest_date || "Today";
-        const application = getApplicationInfo(job, decision).label || "-";
-        csv += [csvCell(date), csvCell(company), csvCell(title), csvCell(location), csvCell(portal), score, decision, csvCell(application), csvCell(url)].join(",") + "\n";
-    });
-    
-    const blob = new Blob([csv], {type: "text/csv"});
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = `job-hunt-export-${new Date().toISOString().split("T")[0]}.csv`;
-    a.click();
-}
-
-function toggleDark() {
-    document.body.classList.toggle("dark");
-    localStorage.setItem("dark", document.body.classList.contains("dark"));
-}
-
-if (localStorage.getItem("dark") === "true") document.body.classList.add("dark");
-renderTable(JOBS);
-updateCharts(JOBS);
-</script>
-</body>
-</html>
+]
