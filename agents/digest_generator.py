@@ -7,7 +7,7 @@ import sys
 from datetime import datetime
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
-from utils import THRESHOLD_APPLY, THRESHOLD_REVIEW, decision_from_score
+from utils import effective_decision
 
 
 def load_evaluations():
@@ -82,11 +82,11 @@ def format_digest_text(digest, top_jobs):
 
     for i, job_eval in enumerate(top_jobs, 1):
         score = job_eval.get("score", 0)
-        # Always derived from score, never trusted from the stored
-        # recommendation/decision field: the model's freeform decision text
-        # can drift from what its own score implies (thresholds are the
-        # single source of truth -- see src/utils.py).
-        recommendation = decision_from_score(score)
+        # Always derived, never trusted from the stored recommendation/
+        # decision field: the model's freeform decision text can drift from
+        # what its own score implies. effective_decision = thresholds +
+        # hard-blocker lock + low-confidence cap (see src/utils.py).
+        recommendation = effective_decision(job_eval)
 
         company = _get_job_field(job_eval, "company")
         title = _get_job_field(job_eval, "title")
@@ -111,7 +111,7 @@ def format_digest_text(digest, top_jobs):
         # visual weight -- lumping "Docker listed as basics" under the same
         # alarming "!! Issues" label as "you don't speak the required
         # language" made every concern read equally serious.
-        concerns = job_eval.get("red_flags", [])
+        concerns = job_eval.get("red_flags") or []
         blockers = [c for c in concerns if str(c).startswith("Blocker:")]
         notes = [c for c in concerns if not str(c).startswith("Blocker:")]
         if blockers:
@@ -124,9 +124,12 @@ def format_digest_text(digest, top_jobs):
 
     lines.append("")
     lines.append("=" * 70)
-    lines.append("NEXT STEP:")
-    lines.append('  python src/approval_handler.py --approve "1,3,5"')
-    lines.append("(Replace 1,3,5 with the job numbers you want to apply to)")
+    lines.append("NEXT STEPS:")
+    lines.append("  1. Pick the jobs you want and apply manually -- the pipeline never")
+    lines.append("     submits anything without your explicit approval.")
+    lines.append("  2. Record each application: GitHub Actions -> 'Track Application' workflow.")
+    lines.append("  3. Want a second opinion on a posting? Re-run the 'Add Job' workflow;")
+    lines.append("     re-evaluating replaces the old record automatically.")
     lines.append("=" * 70)
     lines.append("")
     return "\n".join(lines)
