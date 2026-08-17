@@ -28,7 +28,7 @@ def load_profile_summary() -> str:
     except (FileNotFoundError, json.JSONDecodeError):
         # Fallback: minimal summary without PII
         return ("Candidate: Data/Business Analyst, Zurich Area CH (Permit B), 2 weeks notice. "
-                "Skills: SQL, Python, Power BI, GA4. Languages: PT, EN(C1), ES, DE(A2).")
+                "Skills: SQL, Python, Power BI, GA4. Languages: PT, EN(C1), ES, DE(B1).")
 
     skills = p.get("skills", {})
     tech = skills.get("technical_default", [])
@@ -50,7 +50,7 @@ def load_profile_summary() -> str:
         f"Projects: {project_summary}. "
         f"Education: {edu_summary}. "
         f"Certifications: {', '.join(certs)}. "
-        f"Languages: PT native, EN C1, ES B2, DE A2."
+        f"Languages: {p.get('languages', 'PT native, EN C1, ES B2, DE B1')}."
     )
 
 
@@ -59,21 +59,27 @@ PROFILE = load_profile_summary()
 SYSTEM_PROMPT = (
     'Evaluate job vs candidate. Return JSON: {"score":0-100,"technical_fit":"brief",'
     '"contextual_fit":"brief","salary_estimate":"range or Not disclosed","culture_fit":"brief",'
-    '"concerns":[],"decision":"APPLY|REVIEW|SKIP",'
+    '"concerns":["prefix hard eligibility blockers (unmet hard language requirement, '
+    'wrong permit/location, etc.) with \'Blocker: \'; everything else (skill-depth notes, '
+    'minor gaps, things merely worth knowing) stays unprefixed -- do not call a soft note '
+    'a blocker just to sound thorough"],"decision":"APPLY|REVIEW|SKIP",'
     '"detected_company":"company name from the job text, or empty if not clearly stated",'
     '"detected_title":"job title from the job text, or empty if not clearly stated",'
     '"detected_location":"city/canton the role is based in, inferred from the job text '
     '(office address, \'based in\', regulatory/site mentions), or empty if not clearly stated"}. '
     f"Rules: >={THRESHOLD_APPLY} APPLY, {THRESHOLD_REVIEW}-{THRESHOLD_APPLY - 1} REVIEW, "
     f"<{THRESHOLD_REVIEW} SKIP. Auto-SKIP: not Zurich/Zug, not English, pure SWE. "
-    "Also auto-SKIP (or cap well below APPLY) when the role explicitly REQUIRES fluent/"
-    "native German (or any language beyond English) for the candidate to do the job -- "
-    "his German is A2, not fluent. Distinguish a HARD requirement ('fluent German "
-    "required', 'German native speaker', 'verhandlungssicheres Deutsch') from a SOFT one "
-    "('German is a plus', 'German helpful but not required', role explicitly says English "
-    "is the working language) -- only the former should meaningfully lower the score; the "
-    "latter is a minor signal like any other soft criterion. A hard language requirement he "
-    "does not meet is a real eligibility blocker, not a 'domain gap' to wave off. "
+    "Also always auto-SKIP -- score below the SKIP threshold, no exception, regardless of "
+    "how strong the rest of the match is -- when the role explicitly REQUIRES fluent/native "
+    "German (or any language beyond English) for the candidate to do the job: his German is "
+    "B1 (solid but not fluent), so a native/C1-fluent requirement is a hard eligibility "
+    "blocker he cannot currently meet, not a 'domain gap' to wave off. This is deliberate: "
+    "an otherwise-perfect job he is disqualified from is worse than useless to surface, it's "
+    "noise. Distinguish that HARD requirement ('fluent German required', 'German native "
+    "speaker', 'verhandlungssicheres Deutsch', 'C1/C2 German') from a SOFT one ('German is a "
+    "plus', 'German helpful but not required', B1/B2 German acceptable, or the role states "
+    "English as the working language) -- a soft or B1-level requirement is a minor signal "
+    "like any other soft criterion and should NOT trigger this auto-SKIP. "
     "Weighting: candidate is a deliberate career changer, open to unfamiliar business "
     "domains (finance, healthcare, retail, etc.) -- do NOT penalize lack of domain "
     "experience if the technical/functional role itself matches. Technical fit and "
@@ -113,6 +119,12 @@ def _job_block(job):
         "location": job.get("location", "Unknown"),
         "url": job.get("url", ""),
         "portal": job.get("portal", job.get("source", "adzuna")),
+        # Persisted (truncated, same window the score itself was based on)
+        # so doc_generator.py can write a CV/CL grounded in the actual
+        # posting -- it used to only have title/company/location to work
+        # with, since this was never saved, producing generic-sounding
+        # materials regardless of how good the underlying description was.
+        "description": job.get("description", "")[:1500],
     }
 
 

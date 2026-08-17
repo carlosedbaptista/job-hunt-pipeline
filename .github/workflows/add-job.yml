@@ -42,6 +42,7 @@ jobs:
       - name: Restore candidate profile from secrets
         env:
           CANDIDATE_PROFILE_B64: ${{ secrets.CANDIDATE_PROFILE_B64 }}
+          CANDIDATE_PHOTO_B64: ${{ secrets.CANDIDATE_PHOTO_B64 }}
         run: |
           mkdir -p config
           if [ -z "$CANDIDATE_PROFILE_B64" ]; then
@@ -53,11 +54,19 @@ jobs:
           else
             echo "Restored config/candidate_profile.json"
           fi
+          if [ -n "$CANDIDATE_PHOTO_B64" ]; then
+            printf '%s' "$CANDIDATE_PHOTO_B64" | tr -d ' \t\r\n' | base64 -d > config/photo.jpg 2>/dev/null \
+              && echo "Restored config/photo.jpg" \
+              || { echo "::warning::CANDIDATE_PHOTO_B64 is not valid base64 -- CV generated without a photo"; rm -f config/photo.jpg; }
+          fi
 
-      - name: Evaluate job
+      - name: Evaluate job (generates CV/CL too, if the match is >= APPLY)
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
           KIMI_BASE_URL: ${{ secrets.KIMI_BASE_URL }}
+          GDRIVE_PARENT_FOLDER_ID: ${{ secrets.GDRIVE_PARENT_FOLDER_ID }}
+          GDRIVE_REFRESH_TOKEN_B64: ${{ secrets.GDRIVE_REFRESH_TOKEN_B64 }}
+          GDRIVE_CREDENTIALS_JSON_B64: ${{ secrets.GDRIVE_CREDENTIALS_JSON_B64 }}
           JOB_URL: ${{ inputs.url }}
           JOB_TITLE: ${{ inputs.title }}
           JOB_COMPANY: ${{ inputs.company }}
@@ -73,6 +82,21 @@ jobs:
             echo "Provide at least the job URL or the description text."
             exit 1
           fi
+
+      # Google Drive is the only place generated CV/CL PDFs are meant to
+      # persist (generated_docs/ is gitignored, kept out of the public
+      # repo) -- if that upload silently fails (auth expiry, quota, network),
+      # the PDFs would otherwise vanish with the runner and cost a real Kimi
+      # call for nothing. This is the backup: retrievable from the Actions
+      # run page for 90 days regardless of whether the Drive upload worked.
+      - name: Upload generated CV/CL as a workflow artifact (backup)
+        if: always()
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3 (pinned SHA)
+        with:
+          name: generated-docs
+          path: generated_docs/
+          if-no-files-found: ignore
+          retention-days: 90
 
       - name: Regenerate dashboard
         env:

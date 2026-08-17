@@ -106,9 +106,18 @@ def format_digest_text(digest, top_jobs):
         if key_points:
             lines.append(f"   Highlights: {'; '.join(key_points[:2])}")
 
-        red_flags = job_eval.get("red_flags", [])
-        if red_flags:
-            lines.append(f"   !!  Issues: {'; '.join(red_flags[:2])}")
+        # Blockers (hard eligibility issues, e.g. an unmet language
+        # requirement) and notes (minor, soft considerations) get different
+        # visual weight -- lumping "Docker listed as basics" under the same
+        # alarming "!! Issues" label as "you don't speak the required
+        # language" made every concern read equally serious.
+        concerns = job_eval.get("red_flags", [])
+        blockers = [c for c in concerns if str(c).startswith("Blocker:")]
+        notes = [c for c in concerns if not str(c).startswith("Blocker:")]
+        if blockers:
+            lines.append(f"   ⛔ Blocker: {'; '.join(b[len('Blocker:'):].strip() for b in blockers)}")
+        if notes:
+            lines.append(f"   Note: {'; '.join(notes[:2])}")
 
         if url and url != "N/A":
             lines.append(f"   Link: {url[:80]}...")

@@ -125,6 +125,19 @@ jobs:
         run: python agents/doc_generator.py
         continue-on-error: true
 
+      # generated_docs/ is gitignored (kept out of the public repo) and
+      # Google Drive is the only intended persistence -- if that upload
+      # silently fails, this is the backup: PDFs stay retrievable from the
+      # Actions run page for 90 days instead of vanishing with the runner.
+      - name: Upload generated CV/CL as a workflow artifact (backup)
+        if: always()
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3 (pinned SHA)
+        with:
+          name: generated-docs
+          path: generated_docs/
+          if-no-files-found: ignore
+          retention-days: 90
+
       - name: High-Score Alerts
         run: python agents/high_score_alert.py
         continue-on-error: true

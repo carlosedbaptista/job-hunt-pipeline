@@ -21,8 +21,21 @@ sys.path.insert(0, os.path.dirname(__file__))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
 from job_evaluator import evaluate_job  # noqa: E402
+from deduplicator import normalize, normalize_company  # noqa: E402
 
 OUTPUT = os.path.join("digests", "manual_evaluations.json")
+
+
+def _same_job(a: dict, b: dict) -> bool:
+    """Same normalized company+title -- the same matching used for the
+    dedup hash, so re-running "Add Job" for a posting you already
+    evaluated is recognised as the same job even if the URL changed
+    (LinkedIn issues a new tracking URL per visit)."""
+    ja, jb = a.get("job", {}), b.get("job", {})
+    return (
+        normalize_company(ja.get("company", "")) == normalize_company(jb.get("company", ""))
+        and normalize(ja.get("title", "")) == normalize(jb.get("title", ""))
+    )
 
 
 def fetch_job_from_url(url: str) -> dict:
@@ -66,7 +79,20 @@ def save_evaluation(ev: dict):
         data = []
     ev["evaluated_at"] = datetime.now(timezone.utc).isoformat()
     ev["source"] = "manual"
-    data.append(ev)
+
+    # Re-evaluating a job you already added replaces the old record
+    # instead of piling up duplicates with different scores (e.g. after a
+    # scoring calibration change) -- the old score/reasoning is gone once
+    # replaced; this is intentional, the newest evaluation is the one that
+    # should drive the dashboard/digest and any CV/CL decision.
+    existing_idx = next((i for i, prior in enumerate(data) if _same_job(prior, ev)), None)
+    if existing_idx is not None:
+        old_score = data[existing_idx].get("score")
+        print(f"Replacing previous evaluation for this job (was score={old_score}, now score={ev.get('score')}).")
+        data[existing_idx] = ev
+    else:
+        data.append(ev)
+
     with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
@@ -139,8 +165,18 @@ def main():
     print(f"\nSaved to {OUTPUT}")
 
     if decision == "APPLY" or score >= 80:
-        print("\nHigh match! To generate tailored CV/CL, include this job in")
-        print("digests/new_jobs_latest.json or run the normal pipeline.")
+        from doc_generator import generate_docs_for_job  # noqa: E402 (deferred: only needed here)
+        from utils import load_json  # noqa: E402
+        from kimi_client import KimiClient  # noqa: E402
+
+        profile = load_json("config/candidate_profile.json")
+        if not profile:
+            print("\nHigh match, but config/candidate_profile.json is missing/invalid -- "
+                  "skipping CV/CL generation (check the CANDIDATE_PROFILE_B64 secret).")
+        else:
+            print("\nHigh match! Generating tailored CV/CL...")
+            client = KimiClient()
+            generate_docs_for_job(client, profile, ev)
 
 
 if __name__ == "__main__":

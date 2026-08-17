@@ -218,6 +218,57 @@ def cl_pdf(profile, letter, title, company, location, path):
 
     pdf.output(path)
 
+def generate_docs_for_job(client, profile, ev: dict, gen_dir: str = "generated_docs") -> str | None:
+    """Generates (and, if configured, uploads to Drive) the CV/CL for a
+    single evaluation record. Shared by main() (daily batch, reads
+    job_evaluations_latest.json) and agents/add_job.py (single manual
+    evaluation) -- the two used to be on separate tracks entirely, so a
+    manually-added job scoring APPLY never got tailored materials no
+    matter how high it scored. Returns the output folder, or None on
+    failure/skip."""
+    score = ev.get("score") or 0  # ERROR evaluations carry score None
+    if score < THRESHOLD_APPLY:  # only APPLY jobs get tailored materials
+        return None
+
+    job = ev.get("job", ev)
+    title = job.get("title", "Job")
+    company = job.get("company", "Company")
+    location = job.get("location", "")
+    desc = job.get("description", "")
+
+    safe_name = re.sub(r"[^\w\-]", "_", f"{company}_{title}")[:60]
+    folder = os.path.join(gen_dir, safe_name)
+    ensure_dir(folder)
+
+    print(f"[doc_generator] Generating for {title} @ {company} (score {score})")
+
+    try:
+        summary = _generate_summary(client, profile, title, company, desc)
+        letter = _generate_cover_letter(client, profile, title, company, location, desc, score)
+    except Exception as e:
+        print(f"  [doc_generator] API error for {company} -- skipping ({type(e).__name__}: {str(e)[:120]})")
+        return None
+    time.sleep(1.5)
+
+    if FPDF_AVAILABLE:
+        cv_pdf(profile, job, summary, os.path.join(folder, f"CV_{safe_name}.pdf"))
+        cl_pdf(profile, letter, title, company, location, os.path.join(folder, f"CL_{safe_name}.pdf"))
+        save_json(os.path.join(folder, "ai_summary.json"), {"summary": summary, "letter": letter, "score": score})
+        print(f"  Saved to {folder}/")
+
+        # Upload to Google Drive
+        if GDRIVE_UPLOADER_AVAILABLE:
+            try:
+                upload_cv_cl(folder, company, title)
+            except Exception as e:
+                print(f"  [GDrive] Upload failed (continuing): {e}")
+    else:
+        save_json(os.path.join(folder, "ai_summary.json"), {"summary": summary, "letter": letter, "score": score})
+        print(f"  Saved JSON only (fpdf2 missing): {folder}/")
+
+    return folder
+
+
 def main():
     evals = load_json("digests/job_evaluations_latest.json")
     profile = load_json("config/candidate_profile.json")
@@ -232,44 +283,7 @@ def main():
         return
 
     for ev in evals:
-        score = ev.get("score") or 0  # ERROR evaluations carry score None
-        if score < THRESHOLD_APPLY:  # only APPLY jobs get tailored materials
-            continue
-        job = ev.get("job", ev)
-        title = job.get("title", "Job")
-        company = job.get("company", "Company")
-        location = job.get("location", "")
-        desc = job.get("description", "")
-
-        safe_name = re.sub(r"[^\w\-]", "_", f"{company}_{title}")[:60]
-        folder = os.path.join(gen_dir, safe_name)
-        ensure_dir(folder)
-
-        print(f"[doc_generator] Generating for {title} @ {company} (score {score})")
-
-        try:
-            summary = _generate_summary(client, profile, title, company, desc)
-            letter = _generate_cover_letter(client, profile, title, company, location, desc, score)
-        except Exception as e:
-            print(f"  [doc_generator] API error for {company} -- skipping ({type(e).__name__}: {str(e)[:120]})")
-            continue
-        time.sleep(1.5)
-
-        if FPDF_AVAILABLE:
-            cv_pdf(profile, job, summary, os.path.join(folder, f"CV_{safe_name}.pdf"))
-            cl_pdf(profile, letter, title, company, location, os.path.join(folder, f"CL_{safe_name}.pdf"))
-            save_json(os.path.join(folder, "ai_summary.json"), {"summary": summary, "letter": letter, "score": score})
-            print(f"  Saved to {folder}/")
-
-            # Upload to Google Drive
-            if GDRIVE_UPLOADER_AVAILABLE:
-                try:
-                    upload_cv_cl(folder, company, title)
-                except Exception as e:
-                    print(f"  [GDrive] Upload failed (continuing): {e}")
-        else:
-            save_json(os.path.join(folder, "ai_summary.json"), {"summary": summary, "letter": letter, "score": score})
-            print(f"  Saved JSON only (fpdf2 missing): {folder}/")
+        generate_docs_for_job(client, profile, ev, gen_dir)
 
 if __name__ == "__main__":
     main()
