@@ -11,7 +11,7 @@ from datetime import datetime, timezone, timedelta
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.utils import THRESHOLD_APPLY, THRESHOLD_REVIEW
+from src.utils import THRESHOLD_APPLY, THRESHOLD_REVIEW, has_hard_blocker
 from src.deduplicator import normalize, normalize_company
 
 # Paths
