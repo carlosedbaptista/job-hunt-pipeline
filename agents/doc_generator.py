@@ -12,16 +12,35 @@ KIMI_TIMEOUT = 30
 DOCS_MANIFEST = os.path.join("digests", "generated_docs_latest.json")
 
 def _generate_summary(client, profile, title, company, description):
+    role = profile.get("role", "")
     prompt = (
-        f"Candidate: {profile['name']} -- {profile.get('role', '')}.\n"
+        f"Candidate: {profile['name']} -- {role}.\n"
         + (f"Seeking: {profile['target_role']}\n" if profile.get("target_role") else "")
-        + f"Experience highlights:\n"
-        + "\n".join(f"- {exp.get('title', '')} @ {exp.get('company', '')}"
-                    for exp in profile.get("experience", []))
+        + (f"In his own words: {profile['summary']}\n" if profile.get("summary") else "")
+        # Bullets, not just job titles. Starved of material this produced
+        # keyword soup ("Skilled in Python, SQL, REST APIs") rather than a
+        # summary that knows anything -- the same failure that made the cover
+        # letter invent a mechanism it had not been given.
+        + "\nExperience:\n"
+        + "\n".join(
+            f"- {exp.get('title', '')} @ {exp.get('company', '')}"
+            + "".join(f"\n    * {b}" for b in (exp.get("bullets") or [])[:3])
+            for exp in profile.get("experience", [])[:3])
         + f"\n\nSkills: {', '.join(profile.get('skills', {}).get('technical_default', []))}\n\n"
-        f"Job: {title} at {company}.\nDescription: {description}\n\n"
-        "Write a concise professional Profile Summary (3-4 sentences, max 60 words) "
-        "connecting the candidate's key strengths to THIS specific job. Use only facts "
+        f"Job to tailor for: {title} at {company}.\n"
+        f"Description: {_clip(description, 1500)}\n\n"
+        "Write the Profile Summary that sits at the top of his CV: 3-4 sentences, "
+        "at most 70 words, showing why THIS job fits what he already does.\n\n"
+        f'HARD RULE: his job title is exactly "{role}", and it is printed directly '
+        "above this summary on the same page. Never restate it differently, never "
+        "drop a word from it, and never describe him as something else -- not as a "
+        '"Software Developer" for a software role, not as a "Data Engineer" for a '
+        "data role. A summary that renames him contradicts the line above it and "
+        "reads as a template nobody checked. Write about what he DOES and where he "
+        "is heading; if the role must be named, use that exact string.\n\n"
+        "Same voice as the rest of his documents: concrete rather than adjectival, "
+        'a named system or a number rather than "skilled in". No keyword lists, no '
+        "filler (passionate, proven track record, results-driven). Use only facts "
         "given above; invent nothing. Return ONLY the summary text."
     )
     r = client.chat(
