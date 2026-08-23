@@ -413,12 +413,25 @@ def generate_docs_for_job(client, profile, ev: dict, gen_dir: str = "generated_d
         save_json(os.path.join(folder, "ai_summary.json"), {"summary": summary, "letter": letter, "score": score})
         print(f"  Saved to {folder}/")
 
-        # Upload to Google Drive
+        drive_link = ""
+
+        # Upload to Google Drive. The returned folder link, when there is
+        # one, is what turns the digest's "attached to this e-mail" into a
+        # download link -- which is the shape the candidate asked for.
         if GDRIVE_UPLOADER_AVAILABLE:
             try:
-                upload_cv_cl(folder, company, title)
+                uploaded = upload_cv_cl(folder, company, title) or {}
+                drive_link = uploaded.get("folder_link", "")
             except Exception as e:
                 print(f"  [GDrive] Upload failed (continuing): {e}")
+
+        # Record the link where main() can find it when it builds the digest
+        # manifest. ai_summary.json already travels with the folder, and
+        # rewriting it is cheaper than threading a second return value
+        # through a function add_job.py also calls.
+        save_json(os.path.join(folder, "ai_summary.json"),
+                  {"summary": summary, "letter": letter, "score": score,
+                   "drive_link": drive_link})
 
         # Mail the PDFs to the candidate. Independent of Drive on purpose:
         # Drive is the one that has been silently failing, and a generated
@@ -464,11 +477,16 @@ def main():
         if not folder:
             continue
         job = ev.get("job", ev)
+        # A Drive link means the digest offers a download instead of
+        # attaching the PDFs. Empty (Drive unconfigured or failed) keeps the
+        # attachment path, so the documents reach him either way.
+        link = (load_json(os.path.join(folder, "ai_summary.json")) or {}).get("drive_link", "")
         manifest.append({
             "title": job.get("title", "Job"),
             "company": job.get("company", "Company"),
             "score": ev.get("score"),
             "folder": folder,
+            "link": link,
             "files": sorted(os.path.join(folder, f) for f in os.listdir(folder)
                             if f.lower().endswith(".pdf")),
         })
