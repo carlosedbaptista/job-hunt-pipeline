@@ -71,7 +71,21 @@ def _generate_cover_letter(client, profile, title, company, location, descriptio
     target = profile.get("target_role", "")
     summary = profile.get("summary", "")
     projects = profile.get("projects", [])
-    project_line = "; ".join(pr.get("title", "") for pr in projects[:2])
+    # The BULLETS, not just the titles. The prompt asks for a concrete example
+    # of how he works, ideally one where he audited himself, and used to hand
+    # over nothing but a project NAME to build it from. The model duly invented
+    # the details: "a guardrail firing too late in the sequence", "rebuilt the
+    # threshold layer", "re-ran the validation set". None of that happened, and
+    # all of it went into a letter he would have to defend in an interview.
+    # Forbidding invention cannot work while the facts are withheld, and the
+    # true story is right here in the profile: an ad buried its "fluent German
+    # required" clause past the excerpt window and scored 96/100. That is
+    # better than anything the model made up.
+    project_line = "\n".join(
+        f"- {pr.get('title', '')}"
+        + "".join(f"\n    * {b}" for b in (pr.get("bullets") or []))
+        for pr in projects[:2]
+    )
     relocation = profile.get("relocation_date", "")
 
     # Optional voice reference: config/cover_letter_model.txt, restored in CI
@@ -89,7 +103,9 @@ def _generate_cover_letter(client, profile, title, company, location, descriptio
         + "\n".join(f"- {e.get('title', '')} @ {e.get('company', '')}"
                     for e in profile.get("experience", []))
         + f"\n\nSkills: {', '.join(profile.get('skills', {}).get('technical_default', []))}\n"
-        + (f"Projects: {project_line}\n" if project_line else "")
+        + (f"Projects (use THESE facts for any project example, and never invent "
+           f"a mechanism, bug or fix that is not written here):\n{project_line}\n"
+           if project_line else "")
         + (f"Languages: {languages}\n" if languages else "")
         + (f"Relocated to Switzerland: {relocation}\n" if relocation else "")
         + f"\nJob to apply: {title} at {company} ({location or 'Switzerland'})\n"
