@@ -1,78 +1,603 @@
 [
   {
-    "score": 62,
+    "score": 45,
     "hard_blockers": [],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description was truncated; requirements/qualifications section not visible—significant uncertainty about actual role expectations",
-      "Role appears to be in physical robotics/ML autonomy, not LLM-based agentic systems or data platforms—substantial mismatch with candidate's stated direction",
-      "Likely requires robotics-specific knowledge (computer vision, SLAM, control theory, simulation) not evident in candidate's profile",
-      "No indication of LLM or generative AI work in the visible description",
-      "Construction/robotics domain is far from candidate's current DACH digital agency context",
-      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+      "Role shape is fundamentally misaligned: support analytics vs. building/ownership",
+      "No technical path to agentic systems or platform engineering from this position",
+      "Likely repetitive reporting work that doesn't leverage his LLM/automation specialization",
+      "Unknown location — if outside Zurich/Zug commute area, logistics unclear",
+      "Unknown company size — could be large corp with siloed intern roles",
+      "Low confidence: posting text under 200 chars -- score is title-based"
     ],
     "job": {
-      "company": "Gravis Robotics",
-      "title": "Machine Learning Intern, Autonomy",
-      "location": "Zürich",
-      "url": "https://www.adzuna.ch/land/ad/5846790294",
-      "portal": "adzuna",
-      "description": "Gravis Robotics is a startup that turns heavy construction machines into intelligent and autonomous robots. Our unique combination of learning-based automation and augmented remote control lets one operator safely conduct a fleet of machines in a gamified environment—from anywhere in the world. Our team has over a decade of academic experience honing the cutting edge of large-scale robotics, and is rapidly growing to bring that expertise into a trillion-dollar industry through active deployment…"
+      "company": "Unknown",
+      "title": "Data Analyst Internship (f/m/x) 80–100%, 6–12 Months",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=4417deb81a738a39&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QCJJcUenmqj3Q2prRna-ygbihYTTbdsqIT0JyTJxSolu4&rd=Ahaf72ZDihptgqsdvrpp6ZXef5NkBUPQ3HkIyXCDpdM&tk=1k0ni48mkh0ep800&alid=6a09beeefbc7370ae83f277c&bb=3mFv7piAJdnGvdp_bdElTE6Osfc1KXaapcN8o0CM5bG3fxv66f7T9QVos41ER1aFlBG3_Q4BHUofeCdOI0uPjAoTtDkBIoph7sSLDI-IRa4wTjZwi-33UwPj3acEXRwvfeaCu4jRQ4f4Nrxhy4JdyA%3D%3D&tmtk=1k0ni48mkh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": ""
     },
-    "technical_fit": "Partial. The role is in ML/robotics autonomy, which is adjacent to but not aligned with the candidate's core focus on LLM-powered agentic systems and data platform engineering. His skills in Python, automation pipelines, and cloud infrastructure are transferable, but the role likely emphasizes computer vision, robotics, control systems, and embedded ML rather than LLM APIs, multi-step reasoning pipelines, or data platform work.",
-    "contextual_fit": "Weak. The candidate's stated motivation centers on 'agentic systems and data platform engineering' with LLM-powered pipelines and end-to-end ownership. Gravis builds physical robotics autonomy for construction—very different domain, different technology stack, different problem space. The 'agentic' angle here is about robotic autonomy, not LLM agents.",
+    "technical_fit": "Poor. Role is classic BI/data analyst (dashboards, reporting, SQL, stakeholder communication) with no mention of LLMs, automation pipelines, agentic systems, or platform engineering. Candidate's core strengths (LLM APIs, multi-step automation, CI/CD, Docker, cloud infra) are largely irrelevant here. SQL/pandas overlap exists but this is support/analytics work, not building/shipping owned systems.",
+    "contextual_fit": "Weak. Candidate explicitly seeks 'ownership from day one' and 'zero to production' building. This role emphasizes 'supporting business decisions,' 'communicating insights to stakeholders,' and standard reporting cycles — exactly the support-shaped work he wants to escape. Six-month minimum with possible extension suggests embedded reporting function, not greenfield project.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown. Startup environment with academic roots suggests fast-paced, research-intensive culture. The gamified fleet-control aspect hints at interesting UX challenges, but no clear signal on ownership culture or intern autonomy.",
+    "culture_fit": "Neutral-to-poor. No culture signals in description; 'f/m/x' suggests standard D/E&I statement. No indication of engineering-first culture or autonomy.",
     "concerns": [
-      "Job description was truncated; requirements/qualifications section not visible—significant uncertainty about actual role expectations",
-      "Role appears to be in physical robotics/ML autonomy, not LLM-based agentic systems or data platforms—substantial mismatch with candidate's stated direction",
-      "Likely requires robotics-specific knowledge (computer vision, SLAM, control theory, simulation) not evident in candidate's profile",
-      "No indication of LLM or generative AI work in the visible description",
-      "Construction/robotics domain is far from candidate's current DACH digital agency context"
+      "Role shape is fundamentally misaligned: support analytics vs. building/ownership",
+      "No technical path to agentic systems or platform engineering from this position",
+      "Likely repetitive reporting work that doesn't leverage his LLM/automation specialization",
+      "Unknown location — if outside Zurich/Zug commute area, logistics unclear",
+      "Unknown company size — could be large corp with siloed intern roles"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": []
   },
   {
-    "score": 52,
+    "score": 45,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Job description was TRUNCATED — requirements, qualifications, and full responsibilities were not visible; score kept conservative due to missing information.",
+      "Role appears to be pure strategy consulting with no visible technical implementation or AI/automation engineering; high risk of being PowerPoint/client-facing work rather than building.",
+      "Big-4 consulting internships typically allocate junior resources to supporting senior staff, directly conflicting with candidate's stated desire for real ownership from day one.",
+      "No evidence of LLM, agentic systems, data platform engineering, or Python-based pipeline work in visible description.",
+      "German may be implicitly expected for DACH-market client work at EY Zurich, though not stated in visible text.",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "EY",
+      "title": "Intern - Consulting - Technology Strategy and Transformation",
+      "location": "Zürich",
+      "url": "https://ch.indeed.com/pagead/clk/dl?mo=r&ad=-6NYlbfkN0Bj-xBWVmzs7UIwFa-9Zm6MwNuQFkwLehssDYDaWnvIcecxoaL3XebdC_fjZgbe9ZvrTg5FLaUC-86U-96OjyY5gezvt5zV2q6r9Z7HjDKxIcp_zBbcg0U2zOSLs3eWd4s_TxaNSwJZ_CgPog_WGA4G-8ogMjqoqfG6ZkzN6K7dzBIVxErTozBjoWhmAEOWxKfZkbky6abyAh3ixiFyhYGmqqnWAshlRtD7r6GAUlHKClLVap7CbcgbPRG05qjyQi1mOT88CYaahleMzM-Yy_VfAtOKfTDl30KgSEXN32LU6hkvIwjw3yOQsMx5RpECSzVR2hgbWhY5sWwwMULgBcwg7j_L3loByjCyelMU4xJ7xktLk7vGv-CWdmjQJ2RzesfkGPYayJ4mRdyvduiQaiMgqMMlaQ93PnHSH8Mo49jSnRj16ED6NOVYujqhnYlKxBJOSQNrFtmUbqA9B1uXngaPafvxm2o3lWRfUSzzQaxdR6csp4nNlX6RRT_trSrEFgEKK7PZZ7FYZY4BHSpRO8p1iiziXzbrgncW8LW0fkI9N8y-8n06PmnIPk-QCKscnhKGhz5snIpLKNdA0o0H4rfxEbjbmdwzkpUi7ISFDXsjfoYNweyNJXAHCTw0pD1VgVM8d-WIbyJHjdXIs942agUIOjKuSnXTqtNJ8t-uqddFFSBKkwAEML0JWfXJr_q2Jeq7FaQyoXZ74hjFk1FsK28OYNmLd9wjLDwRdir36nwcRxZ6VRZTRmPdDLdaaN1CuBtgCt_JmudgdwqwwVvG_unHaqD00faHW0O_o41TiPNodLGPDA4wUDjTUtZsoRaYm-9TDbfTxnQCE6NASDJDo47XWGpgfsN7R6kqmT_B9-3Dk8kVmtnZol0oV5zf6004QXsLsqFtJJ7Hig%3D%3D&rm=2&xkcb=SoAJ6_M2fXscFbT0QZ0GbzkdCdPP&jsa=3708&camk=C3EPSzFlQw8Myc_LN_3Ndw%3D%3D&tmtk=1k0ni48mkh0ep800&gdfvj=1&plid=indeed-jobalert&alid=6a09beeefbc7370ae83f277c&fvj=1&g1tAS=true",
+      "portal": "jobalert.indeed.com",
+      "description": "At EY, we're all in to shape your future with confidence. We'll help you succeed in a globally connected powerhouse of diverse teams and take your career wherever you want it to go. Join EY and help to build a better working world. The opportunity: your next adventure awaits As part of our high-performing Technology Strategy & Transformation Team, you will deliver exceptional client service - consulting clients on technology strategies, providing advice on how technology enablement, digital tra…"
+    },
+    "technical_fit": "Weak. The visible description emphasizes traditional technology strategy consulting (client advisory on technology enablement, digital transformation) rather than hands-on building of LLM-powered pipelines or agentic systems. No mention of Python, data engineering, automation pipelines, or AI platform development. This appears to be a classic Big-4 consulting role focused on advisory and client service delivery, not the zero-to-production engineering ownership the candidate seeks.",
+    "contextual_fit": "Poor. EY's Technology Strategy & Transformation practice operates at the strategy/advisory layer, not the implementation/engineering layer where the candidate wants to build. The 'exceptional client service' framing and 'consulting clients on technology strategies' language signals PowerPoint-heavy, stakeholder-facing work rather than shipping production systems. The candidate explicitly wants to avoid 'support work' and own technical delivery end-to-end; this role appears to be the opposite—advising others on what technology to use.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Mixed. EY's scale and structured internship program offers brand recognition and methodology, but the 'globally connected powerhouse' and 'diverse teams' language suggests bureaucratic, process-heavy environment. The candidate's self-directed, audit-your-own-output, ship-it-yourself ethos clashes with hierarchical consulting delivery models where junior interns typically support senior consultants rather than own technical outcomes.",
+    "concerns": [
+      "Job description was TRUNCATED — requirements, qualifications, and full responsibilities were not visible; score kept conservative due to missing information.",
+      "Role appears to be pure strategy consulting with no visible technical implementation or AI/automation engineering; high risk of being PowerPoint/client-facing work rather than building.",
+      "Big-4 consulting internships typically allocate junior resources to supporting senior staff, directly conflicting with candidate's stated desire for real ownership from day one.",
+      "No evidence of LLM, agentic systems, data platform engineering, or Python-based pipeline work in visible description.",
+      "German may be implicitly expected for DACH-market client work at EY Zurich, though not stated in visible text."
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 0,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Role is completely non-technical — no engineering, no data work, no LLM/automation component whatsoever",
+      "12-month fixed-term contract in HR/recruiting is a career detour, not a step toward agentic systems/data platform engineering",
+      "No company information available to assess any hidden technical angle",
+      "Even if the company is tech-focused, this role would place the candidate in a support function rather than a builder role",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "Unknown",
+      "title": "Emerging Talent Specialist (12-month Fixed Term Contract)",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=24407c47fee38005&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QCJJcUenmqj3Q2prRna-ygbihYTTbdsqIT0JyTJxSolu4&rd=cv__WBhDSvE4qmpjGmxYvJXef5NkBUPQ3HkIyXCDpdM&tk=1k0ni48mkh0ep800&alid=6a09beeefbc7370ae83f277c&bb=3mFv7piAJdnGvdp_bdElTE6Osfc1KXaaWWe8mVYdOBFAvNc0YG0YLmyYh71RKQR_P7ROE8YQDPB87GrX9mkrNchAuMCASrtk1fe9zKY5WMcOU2RuDuxIXNBNsJqMoyvZiYaQX9ZAYx7zyp539ggPpw%3D%3D&tmtk=1k0ni48mkh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "None. This is an HR/talent acquisition role ('Emerging Talent Specialist') focused on recruiting and employer branding, not a technical engineering position. Zero overlap with the candidate's skills in Python, LLM APIs, data pipelines, automation, or cloud infrastructure.",
+    "contextual_fit": "None. The candidate is seeking hands-on builder roles in agentic systems and data platform engineering with ownership from day one. This is a corporate HR function with no technical building component.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Unknown — no company identified, but the role type itself is fundamentally misaligned with candidate's stated motivation of 'taking something from zero to production and owning it'.",
+    "concerns": [
+      "Role is completely non-technical — no engineering, no data work, no LLM/automation component whatsoever",
+      "12-month fixed-term contract in HR/recruiting is a career detour, not a step toward agentic systems/data platform engineering",
+      "No company information available to assess any hidden technical angle",
+      "Even if the company is tech-focused, this role would place the candidate in a support function rather than a builder role"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 68,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Job description was TRUNCATED — requirements/qualifications section entirely missing; cannot assess actual technical scope, seniority expectations, or whether LLM/agentic work is involved",
+      "Large established platform (80M visits, 25+ years) makes 'real ownership from day one' unlikely for an intern",
+      "Domain is price comparison/classifieds — no connection to agentic systems or LLM pipelines in visible description",
+      "German market focus (DACH comparisons) may involve German content, though no hard language requirement visible",
+      "Candidate's core motivation (agentic systems, LLM pipelines, end-to-end ownership) not visibly matched by this role's description",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "comparis Gruppe",
+      "title": "Machine Learning / AI Internship (f/m/x) 80–100%, 6–12 Months",
+      "location": "Zürich",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=7bc66d5beec1e6c2&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QCJJcUenmqj3Q2prRna-ygbihYTTbdsqIT0JyTJxSolu4&rd=Ahaf72ZDihptgqsdvrpp6ZXef5NkBUPQ3HkIyXCDpdM&tk=1k0ni48mkh0ep800&alid=6a09beeefbc7370ae83f277c&bb=YSX1unHzsBNYbyzfTdB7ilB4JMxzKSGnuSNVNoWByCAhX39gtgSvjS42pyuyCsilBVWgnZqjBRHaKr1ukPIFDkdXSofO_u-6_Oau46cOGgsc4hn-MwT9clnOYKxZBNntmeb9Dwu_D-3pp_ZuEK-LJw%3D%3D&tmtk=1k0ni48mkh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": "About us comparis.ch is the leading comparison platform in Switzerland. We have been comparing the prices and products of health insurers, other insurance companies, telecom providers and banks for over 25 years and offer the largest Swiss online marketplace for cars and property. Our comprehensive comparisons ensure transparency for our users and help them make the right decisions. With over 80 million visits each year, we rank among the most widely used websites in Switzerland. Four out of fi…"
+    },
+    "technical_fit": "Moderate. The role is ML/AI at a comparison platform, which likely involves data pipelines and model deployment, but the visible description mentions none of the candidate's core interests: LLMs, agentic systems, automation ownership, or end-to-end building. 'ML/AI Internship' at a mature comparison site typically leans toward recommendation systems, pricing models, or classic ML — not the greenfield agentic/LLM work he seeks.",
+    "contextual_fit": "Weak-moderate. Large established platform (80M visits, 25 years), not a startup or greenfield environment. Candidate explicitly wants 'ownership from day one' and 'zero to production' building; comparis is a scaled operation where interns typically support existing systems. No signal of agentic systems or LLM-powered pipelines in visible text.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Unclear. Large corporate platform with regulatory comparisons (health insurance, banking) suggests process-heavy environment. No evidence of the hands-on, ship-it-fast culture candidate prioritizes.",
+    "concerns": [
+      "Job description was TRUNCATED — requirements/qualifications section entirely missing; cannot assess actual technical scope, seniority expectations, or whether LLM/agentic work is involved",
+      "Large established platform (80M visits, 25+ years) makes 'real ownership from day one' unlikely for an intern",
+      "Domain is price comparison/classifieds — no connection to agentic systems or LLM pipelines in visible description",
+      "German market focus (DACH comparisons) may involve German content, though no hard language requirement visible",
+      "Candidate's core motivation (agentic systems, LLM pipelines, end-to-end ownership) not visibly matched by this role's description"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 15,
     "hard_blockers": [
-      "German: role description is entirely in German, uses formal Swiss workplace terminology ('Gestalte...aktiv mit', 'Deine Hauptaufgaben'), and operates within a German-speaking public hospital context. While not explicitly stating 'fluent German required', a university hospital serving the Zürich population with German-language platform operations effectively mandates professional German. His A2 German is insufficient for this operational context."
+      "German language requirement likely mandatory for client-facing Swiss tax role; Transfer Pricing in Zurich at Big 4 typically requires fluent German (C1+) for financial services clients and regulatory work, though not visible in truncated description. Additionally, role is fundamentally non-technical and non-AI, making it a complete career misalignment."
     ],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: German: role description is entirely in German, uses formal Swiss workplace terminology ('Gestalte...aktiv mit', 'Deine Hauptaufgaben'), and operates within a German-speaking public hospital context. While not explicitly stating 'fluent German required', a university hospital serving the Zürich population with German-language platform operations effectively mandates professional German. His A2 German is insufficient for this operational context.",
-      "Requirements section truncated — cannot assess actual qualifications, experience level, or specific tech stack match",
-      "Role shape appears to be platform operations/support for other engineers, not end-to-end ownership with LLM/agentic work",
-      "Healthcare domain with no prior domain experience (though he is open to new domains, this adds friction)",
-      "German-language workplace context with A2 German — even if not a formal hard requirement, daily operational effectiveness is doubtful",
-      "December 2026 start date vs. his immediate availability; long timeline mismatch",
-      "No visible evidence of AI/LLM/agentic systems in the role description",
+      "Blocker: German language requirement likely mandatory for client-facing Swiss tax role; Transfer Pricing in Zurich at Big 4 typically requires fluent German (C1+) for financial services clients and regulatory work, though not visible in truncated description. Additionally, role is fundamentally non-technical and non-AI, making it a complete career misalignment.",
+      "Job description truncated -- requirements section not visible, so assessment is conservative and based on title/visible text only.",
+      "Role is in Tax/Transfer Pricing, not technology; no indication of AI, automation, or data engineering components.",
+      "Financial Services specialization suggests need for domain knowledge (banking/insurance regulations) that candidate lacks.",
+      "Big 4 graduate programs typically have structured rotations with limited early ownership -- contradicts candidate's 'own it from day one' motivation.",
+      "German likely essential for this client-facing role in Zurich tax practice, though not explicitly confirmed in visible text.",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
-      "company": "Job-Room",
-      "title": "Data Platform Engineer 80-100%",
-      "location": "Dübendorf, Uster",
-      "url": "https://www.adzuna.ch/details/5848099690",
-      "portal": "adzuna",
-      "description": "per Dezember 2026 oder nach Vereinbarung Gestalte die Daten- und Integrationsplattformen des Universitätsspitals Zürich aktiv mit und schaffe die technologische Grundlage für das digitale Spital der Zukunft. Im Data & Integration Platform Team entwickelst und betreibst du die Data Platform of Platforms (DPoP) sowie die Integration Platform und stellst deren sicheren, stabilen und skalierbaren Betrieb für Data- und API-Engineers sicher. Deine Hauptaufgaben * Aufbau, Betrieb und kontinuierliche W…"
+      "company": "EY",
+      "title": "Intern Tax Financial Services - Transfer Pricing Zürich (Graduate)",
+      "location": "Zürich",
+      "url": "https://ch.indeed.com/pagead/clk/dl?mo=r&ad=-6NYlbfkN0Bj-xBWVmzs7UIwFa-9Zm6MwNuQFkwLehssDYDaWnvIcecxoaL3XebdC_fjZgbe9Zs4WajcLJJdktD-2Xf9P92LmWgagqayc1lRqT5QD89Gw2SIKtSc0IvykpPKj16f4p2W5OAz16cJuxFyRgAwNYortwYjwCYXOVAD7dd1KHuKllrdYZsn4my8-9X6NM5sMrxF-2SqXa6t8CIAqAdJmj1iJeEtJox__zVDcEsojROLZqvPc9MBV6GMFzeQ1wrDx609BLgSi9eeOys6UzPGHccMPVKRLz17cVmaGj_tvDqkHzGVa7yszP2OAZZMyU--qmCLSNXSTn6Ry1CM_NTCPzT8iRQK24QOa4sEso7v0VeBFCFv6MByGrl2hPHR6ENm426L4sl56eTEjPwUUqTx65zmLirOxsw-DB3FRNfVuPT1rGzruJF-GxIFbKnoyZA5ccuBV29ygAcSjGt5SVn26BPz7TmADsOGDMG6jH6B6pkMRJtAODHYGBL0PsBNs-LONdh1hv88SQiwbLMDiMx7gM8TGxcCwGI-5WWXxJDhgbtywf4R4cLXwIohPZ5G1s5oR1u0qpmJmkUZyNeU94Q66vKL74WqS3IXH88-qqNsJXyHcVlOXGKDyrtdaUHPdkEZuby-Puu4wTYXAY96NHvxrcai7_0PuP2dVjZ_HeEOHMLGourCeep9GIFDUYCb1aUWT4Za8IrP7IDzanaFP5sAyGyOxnO6jdpwAEB7X2TiqwxGXvAs1drzSAVPaOlhzVzDwZyB2-qk-8NkC7wKLL1EFTi3kDyHeuxm9aj5mfdtf6GBzcGamke769_AYvMyecPBMDDV2us64nqF8JPhyxHmKPGOIzr3Pl-oDMH1u2fMug6R4KhWgHGRxiOa27Hulvx0yoY-IL3EvWLpHma7sgdarHxP0vOyKA9gx8U%3D&rm=2&xkcb=SoDQ6_M2fXscFbz0QZ0mbzkdCdPP&jsa=3709&camk=C3EPSzFlQw8Myc_LN_3Ndw%3D%3D&tmtk=1k0ni48mkh0ep800&gdfvj=1&plid=indeed-jobalert&alid=6a09beeefbc7370ae83f277c&fvj=1&g1tAS=true",
+      "portal": "jobalert.indeed.com",
+      "description": "At EY, we're all in to shape your future with confidence. We'll help you succeed in a globally connected powerhouse of diverse teams and take your career wherever you want it to go. Join EY and help to build a better working world. The opportunity: your next adventure awaits Kick-start a purposeful career and become part of our unique Transfer Pricing Team to tackle exciting daily challenges! As the only one of the Big 4 with a specialist cross-border practice dedicated to the Financial Service…"
     },
-    "technical_fit": "Partial. The role involves data platform engineering (infrastructure, integration, API operations) which aligns with his cloud/Docker/CI-CD experience, but the visible description emphasizes 'betreibst' (operating/running) existing platforms for other engineers rather than greenfield building and ownership. No mention of LLMs, agentic systems, or AI pipelines. His core excitement drivers (zero-to-production, LLM-powered automation) are not visible.",
-    "contextual_fit": "Weak. Healthcare/university hospital setting with German-language operations; 'digitale Spital der Zukunft' framing suggests institutional, regulated environment rather than fast-moving product ownership. The 'Platform of Platforms' model implies serving internal engineers, not end-to-end delivery with personal ownership. December 2026 start is far out; his 2-week notice suggests immediate availability mismatch.",
+    "technical_fit": "Very poor. Role is in Tax/Transfer Pricing within Financial Services -- a pure finance/consulting domain with no technical engineering, no LLMs, no automation pipelines, no data platform work. Candidate's entire profile is software/AI engineering; this role requires tax law, accounting, and financial services regulatory knowledge.",
+    "contextual_fit": "Poor. Despite being in Zürich and at a graduate/intern level, the role shape is diametrically opposed to what the candidate seeks: he wants to build production AI systems with ownership from day one, not advise on cross-border tax strategies for banks/insurers. His law background is irrelevant here -- this is corporate tax law, not litigation or judicial work.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unclear but concerning. University hospital context suggests hierarchical, process-heavy, compliance-driven culture. 'Sicheren, stabilen und skalierbaren Betrieb' emphasizes stability over experimentation. Contrasts with his stated preference for shipping fast, auditing own output, and iterating.",
+    "culture_fit": "Unknown from truncated description, but Big 4 consulting culture (client service, billable hours, hierarchical teams) mismatches his stated preference for hands-on builder ownership and zero-to-production autonomy.",
     "concerns": [
-      "Requirements section truncated — cannot assess actual qualifications, experience level, or specific tech stack match",
-      "Role shape appears to be platform operations/support for other engineers, not end-to-end ownership with LLM/agentic work",
-      "Healthcare domain with no prior domain experience (though he is open to new domains, this adds friction)",
-      "German-language workplace context with A2 German — even if not a formal hard requirement, daily operational effectiveness is doubtful",
-      "December 2026 start date vs. his immediate availability; long timeline mismatch",
-      "No visible evidence of AI/LLM/agentic systems in the role description"
+      "Job description truncated -- requirements section not visible, so assessment is conservative and based on title/visible text only.",
+      "Role is in Tax/Transfer Pricing, not technology; no indication of AI, automation, or data engineering components.",
+      "Financial Services specialization suggests need for domain knowledge (banking/insurance regulations) that candidate lacks.",
+      "Big 4 graduate programs typically have structured rotations with limited early ownership -- contradicts candidate's 'own it from day one' motivation.",
+      "German likely essential for this client-facing role in Zurich tax practice, though not explicitly confirmed in visible text."
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 0,
+    "hard_blockers": [
+      "Role title 'Senior Software Engineer' indicates senior-level position; candidate is seeking internship/junior role with 2-week notice and ~1 year experience. Level mismatch is a hard eligibility blocker regardless of other unknowns."
+    ],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Blocker: Role title 'Senior Software Engineer' indicates senior-level position; candidate is seeking internship/junior role with 2-week notice and ~1 year experience. Level mismatch is a hard eligibility blocker regardless of other unknowns.",
+      "Title explicitly states 'Senior' — this is fundamentally misaligned with candidate's stated goal of 'internship or junior role' and his current intern title; even if other details were available, this alone would disqualify.",
+      "Zero information extracted from job posting — cannot evaluate any actual fit dimensions.",
+      "Unknown location prevents assessment of Zurich/Zug/remote-CH criterion.",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "Unknown",
+      "title": "Senior Software Engineer (a) 80–100%",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=29acf3e0836e70b2&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QCJJcUenmqj3Q2prRna-ygbihYTTbdsqIT0JyTJxSolu4&rd=cv__WBhDSvE4qmpjGmxYvJXef5NkBUPQ3HkIyXCDpdM&tk=1k0ni48mkh0ep800&alid=6a09beeefbc7370ae83f277c&bb=YSX1unHzsBNYbyzfTdB7ilB4JMxzKSGnX-CGU4fXG4RvPznj3lPH7955CmTQe6xfcruavlWptInKr9KTaoeFwr8gcemfqQ1sCdrUx6IMJ93FKTb1o9zRYIS9AUzjIR6DYoIEVznR_ESZW_2FvkpIVg%3D%3D&tmtk=1k0ni48mkh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "Cannot assess — no job description, requirements, or tech stack provided. URL is obfuscated tracking link with no visible role details.",
+    "contextual_fit": "Cannot assess — no information about company, team, responsibilities, or working model.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Cannot assess — no data.",
+    "concerns": [
+      "Title explicitly states 'Senior' — this is fundamentally misaligned with candidate's stated goal of 'internship or junior role' and his current intern title; even if other details were available, this alone would disqualify.",
+      "Zero information extracted from job posting — cannot evaluate any actual fit dimensions.",
+      "Unknown location prevents assessment of Zurich/Zug/remote-CH criterion."
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 35,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Job description was truncated — requirements/qualifications section not visible; score kept conservative",
+      "Role is in M&A advisory/finance, not technical engineering or AI/automation — complete mismatch with candidate's stated direction and skills",
+      "No evidence of LLM, agentic systems, data platform engineering, or any hands-on technical building work",
+      "Candidate's core motivation (ownership of technical systems from zero to production) would not be met in this role shape",
+      "Large professional services firm culture likely conflicts with preference for small-team, high-ownership environments",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "EY",
+      "title": "Intern - EY-Parthenon - M&A Lead Advisory (graduate)",
+      "location": "Zürich",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=ccf4281bcdf1a7f5&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QCJJcUenmqj3Q2prRna-ygbihYTTbdsqIT0JyTJxSolu4&rd=cv__WBhDSvE4qmpjGmxYvJXef5NkBUPQ3HkIyXCDpdM&tk=1k0ni48mkh0ep800&alid=6a09beeefbc7370ae83f277c&bb=YSX1unHzsBNYbyzfTdB7ilB4JMxzKSGnODuxmDAtZjbdh1s6eMItuim0SNyILbXdwcDu_JdwTVU3gTmQq6rAcYQ0_ovVZTQzXW2BaawPO2sqi0R24CVLAok0fxVuVz-2Dz_AkDZYu193u48QwqyUFw%3D%3D&tmtk=1k0ni48mkh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": "At EY, we're all in to shape your future with confidence. We'll help you succeed in a globally connected powerhouse of diverse teams and take your career wherever you want it to go. Join EY and help to build a better working world. The opportunity: your next adventure awaits EY's Transactions Corporate Finance (TCF) department is a unique nexus between the corporate finance and the M&A transactions landscape, with a focus on Transaction Diligence, Valuation, Modeling & Economics and mid-size M&…"
+    },
+    "technical_fit": "Very poor. The role is in M&A Lead Advisory (Corporate Finance/Transaction Diligence, Valuation, Modeling & Economics), not engineering or AI/automation. This is pure finance/consulting work with no technical building, no LLMs, no pipelines, no infrastructure, no code.",
+    "contextual_fit": "Poor. While the candidate is a deliberate career changer open to new domains, this is not a technical role where he could apply or grow his software engineering, LLM, or data platform skills. His legal background is somewhat adjacent to advisory work, but the role shape (analytical/financial advisory, not builder/owner of technical systems) is fundamentally misaligned with what motivates him.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Neutral to poor. EY is a large professional services firm with structured hierarchies; the candidate explicitly seeks environments with 'real ownership from day one rather than support work' and 'zero to production' building. Big-4 advisory internships are typically highly structured with limited early ownership.",
+    "concerns": [
+      "Job description was truncated — requirements/qualifications section not visible; score kept conservative",
+      "Role is in M&A advisory/finance, not technical engineering or AI/automation — complete mismatch with candidate's stated direction and skills",
+      "No evidence of LLM, agentic systems, data platform engineering, or any hands-on technical building work",
+      "Candidate's core motivation (ownership of technical systems from zero to production) would not be met in this role shape",
+      "Large professional services firm culture likely conflicts with preference for small-team, high-ownership environments"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 0,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Title alone ('Head of Operations / Deputy Branch Manager') indicates senior management track, not junior/intern builder role",
+      "Zero mention of LLMs, automation, data pipelines, or technical infrastructure",
+      "Candidate would be managing operations rather than shipping code — direct contradiction of stated motivation",
+      "No location or company details available to assess logistics",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "Unknown",
+      "title": "Head of Operations / Deputy Branch Manager (100%)",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/pagead/clk/dl?mo=r&ad=-6NYlbfkN0AXUjI8Ct5e4IJHAbd7SdJcK4nF3jZYg9WU7deZho1SnLhxpw0JYdX3y75L-W7bmppa9BOiwNOfBxN-nC0O9i2EN7Ln0CxbTquyQEx2fMpGyo7g3bV2cJHZWuRY5vjTfwC6GKdwlvSarKK7ojQUlDcdePR4wwzfiBEMJdN7JXUpJ9D5JEhFPjVNqIV9ei6Af2nDtUaYhyd3vAbuIkPzPUQGO2b6yQ4FZmQiW2OGr-PxYDZ2dYGG54G4iXhW1nORPAKe55pD5Iadhy4FAs-P0Q3EbzgeYjwxohC8p7ikphAM7K9k0dcUcyjSuCsDZ2m_pNqMl8QYplYLWdxChsuNlEka52VNPFsYmDx4L4BBcuJa6MTAyjmdq4Gewh8JXlBm4LgYx_GGhM2XRqSbON-Tg_lXoSvCj_cSPI8bebMHrYz_NfpvwZACrrYXPPUEexk7gTeA6_DCZjpuIhWzvXF8mPmlSxX_KeGrHiy7bTjIi1meM4NnUp7UHG8pOsUajOoTqDUUTuoYmZSl7xxujQmjPGxve_x_bm-2MB5XbwvZ39tWzQ0XEL-15tT_QtlhsnK5SWc6ArxhX4SPKc-voE7ASFEDGDnvMKuRsn4oo60xtocOlydKeS6WpR_s3JNfzrk9q8v0cph49gD9s78rzuxE4S2rln7v_V6wpqIKW5wo69Z33p0Z_MpwFjxL9Nn9mgdG1-RddmjV0ZXo-JL7ZRE-2431RXp1GoENCsVK14K-ZqFoDvBvxxcItcVSShQNQBdVegf9NqsrAD9jrdHi5l33deQ1&rm=2&xkcb=SoAC6_M2fXscFaT0QZ0LbzkdCdPP&jsa=3710&camk=C3EPSzFlQw8-HTwOc4O-bQ%3D%3D&tmtk=1k0ni48mkh0ep800&gdfvj=1&plid=indeed-jobalert&alid=6a09beeefbc7370ae83f277c&fvj=1&g1tAS=true",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "None. Role is pure operations/management with zero technical overlap to candidate's AI/automation engineering skills.",
+    "contextual_fit": "None. Deputy branch manager in operations is diametrically opposed to candidate's stated goal of hands-on builder role with ownership in agentic systems and data platform engineering.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Unknown, but role shape (management hierarchy, operations oversight) fundamentally mismatches candidate's desire for zero-to-production building work.",
+    "concerns": [
+      "Title alone ('Head of Operations / Deputy Branch Manager') indicates senior management track, not junior/intern builder role",
+      "Zero mention of LLMs, automation, data pipelines, or technical infrastructure",
+      "Candidate would be managing operations rather than shipping code — direct contradiction of stated motivation",
+      "No location or company details available to assess logistics"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 35,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Job description is truncated — requirements/qualifications section not visible, making assessment conservative",
+      "Role is fundamentally misaligned: GIS project management/administration vs. candidate's focus on agentic AI systems and data platform engineering",
+      "No evidence of technical building work; 'Project Manager' and 'Administration & Facilities' job category suggest coordination/planning rather than hands-on development",
+      "Candidate would likely be bored and underutilized; zero growth toward stated goals",
+      "Even if full description revealed some technical elements, the core role shape (project manager, not builder) is wrong",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Hitachi, Ltd.",
+      "title": "Internship Junior Project Manager GIS 80 - 100% (f/m/d)",
+      "location": "Zürich",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=2dc40d59cb1f4977&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QCJJcUenmqj3Q2prRna-ygbihYTTbdsqIT0JyTJxSolu4&rd=cv__WBhDSvE4qmpjGmxYvJXef5NkBUPQ3HkIyXCDpdM&tk=1k0ni48mkh0ep800&alid=6a09beeefbc7370ae83f277c&bb=ChchiRLy2OEKuVSaF_wvBwtRg0ZR7WknxwlNq5iVWgS2kptE5varmoq2HKs8Sd10gkOLOZ6Y2kKQc_FZ98UmM8bToYYNGUPewhyTphCHuFuP2HFDW27WgWjwM06B20F2cj7x3nDzNSKjWy_CGnftzw%3D%3D&tmtk=1k0ni48mkh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": "Location: Zurich, Zurich, Switzerland Job ID: R0142021 Date Posted: 2026-08-20 Company Name: HITACHI ENERGY LTD Profession (Job Category): Administration & Facilities Job Schedule: Full time Remote: No Job Description: The opportunity Hitachi Energy is a global technology leader that is advancing a sustainable energy future for all. We employ more than 40,000 people in 90 countries who each day work with purpose and use their different backgrounds to challenge the status quo. We welcome you to …"
+    },
+    "technical_fit": "Very poor. The role is in GIS (Geographic Information Systems) and project management/administration, with no mention of AI, LLMs, automation, data engineering, or software development. The candidate's entire profile is built around building LLM-powered pipelines, agentic systems, and data platform engineering.",
+    "contextual_fit": "Poor. The candidate seeks hands-on technical ownership building AI/automation systems from zero to production. This is a junior project manager role in administration & facilities, likely coordinating projects rather than building systems. No alignment with his motivation or career trajectory.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Unclear. Hitachi Energy's sustainability mission is admirable but irrelevant to the candidate's stated interests. The 'challenge the status quo' language is generic corporate phrasing with no signal about technical ownership or AI/automation culture.",
+    "concerns": [
+      "Job description is truncated — requirements/qualifications section not visible, making assessment conservative",
+      "Role is fundamentally misaligned: GIS project management/administration vs. candidate's focus on agentic AI systems and data platform engineering",
+      "No evidence of technical building work; 'Project Manager' and 'Administration & Facilities' job category suggest coordination/planning rather than hands-on development",
+      "Candidate would likely be bored and underutilized; zero growth toward stated goals",
+      "Even if full description revealed some technical elements, the core role shape (project manager, not builder) is wrong"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 35,
+    "hard_blockers": [
+      "Senior-level requirement (5+ years experience) — candidate is intern/junior with ~1-2 years tech experience",
+      "Wrong role shape: maintenance/optimization of existing RPA estate, not greenfield building; no LLM/agentic work"
+    ],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Blocker: Senior-level requirement (5+ years experience) — candidate is intern/junior with ~1-2 years tech experience",
+      "Blocker: Wrong role shape: maintenance/optimization of existing RPA estate, not greenfield building; no LLM/agentic work",
+      "Enterprise RPA stack (UiPath/Blue Prism/AA) is completely absent from candidate's profile — steep learning curve with no mentorship path suggested",
+      "SAP ERP integration experience missing",
+      "ITIL/COBIT governance frameworks unfamiliar",
+      "'Senior' title implies expectation of independent architecture decisions without the growth scaffolding candidate seeks",
+      "No evidence of LLM, Python, or cloud-native tooling in job description — skill misalignment in both directions",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "Jobgether",
+      "title": "Senior Automation Specialist",
+      "location": "Switzerland",
+      "url": "https://www.linkedin.com/comm/jobs/view/4452555540/?trackingId=PljD0KukSPSX9T7n4PS1GA%3D%3D&refId=TM7c3YoSRWybK%2BLGGpXyDw%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Mismatch. Role is senior-level (5+ years) with emphasis on enterprise RPA platforms (UiPath/Blue Prism/AA), SAP ERP integration, and ITIL governance. Candidate is junior/intern-level with Python/LLM APIs, cloud-native automation, and no enterprise RPA or SAP experience.",
+    "contextual_fit": "Poor. Jobgether is a remote-work job platform; this role is about maintaining/optimizing existing automation infrastructure and governance frameworks, not building greenfield AI/agentic systems. Heavy seniority skew and 'support/optimize' framing vs. candidate's 'zero-to-production ownership' motivation.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Neutral. Remote-first company but role is internally-facing automation maintenance rather than product-building. No cultural red flags, but no excitement alignment either.",
+    "concerns": [
+      "Enterprise RPA stack (UiPath/Blue Prism/AA) is completely absent from candidate's profile — steep learning curve with no mentorship path suggested",
+      "SAP ERP integration experience missing",
+      "ITIL/COBIT governance frameworks unfamiliar",
+      "'Senior' title implies expectation of independent architecture decisions without the growth scaffolding candidate seeks",
+      "No evidence of LLM, Python, or cloud-native tooling in job description — skill misalignment in both directions"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 35,
+    "hard_blockers": [
+      "Senior-level role requiring 5+ years experience; candidate is intern-level with ~1 year in tech"
+    ],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Blocker: Senior-level role requiring 5+ years experience; candidate is intern-level with ~1 year in tech",
+      "Title says 'Senior'—explicit experience floor unmet",
+      "No description of mentorship or junior track; role shape is maintenance/optimization of existing platform, not zero-to-production building",
+      "Location 'Switzerland' is vague—could be any canton, but senior remote roles often cluster in Zug/Zurich; unclear if truly Zurich-area accessible",
+      "Candidate's core motivation (agentic systems, data platform engineering with ownership) not addressed by infrastructure/platform role",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "Jobgether",
+      "title": "Senior AI Platform Engineer",
+      "location": "Switzerland",
+      "url": "https://www.linkedin.com/comm/jobs/view/4455488822/?trackingId=bUFz3dHrS8CZmkcIWiEoYw%3D%3D&refId=n7JQgNLzSbOJ5ttmGZNxYg%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Mismatch. Role is Senior-level, requiring 5+ years of platform engineering and deep Kubernetes/ML infrastructure expertise. Candidate is intern-level with 0-2 years experience, focused on LLM API integration and automation pipelines rather than core infrastructure/platform primitives.",
+    "contextual_fit": "Poor. Jobgether is a remote-work job platform; this is a senior IC role building foundational AI infrastructure, not a learning environment for someone seeking ownership through greenfield agentic systems. The seniority gap is structural—this person would be managed by, not peers with, the intended hire.",
+    "salary_estimate": "CHF 130k–160k (senior platform engineer in Switzerland)",
+    "culture_fit": "Unknown/Neutral. No cultural signals in the sparse description, but senior-heavy team dynamics would likely isolate an intern-level hire.",
+    "concerns": [
+      "Title says 'Senior'—explicit experience floor unmet",
+      "No description of mentorship or junior track; role shape is maintenance/optimization of existing platform, not zero-to-production building",
+      "Location 'Switzerland' is vague—could be any canton, but senior remote roles often cluster in Zug/Zurich; unclear if truly Zurich-area accessible",
+      "Candidate's core motivation (agentic systems, data platform engineering with ownership) not addressed by infrastructure/platform role"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 35,
+    "hard_blockers": [
+      "Senior-level role requiring 5+ years production experience—candidate is intern-level with <2 years in tech"
+    ],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Blocker: Senior-level role requiring 5+ years production experience—candidate is intern-level with <2 years in tech",
+      "Massive experience gap: role expects senior engineer, candidate is seeking internship",
+      "No Java/Go/Rust—core stack requirement",
+      "No distributed systems or crypto/finance domain experience",
+      "Role shape is opposite of what candidate wants: maintaining/enabling existing systems vs. building from zero with ownership",
+      "Likely requires deep financial regulatory knowledge absent from background",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "Kraken",
+      "title": "Senior Software Engineer - AI Enablement Finance",
+      "location": "Switzerland",
+      "url": "https://www.linkedin.com/comm/jobs/view/4390492745/?trackingId=UoCtMLZLSKW%2BlxDBMn4DZw%3D%3D&refId=unCFCPQ3QRmdGrQNx1KdLA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Poor. Role requires 5+ years production experience, deep expertise in Java/Go/Rust backend systems, distributed systems, and crypto/finance domain knowledge. Candidate is an intern-level Python/Node.js developer with <2 years tech experience, no production backend systems background, and no Java/Go/Rust or blockchain/crypto expertise.",
+    "contextual_fit": "Very poor. 'Senior' level with expectation to mentor others, lead architecture decisions, and drive AI enablement across mature financial systems. Candidate explicitly seeks internship/junior role with ownership but at his level—not a senior position requiring extensive prior experience.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Mismatch. Kraken's crypto-native, senior-heavy engineering culture focused on financial systems doesn't align with candidate's desire for greenfield AI/agentic building in a learning-oriented junior role.",
+    "concerns": [
+      "Massive experience gap: role expects senior engineer, candidate is seeking internship",
+      "No Java/Go/Rust—core stack requirement",
+      "No distributed systems or crypto/finance domain experience",
+      "Role shape is opposite of what candidate wants: maintaining/enabling existing systems vs. building from zero with ownership",
+      "Likely requires deep financial regulatory knowledge absent from background"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 35,
+    "hard_blockers": [
+      "Senior-level requirement (5+ years experience) — candidate is intern-level with ~1 year tech experience; fundamentally ineligible for senior IC role"
+    ],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Blocker: Senior-level requirement (5+ years experience) — candidate is intern-level with ~1 year tech experience; fundamentally ineligible for senior IC role",
+      "Title inflation risk: 'AI Enablement' masks traditional backend platform work with no agentic/LLM pipeline ownership",
+      "Domain (HR/people systems) adds no value to candidate's target trajectory",
+      "Crypto/fintech compliance culture may not tolerate intern-level autonomy",
+      "No evidence of Python/LLM API work in stack; Java/Kotlin pivot would be significant distraction from stated goals",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "Kraken",
+      "title": "Senior Software Engineer - AI Enablement HR",
+      "location": "Switzerland",
+      "url": "https://www.linkedin.com/comm/jobs/view/4454907846/?trackingId=RAz%2BEBHeTfirsjhk4ZLSow%3D%3D&refId=CM7E1qH9RjWdVQNvECRChg%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Mismatch. Role is Senior-level (5+ years) backend/platform engineering for internal HR/people systems—far above candidate's intern/junior level. Stack emphasizes Java/Kotlin, Spring Boot, Kafka, AWS—none in candidate's toolkit. No LLM/agentic work mentioned; 'AI Enablement' appears to mean ML infrastructure/platform for HR analytics, not hands-on agent building.",
+    "contextual_fit": "Poor. Candidate seeks ownership in greenfield AI/automation with direct LLM work; this is mature internal tooling maintenance at enterprise scale. Senior role structure implies mentorship downward, not growth upward. HR/people systems domain irrelevant to candidate's trajectory.",
+    "salary_estimate": "CHF 120k–160k (Senior SWE at crypto exchange in Switzerland)",
+    "culture_fit": "Unknown. Kraken's remote-first culture possible, but role shape (senior enterprise backend) clashes with candidate's builder/ownership drive.",
+    "concerns": [
+      "Title inflation risk: 'AI Enablement' masks traditional backend platform work with no agentic/LLM pipeline ownership",
+      "Domain (HR/people systems) adds no value to candidate's target trajectory",
+      "Crypto/fintech compliance culture may not tolerate intern-level autonomy",
+      "No evidence of Python/LLM API work in stack; Java/Kotlin pivot would be significant distraction from stated goals"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 35,
+    "hard_blockers": [
+      "Role requires 5+ years experience and senior-level expertise; candidate is an intern seeking junior/agentic systems internship — fundamental level mismatch, not merely 'underqualified' but categorically wrong career stage"
+    ],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Blocker: Role requires 5+ years experience and senior-level expertise; candidate is an intern seeking junior/agentic systems internship — fundamental level mismatch, not merely 'underqualified' but categorically wrong career stage",
+      "Title 'Senior AI Engineer' is disqualifying level gap — candidate explicitly seeks internship/junior role",
+      "No mention of agentic systems or greenfield platform building; role appears to be scaling existing ESG/NLP pipelines",
+      "ESG domain specialization may not align with candidate's excitement for agentic/automation work",
+      "Candidate's entire profile (2-week notice, intern title, seeking internship) signals immediate mismatch with senior permanent role expectations",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "RepRisk",
+      "title": "Senior AI Engineer",
+      "location": "Zurich",
+      "url": "https://www.linkedin.com/comm/jobs/view/4424568117/?trackingId=6QXkuJABRbmcR0hPAp%2FjBA%3D%3D&refId=unZbkDlBT0C%2F%2FJd8moxoyg%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Poor. Role demands 5+ years production ML/AI engineering, deep expertise in NLP/LLMs, vector databases, MLOps, and senior-level system design. Candidate is an intern with <2 years total tech experience, no production ML systems at scale, no MLOps tooling (Kubernetes, MLflow, Weights & Biases), no vector DB experience, and no senior engineering depth.",
+    "contextual_fit": "Weak. RepRisk is an established ESG data/AI company (not a startup greenfield environment). 'Senior' title signals they need someone to lead, architect, and mentor — exact opposite of candidate's stated goal for 'internship or junior role' with 'real ownership from day one' in an agentic/data platform context. The role shape is maintenance/scale of existing systems, not zero-to-one building.",
+    "salary_estimate": "CHF 120,000–150,000+ (senior role at established Zurich fintech)",
+    "culture_fit": "Neutral/Unknown. RepRisk appears structured and domain-specialized (ESG/finance). Candidate is open to new domains, but the seniority mismatch dominates.",
+    "concerns": [
+      "Title 'Senior AI Engineer' is disqualifying level gap — candidate explicitly seeks internship/junior role",
+      "No mention of agentic systems or greenfield platform building; role appears to be scaling existing ESG/NLP pipelines",
+      "ESG domain specialization may not align with candidate's excitement for agentic/automation work",
+      "Candidate's entire profile (2-week notice, intern title, seeking internship) signals immediate mismatch with senior permanent role expectations"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 45,
+    "hard_blockers": [
+      "Role is Senior-level requiring extensive prior ML systems experience; candidate is explicitly seeking internship/junior position. Structural level mismatch—not eligible for senior role."
+    ],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Blocker: Role is Senior-level requiring extensive prior ML systems experience; candidate is explicitly seeking internship/junior position. Structural level mismatch—not eligible for senior role.",
+      "No evidence of model training, fine-tuning, or distributed computing experience",
+      "Evaluation frameworks mentioned (lm-eval-harness, HELM) are unfamiliar to candidate",
+      "Production model serving at scale (vLLM, TGI, Ray) is entirely absent from background",
+      "Consultancy senior roles rarely offer the 'internship with ownership' shape candidate prioritizes",
+      "Candidate's 2-week notice and permit B are irrelevant advantages for a role he cannot qualify for",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "Grid Dynamics",
+      "title": "Senior Machine Learning Engineer - LLM Systems & Evaluation",
+      "location": "Zug",
+      "url": "https://www.linkedin.com/comm/jobs/view/4447544171/?trackingId=VUL8bbH4Ts%2BJeMHnj%2BuWqQ%3D%3D&refId=3wNZtEs7TrW1mItludIZHg%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Mismatch. Role requires senior-level ML engineering with deep expertise in LLM fine-tuning, distributed training (Ray, vLLM, TGI), evaluation frameworks (EleutherAI lm-eval-harness, HELM), and production-scale model serving. Candidate is junior/intern level with API-level LLM integration (Claude, Kimi), automation pipelines, and no experience in model training, distributed systems, or advanced evaluation methodologies. The gap from 'API consumer' to 'systems builder/trainer' is substantial.",
+    "contextual_fit": "Poor. Role explicitly targets senior engineers ('Senior Machine Learning Engineer') with 5+ years implied experience. Candidate seeks internship/junior role with ownership and growth trajectory. Title alone signals structural mismatch—this is a leadership/execution role, not a learning opportunity. Grid Dynamics is a consultancy; senior roles typically client-facing with delivery pressure, not mentorship environments.",
+    "salary_estimate": "CHF 120,000 - 160,000 (senior ML engineering in Zug)",
+    "culture_fit": "Neutral-negative. Consultancy culture at senior level emphasizes client delivery, billable hours, and established expertise. Candidate's motivation centers on greenfield building, zero-to-one ownership, and skill acquisition—this role would expect immediate contribution on complex systems.",
+    "concerns": [
+      "No evidence of model training, fine-tuning, or distributed computing experience",
+      "Evaluation frameworks mentioned (lm-eval-harness, HELM) are unfamiliar to candidate",
+      "Production model serving at scale (vLLM, TGI, Ray) is entirely absent from background",
+      "Consultancy senior roles rarely offer the 'internship with ownership' shape candidate prioritizes",
+      "Candidate's 2-week notice and permit B are irrelevant advantages for a role he cannot qualify for"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 42,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Role is fundamentally DevOps platform engineering, not AI/automation/data engineering—major career direction mismatch",
+      "'Forward Deployed' implies customer-facing support/consulting, exactly the 'support work' candidate wants to avoid",
+      "Schwyz is not Zurich/Zug; while within Switzerland, it's a notable commute and not the target area",
+      "Heavy Kubernetes/Terraform/Infrastructure focus absent from candidate's stack",
+      "Postgraduate Data Science + LLM specialization would be underutilized; role would be a career sideways/backwards step",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "GitLab",
+      "title": "Forward Deployed Engineer - EMEA",
+      "location": "Schwyz, Switzerland",
+      "url": "https://www.linkedin.com/comm/jobs/view/4439374878/?trackingId=bS2NKy76Rx6SCJPfW4uaFQ%3D%3D&refId=L%2B4rn4s%2FSzWs9Th0wVOZng%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Mismatch. Role is heavily infrastructure/DevOps/SRE-oriented (Kubernetes, Terraform, CI/CD platforms, customer-facing production support) rather than AI/automation/LLM building. Candidate's Python/SQL/LLM API skills are tangential; the core work is platform engineering and incident response, not agentic systems or data pipelines.",
+    "contextual_fit": "Poor. 'Forward Deployed Engineer' at GitLab means embedding with customers to operationalize GitLab's DevSecOps platform—consulting, troubleshooting, enabling customer teams. This is support-adjacent customer success work with heavy operational burden, not greenfield building with ownership. Candidate explicitly wants 'ownership from day one rather than support work'; this role is essentially the opposite.",
+    "salary_estimate": "CHF 85-110k (junior FDE range in Switzerland)",
+    "culture_fit": "Neutral-to-poor. GitLab is famously all-remote with heavy async documentation culture; candidate's preference for hands-on zero-to-production building doesn't align with FDE's consultative, reactive, customer-ticket-driven rhythm.",
+    "concerns": [
+      "Role is fundamentally DevOps platform engineering, not AI/automation/data engineering—major career direction mismatch",
+      "'Forward Deployed' implies customer-facing support/consulting, exactly the 'support work' candidate wants to avoid",
+      "Schwyz is not Zurich/Zug; while within Switzerland, it's a notable commute and not the target area",
+      "Heavy Kubernetes/Terraform/Infrastructure focus absent from candidate's stack",
+      "Postgraduate Data Science + LLM specialization would be underutilized; role would be a career sideways/backwards step"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -80,36 +605,332 @@
   },
   {
     "score": 55,
+    "hard_blockers": [
+      "German: role title and employer (Kanton Luzern) indicate German as primary working language; public sector roles in German-speaking cantons require professional/native German for legal/compliance communication. Candidate's A2 German is insufficient."
+    ],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Blocker: German: role title and employer (Kanton Luzern) indicate German as primary working language; public sector roles in German-speaking cantons require professional/native German for legal/compliance communication. Candidate's A2 German is insufficient.",
+      "Role seniority ('Spezialist/in') appears above intern/junior level despite '(a)' suffix",
+      "No evidence of LLM/agentic workflow focus in title or employer context",
+      "Public sector pace and process likely frustrate candidate's preference for rapid iteration",
+      "Lucerne commute from Zurich area feasible but not ideal for hybrid expectations",
+      "(a) suffix unclear—could be apprenticeship (EFZ) requiring specific Swiss vocational credentials",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "Kanton Luzern",
+      "title": "KI-Engineer / KI-Plattform-Spezialist/in (a)",
+      "location": "Lucerne",
+      "url": "https://www.linkedin.com/comm/jobs/view/4450614491/?trackingId=KH4S0nI1QK6c6tD6VgQsuA%3D%3D&refId=pctVx3J9SUyKMz7ru8O0uA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Partial. The role involves KI/AI platform work which aligns directionally, but the job title and context (Kanton Luzern, public sector) suggest enterprise IT/platform specialization rather than hands-on LLM pipeline building. The candidate's core strength—end-to-end ownership of LLM-powered automation pipelines—is not clearly matched. No mention of agentic systems, LLM APIs, or rapid prototyping from zero to production.",
+    "contextual_fit": "Weak. Public sector canton role likely emphasizes governance, compliance, established platform maintenance, and cross-departmental coordination over the candidate's preferred startup-like ownership model. The 'Spezialist/in' framing suggests seniority/expertise expectation rather than intern/junior growth trajectory. Two-week notice and permit B are fine, but role shape is mismatched.",
+    "salary_estimate": "CHF 85,000–110,000 (public sector KI specialist, likely mid-level banding)",
+    "culture_fit": "Mismatched. Candidate wants 'real ownership from day one,' greenfield building, and iterative shipping. Canton roles typically feature slower cycles, committee governance, and maintenance of existing systems. The 'a)' in title suggests apprenticeship track, but public sector apprenticeships are structured and less autonomous than candidate seeks.",
+    "concerns": [
+      "Role seniority ('Spezialist/in') appears above intern/junior level despite '(a)' suffix",
+      "No evidence of LLM/agentic workflow focus in title or employer context",
+      "Public sector pace and process likely frustrate candidate's preference for rapid iteration",
+      "Lucerne commute from Zurich area feasible but not ideal for hybrid expectations",
+      "(a) suffix unclear—could be apprenticeship (EFZ) requiring specific Swiss vocational credentials"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 0,
     "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Complete absence of job description: title mentions 'Senior Software Engineer' and 'Compliance' which suggests senior-level and potentially regulatory/maintainance work rather than the intern/junior builder role the candidate seeks; 'AI Enablement Compliance' sounds like governance, policy, or platform-enablement-for-others rather than hands-on agentic system building; unknown location and company; LinkedIn geoId 106693272 corresponds to Switzerland broadly but no specific city/canton confirmed",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "Unknown",
+      "title": "Senior Software Engineer - AI Enablement Compliance jobs",
+      "location": "Unknown",
+      "url": "https://www.linkedin.com/comm/jobs/search-results/?keywords=Senior+Software+Engineer+-+AI+Enablement+Compliance&geoId=106693272&origin=BYV_JOB_TITLE_JOBS_EMAIL&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-null-0-null&trkEmail=eml-email_jobs_viewed_job_reminder_01-null-0-null-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Cannot assess — job description is entirely missing. The only text provided is a LinkedIn tracking URL with no role details, responsibilities, tech stack, or requirements.",
+    "contextual_fit": "Cannot assess — zero information about company size, team structure, ownership model, or whether this is building vs. maintaining.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Cannot assess — no data.",
+    "concerns": [
+      "Complete absence of job description: title mentions 'Senior Software Engineer' and 'Compliance' which suggests senior-level and potentially regulatory/maintainance work rather than the intern/junior builder role the candidate seeks; 'AI Enablement Compliance' sounds like governance, policy, or platform-enablement-for-others rather than hands-on agentic system building; unknown location and company; LinkedIn geoId 106693272 corresponds to Switzerland broadly but no specific city/canton confirmed"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 15,
+    "hard_blockers": [
+      "Role requires fluent German for client work in Swiss tax advisory context; 'Transfer Pricing Zürich' serving DACH financial services clients implies German as working language for regulatory documentation and client interaction. German A2 insufficient.",
+      "Role is pure tax/financial services advisory, not software engineering or AI — completely wrong field despite 'intern' title.",
+      "Location Zurich but role type is fundamentally misaligned with candidate's stated career direction."
+    ],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Blocker: Role requires fluent German for client work in Swiss tax advisory context; 'Transfer Pricing Zürich' serving DACH financial services clients implies German as working language for regulatory documentation and client interaction. German A2 insufficient.",
+      "Blocker: Role is pure tax/financial services advisory, not software engineering or AI — completely wrong field despite 'intern' title.",
+      "Blocker: Location Zurich but role type is fundamentally misaligned with candidate's stated career direction.",
+      "Even if German were not a blocker, the role shape (support analyst in tax compliance) is exactly the 'support work' candidate explicitly rejects",
+      "Candidate's entire technical stack and project portfolio would atrophy unused",
+      "Postgraduate Data Science specialization and AI certifications irrelevant to tax advisory career track",
+      "Two-week notice period irrelevant — this is a graduate program with fixed start dates anyway",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "EY (Ernst & Young)",
+      "title": "EY Intern Tax Financial Services - Transfer Pricing Zürich (Graduate)",
+      "location": "Intern Tax Financial Services - Transfer Pricing Zürich",
+      "url": "https://de.glassdoor.ch/partner/jobListing.htm?pos=101&ao=1110586&s=224&guid=000001a02fa45a2b8286dfcb612f663d&src=GD_JOB_AD&t=JA&vt=e&uido=D661EDE7358AA032024678584D685D92&cs=1_d0768b74&cb=1787508370950&jobListingId=1010237311382&cpc=0C139D4CAD5A6DB2&jrtk=5-yul1-0-1k0nsqbaokur3801-da74806200978355---6NYlbfkN0Bj-xBWVmzs7UIwFa-9Zm6MwNuQFkwLehssDYDaWnvIcecxoaL3XebdC_fjZgbe9Zs4WajcLJJdktD-2Xf9P92LmWgagqayc1lRqT5QD89Gw2SIKtSc0IvykpPKj16f4p3Quun90RvG1W0ZTLRa_wEx7y5Slpm8CbXEbUqwlIdkILXVQtgNpFe7WdARR6BG6yGg6GU2Yg_X9rdG22mcnd6kOwH8hoLUy4P9G9nI6l4FdVwKfUez9jlaeOOH0tn1UrCRbUtIsfVqXIqpXpW7Kqc8HPhRsx2YYqU0GhUM21pgxUpOHAtPVnbzj947QVEGLep8FqixxJOCxlVh3PDtj8ZEI_sbKF5vy7U-rh5swEBj3nINUBwdvhnDa7kkECZJRVS0gL9n5j_k1MwestXQ2cUWRLobNT1HsiNudhcRqaHi0ZX6HcFK2GE_cytQds8A3VbpdmCZ3jfTaolRUhj6VLFUavkOS7kY_H8YZVKGMCbKzkoMnSgfSRa5hV6fSz3zdfSKYa6HdCuMF-WHVHumMIeN_7YPifoYqxmu2FeL6MSJcM72oZGZKWqmf0CjtOgo2rC7UVQdjfuda665ESNDMtlEzJvKZuLPqnGDMZ46fOJhX-lfWyfFW0FpjZJkOTfV4YodOJPlig4zDtrAG1T5swusmvmL95Ng6si_u0uiyvCSRDFimf4giVJn3tTDj_APSTXfiBBRqOYOrylbMY9V9SRQyi3yMwAHSe8DmbEwYj4SF8_qEpvQeVFMEzPi0Au4KMCD6T0KAAfDlgWK47TatylrY24Pz9B6W8emqfLch1d2XNmqXbkioi_U6bZQAYyiNImC2o4UIgNDLvLG2Z6ed4w1HTDc7QmSwCGr-xK2D8MOjtScC9-8Tg9rC9tK2Xus7gatE-PgsxB8CHcIAb0L1rdw91EIoO_iXEKseqP9ScYk1_yh_54pppxCbipId6ROFhCo8b6H8mRqCOzUyKTNuGu3yIGR3GoWvR38IACepSnJjavA9ISB_9rs6DzUYVCXsTcD3cW0rICwgkztnLQw_qFKNadFMELeQ3sW9Wqmewl57Gs4Zh0yNJhf-YxR1u19CIwdbmoP1zJKfG-w5SRlH5Cg&tgt=GD_JOB_VIEW&utm_medium=email&utm_source=jobalert&utm_campaign=jobAlertAlert&utm_content=ja-jobpos1-age2d-1010237311382&ja=408601927",
+      "portal": "glassdoor.com",
+      "description": ""
+    },
+    "technical_fit": "Very poor. Role is tax/transfer pricing in financial services advisory — essentially corporate tax consulting with financial data analysis. Zero overlap with LLM engineering, agentic systems, data platform building, or software development. The 'technical' skills needed are Excel, tax regulation knowledge, and financial statement analysis, not Python/pipelines/cloud infrastructure.",
+    "contextual_fit": "Poor. Candidate explicitly seeks hands-on AI/automation engineering with ownership of production systems. This is a graduate audit/tax advisory track at a Big Four firm — hierarchical, client-service model, heavy on compliance and documentation, with technology as a tool rather than the product. Career changer narrative (law → tech) actually works against fit here; EY would likely view the tech pivot as misalignment with tax advisory path.",
+    "salary_estimate": "CHF 70,000 - 85,000 (typical Big Four graduate intern/start in Zurich)",
+    "culture_fit": "Mismatch. EY Tax FS is structured, client-facing, partnership-track culture with heavy emphasis on billable hours and regulatory precision. Candidate wants greenfield building, rapid iteration, and technical ownership — antithetical to Big Four advisory model where junior staff do support work for senior client relationships.",
+    "concerns": [
+      "Even if German were not a blocker, the role shape (support analyst in tax compliance) is exactly the 'support work' candidate explicitly rejects",
+      "Candidate's entire technical stack and project portfolio would atrophy unused",
+      "Postgraduate Data Science specialization and AI certifications irrelevant to tax advisory career track",
+      "Two-week notice period irrelevant — this is a graduate program with fixed start dates anyway"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 45,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Role is 100% advisory/strategy with no implementation ownership — exact opposite of candidate's stated motivation",
+      "Skills atrophy risk: Python, LLM APIs, Docker, CI/CD all go unused",
+      "EY intern programs typically 6-12 months with competitive conversion pipeline; candidate wants 2-week notice, may face pressure to commit long-term",
+      "German implied advantage for DACH clients though not hard-required; candidate's A2 is below typical EY Zurich consulting bar",
+      "Postgraduate data science + current AI intern role makes him overqualified and misaligned for generic tech strategy intern track",
+      "'Technology Strategy and Transformation' is a bait-and-switch title — reads AI-relevant, is actually IT governance and digital roadmap work",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "EY (Ernst & Young)",
+      "title": "EY Intern - Consulting - Technology Strategy and Transformation",
+      "location": "Zürich",
+      "url": "https://de.glassdoor.ch/partner/jobListing.htm?pos=103&ao=1110586&s=224&guid=000001a02fa45a2b8286dfcb612f663d&src=GD_JOB_AD&t=JA&vt=e&uido=D661EDE7358AA032024678584D685D92&cs=1_2ac86320&cb=1787508370951&jobListingId=1010237310695&cpc=D2F1DE17EE1F43B9&jrtk=5-yul1-0-1k0nsqbaokur3801-582f8496d3f16e0d---6NYlbfkN0Bj-xBWVmzs7UIwFa-9Zm6MwNuQFkwLehssDYDaWnvIcecxoaL3XebdC_fjZgbe9ZvrTg5FLaUC-86U-96OjyY5gezvt5zV2q6r9Z7HjDKxIcp_zBbcg0U2zOSLs3eWd4uAS2vB28ehPzAXSP0R40K3AyNJ2gQLNPlWrJV0NTeQZjLib7-hKdyFm8qMKS_JFW1bBT2Fqs5qat44X3Eaq4b4r4-8BXzRkbez1lbGhW3EdLPN8XIVPtycyNJJd0o81OYFqh27Hl6YkwXlwFH8t5SS1FHRDhk43LD1WGfbkzD5sVISfstEcopvsTwWQtD0UeR9L8DKbWonzUUTwS7bG3w8L5KMaU7kGRrM-Z7C9VmQ6W-06fHlOOFteGrINsfv-u3M3WlNWljk8-XURUUACjSfnRDF4w2hGsco6GwqAyG9icgdulklAL_fYYPk9YtI0rw6JTz9TYWobrFQOz5uNPYoUV6u7QMcfOYNKLjvwGZSS3hOa_77BZnXRsZmdnYkGhFc1l4BVxrBq_B4SWXvHVhudVfKIREqF-7VRWzxqu-0y50-u2VARAQX89tXCOSugUtmgS1y7bf4jdXVEaBFc2KeNwjMWMURIMHflh5hoxFGL_7_kspIHQ-vsIJnZwnysP8qJiSC6pNCsASuG2tLtoW6hoTHcw-bzMdHW9bAHDvzRM33d1BcUVqXIf6yAFp2rkZYmf3lF3vC-Bb0adaA61pnU4YPHc9-xD-IjGtSSa-3IooZ5wtDAl_mmhlwn9iKYDxljZYzlT39ltgMOvPfIVBuQgzkJnEO8reEvnYLovYrEvZPt7Zb-hTUb7j5isZ1LEmGPWneMqOTFs4TZM6tixjPaHqpB4pA3fwZvjvO5CsMIKoiB6G2w2noDz71BZBQIJfkET1iC9LwWSQlzwFD03Mt5Ul7BVgzmxKJG-WvJ_Py4DDrZsrZ46oDYc8dlWD48gYSZtaSZBid2r9K5tGTR3PlUGvcNH5FmE8CK2v3-Y5T0k5iwYLTpdQXXO7V0EQP3xnEr2KEYW7FMuCLKg27RHPjcVIaMakF46QqRqPuteU2atO0PsSMiTlkbVWPA21c7g8%3D&tgt=GD_JOB_VIEW&utm_medium=email&utm_source=jobalert&utm_campaign=jobAlertAlert&utm_content=ja-jobpos3-age2d-1010237310695&ja=408601927",
+      "portal": "glassdoor.com",
+      "description": ""
+    },
+    "technical_fit": "Poor. Role is classic big-4 IT strategy consulting (digital transformation roadmaps, change management, stakeholder alignment) — not hands-on building. Zero LLM/agentic systems, zero data platform engineering, zero production pipeline ownership. Candidate would be PowerPointing, not shipping.",
+    "contextual_fit": "Weak. EY's structured intern program means predefined rotations and heavy hierarchy; 'ownership from day one' is structurally impossible. Candidate's self-directed, zero-to-production builder mentality clashes with consultant-as-advisor model. His law background helps for stakeholder communication but is wasted without technical execution outlet.",
+    "salary_estimate": "CHF 3,500–4,500/month (EY intern band in Zurich)",
+    "culture_fit": "Poor. EY culture emphasizes client-facing polish, methodology adherence, and upward consensus-building. Candidate explicitly wants to 'audit my own output and fix what I find' — autonomous, technical, iterative. These are oil and water.",
+    "concerns": [
+      "Role is 100% advisory/strategy with no implementation ownership — exact opposite of candidate's stated motivation",
+      "Skills atrophy risk: Python, LLM APIs, Docker, CI/CD all go unused",
+      "EY intern programs typically 6-12 months with competitive conversion pipeline; candidate wants 2-week notice, may face pressure to commit long-term",
+      "German implied advantage for DACH clients though not hard-required; candidate's A2 is below typical EY Zurich consulting bar",
+      "Postgraduate data science + current AI intern role makes him overqualified and misaligned for generic tech strategy intern track",
+      "'Technology Strategy and Transformation' is a bait-and-switch title — reads AI-relevant, is actually IT governance and digital roadmap work"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 42,
+    "hard_blockers": [
+      "Role requires fluent German: 'Quant & Analytics' at EY Zurich in Financial Services Risk Consulting serves German-speaking DACH clients; regulatory work demands native/C1 German for client communication and documentation. Candidate's A2 German is insufficient."
+    ],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Blocker: Role requires fluent German: 'Quant & Analytics' at EY Zurich in Financial Services Risk Consulting serves German-speaking DACH clients; regulatory work demands native/C1 German for client communication and documentation. Candidate's A2 German is insufficient.",
+      "Role is pure quant finance, not the AI/automation engineering the candidate targets; steep domain learning curve with no carryover to desired career path; Big Four intern programs rarely grant meaningful ownership; candidate would be competing with finance/math master's students for whom this is core training",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "EY (Ernst & Young)",
+      "title": "EY Quant & Analytics Intern - Financial Services Risk Consulting",
+      "location": "Zürich",
+      "url": "https://de.glassdoor.ch/partner/jobListing.htm?pos=104&ao=1110586&s=224&guid=000001a02fa45a2b8286dfcb612f663d&src=GD_JOB_AD&t=JA&vt=e&uido=D661EDE7358AA032024678584D685D92&cs=1_215afdaa&cb=1787508370951&jobListingId=1010237310674&cpc=32EE424DE2B657EB&jrtk=5-yul1-0-1k0nsqbaokur3801-6fb84161a55ab6d1---6NYlbfkN0Bj-xBWVmzs7UIwFa-9Zm6MwNuQFkwLehssDYDaWnvIcecxoaL3XebdC_fjZgbe9ZsEh3IqZgYkyJFnygdbHogxdvwyhg7GJDqUaN2uBMeRkYzKsQyJFGsJYbAwDlPJ0tTBsJ7klkkp7kyB5-qrfzxdhKyoFDW6ecxi8Xbc8FO_nK6BBBmSrO9X_UgRg1ZZHT6lAv53ptfQR-t0b6Ih2EHlSqWyVCgpTbKrFCMlbVhMJ8Ou8pA7VXIculvnBZ7MDEQSxqbWTHnibssKvCZdL7ZjTDFZs7D_sFx4ro8XswIkjGJwonIkBcYBkaVvTQgy7A2K8TB6bonA6deo9gJPdIe24yumHX3ij6sid9KojlhvztQxrBaZGyEmPCZ1veSMImWVRzmfyqSoB6NF8OBc-MoqznkmnNU59YFkfPTsFU7C1Ie3m3y1w5RxBQ69iG6dbcvD-_cdUDG5S0EuOp5LFJYoNT1Vo-XDZy__lfrAW70Bt3VALtXGmKw0Kj4EUrNRsM2I1Ma0_zptvWqhVzCFZKNJJp3H7fXfMnqPSxVOJfWIvaJ7vueUryV80wcEQg_D_fRvmRnSsJU1-pp828_RctXiS0Erm0v2dVU7M5btF6pZ0P6wRI_8ENOHMQmUusjAJZeT82xwPmv6auUcDMABsLgFnIwAYPEzNab5SUgTdIookrRtFlPvXfm04Wn2DuzE2nZNDv2GMyRhgG4kohi7vaJa7H7RXiGFoJzy3o2a4xg1D4ZOZmVNGc_jbyUlzXWV-p8Vl_OlPbDO3eZhECu4T3EI6Tc4HD-cEtJ_klPELNzPcnK4sH8-R5K8uswNJpvz_pyRTwdDgJZcaJpPn4xM2d5AtJvxhjwFdqpvF05vv4TbORyws29c7KeofYaOAnbMDF2U9QCjKWm7QIDPguVaQ1im97rXDiD0dZBwYtIW-frRvNaRim59Sl0PtgiUFi3AN6j6jfoYnyUrEcmjIYh1cQY1GyVMYx_vEhhhvHivF4Dro-3Ilc6DBFF9rV9XFdBCGLDjdL0hLfW6SNViyLlTsnM12fW9ffIvTGqSOAvXV0KlhivXWxs19luYeO-5k4YdpH4%3D&tgt=GD_JOB_VIEW&utm_medium=email&utm_source=jobalert&utm_campaign=jobAlertAlert&utm_content=ja-jobpos4-age2d-1010237310674&ja=408601927",
+      "portal": "glassdoor.com",
+      "description": ""
+    },
+    "technical_fit": "Mismatch. Role is quantitative risk consulting for financial services—stochastic modeling, regulatory capital calculations, stress testing, Basel/IFRS 9 exposure—not LLM/agentic systems or data platform engineering. Heavy on math finance, probability theory, and regulatory frameworks; zero mention of LLMs, automation pipelines, or cloud infrastructure.",
+    "contextual_fit": "Poor. Candidate explicitly seeks ownership in agentic systems and data platform engineering, building from zero to production with LLMs. This is audit-adjacent risk consulting at a Big Four: client-facing advisory, template-heavy deliverables, steep hierarchy, and junior interns typically support analysis rather than own systems. Career-changer openness to new domains doesn't rescue this—the role SHAPE is fundamentally wrong.",
+    "salary_estimate": "CHF 3,500–4,500/month (typical Big Four intern band in Zurich)",
+    "culture_fit": "Concerning. EY FS Risk Consulting culture emphasizes conformity, client polish, and long hours on regulatory deadlines. Candidate's self-directed 'ship it, audit it, fix it' builder ethos clashes with partnership-driven review chains and risk-averse sign-off culture.",
+    "concerns": [
+      "Role is pure quant finance, not the AI/automation engineering the candidate targets; steep domain learning curve with no carryover to desired career path; Big Four intern programs rarely grant meaningful ownership; candidate would be competing with finance/math master's students for whom this is core training"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 45,
+    "hard_blockers": [
+      "Role requires German for client-facing work in Zurich; EY Switzerland operates bilingually, and 'Business Consulting - Finance' serving DACH clients implies professional German. More critically: this is a SENIOR role requiring years of finance consulting/ERP experience—candidate is an intern with 2 weeks notice, fundamentally wrong seniority level."
+    ],
     "insufficient_info": true,
     "language_gap_intermediate": true,
     "key_match_points": [],
     "red_flags": [
-      "Job description truncated; requirements section not visible — cannot assess actual seniority expectations, specific tooling, or must-have qualifications",
-      "Title explicitly says 'Senior' — likely expects significant prior platform engineering experience beyond intern/junior level",
-      "Location Winterthur is Zurich-area but commute is longer than ideal",
-      "German-language job posting suggests German may be used in workplace, though 'Smart Working' and 'all genders' framing are modern/DACH-market typical",
-      "Candidate's A2 German is below likely working proficiency if team operates primarily in German",
-      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+      "Blocker: Role requires German for client-facing work in Zurich; EY Switzerland operates bilingually, and 'Business Consulting - Finance' serving DACH clients implies professional German. More critically: this is a SENIOR role requiring years of finance consulting/ERP experience—candidate is an intern with 2 weeks notice, fundamentally wrong seniority level.",
+      "Seniority mismatch is extreme: candidate is intern-level, role is Senior Consultant (post-MBA or 3-5 years experience).",
+      "Zero technical overlap with LLMs, agentic systems, data platform engineering—candidate would be miserable and regressing.",
+      "Finance domain would leverage his law background, but he deliberately left that path; this pulls him backward.",
+      "German requirement likely harder than his A2 even if not explicitly stated; Zurich EY client work is German-heavy.",
+      "Big Four 'consulting' is powerpoint and stakeholder management, not the hands-on building he craves.",
+      "Low confidence: posting text under 200 chars -- score is title-based"
     ],
     "job": {
-      "company": "Job-Room",
-      "title": "Senior Data Platform Engineer (all genders)",
-      "location": "Winterthur",
-      "url": "https://www.adzuna.ch/details/5850974733",
-      "portal": "adzuna",
-      "description": "60 - 100%, Winterthur / Smart Working Gestalte deine Zukunft gemeinsam mit uns Unsere ambitionierten Agentic- und GenAI-Ziele basieren auf einer soliden Datenbasis. Das Fundament dafür bildet unsere Datenplattform in der Google Cloud, die wir nach Data-Mesh-Prinzipien aufbauten und weiterentwickeln. Mit unserer Lakehouse Plattform stellen wir den Teams die notwendigen Services bereit, um Data Products effizient zu erstellen, zu konsumieren und zu teilen - alles im Sinne einer modernen, skalierb…"
+      "company": "EY",
+      "title": "EY (Senior) Consultant - Business Consulting - Finance",
+      "location": "Zürich",
+      "url": "https://de.glassdoor.ch/partner/jobListing.htm?pos=106&ao=1110586&s=224&guid=000001a02fa45a2b8286dfcb612f663d&src=GD_JOB_AD&t=JA&vt=e&uido=D661EDE7358AA032024678584D685D92&cs=1_de9e9c67&cb=1787508370951&jobListingId=1010237310671&cpc=C4A69CCDBB3B9599&jrtk=5-yul1-0-1k0nsqbaokur3801-007933df898ba0f3---6NYlbfkN0Bj-xBWVmzs7UIwFa-9Zm6MwNuQFkwLehssDYDaWnvIcemgIDuftpoaCZGJ0A9Onhc9rC6ItxWjniexzXGgvMmD4j_pBvWhY57KQvif50xgNGrBL8aAMtAH0DzuFzmS_SpO9w8H-P7MEyBFJVR_HZQL_bjcCoB0X6eNWmVxIZ2tBtKzxirF38-PnTDgnO_O5bGk6phpte_jpE_ElsrJ6tk1m1G_Tl3wPn1MX3WwXeEsRTJMD8gsXfj4mcYfJjZofnHa2T3yFAlPClTVzQHQ5Qr9votsc1MeVROGBKCdle4xW_pZ7diXqKdg_xCJEqyCrtEM3ayiuZYCEEnNvuBgCJF7MAE3Wm2Z4eW5dNgxawP8IPD9PNCWjOdm8osMrQtRCZn5XKexnVez-PL1_5xddGleRHAcWbZejcfpWPCVRyRVARwFF-wuU-2HMKclDkqm0emohITREpyGdaHm67u25c9nTwDCuNXQZZ-tj5QD9Bro4xsvC3B0RkwMl3Ap2PN4cvNxTZLxgpWzUwmMTCoWZOx62amzGl8fwgxo88_GV1bI1Q1ftdYrFR3HtjeO8CEul80K7r7LhbJvdibWXdHDW94QO663Zb5rC8wB_u_dbYsn-9DInu5Zv8Dr_ngEEOK5FKc064fR3uiSYERzTRVpmgGG3pQjaBM3uOrkiKbjtOgc9qVv6-x5vaF0Tj9vVfUSEVph2SG569r1K77SEBQDGsB1dkzOCFpFIcT0rV_0HSzl_0fzcy3OcGhjfipyzySHHMWMpCeq1Wstur5G5SQ_HRSP478ImLjE3897lGjAzGgBWAXxBIHu3us7YBxY_MbPfjboKOBtiKpMREhL-tFK0ZiuZTCDJQJqNXxB_jBGLi8R8tQLpNDTFCnbLN6qgaTAFDGZBwEO6_QIGGRnY5g3SdMzY7vGEEaSoxTsByrfc1YZU4PwkpMBdC3UDhB4BE6x3C1ZWhA0B20rAQgwh_MLLNGScWl-R3HlwbZATKg02uW-HmycAToeIDPVapNmoalKvFafHuglkItkjNaKHM4dKEw4Cz1vmMEMAe-IOkCSkiZ_0A%3D%3D&tgt=GD_JOB_VIEW&utm_medium=email&utm_source=jobalert&utm_campaign=jobAlertAlert&utm_content=ja-jobpos6-age2d-1010237310671&ja=408601927",
+      "portal": "glassdoor.com",
+      "description": ""
     },
-    "technical_fit": "Partial. The role centers on Google Cloud data platform and Data Mesh/Lakehouse architecture, which overlaps with his GCP and data pipeline experience. However, 'Senior' in the title and the emphasis on platform-level services for multiple teams suggests scope beyond his current intern-level ownership. Missing requirements section makes it impossible to assess fit against specific tools (BigQuery, dbt, Terraform, etc.).",
-    "contextual_fit": "Weak. The 'Senior' title and platform-scale responsibility ('stellen wir den Teams die notwendigen Services bereit') imply a seniority gap. His stated goal is internship/junior role with real ownership from day one, but this appears to be a senior individual contributor or platform team lead position. Winterthur is Zurich-area commutable but not ideal.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown from truncated description. 'Smart Working' suggests hybrid flexibility, which is neutral-to-positive.",
+    "technical_fit": "Poor. Role is senior finance consulting (Business Consulting - Finance) at EY, focused on financial transformation, ERP implementations, and advisory for large enterprises. Zero overlap with candidate's desired agentic systems, LLM pipelines, data platform engineering, or end-to-end ownership of AI/automation products. Skills mismatch: heavy finance domain expertise, SAP/ERP, stakeholder management at senior level vs. Python/LLM APIs/cloud infrastructure.",
+    "contextual_fit": "Poor. Candidate explicitly seeks internship/junior role with real ownership building LLM-powered pipelines from zero to production. This is a (Senior) Consultant position at a Big Four firm—hierarchical, client-facing advisory, not hands-on engineering. Career changer from law to AI/automation; finance consulting is adjacent to his law background but diametrically opposed to his stated technical direction. No greenfield AI building, no agentic systems.",
+    "salary_estimate": "CHF 90k-130k (Senior Consultant level at EY Zurich)",
+    "culture_fit": "Poor. Big Four consulting culture: billable hours, client service, methodology-heavy, partnership track. Candidate wants small-team ownership, shipping fast, auditing his own output. EY's scale and process rigidity clash with his builder mentality.",
     "concerns": [
-      "Job description truncated; requirements section not visible — cannot assess actual seniority expectations, specific tooling, or must-have qualifications",
-      "Title explicitly says 'Senior' — likely expects significant prior platform engineering experience beyond intern/junior level",
-      "Location Winterthur is Zurich-area but commute is longer than ideal",
-      "German-language job posting suggests German may be used in workplace, though 'Smart Working' and 'all genders' framing are modern/DACH-market typical",
-      "Candidate's A2 German is below likely working proficiency if team operates primarily in German"
+      "Seniority mismatch is extreme: candidate is intern-level, role is Senior Consultant (post-MBA or 3-5 years experience).",
+      "Zero technical overlap with LLMs, agentic systems, data platform engineering—candidate would be miserable and regressing.",
+      "Finance domain would leverage his law background, but he deliberately left that path; this pulls him backward.",
+      "German requirement likely harder than his A2 even if not explicitly stated; Zurich EY client work is German-heavy.",
+      "Big Four 'consulting' is powerpoint and stakeholder management, not the hands-on building he craves."
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 15,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Complete career direction mismatch: candidate is pivoting INTO technical AI/automation engineering, this role would pivot him BACK to pre-tech professional services",
+      "No technical growth in desired stack; skills atrophy risk",
+      "Advisory/consulting work is support-heavy for juniors, opposite of 'ownership from day one' requirement",
+      "Candidate's law background actually fits M&A advisory better than his current tech path — but he's deliberately left that behind",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "Intern - EY-Parthenon - M&A Lead Advisory",
+      "title": "EY Intern - EY-Parthenon - M&A Lead Advisory (graduate)",
+      "location": "Zürich",
+      "url": "https://de.glassdoor.ch/partner/jobListing.htm?pos=111&ao=1136043&s=224&guid=000001a02fa45a2b8286dfcb612f663d&src=GD_JOB_AD&t=JA&vt=e&uido=D661EDE7358AA032024678584D685D92&cs=1_63c6847c&cb=1787508370952&jobListingId=1010237609447&jrtk=5-yul1-0-1k0nsqbaokur3801-ccf4281bcdf1a7f5&tgt=GD_JOB_VIEW&utm_medium=email&utm_source=jobalert&utm_campaign=jobAlertAlert&utm_content=ja-jobpos11-age2d-1010237609447&ja=408601927",
+      "portal": "glassdoor.com",
+      "description": ""
+    },
+    "technical_fit": "Very poor. Role is pure M&A strategy/financial advisory with no technical engineering work. Zero overlap with candidate's skills in Python, LLM APIs, automation pipelines, cloud infrastructure, or data platform engineering.",
+    "contextual_fit": "Poor. While located in Zurich and requiring no German, the role is fundamentally misaligned with candidate's stated career direction. He explicitly seeks 'agentic systems and data platform engineering' with 'real ownership from day one' in building LLM-powered pipelines. This is graduate-level financial consulting supporting deal execution, not building production systems.",
+    "salary_estimate": "CHF 80k-100k (typical EY-Parthenon graduate intern range)",
+    "culture_fit": "Moderately negative. EY-Parthenon M&A advisory culture emphasizes client-facing presentation skills, financial modeling, and hierarchical team structures. Candidate's self-described excitement comes from 'zero to production' technical ownership and auditing his own shipped code — opposite of this advisory service model.",
+    "concerns": [
+      "Complete career direction mismatch: candidate is pivoting INTO technical AI/automation engineering, this role would pivot him BACK to pre-tech professional services",
+      "No technical growth in desired stack; skills atrophy risk",
+      "Advisory/consulting work is support-heavy for juniors, opposite of 'ownership from day one' requirement",
+      "Candidate's law background actually fits M&A advisory better than his current tech path — but he's deliberately left that behind"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 15,
+    "hard_blockers": [
+      "Role requires fluent German for Swiss corporate tax work — 'verhandlungssicheres Deutsch' is standard implicit requirement for client-facing tax roles in Zurich; job posting URL and title are in German, indicating German-language working environment. Candidate's German is A2, far below professional/client-facing level required."
+    ],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Blocker: Role requires fluent German for Swiss corporate tax work — 'verhandlungssicheres Deutsch' is standard implicit requirement for client-facing tax roles in Zurich; job posting URL and title are in German, indicating German-language working environment. Candidate's German is A2, far below professional/client-facing level required.",
+      "Role title explicitly 'Corporate Tax' — completely wrong functional track; candidate seeking AI/automation engineering",
+      "Big Four internship structure typically involves significant support/rotation work, not the 'zero to production' ownership candidate wants",
+      "Even with language improvement, domain (tax law) is misaligned with candidate's deliberate tech trajectory",
+      "URL and job title in German strongly signal German-primary working environment",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "Praktikum Corporate Tax Zürich (Graduate)",
+      "title": "EY Praktikum Corporate Tax Zürich (Graduate)",
+      "location": "Praktikum Corporate Tax Zürich",
+      "url": "https://de.glassdoor.ch/partner/jobListing.htm?pos=102&ao=1110586&s=224&guid=000001a02fa45ac68432e885dfc082d8&src=GD_JOB_AD&t=JA&vt=e&uido=D661EDE7358AA032024678584D685D92&cs=1_4d7d5781&cb=1787507498968&jobListingId=1010237311387&cpc=B076152010A3B66C&jrtk=5-yul1-0-1k0nrvnq5kurr800-de28789331ab5f54---6NYlbfkN0Bj-xBWVmzs7UIwFa-9Zm6MwNuQFkwLehssDYDaWnvIcecxoaL3XebdC_fjZgbe9Zs4WajcLJJdkpIEDZtCp_BvlMiJc2UiZJE5W6CuJ1a9Avm_xvElhlJZ-kVQvVLb17aGcggR3iiKPXOwHWDSRl0HelZ6IUkEaSpPTbC8ZQXsjFwLfV665u8Bx7npGKOpib11DlINXowQ9nFsUaMeQAPXnsEp4QPsy8WCdeIf5rV8ix-o_etbJ7nX8_RvCqnpccQLIs1-P48EJG_9X4r3rpwfyYVuorCsOccUEXijKz_yqEuu2UsA734TxR88e3bFMhlpf9oSITbY6x9GrPkeJdiJLypvsI0NrT46-sBuNvrumFvaP6OJ56M-9gAFKRjS_EvTcLncsX1AhosANCsBM4JwOTsX_FCg5ofx03MDW86deQQLZGjrH3W01uQSb-ivIUIzL7m0zWzPBrI4vysHwI7vk440S1MszIhyWbLNeSstxjiZxX9Nzh_qnA0P-z2v9WOkS8wnfS_b3R92ZQo8xDRvspXfQgaDw3AD14LMDnZVB4KqKU-b6AmwdhZDecXMqRqYZl93QbxcIQueXrOTqSH-KowoQvbsEJVskQuUgCz10sGeSVWkjdW16YyZTEVfK8wNDAbj6M-Ywic3YNU4yFthh3X1cRf2_7eSg3Zvc_a9c_gwfJiY7bW6-CMliMQLuIl-zRDcAy8q1j64VbJpcZ6ZTSeJzZwM8jLWbxweniHUEsiPH_LuCv7jqZVOi67zdlw8IxPLPEP7Gk8z96So9OOK_2cvr9JSe0nF1ZINgso7waU5yAgQ3gMcArUUkHIhjB3KeVkOxYWhuZARqBs6CJWWOPLUBUWx2c7p2IHLDCvJbQ5unh6Cv1mZiUEqMJaBF4kFOT4XuEHYuAxWP48LL-4QhZTzj3roxmkT_4NeCBMfFQxxpy0bheBqtVv4KLuUFYh1oFUm0A3pfKE1sEEqOM4Kx5y8NBpcvyS9-2TkbNZg37IFCGheElrOh74_9yJ95JoFfFNn-TJyv4ned_aGngK2SGIKDI1chXpRlKxQZDNfmFOqw8dXMYk3&tgt=GD_JOB_VIEW&utm_medium=email&utm_source=jobalert&utm_campaign=jobAlertAlert&utm_content=ja-jobpos2-age2d-1010237311387&ja=408601993",
+      "portal": "glassdoor.com",
+      "description": ""
+    },
+    "technical_fit": "Very poor. Role is corporate tax consulting at a Big Four firm. Zero overlap with candidate's technical stack (Python, LLM APIs, automation pipelines, cloud infrastructure). The job involves tax law, financial reporting, and client advisory — not engineering, not AI, not data platforms.",
+    "contextual_fit": "Poor. Candidate is a deliberate career changer INTO tech/AI engineering. This role would be a reversal back toward his pre-tech legal background (law degree, court work) but in a completely different domain (Swiss/German corporate tax). No ownership of technical systems, no building from zero to production, no LLM or automation work.",
+    "salary_estimate": "CHF 3,500–4,500/month (typical Big Four internship range)",
+    "culture_fit": "Mismatch. EY's structured, hierarchical consulting environment with client-facing advisory work differs sharply from candidate's stated preference for hands-on builder roles with real ownership from day one. The 'Graduate' track implies standardized rotation, not greenfield technical ownership.",
+    "concerns": [
+      "Role title explicitly 'Corporate Tax' — completely wrong functional track; candidate seeking AI/automation engineering",
+      "Big Four internship structure typically involves significant support/rotation work, not the 'zero to production' ownership candidate wants",
+      "Even with language improvement, domain (tax law) is misaligned with candidate's deliberate tech trajectory",
+      "URL and job title in German strongly signal German-primary working environment"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 15,
+    "hard_blockers": [
+      "German fluency required: role title and description in German ('Praktikum Tax Real Estate Zürich'), Big Four tax roles in Zurich require native/fluent German (C1+) for client work, regulatory documentation, and internal communication. Candidate's German is A2, far below threshold."
+    ],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Blocker: German fluency required: role title and description in German ('Praktikum Tax Real Estate Zürich'), Big Four tax roles in Zurich require native/fluent German (C1+) for client work, regulatory documentation, and internal communication. Candidate's German is A2, far below threshold.",
+      "Role is pure tax/accounting, not technology in any form; candidate would gain zero relevant technical experience for his stated goals",
+      "Real estate domain irrelevant to his interests",
+      "Graduate program implies structured rotation/support model, not the autonomous ownership he seeks",
+      "Big Four brand recognition might superficially appeal, but actual work would be demotivating",
+      "Low confidence: posting text under 200 chars -- score is title-based"
+    ],
+    "job": {
+      "company": "Praktikum Tax Real Estate Zürich (Graduate)",
+      "title": "EY Praktikum Tax Real Estate Zürich (Graduate)",
+      "location": "Praktikum Tax Real Estate Zürich",
+      "url": "https://de.glassdoor.ch/partner/jobListing.htm?pos=105&ao=1110586&s=224&guid=000001a02fa45ac68432e885dfc082d8&src=GD_JOB_AD&t=JA&vt=e&uido=D661EDE7358AA032024678584D685D92&cs=1_ce36e548&cb=1787507498968&jobListingId=1010237310656&cpc=6FC5BA77C9A4CD78&jrtk=5-yul1-0-1k0nrvnq5kurr800-1bb5f83d1fb0f737---6NYlbfkN0Bj-xBWVmzs7UIwFa-9Zm6MwNuQFkwLehssDYDaWnvIcecxoaL3XebdC_fjZgbe9Zu61oFNmgWKQv7SwX-O8cnOgXeH05PydT7zfuLHXsQofeZ3HZAx7aiDxoyUQStxAG5RwnW98fgAwTExh3V8bxElAFd_fHXEv7WCtcycVBml6-WJLy9ZTzQ2noDfav2z86EIkvIdmshzFiTHI26O184w3DIQ_6ICNVLir2hTPGF5TfMprQSpGjnEqQ-nrUWTMZOj5qsaFREt8vx7ldk45VRZWu6Icbkd5xZaSi0FUbgAY6GJlLXAvYxfnvR6L-tSQE6slwvVr3FWEm2fgcELvjgu1-SrgLkq7_Zcg0-WJ09R7eFVUi4BbGYU5iY-Q8GAih6ejcpbS9OpJNwrrHrojqBa9A2D8Z93tz-OQdLEf_G3eYFrJnUDKa6GJaRxmZBCz-qFl09EBAgDc88D9puvuTG9cWRrHl-a6JCkwRXpLOz040QOo__4hfmTKwWhHlGezQUP-Sphe4LkpAgftH_7vcYM0BupfsVnMBHPj6xzQGdhvkn5_RsMXDrZU9JxdptN1zanz0UAJEAvu0KFXyyYWxBGsw8Ej-p1XYfLOlyZsi9expv4lXigFH7Ly1i2oIZMnrY8nY2xu3k5_bo0-64j8G5dJZdpAy8mHX4e-pDs0sFwAIdeSrGvTQl6yIGsxkFclhSfyDa3g6wdR6brZRBR2wE9zUR6JWFvGOYtLIU2BzJUpOJKORfKZOLvCKqTy9tOLohqOX0a1ReX9aRazyS1nIdcWeUxLOOYnY6V4uDjBowThb6GDI-nnZRLGyzXY_icSQP5Jb206l3aifTxUo-R_h1sRHb-TIATxHkNBLxTrNMPCmoHl3QDSYP6PeHtpwYqetftC4yhBFTORzKOcfR6d6_Uwsdy7dBhqg2cFTzSr1rivyY2_wl0qPqVbp9RGmz8IvHENN7usMsnwunKQeDgWv_HNhp25VYRZjCN4iF91EQJqRatTHCv-EET2iAse9uK3p8ygWCL0t52oPN-RZyw_vtgMzdFc70MfacssH4DEm10i7nctO-xiSHr&tgt=GD_JOB_VIEW&utm_medium=email&utm_source=jobalert&utm_campaign=jobAlertAlert&utm_content=ja-jobpos5-age2d-1010237310656&ja=408601993",
+      "portal": "glassdoor.com",
+      "description": ""
+    },
+    "technical_fit": "Very poor. Role is tax/audit in real estate, zero overlap with AI/automation, LLMs, data engineering, or software development. Candidate's entire skillset (Python, LLM APIs, CI/CD, cloud infrastructure, dashboards) is irrelevant to tax compliance and real estate valuation work.",
+    "contextual_fit": "Poor. Candidate explicitly seeks agentic systems and data platform engineering with ownership of technical builds. This is a traditional Big Four graduate internship in tax advisory—support work, client compliance, regulatory filings. Complete mismatch in role shape (support vs. build), domain (real estate tax vs. AI/tech), and career trajectory.",
+    "salary_estimate": "CHF 3,500–4,500/month (typical Big Four graduate internship range in Zurich)",
+    "culture_fit": "Poor. EY Tax is hierarchical, process-driven, client-service oriented. Candidate thrives in zero-to-one building, autonomous technical ownership, shipping and iterating on his own systems. Cultural values are near-opposites.",
+    "concerns": [
+      "Role is pure tax/accounting, not technology in any form; candidate would gain zero relevant technical experience for his stated goals",
+      "Real estate domain irrelevant to his interests",
+      "Graduate program implies structured rotation/support model, not the autonomous ownership he seeks",
+      "Big Four brand recognition might superficially appeal, but actual work would be demotivating"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
