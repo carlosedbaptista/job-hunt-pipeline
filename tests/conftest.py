@@ -24,3 +24,11 @@ def _no_real_error_log(monkeypatch):
     errors out of digests/evaluation_errors.txt (a real, committed log)."""
     monkeypatch.setattr("job_evaluator.log_error", lambda msg: None)
 
+
+
+@pytest.fixture(autouse=True)
+def _no_borderline_resampling(monkeypatch):
+    """Borderline jobs are normally scored three times and the median kept.
+    In the suite that triples the mocked calls and adds a real sleep between
+    them for no benefit, so it is off unless a test asks for it."""
+    monkeypatch.setenv("BORDERLINE_SAMPLES", "0")
