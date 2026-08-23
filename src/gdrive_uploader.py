@@ -30,8 +30,9 @@ In CI (GitHub Actions):
 import os
 import json
 import base64
-import urllib.request
+import urllib.error
 import urllib.parse
+import urllib.request
 from pathlib import Path
 
 try:
@@ -136,24 +137,56 @@ def _refresh_access_token(data):
                 "access_token": result["access_token"],
                 "token_type": result.get("token_type", "Bearer"),
             }
+    except urllib.error.HTTPError as e:
+        body = ""
+        try:
+            body = e.read().decode()
+        except Exception:
+            pass
+        hint = ""
+        if "invalid_grant" in body:
+            # Learned the hard way on 2026-08-23: revoking an OLD token for
+            # the same user+client kills the CURRENT one too -- Google revokes
+            # the whole grant, not the individual token. Do not "tidy up" old
+            # tokens; just let them expire.
+            hint = (" -- the token was revoked or expired. Note that revoking any token "
+                    "for this client revokes ALL of them, including the current one. "
+                    "Re-authorise with `python config/setup_oauth2.py`.")
+        print(f"  [GDrive] Error refreshing token: HTTP {e.code} {body[:160]}{hint}")
+        return None
     except Exception as e:
         print(f"  [GDrive] Error refreshing token: {e}")
         return None
 
 
 def _get_drive_service():
-    """Return the Google Drive service (tries Service Account, then OAuth2)."""
+    """The Drive service: OAuth2 if configured, Service Account otherwise.
+
+    The fallback is deliberately NOT taken when OAuth2 is configured but
+    fails. A Service Account authenticates perfectly and then cannot upload
+    anything to a personal Drive -- its quota is {"limit": "0"} -- so falling
+    back turns a clear "your token died" into a confusing 403 at upload time,
+    three log lines later. That is exactly how a dead refresh token went
+    unnoticed on 2026-08-23.
+    """
     if not GDRIVE_AVAILABLE:
         return None
 
-    # Try OAuth2 first (works for personal accounts)
-    oauth2 = _get_oauth2_credentials()
-    if oauth2:
-        from google.oauth2.credentials import Credentials
-        gcreds = Credentials(token=oauth2["access_token"], scopes=SCOPES)
-        return build("drive", "v3", credentials=gcreds, cache_discovery=False)
+    oauth2_configured = bool(os.environ.get("GDRIVE_REFRESH_TOKEN_B64")
+                             or os.path.exists(REFRESH_TOKEN_PATH))
+    if oauth2_configured:
+        oauth2 = _get_oauth2_credentials()
+        if oauth2:
+            from google.oauth2.credentials import Credentials
+            gcreds = Credentials(token=oauth2["access_token"], scopes=SCOPES)
+            return build("drive", "v3", credentials=gcreds, cache_discovery=False)
+        print("  [GDrive] OAuth2 is configured but the refresh token did not work. "
+              "Re-run `python config/setup_oauth2.py` and update GDRIVE_REFRESH_TOKEN_B64. "
+              "NOT falling back to the Service Account: it can authenticate but owns no "
+              "storage, so it would fail again at upload with a less obvious message.")
+        return None
 
-    # Fallback to Service Account (requires Workspace/Shared Drive)
+    # Service Account: only ever usable against a Workspace Shared Drive.
     creds = _get_service_account_credentials()
     if creds:
         return build("drive", "v3", credentials=creds, cache_discovery=False)
