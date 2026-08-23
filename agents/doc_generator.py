@@ -7,6 +7,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from email_notifier import send_email
 
 KIMI_TIMEOUT = 30
+# Written by main(), read by agents/email_notifier.py so the daily digest
+# can announce and attach whatever was generated this run.
+DOCS_MANIFEST = os.path.join("digests", "generated_docs_latest.json")
 
 def _generate_summary(client, profile, title, company, description):
     prompt = (
@@ -35,6 +38,14 @@ def _generate_summary(client, profile, title, company, description):
                 or f"{profile.get('role', '')}. "
                    f"Skills: {', '.join(profile.get('skills', {}).get('technical_default', [])[:8])}.")
     return r.strip()
+
+def _clip(text: str, limit: int) -> str:
+    """Truncates while KEEPING the paragraph breaks. textwrap.shorten collapses
+    all whitespace, which is fine for a job description and exactly wrong for
+    anything the model is asked to imitate the rhythm of."""
+    text = (text or "").strip()
+    return text if len(text) <= limit else text[:limit].rstrip() + "..."
+
 
 def _load_text_model(path: str) -> str:
     """Reads an optional plain-text style model (config/cv_model.txt,
@@ -84,26 +95,46 @@ def _generate_cover_letter(client, profile, title, company, location, descriptio
         + f"\nJob to apply: {title} at {company} ({location or 'Switzerland'})\n"
         f"Description: {job_desc}\n"
         f"Evaluation score: {score}/100\n\n"
-        "Write a 4-paragraph formal cover letter in English.\n"
-        "1. State genuine interest and explain why THIS specific role fits where he is "
-        "heading, using the 'Seeking' line above rather than his current job title.\n"
-        "2. Two or three relevant experiences with concrete results, taking the metrics "
-        "from the experience bullets. Prefer specifics over adjectives.\n"
-        "3. What he brings beyond the checklist: career changer who moves fast into "
-        "unfamiliar domains, ships to production, and audits his own work. Mention the "
-        "language situation only if the posting raises it, and state it exactly as the "
-        "Languages line above says -- never upgrade it.\n"
-        "4. Request an interview and reference the portfolio project by name.\n"
+        "Write a cover letter in English, five or six short paragraphs.\n\n"
+        "Open with the story, never with an application sentence. He did not start in "
+        "tech: he studied Law and worked at the Court of Justice before moving into "
+        "software. That belongs in the FIRST paragraph. It is the image that makes a "
+        "recruiter stop reading job boards for a second, and it is what makes the move "
+        "into engineering read as deliberate rather than random. Do not demote it to a "
+        "caveat further down.\n\n"
+        "Then carry the path forward as a journey into what he does now, and why that "
+        "points at THIS role -- use the 'Seeking' line for direction, not his current "
+        "job title. Somewhere include a concrete example of HOW he works, preferably one "
+        "where he audited his own work and found his own mistake. Close by asking for "
+        "one specific thing.\n\n"
+        "Voice:\n"
+        "- Vary the rhythm. Long sentences carry the story, short ones land the point.\n"
+        "- Contractions are fine. It should sound like a person talking, not a form.\n"
+        "- Prefer a named system or a number to any adjective.\n\n"
+        "Never write, in any wording:\n"
+        "- an opening of the shape \"I am applying for the X role at Y\" or \"I am writing "
+        "to express my interest\", and never the phrase \"What draws me to it is\";\n"
+        "- a chronological roll-call of jobs (\"I work today as... Before that... "
+        "Earlier...\"). That cadence is the clearest tell of a machine reading a CV out "
+        "loud. Weave the experience into the narrative instead;\n"
+        "- filler that signals a machine: passionate, excited to, thrilled, leverage, "
+        "align with, deep dive, fast-paced, I believe my skills, perfect fit, proven "
+        "track record, hit the ground running.\n\n"
+        "Mention the language situation only if the posting raises it, and state it "
+        "exactly as the Languages line above says -- never upgrade it.\n\n"
         "Rules: no invented facts, employers, dates, metrics or technologies -- use ONLY "
         "what is above. No addresses, dates or signatures in the body. No em dashes. "
-        "Return ONLY the four paragraphs."
+        "Return ONLY the letter body, starting at the first paragraph."
     )
     if model_letter:
         prompt += (
             "\n\nReference letter previously written by the candidate. Match its voice, "
-            "rhythm and level of concreteness. Do NOT copy its sentences or reuse its "
+            "rhythm and paragraph shape. Do NOT copy its sentences or reuse its "
             "company-specific details:\n---\n"
-            + textwrap.shorten(model_letter, width=2500, placeholder="...")
+            # NOT textwrap.shorten: that collapses every newline into a space,
+            # so the reference used to arrive as one run-on block -- the model
+            # was told to match a rhythm that had just been erased.
+            + _clip(model_letter, 3200)
             + "\n---"
         )
     r = client.chat(
@@ -117,22 +148,25 @@ def _generate_cover_letter(client, profile, title, company, location, descriptio
         # 2025", "German (A2 level)", "JavaScript, Power BI") that drifted
         # out of date the moment the CV changed -- and this text goes to
         # employers. It now says only what the profile says, and says less.
+        # It also opened with "I am writing to apply for the X role at Y",
+        # which is the single sentence the letter is supposed to avoid. The
+        # profile summary already starts with the story in his own voice, so
+        # the fallback leads with that and adds as little of its own as it can.
         top_experience = (profile.get("experience") or [{}])[0]
+        employer = str(top_experience.get("company", "")).split("--")[0].strip()
         r = (
-            f"Dear Hiring Manager,\n\n"
-            f"I am writing to apply for the {title} role at {company}. "
-            + (f"I am currently {top_experience.get('title', '')} at "
-               f"{str(top_experience.get('company', '')).split('--')[0].strip()}, "
-               if top_experience.get("title") else "")
-            + (f"and I am looking for {profile.get('target_role', '')}. "
-               if profile.get("target_role") else "")
-            + "\n\n"
+            "Dear Hiring Manager,\n\n"
             + (f"{profile.get('summary', '')}\n\n" if profile.get("summary") else "")
+            + (f"That is the work I do today as {top_experience.get('title', '')}"
+               + (f" at {employer}" if employer else "") + ", and it is why "
+               f"{title} at {company} caught my attention.\n\n"
+               if top_experience.get("title") else "")
             + (f"Languages: {profile.get('languages', '')}.\n\n"
                if profile.get("languages") else "")
-            + "I would welcome the opportunity to discuss how I could contribute to "
-            "your team, and you can find my project work on GitHub. Thank you for "
-            f"considering my application.\n\nKind regards,\n{profile.get('name', '')}"
+            + "I would welcome a conversation about what your team is building and "
+            "where I could contribute. My project work is on GitHub"
+            + (f" at {profile.get('github', '')}" if profile.get("github") else "")
+            + f".\n\nKind regards,\n{profile.get('name', '')}"
         )
     return r.strip()
 
@@ -337,7 +371,8 @@ def _email_docs_to_candidate(folder, title, company, score, paths):
     return ok
 
 
-def generate_docs_for_job(client, profile, ev: dict, gen_dir: str = "generated_docs") -> str | None:
+def generate_docs_for_job(client, profile, ev: dict, gen_dir: str = "generated_docs",
+                          mail: bool = True) -> str | None:
     """Generates (and, if configured, uploads to Drive) the CV/CL for a
     single evaluation record. Shared by main() (daily batch, reads
     job_evaluations_latest.json) and agents/add_job.py (single manual
@@ -388,14 +423,21 @@ def generate_docs_for_job(client, profile, ev: dict, gen_dir: str = "generated_d
         # Mail the PDFs to the candidate. Independent of Drive on purpose:
         # Drive is the one that has been silently failing, and a generated
         # document that reaches nobody is the same as no document.
-        try:
-            _email_docs_to_candidate(
-                folder, title, company, score,
-                [os.path.join(folder, f"CV_{safe_name}.pdf"),
-                 os.path.join(folder, f"CL_{safe_name}.pdf")],
-            )
-        except Exception as e:
-            print(f"  [mail] Failed (continuing): {type(e).__name__}: {str(e)[:120]}")
+        #
+        # mail=False in the daily batch: sending one e-mail per APPLY job
+        # buried the notice in a second inbox thread. main() records the
+        # documents in a manifest instead and the digest e-mail, which the
+        # candidate already reads once a day, announces and carries them.
+        # add_job.py keeps mail=True: it runs alone, with no digest to ride.
+        if mail:
+            try:
+                _email_docs_to_candidate(
+                    folder, title, company, score,
+                    [os.path.join(folder, f"CV_{safe_name}.pdf"),
+                     os.path.join(folder, f"CL_{safe_name}.pdf")],
+                )
+            except Exception as e:
+                print(f"  [mail] Failed (continuing): {type(e).__name__}: {str(e)[:120]}")
     else:
         save_json(os.path.join(folder, "ai_summary.json"), {"summary": summary, "letter": letter, "score": score})
         print(f"  Saved JSON only (fpdf2 missing): {folder}/")
@@ -416,14 +458,30 @@ def main():
         print("config/candidate_profile.json missing or invalid (check CANDIDATE_PROFILE_B64 secret) -- skipping doc generation")
         return
 
-    generated = 0
+    manifest = []
     for ev in evals:
-        if generate_docs_for_job(client, profile, ev, gen_dir):
-            generated += 1
+        folder = generate_docs_for_job(client, profile, ev, gen_dir, mail=False)
+        if not folder:
+            continue
+        job = ev.get("job", ev)
+        manifest.append({
+            "title": job.get("title", "Job"),
+            "company": job.get("company", "Company"),
+            "score": ev.get("score"),
+            "folder": folder,
+            "files": sorted(os.path.join(folder, f) for f in os.listdir(folder)
+                            if f.lower().endswith(".pdf")),
+        })
+
+    # The digest e-mail reads this and announces (and carries) the documents,
+    # so the candidate gets one message a day instead of one per APPLY job.
+    save_json(DOCS_MANIFEST, {"generated_at": now_iso(), "documents": manifest})
+
     # Say so out loud. This step used to print absolutely nothing when no job
     # reached APPLY, which is indistinguishable from a crash in the CI log.
-    print(f"[doc_generator] {generated} job(s) got tailored documents "
-          f"out of {len(evals)} evaluated (only APPLY qualifies).")
+    print(f"[doc_generator] {len(manifest)} job(s) got tailored documents "
+          f"out of {len(evals)} evaluated (only APPLY qualifies). "
+          f"Manifest: {DOCS_MANIFEST}")
 
 if __name__ == "__main__":
     main()
