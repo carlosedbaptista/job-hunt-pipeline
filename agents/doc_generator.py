@@ -207,6 +207,18 @@ except Exception:
     FPDF_AVAILABLE = False
     print("WARNING: fpdf2 not available; PDF generation disabled. Install: pip install fpdf2>=2.8.0")
 
+# python-docx: the EDITABLE copy of the same two documents. The PDF is what
+# gets sent -- fixed layout, nobody edits it by accident -- but the model will
+# occasionally write a sentence the candidate wants to change, and he should
+# not have to retype a letter to fix one line. Same content, same order.
+try:
+    import docx
+    from docx.shared import Inches, Pt
+    DOCX_AVAILABLE = True
+except Exception:
+    DOCX_AVAILABLE = False
+    print("WARNING: python-docx not available; editable copies disabled.")
+
 # Characters the model reaches for that Latin-1 cannot represent. Order
 # matters: these are substituted BEFORE the encode, because "ignore" DELETES
 # whatever it cannot map. That bug was live and visible in a letter that went
@@ -234,6 +246,119 @@ def _safe_text(text):
     for bad, good in _PDF_SUBSTITUTIONS.items():
         text = text.replace(bad, good)
     return text.encode("latin-1", "ignore").decode("latin-1")
+
+def _docx_heading(document, text):
+    """Section heading, matching the PDF's bold 11pt block headings."""
+    para = document.add_paragraph()
+    run = para.add_run(text)
+    run.bold = True
+    run.font.size = Pt(11)
+    para.paragraph_format.space_after = Pt(2)
+    return para
+
+
+def _docx_body(document, text, size=10, bold=False, space_after=2):
+    para = document.add_paragraph()
+    run = para.add_run(text)
+    run.bold = bold
+    run.font.size = Pt(size)
+    para.paragraph_format.space_after = Pt(space_after)
+    return para
+
+
+def cv_docx(profile, job, summary, path):
+    """The CV as an editable .docx. Mirrors cv_pdf section for section.
+
+    No _safe_text here: .docx is UTF-8, so the em dashes and accents that the
+    PDF's Latin-1 core fonts cannot represent survive intact. That is a
+    feature of the editable copy, not an oversight.
+    """
+    if not DOCX_AVAILABLE:
+        raise RuntimeError("python-docx is not installed")
+    d = docx.Document()
+    for section in d.sections:
+        section.top_margin = section.bottom_margin = Inches(0.5)
+        section.left_margin = section.right_margin = Inches(0.6)
+
+    _docx_body(d, profile["name"], size=16, bold=True, space_after=0)
+    for line in (f"{profile.get('role', '')} | {profile.get('location', '')}",
+                 f"{profile.get('phone', '')} | {profile.get('email', '')} | {profile.get('linkedin', '')}",
+                 f"Permit: {profile.get('permit', '')} | Notice: {profile.get('notice_period', '')}"):
+        _docx_body(d, line, space_after=0)
+
+    photo = profile.get("photo_path", "")
+    if photo and os.path.exists(photo):
+        try:
+            d.add_picture(photo, width=Inches(1.4))
+        except Exception:
+            pass
+
+    _docx_heading(d, "PROFILE SUMMARY")
+    _docx_body(d, summary)
+
+    role_key = _role_keywords(job.get("title", ""))
+    skill_key = (f"technical_{role_key}" if f"technical_{role_key}" in profile["skills"]
+                 else "technical_default")
+    tech_skills = profile["skills"].get(skill_key, profile["skills"]["technical_default"])
+    _docx_heading(d, "SKILLS")
+    _docx_body(d, "Technical: " + ", ".join(tech_skills)
+               + " | Communication: " + ", ".join(profile["skills"].get("communication", []))
+               + " | Certifications: " + ", ".join(profile["skills"].get("certifications", [])))
+
+    _docx_heading(d, "EXPERIENCE")
+    for exp in profile["experience"]:
+        _docx_body(d, f"{exp['title']} - {exp['company']} | {exp['period']}",
+                   bold=True, space_after=0)
+        for b in exp["bullets"]:
+            bullet = d.add_paragraph(b, style="List Bullet")
+            bullet.paragraph_format.space_after = Pt(0)
+            for run in bullet.runs:
+                run.font.size = Pt(10)
+
+    _docx_heading(d, "EDUCATION")
+    for edu in profile["education"]:
+        _docx_body(d, f"{edu['degree']} | {edu['institution']} | {edu['period']}", space_after=0)
+
+    _docx_heading(d, "LANGUAGES")
+    _docx_body(d, profile.get("languages", ""))
+
+    # Omitted entirely when empty, exactly like the PDF: a dangling heading
+    # with nothing under it looks like a mistake on a CV sent to an employer.
+    if str(profile.get("hobbies", "")).strip():
+        _docx_heading(d, "HOBBIES & INTERESTS")
+        _docx_body(d, profile["hobbies"])
+
+    d.save(path)
+
+
+def cl_docx(profile, letter, title, company, location, path):
+    """The cover letter as an editable .docx. Mirrors cl_pdf."""
+    if not DOCX_AVAILABLE:
+        raise RuntimeError("python-docx is not installed")
+    d = docx.Document()
+    for section in d.sections:
+        section.top_margin = section.bottom_margin = Inches(0.8)
+        section.left_margin = section.right_margin = Inches(0.9)
+
+    _docx_body(d, now_iso().split("T")[0], space_after=8)
+    for line in (profile["name"], profile["address"], profile["phone"],
+                 profile["email"], profile["linkedin"]):
+        _docx_body(d, line, space_after=0)
+    _docx_body(d, "", space_after=6)
+    _docx_body(d, company, space_after=0)
+    _docx_body(d, location or "Switzerland", space_after=10)
+
+    _docx_body(d, f"Re: Application for {title}", size=11, bold=True, space_after=8)
+
+    for para in letter.split("\n\n"):
+        para = para.strip()
+        if para:
+            _docx_body(d, para, size=11, space_after=8)
+
+    _docx_body(d, "Kind regards,", size=11, space_after=0)
+    _docx_body(d, profile["name"], size=11)
+    d.save(path)
+
 
 def cv_pdf(profile, job, summary, path):
     if not FPDF_AVAILABLE:
@@ -449,6 +574,17 @@ def generate_docs_for_job(client, profile, ev: dict, gen_dir: str = "generated_d
     if FPDF_AVAILABLE:
         cv_pdf(profile, job, summary, os.path.join(folder, f"CV_{safe_name}.pdf"))
         cl_pdf(profile, letter, title, company, location, os.path.join(folder, f"CL_{safe_name}.pdf"))
+        # Editable twins. The PDF is the copy that gets sent; the .docx exists
+        # so a sentence the model got wrong can be fixed without retyping the
+        # whole document. A failure here must never cost the PDFs.
+        if DOCX_AVAILABLE:
+            try:
+                cv_docx(profile, job, summary, os.path.join(folder, f"CV_{safe_name}.docx"))
+                cl_docx(profile, letter, title, company, location,
+                        os.path.join(folder, f"CL_{safe_name}.docx"))
+            except Exception as e:
+                print(f"  [docx] Editable copies failed (continuing): "
+                      f"{type(e).__name__}: {str(e)[:120]}")
         save_json(os.path.join(folder, "ai_summary.json"), {"summary": summary, "letter": letter, "score": score})
         print(f"  Saved to {folder}/")
 
@@ -485,8 +621,8 @@ def generate_docs_for_job(client, profile, ev: dict, gen_dir: str = "generated_d
             try:
                 _email_docs_to_candidate(
                     folder, title, company, score,
-                    [os.path.join(folder, f"CV_{safe_name}.pdf"),
-                     os.path.join(folder, f"CL_{safe_name}.pdf")],
+                    sorted(os.path.join(folder, f) for f in os.listdir(folder)
+                           if f.lower().endswith((".pdf", ".docx"))),
                 )
             except Exception as e:
                 print(f"  [mail] Failed (continuing): {type(e).__name__}: {str(e)[:120]}")
@@ -527,7 +663,7 @@ def main():
             "folder": folder,
             "link": link,
             "files": sorted(os.path.join(folder, f) for f in os.listdir(folder)
-                            if f.lower().endswith(".pdf")),
+                            if f.lower().endswith((".pdf", ".docx"))),
         })
 
     # The digest e-mail reads this and announces (and carries) the documents,
