@@ -92,10 +92,18 @@ class KimiClient:
             payload["response_format"] = response_format
         if temperature is not None:
             payload["temperature"] = temperature
-        # kimi-k2.* models think by default and reasoning tokens eat the
-        # max_tokens budget, which can leave "content" empty (JSONDecodeError).
-        # Disable thinking: this pipeline needs short, structured outputs.
-        if str(model).startswith("kimi-k2"):
+        # Kimi models think by default, and reasoning tokens are spent from the
+        # same max_tokens budget as the answer -- so the content comes back
+        # empty or cut mid-string, surfacing as a JSONDecodeError. This
+        # pipeline wants short structured output, never a visible chain of
+        # thought, so thinking is disabled for the whole family.
+        #
+        # The check used to read startswith("kimi-k2"), which silently excluded
+        # every newer model. Measured 2026-08-23: on kimi-k3, 8 of 9 scoring
+        # calls failed with "Expecting value: line 1 column 1" (empty content)
+        # or "Unterminated string" -- not because the model was worse, but
+        # because it alone was still thinking into a 1000-token budget.
+        if str(model).startswith("kimi-"):
             payload["thinking"] = {"type": "disabled"}
         data = self._post("/chat/completions", payload, timeout_sec=60)
         return data["choices"][0]["message"]["content"]
