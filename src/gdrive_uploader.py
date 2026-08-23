@@ -331,10 +331,13 @@ def upload_cv_cl(folder_local_path, company, title):
     folder_link = f"https://drive.google.com/drive/folders/{subfolder_id}"
     files = {}
     folder = Path(folder_local_path)
-    pdf_files = sorted(folder.glob("*.pdf"))
+    # .docx as well as .pdf: the editable copies belong in Drive too, since
+    # that is where the candidate goes to fix a sentence before sending.
+    pdf_files = sorted(f for f in folder.iterdir()
+                       if f.suffix.lower() in (".pdf", ".docx"))
 
     if not pdf_files:
-        print(f"[GDrive] No PDF found in {folder_local_path}")
+        print(f"[GDrive] No document found in {folder_local_path}")
         return {"files": files, "folder_link": folder_link}
 
     for pdf in pdf_files:
