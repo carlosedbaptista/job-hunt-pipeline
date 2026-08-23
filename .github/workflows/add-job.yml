@@ -73,6 +73,12 @@ jobs:
           GDRIVE_PARENT_FOLDER_ID: ${{ secrets.GDRIVE_PARENT_FOLDER_ID }}
           GDRIVE_REFRESH_TOKEN_B64: ${{ secrets.GDRIVE_REFRESH_TOKEN_B64 }}
           GDRIVE_CREDENTIALS_JSON_B64: ${{ secrets.GDRIVE_CREDENTIALS_JSON_B64 }}
+          # Without these the generated CV/CL are mailed nowhere and die with
+          # the runner: generated_docs/ is gitignored, there is no artifact
+          # upload (public repo), and Drive has never worked.
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
           JOB_URL: ${{ inputs.url }}
           JOB_TITLE: ${{ inputs.title }}
           JOB_COMPANY: ${{ inputs.company }}
@@ -89,16 +95,15 @@ jobs:
             exit 1
           fi
 
-      # Google Drive is the only place generated CV/CL PDFs are meant to
-      # persist (generated_docs/ is gitignored, kept out of the public
-      # repo) -- if that upload silently fails (auth expiry, quota, network),
-      # the PDFs would otherwise vanish with the runner and cost a real Kimi
-      # call for nothing. This is the backup: retrievable from the Actions
-      # run page for 90 days regardless of whether the Drive upload worked.
       # No generated_docs/ artifact: this repo is PUBLIC and Actions
       # artifacts are downloadable by any authenticated GitHub user, so
       # this published the candidate's name, phone, e-mail, permit and
-      # photo. Google Drive is the intended durable copy.
+      # photo. generated_docs/ is gitignored for the same reason.
+      #
+      # The durable copy is the e-mail: doc_generator attaches the CV/CL and
+      # mails them to GMAIL_RECIPIENT (the candidate, never a recruiter).
+      # Google Drive is a second copy that has never actually worked -- the
+      # Service Account answers 403 "storage quota" on every upload.
 
       - name: Regenerate dashboard
         env:

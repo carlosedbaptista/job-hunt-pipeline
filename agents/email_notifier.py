@@ -7,6 +7,7 @@ import os
 import smtplib
 import sys
 from datetime import datetime
+from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -258,17 +259,42 @@ def format_digest_as_html(digest):
     return html
 
 
-def send_email(recipient_email, subject, html_content, sender_email, app_password):
+def send_email(recipient_email, subject, html_content, sender_email, app_password,
+               attachments=None):
+    """Sends the message, optionally with files attached.
+
+    `attachments` is a list of local paths. It exists so the generated CV/CL
+    can reach the candidate: this repo is public, so the PDFs can never be
+    committed or uploaded as an Actions artifact, and the Google Drive path
+    fails until GDRIVE_REFRESH_TOKEN_B64 is set. Mail to GMAIL_RECIPIENT is
+    the one durable copy that leaks nothing -- and it only ever goes to the
+    candidate, never to a recruiter.
+    """
     try:
         server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
         server.login(sender_email, app_password)
-        message = MIMEMultipart("alternative")
+        # "alternative" means "the same content in different formats", which
+        # is wrong once a PDF is attached: some clients would hide the body.
+        if attachments:
+            message = MIMEMultipart("mixed")
+            body = MIMEMultipart("alternative")
+            body.attach(MIMEText(html_content, "html"))
+            message.attach(body)
+        else:
+            message = MIMEMultipart("alternative")
+            message.attach(MIMEText(html_content, "html"))
         message["Subject"] = subject
         message["From"] = sender_email
         message["To"] = recipient_email
-        html_part = MIMEText(html_content, "html")
-        message.attach(html_part)
+        for path in attachments or []:
+            if not os.path.isfile(path):
+                print(f"  ! Attachment missing, skipped: {path}")
+                continue
+            with open(path, "rb") as fh:
+                part = MIMEApplication(fh.read(), Name=os.path.basename(path))
+            part["Content-Disposition"] = f'attachment; filename="{os.path.basename(path)}"'
+            message.attach(part)
         server.sendmail(sender_email, recipient_email, message.as_string())
         server.quit()
         return True
