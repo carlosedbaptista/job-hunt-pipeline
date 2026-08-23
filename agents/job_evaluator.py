@@ -540,7 +540,15 @@ def evaluate_job(job):
         for field, detected_key in (("company", "detected_company"), ("title", "detected_title"), ("location", "detected_location")):
             if resolved_job.get(field, "Unknown") in ("Unknown", "", None):
                 detected = ev.get(detected_key)
-                if detected and detected.strip() and detected.strip().lower() != "unknown":
+                # Not just != "unknown": the model answers with speculation
+                # when it cannot tell, and "Unknown (likely Palantir or
+                # similar given 'Forward deployed')" was stored as a company
+                # name. A guess in a field that reaches a CV is worse than an
+                # empty one.
+                detected_clean = (detected or "").strip()
+                speculative = (detected_clean.lower().startswith("unknown")
+                               or "likely" in detected_clean.lower())
+                if detected_clean and not speculative:
                     resolved_job[field] = detected.strip()
 
         record = {

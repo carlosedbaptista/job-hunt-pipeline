@@ -149,9 +149,44 @@ def _collapse_card_variants(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     return [j for j in jobs if j["title"] not in dropped]
 
 
+# Longest plausible employer name. Measured against every company the pipeline
+# has ever stored correctly: the longest genuine one is "Zurich Insurance
+# Company Ltd" territory, comfortably under this. Anything longer is not a
+# company, it is a card that was never split.
+MAX_COMPANY_CHARS = 45
+
+
+def _reject_implausible_company(company: str) -> str:
+    """Returns the company, or "Unknown" when it is obviously not one.
+
+    _split_card_remainder takes everything before the "." separator as the
+    company, which is correct when it receives the tail of a card whose title
+    has already been removed. When a card has no short/long twin there is no
+    title to remove, so the WHOLE card became the company: 39 records across
+    every day of the history carry a job title in the company field, including
+    "Unknown (likely Palantir or similar ...)".
+
+    Recovering the real name from an unstructured card is a heuristic that
+    would misfire, and a wrong employer name is worse than none: it is written
+    into a CV. So this only refuses the garbage. The cost is that the posting
+    resolver cannot look the job up, which leaves it flagged
+    insufficient_info -- visible, and honestly labelled as not understood.
+    """
+    name = str(company or "").strip()
+    if not name or len(name) > MAX_COMPANY_CHARS:
+        return "Unknown"
+    # The model is asked to detect a company when the field is empty and
+    # sometimes answers with a guess rather than a name.
+    lowered = name.lower()
+    if lowered.startswith("unknown") or "likely" in lowered:
+        return "Unknown"
+    return name
+
+
 def tidy_job_fields(job: Dict[str, Any]) -> Dict[str, Any]:
     """Last-mile cleanup of one parsed card: company duplicated as a title
     prefix, locality glued to the title end. Mutates and returns the job."""
+    job["company"] = _reject_implausible_company(job.get("company", ""))
     job["title"] = _strip_company_prefix(job["title"], job.get("company", ""))
     title, city = _split_trailing_city(job["title"])
     if city:
