@@ -27,7 +27,7 @@
 
 ## Pipeline flow (as executed by CI)
 
-1. `agents/adzuna_ingestor.py` — fetch Adzuna jobs (strips query strings from URLs: they embed the app_id). Queries are overridable via `ADZUNA_QUERIES`; keep the list at 12 or redo the quota arithmetic in the comment there
+1. `agents/adzuna_ingestor.py` — fetch Adzuna jobs (strips query strings from URLs: they embed the app_id). 18 queries against ONE location (Zurich) with `ADZUNA_DISTANCE_KM=30`, which reaches Zug and Winterthur in the same call. The Zurich+Zug pass it replaced spent half the free tier on Zug for 4 distinct jobs in 84 days (measured 2026-08-23). `results_per_page` is Adzuna's maximum of 50: page size does not change the call count. Budget: 18 x 1 x 2 runs = 36/day, plus up to 24 from the enricher, against a free tier of 100 — `tests/test_adzuna_targeting.py` asserts this, so redo the arithmetic there before adding a query or a location.. Queries are overridable via `ADZUNA_QUERIES`; keep the list at 12 or redo the quota arithmetic in the comment there
 2. `src/email_ingestor.py` — fetch Gmail alerts (IMAP UIDs, `continue-on-error`)
 3. `agents/email_parser_local.py` — parse job emails locally (regex + BeautifulSoup, no API)
 4. `src/unified_ingestor.py` — merge sources, in-batch dedup, then **cross-run dedup via `src/deduplicator.filter_new_jobs` (SQLite, 21-day retention)**. The cost cap is applied HERE, before marking: jobs beyond `MAX_EVALUATIONS_PER_RUN` stay *unseen* and resurface next run as a queue (pre-audit behaviour marked everything seen and silently swallowed jobs 31+ forever)
