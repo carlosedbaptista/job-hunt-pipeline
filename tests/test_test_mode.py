@@ -130,3 +130,46 @@ class TestBudgetPriority:
                  "description": "x" * 500} for i in range(4)]
         picked = [j["title"] for j in _written(tmp_path, monkeypatch, jobs, db)]
         assert picked == ["Job 0", "Job 1", "Job 2", "Job 3"]
+
+
+class TestModelFamilyGuard:
+    """Kimi models think by default, and reasoning tokens come out of the same
+    max_tokens budget as the answer, so the content arrives empty or cut and
+    the JSON parse fails. The payload therefore disables thinking.
+
+    The guard used to be startswith("kimi-k2"), which silently excluded every
+    newer model. Measured on 2026-08-23 while evaluating a switch to kimi-k3:
+    8 of 9 scoring calls failed with "Expecting value: line 1 column 1" or
+    "Unterminated string" -- the model was fine, it was the only one still
+    thinking into a 1000-token budget. Whoever changes KIMI_MODEL next should
+    not have to rediscover that.
+    """
+
+    def _payload(self, model):
+        import kimi_client
+        captured = {}
+
+        class FakeClient(kimi_client.KimiClient):
+            def __init__(self):
+                self.api_key = "k"
+                self.base_urls = ["http://example"]
+
+            def _post(self, endpoint, payload, timeout_sec=60):
+                captured.update(payload)
+                return {"choices": [{"message": {"content": "{}"}}]}
+
+        FakeClient()._try_model(model, [{"role": "user", "content": "x"}], 1000, None)
+        return captured
+
+    def test_thinking_is_disabled_for_the_current_model(self):
+        assert self._payload("kimi-k2.6")["thinking"] == {"type": "disabled"}
+
+    def test_and_for_a_newer_one(self):
+        assert self._payload("kimi-k3")["thinking"] == {"type": "disabled"}
+
+    def test_and_for_a_model_that_does_not_exist_yet(self):
+        assert self._payload("kimi-k4.2")["thinking"] == {"type": "disabled"}
+
+    def test_non_kimi_models_are_left_alone(self):
+        """moonshot-v1-* does not take the parameter."""
+        assert "thinking" not in self._payload("moonshot-v1-128k")
