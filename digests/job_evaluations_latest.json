@@ -1,16 +1,18 @@
 [
   {
     "score": 35,
-    "hard_blockers": [],
+    "hard_blockers": [
+      "German: The program is based in Switzerland with 'Business Development & Strategy' focus; Siemens Switzerland operates heavily in German, and graduate programs in this region typically require fluent German (C1) for stakeholder interaction. The job title and posting URL (.de.glassdoor.ch) strongly suggest German-language context. Candidate's A2 German is insufficient for a client-facing strategy role in the DACH market."
+    ],
     "insufficient_info": true,
-    "language_gap_intermediate": true,
+    "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Role is pure business/strategy with no technical component — complete misalignment with candidate's stated direction",
-      "Graduate program structure implies rotations and support work, not deep ownership",
-      "Likely requires professional German for client-facing strategy roles in Switzerland (Siemens DACH operations), though not explicitly stated as hard requirement",
-      "Candidate's entire technical skillset (LLMs, automation, cloud, CI/CD) would go unused",
-      "Would represent a backward step in his deliberate career change into tech/engineering",
+      "Blocker: German: The program is based in Switzerland with 'Business Development & Strategy' focus; Siemens Switzerland operates heavily in German, and graduate programs in this region typically require fluent German (C1) for stakeholder interaction. The job title and posting URL (.de.glassdoor.ch) strongly suggest German-language context. Candidate's A2 German is insufficient for a client-facing strategy role in the DACH market.",
+      "Role is pure business/strategy, zero technical work—complete departure from candidate's stated career direction",
+      "Large corporate rotational program vs. candidate's preference for small-team, high-ownership environments",
+      "No evidence of AI, automation, or data engineering components",
+      "Swiss location likely Zurich-area but role type makes this irrelevant",
       "Low confidence: posting text under 200 chars -- score is title-based"
     ],
     "job": {
@@ -21,16 +23,15 @@
       "portal": "glassdoor.com",
       "description": ""
     },
-    "technical_fit": "Very poor. Role is business development & strategy, not engineering. No mention of Python, LLMs, automation, data pipelines, or any technical building work. The Siemens Graduate Program in BD&Strategy is a rotational business track focused on market analysis, commercial strategy, and corporate development.",
-    "contextual_fit": "Poor. Candidate wants ownership in building agentic systems and data platforms end-to-end. This role offers strategy/consulting rotations with no technical execution ownership. Career changer trajectory (law → tech) is irrelevant here; the role doesn't leverage his technical pivot at all.",
-    "salary_estimate": "CHF 85,000 - 105,000 (typical Swiss graduate program range)",
-    "culture_fit": "Mismatched. Siemens is a large corporate with structured programs; candidate seeks small-team, high-ownership, zero-to-production environments. The graduate program format is the opposite of 'real ownership from day one rather than support work'.",
+    "technical_fit": "Very poor. Role is business development and strategy, not engineering. No mention of Python, LLMs, automation, data pipelines, cloud infrastructure, or any technical building. The candidate's entire skill set (AI/ML engineering, data platform engineering, agentic systems) is misaligned with this commercial/strategy track.",
+    "contextual_fit": "Poor. The candidate explicitly seeks 'agentic systems and data platform engineering' with 'real ownership from day one' in building technical systems. This is a rotational graduate program in business development and strategy at a large corporate—exactly the opposite of hands-on technical ownership. Career-changer openness to new domains does not extend to abandoning technical work entirely.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Mismatched. Siemens is a large, structured corporate environment with rotational programs; candidate thrives in small-team, zero-to-one building environments with end-to-end ownership.",
     "concerns": [
-      "Role is pure business/strategy with no technical component — complete misalignment with candidate's stated direction",
-      "Graduate program structure implies rotations and support work, not deep ownership",
-      "Likely requires professional German for client-facing strategy roles in Switzerland (Siemens DACH operations), though not explicitly stated as hard requirement",
-      "Candidate's entire technical skillset (LLMs, automation, cloud, CI/CD) would go unused",
-      "Would represent a backward step in his deliberate career change into tech/engineering"
+      "Role is pure business/strategy, zero technical work—complete departure from candidate's stated career direction",
+      "Large corporate rotational program vs. candidate's preference for small-team, high-ownership environments",
+      "No evidence of AI, automation, or data engineering components",
+      "Swiss location likely Zurich-area but role type makes this irrelevant"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -39,17 +40,18 @@
   {
     "score": 35,
     "hard_blockers": [
-      "German: role in Zurich PWM serving EMEA/HNW clients will require fluent German for client interaction; 'Zurich' + 'Private Wealth Management' + 'EMEA' implies native/fluent German essential for regulatory and client-facing work, which candidate cannot meet at A2 level"
+      "Role requires fluent German for client-facing wealth management in Zurich; candidate has A2 German, far below required level. This is a client-facing role serving German-speaking HNW clients in the DACH market—German fluency is functionally mandatory.",
+      "Role is pure finance, not software/AI/engineering—fundamental career-direction mismatch."
     ],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: German: role in Zurich PWM serving EMEA/HNW clients will require fluent German for client interaction; 'Zurich' + 'Private Wealth Management' + 'EMEA' implies native/fluent German essential for regulatory and client-facing work, which candidate cannot meet at A2 level",
-      "No technical growth path toward agentic systems or platform engineering",
-      "PWM is a career track away from engineering, not toward it",
-      "Summer 2027 timeline unclear vs candidate's 2-week notice availability",
-      "Even if English used internally, client-facing PWM in Zurich demands German fluency",
+      "Blocker: Role requires fluent German for client-facing wealth management in Zurich; candidate has A2 German, far below required level. This is a client-facing role serving German-speaking HNW clients in the DACH market—German fluency is functionally mandatory.",
+      "Blocker: Role is pure finance, not software/AI/engineering—fundamental career-direction mismatch.",
+      "Role is 2027 summer internship, candidate available now with 2-week notice—timing mismatch (though less critical given it's a future program)",
+      "Private Wealth Management is relationship-driven, not product/building-driven; candidate's stated motivation would not be met",
+      "No technical skills utilized; significant opportunity cost for candidate's trajectory",
       "Low confidence: posting text under 200 chars -- score is title-based"
     ],
     "job": {
@@ -60,15 +62,14 @@
       "portal": "glassdoor.com",
       "description": ""
     },
-    "technical_fit": "Very poor. Role is pure finance/wealth management client-facing analyst work with no engineering, no LLMs, no automation, no data pipelines, no coding. Candidate's entire technical stack (Python, LLM APIs, Docker, CI/CD, cloud infrastructure) is irrelevant.",
-    "contextual_fit": "Poor. Candidate explicitly seeks 'agentic systems and data platform engineering' with 'real ownership from day one.' This is a traditional summer analyst program in private wealth management—rotational, client-service oriented, hierarchical, with no building or shipping ownership. Career-changer background (law) is somewhat adaptable, but the role shape is diametrically opposed to what motivates him.",
+    "technical_fit": "Very poor. Role is pure finance/wealth management (client advisory, portfolio analysis, financial planning). Zero overlap with agentic systems, LLM pipelines, data platform engineering, or software development. Candidate's entire technical stack (Python, LLM APIs, Docker, CI/CD, automation) is irrelevant to this role.",
+    "contextual_fit": "Poor. While the candidate is open to unfamiliar domains, this is not a technical role at all—it's a traditional finance internship seeking economics/business/finance students. His law background is slightly adjacent but his complete pivot to tech makes this a backward step, not a growth opportunity.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Mismatched. Goldman Sachs PWM is elite, structured, and relationship-driven; candidate thrives in small-team, builder-centric, zero-to-production environments. The 'audit my own output and fix it' autonomy he values doesn't map to analyst program hierarchy.",
+    "culture_fit": "Mismatch. Goldman Sachs PWM is hierarchical, client-service oriented, and process-driven. Candidate explicitly seeks 'ownership from day one,' 'building from zero to production,' and hands-on engineering work. This role offers none of that.",
     "concerns": [
-      "No technical growth path toward agentic systems or platform engineering",
-      "PWM is a career track away from engineering, not toward it",
-      "Summer 2027 timeline unclear vs candidate's 2-week notice availability",
-      "Even if English used internally, client-facing PWM in Zurich demands German fluency"
+      "Role is 2027 summer internship, candidate available now with 2-week notice—timing mismatch (though less critical given it's a future program)",
+      "Private Wealth Management is relationship-driven, not product/building-driven; candidate's stated motivation would not be met",
+      "No technical skills utilized; significant opportunity cost for candidate's trajectory"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -81,11 +82,11 @@
     "language_gap_intermediate": true,
     "key_match_points": [],
     "red_flags": [
-      "Role shape is fundamentally wrong: strategy consulting vs. engineering/building; candidate would be producing decks not pipelines",
-      "German likely used in Swiss client engagements; 'Technology Strategy' at EY CH often serves DACH clients in German",
-      "Postgraduate Data Science + current AI dev role makes him overqualified and misaligned for intern analyst track",
-      "Career change narrative (Law→Engineering) gets diluted in consulting where JD→MBA→consulting is common and undifferentiated",
-      "Two-week notice irrelevant—this is internship cycle timing, not urgent hire",
+      "Role is pure consulting advisory with no engineering execution — candidate would be building slides, not systems",
+      "No LLM, automation, or data platform work visible in job description",
+      "German likely needed for Swiss client work despite English posting; EY Zurich typically operates bilingually",
+      "Big Four internship structured as pipeline to full-time consulting hire, not technical depth-building",
+      "Candidate's self-taught engineering trajectory and 'build and ship' motivation would be frustrated by strategy work",
       "Low confidence: posting text under 200 chars -- score is title-based"
     ],
     "job": {
@@ -96,32 +97,33 @@
       "portal": "glassdoor.com",
       "description": ""
     },
-    "technical_fit": "Poor. Role is classic Big-4 IT strategy consulting: ERP/SAP transformations, cloud migration advisory, digital operating models, stakeholder management with C-suite. Zero LLM/agentic systems work, zero hands-on pipeline building. Candidate's entire profile—production Python/LLM pipelines, Docker/CI/CD, dashboard building—is mismatched to PowerPoint-heavy strategy consulting.",
-    "contextual_fit": "Weak. EY's TST practice sells transformation roadmaps, not builds them. Candidate explicitly wants 'ownership from day one' and 'zero to production' shipping; this role is analyst-grade support on client-facing advisory engagements. His non-tech background (Law) is actually typical for strategy consulting, but his technical trajectory post-transition makes this a backward step.",
-    "salary_estimate": "CHF 3,500-4,500/month (EY intern band, Zurich)",
-    "culture_fit": "Poor fit for candidate's stated motivations. EY consulting culture is hierarchical, staff-aug to client sites, billable-hour driven. Candidate wants small-team ownership and greenfield building. His self-directed 'audit my own output and fix it' style clashes with consulting's partner-led, consensus-driven delivery model.",
+    "technical_fit": "Poor. Role is broad technology strategy consulting (IT strategy, digital transformation, enterprise architecture) rather than hands-on engineering. No mention of LLMs, agentic systems, data pipelines, or building production systems. Heavy focus on PowerPoint, stakeholder management, and advisory work — the opposite of 'zero to production' ownership.",
+    "contextual_fit": "Weak. EY's structured consulting internship is designed for traditional consulting career paths, not career-changers seeking deep technical craft. The 'strategy and transformation' framing means client-facing advisory, not building. Candidate's explicit motivation for 'real ownership from day one' and 'shipping it, then auditing my own output' is mismatched with a Big Four consulting model where junior interns do research and deck preparation.",
+    "salary_estimate": "CHF 3,500-4,500/month (typical Big Four consulting intern range in Zurich)",
+    "culture_fit": "Poor. EY's hierarchical, process-heavy consulting culture contrasts sharply with candidate's preference for small-team, high-ownership environments. The 'intern' title here means supporting engagement teams, not owning technical delivery.",
     "concerns": [
-      "Role shape is fundamentally wrong: strategy consulting vs. engineering/building; candidate would be producing decks not pipelines",
-      "German likely used in Swiss client engagements; 'Technology Strategy' at EY CH often serves DACH clients in German",
-      "Postgraduate Data Science + current AI dev role makes him overqualified and misaligned for intern analyst track",
-      "Career change narrative (Law→Engineering) gets diluted in consulting where JD→MBA→consulting is common and undifferentiated",
-      "Two-week notice irrelevant—this is internship cycle timing, not urgent hire"
+      "Role is pure consulting advisory with no engineering execution — candidate would be building slides, not systems",
+      "No LLM, automation, or data platform work visible in job description",
+      "German likely needed for Swiss client work despite English posting; EY Zurich typically operates bilingually",
+      "Big Four internship structured as pipeline to full-time consulting hire, not technical depth-building",
+      "Candidate's self-taught engineering trajectory and 'build and ship' motivation would be frustrated by strategy work"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": []
   },
   {
-    "score": 25,
-    "hard_blockers": [
-      "German: role likely requires fluent German for M&A work in Zurich (Equans DACH operations, strategy roles in Switzerland typically mandate native/fluent German for client/internal dealings). Even if not explicitly stated, 'Strategy & M&A' in Zurich at a French-German conglomerate operating in DACH market implies German fluency is de facto mandatory."
-    ],
+    "score": 32,
+    "hard_blockers": [],
     "insufficient_info": true,
-    "language_gap_intermediate": false,
+    "language_gap_intermediate": true,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: German: role likely requires fluent German for M&A work in Zurich (Equans DACH operations, strategy roles in Switzerland typically mandate native/fluent German for client/internal dealings). Even if not explicitly stated, 'Strategy & M&A' in Zurich at a French-German conglomerate operating in DACH market implies German fluency is de facto mandatory.",
-      "Complete domain pivot away from tech/engineering into finance/strategy; no transferable technical skills; M&A internships are highly competitive for finance/economics students; candidate's law background doesn't align with typical M&A candidate profile; 4-6 month duration is standard but irrelevant given other blockers",
+      "Role is fundamentally misaligned with candidate's stated career direction (AI/automation/data engineering)",
+      "No technical building component; pure business/strategy internship",
+      "German job posting on Glassdoor.de suggests German working environment, though Zurich-based",
+      "Skills atrophy risk: six months away from technical work contradicts his trajectory",
+      "M&A/finance domain with no path to agentic systems or platform engineering",
       "Low confidence: posting text under 200 chars -- score is title-based"
     ],
     "job": {
@@ -132,12 +134,16 @@
       "portal": "glassdoor.com",
       "description": ""
     },
-    "technical_fit": "Very poor. Role is pure corporate strategy/M&A with no technical component—no Python, no LLMs, no automation, no data pipelines, no cloud infrastructure. Candidate's entire skillset (AI/ML engineering, data platform building, agentic systems) is irrelevant here.",
-    "contextual_fit": "Poor. Candidate explicitly seeks 'agentic systems and data platform engineering' with 'real ownership from day one.' This is a strategy consulting internship supporting M&A transactions and market analysis—opposite of building production systems. Even the 'internship' format doesn't salvage the fundamental role-shape mismatch.",
+    "technical_fit": "Very poor. Role is pure strategy/M&A consulting: market analysis, financial modeling, due diligence, M&A process support. Zero overlap with candidate's technical stack (Python, LLMs, automation, data pipelines, cloud infrastructure). No building, no shipping, no production systems.",
+    "contextual_fit": "Poor. Candidate explicitly seeks 'agentic systems and data platform engineering' with 'real ownership from day one' and 'zero to production.' This is the opposite: supporting M&A transactions, preparing presentations, financial analysis. Career changer trajectory (law → tech) is irrelevant here; M&A strategy doesn't leverage his self-taught technical skills or his stated growth direction.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Weak. Equans is an energy/services conglomerate; the role is PowerPoint/financial modeling heavy in a traditional corporate structure. No indication of the zero-to-production, builder-oriented culture candidate prioritizes.",
+    "culture_fit": "Neutral-to-negative. Equans is an energy/services engineering firm, not a tech/product company. The role sits in corporate strategy, not engineering. Candidate's motivation for ownership and building doesn't align with intern support role in M&A advisory.",
     "concerns": [
-      "Complete domain pivot away from tech/engineering into finance/strategy; no transferable technical skills; M&A internships are highly competitive for finance/economics students; candidate's law background doesn't align with typical M&A candidate profile; 4-6 month duration is standard but irrelevant given other blockers"
+      "Role is fundamentally misaligned with candidate's stated career direction (AI/automation/data engineering)",
+      "No technical building component; pure business/strategy internship",
+      "German job posting on Glassdoor.de suggests German working environment, though Zurich-based",
+      "Skills atrophy risk: six months away from technical work contradicts his trajectory",
+      "M&A/finance domain with no path to agentic systems or platform engineering"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -150,11 +156,10 @@
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Zero robotics/embodied AI background; steep learning curve for RL, simulators, hardware",
-      "Research assistant role shape contradicts candidate's stated desire for production ownership and shipping",
-      "Likely requires strong linear algebra, calculus, and probabilistic ML foundations not evident in profile",
-      "Competition from robotics/CS master's students with direct relevant coursework",
-      "Internship duration and start timing may not align with academic semester cycles",
+      "No robotics, RL, or hardware background; candidate's 'agentic systems' interest is software/LLM-based, not physical robots",
+      "Research assistant role shape vs. candidate's desire for production ownership and shipping",
+      "Likely requires strong PyTorch/TensorFlow, simulators (MuJoCo, Isaac), math-heavy RL theory — none in profile",
+      "Candidate would be starting from near-zero in domain while competing with robotics/ML PhD students",
       "Low confidence: posting text under 200 chars -- score is title-based"
     ],
     "job": {
@@ -165,56 +170,15 @@
       "portal": "linkedin.com",
       "description": ""
     },
-    "technical_fit": "Low. Role is in robot learning (robotics, control, embodied AI) requiring deep RL, PyTorch, C++, ROS, and physical robot platforms. Candidate's expertise is in LLM APIs, automation pipelines, and cloud data engineering — no overlap with robotics, computer vision for manipulation, or sim-to-real transfer.",
-    "contextual_fit": "Poor. ETH robot learning lab expects research-oriented interns with strong math/ML foundations (probabilistic inference, optimal control) and prior robotics experience. Candidate is a career changer from law with a data science specialization focused on business automation, not academic research or physical systems.",
-    "salary_estimate": "CHF 2,000–2,500/month (ETH standard internship rate)",
-    "culture_fit": "Misfit. Lab culture is research-intensive, paper-oriented, with mentorship toward PhD tracks. Candidate explicitly wants 'ownership from day one' building production systems and shipping to users — this is a research assistant role contributing to publications, not product ownership.",
-    "concerns": [
-      "Zero robotics/embodied AI background; steep learning curve for RL, simulators, hardware",
-      "Research assistant role shape contradicts candidate's stated desire for production ownership and shipping",
-      "Likely requires strong linear algebra, calculus, and probabilistic ML foundations not evident in profile",
-      "Competition from robotics/CS master's students with direct relevant coursework",
-      "Internship duration and start timing may not align with academic semester cycles"
-    ],
-    "recommendation": "SKIP",
-    "decision": "SKIP",
-    "materials_needed": []
-  },
-  {
-    "score": 45,
-    "hard_blockers": [
-      "Location not Zurich/Zug area (Baden) -- auto-SKIP triggered"
-    ],
-    "insufficient_info": true,
-    "language_gap_intermediate": false,
-    "key_match_points": [],
-    "red_flags": [
-      "Blocker: Location not Zurich/Zug area (Baden) -- auto-SKIP triggered",
-      "Job description was truncated; requirements/qualifications section not visible -- score kept conservative",
-      "Role appears to be traditional BI/reporting in financial risk, far from candidate's target of agentic systems and data platform engineering",
-      "No evidence of LLM, automation, or cloud infrastructure work in visible description",
-      "Large corporate utility environment unlikely to offer the 'ownership from day one' role shape candidate prioritizes",
-      "German language requirements unknown due to truncation; Axpo is Swiss-German company, possible unmet language needs",
-      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
-    ],
-    "job": {
-      "company": "Axpo Group",
-      "title": "Intern Market Risk (f/m/d)",
-      "location": "Baden",
-      "url": "https://www.linkedin.com/comm/jobs/view/4447718088/?trackingId=s5ipxR2UpwWgGq7cc9%2B%2Fzw%3D%3D&refId=o1RTwfC%2FsP37QMTsKA9Adg%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BT7I5W%2BgIR8KEEIhVSdiIug%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=2W4zs2bRvtAYo1&trk=eml-email_job_alert_digest_01-primary_job_list-0-jobcard_body_3_jobid_4447718088_ssid_8700305346_fmid_gbrmkn~mt5ikpi2~7w&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-jobcard_body_3_jobid_4447718088_ssid_8700305346_fmid_gbrmkn~mt5ikpi2~7w-null-gbrmkn~mt5ikpi2~7w-null-null&eid=gbrmkn-mt5ikpi2-7w&otpToken=M2IzNDJhMzcxNGUwYjE1MzVjNWM4M2Y5NjJjZmViYzVkNDU0NDQ4MTJhNmEyZmNjZGFmNTUwYWI2MzU1OTNiNTYwMGNkZTMxMWExMTAzZGU1ZjJkNTNlZWQ2Y2Q1Mjk0NWQ3ZjA1ZjJhZDhiZWQ1MTJjODNlYjU4YjNmNWYxYjhkZjk5ZTgyZTU3NGFhNDdmLDIsMQ%3D%3D",
-      "portal": "linkedin.com",
-      "description": "Workload: 100% | Starting Date: 01.01.2027 | Duration: 6 months Join Axpo Solutions AG and contribute to the development of PnL and Market Risk reports and applications that support strategic decision-making, market data analysis, and operational efficiency within the Market Risk Department. What you will do: Within the Market Risk Department, the team of BI and Market Intelligence is responsible for building and maintaining PnL and Market Risk reports and end-user applications used in Market R…"
-    },
-    "technical_fit": "Weak. The visible role is BI/reporting-focused (PnL reports, Market Risk reports, end-user applications) in energy trading/finance. No mention of LLMs, agentic systems, automation pipelines, or data platform engineering. The candidate's core strengths in LLM APIs, multi-step automation, Docker/CI/CD, and cloud infrastructure are not aligned with what is visible.",
-    "contextual_fit": "Poor. Baden is not Zurich/Zug (though commutable, it's not the target area). The role shape appears to be maintaining/building reports in a risk department rather than greenfield AI/automation ownership. No evidence of 'zero to production' ownership or agentic systems work.",
+    "technical_fit": "Mismatch. Role is Robot Learning at ETH — core robotics, control theory, reinforcement learning, physical robot systems. Candidate's expertise is in LLM-powered automation, data pipelines, and cloud infrastructure. No robotics, ROS, PyTorch/TensorFlow for RL, or hardware experience listed.",
+    "contextual_fit": "Poor. While ETH Zurich is prestigious and local, this is a research-heavy robotics internship, not a builder/owner role in agentic systems or data platforms. The 'get hired' framing suggests academic/research track, not production engineering ownership.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown. Axpo is a large energy utility; the visible description suggests structured corporate environment, not the startup/small-team ownership culture the candidate seeks.",
+    "culture_fit": "Likely highly academic, research-oriented, publication-focused. Candidate's motivation emphasizes zero-to-production ownership and shipping real systems — misaligned with typical academic lab culture.",
     "concerns": [
-      "Job description was truncated; requirements/qualifications section not visible -- score kept conservative",
-      "Role appears to be traditional BI/reporting in financial risk, far from candidate's target of agentic systems and data platform engineering",
-      "No evidence of LLM, automation, or cloud infrastructure work in visible description",
-      "Large corporate utility environment unlikely to offer the 'ownership from day one' role shape candidate prioritizes",
-      "German language requirements unknown due to truncation; Axpo is Swiss-German company, possible unmet language needs"
+      "No robotics, RL, or hardware background; candidate's 'agentic systems' interest is software/LLM-based, not physical robots",
+      "Research assistant role shape vs. candidate's desire for production ownership and shipping",
+      "Likely requires strong PyTorch/TensorFlow, simulators (MuJoCo, Isaac), math-heavy RL theory — none in profile",
+      "Candidate would be starting from near-zero in domain while competing with robotics/ML PhD students"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
