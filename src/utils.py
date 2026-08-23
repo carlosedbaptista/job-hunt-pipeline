@@ -19,6 +19,38 @@ THRESHOLD_REVIEW = int(os.environ.get("THRESHOLD_REVIEW", "70"))
 MIN_DESCRIPTION_CHARS = int(os.environ.get("MIN_DESCRIPTION_CHARS", "200"))
 
 
+def is_truncated_description(text) -> bool:
+    """True when the posting text is a cut-off teaser rather than the posting.
+
+    Measured on 2026-08-23 over every Adzuna record ever stored: 917 of 917
+    had a description of EXACTLY 500 characters, all ending mid-sentence. The
+    search API truncates, and it is not a setting -- the full text is only on
+    the employer's own page, which Adzuna hides behind JavaScript and which
+    answers 403 to a runner.
+
+    This mattered far more than the length suggests. What survives the cut is
+    the opening pitch; what is lost is the requirements list, which is where
+    the disqualifiers live. The Avaloq AI Software Engineer posting scored
+    82/APPLY on its first 500 characters and 58/SKIP on the full text, which
+    demands 5 years of full-stack, 3 years of applied ML and a B.Sc. None of
+    that was visible. The 200-char floor did not catch it: 500 looks like a
+    real description and is not one.
+
+    So a truncated description counts as insufficient information, which caps
+    the decision at REVIEW. The system cannot see the requirements, so it must
+    not claim the job is a match -- it hands the judgement to the candidate
+    instead, and never auto-generates a CV for it.
+    """
+    t = str(text or "").rstrip()
+    if len(t) < 400:
+        return False
+    # An explicit marker beats any heuristic.
+    if t.endswith(("...", "…", "�")):
+        return True
+    # Otherwise: long, and stops without finishing a sentence.
+    return not t.endswith((".", "!", "?", '"', ")", ":", ";"))
+
+
 # CEFR ladder, weakest first. Used to work out which language levels sit
 # ABOVE the candidate's own -- the intermediate zone is not a fixed set of
 # levels, it depends on where he currently is. Never hardcode a level in
