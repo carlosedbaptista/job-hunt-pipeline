@@ -123,7 +123,11 @@ def _generate_cover_letter(client, profile, title, company, location, descriptio
         "Mention the language situation only if the posting raises it, and state it "
         "exactly as the Languages line above says -- never upgrade it.\n\n"
         "Rules: no invented facts, employers, dates, metrics or technologies -- use ONLY "
-        "what is above. No addresses, dates or signatures in the body. No em dashes. "
+        "what is above. This includes TECHNICAL DETAIL: describe his own projects only in "
+        "the terms given, and never invent a specific mechanism, bug or fix to make the "
+        "story land better. He has to defend every sentence in an interview. "
+        "No addresses, dates or signatures in the body. No em dashes, and no en dashes "
+        "either: write a plain hyphen, a comma, or restructure the sentence. "
         "Return ONLY the letter body, starting at the first paragraph."
     )
     if model_letter:
@@ -187,14 +191,33 @@ except Exception:
     FPDF_AVAILABLE = False
     print("WARNING: fpdf2 not available; PDF generation disabled. Install: pip install fpdf2>=2.8.0")
 
+# Characters the model reaches for that Latin-1 cannot represent. Order
+# matters: these are substituted BEFORE the encode, because "ignore" DELETES
+# whatever it cannot map. That bug was live and visible in a letter that went
+# to an employer: every em dash became a double space, leaving six holes
+# mid-sentence ("LLM APIs  Claude, Kimi  and ship them"). The replace() calls
+# that were meant to prevent it ran AFTER the encode had already dropped the
+# character, so they were dead code.
+_PDF_SUBSTITUTIONS = {
+    "\u2019": "'", "\u2018": "'", "\u201c": '"', "\u201d": '"',
+    "\u2013": "-", "\u2014": "-", "\u2212": "-",
+    "\u2026": "...", "\u00a0": " ", "\u2022": "-", "\u2192": "->",
+    "\u20ac": "EUR", "\u2122": "(TM)",
+}
+
+
 def _safe_text(text):
-    """Remove emojis and non-Latin-1 chars for PDF compatibility."""
+    """Makes text safe for the Latin-1-only PDF core fonts.
+
+    Substitutes first, then drops whatever is still unrepresentable (emoji,
+    other scripts), so nothing the model routinely writes vanishes silently
+    from a document that goes to an employer.
+    """
     if not text:
         return ""
-    text = text.encode("latin-1", "ignore").decode("latin-1")
-    text = text.replace("\u2019", "'").replace("\u2018", "'").replace("\u201c", '"').replace("\u201d", '"')
-    text = text.replace("\u2013", "-").replace("\u2014", "-")
-    return text
+    for bad, good in _PDF_SUBSTITUTIONS.items():
+        text = text.replace(bad, good)
+    return text.encode("latin-1", "ignore").decode("latin-1")
 
 def cv_pdf(profile, job, summary, path):
     if not FPDF_AVAILABLE:
