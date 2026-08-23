@@ -251,3 +251,52 @@ def ensure_dir(path: str) -> str:
     """Create directory if it doesn't exist, return path."""
     os.makedirs(path, exist_ok=True)
     return path
+
+
+# ─── Cheap relevance gate ────────────────────────────────────────────────────
+# Broadening the Adzuna queries on 2026-08-23 multiplied the intake by 7.7 and
+# brought consultancy, marketing and M&A roles with it: 49 of 56 titles in
+# that day's run did not match the target shape at all. The scorer rejected
+# every one of them correctly -- and each rejection cost an LLM call first,
+# out of a cap of 30 that good jobs then could not reach.
+#
+# The obvious fix, a list of low-scoring keywords, was measured and REJECTED.
+# Ranked by mean score, the worst offenders in the history were "praktikum"
+# (19 jobs, max 45) and "werkstudent" (6, max 45) -- the German words for
+# internship and working student, which are the core of what he is looking
+# for. They score low because those particular postings did not fit, not
+# because the word signals noise. Filtering them would have deleted his entire
+# German-language funnel. "science" was on the list too, as in Data Science.
+#
+# So the gate is a CONJUNCTION: reject only when the title names a clearly
+# non-technical FUNCTION and contains no technical term at all. Validated
+# against all 278 scored titles in the history: it rejects 13% of them and the
+# highest score among everything it rejects is 35, far below the SKIP
+# threshold. "AI Engineer - Marketing Analytics" and "Data Scientist, Wealth
+# Management" both survive, which is the point.
+_NON_TECHNICAL_ROLE = re.compile(
+    r"\b(marketing|videographer|content creator|copywriter|"
+    r"account executive|sales|seller|recruit\w*|talent (acquisition|specialist|partner)|"
+    r"wealth manage\w*|private banking|tax|audit\w*|legal counsel|"
+    r"m&a|mergers|actuar\w*|underwrit\w*|customer success|"
+    r"brand|social media|community manager|office manager|"
+    r"receptionist|hr business partner)\b", re.I)
+
+_TECHNICAL_TERM = re.compile(
+    r"\b(engineer\w*|developer|software|data|ai|ml|machine learning|"
+    r"analyst|analytics|scientist|automation|devops|sre|platform|"
+    r"backend|frontend|fullstack|full.stack|cloud|python|informatik|"
+    r"entwickler|agentic|llm|mlops)\b", re.I)
+
+
+def is_off_target_title(title) -> bool:
+    """True when the title is a non-technical role with no technical element.
+
+    Deliberately narrow. A false positive here is invisible -- the posting is
+    dropped before anyone sees it -- so the gate errs heavily towards letting
+    things through and paying for the evaluation.
+    """
+    text = str(title or "")
+    if not text.strip():
+        return False
+    return bool(_NON_TECHNICAL_ROLE.search(text)) and not _TECHNICAL_TERM.search(text)

@@ -209,6 +209,31 @@ def _generate_cover_letter(client, profile, title, company, location, descriptio
         )
     return r.strip()
 
+def _order_skills_for_job(skills, description):
+    """Puts the skills the posting actually asks for first.
+
+    Reordering only: nothing is added, nothing is dropped, nothing is
+    reworded. A recruiter reads the first line of SKILLS and stops, so
+    leading with the stack the job names is worth real money -- and unlike
+    rewriting experience bullets, it cannot introduce a claim he would have
+    to defend.
+
+    Matching is plain case-insensitive containment rather than a regex: skill
+    names here are multi-character and concrete ("Docker", "GitHub Actions"),
+    and a clever pattern is not worth the risk of a wrong match in a document
+    sent to an employer.
+    """
+    text = str(description or "").lower()
+    if not text:
+        return list(skills)
+    wanted, rest = [], []
+    for skill in skills:
+        name = str(skill).strip()
+        # Two characters minimum: a one-letter "skill" would match anything.
+        (wanted if len(name) >= 2 and name.lower() in text else rest).append(skill)
+    return wanted + rest
+
+
 def _role_keywords(title):
     title_lower = title.lower()
     if any(k in title_lower for k in ["data", "analyst", "business intelligence", "bi"]):
@@ -319,6 +344,8 @@ def cv_docx(profile, job, summary, path):
     skill_key = (f"technical_{role_key}" if f"technical_{role_key}" in profile["skills"]
                  else "technical_default")
     tech_skills = profile["skills"].get(skill_key, profile["skills"]["technical_default"])
+    # Lead with what the posting actually asks for. Reordering only.
+    tech_skills = _order_skills_for_job(tech_skills, job.get("description", ""))
     _docx_heading(d, "SKILLS")
     _docx_body(d, "Technical: " + ", ".join(tech_skills)
                + " | Communication: " + ", ".join(profile["skills"].get("communication", []))
@@ -427,6 +454,8 @@ def cv_pdf(profile, job, summary, path):
     role_key = _role_keywords(job.get("title", ""))
     skill_key = f"technical_{role_key}" if f"technical_{role_key}" in profile["skills"] else "technical_default"
     tech_skills = profile["skills"].get(skill_key, profile["skills"]["technical_default"])
+    # Lead with what the posting actually asks for. Reordering only.
+    tech_skills = _order_skills_for_job(tech_skills, job.get("description", ""))
     pdf.set_font("Helvetica", "B", 11)
     pdf.cell(0, 6, "SKILLS", ln=True)
     pdf.set_font("Helvetica", "", 10)
