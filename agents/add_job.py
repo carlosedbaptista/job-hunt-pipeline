@@ -107,7 +107,21 @@ def main():
     parser.add_argument("--location", default="", help="Location (optional)")
     args = parser.parse_args()
 
-    if args.url:
+    # Text the user pasted WINS over the link, and the link is kept as
+    # metadata. The old order tried to scrape first whenever --url was
+    # present, so filling in both -- which the Actions form invites, its two
+    # inputs being "Job URL (optional if you paste the description)" and
+    # "Full job description text (most reliable)" -- threw away the pasted
+    # text and aborted the whole run on the scrape failure. Verified against
+    # the live workflow on 2026-08-23: Adzuna answers 403 to the runner, so
+    # url + text failed with "Could not extract the job from the link".
+    pasted = args.text or (open(args.file, encoding="utf-8").read() if args.file else "")
+
+    if pasted.strip():
+        job = {"title": args.title or "Unknown", "company": args.company or "Unknown",
+               "location": args.location or "Unknown", "description": pasted,
+               "url": args.url or "", "portal": "manual"}
+    elif args.url:
         print(f"Fetching job from {args.url} ...")
         try:
             job = fetch_job_from_url(args.url)
@@ -125,11 +139,6 @@ def main():
             job = {"title": args.title or "Unknown", "company": args.company or "Unknown",
                    "location": args.location or "Unknown", "description": text,
                    "url": args.url, "portal": "manual"}
-    elif args.text or args.file:
-        text = args.text or open(args.file, encoding="utf-8").read()
-        job = {"title": args.title or "Unknown", "company": args.company or "Unknown",
-               "location": args.location or "Unknown", "description": text,
-               "url": args.url or "", "portal": "manual"}
     else:
         print("Paste the job text below (Ctrl+Z+Enter on Windows to finish):")
         text = sys.stdin.read()
