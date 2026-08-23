@@ -14,8 +14,9 @@ from datetime import date, datetime, timezone
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 from kimi_client import call_kimi_json
-from utils import (THRESHOLD_APPLY, THRESHOLD_REVIEW,
-                   effective_decision, is_spurious_blocker, max_evaluations_per_run)
+from utils import (MIN_DESCRIPTION_CHARS, THRESHOLD_APPLY, THRESHOLD_REVIEW,
+                   candidate_language_level, effective_decision,
+                   is_spurious_blocker, levels_above, max_evaluations_per_run)
 
 # Cost guard: cap LLM calls per run (business rule: control daily spend).
 MAX_EVALUATIONS_PER_RUN = max_evaluations_per_run()
@@ -31,30 +32,39 @@ DESCRIPTION_WINDOW = 4000
 # confident evaluation -- evaluate_job caps such jobs at REVIEW so a bare
 # title never earns automatic APPLY / CV-CL generation (the model otherwise
 # fabricates confidence: a title-only "AI Engineer" posting scored 78 with
-# "Technical fit: Strong" in the 2026-08-17 audit).
-MIN_DESCRIPTION_CHARS = 200
+# "Technical fit: Strong" in the 2026-08-17 audit). Defined in src/utils.py
+# and re-exported here: agents/description_enricher.py shares it.
 
 PROFILE_IS_FALLBACK = False
 
 
-def load_profile_summary() -> str:
-    """Builds the candidate summary from config/candidate_profile.json,
-    so the match criteria reflect the real CV (not a fixed summary)."""
+def load_profile() -> dict:
+    """Reads config/candidate_profile.json. Returns {} (and sets the loud
+    fallback flag) when it is missing or unreadable."""
     global PROFILE_IS_FALLBACK
     try:
         with open("config/candidate_profile.json", encoding="utf-8") as f:
-            p = json.load(f)
+            return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError) as e:
-        # Fallback: minimal summary without PII. Loud, because scoring the
-        # whole run against a generic profile silently distorts every score
-        # (main() refuses to run in this state; single-job callers like
-        # add_job.py only get this warning).
+        # Loud, because scoring a whole run against a generic profile
+        # silently distorts every score (main() refuses to run in this
+        # state; single-job callers like add_job.py only get this warning).
         PROFILE_IS_FALLBACK = True
         print(f"WARNING: config/candidate_profile.json unavailable ({type(e).__name__}) -- "
               "using the generic fallback profile; scores will NOT reflect the real candidate.",
               file=sys.stderr)
-        return ("Candidate: Data/Business Analyst, Zurich Area CH (Permit B), 2 weeks notice. "
-                "Skills: SQL, Python, Power BI, GA4. Languages: PT, EN(C1), ES, DE(B1).")
+        return {}
+
+
+def load_profile_summary(p: dict = None) -> str:
+    """Builds the candidate summary from the profile, so the match criteria
+    reflect the real CV (not a fixed summary)."""
+    p = load_profile() if p is None else p
+    if not p:
+        # Minimal summary without PII.
+        return ("Candidate: AI & Automation Developer Intern, Zurich Area CH (Permit B), "
+                "2 weeks notice. Looking for: AI / data platform engineering internship. "
+                "Skills: Python, SQL, LLM APIs, GitHub Actions. Languages: PT, EN(C1), ES(B2), DE(A2).")
 
     skills = p.get("skills", {})
     tech = skills.get("technical_default", [])
@@ -67,29 +77,52 @@ def load_profile_summary() -> str:
     projects = p.get("projects", [])
     project_summary = "; ".join(pr.get("title", "") for pr in projects[:2])
 
+    # What he is today vs. what he is looking for next are different things,
+    # and only the first used to reach the model. A posting is scored on fit
+    # to the TARGET: the CV says "seeking an internship to deepen my
+    # expertise in agentic systems and data platform engineering", and
+    # without that line the scorer just matched against his current job.
+    target = p.get("target_role", "")
+    target_line = f"Looking for (score fit to THIS, not to his current job): {target}. " if target else ""
+
     return (
-        f"Candidate: {p.get('role', 'Data/Business Analyst')}, Zurich Area CH "
-        f"({p.get('permit', 'Permit B')}), notice {p.get('notice_period', '2 weeks')}. "
+        f"Candidate, currently: {p.get('role', 'AI & Automation Developer Intern')}, "
+        f"Zurich Area CH ({p.get('permit', 'Permit B')}), "
+        f"notice {p.get('notice_period', '2 weeks')}. "
+        f"{target_line}"
         f"Motivation (in his own words, weigh this for role-shape/excitement fit): {motivation} "
         f"Skills: {', '.join(tech)}. "
         f"Experience: {exp_summary}. "
         f"Projects: {project_summary}. "
         f"Education: {edu_summary}. "
         f"Certifications: {', '.join(certs)}. "
-        f"Languages: {p.get('languages', 'PT native, EN C1, ES B2, DE B1')}."
+        f"Languages: {p.get('languages', 'PT native, EN C1, ES B2, DE A2')}."
     )
 
 
-PROFILE = load_profile_summary()
+PROFILE_DATA = load_profile()
+PROFILE = load_profile_summary(PROFILE_DATA)
+
+# The candidate's own German level, read from the profile -- never hardcoded.
+# Everything about the language rules is derived from it: what counts as an
+# unreachable hard requirement, and what counts as the intermediate zone
+# (levels above his but below fluent). An empty value means "unknown", and
+# the derivation then assumes the weakest level, which is the safe direction.
+GERMAN_LEVEL = candidate_language_level(PROFILE_DATA, "german")
+INTERMEDIATE_LEVELS = levels_above(GERMAN_LEVEL)
+_LEVEL_LABEL = GERMAN_LEVEL.upper() if GERMAN_LEVEL else "beginner"
+_INTERMEDIATE_LABEL = "/".join(l.upper() for l in INTERMEDIATE_LEVELS) or "above his level"
 
 SYSTEM_PROMPT = (
     'Evaluate job vs candidate. Return JSON: {"score":0-100,"technical_fit":"brief",'
     '"contextual_fit":"brief","salary_estimate":"range or Not disclosed","culture_fit":"brief",'
     '"language_requirement":"none|soft|intermediate|hard -- hard ONLY for a mandatory '
     'fluent/native/C1-C2 language beyond English (also list it in hard_blockers); '
-    'intermediate for working/professional proficiency or B2-required wording in a language '
-    'beyond English (above his B1, below fluent); soft for plus/acceptable/B1-level mentions '
-    'or when English is the working language; none if languages are never mentioned",'
+    'intermediate for working/professional proficiency or a required level in the '
+    f'{_INTERMEDIATE_LABEL} band in a language beyond English (above his {_LEVEL_LABEL}, '
+    'below fluent); soft for plus/acceptable mentions, for a required level at or below '
+    f'his own {_LEVEL_LABEL}, or when English is the working language; none if languages '
+    'are never mentioned",'
     '"hard_blockers":["ONLY true hard eligibility blockers: an unmet HARD language requirement, '
     'wrong permit/location. EMPTY LIST when none -- never write None/no-blocker text here"],'
     '"concerns":["soft signals only: skill-depth notes, minor gaps, things merely worth '
@@ -105,17 +138,18 @@ SYSTEM_PROMPT = (
     "Also always auto-SKIP -- score below the SKIP threshold AND an entry in hard_blockers, "
     "no exception, regardless of how strong the rest of the match is -- when the role "
     "explicitly REQUIRES fluent/native German (or any language beyond English) for the "
-    "candidate to do the job: his German is B1 (solid but not fluent), so a native/C1-fluent "
-    "requirement is a hard eligibility blocker he cannot currently meet, not a 'domain gap' "
-    "to wave off. This is deliberate: an otherwise-perfect job he is disqualified from is "
-    "worse than useless to surface, it's noise. Distinguish that HARD requirement ('fluent "
-    "German required', 'German native speaker', 'verhandlungssicheres Deutsch', 'C1/C2 "
-    "German') from a SOFT one ('German is a plus', 'German helpful but not required', B1/B2 "
-    "German acceptable, or the role states English as the working language) -- a soft or "
-    "B1-level requirement is a minor signal like any other soft criterion, stays out of "
-    "hard_blockers, and should NOT trigger this auto-SKIP. "
-    "The INTERMEDIATE zone ('working/professional proficiency in German', 'German B2 "
-    "required') is also NOT a blocker: it is above his B1 but below fluent -- set "
+    f"candidate to do the job: his German is {_LEVEL_LABEL} and improving, so a native/"
+    "C1-fluent requirement is a hard eligibility blocker he cannot currently meet, not a "
+    "'domain gap' to wave off. This is deliberate: an otherwise-perfect job he is "
+    "disqualified from is worse than useless to surface, it's noise. Distinguish that HARD "
+    "requirement ('fluent German required', 'German native speaker', 'verhandlungssicheres "
+    "Deutsch', 'C1/C2 German') from a SOFT one ('German is a plus', 'German helpful but not "
+    f"required', a level at or below his own {_LEVEL_LABEL}, or the role states English as "
+    "the working language) -- a soft requirement is a minor signal like any other soft "
+    "criterion, stays out of hard_blockers, and should NOT trigger this auto-SKIP. "
+    "The INTERMEDIATE zone ('working/professional proficiency in German', or a required "
+    f"level in the {_INTERMEDIATE_LABEL} band) is also NOT a blocker: it is above his "
+    f"{_LEVEL_LABEL} but below fluent, and it is exactly what he is studying towards -- set "
     "language_requirement='intermediate', report it as a prominent concern, and score "
     "normally; the pipeline caps such jobs at REVIEW so he judges case by case. "
     "Weighting: candidate is a deliberate career changer, open to unfamiliar business "
@@ -156,12 +190,27 @@ def log_error(msg):
 # clause is never invisible to the scorer. English is deliberately absent
 # (the candidate is C1); German/French/Italian are the local risks. Two
 # tiers: HARD (fluent/native/C1-C2/verhandlungssicher) and INTERMEDIATE
-# (working/professional proficiency, B2 -- above his B1, below fluent; a
-# 'working proficiency in German' clause sat past the excerpt of a 92/APPLY
-# posting on 2026-08-17 and reached the scorer invisibly).
+# (working/professional proficiency, plus every CEFR level above the
+# candidate's own and below C1 -- see utils.levels_above; a 'working
+# proficiency in German' clause sat past the excerpt of a 92/APPLY posting
+# on 2026-08-17 and reached the scorer invisibly).
 _HARD_LEVEL_RE = r"fluent|native|mother[\s-]?tongue|verhandlungssicher\w*|\bc1\b|\bc2\b"
-_INTERMEDIATE_LEVEL_RE = r"(?:professional|working)[\s-]proficienc\w*|\bb2\b"
+# The intermediate band is DERIVED from the candidate's own level, not fixed:
+# for A2 it is B1 and B2, for B1 only B2. Hardcoding "B2" here meant that a
+# "German B1 required" posting read as a soft mention while his German was
+# actually A2 -- a real gap rendered as no gap.
 _LANG_NAME_RE = r"german|deutsch|french|fran[cç]ais|franz[oö]sisch|italian\w*|italienisch"
+
+
+def intermediate_level_pattern(levels=None) -> str:
+    """Level alternation for the intermediate band. DERIVED from the
+    candidate's own level, never fixed: for A2 it is B1 and B2, for B1 only
+    B2. Hardcoding 'B2' here meant a 'German B1 required' posting read as a
+    soft mention while his German was actually A2 -- a real gap rendered as
+    no gap."""
+    levels = INTERMEDIATE_LEVELS if levels is None else levels
+    return "|".join([r"(?:professional|working)[\s-]proficienc\w*"] +
+                    [rf"\b{level}\b" for level in levels])
 
 
 def _lang_re(level: str):
@@ -173,22 +222,27 @@ def _lang_re(level: str):
 
 
 _HARD_LANGUAGE_RE = _lang_re(_HARD_LEVEL_RE)
-_INTERMEDIATE_LANGUAGE_RE = _lang_re(_INTERMEDIATE_LEVEL_RE)
+_INTERMEDIATE_LANGUAGE_RE = _lang_re(intermediate_level_pattern())
 
 
-def detect_language_requirement_tier(full_description: str):
-    """'hard' | 'intermediate' | None -- deterministic, scans the FULL text."""
+def detect_language_requirement_tier(full_description: str, levels=None):
+    """'hard' | 'intermediate' | None -- deterministic, scans the FULL text.
+    `levels` overrides the intermediate band (tests; callers scoring for a
+    different candidate level)."""
     text = full_description or ""
     if _HARD_LANGUAGE_RE.search(text):
         return "hard"
-    if _INTERMEDIATE_LANGUAGE_RE.search(text):
+    pattern = (_INTERMEDIATE_LANGUAGE_RE if levels is None
+               else _lang_re(intermediate_level_pattern(levels)))
+    if pattern.search(text):
         return "intermediate"
     return None
 
 
 def detect_hard_language_requirement(full_description: str):
     """Scans the FULL description for what looks like a hard (or significant
-    intermediate) language requirement beyond English/B1-German, returning a
+    intermediate) language requirement beyond English and beyond the
+    candidate's own German level, returning a
     short evidence snippet (or None). Soft mentions without a level marker
     ('German is a plus') deliberately do not match. The snippet is injected
     into the prompt as pipeline evidence -- the model still judges severity,
@@ -291,14 +345,15 @@ def evaluate_job(job):
         if detect_language_requirement_tier(desc_full) == "hard":
             prompt += (f"\n[Pipeline note: the full posting contains this text, possibly beyond "
                        f"the excerpt above: \"{lang_evidence}\" -- if it is a HARD language "
-                       f"requirement beyond English (or beyond B1-level German), the auto-SKIP "
-                       f"rule applies and it belongs in hard_blockers.]")
+                       f"requirement beyond English (or beyond {_LEVEL_LABEL}-level German), "
+                       f"the auto-SKIP rule applies and it belongs in hard_blockers.]")
         else:
             prompt += (f"\n[Pipeline note: the full posting contains this text, possibly beyond "
                        f"the excerpt above: \"{lang_evidence}\" -- this looks like an "
-                       f"INTERMEDIATE language requirement (working proficiency / B2: above his "
-                       f"B1, below fluent). NOT a hard blocker: set language_requirement="
-                       f"'intermediate' and report it as a prominent concern.]")
+                       f"INTERMEDIATE language requirement (working proficiency / "
+                       f"{_INTERMEDIATE_LABEL}: above his {_LEVEL_LABEL}, below fluent). NOT a "
+                       f"hard blocker: set language_requirement='intermediate' and report it "
+                       f"as a prominent concern.]")
     prompt += "\nEvaluate."
 
     try:
@@ -334,8 +389,8 @@ def evaluate_job(job):
         real_blockers = [b for b in (str(x).strip() for x in model_blockers)
                          if b and not is_spurious_blocker(b)]
 
-        # Intermediate language zone (working proficiency / B2 required):
-        # above his B1, below fluent -> never a blocker, but APPLY is capped
+        # Intermediate language zone (working proficiency, or a level above
+        # his own but below fluent) -> never a blocker, but APPLY is capped
         # at REVIEW so the call stays his (2026-08-17 product decision).
         lang_req = str(ev.get("language_requirement", "") or "").strip().lower()
         if lang_req in ("none", "soft", "intermediate", "hard"):
@@ -348,8 +403,9 @@ def evaluate_job(job):
             # Field absent/invalid (older model contract): deterministic fallback.
             language_gap_intermediate = detect_language_requirement_tier(desc_full) == "intermediate"
             if language_gap_intermediate:
-                soft_concerns.append("Intermediate language requirement detected "
-                                     "(working proficiency/B2): above his B1, below fluent")
+                soft_concerns.append(
+                    f"Intermediate language requirement detected (working proficiency/"
+                    f"{_INTERMEDIATE_LABEL}): above his {_LEVEL_LABEL}, below fluent")
 
         # Concerns always surface, regardless of tier (a real bug used to
         # drop them for APPLY-tier jobs -- exactly where they matter most).
@@ -484,9 +540,18 @@ def main():
     review = [e for e in scored if THRESHOLD_REVIEW <= e["score"] < THRESHOLD_APPLY]
     skip = [e for e in scored if e["score"] < THRESHOLD_REVIEW]
 
+    blind = [e for e in evaluations if e.get("insufficient_info")]
+
     print(f"\n{'='*50}")
     print(f"DONE: {len(evaluations)} jobs | APPLY: {len(apply_)} | REVIEW: {len(review)} | "
           f"SKIP: {len(skip)} | ERROR: {len(errors)}")
+    if blind:
+        # Visible on purpose: a title-only job can never reach APPLY (the
+        # low-confidence cap), so a high blind ratio means the run mostly
+        # burned LLM calls on postings it could not really judge. If this
+        # stays high, agents/description_enricher.py is not finding matches.
+        print(f"Scored on the title alone (no description): {len(blind)}/{len(evaluations)} "
+              f"-- these are capped at REVIEW by design.")
     print(f"{'='*50}")
     with open("digests/job_evaluations_latest.json", "w", encoding="utf-8") as f:
         json.dump(evaluations, f, ensure_ascii=False, indent=2)

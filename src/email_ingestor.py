@@ -155,7 +155,12 @@ def fetch_job_alert_emails(hours_back: int = 24, max_results: int = 50) -> list[
                     "text_body": text_body,
                 })
 
-                processed_ids.add(f"uid-{msg_id.decode()}")
+                # NOT marked processed here. The IDs are committed to git,
+                # so marking at fetch time meant that if the parser step
+                # crashed afterwards the run failed WITH those UIDs already
+                # recorded -- the same alert e-mails were never fetched
+                # again and their jobs were lost silently. Marking now
+                # happens only once the bodies are safely written to disk.
 
                 if (i + 1) % 10 == 0:
                     print(f"  {i + 1}/{len(message_ids)} emails processed...")
@@ -170,9 +175,19 @@ def fetch_job_alert_emails(hours_back: int = 24, max_results: int = 50) -> list[
         except Exception:
             pass
 
-    save_processed_ids(processed_ids)
     print(f"Total: {len(emails)} new emails extracted.")
     return emails
+
+
+def commit_processed(emails, processed_ids=None):
+    """Records the fetched e-mails as processed. Call this only after their
+    bodies are durably written, so a later crash re-fetches them instead of
+    losing them."""
+    processed_ids = load_processed_ids() if processed_ids is None else processed_ids
+    for e in emails:
+        processed_ids.add(e["id"])
+    save_processed_ids(processed_ids)
+    return processed_ids
 
 
 if __name__ == "__main__":
@@ -189,5 +204,9 @@ if __name__ == "__main__":
 
     with open("digests/raw_emails_full.json", "w", encoding="utf-8") as f:
         json.dump(emails, f, ensure_ascii=False, indent=2)
+
+    # Only now are the bodies durable, so only now is it safe to say these
+    # UIDs have been handled.
+    commit_processed(emails)
 
     print(f"\n{len(emails)} emails saved to digests/")

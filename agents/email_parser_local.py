@@ -43,6 +43,124 @@ def _strip_scraped_noise(text: str) -> str:
     return re.sub(r"\s+", " ", cleaned).strip()
 
 
+# Alert-navigation links that contain a job keyword and therefore survive the
+# keyword filter, but are not jobs: the alert header ("Your job alert for
+# intern in the past 24 hours"), footer and unsubscribe rows. Two of them
+# reached the evaluator in data/history and burned an LLM call each to be
+# scored 0/SKIP.
+_ALERT_LINK_RE = re.compile(
+    r"your job alert|job alert for|see (?:all|more) jobs|view (?:all|more)"
+    r"|all jobs? (?:in|for)|unsubscribe|abmelden|manage (?:your )?alerts"
+    r"|jobbenachrichtigung|see jobs? like|\d+\s+new jobs?",
+    re.IGNORECASE,
+)
+
+
+def _is_alert_navigation(text: str) -> bool:
+    return bool(_ALERT_LINK_RE.search(text or ""))
+
+
+# CTA/status suffixes that trail the company/location block on a job card.
+_CARD_TAIL_RE = re.compile(
+    r"\b(?:easy apply|einfache bewerbung|be an early applicant|promoted|gesponsert"
+    r"|actively recruiting|verified)\b.*$",
+    re.IGNORECASE,
+)
+
+# Swiss localities that job cards glue onto the end of the title.
+_TRAILING_CITY_RE = re.compile(
+    r"[\s,;-]+((?:Z[uü]rich|Zuerich|Zug|Basel|Bern|Genf|Gen[eè]ve|Geneva|Lausanne"
+    r"|Winterthur|Wallisellen|Luzern|St\.?\s?Gallen|Baar|Cham|Schlieren|Opfikon"
+    r"|Glattbrugg|D[uü]bendorf|Zollikon|Frick)(?:\s*,?\s*(?:CH|Schweiz|Switzerland))?)\s*$",
+    re.IGNORECASE,
+)
+
+
+def _split_card_remainder(remainder: str):
+    """Parses the '<company> · <location> (Hybrid) Easy Apply' tail a job card
+    appends after its title. Returns (company, location); either may be ''
+    when the tail does not carry it."""
+    tail = _CARD_TAIL_RE.sub("", remainder or "").strip(" ·•|-–—,")
+    if not tail:
+        return "", ""
+    parts = [p.strip() for p in re.split(r"[·•|]", tail) if p.strip()]
+    if len(parts) >= 2:
+        company = parts[0]
+        # "Zurich, Switzerland (Hybrid)" -> "Zurich, Switzerland"
+        location = re.sub(r"\s*\([^)]*\)\s*$", "", parts[1]).strip()
+        return company, location
+    single = re.sub(r"\s*\([^)]*\)\s*$", "", parts[0]).strip()
+    # A lone tail is a company name unless it reads like a locality.
+    return ("", single) if _TRAILING_CITY_RE.search(" " + single) else (single, "")
+
+
+def _strip_company_prefix(title: str, company: str) -> str:
+    """Glassdoor renders '<Company> <Job title> <City>' as one blob while the
+    company is also extracted into its own field. Drop the duplicated prefix
+    so the title is just the title."""
+    if not company or company == "Unknown":
+        return title
+    if title.lower().startswith(company.lower() + " "):
+        return title[len(company):].strip(" -–—,") or title
+    return title
+
+
+def _split_trailing_city(title: str):
+    """Moves a locality glued to the end of a card title into its own field.
+    Returns (title_without_city, city); city is '' when there is none."""
+    m = _TRAILING_CITY_RE.search(title or "")
+    if not m:
+        return title, ""
+    return title[: m.start()].rstrip(" ,;-"), m.group(1).strip()
+
+
+def _collapse_card_variants(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """One job card is emitted twice by these alerts: once as the bare title
+    (an inner <a>) and once as the whole card blob (the wrapping <a>:
+    '<title> <company> · <location> (Hybrid) Easy Apply'). Both survived the
+    (title, company) dedup below, so the same posting was evaluated twice --
+    36 of the 187 distinct titles in data/history are one of these pairs --
+    and the clean variant carried neither company nor location.
+
+    Collapse them: keep the short, clean title and harvest company/location
+    out of the long variant's remainder."""
+    by_title: Dict[str, Dict[str, Any]] = {}
+    for job in jobs:
+        by_title.setdefault(job["title"], job)
+
+    titles = sorted(by_title, key=len)
+    dropped = set()
+    for short in titles:
+        if not short or short in dropped:
+            continue
+        for long in titles:
+            if long in dropped or long == short or not long.startswith(short + " "):
+                continue
+            base, variant = by_title[short], by_title[long]
+            company, location = _split_card_remainder(long[len(short):])
+            if company and base.get("company", "Unknown") in ("Unknown", "", None):
+                base["company"] = company
+            if location and base.get("location", "Unknown") in ("Unknown", "", None):
+                base["location"] = location
+            if not base.get("url"):
+                base["url"] = variant.get("url", "")
+            dropped.add(long)
+
+    return [j for j in jobs if j["title"] not in dropped]
+
+
+def tidy_job_fields(job: Dict[str, Any]) -> Dict[str, Any]:
+    """Last-mile cleanup of one parsed card: company duplicated as a title
+    prefix, locality glued to the title end. Mutates and returns the job."""
+    job["title"] = _strip_company_prefix(job["title"], job.get("company", ""))
+    title, city = _split_trailing_city(job["title"])
+    if city:
+        job["title"] = title
+        if job.get("location", "Unknown") in ("Unknown", "", None):
+            job["location"] = city
+    return job
+
+
 def parse_html_emails(emails: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Extract job listings from HTML email bodies using regex + BeautifulSoup."""
     jobs = []
@@ -85,6 +203,11 @@ def parse_html_emails(emails: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             # e.g.: "Diese Nachricht wurde gesendet an <email>") -- avoids
             # leaking the candidate's email as if it were a job
             if href.lower().startswith("mailto:") or "@" in raw_link_text:
+                continue
+
+            # Alert header/footer navigation ("Your job alert for intern...")
+            # matches the job keywords but is not a posting.
+            if _is_alert_navigation(raw_link_text):
                 continue
 
             title_lower = raw_link_text.lower()
@@ -142,16 +265,24 @@ def parse_html_emails(emails: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         
         jobs.extend(job_blocks)
     
+    # Collapse the bare-title / whole-card pair BEFORE the (title, company)
+    # dedup: the two variants have different titles, so that dedup never saw
+    # them as the same posting.
+    collapsed = _collapse_card_variants(jobs)
+    variants_merged = len(jobs) - len(collapsed)
+
     # Deduplicate
     seen = set()
     unique = []
-    for job in jobs:
+    for job in collapsed:
+        tidy_job_fields(job)
         key = (job["title"].lower().strip(), job["company"].lower().strip())
         if key not in seen:
             seen.add(key)
             unique.append(job)
-    
-    print(f"  Extracted {len(unique)} jobs from {len(emails)} emails (local parser)")
+
+    print(f"  Extracted {len(unique)} jobs from {len(emails)} emails (local parser)"
+          f"{f'; {variants_merged} duplicate card variants merged' if variants_merged else ''}")
     return unique
 
 

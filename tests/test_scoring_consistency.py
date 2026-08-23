@@ -554,3 +554,66 @@ class TestIngestionNormalisation:
         assert "[... middle of the posting omitted ...]" in captured["prompt"]
         assert "t" * 1000 in captured["prompt"]          # tail kept
         assert "m" * 500 not in captured["prompt"]       # middle dropped
+
+
+# ─── 10. Language calibration comes from the profile, never from the code ────
+
+class TestLanguageLevelFromProfile:
+    """CLAUDE.md: 'never hardcode a language level in job_evaluator.py (that
+    was a real bug)'. The prompt still said 'his German is B1' while the CV
+    said A2, and the intermediate band was the fixed set {B2}, so a 'German
+    B1 required' posting read as a soft mention when it was in fact a real
+    gap. Both are now derived from candidate_profile.json."""
+
+    def test_levels_above_is_relative_to_the_candidate(self):
+        from utils import levels_above
+        assert levels_above("a2") == ["b1", "b2"]
+        assert levels_above("b1") == ["b2"]
+        assert levels_above("b2") == []
+
+    def test_unknown_level_assumes_the_weakest(self):
+        """Being conservative about a language gap is the safe direction: an
+        unset level must not silently mean 'fluent'."""
+        from utils import levels_above
+        assert levels_above("") == ["a1", "a2", "b1", "b2"]
+        assert levels_above("not-a-level") == ["a1", "a2", "b1", "b2"]
+
+    def test_level_read_from_profile(self):
+        from utils import candidate_language_level
+        assert candidate_language_level({"language_levels": {"german": "A2"}}) == "a2"
+        assert candidate_language_level({}) == ""
+        assert candidate_language_level({"language_levels": {"german": "muttersprache"}}) == ""
+
+    def test_b1_requirement_is_intermediate_for_an_a2_candidate(self):
+        tier = job_evaluator.detect_language_requirement_tier
+        assert tier("German B1 required", levels=["b1", "b2"]) == "intermediate"
+        # ...and merely soft once he reaches B1 himself.
+        assert tier("German B1 required", levels=["b2"]) is None
+
+    def test_fluent_stays_hard_at_every_candidate_level(self):
+        tier = job_evaluator.detect_language_requirement_tier
+        for levels in ([], ["b2"], ["b1", "b2"]):
+            assert tier("fluent German required", levels=levels) == "hard"
+            assert tier("verhandlungssicheres Deutsch", levels=levels) == "hard"
+
+    def test_prompt_never_names_a_level_the_profile_did_not_set(self):
+        """Guards the regression directly: no literal 'B1' calibration left
+        in the prompt text."""
+        assert "his German is B1" not in job_evaluator.SYSTEM_PROMPT
+
+
+class TestTargetRoleReachesTheScorer:
+    def test_target_role_is_in_the_summary(self):
+        """A posting is scored on fit to what he wants NEXT. Without this the
+        scorer matched against his current job title only."""
+        summary = job_evaluator.load_profile_summary({
+            "role": "AI & Automation Developer Intern",
+            "target_role": "AI / data platform engineering internship",
+            "summary": "I build production pipelines.",
+        })
+        assert "AI / data platform engineering internship" in summary
+        assert "AI & Automation Developer Intern" in summary
+
+    def test_absent_target_role_is_simply_omitted(self):
+        summary = job_evaluator.load_profile_summary({"role": "Data Analyst"})
+        assert "Looking for" not in summary

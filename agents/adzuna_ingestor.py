@@ -21,20 +21,39 @@ ADZUNA_APP_KEY = os.environ.get("ADZUNA_APP_KEY", "")
 ADZUNA_BASE = "https://api.adzuna.com/v1/api/jobs/ch/search/1"
 ADZUNA_MAX_HITS = int(os.environ.get("ADZUNA_MAX_HITS", "35"))
 
-SEARCH_QUERIES = [
-    "Data Analyst Intern",
-    "Business Analyst Intern",
-    "Data Science Intern",
-    "AI Intern",
-    "AI Agent",
-    "Analytics Intern",
-    "Junior Data Analyst",
-    "Working Student Data",
-    "Praktikum Data",
-    "Praktikum Business",
-    "Data Intern",
+# Search targeting. Adzuna's free tier allows 100 calls/day, and this list is
+# multiplied by len(locations) (2) and by the number of scheduled runs (2):
+# 12 queries -> 48 calls/day, which leaves room for the up to 24 that
+# agents/description_enricher.py may spend. Keep the list at 12 unless you
+# have redone that arithmetic.
+#
+# Aimed at what the CV actually asks for: "seeking a new internship to deepen
+# my expertise in agentic systems and data platform engineering". So the mix
+# is internship/working-student first and junior second, across the two
+# themes (AI/agentic and data platform), plus automation, which is his
+# current job title. English and German both, because Swiss postings split
+# roughly evenly between "Internship" and "Praktikum/Werkstudent".
+#
+# Deliberately NOT here: mid-level "Senior/Lead" phrasing, and pure software
+# engineering, which the scoring prompt auto-SKIPs anyway.
+#
+# Override without touching code: ADZUNA_QUERIES="AI Engineer;Data Engineer"
+_DEFAULT_QUERIES = [
+    "AI Engineer Intern",
+    "Junior AI Engineer",
+    "Praktikum AI",
+    "Werkstudent AI",
+    "Machine Learning Intern",
+    "Data Engineer Intern",
+    "Junior Data Engineer",
+    "Data Platform Engineer",
+    "Praktikum Data Engineering",
     "Werkstudent Data",
+    "Junior Automation Engineer",
+    "Praktikum Automation",
 ]
+SEARCH_QUERIES = [q.strip() for q in os.environ.get("ADZUNA_QUERIES", "").split(";")
+                  if q.strip()] or _DEFAULT_QUERIES
 
 
 def fetch_adzuna(what: str, where: str = "Zurich", max_days_old: int = 7) -> List[Dict[str, Any]]:

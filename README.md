@@ -1,6 +1,6 @@
 # Job Hunt Pipeline
 
-Automated job search and evaluation pipeline for Data/Business Analyst positions in Switzerland (Zurich/Zug). Runs twice daily via GitHub Actions, scrapes multiple job sources, evaluates fit using AI scoring, and delivers a personalized digest to your email.
+Automated job search and evaluation pipeline for AI / agentic systems / data platform engineering roles (internship and junior level) in Switzerland (Zurich/Zug). Runs twice daily via GitHub Actions, pulls from multiple job sources, evaluates fit with an LLM, and delivers a personalized digest to your email.
 
 ---
 
@@ -9,12 +9,13 @@ Automated job search and evaluation pipeline for Data/Business Analyst positions
 This pipeline automates the tedious parts of job hunting:
 
 1. **Ingest** -- Fetches jobs from Adzuna API + Gmail job alerts
-2. **Deduplicate** -- Cross-run dedup via SQLite (21-day window), so each job is evaluated once
-3. **Evaluate** -- Scores each job for fit using Kimi LLM (0-100 scale); API failures are marked ERROR, never scored
-4. **Decide** -- Classifies as APPLY (>=80), REVIEW (70-79), or SKIP (<70)
-5. **Digest** -- Generates a ranked daily digest with top 5 jobs
-6. **Notify** -- Sends a formatted HTML email with results
-7. **Track** -- Persists seen jobs in SQLite and full evaluation history in `data/history/`
+2. **Deduplicate** -- In-batch and cross-run dedup via SQLite (21-day window), so each job is evaluated once
+3. **Enrich** -- Email alert cards carry a title and nothing else; the missing description is looked up on Adzuna so the job is scored on real text
+4. **Evaluate** -- Scores each job for fit using Kimi LLM (0-100 scale); API failures are marked ERROR, never scored
+5. **Decide** -- Classifies as APPLY (>=80), REVIEW (70-79), or SKIP (<70)
+6. **Digest** -- Generates a ranked daily digest with top 5 jobs
+7. **Notify** -- Sends a formatted HTML email with results
+8. **Track** -- Persists seen jobs in SQLite and full evaluation history in `data/history/`
 
 ---
 
@@ -28,6 +29,7 @@ GitHub Actions (2x/day: 05:00 & 12:00 UTC)
 |
 |-- Email Parser --> digests/parsed_jobs_latest.json
 |-- Unified Ingestor --> data/raw_jobs/all_jobs_*.json
+|-- Description Enricher (Adzuna) --> digests/new_jobs_latest.json
 |
 |-- Job Evaluator (Kimi API) --> digests/job_evaluations_latest.json
 |
@@ -91,7 +93,11 @@ Dashboard: `https://carlosedbaptista.github.io/job-hunt-pipeline/digests/dashboa
 
 ## Candidate Profile
 
-Edit `config/candidate_profile.json` to customize your profile for job evaluation.
+Copy `config/candidate_profile.example.json` to `config/candidate_profile.json` (gitignored) and fill it in. The example lists every key the pipeline actually reads and what each one feeds; a key left out silently weakens every score.
+
+## Search Targeting
+
+`agents/adzuna_ingestor.py` defines the queries. Set `ADZUNA_QUERIES` (semicolon-separated) to retarget without editing code. Adzuna's free tier allows 100 calls/day and the list is multiplied by 2 locations and 2 scheduled runs, so 12 queries costs 48/day and leaves room for the enricher's 24.
 
 ## Scoring Rubric
 
@@ -104,13 +110,27 @@ Thresholds live in one place: `src/utils.py` (`THRESHOLD_APPLY` / `THRESHOLD_REV
 | 0-69 | SKIP | Low fit |
 | (no score) | ERROR | API failure -- job not evaluated, excluded from metrics |
 
+Two low-confidence caps sit on top of the thresholds: a job with under `MIN_DESCRIPTION_CHARS` (200) of posting text, and a job whose posting asks for an intermediate level of a language beyond English, are capped at REVIEW rather than APPLY. A real hard eligibility blocker caps the decision at SKIP regardless of score.
+
+"Intermediate" is relative to you, not fixed: `language_levels` in the profile (e.g. `{"german": "A2"}`) drives it, and the band is every CEFR level above yours and below C1. At A2 that is B1 and B2; once you reach B1 it narrows to B2 alone. Update the profile, not the code.
+
+## Tests
+
+```bash
+pip install -r requirements-dev.txt
+python -m pytest tests/ -q
+```
+
+The suite mocks the LLM, so it costs nothing and needs no secrets. It covers the scoring rules (`tests/test_scoring_consistency.py`) and the ingestion quality rules (`tests/test_ingestion_quality.py`); it runs on every push and pull request via `.github/workflows/tests.yml`. Run it before touching scoring, dedup or parsing logic.
+
 ## Project Structure
 
 ```
 job-hunt-pipeline/
-├── .github/workflows/      # CI/CD workflow
-├── agents/                 # Ingestors, evaluator, notifier
+├── .github/workflows/      # Daily pipeline, manual actions, tests
+├── agents/                 # Ingestors, enricher, evaluator, notifier
 ├── src/                    # Core pipeline + utils
+├── tests/                  # pytest suite (mocked LLM, no secrets)
 ├── config/                 # Candidate profile + settings
 ├── data/raw_jobs/          # Raw job listings
 ├── data/history/           # Evaluation history
@@ -119,6 +139,7 @@ job-hunt-pipeline/
 ├── scripts/                # Utility scripts
 ├── docs/legacy/            # Archived documentation
 ├── requirements.txt
+├── requirements-dev.txt
 ├── .env.example
 └── README.md
 ```

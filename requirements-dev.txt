@@ -1,0 +1,6 @@
+# Development/CI-only dependencies. The daily pipeline never installs these;
+# .github/workflows/tests.yml does. Kept separate from requirements.txt so a
+# test dependency can never end up in the production runtime.
+-r requirements.txt
+
+pytest==8.4.2

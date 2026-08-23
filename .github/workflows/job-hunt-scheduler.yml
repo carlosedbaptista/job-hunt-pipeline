@@ -7,8 +7,11 @@ on:
   workflow_dispatch:
 
 # A manual run overlapping the cron run would race on git push
+# Shared by every workflow that pushes to main (add-job, track-application).
+# tracker/jobs.db is a binary SQLite file: two concurrent writers cannot be
+# merged, so they must be serialized rather than reconciled.
 concurrency:
-  group: job-hunt-pipeline
+  group: job-hunt-repo-write
   cancel-in-progress: false
 
 jobs:
@@ -73,7 +76,10 @@ jobs:
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
           ADZUNA_MAX_HITS: "35"
+        # Degrades like the Gmail step: a transient Adzuna 5xx used to abort
+        # the run before the e-mail-sourced jobs were parsed at all.
         run: python agents/adzuna_ingestor.py
+        continue-on-error: true
 
       # LinkedIn ingestion disabled -- consistently returns 0 jobs
       # - name: Fetch LinkedIn jobs
@@ -93,7 +99,22 @@ jobs:
       - name: Unify job sources
         run: python src/unified_ingestor.py
 
+      # E-mail alert cards (LinkedIn/Glassdoor/XING) arrive with a title and
+      # no description, so the evaluator scores them blind and the
+      # low-confidence cap pins them at REVIEW forever. This step looks the
+      # same posting up on Adzuna (already integrated, free quota to spare)
+      # and attaches the real text. Non-fatal by construction: no match, no
+      # credentials, or any error leaves the jobs exactly as they were.
+      - name: Enrich missing job descriptions
+        env:
+          ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
+          ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
+          ENRICH_MAX_LOOKUPS: "12"
+        run: python agents/description_enricher.py
+        continue-on-error: true
+
       - name: Evaluate job fit with AI
+        id: evaluate
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
           KIMI_BASE_URL: ${{ secrets.KIMI_BASE_URL }}
@@ -110,35 +131,45 @@ jobs:
           DB_PATH: ./tracker/jobs.db
         run: python src/dashboard.py
 
+      # Deliberately NOT `if: always()`: on a failed evaluator run that made
+      # this regenerate the PREVIOUS run's evaluations, spending real Kimi
+      # calls on CV/CLs that already existed. continue-on-error already
+      # keeps a doc-gen failure from sinking the run.
       - name: Generate tailored CVs/CLs
-        if: always()
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
           KIMI_BASE_URL: ${{ secrets.KIMI_BASE_URL }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
-          HIGH_SCORE_THRESHOLD: "85"
           GDRIVE_PARENT_FOLDER_ID: ${{ secrets.GDRIVE_PARENT_FOLDER_ID }}
           GDRIVE_REFRESH_TOKEN_B64: ${{ secrets.GDRIVE_REFRESH_TOKEN_B64 }}
           GDRIVE_CREDENTIALS_JSON_B64: ${{ secrets.GDRIVE_CREDENTIALS_JSON_B64 }}
         run: python agents/doc_generator.py
         continue-on-error: true
 
-      # generated_docs/ is gitignored (kept out of the public repo) and
-      # Google Drive is the only intended persistence -- if that upload
-      # silently fails, this is the backup: PDFs stay retrievable from the
-      # Actions run page for 90 days instead of vanishing with the runner.
-      - name: Upload generated CV/CL as a workflow artifact (backup)
-        if: always()
-        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3 (pinned SHA)
-        with:
-          name: generated-docs
-          path: generated_docs/
-          if-no-files-found: ignore
-          retention-days: 90
+      # NO artifact upload of generated_docs/. This repo is PUBLIC, and on a
+      # public repo Actions artifacts are downloadable by any authenticated
+      # GitHub user for the whole retention window. The CVs contain the
+      # candidate's full name, phone, personal e-mail, LinkedIn, permit
+      # status and photo, plus every company applied to -- exactly the PII
+      # the base64-secret restore and .gitignore exist to keep off this repo.
+      # The Google Drive upload (agents/gdrive_uploader.py, OAuth2 path) is
+      # the intended durable copy; until GDRIVE_REFRESH_TOKEN_B64 is set the
+      # PDFs live only on the runner, which is the safe failure mode.
 
+      # This step had no env block at all, so high_score_alert.py found no
+      # Gmail credentials, printed "not configured", returned False and
+      # exited 0 -- green, and no alert has ever been sent. (The stray
+      # HIGH_SCORE_THRESHOLD on the doc-generator step above was the giveaway:
+      # nothing there reads it.) alerted_jobs.json is only written on a
+      # successful send, so no job was burned and the backlog can still fire.
       - name: High-Score Alerts
+        env:
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
+          HIGH_SCORE_THRESHOLD: "85"
         run: python agents/high_score_alert.py
         continue-on-error: true
 
@@ -159,13 +190,29 @@ jobs:
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
         run: python agents/email_notifier.py
+        continue-on-error: true
 
       - name: Commit and push results
         if: always()
+        env:
+          # unified_ingestor marks jobs as seen in tracker/jobs.db BEFORE the
+          # evaluator runs. When the evaluator exits 1 (no Kimi credits, or a
+          # missing profile -- both deliberate loud failures), committing that
+          # DB would suppress those jobs for the whole 21-day retention: a
+          # billing lapse silently destroying three weeks of job discovery.
+          # So the DB is committed only when scoring actually happened.
+          EVALUATOR_OK: ${{ steps.evaluate.outcome == 'success' }}
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add data/raw_jobs/ data/history/ digests/ tracker/jobs.db
+          git add data/raw_jobs/ data/history/ digests/
+          if [ "$EVALUATOR_OK" = "true" ]; then
+            git add tracker/jobs.db
+          else
+            echo "::warning::Evaluator did not succeed -- NOT committing tracker/jobs.db, "\
+                 "so the jobs it marked as seen come back on the next run."
+            git checkout -- tracker/jobs.db 2>/dev/null || true
+          fi
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
@@ -174,4 +221,17 @@ jobs:
           APPLY_COUNT=$(python -c "import json; d=json.load(open('digests/digest_latest.json')); jobs=d.get('top_jobs',[]); print(sum(1 for j in jobs if (j.get('score') or 0)>=80))" 2>/dev/null || echo 0)
           TIMESTAMP=$(date -u +'%Y-%m-%d %H:%M UTC')
           git commit -m "chore: daily digest [$TIMESTAMP | $JOB_COUNT jobs | $APPLY_COUNT APPLY]"
-          git push
+          # A manual Add Job / Track Application run pushing mid-flight used
+          # to make this a non-fast-forward: the step failed and the entire
+          # run's digest, history, raw jobs and DB were thrown away. Rebase
+          # and retry. tracker/jobs.db is binary and cannot be merged, so all
+          # three pushing workflows share one concurrency group to make a
+          # genuine collision rare; this loop covers the rest.
+          for attempt in 1 2 3; do
+            if git push; then exit 0; fi
+            echo "push rejected (attempt $attempt) -- rebasing onto origin/main"
+            git pull --rebase --autostash origin main || exit 1
+            sleep $((attempt * 5))
+          done
+          echo "::error::could not push after 3 attempts"
+          exit 1

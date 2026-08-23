@@ -36,6 +36,12 @@ on:
         required: false
         type: string
 
+# Same group as the daily scheduler: all three workflows push to main
+# and tracker/jobs.db is a binary SQLite file that cannot be merged.
+concurrency:
+  group: job-hunt-repo-write
+  cancel-in-progress: false
+
 jobs:
   track-application:
     runs-on: ubuntu-latest
@@ -89,4 +95,11 @@ jobs:
             exit 0
           fi
           git commit -m "chore: track application [$ACTION | $TITLE @ $COMPANY]"
-          git push
+          for attempt in 1 2 3; do
+            if git push; then exit 0; fi
+            echo "push rejected (attempt $attempt) -- rebasing onto origin/main"
+            git pull --rebase --autostash origin main || exit 1
+            sleep $((attempt * 5))
+          done
+          echo "::error::could not push after 3 attempts"
+          exit 1
