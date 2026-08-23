@@ -136,9 +136,19 @@ def save_evaluator_input(jobs: List[Dict[str, Any]], db_path: str = None) -> str
     normalized_jobs = [normalize_job_fields(j) for j in jobs]
 
     db_kwargs = {"db_path": db_path} if db_path else {}
-    fresh_jobs = filter_new_jobs(normalized_jobs, mark_seen=False, **db_kwargs)
-    already_seen = len(normalized_jobs) - len(fresh_jobs)
-    print(f"  🔁 Cross-run dedup: {len(fresh_jobs)} new | {already_seen} already seen (tracker/jobs.db)")
+    # REEVALUATE_ALL is a TEST-MODE escape hatch (the workflow's `reevaluate`
+    # input). It re-scores jobs already marked as seen, which is the only way
+    # to exercise the pipeline end to end without spending job-board quota on
+    # a fresh fetch. It costs real LLM calls, so it is opt-in and never set
+    # by the scheduled runs.
+    if os.environ.get("REEVALUATE_ALL", "").lower() in ("1", "true", "yes"):
+        fresh_jobs = normalized_jobs
+        print(f"  🔁 Cross-run dedup: SKIPPED (REEVALUATE_ALL) -- "
+              f"re-scoring all {len(fresh_jobs)} jobs")
+    else:
+        fresh_jobs = filter_new_jobs(normalized_jobs, mark_seen=False, **db_kwargs)
+        already_seen = len(normalized_jobs) - len(fresh_jobs)
+        print(f"  🔁 Cross-run dedup: {len(fresh_jobs)} new | {already_seen} already seen (tracker/jobs.db)")
 
     cap = max_evaluations_per_run()
     if len(fresh_jobs) > cap:

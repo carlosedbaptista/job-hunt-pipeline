@@ -93,10 +93,28 @@ def decision_from_score(score) -> str:
     return "SKIP"
 
 
+DEFAULT_MAX_EVALUATIONS_PER_RUN = 30
+
+
 def max_evaluations_per_run() -> int:
     """Per-run LLM call cap (cost guard). Read dynamically so tests and CI
-    can override via env without re-importing modules."""
-    return int(os.environ.get("MAX_EVALUATIONS_PER_RUN", "30"))
+    can override via env without re-importing modules.
+
+    An unset OR EMPTY value falls back to the default. The empty case is not
+    hypothetical: a blank `workflow_dispatch` input arrives as an empty
+    string, and os.environ.get then returns "" rather than the default, so
+    int("") would abort the whole run. Same for a non-numeric typo: the cost
+    guard failing closed on a bad value would stop the pipeline entirely,
+    which is a worse outcome than using the default."""
+    raw = (os.environ.get("MAX_EVALUATIONS_PER_RUN") or "").strip()
+    try:
+        value = int(raw)
+    except ValueError:
+        if raw:
+            print(f"  MAX_EVALUATIONS_PER_RUN={raw!r} is not a number -- "
+                  f"using {DEFAULT_MAX_EVALUATIONS_PER_RUN}.")
+        return DEFAULT_MAX_EVALUATIONS_PER_RUN
+    return value if value > 0 else DEFAULT_MAX_EVALUATIONS_PER_RUN
 
 
 # A 'blocker' that actually says there is NO blocker ("None", "none --
