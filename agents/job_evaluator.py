@@ -16,7 +16,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 from kimi_client import call_kimi_json
 from utils import (MIN_DESCRIPTION_CHARS, THRESHOLD_APPLY, THRESHOLD_REVIEW,
                    candidate_language_level, effective_decision,
-                   is_spurious_blocker, levels_above, max_evaluations_per_run)
+                   is_spurious_blocker, is_truncated_description, levels_above,
+                   max_evaluations_per_run)
 
 # Cost guard: cap LLM calls per run (business rule: control daily spend).
 MAX_EVALUATIONS_PER_RUN = max_evaluations_per_run()
@@ -331,7 +332,12 @@ def evaluate_job(job):
     location = job.get("location", "Unknown")
     desc_full = job.get("description", "") or ""
     desc = _excerpt(desc_full)
-    insufficient_info = len(desc_full.strip()) < MIN_DESCRIPTION_CHARS
+    # Too short to judge, OR long enough to look complete while actually being
+    # a cut-off teaser. Adzuna returns exactly 500 characters for every single
+    # posting, and the requirements never survive that cut -- see
+    # utils.is_truncated_description for the measurement.
+    insufficient_info = (len(desc_full.strip()) < MIN_DESCRIPTION_CHARS
+                         or is_truncated_description(desc_full))
     url = job.get("url", "")
 
     # Today's date grounds any timeline reasoning (notice period vs start
@@ -340,6 +346,19 @@ def evaluate_job(job):
     # start 2 months out.
     prompt = (f"Today's date: {date.today().isoformat()}\n"
               f"Job: {title} at {company}\nLocation: {location}\nDesc: {desc}\nURL: {url}")
+    if is_truncated_description(desc_full):
+        # Without this the model reads a truncated posting as a complete one.
+        # What survives the cut is the pitch ("join our AI innovation lab,
+        # bring agentic solutions to production"), which reads as a perfect
+        # match; what is lost is "at least 5 years", "B.Sc. required" and
+        # every other disqualifier. That is not a hypothetical: it scored the
+        # Avaloq posting 82/APPLY blind and 58/SKIP with the full text.
+        prompt += ("\n[Pipeline note: the description above is TRUNCATED -- it stops "
+                   "mid-sentence and the requirements/qualifications section is missing "
+                   "entirely. Judge only what is visible, assume nothing about seniority, "
+                   "years of experience or degree requirements, and keep the score "
+                   "conservative. Say in `concerns` that the requirements were not visible.]")
+
     lang_evidence = detect_hard_language_requirement(desc_full)
     if lang_evidence:
         if detect_language_requirement_tier(desc_full) == "hard":
@@ -411,8 +430,15 @@ def evaluate_job(job):
         # drop them for APPLY-tier jobs -- exactly where they matter most).
         red_flags = [f"Blocker: {b}" for b in real_blockers] + soft_concerns
         if insufficient_info:
-            red_flags.append("Low confidence: posting text under "
-                             f"{MIN_DESCRIPTION_CHARS} chars -- score is title-based")
+            if is_truncated_description(desc_full):
+                red_flags.append(
+                    "Low confidence: the posting text is CUT OFF (the source returns only "
+                    "the opening pitch). The requirements section was never seen, so any "
+                    "disqualifier in it is invisible -- open the original before trusting "
+                    "this score")
+            else:
+                red_flags.append("Low confidence: posting text under "
+                                 f"{MIN_DESCRIPTION_CHARS} chars -- score is title-based")
         if not red_flags and score < THRESHOLD_REVIEW:
             red_flags = ["Score below threshold"]
 
