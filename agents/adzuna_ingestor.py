@@ -20,12 +20,22 @@ ADZUNA_APP_ID = os.environ.get("ADZUNA_APP_ID", "")
 ADZUNA_APP_KEY = os.environ.get("ADZUNA_APP_KEY", "")
 ADZUNA_BASE = "https://api.adzuna.com/v1/api/jobs/ch/search/1"
 ADZUNA_MAX_HITS = int(os.environ.get("ADZUNA_MAX_HITS", "35"))
+# Radius in km around each `where`. 30 reaches Zug and Winterthur from Zurich.
+ADZUNA_DISTANCE_KM = int(os.environ.get("ADZUNA_DISTANCE_KM", "30"))
 
 # Search targeting. Adzuna's free tier allows 100 calls/day, and this list is
-# multiplied by len(locations) (2) and by the number of scheduled runs (2):
-# 12 queries -> 48 calls/day, which leaves room for the up to 24 that
-# agents/description_enricher.py may spend. Keep the list at 12 unless you
-# have redone that arithmetic.
+# multiplied by len(LOCATIONS) and by the number of scheduled runs (2):
+# 18 queries x 1 location -> 36 calls/day, leaving room for the up to 24 that
+# agents/description_enricher.py may spend. Redo that arithmetic before
+# adding a query or a location.
+#
+# Why one location now (measured 2026-08-23 over 84 days of data/raw_jobs/):
+# the search ran against Zurich AND Zug, and Zug returned 4 DISTINCT jobs in
+# those 84 days while eating half the daily quota -- about 2,000 calls for
+# four postings. Zug is 30 km from Zurich, so ADZUNA_DISTANCE_KM covers it
+# from the Zurich search in the same call. The freed budget went into more
+# queries instead. If Zug postings stop appearing, that radius is the first
+# thing to check.
 #
 # Aimed at what the CV actually asks for: "seeking a new internship to deepen
 # my expertise in agentic systems and data platform engineering". So the mix
@@ -51,12 +61,30 @@ _DEFAULT_QUERIES = [
     "Werkstudent Data",
     "Junior Automation Engineer",
     "Praktikum Automation",
+    # Added 2026-08-23 with the budget freed by dropping the Zug pass. These
+    # are shorter on purpose: Adzuna ranks by relevance across the whole
+    # posting, so a three-word phrase like "Praktikum Data Engineering" is a
+    # much narrower net than the two themes it is made of. Every phrase below
+    # is taken from titles the search ACTUALLY returned in the 84 days of
+    # history, not invented: "agentic", "applied AI", "founding engineer" and
+    # the bare "Internship"/"Praktikum" forms account for most of what came
+    # through, and none of them matched any of the twelve queries above.
+    "AI Engineer",
+    "Agentic AI",
+    "Applied AI",
+    "Data Scientist Intern",
+    "Internship Data",
+    "Praktikum Data Science",
 ]
 SEARCH_QUERIES = [q.strip() for q in os.environ.get("ADZUNA_QUERIES", "").split(";")
                   if q.strip()] or _DEFAULT_QUERIES
+# Overridable the same way, for the same reason.
+LOCATIONS = [w.strip() for w in os.environ.get("ADZUNA_LOCATIONS", "").split(";")
+             if w.strip()] or ["Zurich"]
 
 
-def fetch_adzuna(what: str, where: str = "Zurich", max_days_old: int = 7) -> List[Dict[str, Any]]:
+def fetch_adzuna(what: str, where: str = "Zurich", max_days_old: int = 7,
+                 distance_km: int = None) -> List[Dict[str, Any]]:
     if not ADZUNA_APP_ID or not ADZUNA_APP_KEY:
         print("  ⚠️  ADZUNA_APP_ID or ADZUNA_APP_KEY not set. Skipping Adzuna.")
         return []
@@ -64,9 +92,14 @@ def fetch_adzuna(what: str, where: str = "Zurich", max_days_old: int = 7) -> Lis
     params = {
         "app_id": ADZUNA_APP_ID,
         "app_key": ADZUNA_APP_KEY,
-        "results_per_page": "20",
+        # Adzuna caps this at 50. It costs the same one call either way, so
+        # there is no reason to leave results on the table.
+        "results_per_page": "50",
         "what": what,
         "where": where,
+        # Adzuna defaults to a 5 km radius, which excludes Zug, Winterthur and
+        # Baden from a Zurich search. Widening it is free -- still one call.
+        "distance": str(ADZUNA_DISTANCE_KM if distance_km is None else distance_km),
         "max_days_old": str(max_days_old),
         "content-type": "application/json",
     }
@@ -143,7 +176,8 @@ def main():
 
     all_raw = []
     hit_count = 0
-    locations = ["Zurich", "Zug"]
+    # One location, wide radius -- see the quota note above LOCATIONS.
+    locations = LOCATIONS
 
     for what in SEARCH_QUERIES:
         if hit_count >= ADZUNA_MAX_HITS:
