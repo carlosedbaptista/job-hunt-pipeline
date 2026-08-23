@@ -1,8 +1,10 @@
-import os, sys, json, re, textwrap, time
+import os, sys, json, re, textwrap, time, html
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 from utils import load_json, save_json, ensure_dir, now_iso, effective_decision
 from kimi_client import KimiClient
 from gdrive_uploader import upload_cv_cl, GDRIVE_AVAILABLE as GDRIVE_UPLOADER_AVAILABLE
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from email_notifier import send_email
 
 KIMI_TIMEOUT = 30
 
@@ -302,6 +304,39 @@ def cl_pdf(profile, letter, title, company, location, path):
 
     pdf.output(path)
 
+def _email_docs_to_candidate(folder, title, company, score, paths):
+    """Mails the generated CV/CL to the candidate.
+
+    Why this exists: the repo is public, so the PDFs can be neither committed
+    nor uploaded as an Actions artifact (they carry full name, phone, personal
+    e-mail, LinkedIn, permit status and photo), and the Google Drive upload
+    fails with "Service Accounts do not have storage quota" until
+    GDRIVE_REFRESH_TOKEN_B64 is set. Without this the documents live only on
+    the runner and die with it. Recipient is always GMAIL_RECIPIENT -- the
+    candidate -- never a recruiter.
+    """
+    sender = os.environ.get("GMAIL_SENDER")
+    password = os.environ.get("GMAIL_APP_PASSWORD")
+    recipient = os.environ.get("GMAIL_RECIPIENT")
+    if not (sender and password and recipient):
+        print("  [mail] GMAIL_* not configured -- CV/CL not mailed (they live only on this machine)")
+        return False
+
+    body = (
+        f"<p>Tailored application materials for <b>{html.escape(str(title))}</b> "
+        f"at <b>{html.escape(str(company))}</b> (match {html.escape(str(score))}).</p>"
+        "<p>Attached: CV and cover letter. Review them before sending anything: "
+        "nothing has been submitted to the employer.</p>"
+    )
+    # The subject is a mail HEADER, and title/company are scraped from
+    # third-party job alerts: a newline in either would inject headers.
+    # Collapse whitespace and cap the length.
+    subject = " ".join(f"[Job Hunt] CV + cover letter: {title} @ {company}".split())[:180]
+    ok = send_email(recipient, subject, body, sender, password, attachments=paths)
+    print(f"  [mail] {'Sent to candidate' if ok else 'Send FAILED'}: {len(paths)} file(s)")
+    return ok
+
+
 def generate_docs_for_job(client, profile, ev: dict, gen_dir: str = "generated_docs") -> str | None:
     """Generates (and, if configured, uploads to Drive) the CV/CL for a
     single evaluation record. Shared by main() (daily batch, reads
@@ -349,6 +384,18 @@ def generate_docs_for_job(client, profile, ev: dict, gen_dir: str = "generated_d
                 upload_cv_cl(folder, company, title)
             except Exception as e:
                 print(f"  [GDrive] Upload failed (continuing): {e}")
+
+        # Mail the PDFs to the candidate. Independent of Drive on purpose:
+        # Drive is the one that has been silently failing, and a generated
+        # document that reaches nobody is the same as no document.
+        try:
+            _email_docs_to_candidate(
+                folder, title, company, score,
+                [os.path.join(folder, f"CV_{safe_name}.pdf"),
+                 os.path.join(folder, f"CL_{safe_name}.pdf")],
+            )
+        except Exception as e:
+            print(f"  [mail] Failed (continuing): {type(e).__name__}: {str(e)[:120]}")
     else:
         save_json(os.path.join(folder, "ai_summary.json"), {"summary": summary, "letter": letter, "score": score})
         print(f"  Saved JSON only (fpdf2 missing): {folder}/")
@@ -369,8 +416,14 @@ def main():
         print("config/candidate_profile.json missing or invalid (check CANDIDATE_PROFILE_B64 secret) -- skipping doc generation")
         return
 
+    generated = 0
     for ev in evals:
-        generate_docs_for_job(client, profile, ev, gen_dir)
+        if generate_docs_for_job(client, profile, ev, gen_dir):
+            generated += 1
+    # Say so out loud. This step used to print absolutely nothing when no job
+    # reached APPLY, which is indistinguishable from a crash in the CI log.
+    print(f"[doc_generator] {generated} job(s) got tailored documents "
+          f"out of {len(evals)} evaluated (only APPLY qualifies).")
 
 if __name__ == "__main__":
     main()

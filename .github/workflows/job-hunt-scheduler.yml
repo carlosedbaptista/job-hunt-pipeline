@@ -154,9 +154,14 @@ jobs:
       # candidate's full name, phone, personal e-mail, LinkedIn, permit
       # status and photo, plus every company applied to -- exactly the PII
       # the base64-secret restore and .gitignore exist to keep off this repo.
-      # The Google Drive upload (agents/gdrive_uploader.py, OAuth2 path) is
-      # the intended durable copy; until GDRIVE_REFRESH_TOKEN_B64 is set the
-      # PDFs live only on the runner, which is the safe failure mode.
+      #
+      # The durable copy is the e-mail: doc_generator attaches the CV/CL and
+      # mails them to GMAIL_RECIPIENT (the candidate, never a recruiter).
+      # Google Drive stays as a second copy but has never worked -- the
+      # Service Account answers 403 "Service Accounts do not have storage
+      # quota" on every upload, and only OAuth2 (GDRIVE_REFRESH_TOKEN_B64)
+      # fixes it. Before the e-mail path existed the PDFs simply died with
+      # the runner.
 
       # This step had no env block at all, so high_score_alert.py found no
       # Gmail credentials, printed "not configured", returned False and
