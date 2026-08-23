@@ -326,6 +326,73 @@ def _error_record(job, err_msg):
     }
 
 
+# Half-width of the re-sampling band around each threshold. 8 is roughly one
+# standard deviation of the observed score noise, so a job this close to a
+# boundary is genuinely a coin flip on a single sample.
+DEFAULT_BORDERLINE_BAND = 8
+DEFAULT_BORDERLINE_SAMPLES = 2
+
+
+def _borderline_band() -> int:
+    """Read dynamically, like max_evaluations_per_run, so tests and CI can
+    override it via env without re-importing the module."""
+    try:
+        return int(os.environ.get("BORDERLINE_BAND") or DEFAULT_BORDERLINE_BAND)
+    except ValueError:
+        return DEFAULT_BORDERLINE_BAND
+
+
+def _borderline_samples() -> int:
+    """Extra opinions to buy for a borderline job. 0 disables the whole
+    mechanism -- used by the test suite, and available for a run on a tight
+    Kimi budget."""
+    try:
+        return int(os.environ.get("BORDERLINE_SAMPLES") or DEFAULT_BORDERLINE_SAMPLES)
+    except ValueError:
+        return DEFAULT_BORDERLINE_SAMPLES
+
+
+def _is_borderline(score) -> bool:
+    """Close enough to a decision boundary that noise could flip the outcome."""
+    if _borderline_samples() <= 0:
+        return False
+    band = _borderline_band()
+    return any(abs(score - t) <= band
+               for t in (THRESHOLD_APPLY, THRESHOLD_REVIEW))
+
+
+def _median_of_three(prompt, first_ev, first_score, title, company):
+    """Re-scores a borderline job and returns (record, median score).
+
+    The record kept is the sample whose score IS the median, so the reasoning
+    the candidate reads always matches the number he is shown -- pairing a
+    median score with the first sample's reasoning would be its own quiet lie.
+    A failed re-sample is skipped, never fatal: one good score beats none.
+    """
+    samples = [(first_score, first_ev)]
+    for _ in range(_borderline_samples()):
+        try:
+            again = call_kimi_json(prompt, system=PROFILE + "\n" + SYSTEM_PROMPT,
+                                   max_tokens=1000)
+        except Exception as e:
+            print(f"  [borderline] re-sample failed ({type(e).__name__}) -- "
+                  f"keeping what we have")
+            break
+        again_score = _sanitize_score(again.get("score"))
+        if again_score is not None:
+            samples.append((again_score, again))
+        time.sleep(1)
+
+    if len(samples) == 1:
+        return first_ev, first_score
+    samples.sort(key=lambda pair: pair[0])
+    median_score, median_ev = samples[len(samples) // 2]
+    spread = samples[-1][0] - samples[0][0]
+    print(f"  [borderline] {title[:34]} @ {company[:20]}: "
+          f"{[s for s, _ in samples]} -> {median_score} (spread {spread})")
+    return median_ev, median_score
+
+
 def evaluate_job(job):
     title = job.get("title", "Unknown")
     company = job.get("company", "Unknown")
@@ -379,6 +446,18 @@ def evaluate_job(job):
         ev = call_kimi_json(prompt, system=PROFILE + "\n" + SYSTEM_PROMPT, max_tokens=1000)
 
         score = _sanitize_score(ev.get("score"))
+        # Borderline jobs get a second opinion. Measured 2026-08-23 on one
+        # posting, five samples each: the score wanders by up to 20 points
+        # between identical calls (55, 55, 55, 35, 45 on the full text). That
+        # is not fixable by turning the temperature down -- kimi-k2.6 answers
+        # "invalid temperature: only 1 is allowed for this model" -- and it
+        # usually does not matter, because all ten samples still agreed on
+        # SKIP. It matters only when the score sits on a threshold, where the
+        # same job becomes APPLY or REVIEW depending on which sample arrived.
+        # So re-sample exactly there, take the median of three, and leave the
+        # other ~90% of jobs at one call each.
+        if score is not None and _is_borderline(score):
+            ev, score = _median_of_three(prompt, ev, score, title, company)
         if score is None:
             # A missing/invalid score is an evaluation failure, NOT a silent
             # 50/SKIP -- the old default fabricated exactly the kind of score
