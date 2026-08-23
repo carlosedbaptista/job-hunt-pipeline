@@ -3,14 +3,21 @@ gdrive_uploader.py  —  Upload CVs and CLs to Google Drive
 Supports: Service Account (CI) or OAuth2 refresh token (local/personal)
 Organizes by folder:  Job Hunt Pipeline / {Company} - {Title} / [files]
 
-Service Account setup:
+Use OAuth2. The Service Account path is kept only as a fallback and CANNOT
+work against a personal Drive: Google reports a Service Account's quota as
+{"limit": "0"}, so it owns no bytes and every upload answers
+403 storageQuotaExceeded. Sharing a folder with it grants the right to enter,
+never the right to store. It would work only inside a Workspace Shared Drive,
+where the drive owns the files.
+
+Service Account setup (Shared Drive only):
   1. Create a Service Account at https://console.cloud.google.com/
   2. Enable the Google Drive API
   3. Download the JSON key and save it as config/gdrive_credentials.json
-  4. Share a folder in your Drive with the Service Account (Editor)
+  4. Share a SHARED DRIVE folder with the Service Account (Editor)
   5. Set GDRIVE_PARENT_FOLDER_ID
 
-OAuth2 setup (fallback for personal accounts without Workspace):
+OAuth2 setup (what this project uses -- the candidate owns the files):
   1. Create OAuth2 credentials (Desktop app) in the Google Cloud Console
   2. Run: python config/setup_oauth2.py
   3. Authorize in the browser and paste the code
@@ -43,10 +50,21 @@ except ImportError:
     GDRIVE_AVAILABLE = False
 
 
-SCOPES = ["https://www.googleapis.com/auth/drive"]
+# drive.file, NOT drive: the app can only see and touch what it created
+# itself. This refresh token lives in a GitHub Secret, and the full `drive`
+# scope would make a leak cost the candidate his entire personal Drive
+# instead of a folder of job PDFs he already sends to recruiters.
+#
+# The consequence is that a folder created by hand in the browser is
+# INVISIBLE here, which is why the root folder is found-or-created by the
+# app itself (see _resolve_root_folder) instead of being handed to it.
+SCOPES = ["https://www.googleapis.com/auth/drive.file"]
 CREDENTIALS_PATH = "config/gdrive_credentials.json"
 REFRESH_TOKEN_PATH = "config/gdrive_refresh_token.json"
 PARENT_FOLDER_ENV = "GDRIVE_PARENT_FOLDER_ID"
+# Name of the app-owned root. Everything the pipeline writes lives under it,
+# one subfolder per job: "Job Hunt Pipeline / Avaloq - AI Software Engineer".
+ROOT_FOLDER_NAME = os.environ.get("GDRIVE_ROOT_FOLDER_NAME", "Job Hunt Pipeline")
 
 
 def _get_service_account_credentials():
@@ -219,23 +237,52 @@ def _upload_file(service, local_path, parent_id, mime_type="application/pdf"):
         return None
 
 
-def upload_cv_cl(folder_local_path, company, title):
+def _resolve_root_folder(service):
+    """The folder everything is written under.
+
+    Prefers GDRIVE_PARENT_FOLDER_ID when the app can actually reach it, which
+    is the case for a folder it created before, or for any folder at all under
+    the old full-`drive` scope. Under drive.file a folder created by hand in
+    the browser is invisible, so the id is silently useless -- hence the
+    reachability check rather than trusting the variable.
+
+    Falls back to finding, or creating, ROOT_FOLDER_NAME. Once the app owns
+    that folder it stays visible on every later run.
     """
-    Upload the CV and CL PDFs to Google Drive.
-    Creates folder: {Company} - {Title}
+    configured = os.environ.get(PARENT_FOLDER_ENV, "")
+    if configured:
+        try:
+            service.files().get(fileId=configured, fields="id",
+                                supportsAllDrives=True).execute()
+            return configured
+        except Exception:
+            print(f"  [GDrive] {PARENT_FOLDER_ENV} is set but this app cannot see that "
+                  f"folder (expected under the drive.file scope if it was created by "
+                  f"hand). Using its own '{ROOT_FOLDER_NAME}' folder instead.")
+
+    return _get_or_create_folder(service, ROOT_FOLDER_NAME, None)
+
+
+def upload_cv_cl(folder_local_path, company, title):
+    """Uploads the CV and CL PDFs, into "{root}/{Company} - {Title}".
+
+    Returns {"files": {filename: file_id}, "folder_link": url} -- the link is
+    what agents/doc_generator.py records in the digest manifest, so the daily
+    e-mail can offer a download instead of carrying the PDFs as attachments.
+    Returns None when the upload could not even be attempted.
     """
     if not GDRIVE_AVAILABLE:
         print("[GDrive] Google libraries not installed.")
         return None
 
-    parent_folder_id = os.environ.get(PARENT_FOLDER_ENV, "")
-    if not parent_folder_id:
-        print(f"[GDrive] Variable {PARENT_FOLDER_ENV} not set. Skipping upload.")
-        return None
-
     service = _get_drive_service()
     if not service:
         print("[GDrive] Could not authenticate. Check the credentials.")
+        return None
+
+    parent_folder_id = _resolve_root_folder(service)
+    if not parent_folder_id:
+        print("[GDrive] No usable root folder. Skipping upload.")
         return None
 
     safe_company = company.strip()[:40]
@@ -248,20 +295,24 @@ def upload_cv_cl(folder_local_path, company, title):
         print(f"[GDrive] Failed to create folder '{subfolder_name}'")
         return None
 
-    result = {}
+    folder_link = f"https://drive.google.com/drive/folders/{subfolder_id}"
+    files = {}
     folder = Path(folder_local_path)
     pdf_files = sorted(folder.glob("*.pdf"))
 
     if not pdf_files:
         print(f"[GDrive] No PDF found in {folder_local_path}")
-        return result
+        return {"files": files, "folder_link": folder_link}
 
     for pdf in pdf_files:
         fid = _upload_file(service, str(pdf), subfolder_id)
         if fid:
-            result[pdf.name] = fid
+            files[pdf.name] = fid
 
-    return result
+    # Only advertise the folder if something actually landed in it. A link to
+    # an empty folder is worse than no link: the digest would tell the
+    # candidate his documents are waiting somewhere they are not.
+    return {"files": files, "folder_link": folder_link if files else ""}
 
 
 def test_connection():

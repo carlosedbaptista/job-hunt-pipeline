@@ -12,7 +12,9 @@ import base64
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-SCOPES = ["https://www.googleapis.com/auth/drive"]
+# Must match src/gdrive_uploader.py. drive.file limits the token to files the
+# app itself created -- see the comment there for why that matters.
+SCOPES = ["https://www.googleapis.com/auth/drive.file"]
 REDIRECT_URI = "http://localhost"
 
 
