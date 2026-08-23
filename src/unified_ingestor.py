@@ -105,7 +105,7 @@ def normalize_job_fields(job: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-from utils import deduplicate_jobs, max_evaluations_per_run
+from utils import deduplicate_jobs, is_off_target_title, max_evaluations_per_run
 from deduplicator import filter_new_jobs
 
 
@@ -149,6 +149,23 @@ def save_evaluator_input(jobs: List[Dict[str, Any]], db_path: str = None) -> str
         fresh_jobs = filter_new_jobs(normalized_jobs, mark_seen=False, **db_kwargs)
         already_seen = len(normalized_jobs) - len(fresh_jobs)
         print(f"  🔁 Cross-run dedup: {len(fresh_jobs)} new | {already_seen} already seen (tracker/jobs.db)")
+
+    # Drop clearly off-target postings BEFORE anything is spent on them. The
+    # scorer already rejects these correctly, but only after paying for an LLM
+    # call out of a cap that good jobs then cannot reach. Validated against
+    # every scored title in the history: the highest score among everything
+    # this gate rejects is 35, well under the SKIP threshold. See
+    # utils.is_off_target_title for why a keyword blacklist was rejected.
+    #
+    # They are NOT marked as seen: the gate is free to re-apply next run, and
+    # not persisting the decision means loosening it later brings them back.
+    before_gate = len(normalized_jobs)
+    normalized_jobs = [j for j in normalized_jobs
+                       if not is_off_target_title(j.get("title"))]
+    dropped = before_gate - len(normalized_jobs)
+    if dropped:
+        print(f"  🚫 Relevance gate: {dropped} clearly off-target "
+              f"(marketing/sales/M&A with no technical element) dropped before scoring.")
 
     # Spend the budget on the jobs it can buy the most with. Sources arrive
     # in a fixed order -- e-mail alerts first, Adzuna after -- and the cap

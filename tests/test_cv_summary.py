@@ -87,3 +87,44 @@ class TestVoice:
 
     def test_invention_is_still_forbidden(self, prompt):
         assert "invent nothing" in prompt
+
+
+class TestSkillOrdering:
+    """The CV leads with the stack the posting names.
+
+    Reordering only. It is the one part of the CV besides the summary that can
+    be adapted without risking a claim he would have to defend in an interview
+    -- unlike rewriting experience bullets, which is exactly where the model
+    invented a mechanism on 2026-08-23.
+    """
+
+    SKILLS = ["Python", "Power BI", "Docker", "GitHub Actions",
+              "Oracle NetSuite", "TypeScript"]
+
+    def test_skills_named_in_the_posting_come_first(self):
+        ordered = dg._order_skills_for_job(
+            self.SKILLS, "We build with TypeScript and Docker containers.")
+        assert ordered[:2] == ["Docker", "TypeScript"]
+
+    def test_nothing_is_added_or_lost(self):
+        """A reordering that drops a skill would silently shrink his CV."""
+        ordered = dg._order_skills_for_job(self.SKILLS, "TypeScript and Docker.")
+        assert sorted(ordered) == sorted(self.SKILLS)
+
+    def test_relative_order_is_kept_within_each_group(self):
+        ordered = dg._order_skills_for_job(self.SKILLS, "Python, Docker.")
+        assert ordered == ["Python", "Docker", "Power BI", "GitHub Actions",
+                           "Oracle NetSuite", "TypeScript"]
+
+    def test_no_description_leaves_the_order_untouched(self):
+        assert dg._order_skills_for_job(self.SKILLS, "") == self.SKILLS
+        assert dg._order_skills_for_job(self.SKILLS, None) == self.SKILLS
+
+    def test_a_one_character_skill_cannot_match_everything(self):
+        """"R" or "C" would otherwise be "named" by almost any posting."""
+        ordered = dg._order_skills_for_job(["R", "Docker"], "We use Docker.")
+        assert ordered == ["Docker", "R"]
+
+    def test_matching_ignores_case(self):
+        ordered = dg._order_skills_for_job(["Docker"], "we use DOCKER daily")
+        assert ordered == ["Docker"]
