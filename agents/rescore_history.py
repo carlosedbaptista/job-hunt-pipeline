@@ -45,7 +45,9 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from utils import MIN_DESCRIPTION_CHARS, effective_decision, load_json, save_json
+from utils import (MIN_DESCRIPTION_CHARS, effective_decision,
+                   is_truncated_description, load_json, save_json)
+from posting_resolver import resolve as resolve_posting
 
 HISTORY_GLOB = os.path.join("data", "history", "evaluations_*.json")
 LATEST = os.path.join("digests", "job_evaluations_latest.json")
@@ -127,6 +129,45 @@ def deterministic_pass(apply_changes: bool):
     return changed
 
 
+def dedupe_pass(apply_changes: bool):
+    """Collapses repeated evaluations of the same posting within one day.
+
+    Re-running the pipeline with `reevaluate` scores jobs that are already in
+    the day's file, appending a second and third record for the same posting.
+    That is a testing artefact, not history: it inflates the counts, and the
+    dashboard then shows the same job several times.
+
+    Same day, same posting, keep the LAST -- it was scored under the newest
+    rules. Records from DIFFERENT days are left alone: a job legitimately
+    re-evaluated a week later is real history worth keeping.
+    """
+    from deduplicator import make_hash
+
+    removed_total = 0
+    for path in iter_files():
+        data = load_json(path, default=None)
+        if not isinstance(data, list):
+            continue
+        last_position = {}
+        for position, record in enumerate(data):
+            job = record.get("job") or {}
+            key = make_hash(job.get("company", ""), job.get("title", ""),
+                            job.get("location", ""))
+            last_position[key] = position
+        keep = set(last_position.values())
+        if len(keep) == len(data):
+            continue
+        removed = len(data) - len(keep)
+        removed_total += removed
+        print(f"  {path}: {len(data)} -> {len(keep)} ({removed} duplicate(s) dropped)")
+        if apply_changes:
+            save_json(path, [r for i, r in enumerate(data) if i in keep])
+
+    print(f"Duplicate pass: {removed_total} repeated evaluation(s) "
+          f"{'removed' if apply_changes else 'would be removed'}.")
+    return 0
+
+
 def full_pass(limit: int, apply_changes: bool):
     """Re-scores with the LLM. Costs one API call per job."""
     import job_evaluator
@@ -159,11 +200,32 @@ def full_pass(limit: int, apply_changes: bool):
         return 0
 
     by_file = {}
+    resolved_count = 0
     for n, i in enumerate(order, 1):
         record = records[i]
         job = dict(record.get("job") or {})
         title = job.get("title", "?")
         print(f"[{n}/{len(order)}] {title[:50]}...", end=" ", flush=True)
+
+        # Recover the real posting BEFORE spending the LLM call. Without this
+        # the pass re-scores the same 500-character teaser it scored the first
+        # time and changes nothing that matters: every Adzuna description ever
+        # stored was truncated, so the requirements the score should turn on
+        # were never in the record. Costs no API quota, only time, and a miss
+        # is fine -- the job keeps its teaser and stays capped at REVIEW.
+        text = str(job.get("description") or "")
+        if is_truncated_description(text) or len(text.strip()) < MIN_DESCRIPTION_CHARS:
+            try:
+                hit = resolve_posting(job.get("company", ""), title)
+            except Exception:
+                hit = None
+            if hit:
+                job["description"] = hit["text"]
+                job["description_source"] = hit["provider"]
+                resolved_count += 1
+                print(f"[+{len(hit['text'])} chars from {hit['provider']}]",
+                      end=" ", flush=True)
+
         fresh = job_evaluator.evaluate_job(job)
         if fresh.get("decision") == "ERROR":
             print("ERROR (kept the old record)")
@@ -176,6 +238,8 @@ def full_pass(limit: int, apply_changes: bool):
         by_file[path][position] = fresh
         print(f"{old_score} -> {fresh.get('score')} ({fresh.get('decision')})")
 
+    print(f"Recovered the full posting for {resolved_count} of {len(order)} "
+          f"from the employers' own job boards; the rest kept their teaser.")
     for path, data in by_file.items():
         save_json(path, data)
         print(f"  updated {path}")
@@ -213,6 +277,9 @@ def main():
                         help="also re-score with the LLM (costs one call per job)")
     parser.add_argument("--limit", type=int, default=30,
                         help="max jobs to re-score in --full mode (default 30)")
+    parser.add_argument("--dedupe", action="store_true",
+                        help="collapse repeated evaluations of the same posting "
+                             "within one day (testing artefacts)")
     parser.add_argument("--reset-seen", action="store_true",
                         help="clear unapplied rows from seen_jobs so those jobs "
                              "re-enter the pipeline")
@@ -221,6 +288,12 @@ def main():
     print("=" * 70)
     print("RESCORE HISTORY" + ("" if args.apply else "  (DRY RUN)"))
     print("=" * 70)
+
+    # Duplicates first: no point spending an LLM call re-scoring a record
+    # that is about to be dropped as a testing artefact.
+    if args.dedupe:
+        dedupe_pass(args.apply)
+        print()
 
     deterministic_pass(args.apply)
 
