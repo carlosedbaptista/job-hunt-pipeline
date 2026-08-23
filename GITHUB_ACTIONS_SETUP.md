@@ -1,193 +1,96 @@
-# Week 7: GitHub Actions Scheduler — Complete Setup
+# GitHub Actions setup
 
-> **UPDATE (2026-08):** the pipeline uses the **Kimi/Moonshot** API (no longer Anthropic).
-> Required secrets in *Settings → Secrets and variables → Actions*:
->
-> | Secret | Required | Description |
-> |---|---|---|
-> | `KIMI_API_KEY` | yes | Key from platform.moonshot.ai (must have balance!) |
-> | `ADZUNA_APP_ID` / `ADZUNA_APP_KEY` | yes | Adzuna jobs API |
-> | `GMAIL_SENDER` / `GMAIL_APP_PASSWORD` / `GMAIL_RECIPIENT` | yes | Email sending (16-char App Password) |
-> | `CANDIDATE_PROFILE_B64` | recommended | `candidate_profile.json` in base64 (keeps PII out of git) |
-> | `CANDIDATE_PHOTO_B64` | optional | `photo.png` in base64 (CV photo) |
-> | `CV_MODEL_B64` | optional | `cv_model.txt` in base64 (real CV template used for tailoring) |
-> | `CL_MODEL_B64` | optional | `cover_letter_model.txt` in base64 (real CL template) |
-> | `GDRIVE_PARENT_FOLDER_ID` / `GDRIVE_REFRESH_TOKEN_B64` / `GDRIVE_CREDENTIALS_JSON_B64` | optional | Upload of CVs/CLs to Drive |
->
-> Generate the base64 values (Git Bash):
-> ```bash
-> base64 -w0 config/candidate_profile.json   # paste as CANDIDATE_PROFILE_B64
-> base64 -w0 config/photo.png                # paste as CANDIDATE_PHOTO_B64
-> base64 -w0 config/cv_model.txt             # paste as CV_MODEL_B64
-> base64 -w0 config/cover_letter_model.txt   # paste as CL_MODEL_B64
-> ```
->
-> Without `CANDIDATE_PROFILE_B64` the pipeline runs with a generic fallback profile
-> (worse matching and no personalized CV/CL generation).
+Everything runs in GitHub Actions. There is no server, and nothing needs to
+run on your machine.
 
-## What you did
+The LLM is **Kimi (Moonshot)**. Nothing in this pipeline calls the Anthropic
+API, and there is no `ANTHROPIC_API_KEY`; an earlier version of this document
+told you to create one, which was wrong and has been removed.
 
-You created a **GitHub Actions workflow** that:
-- ✅ Runs automatically every day at **7:00 AM** (Switzerland time)
-- ✅ Executes the full pipeline (ingest → parse → eval → digest)
-- ✅ Generates the dashboard automatically
-- ✅ Commits the updated files to the repo
+## Secrets
 
----
+*Settings → Secrets and variables → Actions*
 
-## Required Configuration
+| Secret | Required | What it is |
+|---|---|---|
+| `KIMI_API_KEY` | yes | platform.moonshot.ai. Must have balance: with none, every evaluation returns ERROR and the run fails loudly on purpose |
+| `KIMI_BASE_URL` | optional | Only to force `.ai` vs `.cn` |
+| `ADZUNA_APP_ID`, `ADZUNA_APP_KEY` | yes | Job search. Free tier is 100 calls/day |
+| `GMAIL_SENDER`, `GMAIL_APP_PASSWORD`, `GMAIL_RECIPIENT` | yes | Digest, alerts and document delivery. The password is a 16-character App Password, not your Gmail password |
+| `CANDIDATE_PROFILE_B64` | yes | `config/candidate_profile.json` in base64. Without it the evaluator exits 1 rather than scoring against a generic profile |
+| `CANDIDATE_PHOTO_B64` | optional | CV photo |
+| `CV_MODEL_B64`, `CL_MODEL_B64` | optional | Voice references for the generated documents |
+| `GDRIVE_REFRESH_TOKEN_B64` | optional | Drive upload. See `config/GDRIVE_SETUP.md` |
+| `GDRIVE_PARENT_FOLDER_ID` | optional | Drive root folder id |
 
-### STEP 1: Add Secret on GitHub
+Generate the base64 values (Git Bash), and note `-w0`: a wrapped value breaks
+the restore step.
 
-Your workflow is already configured to read the Anthropic API key from a GitHub **Secret**.
-
-1. Go to: https://github.com/your-username/job-hunt-pipeline/settings/secrets/actions
-
-2. Click **"New repository secret"**
-
-3. Name: `ANTHROPIC_API_KEY`
-   Value: `sk-ant-your-key-here`
-
-4. Click **"Add secret"**
-
-✅ Done! GitHub Actions can now run Claude.
-
----
-
-### STEP 2: The Gmail API Problem (Important!)
-
-⚠️ **WARNING:** GitHub Actions runs on a Linux server with no access to your computer.
-
-**Problem:**
-- Gmail API needs `token.pickle` (generated on your computer)
-- GitHub cannot access your local file
-
-**Solutions:**
-
-#### Option A: Run locally via Cron/Task Scheduler (Recommended)
-If you want to make sure it works:
-
-**On Windows:**
-1. Open "Task Scheduler"
-2. Create a task that runs: `python src/week4_pipeline.py`
-3. Schedule it for 7:00 AM every day
-
-**On Mac/Linux:**
 ```bash
-# Create a cron job
-crontab -e
-
-# Add (7 AM every day):
-0 7 * * * cd ~/job-hunt-pipeline && python src/week4_pipeline.py
+base64 -w0 config/candidate_profile.json   # CANDIDATE_PROFILE_B64
+base64 -w0 config/photo.jpg                # CANDIDATE_PHOTO_B64
+base64 -w0 config/cv_model.txt             # CV_MODEL_B64
+base64 -w0 config/cover_letter_model.txt   # CL_MODEL_B64
 ```
 
-#### Option B: GitHub Actions + Manual Fallback
-Keep GitHub Actions enabled, but:
-- If it fails (because of Gmail), you run it manually on the weekend
-- At least it generates a digest with older jobs (useful even without new emails)
+These files are gitignored. The repository is **public**: nothing carrying
+personal data belongs in it.
 
-#### Option C: Use Google Cloud for Gmail (Advanced)
-- Set up Google Cloud Scheduler
-- Trigger a function that runs the pipeline
-- Expensive, but 100% automatic
+## Workflows
 
----
+| Workflow | Trigger | What it does |
+|---|---|---|
+| `job-hunt-scheduler.yml` | 05:00 and 12:00 UTC, or manual | The daily pipeline |
+| `tests.yml` | every push and PR | pytest and compileall. No secrets |
+| `add-job.yml` | manual | Evaluate one posting you paste in, and generate CV/CL if it scores APPLY |
+| `track-application.yml` | manual | Record that you applied, or a recruiter reply |
 
-## Test the Workflow
+All three that write to the repository share the `job-hunt-repo-write`
+concurrency group: `tracker/jobs.db` is a binary SQLite file and two
+concurrent writers cannot be merged.
 
-### Test 1: Run Manually on GitHub
+## Running it by hand
 
-1. Go to: https://github.com/your-username/job-hunt-pipeline/actions
+*Actions → Job Hunt Daily Pipeline → Run workflow*, with three inputs, all
+off by default and never set by the scheduled runs:
 
-2. Click **"Job Hunt Daily Pipeline"**
+| Input | Use |
+|---|---|
+| `skip_ingestion` | Reuse the batch already fetched. Calls no external API |
+| `reevaluate` | Re-score jobs already marked as seen |
+| `max_evaluations` | Cap LLM calls for this run. Use 3-5 when testing |
 
-3. Click **"Run workflow"** → **"Run workflow"**
+The first two exist because Adzuna's free tier is 100 calls a day and one run
+spends 18, so on a day of testing there is no budget for a second fetch; and
+because cross-run deduplication otherwise leaves a second run with nothing to
+score. Together they make the whole pipeline runnable any number of times for
+the cost of the LLM calls alone.
 
-4. Wait 2-5 minutes
+## Checking a run
 
-5. If it shows ✅ green = success, if ❌ red = failed
-
-### Test 2: Check the updated files
-
-If it ran successfully, it should have committed:
-- `digests/digest_latest.json` updated
-- `digests/dashboard.html` updated
-
----
-
-## Schedule (Cron)
-
-Your workflow is configured for:
+Four lines in the log tell you whether it worked:
 
 ```
-0 5 * * *
-│ │ │ │ └─ Day of week (0-6, 0 is Sunday)
-│ │ │ └─── Month (1-12)
-│ │ └───── Day of month (1-31)
-│ └─────── Hour (UTC, 0-23)
-└───────── Minute (0-59)
+Relevance gate: N clearly off-target ... dropped before scoring
+Description enricher: N/M descriptions are TRUNCATED
+  Recovered the full posting for N/M from the employers' own job boards
+DONE: N jobs | APPLY: n | REVIEW: n | SKIP: n | ERROR: n
 ```
 
-**0 5 * * * = 5:00 AM UTC = 7:00 AM CEST (summer in Switzerland)**
+`ERROR` above zero usually means the Kimi key has no balance. If every
+evaluation fails the run exits 1 deliberately, so a silent billing lapse
+cannot quietly destroy three weeks of job discovery.
 
-If you want to change the time, edit `.github/workflows/job-hunt-scheduler.yml`
+## Cost
 
-Examples:
-- `0 6 * * *` = 8:00 AM CEST
-- `0 8 * * *` = 10:00 AM CEST
-- `0 20 * * *` = 22:00 (10 PM) CEST
+GitHub Actions is free for public repositories. The pipeline spends about
+four minutes per run.
 
----
+Adzuna: 18 search calls per run, 36 a day, against a free tier of 100. The
+posting resolver costs no Adzuna quota at all -- it reads the employers' own
+ATS boards, which are different hosts.
 
-## What happens when it runs
-
-1. ✅ GitHub pulls your repo
-2. ✅ Installs dependencies (pip install -r requirements.txt)
-3. ✅ Runs `python src/week4_pipeline.py`
-   - Fetches emails from Gmail
-   - Parses jobs with Claude
-   - Evaluates fit
-   - Generates digest
-4. ✅ Commits and pushes the updated files
-5. ✅ You receive a notification (optional, via GitHub)
-
----
-
-## Logs and Debugging
-
-If something goes wrong:
-
-1. Go to: GitHub → Actions → Job Hunt Daily Pipeline
-
-2. Click the failed run
-
-3. Click **"job-hunt-pipeline"**
-
-4. View the output (where the error is)
-
-Common errors:
-- `ModuleNotFoundError` = requirements.txt is missing a package
-- `authentication_error` = Secret was not added
-- `Gmail error` = token.pickle is not accessible (expected)
-
----
-
-## Final Recommendation
-
-**Use GitHub Actions ONLY as a backup.**
-
-To guarantee it works 100%, set up a **local Cron Job** (Option A above) on your computer.
-
-That way:
-- ✅ GitHub Actions runs (generates digest even without new emails)
-- ✅ Local cron runs (fetches new emails every morning)
-- ✅ Robust system with redundancy
-
----
-
-## Next Optimizations (Week 8+)
-
-- [ ] Set up notifications (email when there are new jobs)
-- [ ] Add Google Cloud Function for Gmail (remove the need for token.pickle)
-- [ ] Create webhook to send digest by email
-- [ ] Analytics: which type of job gets the best response?
+Kimi: at most `MAX_EVALUATIONS_PER_RUN` (30) calls per run, plus two extra
+for each job whose score lands within 8 points of a decision threshold and is
+therefore re-scored to break the tie. Measured on a real run: 4 of 29 jobs,
+so 8 extra calls.
