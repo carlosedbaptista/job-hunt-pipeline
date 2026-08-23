@@ -1694,23 +1694,21 @@
     "evaluated_at": "2026-08-23T22:04:23.170656+00:00"
   },
   {
-    "score": null,
+    "score": 55,
     "hard_blockers": [
-      "Senior-level requirement (5+ years experience) — candidate is intern/junior with ~1-2 years tech experience",
-      "Wrong role shape: maintenance/optimization of existing RPA estate, not greenfield building; no LLM/agentic work"
+      "Role explicitly requires base in France; candidate is in Zurich Area with Swiss Work Permit B. This is a hard eligibility blocker for a role that specifies France-based location."
     ],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Senior-level requirement (5+ years experience) — candidate is intern/junior with ~1-2 years tech experience",
-      "Blocker: Wrong role shape: maintenance/optimization of existing RPA estate, not greenfield building; no LLM/agentic work",
-      "Enterprise RPA stack (UiPath/Blue Prism/AA) is completely absent from candidate's profile — steep learning curve with no mentorship path suggested",
-      "SAP ERP integration experience missing",
-      "ITIL/COBIT governance frameworks unfamiliar",
-      "'Senior' title implies expectation of independent architecture decisions without the growth scaffolding candidate seeks",
-      "No evidence of LLM, Python, or cloud-native tooling in job description — skill misalignment in both directions",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: Role explicitly requires base in France; candidate is in Zurich Area with Swiss Work Permit B. This is a hard eligibility blocker for a role that specifies France-based location.",
+      "Senior-level title suggests 3-5+ years experience expected; candidate is intern-level with ~1-2 years tech experience",
+      "TypeScript frontend development listed as core requirement; candidate has Node.js but not demonstrated TypeScript/frontend depth",
+      "AWS production infrastructure (S3, databases) beyond candidate's current Google Cloud focus",
+      "'Background in data engineering or business intelligence is a plus' suggests they'd prefer this; candidate has some BI (Power BI) but limited data engineering depth",
+      "Payments/debt/tendering domain expertise may be implicitly expected at senior level despite not being stated as required",
+      "Salary and level likely calibrated for senior specialist, not intern/junior"
     ],
     "job": {
       "company": "Jobgether",
@@ -1718,36 +1716,45 @@
       "location": "Switzerland",
       "url": "https://www.linkedin.com/comm/jobs/view/4452555540/?trackingId=PljD0KukSPSX9T7n4PS1GA%3D%3D&refId=TM7c3YoSRWybK%2BLGGpXyDw%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for a Senior Automation Specialist based in France. \n\n This is a hands-on automation role focused on transforming complex operational processes through AI and intelligent workflow design.\nYou will work directly with operational leaders to identify repetitive, high-value manual work and turn it into reliable automation.\nThe role combines AI agents, reasoning systems, APIs, workflow platforms, and software engineering to solve real business problems at scale.\nYou will own automation initiatives from discovery and architecture through production deployment, monitoring, and continuous improvement.\nSuccess will be measured by tangible operational impact, particularly the number of manual hours removed and the reliability of the resulting workflows.\nYou will operate in a fast-moving, remote-first environment where experimentation is encouraged but quality, testing, and responsible deployment remain essential.\nIt is an opportunity to shape how AI-powered automation becomes embedded into the operational infrastructure of a growing international business.\nAccountabilities: Design and maintain intelligent automation and reasoning layers for operational workflows, enabling tasks to be routed and actioned based on business logic rather than simply moving data between systems.\n\n Translate complex manual processes into scalable automation in close partnership with operational and domain experts.\n\n Build AI agents using tools such as Claude, Codex, or equivalent technologies, incorporating structured evaluations, real-world testing, and manual quality assurance.\n\n Define business rules, data-quality controls, validation gates, and safety mechanisms that determine when an automated workflow should escalate a task to a human.\n\n Connect internal systems and third-party services through APIs, webhooks, n8n, and comparable workflow automation technologies.\n\n Navigate complex integration environments and connect systems that were not originally designed to work together.\n\n Build and maintain frontend applications and automation components using TypeScript and cloud-native infrastructure.\n\n Deploy and maintain solutions through GitHub and GitHub Actions, using AWS services and appropriate storage technologies such as S3 and databases.\n\n Own automation projects end to end, from discovery and process mapping through architecture, implementation, production deployment, monitoring, and iteration.\n\n Work directly with operational leaders across areas such as payments, debt, tendering, partner activation, and other business \n[... middle of the posting omitted ...]\n is advantageous.\n\n Background in data engineering or business intelligence is a plus.\n\n Active interest in the rapidly evolving AI tooling ecosystem and an ability to identify and apply useful new technologies.\n\n Comfortable working independently in a remote-first environment while collaborating effectively with cross-functional teams.\n\n Benefits: \n \n Salary aligned with internal market benchmarks, with compensation reviewed twice per year.\n\n Stock options, providing an opportunity to share in the long-term success of the business.\n\n 25 days of annual leave in addition to public holidays.\n\n Flexibility to exchange public holidays for alternative days that are more meaningful to you.\n\n Additional day off for your birthday.\n\n Remote-first and flexible working environment with clearly defined core hours.\n\n No internal meetings on Friday afternoons to support focused work and flexibility.\n\n Annual remote-work setup budget of up to £1,200 / €1,200 .\n\n Monthly wellbeing budget of up to £150 / €150 .\n\n Opportunity to work on meaningful AI-driven automation initiatives with direct and measurable operational impact.\n\n Inclusive environment welcoming people from diverse backgrounds, experiences, and identities.\n\n Fast-moving culture that encourages ownership, experimentation, continuous learning, and practical innovation."
     },
-    "technical_fit": "Mismatch. Role is senior-level (5+ years) with emphasis on enterprise RPA platforms (UiPath/Blue Prism/AA), SAP ERP integration, and ITIL governance. Candidate is junior/intern-level with Python/LLM APIs, cloud-native automation, and no enterprise RPA or SAP experience.",
-    "contextual_fit": "Poor. Jobgether is a remote-work job platform; this role is about maintaining/optimizing existing automation infrastructure and governance frameworks, not building greenfield AI/agentic systems. Heavy seniority skew and 'support/optimize' framing vs. candidate's 'zero-to-production ownership' motivation.",
+    "technical_fit": "Strong overlap in core AI/automation stack (Claude, LLM APIs, n8n-style workflow automation, GitHub Actions, AWS/cloud), but role demands senior-level depth in TypeScript frontend development, AWS production infrastructure, and complex enterprise integrations that exceed current experience. The 'Senior' title and 'complex integration environments' suggest expectations above junior/intern level.",
+    "contextual_fit": "Critical mismatch: role explicitly requires base in France, not Switzerland. Remote-first but France-based. Candidate's Swiss permit B and Zurich-area location are irrelevant or potentially disqualifying. The 'own end-to-end' ownership shape matches candidate's motivation, but seniority level and geography are misaligned.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Neutral. Remote-first company but role is internally-facing automation maintenance rather than product-building. No cultural red flags, but no excitement alignment either.",
+    "culture_fit": "Excellent alignment with candidate's preferences: ownership from discovery to production, fast-moving, experimentation-encouraged, measurable impact, diverse backgrounds welcomed. The 'inclusive environment welcoming people from diverse backgrounds' resonates with career-change story.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Senior-level title suggests 3-5+ years experience expected; candidate is intern-level with ~1-2 years tech experience",
+      "TypeScript frontend development listed as core requirement; candidate has Node.js but not demonstrated TypeScript/frontend depth",
+      "AWS production infrastructure (S3, databases) beyond candidate's current Google Cloud focus",
+      "'Background in data engineering or business intelligence is a plus' suggests they'd prefer this; candidate has some BI (Power BI) but limited data engineering depth",
+      "Payments/debt/tendering domain expertise may be implicitly expected at senior level despite not being stated as required",
+      "Salary and level likely calibrated for senior specialist, not intern/junior"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-23T22:04:23.170656+00:00",
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
+    "score": 35,
     "hard_blockers": [
-      "Senior-level role requiring 5+ years experience; candidate is intern-level with ~1 year in tech"
+      "Role is based in Spain, not Zurich/Zug area — candidate's Swiss Work Permit B and 2-week notice are tied to Swiss employment; Spain-based role with 'permitted employment locations' restriction creates location/permit mismatch",
+      "Role is explicitly senior-level, not internship or junior — direct eligibility mismatch with candidate's search criteria"
     ],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Senior-level role requiring 5+ years experience; candidate is intern-level with ~1 year in tech",
-      "Title says 'Senior'—explicit experience floor unmet",
-      "No description of mentorship or junior track; role shape is maintenance/optimization of existing platform, not zero-to-production building",
-      "Location 'Switzerland' is vague—could be any canton, but senior remote roles often cluster in Zug/Zurich; unclear if truly Zurich-area accessible",
-      "Candidate's core motivation (agentic systems, data platform engineering with ownership) not addressed by infrastructure/platform role",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: Role is based in Spain, not Zurich/Zug area — candidate's Swiss Work Permit B and 2-week notice are tied to Swiss employment; Spain-based role with 'permitted employment locations' restriction creates location/permit mismatch",
+      "Blocker: Role is explicitly senior-level, not internship or junior — direct eligibility mismatch with candidate's search criteria",
+      "Senior-level expectations vs. internship-seeking career stage",
+      "Spain-based employment location vs. Swiss permit/tax situation unclear and risky",
+      "'Reusable frameworks, libraries, SDKs, developer tooling' — no evidence of SDK/library development experience",
+      "'Establish technical standards and patterns' — governance/architecture scope beyond current experience",
+      "'Evaluate emerging AI models...to determine business value' — product/strategy component not in background",
+      "MCP, vector search, embeddings at platform scale — theoretical interest but no demonstrated production depth",
+      "40 days PTO and senior perks suggest compensation band far above internship level, potential process waste if applied"
     ],
     "job": {
       "company": "Jobgether",
@@ -1755,20 +1762,26 @@
       "location": "Switzerland",
       "url": "https://www.linkedin.com/comm/jobs/view/4455488822/?trackingId=bUFz3dHrS8CZmkcIWiEoYw%3D%3D&refId=n7JQgNLzSbOJ5ttmGZNxYg%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for a Senior AI Platform Engineer based in Spain. \n\n This is a senior engineering opportunity focused on building the foundational platform layer behind secure, production-grade AI applications. You will design shared infrastructure, services, integrations, and developer tooling that enable teams to build and scale AI capabilities efficiently. The role combines hands-on work with LLMs, AI agents, RAG, tool calling, and AI workflows with strong data engineering and platform engineering practices. You will leverage modern cloud and data technologies to turn experimental AI use cases into reliable, scalable production systems. Working across Engineering, Product, and IT, you will establish technical patterns, reusable capabilities, and governance standards for AI development. This fully remote role is ideal for an experienced engineer who enjoys solving foundational problems and shaping how AI is built and operated across an organization.\nAccountabilities: Design and build reusable platform capabilities supporting LLM applications, AI agents, RAG, tool calling, and AI workflows.\n\n Develop scalable data and knowledge pipelines covering ingestion, embeddings, retrieval, vector search, metadata, and knowledge management.\n\n Build secure integrations between AI applications, enterprise data, and business systems using APIs, MCP, tool calling, and comparable integration patterns.\n\n Develop reusable frameworks, libraries, services, SDKs, and developer tooling that allow engineering teams to build AI applications efficiently.\n\n Establish technical standards and patterns for AI deployment, observability, evaluation, monitoring, and lifecycle management.\n\n Define and improve approaches for measuring AI quality, accuracy, latency, reliability, security, and cost.\n\n Take AI capabilities from experimentation and prototyping through reliable, scalable, and maintainable production deployment.\n\n Ensure AI platform capabilities comply with security, privacy, authentication, authorization, access control, and data governance requirements.\n\n Work with Engineering, Product, and IT teams to identify AI opportunities and translate ambiguous business needs into practical technical solutions.\n\n Evaluate emerging AI models, frameworks, infrastructure technologies, and development approaches to determine their potential business value.\n\n Contribute to the evolution of platform architecture, engineering standards, and reusable AI capabilities across the organization.\n\n Promote strong data engineering and platform practices aro\n[... middle of the posting omitted ...]\nwith the flexibility to work from home.\n\n Ability to work from anywhere within the permitted employment locations and time-zone range, subject to local work authorization.\n\n Approximately 40 days of paid time off per year, including holidays and vacation, or more where required by local regulations.\n\n Mental health and wellbeing support.\n\n Monthly wellbeing allowance that can be used across a broad range of eligible services and activities.\n\n Flexible parental leave, including at least three months of paid leave for new parents, subject to applicable local requirements.\n\n Work-from-home stipend for laptop and home office equipment.\n\n Fully distributed, international working environment with colleagues across multiple countries and cultures.\n\n Asynchronous and collaborative working model designed for globally distributed teams.\n\n Opportunity to work on foundational AI infrastructure and influence how AI applications are developed and operated at scale.\n\n Exposure to cutting-edge technologies including LLMs, AI agents, RAG, MCP, vector search, modern data platforms, and AI governance.\n\n Strong opportunity for technical ownership, professional growth, and meaningful impact within a global technology organization.\n\n Inclusive and diverse environment that values autonomy, trust, collaboration, and continuous progress."
     },
-    "technical_fit": "Mismatch. Role is Senior-level, requiring 5+ years of platform engineering and deep Kubernetes/ML infrastructure expertise. Candidate is intern-level with 0-2 years experience, focused on LLM API integration and automation pipelines rather than core infrastructure/platform primitives.",
-    "contextual_fit": "Poor. Jobgether is a remote-work job platform; this is a senior IC role building foundational AI infrastructure, not a learning environment for someone seeking ownership through greenfield agentic systems. The seniority gap is structural—this person would be managed by, not peers with, the intended hire.",
-    "salary_estimate": "CHF 130k–160k (senior platform engineer in Switzerland)",
-    "culture_fit": "Unknown/Neutral. No cultural signals in the sparse description, but senior-heavy team dynamics would likely isolate an intern-level hire.",
+    "technical_fit": "Strong conceptual overlap with candidate's interests (LLM APIs, agentic systems, RAG, vector search, data pipelines) but role demands senior-level depth in platform engineering, infrastructure design, SDK/framework development, and enterprise governance patterns far beyond his current internship experience. He has hands-on LLM pipeline building and basic cloud/Docker, but lacks the 'foundational platform layer' ownership, multi-team enablement, and architecture authority described.",
+    "contextual_fit": "Poor. Role is explicitly senior-level ('Senior AI Platform Engineer'), based in Spain (not Zurich/Zug area), and framed as hiring for an experienced engineer to shape organizational AI strategy. Candidate is seeking internship/junior roles with day-one ownership of building, not senior platform architecture. The 'fully remote' flexibility is undermined by 'permitted employment locations' — Spain-based role with Swiss mention likely excludes his Swiss permit situation or creates tax/legal complexity.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Mismatch in role level rather than culture. The autonomy, technical ownership, and AI-first environment would excite him, but the senior expectations and cross-org influence scope are misaligned with his stated goal of 'internship where I can go deeper' with 'real ownership from day one' — this role's ownership is architectural/strategic, not hands-on builder growth-oriented.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Senior-level expectations vs. internship-seeking career stage",
+      "Spain-based employment location vs. Swiss permit/tax situation unclear and risky",
+      "'Reusable frameworks, libraries, SDKs, developer tooling' — no evidence of SDK/library development experience",
+      "'Establish technical standards and patterns' — governance/architecture scope beyond current experience",
+      "'Evaluate emerging AI models...to determine business value' — product/strategy component not in background",
+      "MCP, vector search, embeddings at platform scale — theoretical interest but no demonstrated production depth",
+      "40 days PTO and senior perks suggest compensation band far above internship level, potential process waste if applied"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-23T22:04:23.170656+00:00",
-    "no_posting_text": true
+    "recovered": true
   },
   {
     "score": null,

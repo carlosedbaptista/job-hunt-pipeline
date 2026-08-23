@@ -179,6 +179,80 @@ def dedupe_pass(apply_changes: bool):
     return 0
 
 
+def recover_pass(limit: int, apply_changes: bool):
+    """Turns NOT_EVALUATED records into real scores where the posting can
+    still be found.
+
+    These are jobs whose alert card carried no description, so no number was
+    ever produced. Most cannot be helped -- their company field was mangled
+    by the parser bug fixed on 2026-08-23, and the resolver looks a posting
+    up by company. The ones that still carry a usable employer name can be
+    read from that employer's own board and scored properly.
+
+    A miss leaves the record exactly as it was: not evaluated, and honest
+    about it.
+    """
+    import job_evaluator
+    from email_parser_local import _looks_like_a_role
+
+    if job_evaluator.PROFILE_IS_FALLBACK:
+        print("FATAL: config/candidate_profile.json is missing or invalid.")
+        return 1
+
+    targets = []
+    for path in iter_files():
+        data = load_json(path, default=None)
+        if not isinstance(data, list):
+            continue
+        for position, record in enumerate(data):
+            if not isinstance(record, dict) or record.get("decision") != "NOT_EVALUATED":
+                continue
+            company = str((record.get("job") or {}).get("company") or "")
+            usable = (company and company != "Unknown" and len(company) <= 45
+                      and not company.lower().startswith("unknown")
+                      and not _looks_like_a_role(company))
+            if usable:
+                targets.append((path, position, record))
+
+    print(f"Recovery: {len(targets)} not-evaluated records carry a usable employer "
+          f"name (of the rest, the company field itself is unusable).")
+    targets = targets[:limit]
+    if not apply_changes:
+        print(f"(dry run -- would attempt {len(targets)})")
+        return 0
+
+    recovered = 0
+    by_file = {}
+    for n, (path, position, record) in enumerate(targets, 1):
+        job = dict(record.get("job") or {})
+        title, company = job.get("title", "?"), job.get("company", "")
+        print(f"[{n}/{len(targets)}] {title[:44]} @ {company[:22]}...", end=" ", flush=True)
+        try:
+            hit = resolve_posting(company, title)
+        except Exception as e:
+            print(f"resolver error ({type(e).__name__})")
+            continue
+        if not hit:
+            print("not on any board")
+            continue
+        job["description"] = hit["text"]
+        job["description_source"] = hit["provider"]
+        fresh = job_evaluator.evaluate_job(job)
+        if fresh.get("decision") in ("ERROR", "NOT_EVALUATED"):
+            print("still not evaluable")
+            continue
+        fresh["evaluated_at"] = record.get("evaluated_at")
+        fresh["recovered"] = True
+        by_file.setdefault(path, load_json(path, default=[]))
+        by_file[path][position] = fresh
+        save_json(path, by_file[path])
+        recovered += 1
+        print(f"{len(hit['text'])} chars -> {fresh.get('score')} ({fresh.get('decision')})")
+
+    print(f"Recovered {recovered} of {len(targets)} into real scores.")
+    return 0
+
+
 def full_pass(limit: int, apply_changes: bool):
     """Re-scores with the LLM. Costs one API call per job."""
     import job_evaluator
@@ -292,6 +366,9 @@ def main():
                         help="also re-score with the LLM (costs one call per job)")
     parser.add_argument("--limit", type=int, default=30,
                         help="max jobs to re-score in --full mode (default 30)")
+    parser.add_argument("--recover", action="store_true",
+                        help="find postings for NOT_EVALUATED records on the "
+                             "employer's board and score them properly")
     parser.add_argument("--dedupe", action="store_true",
                         help="collapse repeated evaluations of the same posting "
                              "within one day (testing artefacts)")
@@ -311,6 +388,10 @@ def main():
         print()
 
     deterministic_pass(args.apply)
+
+    if args.recover:
+        print()
+        recover_pass(args.limit, args.apply)
 
     if args.full:
         print()

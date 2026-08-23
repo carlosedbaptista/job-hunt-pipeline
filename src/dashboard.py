@@ -372,10 +372,12 @@ def get_template_head():
     <div class="filters">
         <input type="text" id="search" placeholder="Search company, title, location..." oninput="filterTable()">
         <select id="filter-decision" onchange="filterTable()">
-            <option value="">All Decisions</option>
+            <option value="EVALUATED" selected>Evaluated only</option>
+            <option value="">All (incl. not evaluated)</option>
             <option value="APPLY">APPLY</option>
             <option value="REVIEW">REVIEW</option>
             <option value="SKIP">SKIP</option>
+            <option value="NOT EVALUATED">Not evaluated</option>
         </select>
         <select id="filter-score" onchange="filterTable()">
             <option value="">All Scores</option>
@@ -565,7 +567,16 @@ function filterTable() {
         const dec = getDecision(score, job._has_blocker, job._insufficient, job._lang_gap, job._no_text);
 
         if (search && !company.includes(search) && !title.includes(search) && !location.includes(search)) return false;
-        if (decision && dec !== decision) return false;
+        // "Evaluated only" is the default view. Jobs whose posting text was
+        // never readable carry no score and cannot be compared with jobs that
+        // were actually read, so leading with them buries the system's real
+        // judgements. Nothing is hidden: they are one dropdown away, and the
+        // metric row below counts them.
+        if (decision === "EVALUATED") {
+            if (dec === "NOT EVALUATED") return false;
+        } else if (decision && dec !== decision) {
+            return false;
+        }
         if (source && !portal.includes(source)) return false;
         if (application && getApplicationInfo(job, dec).filterKey !== application) return false;
         if (scoreRange) {
@@ -721,7 +732,10 @@ function toggleDark() {
 }
 
 if (localStorage.getItem("dark") === "true") document.body.classList.add("dark");
-renderTable(JOBS);
+// Through filterTable, not renderTable(JOBS): the decision filter defaults
+// to "Evaluated only", and rendering everything on load would show the
+// dropdown claiming one thing while the table showed another.
+filterTable();
 updateCharts(JOBS);
 </script>
 </body>
