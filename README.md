@@ -1,156 +1,194 @@
 # Job Hunt Pipeline
 
-Automated job search and evaluation pipeline for AI / agentic systems / data platform engineering roles (internship and junior level) in Switzerland (Zurich/Zug). Runs twice daily via GitHub Actions, pulls from multiple job sources, evaluates fit with an LLM, and delivers a personalized digest to your email.
+An unattended pipeline that finds engineering roles in Zurich, scores them
+against a candidate profile with an LLM, and writes a tailored CV and cover
+letter for the ones worth applying to. It has run twice a day since June 2026
+on GitHub Actions. No server, no manual step.
+
+The interesting part is not that it works. It is what happened when I audited
+it after three months.
 
 ---
 
-## Overview
+## The audit
 
-This pipeline automates the tedious parts of job hunting:
+The pipeline had been running for months and looked healthy: jobs in, scores
+out, a digest every morning. Then I measured what the model was actually
+being shown.
 
-1. **Ingest** -- Fetches jobs from Adzuna API + Gmail job alerts
-2. **Deduplicate** -- In-batch and cross-run dedup via SQLite (21-day window), so each job is evaluated once
-3. **Enrich** -- Email alert cards carry a title and nothing else; the missing description is looked up on Adzuna so the job is scored on real text
-4. **Evaluate** -- Scores each job for fit using Kimi LLM (0-100 scale); API failures are marked ERROR, never scored
-5. **Decide** -- Classifies as APPLY (>=80), REVIEW (70-79), or SKIP (<70)
-6. **Digest** -- Generates a ranked daily digest with top 5 jobs
-7. **Notify** -- Sends a formatted HTML email with results
-8. **Track** -- Persists seen jobs in SQLite and full evaluation history in `data/history/`
+**917 of 917 job descriptions were exactly 500 characters long, every one cut
+mid-sentence.** The job board's API truncates them. What survives is the
+opening pitch; what is lost is the requirements list, which is where the
+disqualifiers live.
+
+One posting made the cost concrete. An "AI Software Engineer" role scored
+**82/100 — APPLY** on its 500-character teaser. On the full text it scored
+**58 — SKIP**, because the posting demands five years of full-stack
+development, three years of applied ML and a B.Sc.
+
+The model was never wrong. It was handed 12% of the posting.
+
+Across the whole history, **every score above the APPLY threshold had been
+given on truncated or absent text**. Ten out of ten.
+
+---
+
+## What the fix required
+
+The obvious repair — scrape the employer's careers page — does not work, and
+proving that mattered more than guessing. The aggregator's detail page is
+JavaScript-rendered with no outbound link in its HTML; its apply URLs answer
+403; the employer's own site answers 403 to a CI runner; the Swiss public job
+API returns its SPA shell for every path.
+
+But employers mostly do not host their own postings. They use an applicant
+tracking system, and every major ATS publishes a public JSON board carrying
+the complete text with no bot protection.
+
+[`agents/posting_resolver.py`](agents/posting_resolver.py) guesses a
+company's board slug from its name and matches the title across Greenhouse,
+Lever, Ashby, SmartRecruiters, Recruitee, Workable and Personio.
+
+**Measured hit rate: 40%** over 40 real postings. Two rules keep the other
+60% from becoming a subtler version of the same bug:
+
+- a provider counts only if its payload **validates as a job board**. Personio
+  answers HTTP 200 with an identical 1.6 MB marketing page for *any* slug,
+  invented ones included, so trusting status codes would have "resolved"
+  every company on earth;
+- a title match below 0.78 is **rejected**. Handing the evaluator a different
+  job's requirements would be confidently, invisibly wrong.
+
+A miss is the ordinary case, and it is not a failure: the job keeps its
+teaser, stays flagged as low-confidence, and can never reach APPLY or trigger
+document generation. Half-knowledge that announces itself is trustworthy.
+Confident half-knowledge is what produced the 82.
+
+---
+
+## Guardrails, because the model is not the authority
+
+The LLM is called in three places: scoring a job, writing the CV summary, and
+writing the cover letter. Nothing else. Its output is never trusted as-is.
+
+**The decision is derived in code, not read from the model.** A mandatory
+German requirement is detected by a deterministic scan of the full posting
+and locks the decision at SKIP regardless of the score. Before that scan
+existed, a C1-German clause sitting past the excerpt window let a
+disqualifying job score 96/100.
+
+**Score noise is real and is bought off only where it matters.** Five
+identical calls on one posting returned 55, 55, 55, 35 and 45 — twenty points
+of drift on byte-identical input. It cannot be tuned away: the model rejects
+every temperature setting but 1. It also mostly does not matter, since all
+five still agreed on SKIP. It matters on a threshold, where the same job
+becomes APPLY or REVIEW depending on which sample arrived. So a score landing
+within one standard deviation of a boundary is scored three times and the
+median kept — about 14% of jobs, at two extra calls each.
+
+**A failed API call is an ERROR with a null score, never a number.** If every
+evaluation in a run fails, the run exits non-zero rather than committing a
+database that would mark three weeks of jobs as "already seen".
+
+**Nothing in a generated document is invented.** When the cover letter
+described "a guardrail firing too late in the sequence" — a plausible detail
+that never happened — the fix was not a sterner prompt. It was noticing that
+the generator passed the model a project *title* and no facts. Forbidding
+invention cannot work while the facts are withheld.
+
+---
+
+## Measuring before fixing
+
+Broad search queries multiplied intake by 7.7 and brought the noise with it:
+consulting, marketing and M&A roles, each costing an LLM call before being
+correctly rejected. The obvious fix was a keyword blacklist built from the
+lowest-scoring titles.
+
+Ranked by mean score, the two worst keywords in the entire history were
+`praktikum` and `werkstudent` — German for *internship* and *working
+student*, the exact roles being searched for. They scored low because those
+particular postings did not fit, not because the words signal noise. The
+blacklist would have deleted the entire German-language funnel, silently.
+
+The gate that shipped is a conjunction instead: a non-technical *function*
+with no technical term anywhere in the title. Validated against all 278
+scored titles, it drops 13%, and the highest score among everything it drops
+is 35 — half the REVIEW threshold. The test re-derives that guarantee from
+the committed history on every run rather than trusting the claim.
 
 ---
 
 ## Architecture
 
 ```
-GitHub Actions (2x/day: 05:00 & 12:00 UTC)
-|
-|-- Adzuna Ingestor --> data/raw_jobs/adzuna_YYYYMMDD.json
-|-- Gmail IMAP --> digests/raw_emails_latest.json
-|
-|-- Email Parser --> digests/parsed_jobs_latest.json
-|-- Unified Ingestor --> data/raw_jobs/all_jobs_*.json
-|-- Description Enricher (Adzuna) --> digests/new_jobs_latest.json
-|
-|-- Job Evaluator (Kimi API) --> digests/job_evaluations_latest.json
-|
-|-- Digest Generator --> digests/digest_latest.json + .txt
-|-- Dashboard Generator --> digests/dashboard.html
-|-- Email Notifier (Gmail SMTP) --> Email sent to you
-|
-'-- Git commit & push --> Tracker persisted
+GitHub Actions (cron, 05:00 and 12:00 UTC)
+  |
+  |-- Adzuna ingestor        18 queries, one location, 30 km radius
+  |-- Gmail IMAP             job alert e-mails
+  |-- Local parser           regex + BeautifulSoup, no API
+  |
+  |-- Unified ingestor       dedup (SQLite, 21-day window), relevance gate,
+  |                          cost cap applied BEFORE marking jobs as seen
+  |-- Posting resolver       full text from the employer's ATS
+  |-- Evaluator (Kimi)       structured JSON, decision derived in code
+  |
+  |-- Digest + dashboard
+  |-- Document generator     tailored CV and cover letter, PDF and .docx
+  |-- Google Drive (OAuth2, drive.file scope)
+  '-- Gmail SMTP
 ```
+
+| | |
+|---|---|
+| Language | Python 3.11 |
+| LLM | Kimi (Moonshot), `kimi-k2.6` |
+| Storage | SQLite, JSON artefacts |
+| Documents | fpdf2, python-docx |
+| CI | GitHub Actions; pytest on every push |
+| Tests | 281, LLM mocked, no network |
 
 ---
 
-## Tech Stack
+## Cost control
 
-| Component | Technology |
-|-----------|------------|
-| Language | Python 3.11 |
-| Job Sources | Adzuna API, Gmail IMAP |
-| AI Evaluation | Kimi API (kimi-k2.6; fallback via `KIMI_MODEL_FALLBACK`) |
-| Workflow | GitHub Actions |
-| Email | Gmail SMTP (App Password) |
-| Storage | SQLite + JSON files |
-| Dashboard | GitHub Pages (static HTML) |
+The job API's free tier is 100 calls a day. The pipeline spends 36 and the
+arithmetic is asserted by a test, not left in a comment, because it is
+exactly the kind of thing one innocent extra query breaks.
+
+The LLM cap is applied *before* jobs are marked as seen. An earlier version
+marked everything seen and then evaluated the first 30, so jobs 31 and beyond
+were silently swallowed forever.
 
 ---
 
 ## Setup
 
-### 1. Fork/Clone this repo
+Full instructions: [`GITHUB_ACTIONS_SETUP.md`](GITHUB_ACTIONS_SETUP.md) ·
+Drive: [`config/GDRIVE_SETUP.md`](config/GDRIVE_SETUP.md)
 
 ```bash
 git clone https://github.com/carlosedbaptista/job-hunt-pipeline.git
 cd job-hunt-pipeline
-```
-
-### 2. Create .env file
-
-```bash
-cp .env.example .env
-# Edit .env with your keys
-```
-
-### 3. Add GitHub Secrets
-
-Go to **Settings --> Secrets and variables --> Actions** and add:
-
-| Secret | Description |
-|--------|-------------|
-| `KIMI_API_KEY` | Your Moonshot AI API key |
-| `ADZUNA_APP_ID` | Adzuna API app ID |
-| `ADZUNA_APP_KEY` | Adzuna API app key |
-| `GMAIL_SENDER` | Your Gmail address |
-| `GMAIL_APP_PASSWORD` | Gmail App Password (16 chars) |
-| `GMAIL_RECIPIENT` | Email address to receive digests |
-
-### 4. Enable GitHub Pages
-
-Go to **Settings --> Pages --> Source: main --> /(root)** --> Save
-
-Dashboard: `https://carlosedbaptista.github.io/job-hunt-pipeline/digests/dashboard.html`
-
-## Candidate Profile
-
-Copy `config/candidate_profile.example.json` to `config/candidate_profile.json` (gitignored) and fill it in. The example lists every key the pipeline actually reads and what each one feeds; a key left out silently weakens every score.
-
-## Search Targeting
-
-`agents/adzuna_ingestor.py` defines the queries. Set `ADZUNA_QUERIES` (semicolon-separated) to retarget without editing code. Adzuna's free tier allows 100 calls/day and the list is multiplied by 2 locations and 2 scheduled runs, so 12 queries costs 48/day and leaves room for the enricher's 24.
-
-## Scoring Rubric
-
-Thresholds live in one place: `src/utils.py` (`THRESHOLD_APPLY` / `THRESHOLD_REVIEW`, overridable via env). Evaluator, digest, dashboard, email and alerts all read from there.
-
-| Score | Decision | Action |
-|-------|----------|--------|
-| 80-100 | APPLY | Strong fit |
-| 70-79 | REVIEW | Moderate fit -- review manually |
-| 0-69 | SKIP | Low fit |
-| (no score) | ERROR | API failure -- job not evaluated, excluded from metrics |
-
-Two low-confidence caps sit on top of the thresholds: a job with under `MIN_DESCRIPTION_CHARS` (200) of posting text, and a job whose posting asks for an intermediate level of a language beyond English, are capped at REVIEW rather than APPLY. A real hard eligibility blocker caps the decision at SKIP regardless of score.
-
-"Intermediate" is relative to you, not fixed: `language_levels` in the profile (e.g. `{"german": "A2"}`) drives it, and the band is every CEFR level above yours and below C1. At A2 that is B1 and B2; once you reach B1 it narrows to B2 alone. Update the profile, not the code.
-
-## Tests
-
-```bash
 pip install -r requirements-dev.txt
 python -m pytest tests/ -q
 ```
 
-The suite mocks the LLM, so it costs nothing and needs no secrets. It covers the scoring rules (`tests/test_scoring_consistency.py`) and the ingestion quality rules (`tests/test_ingestion_quality.py`); it runs on every push and pull request via `.github/workflows/tests.yml`. Run it before touching scoring, dedup or parsing logic.
+The candidate profile, photo and document voice references are kept out of
+this repository and restored in CI from base64 secrets. This repo is public;
+nothing carrying personal data belongs in it.
 
-## Project Structure
+---
 
-```
-job-hunt-pipeline/
-├── .github/workflows/      # Daily pipeline, manual actions, tests
-├── agents/                 # Ingestors, enricher, evaluator, notifier
-├── src/                    # Core pipeline + utils
-├── tests/                  # pytest suite (mocked LLM, no secrets)
-├── config/                 # Candidate profile + settings
-├── data/raw_jobs/          # Raw job listings
-├── data/history/           # Evaluation history
-├── digests/                # Daily digests + dashboard
-├── tracker/                # SQLite database
-├── scripts/                # Utility scripts
-├── docs/legacy/            # Archived documentation
-├── requirements.txt
-├── requirements-dev.txt
-├── .env.example
-└── README.md
-```
+## Running it by hand
 
-## Daily Workflow
+The manual workflow takes three inputs, all off by default and never set by
+the scheduled runs: `skip_ingestion` reuses the batch already fetched,
+`reevaluate` re-scores jobs already seen, and `max_evaluations` caps the LLM
+calls. Together they make the whole pipeline runnable any number of times
+without spending job-board quota — which is the difference between a system
+you can test and one you can only hope about.
 
-| Time (UTC) | Time (CEST) | Action |
-|------------|-------------|--------|
-| 05:00 | 07:00 | Morning run |
-| 12:00 | 14:00 | Afternoon run |
+---
 
-## License
-
-MIT
+*Built by [Carlos Baptista](https://linkedin.com/in/carlosedbaptista).*
