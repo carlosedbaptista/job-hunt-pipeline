@@ -59,6 +59,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from utils import (MIN_DESCRIPTION_CHARS, effective_decision,
                    is_truncated_description, load_json, save_json)
 from posting_resolver import resolve as resolve_posting
+from posting_resolver import resolve_from_url
 
 HISTORY_GLOB = os.path.join("data", "history", "evaluations_*.json")
 LATEST = os.path.join("digests", "job_evaluations_latest.json")
@@ -207,11 +208,17 @@ def recover_pass(limit: int, apply_changes: bool):
         for position, record in enumerate(data):
             if not isinstance(record, dict) or record.get("decision") != "NOT_EVALUATED":
                 continue
-            company = str((record.get("job") or {}).get("company") or "")
-            usable = (company and company != "Unknown" and len(company) <= 45
-                      and not company.lower().startswith("unknown")
-                      and not _looks_like_a_role(company))
-            if usable:
+            job = record.get("job") or {}
+            company = str(job.get("company") or "")
+            usable_company = (company and company != "Unknown" and len(company) <= 45
+                              and not company.lower().startswith("unknown")
+                              and not _looks_like_a_role(company))
+            # A URL is worth trying even when the company field is garbage:
+            # the LinkedIn guest endpoint returns the employer name too, so
+            # the record repairs itself. That covers the 108 records whose
+            # company was mangled by the parser bug.
+            usable_url = str(job.get("url") or "").startswith(("http://", "https://"))
+            if usable_company or usable_url:
                 targets.append((path, position, record))
 
     print(f"Recovery: {len(targets)} not-evaluated records carry a usable employer "
@@ -227,13 +234,22 @@ def recover_pass(limit: int, apply_changes: bool):
         job = dict(record.get("job") or {})
         title, company = job.get("title", "?"), job.get("company", "")
         print(f"[{n}/{len(targets)}] {title[:44]} @ {company[:22]}...", end=" ", flush=True)
+        # The aggregator link first: it is the posting itself rather than a
+        # guess at which board the employer uses, and it repairs the company
+        # field on the way. The ATS boards are the fallback.
+        hit = None
         try:
-            hit = resolve_posting(company, title)
-        except Exception as e:
-            print(f"resolver error ({type(e).__name__})")
-            continue
+            hit = resolve_from_url(job.get("url", ""))
+        except Exception:
+            hit = None
+        if not hit and company and company != "Unknown":
+            try:
+                hit = resolve_posting(company, title)
+            except Exception as e:
+                print(f"resolver error ({type(e).__name__})")
+                continue
         if not hit:
-            print("not on any board")
+            print("unreachable (aggregator blocks, and no public board)")
             continue
         job["description"] = hit["text"]
         job["description_source"] = hit["provider"]

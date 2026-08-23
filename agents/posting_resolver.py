@@ -252,6 +252,77 @@ PROVIDERS = {
 }
 
 
+# ─── Recovering a posting from the aggregator link ───────────────────────────
+# The ATS boards only reach employers that use one. Everything arriving from
+# an e-mail alert carries an aggregator URL instead, and measured on
+# 2026-08-24: LinkedIn 108 records, Glassdoor 58, Indeed 34, XING 9,
+# jobs.ch 7.
+#
+# Glassdoor and Indeed answer 403 to a runner and stay unreachable. The other
+# three do not:
+#
+#   * LinkedIn's own guest endpoint, /jobs-guest/jobs/api/jobPosting/{id},
+#     answers 200 with no authwall and returns the complete posting -- title,
+#     EMPLOYER, location and the full description. The /jobs/view/ page
+#     redirects to a login; the guest API does not. That single endpoint
+#     covers the largest slice of the backlog;
+#   * jobs.ch and XING serve their pages to a plain request.
+
+_LINKEDIN_JOB_ID = re.compile(r"/jobs/view/(\d+)")
+_DESCRIPTION_NODES = (".show-more-less-html__markup", ".description__text",
+                      ".jobs-description__content", "[class*='description']")
+
+
+def _page_text(url, selector_first=True):
+    """Readable text of a job page, preferring its description node."""
+    r = _get(url)
+    if not r:
+        return ""
+    try:
+        from bs4 import BeautifulSoup
+    except ImportError:
+        return ""
+    soup = BeautifulSoup(r.text, "html.parser")
+    for tag in soup(["script", "style", "nav", "header", "footer"]):
+        tag.decompose()
+    node = None
+    if selector_first:
+        for selector in _DESCRIPTION_NODES:
+            node = soup.select_one(selector)
+            if node:
+                break
+    text = (node or soup).get_text("\n", strip=True)
+    return re.sub(r"\n{3,}", "\n\n", text).strip()
+
+
+def resolve_from_url(url):
+    """Full posting text from the aggregator link, or None.
+
+    Returns the same shape as resolve() so callers do not care which route
+    found the job.
+    """
+    link = str(url or "")
+    if not link.startswith(("http://", "https://")):
+        return None
+
+    match = _LINKEDIN_JOB_ID.search(link)
+    if match:
+        text = _page_text(
+            f"https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{match.group(1)}")
+        provider = "linkedin-guest"
+    elif any(host in link for host in ("jobs.ch", "xing.com")):
+        text = _page_text(link)
+        provider = "jobs.ch" if "jobs.ch" in link else "xing"
+    else:
+        # Glassdoor and Indeed answer 403; there is nothing to try.
+        return None
+
+    if len(text) < MIN_USEFUL_CHARS or is_truncated_description(text):
+        return None
+    return {"provider": provider, "slug": "", "url": link,
+            "matched_title": "", "ratio": 1.0, "text": text}
+
+
 def _norm_title(t):
     t = str(t or "").lower()
     t = re.sub(r"\b\d{1,3}\s*[-–]\s*\d{1,3}\s*%|\b\d{1,3}\s*%", " ", t)   # "80-100%"
