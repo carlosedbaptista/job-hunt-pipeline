@@ -42,6 +42,17 @@ import os
 import sqlite3
 import sys
 
+# Job titles are scraped from third-party boards and some carry emoji. On a
+# Windows console (cp1252) printing one raises UnicodeEncodeError, which on
+# 2026-08-23 killed this tool after 96 successful re-scores -- a print
+# statement destroying an hour of LLM calls. Replace what cannot be encoded
+# rather than letting the terminal decide whether the run survives.
+try:
+    sys.stdout.reconfigure(errors="replace")
+    sys.stderr.reconfigure(errors="replace")
+except (AttributeError, OSError):
+    pass
+
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -236,12 +247,16 @@ def full_pass(limit: int, apply_changes: bool):
         path, position = index[i]
         by_file.setdefault(path, load_json(path, default=[]))
         by_file[path][position] = fresh
+        # Written NOW, not at the end. This pass costs one LLM call per job
+        # and takes an hour; batching the writes meant a single unexpected
+        # exception threw away everything already paid for. It did exactly
+        # that once.
+        save_json(path, by_file[path])
         print(f"{old_score} -> {fresh.get('score')} ({fresh.get('decision')})")
 
     print(f"Recovered the full posting for {resolved_count} of {len(order)} "
           f"from the employers' own job boards; the rest kept their teaser.")
-    for path, data in by_file.items():
-        save_json(path, data)
+    for path in by_file:
         print(f"  updated {path}")
     return 0
 
