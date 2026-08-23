@@ -102,3 +102,72 @@ class TestEvaluatorBackfill:
                 "detected_title": "", "detected_location": ""}
         je.call_kimi_json = lambda *a, **kw: dict(fake)
         assert je.evaluate_job(job)["job"]["company"] == "Avaloq"
+
+
+class TestCardStructure:
+    """The company must come from the card's own structure, not from
+    whatever text happened to sit before the separator.
+
+    The parent element holds one text node per field:
+
+        [0] Internship in Data & AI Innovation & Portfolio (...)
+        [1] Swiss International Air Lines . Kloten
+
+    while the link text is the whole card flattened, because these alerts
+    wrap it in a single <a>. A line the flattened link text STARTS WITH is
+    the title; it is never the company.
+    """
+
+    def test_the_title_line_is_not_taken_as_the_company(self):
+        from email_parser_local import _split_card_remainder
+        company, location = _split_card_remainder("Swiss International Air Lines · Kloten")
+        assert company == "Swiss International Air Lines"
+        assert location == "Kloten"
+
+
+class TestInvertedCards:
+    """Some boards emit the employer first, so the parser reads
+    company="Founders Associate Intern", title="SaveSpace". The employer name
+    is what ends up printed on a cover letter."""
+
+    from email_parser_local import _unswap
+
+    def test_an_inverted_pair_is_corrected(self):
+        from email_parser_local import _unswap
+        assert _unswap("Founders Associate Intern", "SaveSpace") == \
+            ("SaveSpace", "Founders Associate Intern")
+
+    def test_a_correct_pair_is_left_alone(self):
+        from email_parser_local import _unswap
+        assert _unswap("SaveSpace", "Founders Associate Intern") == \
+            ("SaveSpace", "Founders Associate Intern")
+
+    def test_ambiguous_pairs_are_not_touched(self):
+        """When both or neither look like a role there is no evidence to act
+        on, and guessing would corrupt a correct record."""
+        from email_parser_local import _unswap
+        assert _unswap("Acme AG", "Data Platform") == ("Acme AG", "Data Platform")
+        assert _unswap("Senior Engineer GmbH", "Junior Analyst") == \
+            ("Senior Engineer GmbH", "Junior Analyst")
+
+
+class TestNonJobCards:
+    """Navigation links and course promos pass the keyword filter."""
+
+    def test_navigation_and_promos_are_dropped(self):
+        from email_parser_local import is_not_a_job_title
+        assert is_not_a_job_title("COURSE")
+        assert is_not_a_job_title("Data jobs")
+        assert is_not_a_job_title("Gen AI jobs")
+
+    def test_real_titles_survive_including_german(self):
+        from email_parser_local import is_not_a_job_title
+        for title in ("AI Engineer (80-100%)", "Praktikum Data Engineering",
+                      "AI Solution Architekt", "Werkstudent AI",
+                      "Internship in Data & AI Innovation & Portfolio"):
+            assert not is_not_a_job_title(title), title
+
+    def test_a_long_title_survives_without_a_role_word(self):
+        """Dropping a real posting costs a job; scoring noise costs a call."""
+        from email_parser_local import is_not_a_job_title
+        assert not is_not_a_job_title("Data & AI Innovation & Portfolio, 80-100%")

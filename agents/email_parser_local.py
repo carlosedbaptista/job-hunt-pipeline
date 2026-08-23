@@ -146,7 +146,27 @@ def _collapse_card_variants(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                 base["url"] = variant.get("url", "")
             dropped.add(long)
 
-    return [j for j in jobs if j["title"] not in dropped]
+    # Exact duplicates too, not just short/long pairs. Once the title is
+    # extracted correctly from the card structure both variants produce the
+    # SAME clean title, so the length difference this function relied on
+    # disappears -- and the pair survived as two records, one of them with
+    # company "Unknown". Keep one per title and take whatever real company,
+    # location or url either copy happens to carry.
+    merged: Dict[str, Dict[str, Any]] = {}
+    for job in jobs:
+        title = job["title"]
+        if title in dropped:
+            continue
+        kept = merged.get(title)
+        if kept is None:
+            merged[title] = job
+            continue
+        for field in ("company", "location", "url", "description"):
+            if kept.get(field, "Unknown") in ("Unknown", "", None):
+                value = job.get(field)
+                if value and value != "Unknown":
+                    kept[field] = value
+    return list(merged.values())
 
 
 # Longest plausible employer name. Measured against every company the pipeline
@@ -154,6 +174,14 @@ def _collapse_card_variants(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 # Company Ltd" territory, comfortably under this. Anything longer is not a
 # company, it is a card that was never split.
 MAX_COMPANY_CHARS = 45
+
+# Words that mark a string as a ROLE rather than an employer. Used only to
+# detect a card that put the two fields the wrong way round.
+_ROLE_WORD = re.compile(
+    r"\b(intern|internship|praktikum|praktikant|werkstudent|student|"
+    r"engineer|developer|entwickler|analyst|scientist|manager|consultant|"
+    r"specialist|associate|assistant|lead|architect|designer|"
+    r"trainee|apprentice|graduate|junior|senior|architekt|ingenieur|berater)\b", re.I)
 
 
 def _reject_implausible_company(company: str) -> str:
@@ -183,9 +211,50 @@ def _reject_implausible_company(company: str) -> str:
     return name
 
 
+def _looks_like_a_role(text: str) -> bool:
+    """Whether the text reads as a job title rather than an employer name."""
+    return bool(_ROLE_WORD.search(str(text or "")))
+
+
+def is_not_a_job_title(title: str) -> bool:
+    """A card that is navigation or a promo rather than a posting.
+
+    Deliberately narrow: only a SHORT title with no role word in it. The link
+    reached this point because its text matched a job keyword, so "Data jobs"
+    and "COURSE" (a LinkedIn course promo, which arrives with a duration such
+    as "27m" where the employer should be) get through the keyword filter
+    while being obviously not postings.
+
+    A real title that happens to carry no role word -- "Data & AI Innovation
+    & Portfolio" -- is long enough to be kept, which is the safe direction:
+    scoring one piece of noise costs an API call, dropping one real posting
+    costs a job.
+    """
+    text = str(title or "").strip()
+    return len(text) < 25 and not _looks_like_a_role(text)
+
+
+def _unswap(company: str, title: str):
+    """Returns (company, title), swapped when the card put them the wrong way.
+
+    Some boards emit the employer first, so the parser reads
+    company="Founders Associate Intern", title="SaveSpace". The link was
+    selected in the first place because its text contained a role keyword, so
+    a title with no role word beside a company that has one is inverted --
+    and the employer name is what ends up printed on a cover letter.
+
+    Only swaps when the evidence points one way and not the other; when both
+    or neither look like a role, it leaves them alone.
+    """
+    if _looks_like_a_role(company) and not _looks_like_a_role(title):
+        return title, company
+    return company, title
+
+
 def tidy_job_fields(job: Dict[str, Any]) -> Dict[str, Any]:
     """Last-mile cleanup of one parsed card: company duplicated as a title
     prefix, locality glued to the title end. Mutates and returns the job."""
+    job["company"], job["title"] = _unswap(job.get("company", ""), job.get("title", ""))
     job["company"] = _reject_implausible_company(job.get("company", ""))
     job["title"] = _strip_company_prefix(job["title"], job.get("company", ""))
     title, city = _split_trailing_city(job["title"])
@@ -262,13 +331,41 @@ def parse_html_emails(emails: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                 lines = [_strip_scraped_noise(l) for l in parent_text.split("\n") if l.strip()]
                 lines = [l for l in lines if l]
 
+                # The parent holds the card's real structure, one text node
+                # per line:
+                #
+                #   [0] Internship in Data & AI Innovation & Portfolio (...)
+                #   [1] Swiss International Air Lines . Kloten
+                #
+                # while link_text is the whole card flattened, because these
+                # alerts wrap it in a single <a>. The old rule took the first
+                # line that merely DIFFERED from link_text, so line 0 -- the
+                # title -- became the company. 39 records across every day of
+                # the history carried a job title as their employer name.
+                #
+                # A line the flattened link text STARTS WITH is the title. It
+                # is never the company, and it is the clean title the card
+                # actually meant.
+                title_line = next(
+                    (l for l in lines if len(l) > 5 and link_text.startswith(l)), "")
+                if title_line and len(title_line) < len(link_text):
+                    link_text = title_line
+
                 for line in lines:
-                    if line != link_text and len(line) > 2 and len(line) < 100:
-                        if company == "Unknown":
-                            company = line
-                        elif location == "Unknown":
-                            if any(loc in line.lower() for loc in location_keywords):
-                                location = line
+                    if len(line) <= 2 or len(line) >= 100:
+                        continue
+                    if line == link_text or (title_line and line == title_line):
+                        continue
+                    if company == "Unknown":
+                        # "Company . City" is one node; split it rather than
+                        # storing the whole thing as an employer name.
+                        parsed_company, parsed_location = _split_card_remainder(line)
+                        company = parsed_company or line
+                        if parsed_location and location == "Unknown":
+                            location = parsed_location
+                    elif location == "Unknown":
+                        if any(loc in line.lower() for loc in location_keywords):
+                            location = line
 
             job_blocks.append({
                 "title": link_text,
@@ -303,7 +400,8 @@ def parse_html_emails(emails: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     # Collapse the bare-title / whole-card pair BEFORE the (title, company)
     # dedup: the two variants have different titles, so that dedup never saw
     # them as the same posting.
-    collapsed = _collapse_card_variants(jobs)
+    collapsed = [j for j in _collapse_card_variants(jobs)
+                 if not is_not_a_job_title(j.get("title", ""))]
     variants_merged = len(jobs) - len(collapsed)
 
     # Deduplicate
