@@ -109,6 +109,8 @@ Never commit: `.env`, `config/candidate_profile.json`, `config/photo.*`, `config
 
 Secrets used by CI: `KIMI_API_KEY`, `KIMI_BASE_URL` (optional), `ADZUNA_APP_ID`, `ADZUNA_APP_KEY`, `GMAIL_SENDER`, `GMAIL_APP_PASSWORD`, `GMAIL_RECIPIENT`, `CANDIDATE_*_B64`, `GDRIVE_*`.
 
+**Dashboard visibility is a settled decision, not an oversight.** GitHub Pages serves from `main` at `/`, so anything committed is live at `carlosedbaptista.github.io/job-hunt-pipeline/<path>` -- there is no deploy step to switch off, and `digests/dashboard.html` embeds the job data inside the file, so publishing the file publishes the history. On 2026-08-23 the owner was shown exactly what is exposed (the full list of evaluated jobs, plus the model's prose which mentions permit and language status) and chose to keep it public, with his LinkedIn restored as attribution. The profile card that also printed permit, notice period and languages stayed removed. Do not "fix" this by unpublishing; it was decided with the evidence in hand.
+
 Known caveat: the repo is public. Everything committed (digests, dashboard, raw jobs, jobs.db) is world-readable; keep PII and credentials out. Adzuna URLs must have their query strings stripped before persisting (the `utm_source` param is the app_id).
 
 ## User Context — Cadu (Carlos Eduardo Duarte Baptista)
