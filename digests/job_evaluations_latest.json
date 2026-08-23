@@ -1,15 +1,16 @@
 [
   {
-    "score": 65,
+    "score": 62,
     "hard_blockers": [],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description was truncated; requirements and qualifications section not visible — must assume unknown hard requirements around robotics/ML engineering, ROS, C++, computer vision, or hardware experience that may not match",
-      "Domain is construction robotics with physical autonomy, not LLM/software agentic systems — significant mismatch with candidate's stated career direction and current skill stack",
-      "No evidence of LLM, API integration, cloud infrastructure, or data platform work in visible description; role likely focuses on perception, planning, control for physical robots",
-      "Candidate's 'own it end to end' motivation may not align if role requires embedded systems or hardware-in-the-loop work outside his experience",
+      "Job description was truncated; requirements/qualifications section not visible—significant uncertainty about actual role expectations",
+      "Role appears to be in physical robotics/ML autonomy, not LLM-based agentic systems or data platforms—substantial mismatch with candidate's stated direction",
+      "Likely requires robotics-specific knowledge (computer vision, SLAM, control theory, simulation) not evident in candidate's profile",
+      "No indication of LLM or generative AI work in the visible description",
+      "Construction/robotics domain is far from candidate's current DACH digital agency context",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -20,32 +21,37 @@
       "portal": "adzuna",
       "description": "Gravis Robotics is a startup that turns heavy construction machines into intelligent and autonomous robots. Our unique combination of learning-based automation and augmented remote control lets one operator safely conduct a fleet of machines in a gamified environment—from anywhere in the world. Our team has over a decade of academic experience honing the cutting edge of large-scale robotics, and is rapidly growing to bring that expertise into a trillion-dollar industry through active deployment…"
     },
-    "technical_fit": "Partial. The role is in ML/robotics autonomy, which overlaps with the candidate's interest in agentic systems and automation, but construction robotics involves a very different stack (robotics hardware, ROS, embedded systems, computer vision for physical world) than his current expertise in LLM-powered software pipelines, cloud infrastructure, and data platforms. His Python and general ML foundation transfer, but the domain shift is substantial with no visible overlap in robotics or hardware-adjacent skills.",
-    "contextual_fit": "Moderate. Zurich location and startup environment are strong positives. The 'autonomy' angle touches on agentic systems conceptually, but this is physical robotics autonomy rather than the LLM-based software agents and data engineering he seeks. The gamified fleet-control aspect has some automation-pipeline flavor, but the candidate's explicit motivation is 'zero to production' ownership in LLM/data platforms, not heavy machinery.",
+    "technical_fit": "Partial. The role is in ML/robotics autonomy, which is adjacent to but not aligned with the candidate's core focus on LLM-powered agentic systems and data platform engineering. His skills in Python, automation pipelines, and cloud infrastructure are transferable, but the role likely emphasizes computer vision, robotics, control systems, and embedded ML rather than LLM APIs, multi-step reasoning pipelines, or data platform work.",
+    "contextual_fit": "Weak. The candidate's stated motivation centers on 'agentic systems and data platform engineering' with LLM-powered pipelines and end-to-end ownership. Gravis builds physical robotics autonomy for construction—very different domain, different technology stack, different problem space. The 'agentic' angle here is about robotic autonomy, not LLM agents.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Likely strong on ownership and building from zero (startup, small team), but the physical robotics culture may differ from his software/AI SaaS background.",
+    "culture_fit": "Unknown. Startup environment with academic roots suggests fast-paced, research-intensive culture. The gamified fleet-control aspect hints at interesting UX challenges, but no clear signal on ownership culture or intern autonomy.",
     "concerns": [
-      "Job description was truncated; requirements and qualifications section not visible — must assume unknown hard requirements around robotics/ML engineering, ROS, C++, computer vision, or hardware experience that may not match",
-      "Domain is construction robotics with physical autonomy, not LLM/software agentic systems — significant mismatch with candidate's stated career direction and current skill stack",
-      "No evidence of LLM, API integration, cloud infrastructure, or data platform work in visible description; role likely focuses on perception, planning, control for physical robots",
-      "Candidate's 'own it end to end' motivation may not align if role requires embedded systems or hardware-in-the-loop work outside his experience"
+      "Job description was truncated; requirements/qualifications section not visible—significant uncertainty about actual role expectations",
+      "Role appears to be in physical robotics/ML autonomy, not LLM-based agentic systems or data platforms—substantial mismatch with candidate's stated direction",
+      "Likely requires robotics-specific knowledge (computer vision, SLAM, control theory, simulation) not evident in candidate's profile",
+      "No indication of LLM or generative AI work in the visible description",
+      "Construction/robotics domain is far from candidate's current DACH digital agency context"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": []
   },
   {
-    "score": 55,
-    "hard_blockers": [],
+    "score": 52,
+    "hard_blockers": [
+      "German: role description is entirely in German, uses formal Swiss workplace terminology ('Gestalte...aktiv mit', 'Deine Hauptaufgaben'), and operates within a German-speaking public hospital context. While not explicitly stating 'fluent German required', a university hospital serving the Zürich population with German-language platform operations effectively mandates professional German. His A2 German is insufficient for this operational context."
+    ],
     "insufficient_info": true,
-    "language_gap_intermediate": true,
+    "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description truncated — requirements section not visible, making full assessment impossible; score kept conservative",
-      "German-language job posting with German role title and German task descriptions strongly signals German as working language, likely at B1/B2+ level; candidate at A2 studying toward B1",
-      "Role appears to be platform operations/infrastructure enablement for other engineers, not hands-on AI/automation building — mismatch with candidate's stated motivation for ownership and agentic systems",
-      "Healthcare domain unfamiliarity not penalized, but hospital bureaucracy and regulated environment may frustrate candidate's preference for rapid iteration",
-      "Dübendorf/Uster location is Zurich-area acceptable, but commute from Zurich city less ideal than Zurich proper",
+      "Blocker: German: role description is entirely in German, uses formal Swiss workplace terminology ('Gestalte...aktiv mit', 'Deine Hauptaufgaben'), and operates within a German-speaking public hospital context. While not explicitly stating 'fluent German required', a university hospital serving the Zürich population with German-language platform operations effectively mandates professional German. His A2 German is insufficient for this operational context.",
+      "Requirements section truncated — cannot assess actual qualifications, experience level, or specific tech stack match",
+      "Role shape appears to be platform operations/support for other engineers, not end-to-end ownership with LLM/agentic work",
+      "Healthcare domain with no prior domain experience (though he is open to new domains, this adds friction)",
+      "German-language workplace context with A2 German — even if not a formal hard requirement, daily operational effectiveness is doubtful",
+      "December 2026 start date vs. his immediate availability; long timeline mismatch",
+      "No visible evidence of AI/LLM/agentic systems in the role description",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -56,16 +62,17 @@
       "portal": "adzuna",
       "description": "per Dezember 2026 oder nach Vereinbarung Gestalte die Daten- und Integrationsplattformen des Universitätsspitals Zürich aktiv mit und schaffe die technologische Grundlage für das digitale Spital der Zukunft. Im Data & Integration Platform Team entwickelst und betreibst du die Data Platform of Platforms (DPoP) sowie die Integration Platform und stellst deren sicheren, stabilen und skalierbaren Betrieb für Data- und API-Engineers sicher. Deine Hauptaufgaben * Aufbau, Betrieb und kontinuierliche W…"
     },
-    "technical_fit": "Partial. The visible description emphasizes platform operations, infrastructure stability, and enabling other engineers (Data/API Engineers) rather than hands-on building of LLM-powered pipelines or agentic systems. The candidate's strengths in LLM APIs, automation pipelines, and end-to-end ownership are not obviously aligned with a 'Platform of Platforms' operations role serving internal engineers.",
-    "contextual_fit": "Weak. Healthcare/university hospital context with German-language job posting ('per Dezember', 'Gestalte', 'Deine Hauptaufgaben') suggests German working environment. The role shape appears to be infrastructure/platform enablement rather than the zero-to-production, own-it AI/automation building the candidate seeks.",
+    "technical_fit": "Partial. The role involves data platform engineering (infrastructure, integration, API operations) which aligns with his cloud/Docker/CI-CD experience, but the visible description emphasizes 'betreibst' (operating/running) existing platforms for other engineers rather than greenfield building and ownership. No mention of LLMs, agentic systems, or AI pipelines. His core excitement drivers (zero-to-production, LLM-powered automation) are not visible.",
+    "contextual_fit": "Weak. Healthcare/university hospital setting with German-language operations; 'digitale Spital der Zukunft' framing suggests institutional, regulated environment rather than fast-moving product ownership. The 'Platform of Platforms' model implies serving internal engineers, not end-to-end delivery with personal ownership. December 2026 start is far out; his 2-week notice suggests immediate availability mismatch.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unclear. Hospital/university setting likely process-heavy, slower release cycles, and consensus-driven compared to agency or startup environment where candidate thrives on rapid ownership.",
+    "culture_fit": "Unclear but concerning. University hospital context suggests hierarchical, process-heavy, compliance-driven culture. 'Sicheren, stabilen und skalierbaren Betrieb' emphasizes stability over experimentation. Contrasts with his stated preference for shipping fast, auditing own output, and iterating.",
     "concerns": [
-      "Job description truncated — requirements section not visible, making full assessment impossible; score kept conservative",
-      "German-language job posting with German role title and German task descriptions strongly signals German as working language, likely at B1/B2+ level; candidate at A2 studying toward B1",
-      "Role appears to be platform operations/infrastructure enablement for other engineers, not hands-on AI/automation building — mismatch with candidate's stated motivation for ownership and agentic systems",
-      "Healthcare domain unfamiliarity not penalized, but hospital bureaucracy and regulated environment may frustrate candidate's preference for rapid iteration",
-      "Dübendorf/Uster location is Zurich-area acceptable, but commute from Zurich city less ideal than Zurich proper"
+      "Requirements section truncated — cannot assess actual qualifications, experience level, or specific tech stack match",
+      "Role shape appears to be platform operations/support for other engineers, not end-to-end ownership with LLM/agentic work",
+      "Healthcare domain with no prior domain experience (though he is open to new domains, this adds friction)",
+      "German-language workplace context with A2 German — even if not a formal hard requirement, daily operational effectiveness is doubtful",
+      "December 2026 start date vs. his immediate availability; long timeline mismatch",
+      "No visible evidence of AI/LLM/agentic systems in the role description"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -73,19 +80,16 @@
   },
   {
     "score": 55,
-    "hard_blockers": [
-      "Winterthur-based role with unclear remote policy — 'Smart Working' is not confirmed as fully remote; if hybrid/onsite required, this is outside Zurich/Zug area and candidate's stated geographic constraint"
-    ],
+    "hard_blockers": [],
     "insufficient_info": true,
     "language_gap_intermediate": true,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Winterthur-based role with unclear remote policy — 'Smart Working' is not confirmed as fully remote; if hybrid/onsite required, this is outside Zurich/Zug area and candidate's stated geographic constraint",
-      "Job description was truncated — requirements, seniority expectations, and exact working model not visible; score kept conservative",
-      "Role title says 'Senior' — likely expects significant prior experience in data platform engineering, not internship-level",
-      "Data Mesh / Lakehouse platform engineering is a different skill profile than the candidate's LLM automation and pipeline-building focus",
-      "German language environment likely given Job-Room appears to be a DACH-market platform; 'gestalte deine Zukunft' in German posting suggests German workplace context",
-      "Location: Winterthur is not Zurich/Zug; 'Smart Working' may not eliminate commute/onsite requirement",
+      "Job description truncated; requirements section not visible — cannot assess actual seniority expectations, specific tooling, or must-have qualifications",
+      "Title explicitly says 'Senior' — likely expects significant prior platform engineering experience beyond intern/junior level",
+      "Location Winterthur is Zurich-area but commute is longer than ideal",
+      "German-language job posting suggests German may be used in workplace, though 'Smart Working' and 'all genders' framing are modern/DACH-market typical",
+      "Candidate's A2 German is below likely working proficiency if team operates primarily in German",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -96,56 +100,19 @@
       "portal": "adzuna",
       "description": "60 - 100%, Winterthur / Smart Working Gestalte deine Zukunft gemeinsam mit uns Unsere ambitionierten Agentic- und GenAI-Ziele basieren auf einer soliden Datenbasis. Das Fundament dafür bildet unsere Datenplattform in der Google Cloud, die wir nach Data-Mesh-Prinzipien aufbauten und weiterentwickeln. Mit unserer Lakehouse Plattform stellen wir den Teams die notwendigen Services bereit, um Data Products effizient zu erstellen, zu konsumieren und zu teilen - alles im Sinne einer modernen, skalierb…"
     },
-    "technical_fit": "Partial. Google Cloud and data platform alignment is strong, but the visible text emphasizes Data Mesh, Lakehouse, and platform infrastructure at scale. The candidate's experience is more on the application layer (LLM pipelines, automation, dashboards) than on foundational data platform / mesh architecture. No visibility on whether agentic/GenAI goals translate to hands-on building for this role vs. platform enablement for others.",
-    "contextual_fit": "Weak-moderate. 'Senior' in title, Winterthur location (not Zurich/Zug, though with 'Smart Working' hybrid), and the platform-scale focus suggest this is likely a senior/staff role building infrastructure for teams rather than an individual-contributor internship with ownership. The candidate wants to build end-to-end agentic systems, not maintain the data mesh that enables others to do so.",
+    "technical_fit": "Partial. The role centers on Google Cloud data platform and Data Mesh/Lakehouse architecture, which overlaps with his GCP and data pipeline experience. However, 'Senior' in the title and the emphasis on platform-level services for multiple teams suggests scope beyond his current intern-level ownership. Missing requirements section makes it impossible to assess fit against specific tools (BigQuery, dbt, Terraform, etc.).",
+    "contextual_fit": "Weak. The 'Senior' title and platform-scale responsibility ('stellen wir den Teams die notwendigen Services bereit') imply a seniority gap. His stated goal is internship/junior role with real ownership from day one, but this appears to be a senior individual contributor or platform team lead position. Winterthur is Zurich-area commutable but not ideal.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unclear. 'Smart Working' suggests flexibility, but the seniority level and platform-enabler framing clash with candidate's desire for early ownership and greenfield building.",
+    "culture_fit": "Unknown from truncated description. 'Smart Working' suggests hybrid flexibility, which is neutral-to-positive.",
     "concerns": [
-      "Job description was truncated — requirements, seniority expectations, and exact working model not visible; score kept conservative",
-      "Role title says 'Senior' — likely expects significant prior experience in data platform engineering, not internship-level",
-      "Data Mesh / Lakehouse platform engineering is a different skill profile than the candidate's LLM automation and pipeline-building focus",
-      "German language environment likely given Job-Room appears to be a DACH-market platform; 'gestalte deine Zukunft' in German posting suggests German workplace context",
-      "Location: Winterthur is not Zurich/Zug; 'Smart Working' may not eliminate commute/onsite requirement"
+      "Job description truncated; requirements section not visible — cannot assess actual seniority expectations, specific tooling, or must-have qualifications",
+      "Title explicitly says 'Senior' — likely expects significant prior platform engineering experience beyond intern/junior level",
+      "Location Winterthur is Zurich-area but commute is longer than ideal",
+      "German-language job posting suggests German may be used in workplace, though 'Smart Working' and 'all genders' framing are modern/DACH-market typical",
+      "Candidate's A2 German is below likely working proficiency if team operates primarily in German"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
-    "materials_needed": []
-  },
-  {
-    "score": 72,
-    "hard_blockers": [],
-    "insufficient_info": true,
-    "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong alignment with visible elements: AI Agentic solutions from ideation to production, LLM-powered automation, end-to-end ownership of experiments. Candidate's current stack (Python, LLM APIs, multi-step pipelines, Docker, CI/CD) maps directly to 'AI innovation lab' work. Missing requirements section prevents full assessment."
-    ],
-    "red_flags": [
-      "Job description was truncated — requirements, seniority level, degree requirements, and language requirements were not visible; must verify these before applying",
-      "Avaloq's scale (large fintech, part of NEC) may mean more process and less individual ownership than a small team — candidate should probe this in interviews",
-      "German language requirement unknown due to truncation; must confirm if any German needed beyond his current A2",
-      "No explicit mention of data platform engineering in visible text — role may skew more toward software engineering than data/ML engineering specifically",
-      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
-    ],
-    "job": {
-      "company": "Avaloq",
-      "title": "AI Software Engineer",
-      "location": "Zürich",
-      "url": "https://www.adzuna.ch/details/5851075269",
-      "portal": "adzuna",
-      "description": "Job Description We are seeking a highly skilled, fast learner and well rounded, AI Software Engineer to join our AI innovation lab team. The ideal candidate will lead AI experiments and bring cutting-edge AI Agentic solutions from ideation to production. The mission of Avaloq AI Lab is to improve operational efficiency and augment Back-to-Front Office user experiences, through the application of state-of-the-art AI technology. We work collaboratively with industry leaders to deliver responsible…"
-    },
-    "technical_fit": "Strong alignment with visible elements: AI Agentic solutions from ideation to production, LLM-powered automation, end-to-end ownership of experiments. Candidate's current stack (Python, LLM APIs, multi-step pipelines, Docker, CI/CD) maps directly to 'AI innovation lab' work. Missing requirements section prevents full assessment.",
-    "contextual_fit": "Avaloq is a major Swiss fintech serving banks/wealth managers — candidate's legal background and court experience is actually a subtle plus in regulated financial contexts, though not required. 'AI innovation lab' implies greenfield building, which matches his stated preference for zero-to-production ownership. Zurich-based with permit B already held = zero friction.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Lab environment suggests experimentation and learning tolerance, fitting a career changer. 'Fast learner' and 'well rounded' in the description signals openness to non-traditional profiles. However, fintech incumbents can have heavier process than the 'day one ownership' he craves — unclear from truncated text.",
-    "concerns": [
-      "Job description was truncated — requirements, seniority level, degree requirements, and language requirements were not visible; must verify these before applying",
-      "Avaloq's scale (large fintech, part of NEC) may mean more process and less individual ownership than a small team — candidate should probe this in interviews",
-      "German language requirement unknown due to truncation; must confirm if any German needed beyond his current A2",
-      "No explicit mention of data platform engineering in visible text — role may skew more toward software engineering than data/ML engineering specifically"
-    ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
     "materials_needed": []
   }
 ]
