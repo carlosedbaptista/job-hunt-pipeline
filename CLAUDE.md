@@ -32,7 +32,7 @@
 2. `src/email_ingestor.py` — fetch Gmail alerts (IMAP UIDs, `continue-on-error`)
 3. `agents/email_parser_local.py` — parse job emails locally (regex + BeautifulSoup, no API)
 3b. `agents/description_enricher.py` — fills missing descriptions from Adzuna, then recovers TRUNCATED ones from the employer's ATS via `agents/posting_resolver.py`
-4. `src/unified_ingestor.py` — merge sources, in-batch dedup, then **cross-run dedup via `src/deduplicator.filter_new_jobs` (SQLite, 21-day retention)**. The cost cap is applied HERE, before marking: jobs beyond `MAX_EVALUATIONS_PER_RUN` stay *unseen* and resurface next run as a queue (pre-audit behaviour marked everything seen and silently swallowed jobs 31+ forever)
+4. `src/unified_ingestor.py` — merge sources, in-batch dedup, then **cross-run dedup via `src/deduplicator.filter_new_jobs` (SQLite, 21-day retention)**. Jobs are then sorted by description length before the cap: sources arrive e-mail-first and the cap slices the FIRST n, so alert cards carrying 0 characters were systematically eating the budget ahead of Adzuna teasers that `posting_resolver` could expand into a real decision. The cost cap is applied HERE, before marking: jobs beyond `MAX_EVALUATIONS_PER_RUN` stay *unseen* and resurface next run as a queue (pre-audit behaviour marked everything seen and silently swallowed jobs 31+ forever)
 5. `agents/description_enricher.py` — for jobs still under `MIN_DESCRIPTION_CHARS`, look the same posting up on Adzuna and attach the real description (`continue-on-error`; budget `ENRICH_MAX_LOOKUPS`, default 12)
 6. `agents/job_evaluator.py` — score each new job with Kimi (capped by `MAX_EVALUATIONS_PER_RUN`, default 30)
 7. `src/week4_pipeline.py --digest-only` — build digest

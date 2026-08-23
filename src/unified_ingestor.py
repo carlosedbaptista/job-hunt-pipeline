@@ -150,6 +150,18 @@ def save_evaluator_input(jobs: List[Dict[str, Any]], db_path: str = None) -> str
         already_seen = len(normalized_jobs) - len(fresh_jobs)
         print(f"  🔁 Cross-run dedup: {len(fresh_jobs)} new | {already_seen} already seen (tracker/jobs.db)")
 
+    # Spend the budget on the jobs it can buy the most with. Sources arrive
+    # in a fixed order -- e-mail alerts first, Adzuna after -- and the cap
+    # slices the FIRST n, so the least informative jobs were systematically
+    # consuming it: an alert card carries 0 characters and can only ever
+    # produce a title-based score capped at REVIEW, while a 500-char Adzuna
+    # teaser can be expanded to the full posting by posting_resolver and
+    # produce a real decision. Ordering by description length is a stable
+    # sort, so it only moves jobs across that quality line and leaves the
+    # order within each group alone. Nothing is starved: whatever exceeds the
+    # cap stays unseen and comes back on the next run.
+    fresh_jobs.sort(key=lambda j: len((j.get("description") or "").strip()), reverse=True)
+
     cap = max_evaluations_per_run()
     if len(fresh_jobs) > cap:
         print(f"  💰 Cost guard: {len(fresh_jobs)} new jobs, evaluating the first {cap}; "

@@ -101,3 +101,32 @@ class TestEvaluationCapInput:
         from utils import max_evaluations_per_run
         monkeypatch.setenv("MAX_EVALUATIONS_PER_RUN", "3")
         assert max_evaluations_per_run() == 3
+
+
+class TestBudgetPriority:
+    """The cost cap slices the first n, so the ORDER decides what gets scored.
+
+    Sources arrive e-mail-first, and an alert card carries no description at
+    all: it can only produce a title-based score, capped at REVIEW by
+    insufficient_info. An Adzuna teaser can be expanded to the full posting.
+    Spending the budget on the former first is backwards.
+    """
+
+    def test_jobs_with_more_text_are_scored_first(self, tmp_path, monkeypatch, db):
+        monkeypatch.setenv("MAX_EVALUATIONS_PER_RUN", "2")
+        jobs = [
+            {"title": "From an alert", "company": "A", "location": "Zurich", "description": ""},
+            {"title": "Also an alert", "company": "B", "location": "Zurich", "description": ""},
+            {"title": "From Adzuna", "company": "C", "location": "Zurich", "description": "x" * 500},
+            {"title": "Also Adzuna", "company": "D", "location": "Zurich", "description": "y" * 500},
+        ]
+        picked = [j["title"] for j in _written(tmp_path, monkeypatch, jobs, db)]
+        assert picked == ["From Adzuna", "Also Adzuna"]
+
+    def test_order_within_a_group_is_preserved(self, tmp_path, monkeypatch, db):
+        """A stable sort: only the quality line moves jobs, not their rank."""
+        monkeypatch.delenv("MAX_EVALUATIONS_PER_RUN", raising=False)
+        jobs = [{"title": f"Job {i}", "company": f"Co{i}", "location": "Zurich",
+                 "description": "x" * 500} for i in range(4)]
+        picked = [j["title"] for j in _written(tmp_path, monkeypatch, jobs, db)]
+        assert picked == ["Job 0", "Job 1", "Job 2", "Job 3"]
