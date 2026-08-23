@@ -125,11 +125,36 @@ Known caveat: the repo is public. Everything committed (digests, dashboard, raw 
 - Contact/PII: `config/candidate_profile.json` (local only, not in git)
 - **Keep the targeting in sync with this section.** `agents/adzuna_ingestor.py` searches for what he wants *next*; when the positioning here changes, `SEARCH_QUERIES` (or the `ADZUNA_QUERIES` env override) and `config/candidate_profile.json`'s `role`/`summary` have to move with it, or the pipeline keeps scoring him against a profile he has outgrown.
 
-## Legacy / dead code warning
+## Dead code: there is none left
 
-`src/pipeline.py`, `src/week3_pipeline.py`, `agents/email_parser.py`, `agents/jsearch_ingestor.py`, `agents/linkedin_ingestor.py` (disabled), `agents/cover_letter_writer.py`, `agents/cv_tailor.py`, `src/apply_automation.py`, `src/approval_handler.py`, `agents/form_fill_guide.py`, `agents/analytics_engine.py`, `agents/email_extractor.py`, `agents/email_monitor.py`, `agents/page_generator.py`, and others are NOT part of the CI flow. Before editing a module, confirm it is actually invoked by a workflow in `.github/workflows/`.
+Removed on 2026-08-23, after verifying that no workflow invoked them and
+nothing live imported them: `agents/analytics_engine.py`,
+`cover_letter_writer.py`, `cv_tailor.py`, `email_extractor.py`,
+`email_monitor.py`, `email_parser.py`, `form_fill_guide.py`,
+`jsearch_ingestor.py`, `linkedin_ingestor.py`, `page_generator.py`,
+`src/analytics_dashboard.py`, `apply_automation.py`, `approval_handler.py`,
+`pipeline.py`, `week3_pipeline.py`, `week4_pipeline.py`, and the root
+`test_complete_system.py`. 3,180 lines. They formed a closed cluster: the
+only things referencing them were each other.
 
-`agents/tracker_updater.py` and `agents/followup_sender.py`/`agents/followup_writer.py` ARE part of the CI flow now (added to close the score-vs-outcome feedback loop): the `applications` table is written to only via the user-triggered `.github/workflows/track-application.yml` (mirrors `add-job.yml`'s manual pattern), and read by `followup_sender.py` in the unsupervised daily scheduler to draft follow-ups. That daily step is safe to run unsupervised specifically because it only ever emails the candidate (`GMAIL_RECIPIENT`), never the recruiter -- do not change its send target without re-checking the "never submit without approval" rule above.
+Two traps found while doing it, worth knowing before trusting a future
+inventory:
+
+  * `agents/digest_generator.py` looked dead to a static scan and is not --
+    it builds the daily digest. It was reached only through
+    `week4_pipeline.py --digest-only`, which was a banner and a subprocess
+    call. The workflow now runs it directly and the wrapper is gone.
+  * `agents/followup_writer.py` also looked dead, because
+    `followup_sender.py` imports it as `from agents.followup_writer import`,
+    which a naive scan for `import followup_writer` misses. Both `__init__.py`
+    files stay for that reason.
+
+`agents/rescore_history.py` is not part of the CI flow and is not dead
+either: it is the manual maintenance tool.
+
+Also removed: the `ANTHROPIC_API_KEY` and `RAPIDAPI_KEY` secrets, orphaned
+(no workflow read them), and `GDRIVE_CREDENTIALS_JSON_B64`, which was corrupt
+and belonged to the Service Account path that cannot work at all.
 
 ---
 

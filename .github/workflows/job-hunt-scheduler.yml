@@ -98,11 +98,6 @@ jobs:
         run: python agents/adzuna_ingestor.py
         continue-on-error: true
 
-      # LinkedIn ingestion disabled -- consistently returns 0 jobs
-      # - name: Fetch LinkedIn jobs
-      #   run: python agents/linkedin_ingestor.py
-      #   continue-on-error: true
-
       - name: Fetch Gmail alerts
         if: inputs.skip_ingestion != true
         env:
@@ -155,7 +150,11 @@ jobs:
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
           KIMI_BASE_URL: ${{ secrets.KIMI_BASE_URL }}
-        run: python src/week4_pipeline.py --digest-only
+        # Called directly. src/week4_pipeline.py used to wrap this in a
+        # subprocess and printed a banner, and its other code path
+        # orchestrated a pipeline that no longer exists (JSearch,
+        # cover_letter_writer, page_generator). Removed 2026-08-23.
+        run: python agents/digest_generator.py
 
       - name: Generate dashboard
         env:
