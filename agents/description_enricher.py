@@ -40,7 +40,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from adzuna_ingestor import fetch_adzuna, normalize_job
 from deduplicator import normalize, normalize_company
-from utils import MIN_DESCRIPTION_CHARS, load_json, save_json
+from utils import (MIN_DESCRIPTION_CHARS, is_truncated_description,
+                   load_json, save_json)
+from posting_resolver import resolve as resolve_posting
 
 JOBS_FILE = os.path.join("digests", "new_jobs_latest.json")
 
@@ -52,6 +54,10 @@ ENRICH_MAX_LOOKUPS = int(os.environ.get("ENRICH_MAX_LOOKUPS", "12"))
 # How far back Adzuna may look for the same posting. Alert e-mails lag the
 # original posting by a few days, so this is wider than the ingestor's 7.
 ENRICH_MAX_DAYS_OLD = int(os.environ.get("ENRICH_MAX_DAYS_OLD", "30"))
+# How many truncated postings to chase on the employers' ATS boards per run.
+# Costs no Adzuna quota (different hosts entirely), only runner time, and the
+# per-company cache means repeated employers are nearly free.
+RESOLVE_MAX_JOBS = int(os.environ.get("RESOLVE_MAX_JOBS", "30"))
 
 # Match thresholds. Title similarity is Jaccard over normalized word sets.
 # With a confirmed company match a partial title match is enough ("Working
@@ -148,6 +154,57 @@ def needs_description(job) -> bool:
     return len((job.get("description") or "").strip()) < MIN_DESCRIPTION_CHARS
 
 
+def needs_full_text(job) -> bool:
+    """A description that exists but stops mid-sentence.
+
+    Distinct from needs_description on purpose: these two failures have
+    different cures. A missing description is fixed by an Adzuna lookup; a
+    TRUNCATED one cannot be, because Adzuna is what truncated it -- every one
+    of its descriptions is exactly 500 characters. Only the employer's own
+    board has the rest."""
+    return is_truncated_description(job.get("description"))
+
+
+def resolve_full_texts(jobs, budget=None, resolver=resolve_posting):
+    """Replaces truncated descriptions with the full posting from the
+    employer's ATS. Returns (replaced, attempted).
+
+    A miss is the common case and is not a failure: the job keeps its teaser
+    and stays flagged insufficient_info, so it can be seen but never
+    auto-APPLYed."""
+    budget = RESOLVE_MAX_JOBS if budget is None else budget
+    attempted = replaced = 0
+    for job in jobs:
+        if attempted >= budget:
+            break
+        if not needs_full_text(job):
+            continue
+        company, title = job.get("company", ""), job.get("title", "")
+        if not company or not title or company.strip().lower() in _NOT_EMPLOYERS:
+            continue
+        attempted += 1
+        try:
+            hit = resolver(company, title)
+        except Exception as e:
+            print(f"  [resolver] {company}: {type(e).__name__}: {str(e)[:80]}")
+            continue
+        if not hit:
+            continue
+        job["description"] = hit["text"]
+        job["description_source"] = hit["provider"]
+        replaced += 1
+        print(f"  [resolver] {title[:40]} @ {company[:24]} -> {hit['provider']}, "
+              f"{len(hit['text'])} chars (was truncated at 500)")
+    return replaced, attempted
+
+
+# Adzuna puts the SOURCE BOARD in the company field for aggregated listings,
+# so "Job-Room" is not an employer and no ATS board will ever match it.
+# Skipping them keeps the budget for postings that can actually resolve.
+_NOT_EMPLOYERS = {"job-room", "jobroom", "indeed", "linkedin", "glassdoor",
+                  "jobs.ch", "jobscout24", "adzuna"}
+
+
 def enrich_jobs(jobs, fetch=fetch_adzuna, budget=None):
     """Attaches real descriptions in place. Returns (enriched, attempted)."""
     budget = ENRICH_MAX_LOOKUPS if budget is None else budget
@@ -183,9 +240,29 @@ def main():
         print("Description enricher: no jobs to enrich.")
         return
 
+    # Stage 2 first in the report, because it is the one that matters most:
+    # a truncated description is the normal case, not the exception.
+    truncated = [j for j in jobs if needs_full_text(j)]
+    print(f"Description enricher: {len(truncated)}/{len(jobs)} descriptions are "
+          f"TRUNCATED (the board ships only the first 500 chars, so the "
+          f"requirements section is missing).")
+    if truncated:
+        try:
+            replaced, attempted = resolve_full_texts(jobs)
+            print(f"  Recovered the full posting for {replaced}/{attempted} from the "
+                  f"employers' own job boards. The rest keep the teaser and stay "
+                  f"capped at REVIEW.")
+            if replaced:
+                save_json(JOBS_FILE, jobs)
+        except Exception as e:
+            # Same contract as the Adzuna stage: an optimisation that fails
+            # must leave the run exactly as good as it was without it.
+            print(f"  Full-text resolution aborted ({type(e).__name__}: "
+                  f"{str(e)[:120]}) -- jobs left unchanged.")
+
     blind = [j for j in jobs if needs_description(j)]
     print(f"Description enricher: {len(blind)}/{len(jobs)} jobs have no usable "
-          f"description (would be scored on the title alone).")
+          f"description at all (would be scored on the title alone).")
     if not blind:
         return
 

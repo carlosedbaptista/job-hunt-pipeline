@@ -110,8 +110,13 @@ jobs:
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
           ENRICH_MAX_LOOKUPS: "12"
+          # Chasing full postings on employers' ATS boards costs no Adzuna
+          # quota (different hosts) -- only runner time. 30 jobs took ~2 min
+          # in the 2026-08-23 measurement, and repeated employers are cached.
+          RESOLVE_MAX_JOBS: "30"
         run: python agents/description_enricher.py
         continue-on-error: true
+        timeout-minutes: 10
 
       - name: Evaluate job fit with AI
         id: evaluate
