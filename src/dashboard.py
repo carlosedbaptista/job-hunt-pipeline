@@ -76,7 +76,14 @@ def collect_jobs(days=30):
 
     def add_eval(ev, digest_date, manual=False):
         """Adds one evaluation to the list, skipping duplicates and API errors."""
-        if ev.get("decision") == "ERROR" or ev.get("score") is None:
+        # ERROR is a failure and is excluded. NOT_EVALUATED is not a failure:
+        # the posting was found, its text was never readable, and hiding it
+        # would leave the owner wondering where a job he saw in an alert
+        # went. It is shown, labelled, and carries no score.
+        if ev.get("decision") == "ERROR":
+            return
+        no_text = bool(ev.get("no_posting_text")) or ev.get("decision") == "NOT_EVALUATED"
+        if ev.get("score") is None and not no_text:
             return
         job = ev.get("job", ev)
         # Identity is normalized company+title -- NOT the URL: the same
@@ -97,6 +104,7 @@ def collect_jobs(days=30):
         ev_copy["_has_blocker"] = has_hard_blocker(ev)
         ev_copy["_insufficient"] = bool(ev.get("insufficient_info"))
         ev_copy["_lang_gap"] = bool(ev.get("language_gap_intermediate"))
+        ev_copy["_no_text"] = no_text
         if manual:
             ev_copy["_manual"] = True
         all_jobs.append(ev_copy)
@@ -265,6 +273,8 @@ def get_template_head():
         .badge-review { background: #fff3e0; color: #ef6c00; }
         .dark .badge-review { background: #e65100; color: #ffcc80; }
         .badge-skip { background: #ffebee; color: #c62828; }
+        .badge-unknown { background: #eceff1; color: #546e7a; }
+        .dark .badge-unknown { background: #37474f; color: #cfd8dc; }
         .dark .badge-skip { background: #b71c1c; color: #ef9a9a; }
         .badge-applied { background: #e3f2fd; color: #1565c0; }
         .dark .badge-applied { background: #0d47a1; color: #90caf9; }
@@ -444,7 +454,10 @@ function safeUrl(url) {
 // Mirrors utils.effective_decision on the Python side: thresholds, then
 // the hard-blocker lock, then the low-confidence cap (both precomputed
 // per job by dashboard.py as _has_blocker / _insufficient).
-function getDecision(score, hasBlocker, insufficient, langGap) {
+function getDecision(score, hasBlocker, insufficient, langGap, noText) {
+    // No posting text means no score was ever produced. Ranking it, or
+    // showing it beside jobs that were actually read, would be a lie.
+    if (noText) return "NOT EVALUATED";
     if (hasBlocker) return "SKIP";
     let d = score >= TH_APPLY ? "APPLY" : score >= TH_REVIEW ? "REVIEW" : "SKIP";
     if (d === "APPLY" && (insufficient || langGap)) d = "REVIEW";
@@ -509,10 +522,12 @@ function renderTable(jobs) {
         const url = getJobField(job, "url");
         const portal = getJobField(job, "portal", "unknown");
         const score = job.score || 0;
-        const decision = getDecision(score, job._has_blocker, job._insufficient, job._lang_gap);
+        const decision = getDecision(score, job._has_blocker, job._insufficient, job._lang_gap, job._no_text);
         const date = job._digest_date || "Today";
         
-        const badgeClass = decision === "APPLY" ? "badge-apply" : decision === "REVIEW" ? "badge-review" : "badge-skip";
+        const badgeClass = decision === "APPLY" ? "badge-apply"
+            : decision === "REVIEW" ? "badge-review"
+            : decision === "NOT EVALUATED" ? "badge-unknown" : "badge-skip";
         const appInfo = getApplicationInfo(job, decision);
 
         const link = safeUrl(url);
@@ -523,7 +538,7 @@ function renderTable(jobs) {
             <td>${esc(title)}</td>
             <td>${esc(location)}</td>
             <td>${esc(portal)}</td>
-            <td class="score">${esc(score)}</td>
+            <td class="score">${job._no_text ? "&mdash;" : esc(score)}</td>
             <td><span class="badge ${badgeClass}">${esc(decision)}</span></td>
             <td>${appInfo.label ? `<span class="badge ${appInfo.badgeClass}">${esc(appInfo.label)}</span>` : "-"}</td>
             <td>${link ? `<a href="${esc(link)}" target="_blank" rel="noopener noreferrer">View ></a>` : "-"}</td>
@@ -547,7 +562,7 @@ function filterTable() {
         const location = getJobField(job, "location").toLowerCase();
         const portal = getJobField(job, "portal", "unknown").toLowerCase();
         const score = job.score || 0;
-        const dec = getDecision(score, job._has_blocker, job._insufficient, job._lang_gap);
+        const dec = getDecision(score, job._has_blocker, job._insufficient, job._lang_gap, job._no_text);
 
         if (search && !company.includes(search) && !title.includes(search) && !location.includes(search)) return false;
         if (decision && dec !== decision) return false;
@@ -567,9 +582,9 @@ function filterTable() {
 
 function updateMetrics(jobs) {
     const total = jobs.length;
-    const apply = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient, j._lang_gap) === "APPLY").length;
-    const review = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient, j._lang_gap) === "REVIEW").length;
-    const skip = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient, j._lang_gap) === "SKIP").length;
+    const apply = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient, j._lang_gap, j._no_text) === "APPLY").length;
+    const review = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient, j._lang_gap, j._no_text) === "REVIEW").length;
+    const skip = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient, j._lang_gap, j._no_text) === "SKIP").length;
     const rate = total > 0 ? (apply/total*100).toFixed(1).replace(/\.0$/, "") : "0";
     
     document.getElementById("metric-total").textContent = total;
@@ -605,9 +620,9 @@ function updateCharts(jobs) {
         options: { responsive: true, maintainAspectRatio: false }
     });
     
-    const apply = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient, j._lang_gap) === "APPLY").length;
-    const review = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient, j._lang_gap) === "REVIEW").length;
-    const skip = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient, j._lang_gap) === "SKIP").length;
+    const apply = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient, j._lang_gap, j._no_text) === "APPLY").length;
+    const review = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient, j._lang_gap, j._no_text) === "REVIEW").length;
+    const skip = jobs.filter(j => getDecision(j.score||0, j._has_blocker, j._insufficient, j._lang_gap, j._no_text) === "SKIP").length;
     
     if (window.chartPie) window.chartPie.destroy();
     window.chartPie = new Chart(document.getElementById("chart-pie"), {
@@ -657,7 +672,7 @@ function exportCSV() {
         const location = getJobField(job, "location").toLowerCase();
         const portal = getJobField(job, "portal", "unknown").toLowerCase();
         const score = job.score || 0;
-        const dec = getDecision(score, job._has_blocker, job._insufficient, job._lang_gap);
+        const dec = getDecision(score, job._has_blocker, job._insufficient, job._lang_gap, job._no_text);
 
         if (search && !company.includes(search) && !title.includes(search) && !location.includes(search)) return false;
         if (decision && dec !== decision) return false;
@@ -687,7 +702,7 @@ function exportCSV() {
         const url = getJobField(job, "url");
         const portal = getJobField(job, "portal", "unknown");
         const score = job.score || 0;
-        const decision = getDecision(score, job._has_blocker, job._insufficient, job._lang_gap);
+        const decision = getDecision(score, job._has_blocker, job._insufficient, job._lang_gap, job._no_text);
         const date = job._digest_date || "Today";
         const application = getApplicationInfo(job, decision).label || "-";
         csv += [csvCell(date), csvCell(company), csvCell(title), csvCell(location), csvCell(portal), score, decision, csvCell(application), csvCell(url)].join(",") + "\n";

@@ -161,6 +161,12 @@ def effective_decision(ev) -> str:
     then the low-confidence cap (a posting with too little text to evaluate
     never earns automatic APPLY / CV-CL generation)."""
     score = ev.get("score")
+    # A posting whose text was never captured is NOT_EVALUATED, which is not
+    # the same as ERROR: nothing failed, there was simply nothing to read. It
+    # carries no score, so it cannot be ranked or compared, and it can never
+    # appear as a high number attached to a cautious decision.
+    if ev.get("no_posting_text") or ev.get("decision") == "NOT_EVALUATED":
+        return "NOT_EVALUATED"
     if score is None or ev.get("decision") == "ERROR":
         return "ERROR"
     if has_hard_blocker(ev):

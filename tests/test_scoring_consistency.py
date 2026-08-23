@@ -283,16 +283,58 @@ class TestEvaluateJobRobustness:
         assert ev["hard_blockers"] == []
         assert not any(str(f).startswith("Blocker:") for f in ev["red_flags"])
 
-    def test_insufficient_info_caps_apply_to_review(self):
-        """A bare title scored 78 with 'Technical fit: Strong' in the audit
-        -- the model fabricates confidence without text. Cap at REVIEW and
-        never auto-generate materials."""
+    def test_no_posting_text_produces_no_score_at_all(self):
+        """Capping a fabricated number at REVIEW was not enough.
+
+        Asked to judge six words of title, the model returned 88, 85 and 82
+        for postings nobody had read. The cap held them at REVIEW -- the
+        right decision attached to a meaningless number -- and a dashboard
+        showing "88, REVIEW" invites exactly the question it cannot answer.
+
+        The system already refuses to invent a score when the API fails. An
+        empty posting is the same fabrication with a friendlier face."""
         ev = eval_with({"score": 95, "concerns": [], "hard_blockers": []},
                        job=make_job(description=""))
+        assert ev["score"] is None
+        assert ev["decision"] == "NOT_EVALUATED"
+        assert ev["no_posting_text"] is True
+        assert ev["materials_needed"] == []
+
+    def test_an_unreadable_posting_costs_no_api_call(self):
+        """There is nothing for the model to read, so there is nothing to
+        pay for. This used to spend one call per empty alert card."""
+        calls = []
+
+        def spy(prompt, system=None, max_tokens=4096):
+            calls.append(prompt)
+            return {"score": 95, "concerns": [], "hard_blockers": []}
+
+        import job_evaluator as je
+        original = je.call_kimi_json
+        je.call_kimi_json = spy
+        try:
+            je.evaluate_job(make_job(description=""))
+        finally:
+            je.call_kimi_json = original
+        assert calls == []
+
+    def test_a_truncated_teaser_is_still_scored_but_capped(self):
+        """500 characters of real posting carry real signal, unlike an empty
+        card. They are scored, and capped at REVIEW because the requirements
+        section never survives the cut."""
+        # Exactly 500 characters, cut mid-word: what the job board actually
+        # returns for every posting it has ever served.
+        teaser = ("We are seeking a highly skilled AI engineer to join our "
+                  "innovation lab and bring agentic solutions from ideation "
+                  "to production. ") * 5
+        teaser = teaser[:500]
+        assert not teaser.rstrip().endswith((".", "!", "?"))
+        ev = eval_with({"score": 95, "concerns": [], "hard_blockers": []},
+                       job=make_job(description=teaser))
+        assert ev["score"] == 95
         assert ev["insufficient_info"] is True
         assert ev["decision"] == "REVIEW"
         assert ev["materials_needed"] == []
-        assert any("Low confidence" in str(f) for f in ev["red_flags"])
 
     def test_todays_date_in_prompt(self):
         captured = {}

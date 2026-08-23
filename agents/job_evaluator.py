@@ -304,6 +304,43 @@ def _sanitize_score(raw):
     return max(0, min(100, int(round(value))))
 
 
+def _no_text_record(job, chars):
+    """A posting with no usable text gets NO SCORE, and costs no API call.
+
+    The system already refuses to invent a score when the API fails ("a fake
+    55/REVIEW once polluted 8 weeks of data"). Scoring a bare title is the
+    same fabrication with a friendlier face: asked to judge six words, the
+    model answered 88, 85 and 82 for three postings nobody had read. The
+    low-confidence cap then held those at REVIEW, which is the right decision
+    attached to a meaningless number -- and a dashboard showing "88 REVIEW"
+    invites exactly the question it cannot answer.
+
+    So below MIN_DESCRIPTION_CHARS there is no number at all. NOT_EVALUATED
+    is an honest state: the posting exists, it was never readable, and it is
+    excluded from ranking rather than competing on a score it never earned.
+    """
+    return {
+        "score": None,
+        "recommendation": "NOT_EVALUATED",
+        "hard_blockers": [],
+        "insufficient_info": True,
+        "no_posting_text": True,
+        "language_gap_intermediate": False,
+        "key_match_points": [],
+        "red_flags": [],
+        "job": _job_block(job),
+        "technical_fit": "Not evaluated: the posting text was never captured.",
+        "contextual_fit": "Not evaluated",
+        "salary_estimate": "Not disclosed",
+        "culture_fit": "Not evaluated",
+        "concerns": [f"No posting text available ({chars} characters). "
+                     f"Paste the description into the Add Job workflow for a real score."],
+        "decision": "NOT_EVALUATED",
+        "materials_needed": [],
+        "evaluated_at": datetime.now(timezone.utc).isoformat(),
+    }
+
+
 def _error_record(job, err_msg):
     """No invented score: ERROR entries are excluded from ranking and
     metrics downstream. A fake 55/REVIEW once polluted 8 weeks of data."""
@@ -405,6 +442,15 @@ def evaluate_job(job):
     # utils.is_truncated_description for the measurement.
     insufficient_info = (len(desc_full.strip()) < MIN_DESCRIPTION_CHARS
                          or is_truncated_description(desc_full))
+
+    # No usable text: refuse to produce a number, and do not spend the call.
+    # A truncated 500-character teaser still carries real signal and IS
+    # scored, capped at REVIEW; an empty card carries none.
+    if len(desc_full.strip()) < MIN_DESCRIPTION_CHARS:
+        print(f"NOT EVALUATED -> no posting text ({len(desc_full.strip())} chars); "
+              f"no score invented, no API call spent")
+        return _no_text_record(job, len(desc_full.strip()))
+
     url = job.get("url", "")
 
     # Today's date grounds any timeline reasoning (notice period vs start
