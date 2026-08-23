@@ -298,11 +298,25 @@ def get_template_head():
         <p>Automated job search &amp; evaluation pipeline &middot; <a href="https://github.com/carlosedbaptista/job-hunt-pipeline/actions/workflows/add-job.yml" target="_blank">+ Add a job manually</a> &middot; <a href="https://github.com/carlosedbaptista/job-hunt-pipeline/actions/workflows/track-application.yml" target="_blank">+ Track an application</a> (Actions &rarr; Run workflow)</p>
     </header>
 
-    <!-- No candidate profile card. It printed name, permit status, notice
-         period, languages and LinkedIn onto a page served publicly by GitHub
-         Pages with no authentication. None of it is needed to read a job
-         list, and a tracker that opens with the owner's permit status reads
-         as a personal page rather than a working tool. -->
+    <!-- Attribution only. The full profile card that used to sit here also
+         printed permit status, notice period and languages onto a page served
+         publicly with no authentication; none of that is needed to read a job
+         list, and it made a working tool read as a personal page. The owner
+         asked to keep the LinkedIn link, which is deliberate: this dashboard
+         doubles as portfolio, and someone who finds it should be able to find
+         him. That link is already public on his profile. -->
+    <div class="card" style="margin-bottom: 20px; display:flex; align-items:center;
+         justify-content:space-between; flex-wrap:wrap; gap:10px;">
+        <div style="color:#666; font-size:14px;">
+            Built and maintained by
+            <a href="https://www.linkedin.com/in/carlosedbaptista/" target="_blank"
+               rel="noopener">Carlos Baptista</a>
+        </div>
+        <div style="color:#999; font-size:13px;">
+            <a href="https://github.com/carlosedbaptista/job-hunt-pipeline"
+               target="_blank" rel="noopener">Source on GitHub</a>
+        </div>
+    </div>
 
     <!-- Metrics -->
     <div class="grid">
