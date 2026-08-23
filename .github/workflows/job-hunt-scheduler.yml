@@ -5,6 +5,22 @@ on:
     - cron: '0 5 * * *'   # 05:00 UTC = 07:00 CEST
     - cron: '0 12 * * *'  # 12:00 UTC = 14:00 CEST
   workflow_dispatch:
+    inputs:
+      skip_ingestion:
+        description: "Test mode: reuse the jobs already fetched, do not call Adzuna or Gmail"
+        required: false
+        default: false
+        type: boolean
+      reevaluate:
+        description: "Test mode: also re-score jobs already marked as seen"
+        required: false
+        default: false
+        type: boolean
+      max_evaluations:
+        description: "Cap LLM calls for this run (blank = the usual 30). Use 3-5 when testing."
+        required: false
+        default: ""
+        type: string
 
 # A manual run overlapping the cron run would race on git push
 # Shared by every workflow that pushes to main (add-job, track-application).
@@ -72,6 +88,7 @@ jobs:
           restore_b64 CL_MODEL_B64 config/cover_letter_model.txt text
 
       - name: Fetch Adzuna jobs
+        if: inputs.skip_ingestion != true
         env:
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
@@ -87,6 +104,7 @@ jobs:
       #   continue-on-error: true
 
       - name: Fetch Gmail alerts
+        if: inputs.skip_ingestion != true
         env:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
@@ -94,9 +112,17 @@ jobs:
         continue-on-error: true
 
       - name: Parse job emails (local, no API)
+        if: inputs.skip_ingestion != true
         run: python agents/email_parser_local.py
 
       - name: Unify job sources
+        env:
+          # Test mode only: re-score jobs already seen, so the pipeline can be
+          # exercised end to end without spending job-board quota.
+          REEVALUATE_ALL: ${{ inputs.reevaluate }}
+          # The cost cap is applied HERE, not in the evaluator, so lowering it
+          # for a test run genuinely reduces the number of LLM calls.
+          MAX_EVALUATIONS_PER_RUN: ${{ inputs.max_evaluations }}
         run: python src/unified_ingestor.py
 
       # E-mail alert cards (LinkedIn/Glassdoor/XING) arrive with a title and
