@@ -6,6 +6,7 @@ Called after user approves jobs to persist them.
 import json
 import os
 import sqlite3
+import sys
 from datetime import datetime, timezone
 
 DB_PATH = os.environ.get("JOBS_DB_PATH", "tracker/jobs.db")
@@ -109,20 +110,35 @@ def record_applications_batch(approvals_file: str) -> int:
     return count
 
 
+def _warn_no_match(company: str, title: str) -> None:
+    """These UPDATEs match on the exact company+title strings, unlike the
+    rest of the pipeline, which normalizes. Recording a response against
+    "BLP Digital" when the application was filed as "BLP Digital AG" used to
+    update zero rows and still print "OK" -- the row kept response_type NULL,
+    kept generating follow-up drafts forever, and the dashboard kept showing
+    it as merely Applied. Say so instead."""
+    print(f"WARNING: no application row matched company={company!r} title={title!r} "
+          f"-- nothing was updated. Run `python agents/tracker_updater.py list` "
+          f"and re-run with the exact strings recorded there.")
+
+
 def update_application_status(company: str, title: str, status: str, notes: str = ""):
     """Updates the status of an application."""
     init_applications_table()
     conn = sqlite3.connect(DB_PATH)
 
-    conn.execute(
+    cur = conn.execute(
         """UPDATE applications
            SET status = ?, last_update = ?, notes = ?
            WHERE company = ? AND title = ?""",
         (status, datetime.now(timezone.utc).isoformat(), notes, company, title),
     )
-
+    updated = cur.rowcount
     conn.commit()
     conn.close()
+    if not updated:
+        _warn_no_match(company, title)
+    return updated
 
 
 def record_response(
@@ -144,7 +160,7 @@ def record_response(
 
     status = status_map.get(response_type, "responded")
 
-    conn.execute(
+    cur = conn.execute(
         """UPDATE applications
            SET status = ?, response_type = ?, response_date = ?, last_update = ?, notes = ?
            WHERE company = ? AND title = ?""",
@@ -158,9 +174,12 @@ def record_response(
             title,
         ),
     )
-
+    updated = cur.rowcount
     conn.commit()
     conn.close()
+    if not updated:
+        _warn_no_match(company, title)
+    return updated
 
 
 def get_all_applications() -> list:
@@ -249,5 +268,11 @@ if __name__ == "__main__":
         else:
             print(f"WARNING: Already tracked: {args.company} — {args.title}")
     elif args.command == "response":
-        record_response(company=args.company, title=args.title, response_type=args.type, notes=args.notes)
+        updated = record_response(company=args.company, title=args.title,
+                                  response_type=args.type, notes=args.notes)
+        if not updated:
+            # Exit non-zero so the manual workflow goes red instead of
+            # reporting a response that was never recorded.
+            print(f"ERROR: no application matched: {args.company} — {args.title}")
+            sys.exit(1)
         print(f"OK: Response recorded ({args.type}): {args.company} — {args.title}")

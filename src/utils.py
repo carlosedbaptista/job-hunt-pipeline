@@ -10,6 +10,45 @@ from typing import List, Dict, Any
 THRESHOLD_APPLY = int(os.environ.get("THRESHOLD_APPLY", "80"))
 THRESHOLD_REVIEW = int(os.environ.get("THRESHOLD_REVIEW", "70"))
 
+# Below this much real posting text there is not enough signal for a
+# confident evaluation: the evaluator marks such a job `insufficient_info`
+# and effective_decision() caps it at REVIEW. It lives here (not only in
+# job_evaluator) because agents/description_enricher.py uses the same
+# definition of "no usable description" to decide what to look up, and the
+# two must never drift apart.
+MIN_DESCRIPTION_CHARS = int(os.environ.get("MIN_DESCRIPTION_CHARS", "200"))
+
+
+# CEFR ladder, weakest first. Used to work out which language levels sit
+# ABOVE the candidate's own -- the intermediate zone is not a fixed set of
+# levels, it depends on where he currently is. Never hardcode a level in
+# job_evaluator.py: it must come from config/candidate_profile.json.
+CEFR_LEVELS = ["a1", "a2", "b1", "b2", "c1", "c2"]
+
+# At or above this level a requirement is a hard eligibility blocker, whatever
+# the candidate's own level: 'fluent/native/C1' is not a gap he closes in a
+# notice period.
+HARD_LEVEL_FLOOR = "c1"
+
+
+def candidate_language_level(profile, language: str = "german") -> str:
+    """The candidate's CEFR level in `language`, read from the profile's
+    `language_levels` map (e.g. {"german": "A2"}). Returns "" when unknown,
+    which callers treat as 'assume the weakest level' -- being conservative
+    about a language gap is the safe direction."""
+    levels = (profile or {}).get("language_levels") or {}
+    raw = str(levels.get(language, "") or "").strip().lower()
+    return raw if raw in CEFR_LEVELS else ""
+
+
+def levels_above(level: str) -> list:
+    """CEFR levels strictly above `level` and strictly below HARD_LEVEL_FLOOR:
+    the 'intermediate zone' -- above what he has today, but not so far above
+    that it is a hard blocker. For A2 that is B1 and B2; for B1, only B2."""
+    floor = CEFR_LEVELS.index(HARD_LEVEL_FLOOR)
+    start = CEFR_LEVELS.index(level) + 1 if level in CEFR_LEVELS else 0
+    return CEFR_LEVELS[start:floor]
+
 
 def decision_from_score(score) -> str:
     """Maps a numeric score to a decision. None (API error) maps to ERROR."""
@@ -87,18 +126,45 @@ def effective_decision(ev) -> str:
 
 
 def deduplicate_jobs(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Remove duplicate jobs based on company + title + location."""
-    seen = set()
-    unique = []
+    """Remove duplicate jobs, keeping the most informative copy of each.
+
+    The key is the same normalization the cross-run SQLite dedup uses
+    (`deduplicator.make_hash`: accents transliterated, punctuation dropped,
+    legal suffixes like AG/GmbH stripped, location reduced to its locality).
+    It used to be a plain `.lower().strip()` on the raw fields, which is
+    strictly weaker than the hash applied one step later: "Zurich" vs
+    "Zürich, Switzerland", or "BLP Digital" vs "BLP Digital AG", slipped
+    through here and cost a full LLM evaluation each.
+
+    When two records collide, the one with the longer description wins
+    (sources differ: an e-mail alert card carries no description at all,
+    while the same posting from Adzuna carries 4000 chars, and whichever
+    happened to be ingested first used to win). Missing fields on the
+    winner are backfilled from the loser."""
+    from deduplicator import normalize, normalize_company, normalize_location
+
+    winners: Dict[Any, Dict[str, Any]] = {}
+    order: List[Any] = []
     for job in jobs:
-        company = (job.get("company") or job.get("company", "")).lower().strip()
-        title = (job.get("title") or job.get("title", "")).lower().strip()
-        location = (job.get("location") or job.get("location", "")).lower().strip()
-        key = (company, title, location)
-        if key not in seen:
-            seen.add(key)
-            unique.append(job)
-    return unique
+        key = (normalize_company(job.get("company") or ""),
+               normalize(job.get("title") or ""),
+               normalize_location(job.get("location") or ""))
+        current = winners.get(key)
+        if current is None:
+            winners[key] = job
+            order.append(key)
+            continue
+        richer, poorer = (job, current) if _description_length(job) > _description_length(current) else (current, job)
+        for field, value in poorer.items():
+            if str(richer.get(field, "")).strip() in ("", "Unknown", "None"):
+                if str(value).strip() not in ("", "Unknown", "None"):
+                    richer[field] = value
+        winners[key] = richer
+    return [winners[k] for k in order]
+
+
+def _description_length(job: Dict[str, Any]) -> int:
+    return len((job.get("description") or "").strip())
 
 
 def load_json(filepath: str, default: Any = None) -> Any:

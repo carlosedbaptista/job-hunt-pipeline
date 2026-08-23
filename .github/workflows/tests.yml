@@ -1,0 +1,57 @@
+name: Tests
+
+# The scoring-consistency suite exists (tests/, 70+ cases born from the
+# 2026-08-17 audit) but nothing ran it: CLAUDE.md asks you to run pytest
+# before touching scoring or dedup logic, and that was on the honour system.
+# Every one of those tests pins a bug that already happened once.
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      # The scheduler commits digests/data on every run; re-running the suite
+      # for a data-only commit would just burn Actions minutes.
+      - 'data/**'
+      - 'digests/**'
+      - 'tracker/**'
+      - '**.md'
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    # Least privilege: this job runs code from a pull request head
+    # (conftest.py, requirements*.txt) and needs nothing but the checkout.
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4 (pinned SHA)
+        with:
+          # Do not leave GITHUB_TOKEN in .git/config where PR-supplied code
+          # could read it.
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5 (pinned SHA)
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+
+      - name: Run the scoring-consistency suite
+        # No secrets are exposed to this job on purpose: every test mocks the
+        # LLM, so a test that suddenly needs a real API key is a test that has
+        # stopped being deterministic.
+        run: python -m pytest tests/ -q
+
+      - name: Byte-compile every module
+        # Cheap guard against a syntax error or a bad import in the modules
+        # the daily pipeline runs, which would otherwise only surface at
+        # 05:00 UTC in production.
+        run: python -m compileall -q agents src config tests

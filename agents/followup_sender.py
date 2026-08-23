@@ -11,8 +11,9 @@ approval is the act of forwarding.
 
 import os
 import sys
+import html as html_mod
 import smtplib
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -128,7 +129,7 @@ def send_draft_to_candidate(
         html_body = f"""
         <html>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-            <div style="white-space: pre-wrap;">{intro}</div>
+            <div style="white-space: pre-wrap;">{html_mod.escape(intro)}</div>
         </body>
         </html>
         """
@@ -144,6 +145,24 @@ def send_draft_to_candidate(
     except Exception as e:
         print(f"ERROR: failed to send draft: {e}")
         return False
+
+
+def _days_since(iso_timestamp) -> int:
+    """Days between an ISO timestamp and now, in UTC.
+
+    tracker_updater.record_application stores an AWARE timestamp
+    (datetime.now(timezone.utc).isoformat()), and this used to subtract it
+    from a naive datetime.now() -- TypeError on every eligible application.
+    The step is continue-on-error, so the run stayed green and the follow-up
+    feature silently never produced a single draft. Legacy rows written
+    before that (naive) are treated as UTC. Returns None when unparseable."""
+    try:
+        parsed = datetime.fromisoformat(str(iso_timestamp))
+    except (TypeError, ValueError):
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return (datetime.now(timezone.utc) - parsed).days
 
 
 def draft_followups():
@@ -178,8 +197,10 @@ def draft_followups():
         recruiter_email = app.get("recruiter_email") or ""
         date_applied = app["date_applied"]
 
-        app_date = datetime.fromisoformat(date_applied)
-        days_elapsed = (datetime.now() - app_date).days
+        days_elapsed = _days_since(date_applied)
+        if days_elapsed is None:
+            print(f"   WARNING: unparseable date_applied {date_applied!r} -- skipping\n")
+            continue
 
         print(f"{drafted_count + 1}. {company} - {title} ({days_elapsed} days)")
 

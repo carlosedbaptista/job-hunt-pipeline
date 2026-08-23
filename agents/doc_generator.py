@@ -8,12 +8,16 @@ KIMI_TIMEOUT = 30
 
 def _generate_summary(client, profile, title, company, description):
     prompt = (
-        f"Candidate: {profile['name']} -- {profile['role']}.\n"
-        f"Experience highlights:\n"
-        + "\n".join(f"- {exp['title']} @ {exp['company']}" for exp in profile["experience"])
-        + f"\n\nSkills: {', '.join(profile['skills']['technical_default'])}\n\n"
+        f"Candidate: {profile['name']} -- {profile.get('role', '')}.\n"
+        + (f"Seeking: {profile['target_role']}\n" if profile.get("target_role") else "")
+        + f"Experience highlights:\n"
+        + "\n".join(f"- {exp.get('title', '')} @ {exp.get('company', '')}"
+                    for exp in profile.get("experience", []))
+        + f"\n\nSkills: {', '.join(profile.get('skills', {}).get('technical_default', []))}\n\n"
         f"Job: {title} at {company}.\nDescription: {description}\n\n"
-        "Write a concise professional Profile Summary (3-4 sentences, max 60 words) connecting the candidate's key strengths to THIS specific job. Return ONLY the summary text."
+        "Write a concise professional Profile Summary (3-4 sentences, max 60 words) "
+        "connecting the candidate's key strengths to THIS specific job. Use only facts "
+        "given above; invent nothing. Return ONLY the summary text."
     )
     r = client.chat(
         [{"role": "user", "content": prompt}],
@@ -21,52 +25,112 @@ def _generate_summary(client, profile, title, company, description):
         response_format={"type": "text"},
     )
     if r is None:
-        return (
-            "Data Analyst with proven experience in data visualization, process automation, and cross-functional communication. "
-            "Skilled in Python, JavaScript, Power BI, and NetSuite, with a track record of reducing manual work by 40% and increasing engagement by 35%. "
-            "Committed to turning data into actionable insights and building systems that improve team efficiency."
-        )
+        # Fallback derived from the profile: the old literal described a
+        # "Data Analyst ... JavaScript, Power BI, NetSuite", which stopped
+        # being true when the positioning changed, and it goes into a PDF
+        # sent to employers.
+        return (profile.get("summary")
+                or f"{profile.get('role', '')}. "
+                   f"Skills: {', '.join(profile.get('skills', {}).get('technical_default', [])[:8])}.")
     return r.strip()
+
+def _load_text_model(path: str) -> str:
+    """Reads an optional plain-text style model (config/cv_model.txt,
+    config/cover_letter_model.txt). These are restored in CI from the
+    CV_MODEL_B64 / CL_MODEL_B64 secrets and were, until now, never read by
+    any code path."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            return f.read().strip()
+    except (OSError, UnicodeDecodeError):
+        return ""
+
 
 def _generate_cover_letter(client, profile, title, company, location, description, score):
     job_desc = textwrap.shorten(description, width=600, placeholder="...")
+
+    # Every fact below comes from the profile. Nothing about the candidate is
+    # hardcoded here: the languages line used to read "DE (A2, learning)" as
+    # a literal, so the moment he reaches B1 the CV would say B1 while every
+    # cover letter for the same job still said A2 -- and this is text sent to
+    # employers. Same reason the relocation sentence is now conditional.
+    languages = profile.get("languages", "")
+    target = profile.get("target_role", "")
+    summary = profile.get("summary", "")
+    projects = profile.get("projects", [])
+    project_line = "; ".join(pr.get("title", "") for pr in projects[:2])
+    relocation = profile.get("relocation_date", "")
+
+    # Optional voice reference: config/cover_letter_model.txt, restored in CI
+    # from the CL_MODEL_B64 secret. It was being restored and then ignored by
+    # every code path -- now it steers the tone.
+    model_letter = _load_text_model("config/cover_letter_model.txt")
+
     prompt = (
-        f"Candidate: {profile['name']} ({profile['role']})\n"
-        f"Address: {profile['address']}\n"
-        f"LinkedIn: {profile['linkedin']}\n\n"
-        "Experience:\n"
-        + "\n".join(f"- {e['title']} @ {e['company']}" for e in profile["experience"])
-        + f"\n\nSkills: {', '.join(profile['skills']['technical_default'])}\n"
-        f"Languages: EN (professional), PT (native), DE (A2, learning)\n\n"
-        f"Job to apply: {title} at {company} ({location or 'Switzerland'})\n"
+        f"Candidate: {profile['name']} ({profile.get('role', '')})\n"
+        f"Address: {profile.get('address', '')}\n"
+        f"LinkedIn: {profile.get('linkedin', '')}\n"
+        + (f"Seeking: {target}\n" if target else "")
+        + (f"In his own words: {summary}\n" if summary else "")
+        + "\nExperience:\n"
+        + "\n".join(f"- {e.get('title', '')} @ {e.get('company', '')}"
+                    for e in profile.get("experience", []))
+        + f"\n\nSkills: {', '.join(profile.get('skills', {}).get('technical_default', []))}\n"
+        + (f"Projects: {project_line}\n" if project_line else "")
+        + (f"Languages: {languages}\n" if languages else "")
+        + (f"Relocated to Switzerland: {relocation}\n" if relocation else "")
+        + f"\nJob to apply: {title} at {company} ({location or 'Switzerland'})\n"
         f"Description: {job_desc}\n"
         f"Evaluation score: {score}/100\n\n"
-        "Write a 4-paragraph formal cover letter.\n"
-        "1. State enthusiasm and explain why this specific role fits the candidate's path.\n"
-        "2. Mention 2-3 relevant experiences with brief concrete results (use metrics from experience bullets).\n"
-        "3. Emphasise cross-cultural adaptability (moved to Switzerland April 2025, speaks EN/PT, learning DE).\n"
-        "4. Request an interview, mention the portfolio/project pipeline project.\n"
-        "Do NOT include addresses, dates, or signatures in the body.\n"
-        "Return ONLY the 4-paragraph text in English."
+        "Write a 4-paragraph formal cover letter in English.\n"
+        "1. State genuine interest and explain why THIS specific role fits where he is "
+        "heading, using the 'Seeking' line above rather than his current job title.\n"
+        "2. Two or three relevant experiences with concrete results, taking the metrics "
+        "from the experience bullets. Prefer specifics over adjectives.\n"
+        "3. What he brings beyond the checklist: career changer who moves fast into "
+        "unfamiliar domains, ships to production, and audits his own work. Mention the "
+        "language situation only if the posting raises it, and state it exactly as the "
+        "Languages line above says -- never upgrade it.\n"
+        "4. Request an interview and reference the portfolio project by name.\n"
+        "Rules: no invented facts, employers, dates, metrics or technologies -- use ONLY "
+        "what is above. No addresses, dates or signatures in the body. No em dashes. "
+        "Return ONLY the four paragraphs."
     )
+    if model_letter:
+        prompt += (
+            "\n\nReference letter previously written by the candidate. Match its voice, "
+            "rhythm and level of concreteness. Do NOT copy its sentences or reuse its "
+            "company-specific details:\n---\n"
+            + textwrap.shorten(model_letter, width=2500, placeholder="...")
+            + "\n---"
+        )
     r = client.chat(
         [{"role": "user", "content": prompt}],
         max_tokens=800,
         response_format={"type": "text"},
     )
     if r is None:
+        # Offline fallback, used when the LLM call fails. It used to be a
+        # fully written letter with facts baked in ("relocated in April
+        # 2025", "German (A2 level)", "JavaScript, Power BI") that drifted
+        # out of date the moment the CV changed -- and this text goes to
+        # employers. It now says only what the profile says, and says less.
+        top_experience = (profile.get("experience") or [{}])[0]
         r = (
             f"Dear Hiring Manager,\n\n"
-            f"I am excited to apply for the {title} role at {company}. "
-            f"Having recently relocated to Switzerland in April 2025, I am actively building my career in the Swiss market, and this position aligns perfectly with my background in data analysis, business process optimisation, and cross-functional collaboration.\n\n"
-            f"During my internship at Gestora de Inteligencia de Credito S.A., I developed SuiteScripts and automated workflows in Oracle NetSuite, reducing manual work by 40% and improving efficiency across finance and operations teams. "
-            f"At netzdenker.com, I used Python and AI tools to overhaul the company website, increasing page views and clicks by 35%. "
-            f"These experiences have sharpened my ability to translate business needs into technical solutions and deliver measurable results.\n\n"
-            f"Beyond my technical skills in Python, JavaScript, Power BI, and NetSuite, I bring a strong international mindset. "
-            f"I am fluent in English and Portuguese, and I am actively learning German (A2 level), which reflects my commitment to integrating fully into the Swiss professional environment.\n\n"
-            f"I would welcome the opportunity to discuss how my experience and skills can contribute to your team. "
-            f"You can also explore my portfolio and project work on GitHub. Thank you for considering my application.\n\n"
-            f"Kind regards,\n{profile['name']}"
+            f"I am writing to apply for the {title} role at {company}. "
+            + (f"I am currently {top_experience.get('title', '')} at "
+               f"{str(top_experience.get('company', '')).split('--')[0].strip()}, "
+               if top_experience.get("title") else "")
+            + (f"and I am looking for {profile.get('target_role', '')}. "
+               if profile.get("target_role") else "")
+            + "\n\n"
+            + (f"{profile.get('summary', '')}\n\n" if profile.get("summary") else "")
+            + (f"Languages: {profile.get('languages', '')}.\n\n"
+               if profile.get("languages") else "")
+            + "I would welcome the opportunity to discuss how I could contribute to "
+            "your team, and you can find my project work on GitHub. Thank you for "
+            f"considering my application.\n\nKind regards,\n{profile.get('name', '')}"
         )
     return r.strip()
 
@@ -81,6 +145,7 @@ def _role_keywords(title):
 # Import FPDF2
 try:
     from fpdf import FPDF
+    from fpdf.enums import XPos, YPos
     FPDF_AVAILABLE = True
 except Exception:
     FPDF_AVAILABLE = False
@@ -99,32 +164,44 @@ def cv_pdf(profile, job, summary, path):
     if not FPDF_AVAILABLE:
         raise RuntimeError("fpdf2 is not installed")
     pdf = FPDF()
-    pdf.set_auto_page_break(auto=False)
+    # Was auto=False: anything past the bottom of page 1 was silently dropped,
+    # and this profile has four roles with bullets. A CV that loses its last
+    # section without telling anyone is worse than a two-page CV.
+    pdf.set_auto_page_break(auto=True, margin=12)
     pdf.add_page()
     m = 10
     pdf.set_margins(m, m, m)
     w = 210 - 2*m
 
-    # Header with photo
+    # Header with photo. The image occupies x=165..200, so the header text is
+    # given a reduced width instead of the full page: it used to run under the
+    # photo, and the profile summary started before the image ended.
+    photo_w = 0
     if os.path.exists(profile.get("photo_path", "")):
         try:
-            pdf.image(profile["photo_path"], x=170, y=10, w=30)
+            pdf.image(profile["photo_path"], x=165, y=10, w=35)
+            photo_w = 40
         except Exception:
-            pass
+            photo_w = 0
+    header_w = w - photo_w
 
     pdf.set_font("Helvetica", "B", 16)
-    pdf.cell(0, 8, _safe_text(profile["name"]), ln=True)
+    pdf.multi_cell(header_w, 8, _safe_text(profile["name"]), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.set_font("Helvetica", "", 10)
-    pdf.cell(0, 5, _safe_text(f"{profile['role']} | {profile['location']}"), ln=True)
-    pdf.cell(0, 5, _safe_text(f"{profile['phone']} | {profile['email']} | {profile['linkedin']}"), ln=True)
-    pdf.cell(0, 5, _safe_text(f"Permit: {profile['permit']} | Notice: {profile['notice_period']}"), ln=True)
+    for line in (f"{profile.get('role', '')} | {profile.get('location', '')}",
+                 f"{profile.get('phone', '')} | {profile.get('email', '')} | {profile.get('linkedin', '')}",
+                 f"Permit: {profile.get('permit', '')} | Notice: {profile.get('notice_period', '')}"):
+        pdf.multi_cell(header_w, 5, _safe_text(line), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+    # Clear the photo before the first full-width block.
+    if photo_w:
+        pdf.set_y(max(pdf.get_y(), 10 + 35 * 5 / 4 + 3))
     pdf.ln(3)
 
     # AI-tailored summary
     pdf.set_font("Helvetica", "B", 11)
     pdf.cell(0, 6, "PROFILE SUMMARY", ln=True)
     pdf.set_font("Helvetica", "", 10)
-    pdf.multi_cell(w, 5, _safe_text(summary))
+    pdf.multi_cell(w, 5, _safe_text(summary), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.ln(2)
 
     # Skills
@@ -136,9 +213,9 @@ def cv_pdf(profile, job, summary, path):
     pdf.set_font("Helvetica", "", 10)
     pdf.multi_cell(w, 5, _safe_text(
         "Technical: " + ", ".join(tech_skills) +
-        " | Communication: " + ", ".join(profile["skills"]["communication"]) +
-        " | Certifications: " + ", ".join(profile["skills"]["certifications"])
-    ))
+        " | Communication: " + ", ".join(profile["skills"].get("communication", [])) +
+        " | Certifications: " + ", ".join(profile["skills"].get("certifications", []))
+    ), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.ln(2)
 
     # Experience
@@ -147,10 +224,14 @@ def cv_pdf(profile, job, summary, path):
     pdf.set_font("Helvetica", "", 10)
     for exp in profile["experience"]:
         pdf.set_font("Helvetica", "B", 10)
-        pdf.cell(0, 5, _safe_text(f"{exp['title']} -- {exp['company']} | {exp['period']}"), ln=True)
+        # multi_cell, not cell: cell() clips at the right margin, and these
+        # lines are long ("Business Process & NetSuite Intern -- Gestora de
+        # Inteligencia de Credito S.A. -- credit-intelligence bureau | ...").
+        pdf.multi_cell(w, 5, _safe_text(f"{exp['title']} -- {exp['company']} | {exp['period']}"),
+                       new_x=XPos.LMARGIN, new_y=YPos.NEXT)
         pdf.set_font("Helvetica", "", 10)
         for b in exp["bullets"]:
-            pdf.multi_cell(w, 4, _safe_text("  -- " + b))
+            pdf.multi_cell(w, 4, _safe_text("  -- " + b), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
         pdf.ln(1)
     pdf.ln(1)
 
@@ -159,21 +240,24 @@ def cv_pdf(profile, job, summary, path):
     pdf.cell(0, 6, "EDUCATION", ln=True)
     pdf.set_font("Helvetica", "", 10)
     for edu in profile["education"]:
-        pdf.cell(0, 5, _safe_text(f"{edu['degree']} | {edu['institution']} | {edu['period']}"), ln=True)
+        pdf.multi_cell(w, 5, _safe_text(f"{edu['degree']} | {edu['institution']} | {edu['period']}"),
+                       new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.ln(2)
 
     # Languages
     pdf.set_font("Helvetica", "B", 11)
     pdf.cell(0, 6, "LANGUAGES", ln=True)
     pdf.set_font("Helvetica", "", 10)
-    pdf.cell(0, 5, _safe_text(profile.get("languages", "English (Professional) | Portuguese (Native) | German (A2, learning)")), ln=True)
+    pdf.cell(0, 5, _safe_text(profile.get("languages", "")), ln=True)
     pdf.ln(2)
 
-    # Hobbies
-    pdf.set_font("Helvetica", "B", 11)
-    pdf.cell(0, 6, "HOBBIES & INTERESTS", ln=True)
-    pdf.set_font("Helvetica", "", 10)
-    pdf.multi_cell(w, 5, _safe_text(profile["hobbies"]))
+    # Hobbies -- omitted entirely when empty, rather than leaving a dangling
+    # heading with nothing under it on a CV sent to an employer.
+    if str(profile.get("hobbies", "")).strip():
+        pdf.set_font("Helvetica", "B", 11)
+        pdf.cell(0, 6, "HOBBIES & INTERESTS", ln=True)
+        pdf.set_font("Helvetica", "", 10)
+        pdf.multi_cell(w, 5, _safe_text(profile["hobbies"]), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
     pdf.output(path)
 
@@ -191,9 +275,9 @@ def cl_pdf(profile, letter, title, company, location, path):
     pdf.set_font("Helvetica", "", 10)
     pdf.cell(0, 5, now_iso().split("T")[0], ln=True)
     pdf.ln(4)
-    pdf.multi_cell(w, 5, _safe_text(f"{profile['name']}\n{profile['address']}\n{profile['phone']}\n{profile['email']}\n{profile['linkedin']}"))
+    pdf.multi_cell(w, 5, _safe_text(f"{profile['name']}\n{profile['address']}\n{profile['phone']}\n{profile['email']}\n{profile['linkedin']}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.ln(3)
-    pdf.multi_cell(w, 5, _safe_text(f"{company}\n{location or 'Switzerland'}"))
+    pdf.multi_cell(w, 5, _safe_text(f"{company}\n{location or 'Switzerland'}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.ln(5)
 
     # Subject
@@ -206,7 +290,7 @@ def cl_pdf(profile, letter, title, company, location, path):
     for para in letter.split("\n\n"):
         para = para.strip()
         if para:
-            pdf.multi_cell(w, 6, _safe_text(para))
+            pdf.multi_cell(w, 6, _safe_text(para), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
             pdf.ln(2)
 
     # Signature

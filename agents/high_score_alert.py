@@ -15,7 +15,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
-from utils import THRESHOLD_APPLY, has_hard_blocker
+from utils import THRESHOLD_APPLY, effective_decision, has_hard_blocker
 from deduplicator import make_hash
 
 ALERTED_FILE = "digests/alerted_jobs.json"
@@ -120,10 +120,18 @@ def main():
         evaluations = json.load(f)
     
     threshold = int(os.environ.get("HIGH_SCORE_THRESHOLD", "85"))
-    # Hard-blocked jobs keep their (high) score but are capped at SKIP --
-    # alerting them would be noise about roles the candidate is barred from.
+    # The alert says "Top match detected! Apply quickly", so it must fire on
+    # the SAME decision the rest of the pipeline reached -- utils.
+    # effective_decision. Filtering on the raw score plus has_hard_blocker
+    # only applied the blocker lock and ignored both low-confidence caps, so
+    # a job the pipeline itself capped at REVIEW (and refused to generate a
+    # CV/CL for) still got an "apply quickly" email. Two real cases in
+    # data/history: 'AI Engineering Student Internship' (85, insufficient_
+    # info) on 2026-08-18 and 'AI Engineer 80%-100% - Zurich' (85,
+    # insufficient_info) on 2026-08-20 -- both blind title-only scores.
     high_scores = [e for e in evaluations
-                   if (e.get("score") or 0) >= threshold and not has_hard_blocker(e)]
+                   if (e.get("score") or 0) >= threshold
+                   and effective_decision(e) == "APPLY"]
 
     if not high_scores:
         print(f"  [Alert] No jobs >= {threshold} today")

@@ -21,10 +21,36 @@ HISTORY_DIR = "data/history"
 
 
 def load_json(path):
+    """Tolerant read. The commit step runs with `if: always()`, so a run
+    killed mid-write persists a truncated JSON file; a bare json.load then
+    aborts the dashboard step, which is NOT continue-on-error, taking the
+    doc-generation, alert and follow-up steps down with it."""
     if not os.path.exists(path):
         return None
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (ValueError, OSError) as e:
+        print(f"  WARNING: skipping unreadable {path} ({type(e).__name__}: {e})")
+        return None
+
+
+def _js_safe(payload: str) -> str:
+    """Makes a JSON payload safe to inline inside a <script> block.
+
+    json.dumps escapes quotes and backslashes but NOT `<`, so a posting
+    containing `</script>` closes the tag early: JOBS is never defined, the
+    public GitHub Pages dashboard renders empty, and whatever followed the
+    tag is parsed as markup. The payload carries titles, companies and
+    descriptions scraped from third-party job alerts, i.e. text this repo
+    does not control. The JS-side esc() cannot help -- the break-out happens
+    before any JS runs. Escaping to \u003c keeps the JSON byte-identical
+    once parsed."""
+    return (payload.replace("<", "\\u003c")
+                   .replace(">", "\\u003e")
+                   .replace("&", "\\u0026")
+                   .replace("\u2028", "\\u2028")
+                   .replace("\u2029", "\\u2029"))
 
 
 def parse_digest_date(filename):
@@ -86,7 +112,15 @@ def collect_jobs(days=30):
 
     # 1. Full evaluation history (data/history/evaluations_YYYYMMDD.json),
     # written by job_evaluator -- richer than the top-5 kept in digests.
-    for hfile in sorted(glob.glob(os.path.join(HISTORY_DIR, "evaluations_*.json"))):
+    # NEWEST FIRST. add_eval keeps the first record it sees per key, and
+    # ascending order therefore let an OLD blind evaluation beat the newer
+    # re-evaluation of the same posting -- e.g. scored 72/insufficient_info
+    # on day 1, re-ingested on day 23 after the 21-day retention expires,
+    # enriched with the real description and scored 88/APPLY, and the
+    # dashboard still showed the day-1 record (and computed the 10-day "No
+    # action" inference from the stale date). Manual entries are merged
+    # before this loop and still win over everything.
+    for hfile in sorted(glob.glob(os.path.join(HISTORY_DIR, "evaluations_*.json")), reverse=True):
         basename = os.path.basename(hfile)
         try:
             d = basename.replace("evaluations_", "").replace(".json", "")
@@ -101,7 +135,8 @@ def collect_jobs(days=30):
                 add_eval(ev, hist_date)
 
     # 2. Historical digests
-    digest_files = sorted(glob.glob(os.path.join(DIGESTS_DIR, "digest_*.json")))
+    # Newest first, same reasoning as the history loop above.
+    digest_files = sorted(glob.glob(os.path.join(DIGESTS_DIR, "digest_*.json")), reverse=True)
     for dfile in digest_files:
         digest_date = parse_digest_date(dfile)
         if digest_date < cutoff_str and dfile != os.path.join(DIGESTS_DIR, "digest_latest.json"):
@@ -451,6 +486,10 @@ function renderTable(jobs) {
     
     if (jobs.length === 0) {
         empty.classList.remove("hidden");
+        // Metrics describe the filtered view, so they must be zeroed too --
+        // they used to keep the previous render's numbers, reading as if
+        // they described the (empty) result.
+        updateMetrics(jobs);
         return;
     }
     empty.classList.add("hidden");
@@ -681,6 +720,7 @@ def generate_dashboard():
     # Limit size to avoid a giant HTML file
     if len(jobs_json) > 500_000:
         jobs_json = json.dumps(jobs, ensure_ascii=False)
+    jobs_json = _js_safe(jobs_json)
 
     thresholds_js = f"const TH_APPLY = {THRESHOLD_APPLY};\nconst TH_REVIEW = {THRESHOLD_REVIEW};\n"
     html = head + thresholds_js + "const JOBS = " + jobs_json + ";\n" + tail

@@ -24,6 +24,12 @@ on:
         required: false
         type: string
 
+# Same group as the daily scheduler: all three workflows push to main
+# and tracker/jobs.db is a binary SQLite file that cannot be merged.
+concurrency:
+  group: job-hunt-repo-write
+  cancel-in-progress: false
+
 jobs:
   add-job:
     runs-on: ubuntu-latest
@@ -89,14 +95,10 @@ jobs:
       # the PDFs would otherwise vanish with the runner and cost a real Kimi
       # call for nothing. This is the backup: retrievable from the Actions
       # run page for 90 days regardless of whether the Drive upload worked.
-      - name: Upload generated CV/CL as a workflow artifact (backup)
-        if: always()
-        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3 (pinned SHA)
-        with:
-          name: generated-docs
-          path: generated_docs/
-          if-no-files-found: ignore
-          retention-days: 90
+      # No generated_docs/ artifact: this repo is PUBLIC and Actions
+      # artifacts are downloadable by any authenticated GitHub user, so
+      # this published the candidate's name, phone, e-mail, permit and
+      # photo. Google Drive is the intended durable copy.
 
       - name: Regenerate dashboard
         env:
@@ -119,4 +121,11 @@ jobs:
             exit 0
           fi
           git commit -m "chore: manual job evaluation [$JOB_TITLE @ $JOB_COMPANY]"
-          git push
+          for attempt in 1 2 3; do
+            if git push; then exit 0; fi
+            echo "push rejected (attempt $attempt) -- rebasing onto origin/main"
+            git pull --rebase --autostash origin main || exit 1
+            sleep $((attempt * 5))
+          done
+          echo "::error::could not push after 3 attempts"
+          exit 1

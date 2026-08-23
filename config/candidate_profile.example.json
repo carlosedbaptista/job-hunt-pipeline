@@ -1,20 +1,29 @@
 {
-  "_comment": "EXEMPLO REDACTED. Copie para config/candidate_profile.json (fora do git) e preencha com seus dados reais. No CI, este arquivo e recriado a partir do secret CANDIDATE_PROFILE_B64.",
-  "name": "Seu Nome Completo",
-  "address": "Sua Rua 0, 0000 Cidade",
+  "_comment": "REDACTED EXAMPLE. Copy to config/candidate_profile.json (gitignored) and fill in your real data; in CI the file is recreated from the CANDIDATE_PROFILE_B64 secret. Every key below is read by the pipeline: agents/job_evaluator.load_profile_summary() builds the scoring prompt out of role, target_role, permit, notice_period, summary, skills.technical_default, skills.certifications, experience, projects, education and languages; language_levels calibrates the whole language-blocker rule; and agents/doc_generator.py renders the CV from name, the contact fields, photo_path and languages. A key left out silently weakens every score, so keep this example in sync when the code starts reading a new one.",
+  "name": "Your Full Name",
+  "address": "Your Street 0, 0000 City",
   "phone": "+41 00 000 00 00",
-  "email": "seu.email@example.com",
+  "email": "your.email@example.com",
   "email_icloud": "",
-  "linkedin": "linkedin.com/in/seu-perfil",
-  "github": "github.com/seu-usuario",
+  "linkedin": "linkedin.com/in/your-profile",
+  "github": "github.com/your-username",
   "dob": "DD.MM.YYYY",
-  "nationality": "Sua Nacionalidade",
+  "nationality": "Your Nationality",
   "permit": "Swiss Work Permit B (valid)",
   "relocation_date": "Month YYYY",
-  "role": "Data/Business Analyst",
-  "location": "Sua Cidade, CH",
+  "role": "What you are today, e.g. AI & Automation Developer Intern",
+  "target_role": "What you are looking for NEXT. Postings are scored on fit to this, not to your current job -- if you leave it out, the scorer matches against your current title only.",
+  "location": "Your City, CH",
   "notice_period": "2 weeks",
   "photo_path": "config/photo.png",
+  "summary": "One paragraph in your own words: what you build, what you want next, what excites you. The evaluator weighs this for role-shape and excitement fit, so write it as motivation, not as a second skills list.",
+  "languages": "Portuguese (Native) | English (C1) | Spanish (B2) | German (A2, studying for B1)",
+  "_language_levels_comment": "CEFR levels, machine-readable. This is what calibrates the language rule, and it must be your honest CURRENT level: a mandatory level above yours but below C1 caps the job at REVIEW, C1/fluent/native is a hard blocker. Update it here as you progress -- never in the code.",
+  "language_levels": {
+    "german": "A2",
+    "french": "",
+    "italian": ""
+  },
   "skills": {
     "technical_default": [],
     "technical_data_focused": [],
@@ -22,7 +31,27 @@
     "communication": [],
     "certifications": []
   },
-  "experience": [],
-  "education": [],
+  "experience": [
+    {
+      "title": "Job title",
+      "company": "Company -- optional note after a double dash",
+      "period": "Mon YYYY - Present",
+      "location": "City, Country",
+      "bullets": []
+    }
+  ],
+  "projects": [
+    {
+      "title": "Project name",
+      "bullets": []
+    }
+  ],
+  "education": [
+    {
+      "degree": "Degree name",
+      "institution": "Institution",
+      "period": "YYYY - YYYY"
+    }
+  ],
   "hobbies": ""
 }

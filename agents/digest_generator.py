@@ -60,6 +60,11 @@ def generate_digest(max_jobs=5):
         "generated_at": timestamp.isoformat(),
         "total_evaluated": len(scored),
         "evaluation_errors": errors,
+        # Jobs whose posting text was too thin to judge (an e-mail alert card
+        # carries a title and nothing else). utils.effective_decision caps
+        # them at REVIEW, so tracking this ratio over time is how you see
+        # whether agents/description_enricher.py is actually finding matches.
+        "scored_title_only": sum(1 for e in scored if e.get("insufficient_info")),
         "top_jobs": top_jobs,
     }
     return digest, top_jobs
@@ -76,6 +81,9 @@ def format_digest_text(digest, top_jobs):
     if digest.get("evaluation_errors"):
         lines.append(f"!! NOT evaluated (API errors): {digest['evaluation_errors']} "
                      f"-- check digests/evaluation_errors.txt and API credits")
+    if digest.get("scored_title_only"):
+        lines.append(f"   Of these, {digest['scored_title_only']} had no posting text "
+                     f"(scored on the title alone, capped at REVIEW)")
     lines.append("")
     lines.append("TOP JOBS (sorted by fit score):")
     lines.append("-" * 70)

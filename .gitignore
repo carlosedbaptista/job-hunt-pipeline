@@ -16,14 +16,14 @@ oauth-secrets/
 archive/
 debug_*.py
 
-# Scripts e artefatos temporarios
+# Temporary scripts and artifacts
 scripts/
 docs/legacy/
 fix_*.py
 hotfix_*.py
 debug_*.py
 
-# Fix scripts na raiz (nao commitar)
+# Fix scripts at the repo root (never commit)
 /*fix*.py
 /*hotfix*.py
 
@@ -32,9 +32,11 @@ config/gdrive_credentials.json
 config/gdrive_refresh_token.json
 config/oauth2_client_secret.json
 
-# Dados pessoais do candidato (PII) -- restaurados via secrets no CI
+# Candidate PII -- restored from base64 secrets in CI
 config/candidate_profile.json
-config/photo.png
+# photo.* (not just .png/.jpg): CLAUDE.md specifies the glob, and a
+# re-encode to .jpeg/.webp would otherwise become committable.
+config/photo.*
 
 # Generated docs (CVs/CLs)
 generated_docs/
@@ -42,4 +44,11 @@ digests/raw_emails*.json
 config/cv_model.txt
 config/cover_letter_model.txt
 .venv-tools/
-config/photo.jpg
+
+# Base64 blobs of the profile, pasted into GitHub Secrets. They decode
+# straight back to PII and this repo is public -- never commit one.
+CANDIDATE_PROFILE_B64.txt
+*_B64.txt
+
+# Patch files applied locally
+*.patch

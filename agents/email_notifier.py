@@ -11,7 +11,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
-from utils import THRESHOLD_APPLY, THRESHOLD_REVIEW
+from utils import THRESHOLD_APPLY, THRESHOLD_REVIEW, effective_decision
 
 
 def esc(value) -> str:
@@ -26,13 +26,34 @@ def safe_url(url) -> str:
     return u if u.lower().startswith(("http://", "https://")) else ""
 
 
+MAX_DIGEST_AGE_HOURS = int(os.environ.get("MAX_DIGEST_AGE_HOURS", "18"))
+
+
 def load_digest():
     digest_file = "digests/digest_latest.json"
     if not os.path.exists(digest_file):
         print("X Digest not found.")
         return None
-    with open(digest_file, "r", encoding="utf-8") as f:
-        return json.load(f)
+    try:
+        with open(digest_file, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (ValueError, OSError) as e:
+        print(f"X Digest unreadable ({type(e).__name__}: {e})")
+        return None
+
+
+def digest_age_hours(digest):
+    """Hours since the digest was generated, or None if it does not say."""
+    stamp = (digest or {}).get("generated_at")
+    if not stamp:
+        return None
+    try:
+        parsed = datetime.fromisoformat(str(stamp))
+    except (TypeError, ValueError):
+        return None
+    if parsed.tzinfo is None:
+        return (datetime.now() - parsed).total_seconds() / 3600
+    return (datetime.now(parsed.tzinfo) - parsed).total_seconds() / 3600
 
 
 def _get_field(job_eval, field, default="N/A"):
@@ -149,7 +170,7 @@ def format_digest_as_html(digest):
         <div class="container">
             <div class="header">
                 <h1>Job Hunt Daily Digest</h1>
-                <p>Your personalised job opportunities - {datetime.now().strftime('%B %d, %Y')}</p>
+                <p>Your personalised job opportunities - {esc(digest.get('generated_at', '')[:10] or datetime.now().strftime('%Y-%m-%d'))}</p>
             </div>
 
             <div class="content">
@@ -169,7 +190,14 @@ def format_digest_as_html(digest):
         url = safe_url(_get_field(job_eval, "url", default=""))
         portal = esc(_get_field(job_eval, "portal"))
 
-        color = "#32CD32" if score >= THRESHOLD_APPLY else "#FFA500" if score >= THRESHOLD_REVIEW else "#999"
+        # Colour and label come from the DERIVED decision, never from the
+        # raw score: digest_generator ranks every scored record, including
+        # hard-blocked and REVIEW-capped ones. A blind 85 (insufficient_info,
+        # capped at REVIEW) used to arrive as a green APPLY-coloured top
+        # pick, while the .txt digest and the dashboard called the same job
+        # REVIEW -- three views of one job, disagreeing.
+        decision = effective_decision(job_eval)
+        color = {"APPLY": "#32CD32", "REVIEW": "#FFA500"}.get(decision, "#999")
 
         html += f"""
                 <div class="job">
@@ -179,13 +207,22 @@ def format_digest_as_html(digest):
                     <div class="job-location">{location} - {portal}</div>
                     <div>
                         <span class="job-score" style="background-color: {color};">
-                            {score}/100 Fit Score
+                            {score}/100 - {esc(decision)}
                         </span>
                     </div>
         """
         if url:
             html += f'<a href="{esc(url)}" class="job-link">View job -&gt;</a>'
         html += "</div>"
+
+    blind = digest.get("scored_title_only", 0)
+    if blind:
+        html += f"""
+                <div style="margin-top: 20px; padding: 12px; background-color: #f5f5f5; border-radius: 8px; border-left: 4px solid #999;">
+                    <strong>{blind} job(s) had no posting text</strong> and were scored on the
+                    title alone, so they are capped at REVIEW.
+                </div>
+        """
 
     errors = digest.get("evaluation_errors", 0)
     if errors:
@@ -250,11 +287,24 @@ def notify_digest():
         print("X No digest to send")
         return False
 
+    age = digest_age_hours(digest)
+    if age is not None and age > MAX_DIGEST_AGE_HOURS:
+        # The workflow runs this step with `if: always()`, so when the
+        # evaluator exits 1 (no Kimi credits) the digest step is skipped and
+        # this would happily re-send the PREVIOUS run's top 5 stamped with
+        # today's date. Refuse instead of lying.
+        print(f"X Digest is {age:.1f}h old (limit {MAX_DIGEST_AGE_HOURS}h) -- "
+              f"an earlier step must have failed. Refusing to re-send a stale digest.")
+        return False
+
     top_jobs = digest.get("top_jobs", [])
     total_evaluated = digest.get("total_evaluated", 0)
     if not top_jobs or total_evaluated == 0:
-        print("No jobs in digest -- skipping email notification")
-        return False
+        # A day with no new jobs is normal, not a failure: returning False
+        # here made the step (and the whole run) red, training the owner to
+        # ignore red runs -- exactly when a real failure needs attention.
+        print("No jobs in digest -- nothing to send today (not an error)")
+        return True
 
     sender_email = os.environ.get("GMAIL_SENDER", "")
     recipient_email = os.environ.get("GMAIL_RECIPIENT", "")
