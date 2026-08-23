@@ -298,19 +298,11 @@ def get_template_head():
         <p>Automated job search &amp; evaluation pipeline &middot; <a href="https://github.com/carlosedbaptista/job-hunt-pipeline/actions/workflows/add-job.yml" target="_blank">+ Add a job manually</a> &middot; <a href="https://github.com/carlosedbaptista/job-hunt-pipeline/actions/workflows/track-application.yml" target="_blank">+ Track an application</a> (Actions &rarr; Run workflow)</p>
     </header>
 
-    <!-- Candidate Profile (only data the owner explicitly chose to show) -->
-    <div class="card" style="margin-bottom: 20px;">
-        <h3>Candidate Profile</h3>
-        <div class="profile">
-            <div class="profile-item"><strong>Name</strong>Carlos Baptista</div>
-            <div class="profile-item"><strong>Role</strong>AI &amp; Data Engineer Intern</div>
-            <div class="profile-item"><strong>Location</strong>Zürich Area, CH</div>
-            <div class="profile-item"><strong>Permit</strong>Swiss Work Permit B (valid)</div>
-            <div class="profile-item"><strong>Notice</strong>2 weeks</div>
-            <div class="profile-item"><strong>Languages</strong>EN (C1) | PT (Native) | ES (B2) | DE (A2→B1)</div>
-            <div class="profile-item"><strong>LinkedIn</strong><a href="https://www.linkedin.com/in/carlosedbaptista/" target="_blank">linkedin.com/in/carlosedbaptista</a></div>
-        </div>
-    </div>
+    <!-- No candidate profile card. It printed name, permit status, notice
+         period, languages and LinkedIn onto a page served publicly by GitHub
+         Pages with no authentication. None of it is needed to read a job
+         list, and a tracker that opens with the owner's permit status reads
+         as a personal page rather than a working tool. -->
 
     <!-- Metrics -->
     <div class="grid">
