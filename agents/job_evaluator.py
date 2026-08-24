@@ -63,7 +63,7 @@ def load_profile_summary(p: dict = None) -> str:
     p = load_profile() if p is None else p
     if not p:
         # Minimal summary without PII.
-        return ("Candidate: AI & Automation Developer Intern, Zurich Area CH (Permit B), "
+        return ("Candidate: AI Software Engineer, Zurich Area CH (Permit B), "
                 "2 weeks notice. Looking for: AI / data platform engineering internship. "
                 "Skills: Python, SQL, LLM APIs, GitHub Actions. Languages: PT, EN(C1), ES(B2), DE(A2).")
 
@@ -87,7 +87,7 @@ def load_profile_summary(p: dict = None) -> str:
     target_line = f"Looking for (score fit to THIS, not to his current job): {target}. " if target else ""
 
     return (
-        f"Candidate, currently: {p.get('role', 'AI & Automation Developer Intern')}, "
+        f"Candidate, currently: {p.get('role', 'AI Software Engineer')}, "
         f"Zurich Area CH ({p.get('permit', 'Permit B')}), "
         f"notice {p.get('notice_period', '2 weeks')}. "
         f"{target_line}"
