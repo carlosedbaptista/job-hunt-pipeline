@@ -295,6 +295,30 @@ def _page_text(url, selector_first=True):
     return re.sub(r"\n{3,}", "\n\n", text).strip()
 
 
+def _linkedin_topcard(url):
+    """(title, company) from the guest response's top card, or ("", "")."""
+    r = _get(url)
+    if not r:
+        return "", ""
+    try:
+        from bs4 import BeautifulSoup
+    except ImportError:
+        return "", ""
+    soup = BeautifulSoup(r.text, "html.parser")
+
+    def pick(*selectors):
+        for selector in selectors:
+            node = soup.select_one(selector)
+            if node:
+                value = node.get_text(strip=True)
+                if value:
+                    return value
+        return ""
+
+    return (pick(".topcard__title", ".top-card-layout__title", "h2"),
+            pick(".topcard__org-name-link", ".topcard__flavor"))
+
+
 def resolve_from_url(url):
     """Full posting text from the aggregator link, or None.
 
@@ -305,10 +329,16 @@ def resolve_from_url(url):
     if not link.startswith(("http://", "https://")):
         return None
 
+    real_title = real_company = ""
     match = _LINKEDIN_JOB_ID.search(link)
     if match:
-        text = _page_text(
-            f"https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{match.group(1)}")
+        guest = f"https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{match.group(1)}"
+        text = _page_text(guest)
+        # The guest response also carries the authoritative title and
+        # employer. Taking them repairs records whose fields were mangled by
+        # the parser, and stops a navigation card ("Jobs similar to ...")
+        # from keeping its own title while wearing a real posting's text.
+        real_title, real_company = _linkedin_topcard(guest)
         provider = "linkedin-guest"
     elif any(host in link for host in ("jobs.ch", "xing.com")):
         text = _page_text(link)
@@ -320,7 +350,8 @@ def resolve_from_url(url):
     if len(text) < MIN_USEFUL_CHARS or is_truncated_description(text):
         return None
     return {"provider": provider, "slug": "", "url": link,
-            "matched_title": "", "ratio": 1.0, "text": text}
+            "matched_title": real_title, "company": real_company,
+            "ratio": 1.0, "text": text}
 
 
 def _norm_title(t):

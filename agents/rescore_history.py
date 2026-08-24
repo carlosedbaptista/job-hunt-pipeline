@@ -253,6 +253,15 @@ def recover_pass(limit: int, apply_changes: bool):
             continue
         job["description"] = hit["text"]
         job["description_source"] = hit["provider"]
+        # The posting page is authoritative for the title and employer too.
+        # Taking them repairs records the parser mangled, and stops a
+        # navigation card ("Jobs similar to ...") from keeping its own title
+        # while wearing a real posting's text -- which is exactly what the
+        # first recovery pass produced, at 87/APPLY.
+        if hit.get("matched_title"):
+            job["title"] = hit["matched_title"]
+        if hit.get("company"):
+            job["company"] = hit["company"]
         fresh = job_evaluator.evaluate_job(job)
         if fresh.get("decision") in ("ERROR", "NOT_EVALUATED"):
             print("still not evaluable")

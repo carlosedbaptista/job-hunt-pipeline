@@ -478,20 +478,18 @@
     "no_posting_text": true
   },
   {
-    "score": null,
-    "hard_blockers": [
-      "Role requires 5+ years experience and senior-level expertise; candidate is an intern seeking junior/agentic systems internship — fundamental level mismatch, not merely 'underqualified' but categorically wrong career stage"
-    ],
-    "insufficient_info": true,
+    "score": 42,
+    "hard_blockers": [],
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Role requires 5+ years experience and senior-level expertise; candidate is an intern seeking junior/agentic systems internship — fundamental level mismatch, not merely 'underqualified' but categorically wrong career stage",
-      "Title 'Senior AI Engineer' is disqualifying level gap — candidate explicitly seeks internship/junior role",
-      "No mention of agentic systems or greenfield platform building; role appears to be scaling existing ESG/NLP pipelines",
-      "ESG domain specialization may not align with candidate's excitement for agentic/automation work",
-      "Candidate's entire profile (2-week notice, intern title, seeking internship) signals immediate mismatch with senior permanent role expectations",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Senior role vs. intern/junior candidate: massive experience gap in years and depth",
+      "Explicitly requires mentoring experience and leading discoveries—he's seeking to be mentored",
+      "AWS Bedrock, Kubernetes, fine-tuning at ESG-scale: significant technical depth gaps",
+      "'Senior' in title with 'proposing improvements to existing services' implies maintaining and evolving complex systems, not greenfield building from zero",
+      "He would likely not make it past initial screening due to title/seniority mismatch",
+      "Role shape is wrong: he wants 'internship where I can go deeper,' this expects someone already deep"
     ],
     "job": {
       "company": "RepRisk",
@@ -499,36 +497,40 @@
       "location": "Zurich",
       "url": "https://www.linkedin.com/comm/jobs/view/4424568117/?trackingId=6QXkuJABRbmcR0hPAp%2FjBA%3D%3D&refId=unZbkDlBT0C%2F%2FJd8moxoyg%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "About Us\nRepRisk is the world’s most respected Data as a Service (DaaS) company for reputational risks and responsible business conduct. Our mission is to provide transparency on business conduct risks to drive positive change. Combining advanced AI with deep human expertise, and a proven methodology at the core, RepRisk’s solutions bring performance and peace of mind, enabling clients to know more, be sure, and act faster. With our values of intellectual honesty and humility, operational excellence, and openness and respect, our diverse teams of talented experts are pioneering solutions that enable clients to make better informed decisions. Headquartered in Zurich, and with offices in Toronto, New York, London, Berlin, Manila, and Tokyo, we stay close to clients and bring an independent lens to the industry. United by our shared belief in the power of data, our 400 people are proud to be setting the global standard for business conduct data and driving positive and meaningful change through transparency.\nWe offer\nWe offer a diverse, multicultural, and mission‑driven workplace where your impact truly matters. You’ll join a collaborative team that values openness, respect, and work–life balance.\nWhat you can expect:\nFlexible working hours and a hybrid model (with home office days).\nUp to 4 weeks per year working abroad, subject to policy and approvals.\nPaid training and volunteering days, plus charity donation matching.\nHealth & fitness subsidy to support your well‑being.\nFrequent team and social events that bring our global community together.\nA welcoming office environment with complimentary coffee, refreshments, fresh fruit, and healthy snacks.\nA company that embraces diversity and values different perspectives.\nJob Description\nAbout You\nAre you looking for an opportunity to work on meaningful, cutting-edge projects at the intersection of agentic AI and responsible business conduct? Did you wonder what it would be like to work at a company where your contribution has a real, measurable impact - and you are rewarded for it?\nIf you have a passion for building production-grade AI agents, MCP-based tool ecosystems, and data-rich AI workflows, then this is the perfect role for you! We value autonomy, allowing you to bring your innovative ideas to fruition in an inclusive, feedback-oriented environment. Your work on agentic systems will directly contribute to advancing gloabl corporate responsibility through technology.\nYour Responsibilities\nAs our new Senior AI Engineer, you will play a crucial role in developing state-of-the-art agentic systems and AI integrations within RepRisk’s Agentic delivery team. You will contribu\n[... middle of the posting omitted ...]\ns:\nSolid understanding of software design principles (SOLID, DRY, KISS), Clean Code, and common architecture patterns; ability to translate them into maintainable production code.\nOwnership & drive:\nHigh sense of product ownership, taking full responsibility for assigned work end-to-end, supporting the Tech Lead and PM in discoveries, proposing improvements to existing services, and showing initiative. Strong responsiveness and reliability.\nContinuous learner:\nStays on top of the latest best practices in AI engineering and shares knowledge across the team.\nAdditionally, the following are a plus:\nAWS Bedrock & AgentCore:\nhands-on experience with AWS Bedrock and Bedrock AgentCore for managed agent deployments and tool orchestration.\nKubernetes:\nexperience running containerized workloads on Kubernetes in production.\nML engineering:\nexperience with classical ML / LLM engineering on large datasets — fine-tuning, retrieval, and summarization pipelines over ESG-scale corpora.\nCoding agents:\nexperience building software solutions with the support of coding agents (Claude Code, Cursor, etc.) and leveraging them to accelerate delivery.\nMentorship:\nexperience mentoring engineers and providing thoughtful, constructive feedback.\nAdditional Information\nPlease note that we will only consider candidates with a valid work permit."
     },
-    "technical_fit": "Poor. Role demands 5+ years production ML/AI engineering, deep expertise in NLP/LLMs, vector databases, MLOps, and senior-level system design. Candidate is an intern with <2 years total tech experience, no production ML systems at scale, no MLOps tooling (Kubernetes, MLflow, Weights & Biases), no vector DB experience, and no senior engineering depth.",
-    "contextual_fit": "Weak. RepRisk is an established ESG data/AI company (not a startup greenfield environment). 'Senior' title signals they need someone to lead, architect, and mentor — exact opposite of candidate's stated goal for 'internship or junior role' with 'real ownership from day one' in an agentic/data platform context. The role shape is maintenance/scale of existing systems, not zero-to-one building.",
-    "salary_estimate": "CHF 120,000–150,000+ (senior role at established Zurich fintech)",
-    "culture_fit": "Neutral/Unknown. RepRisk appears structured and domain-specialized (ESG/finance). Candidate is open to new domains, but the seniority mismatch dominates.",
+    "technical_fit": "Strong conceptual alignment—agentic AI, LLM pipelines, data-rich workflows, and production ownership are exactly what the candidate wants to build. However, this is a SENIOR role requiring deep experience in Python, system design, ML engineering at scale, and likely 5+ years of production AI engineering. The candidate is an intern/junior with ~1-2 years of software experience, mostly in automation and pipeline building, not senior architecture or ML engineering on ESG-scale corpora.",
+    "contextual_fit": "Zurich-based, hybrid model, valid work permit required (he has B permit—meets this). Mission-driven ESG data company aligns with his interest in meaningful work. However, the seniority mismatch is severe: this role expects someone who can mentor others, own complex systems independently, and likely has deep experience with AWS Bedrock, Kubernetes, and fine-tuning at scale. He is explicitly seeking internship/junior roles with learning runway.",
+    "salary_estimate": "CHF 120,000–160,000 (senior AI engineer in Zurich)",
+    "culture_fit": "Strong on paper—autonomy, ownership, feedback-oriented, inclusive. But culture fit is moot given seniority mismatch; he'd be set up to fail or be rejected immediately.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Senior role vs. intern/junior candidate: massive experience gap in years and depth",
+      "Explicitly requires mentoring experience and leading discoveries—he's seeking to be mentored",
+      "AWS Bedrock, Kubernetes, fine-tuning at ESG-scale: significant technical depth gaps",
+      "'Senior' in title with 'proposing improvements to existing services' implies maintaining and evolving complex systems, not greenfield building from zero",
+      "He would likely not make it past initial screening due to title/seniority mismatch",
+      "Role shape is wrong: he wants 'internship where I can go deeper,' this expects someone already deep"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
-    "no_posting_text": true
+    "evaluated_at": null,
+    "recovered": true
   },
   {
-    "score": null,
-    "hard_blockers": [
-      "Role is Senior-level requiring extensive prior ML systems experience; candidate is explicitly seeking internship/junior position. Structural level mismatch—not eligible for senior role."
-    ],
-    "insufficient_info": true,
+    "score": 52,
+    "hard_blockers": [],
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Role is Senior-level requiring extensive prior ML systems experience; candidate is explicitly seeking internship/junior position. Structural level mismatch—not eligible for senior role.",
-      "No evidence of model training, fine-tuning, or distributed computing experience",
-      "Evaluation frameworks mentioned (lm-eval-harness, HELM) are unfamiliar to candidate",
-      "Production model serving at scale (vLLM, TGI, Ray) is entirely absent from background",
-      "Consultancy senior roles rarely offer the 'internship with ownership' shape candidate prioritizes",
-      "Candidate's 2-week notice and permit B are irrelevant advantages for a role he cannot qualify for",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Senior-level role requiring 5+ years ML engineering experience—candidate is intern-level with ~1-2 years tech experience total",
+      "Explicit requirement for experience 'beyond simple API integration' with LLMs; candidate's strength is exactly API integration (Claude, Kimi)",
+      "Core stack mismatch: PyTorch/TensorFlow/JAX and model training/fine-tuning vs. his Python/pandas/SQL/Node.js automation tooling",
+      "US EST overlap until 3pm means working until 9-10pm CET regularly—significant schedule friction",
+      "Evaluation-heavy, research-leaning role shape vs. his stated preference for building and owning end-to-end production systems",
+      "Large consulting/services firm culture likely less 'day one ownership' than startup/small team environments he prefers",
+      "No mention of agentic systems building—only 'understanding' of agentic concepts as a requirement"
     ],
     "job": {
       "company": "Grid Dynamics",
@@ -536,33 +538,40 @@
       "location": "Zug",
       "url": "https://www.linkedin.com/comm/jobs/view/4447544171/?trackingId=VUL8bbH4Ts%2BJeMHnj%2BuWqQ%3D%3D&refId=3wNZtEs7TrW1mItludIZHg%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "We are looking for an exceptional\nMachine Learning Engineer\nto help shape the next generation of AI systems, with a focus on modern LLM architectures, RAG implementations, autonomous agents and AI safety.\nWorking hours: overlap until 3 pm US EST is required.\nResponsibilities\nOwn machine learning projects from problem definition through implementation.\nDesign and implement evaluation methodologies for AI and machine learning systems.\nCreate datasets, benchmarks, and metrics to measure model and product performance.\nEvaluate and improve LLM-based systems, including RAG applications, agents, safety systems, and end-to-end AI products.\nAnalyze model behavior, identify failure modes, and recommend practical improvements.\nBuild and maintain ML pipelines, tooling, and evaluation infrastructure.\nCollaborate with product, engineering, and research teams to translate business goals into measurable ML objectives.\nPrototype and iterate rapidly to solve business and product challenges.\nRequirements\n5+ years of experience in Machine Learning Engineering or a related field.\nStrong Python programming skills and experience with modern ML frameworks such as PyTorch, TensorFlow, or JAX.\nExperience training, fine-tuning, or adapting machine learning models.\nExperience working with Large Language Models beyond simple API integration.\nExperience evaluating AI systems and translating results into actionable recommendations.\nExperience building and maintaining machine learning systems and pipelines.\nUnderstanding of retrieval-augmented generation (RAG), agentic systems, and LLM safety concepts.\nNice to have\nExperience designing benchmarks, evaluation frameworks, or automated evaluation systems.\nExperience with distributed training or large-scale model inference.\nWe offer\nOpportunity to work on bleeding-edge projects\nWork with a highly motivated and dedicated team\nCompetitive salary\nFlexible schedule\nBenefits package - medical insurance, sports\nCorporate social events\nProfessional development opportunities\nAbout Us\nGrid Dynamics (NASDAQ: GDYN) is a leading provider of technology consulting, platform and product engineering, AI, and advanced analytics services. Fusing technical vision with business acumen, we solve the most pressing technical challenges and enable positive business outcomes for enterprise companies undergoing business transformation. A key differentiator for Grid Dynamics is our 8 years of experience and leadership in enterprise AI, supported by profound expertise and ongoing investment in data, analytics, cloud & DevOps, application modernization and customer experience. Founded in 2006, Grid Dynamics is headquartered in Silicon Valley with offices across the Americas, Europe, and India."
     },
-    "technical_fit": "Mismatch. Role requires senior-level ML engineering with deep expertise in LLM fine-tuning, distributed training (Ray, vLLM, TGI), evaluation frameworks (EleutherAI lm-eval-harness, HELM), and production-scale model serving. Candidate is junior/intern level with API-level LLM integration (Claude, Kimi), automation pipelines, and no experience in model training, distributed systems, or advanced evaluation methodologies. The gap from 'API consumer' to 'systems builder/trainer' is substantial.",
-    "contextual_fit": "Poor. Role explicitly targets senior engineers ('Senior Machine Learning Engineer') with 5+ years implied experience. Candidate seeks internship/junior role with ownership and growth trajectory. Title alone signals structural mismatch—this is a leadership/execution role, not a learning opportunity. Grid Dynamics is a consultancy; senior roles typically client-facing with delivery pressure, not mentorship environments.",
-    "salary_estimate": "CHF 120,000 - 160,000 (senior ML engineering in Zug)",
-    "culture_fit": "Neutral-negative. Consultancy culture at senior level emphasizes client delivery, billable hours, and established expertise. Candidate's motivation centers on greenfield building, zero-to-one ownership, and skill acquisition—this role would expect immediate contribution on complex systems.",
+    "technical_fit": "Moderate. The role focuses heavily on ML engineering fundamentals (PyTorch, TensorFlow, JAX, model training/fine-tuning, distributed training) that the candidate hasn't demonstrated. His strength is in LLM API integration, automation pipelines, and production deployment—this role wants deeper ML systems engineering, benchmark design, and research-to-production evaluation infrastructure. The 'beyond simple API integration' line is a direct mismatch with his current level.",
+    "contextual_fit": "Weak. 'Senior' in title with 5+ years requirement is far above his experience level. The role emphasizes evaluation methodology, dataset creation, and research collaboration—more academic/research engineering than his preferred 'zero to production' builder ownership. US EST overlap until 3pm implies late working hours in Switzerland (9pm+), which is a lifestyle friction.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Unclear. Grid Dynamics is a large consulting/engineering services firm (NASDAQ-listed, 8+ years AI practice, global offices). This suggests structured teams, client-facing work, and established processes rather than the small-team, high-ownership environment he seeks. 'Highly motivated and dedicated team' is generic.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Senior-level role requiring 5+ years ML engineering experience—candidate is intern-level with ~1-2 years tech experience total",
+      "Explicit requirement for experience 'beyond simple API integration' with LLMs; candidate's strength is exactly API integration (Claude, Kimi)",
+      "Core stack mismatch: PyTorch/TensorFlow/JAX and model training/fine-tuning vs. his Python/pandas/SQL/Node.js automation tooling",
+      "US EST overlap until 3pm means working until 9-10pm CET regularly—significant schedule friction",
+      "Evaluation-heavy, research-leaning role shape vs. his stated preference for building and owning end-to-end production systems",
+      "Large consulting/services firm culture likely less 'day one ownership' than startup/small team environments he prefers",
+      "No mention of agentic systems building—only 'understanding' of agentic concepts as a requirement"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
-    "no_posting_text": true
+    "evaluated_at": null,
+    "recovered": true
   },
   {
-    "score": null,
+    "score": 55,
     "hard_blockers": [],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Role is fundamentally DevOps platform engineering, not AI/automation/data engineering—major career direction mismatch",
-      "'Forward Deployed' implies customer-facing support/consulting, exactly the 'support work' candidate wants to avoid",
-      "Schwyz is not Zurich/Zug; while within Switzerland, it's a notable commute and not the target area",
-      "Heavy Kubernetes/Terraform/Infrastructure focus absent from candidate's stack",
-      "Postgraduate Data Science + LLM specialization would be underutilized; role would be a career sideways/backwards step",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Staff-level role requiring years of platform engineering experience; candidate has internship-level experience",
+      "Ruby/Go stack mismatch—candidate's Python/Node.js not transferable without significant ramp",
+      "'Agentic SDLC' is marketing around AI-assisted development workflows, not building agentic systems with LLM APIs",
+      "Customer-facing embedded role means troubleshooting others' complex deployments, not owning greenfield builds",
+      "2-week notice irrelevant for role likely requiring immediate senior impact",
+      "Location Schwyz is commutable from Zurich area but role is EMEA-wide remote-first"
     ],
     "job": {
       "company": "GitLab",
@@ -570,19 +579,25 @@
       "location": "Schwyz, Switzerland",
       "url": "https://www.linkedin.com/comm/jobs/view/4439374878/?trackingId=bS2NKy76Rx6SCJPfW4uaFQ%3D%3D&refId=L%2B4rn4s%2FSzWs9Th0wVOZng%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "GitLab is the intelligent orchestration platform for DevSecOps. GitLab enables organizations to increase developer productivity, improve operational efficiency, reduce security and compliance risk, and accelerate digital transformation. More than 50 million registered users and more than 50% of the Fortune 100* trust GitLab to ship better, more secure software faster.\nThe same principles built into our products are reflected in how our team works: we embrace AI as a core productivity multiplier, with all team members expected to incorporate AI into their daily workflows to drive efficiency, innovation, and impact. GitLab is where careers accelerate, innovation flourishes, and every voice is valued. Our high-performance culture is driven by our values and continuous knowledge exchange, enabling our team members to reach their full potential while collaborating with industry leaders to solve complex problems. Co-create the future with us as we build technology that transforms how the world develops software.\nFortune 500® is a registered trademark of Fortune Media IP Limited, used under license. Claim based on GitLab data. Fortune 100 refers to the top 20% ranked companies in the 2025 Fortune 500 list, published in June 2025. Fortune and Fortune Media IP Limited are not affiliated with, and do not endorse products or services of GitLab.\nStaff Forward Deployed Engineer, Agentic SDLC - (EMEA Only)\nAn Overview Of This Role\nGitLab’s Forward Deployed Engineering team is a field-situated product engineering function focused on strategic customer outcomes, artificial intelligence (AI) adoption, and direct contributions to GitLab’s product. This isn't a traditional field engineering, solutions architecture, or professional services role. As a Staff Forward Deployed Engineer, you'll work closely with customers while maintaining the technical standards and contribution discipline of a Staff-level product engineer.\nYou'll work where strategic customer urgency, complex technical ambiguity, and GitLab product execution intersect. You'll partner directly with strategic customers and teams across Product, Engineering, Support, Site Reliability Engineering (SRE), Solutions Architecture (SA), Customer Success Architecture (CSA), Customer Success Management (CSM), and Professional Services. You'll diagnose and resolve high-impact adoption blockers, contribute production-quality fixes and features, and turn what you learn into repeatable patterns for GitLab and its customers.\nWhy this role exists\nStrategic customers sometimes encounter challenges that are too broad, deep, urgent, or cross-functional for any single team to own from start to \n[... middle of the posting omitted ...]\ne, however some roles may carry specific location-based eligibility requirements. Our Talent Acquisition team can help answer any questions about location after starting the recruiting process.\nPrivacy Policy:\nPlease review our Recruitment Privacy Policy. Your privacy is important to us.\nGitLab is proud to be an equal opportunity workplace and is an affirmative action employer. GitLab’s policies and practices relating to recruitment, employment, career development and advancement, promotion, and retirement are based solely on merit, regardless of race, color, religion, ancestry, sex (including pregnancy, lactation, sexual orientation, gender identity, or gender expression), national origin, age, citizenship, marital status, mental or physical disability, genetic information (including family medical history), discharge status from the military, protected veteran status (which includes disabled veterans, recently separated veterans, active duty wartime or campaign badge veterans, and Armed Forces service medal veterans), or any other basis protected by law. GitLab will not tolerate discrimination or harassment based on any of these characteristics. See also GitLab’s EEO Policy and EEO is the Law. If you have a disability or special need that requires accommodation, please let us know during the recruiting process."
     },
-    "technical_fit": "Mismatch. Role is heavily infrastructure/DevOps/SRE-oriented (Kubernetes, Terraform, CI/CD platforms, customer-facing production support) rather than AI/automation/LLM building. Candidate's Python/SQL/LLM API skills are tangential; the core work is platform engineering and incident response, not agentic systems or data pipelines.",
-    "contextual_fit": "Poor. 'Forward Deployed Engineer' at GitLab means embedding with customers to operationalize GitLab's DevSecOps platform—consulting, troubleshooting, enabling customer teams. This is support-adjacent customer success work with heavy operational burden, not greenfield building with ownership. Candidate explicitly wants 'ownership from day one rather than support work'; this role is essentially the opposite.",
-    "salary_estimate": "CHF 85-110k (junior FDE range in Switzerland)",
-    "culture_fit": "Neutral-to-poor. GitLab is famously all-remote with heavy async documentation culture; candidate's preference for hands-on zero-to-production building doesn't align with FDE's consultative, reactive, customer-ticket-driven rhythm.",
+    "technical_fit": "Mismatch. Role is Staff-level (senior IC) requiring deep DevSecOps platform expertise, Ruby/Go backend contribution, and extensive production systems experience. Candidate is junior/intern-level with Python/Node.js stack, no Ruby/Go, no GitLab internals knowledge, and 2 years total tech experience. The 'Agentic SDLC' framing is aspirational branding around AI-assisted DevSecOps, not hands-on LLM/agentic systems building.",
+    "contextual_fit": "Poor. 'Forward Deployed Engineer' is embedded customer-facing product engineering, not greenfield AI pipeline ownership. Role demands Staff-level autonomy diagnosing complex adoption blockers across enterprise customers—far beyond intern/junior scope. Candidate wants 'zero to production' ownership of LLM systems; this role is about fixing and extending existing GitLab platform at strategic accounts.",
+    "salary_estimate": "CHF 140k-180k+ (Staff level, not disclosed)",
+    "culture_fit": "Mixed. GitLab's all-remote, high-performance, AI-integrated culture aligns with candidate's values. However, the role's seniority and customer-embedded nature mean he'd be expected to operate as a senior technical authority, not learn and build from scratch.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Staff-level role requiring years of platform engineering experience; candidate has internship-level experience",
+      "Ruby/Go stack mismatch—candidate's Python/Node.js not transferable without significant ramp",
+      "'Agentic SDLC' is marketing around AI-assisted development workflows, not building agentic systems with LLM APIs",
+      "Customer-facing embedded role means troubleshooting others' complex deployments, not owning greenfield builds",
+      "2-week notice irrelevant for role likely requiring immediate senior impact",
+      "Location Schwyz is commutable from Zurich area but role is EMEA-wide remote-first"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
-    "no_posting_text": true
+    "evaluated_at": null,
+    "recovered": true
   },
   {
     "score": null,

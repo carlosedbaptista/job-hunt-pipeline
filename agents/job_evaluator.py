@@ -502,6 +502,22 @@ def evaluate_job(job):
         # same job becomes APPLY or REVIEW depending on which sample arrived.
         # So re-sample exactly there, take the median of three, and leave the
         # other ~90% of jobs at one call each.
+        # Partial evidence cannot certify an APPLY-band score. A truncated
+        # teaser is the marketing intro with the requirements cut off, and
+        # the Avaloq posting proved what that is worth: 82 on the teaser, 58
+        # on the full text. Capping only the DECISION left an unexplained
+        # "85, REVIEW" on the dashboard, which is the question nobody can
+        # answer in front of a manager.
+        #
+        # So the score itself is capped just below the APPLY threshold. The
+        # invariant is then true by construction: a score in the APPLY band
+        # means the posting was actually read.
+        if (score is not None and score >= THRESHOLD_APPLY
+                and (insufficient_info or ev.get("language_requirement") == "intermediate")):
+            print(f"  capped {score} -> {THRESHOLD_APPLY - 1}: partial evidence "
+                  f"cannot support an APPLY-band score")
+            score = THRESHOLD_APPLY - 1
+
         if score is not None and _is_borderline(score):
             ev, score = _median_of_three(prompt, ev, score, title, company)
         if score is None:

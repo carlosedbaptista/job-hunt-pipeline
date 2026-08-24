@@ -331,10 +331,29 @@ class TestEvaluateJobRobustness:
         assert not teaser.rstrip().endswith((".", "!", "?"))
         ev = eval_with({"score": 95, "concerns": [], "hard_blockers": []},
                        job=make_job(description=teaser))
-        assert ev["score"] == 95
+        # The SCORE is capped too, not just the decision. Capping only the
+        # decision left "85, REVIEW" on the dashboard with no explanation a
+        # reader could reach -- and the Avaloq posting showed what a teaser
+        # score is worth: 82 on the teaser, 58 on the full text.
+        from utils import THRESHOLD_APPLY
+        assert ev["score"] == THRESHOLD_APPLY - 1
         assert ev["insufficient_info"] is True
         assert ev["decision"] == "REVIEW"
         assert ev["materials_needed"] == []
+
+    def test_a_score_in_the_apply_band_always_means_apply(self):
+        """The invariant the owner has to defend in front of a manager: any
+        number at or above the threshold IS an APPLY. Partial evidence never
+        produces one."""
+        from utils import THRESHOLD_APPLY, effective_decision
+        teaser = ("We are seeking a highly skilled AI engineer to join our "
+                  "innovation lab and bring agentic solutions from ideation "
+                  "to production. ") * 5
+        for description in (teaser[:500], "x" * 3000):
+            ev = eval_with({"score": 95, "concerns": [], "hard_blockers": []},
+                           job=make_job(description=description))
+            if ev.get("score") is not None and ev["score"] >= THRESHOLD_APPLY:
+                assert effective_decision(ev) == "APPLY"
 
     def test_todays_date_in_prompt(self):
         captured = {}

@@ -4,7 +4,7 @@
   "evaluation_errors": 0,
   "top_jobs": [
     {
-      "score": 82,
+      "score": null,
       "hard_blockers": [],
       "insufficient_info": true,
       "language_gap_intermediate": false,
@@ -37,12 +37,13 @@
         "German 'de.glassdoor.ch' URL suggests German-language job market presence, but no language requirement stated in visible text; worth confirming English working environment",
         "Intern title with 100% may imply junior scope; need to assess if this is true platform-building or more implementation/support-heavy"
       ],
-      "recommendation": "REVIEW",
-      "decision": "REVIEW",
-      "materials_needed": []
+      "recommendation": "NOT_EVALUATED",
+      "decision": "NOT_EVALUATED",
+      "materials_needed": [],
+      "no_posting_text": true
     },
     {
-      "score": 55,
+      "score": null,
       "hard_blockers": [],
       "insufficient_info": true,
       "language_gap_intermediate": false,
@@ -76,12 +77,13 @@
         "Risk consulting internships typically require advanced quantitative finance coursework (stochastic processes, econometrics, derivatives) not present in candidate's Data Science curriculum",
         "Candidate's stated motivation and project portfolio (agentic AI document scoring, LLM pipelines) have no alignment with financial risk modeling"
       ],
-      "recommendation": "SKIP",
-      "decision": "SKIP",
-      "materials_needed": []
+      "recommendation": "NOT_EVALUATED",
+      "decision": "NOT_EVALUATED",
+      "materials_needed": [],
+      "no_posting_text": true
     },
     {
-      "score": 35,
+      "score": null,
       "hard_blockers": [
         "German language: role title and description in German ('Werkstudent IT Collaboration & Digitalisierungsprojekte') with no English posting suggests German is the working language; candidate's German is A2→B1, insufficient for professional IT collaboration role requiring user support and project communication in German"
       ],
@@ -116,12 +118,13 @@
         "Candidate would be underutilized and underchallenged in this role relative to his production AI/agentic experience",
         "Potential for this to be primarily user support and M365 administration rather than building/engineering"
       ],
-      "recommendation": "SKIP",
-      "decision": "SKIP",
-      "materials_needed": []
+      "recommendation": "NOT_EVALUATED",
+      "decision": "NOT_EVALUATED",
+      "materials_needed": [],
+      "no_posting_text": true
     },
     {
-      "score": 15,
+      "score": null,
       "hard_blockers": [],
       "insufficient_info": true,
       "language_gap_intermediate": false,
@@ -151,12 +154,13 @@
         "Even if Zurich-based, role has zero technical content to evaluate",
         "Candidate would likely be bored and gain no relevant experience; potential negative signal on resume for tech roles"
       ],
-      "recommendation": "SKIP",
-      "decision": "SKIP",
-      "materials_needed": []
+      "recommendation": "NOT_EVALUATED",
+      "decision": "NOT_EVALUATED",
+      "materials_needed": [],
+      "no_posting_text": true
     },
     {
-      "score": 0,
+      "score": null,
       "hard_blockers": [
         "Job description is entirely missing - cannot perform any meaningful evaluation of fit, requirements, or eligibility"
       ],
@@ -183,9 +187,10 @@
       "concerns": [
         "The job posting appears to be a broken Indeed link with no extractable content. The URL contains tracking parameters but no actual job description was retrieved. This could be a expired listing, region-blocked content, or parsing failure. No company name, location, requirements, or responsibilities are visible."
       ],
-      "recommendation": "SKIP",
-      "decision": "SKIP",
-      "materials_needed": []
+      "recommendation": "NOT_EVALUATED",
+      "decision": "NOT_EVALUATED",
+      "materials_needed": [],
+      "no_posting_text": true
     }
   ]
 }

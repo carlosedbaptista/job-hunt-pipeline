@@ -261,40 +261,47 @@
     "no_posting_text": true
   },
   {
-    "score": null,
+    "score": 85,
     "hard_blockers": [],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [],
+    "key_match_points": [
+      "Strong. Role centers on LLM agent workflows, data pipelines, evaluation infrastructure, and production AI systems — core of what candidate does today. TypeScript is a gap (he's Python/Node.js), but Node.js background transfers well; the role explicitly allows going deeper in one area while getting full-stack exposure. His LLM API experience (Claude, Kimi), multi-step automation pipelines, CI/CD, Docker, and cloud work map directly. Search/retrieval and vector DBs are new but learnable, and role values fast learners.",
+      "Excellent. Pre-seed startup, small team, direct founder collaboration, high ownership from day one — exactly the 'zero to production' shape he seeks. Legal domain is unfamiliar but he has law background from Court of Justice of Rio de Janeiro, which is a hidden asset for legal insurance context; role doesn't require legal expertise. 6-month full-time availability fits internship model; his 2-week notice is clean."
+    ],
     "red_flags": [
-      "No job description provided — this is a LinkedIn 'similar jobs' recommendation with no actionable detail",
-      "Cannot verify if role involves agentic systems, LLMs, or data platform engineering vs. generic data work",
-      "Location unknown — cannot confirm Zurich/Zug area or remote-within-Switzerland",
-      "Company 'iudexnc' unclear; no website or description to assess stage or technical culture",
-      "Effectively evaluating a URL, not a job posting",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "TypeScript not in his current stack (though Node.js provides JS foundation)",
+      "German listed as 'working proficiency' preferred — he's A2 studying toward B1; not a blocker but worth noting",
+      "'Near completion of degree' / finished Master's preferred — he has postgraduate specialization (lato sensu), not a full Master's; may need to frame as equivalent or near-completion",
+      "Search systems, vector DBs, Azure specifically are new tools for him; role values learning but these are preferred not required",
+      "On-site twice per week in Zurich — feasible from Zurich area, but confirm commute"
     ],
     "job": {
-      "company": "Jobs similar to",
-      "title": "Jobs similar to Engineering Internship - AI/Data at iudexnc",
-      "location": "Unknown",
+      "company": "iudexnc",
+      "title": "Engineering Internship - AI/Data",
+      "location": "Zurich",
       "url": "https://www.linkedin.com/comm/jobs/view/4451700534?refId=87g7e4IERfegRUMNp3PyPA%3D%3D&trackingId=fey%2BUheyRcKScHPVYj3TBQ%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BoDLE2iRmRGqouzl1MZoQCg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3o6IfDGn65sYo1&trk=eml-email_jobs_viewed_job_reminder_01-null-0-null&trkEmail=eml-email_jobs_viewed_job_reminder_01-null-0-null-null-gbrmkn~msxasjzv~a6-null-null&eid=gbrmkn-msxasjzv-a6&otpToken=ZTViNDk1OWViYTc3NGM2ZDA0NDgyOTViNjk5ZTFjNzIzZjc4NzUyNDNlNzdiMzZiMThlNzA2ZTA4ZjgzNmEwMzBkMTI2N2ZiMzVkZDA4ZDU4NDgxZTNiYmM1MDFiOTFiOWVjYzBjMTA4Yzg4YmUyNjM5MTIxNTc3MGJmOGI2YjQ2YTNjNmRmZTg2Njk1OGU1LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "🌟\nAbout You\nYou're in the final stretch of your studies (in particular graduated Master's student or close to graduation) and you want a hands-on internship where you build real AI systems that ship to production. You enjoy working with messy data, writing solid code, and running experiments to improve LLM-powered workflows. You learn fast, take ownership, and like collaborating closely with a small team.\n🚀\nAbout INC\nINC (Iudex Non Calculat) is a pre-seed AI startup based in Zurich, building infrastructure that automates coverage checks and case handling for legal insurance companies. Legal insurance is a €16.8B European market where every case still requires 15-45 minutes of manual review. We compress that to under 2 minutes. We're backed by a paid pilot with a Swiss insurer and a founder with 120+ B2B customers at his previous AI legal tech company. We work at the intersection of LLM agent systems, document understanding, and domain-specific reasoning — where accuracy, traceability, and auditability matter.\nTasks\n🛠️\nYour Responsibilities\nAs an\nEngineering Intern — AI/Data\n, you will support the founder across data pipelines, LLM agent workflows, and evaluation infrastructure. Depending on your strengths, you'll go deeper in one area while still getting exposure to the full stack.\nData pipelines:\nHelp build and improve ingestion and processing pipelines for insurance policy documents, legal texts, and case descriptions (parsing, normalization, structuring).\nAI-ready structuring:\nSupport chunking, metadata extraction, clause mapping, and schema design so downstream LLM agents work reliably against complex policy wording.\nLLM agent workflows:\nPrototype and implement agentic LLM workflows for coverage analysis — fact extraction, policy cross-referencing, exclusion checking, and decision drafting — with attention to accuracy, cost, and latency.\nSearch & retrieval:\nAssist with indexing strategies, embeddings, hybrid retrieval, and relevance tuning for legal and insurance content.\nEvaluation & quality:\nBuild eval sets from real coverage check examples, run experiments, analyze failure cases, and help turn findings into shipped improvements.\nEngineering fundamentals:\nWrite clean TypeScript code, add tests where appropriate, and improve observability (metrics/logging) for pipelines and services.\nCollaboration:\nWork closely with the founder and domain experts; document decisions and share learnings clearly.\nRequirements\n📌\nQualifications\n✅\nMinimum qualifications\nNear completion of your degree:\nYou are at the end of your studies (e.g. finished Master's program or close to graduating).\nDegree in Computer Science, Data Science, Ma\n[... middle of the posting omitted ...]\nn in English.\nAvailability full-time\nfor the internship, ideally 6 months. On-site in Zurich at least twice per week.\n🎯\nPreferred qualifications\nExperience with one or more of: search systems (Azure AI Search / Elasticsearch), vector databases, or embeddings.\nFamiliarity with data tooling (scraping/parsing, PDF tooling, OCR) and/or pipeline design.\nExperience with Docker and CI/CD basics.\nFamiliarity with cloud platforms (especially\nAzure\n) is a plus.\nWorking proficiency in\nGerman\n.\nSwiss work permit or EU/EFTA citizenship.\nBenefits\n🤝\nBenefits\nDirect impact:\nYour work ships into the product and directly improves how legal insurers process cases.\nLearning & mentorship:\nHands-on exposure to production LLM agent systems, search, and data pipelines in a high-ownership environment.\nBreadth:\nWork across document ingestion → policy parsing → LLM reasoning → evaluation.\nFounder access:\nWork directly with the founder on architecture, product, and technical decisions.\nCompensation:\nCHF 2'500–4'500 per month, depending on experience and skills.\nProspect of a permanent position:\nPossibility of full-time employment with equity (ESOP) after a successful internship.\nWe're excited to hear from candidates who are finishing their studies and want a high-impact engineering internship in AI. Apply today by pressing the Apply button."
     },
-    "technical_fit": "Weak signal. The job title suggests AI/Data engineering, but zero description was provided. The 'Jobs similar to' framing implies this is a Linkedin recommendation, not the actual posting. We know nothing about the stack, whether it involves LLMs/agentic systems, or the actual responsibilities.",
-    "contextual_fit": "Unknown. No information on company size, stage, ownership model, or domain. Cannot assess whether this offers the 'zero to production' ownership the candidate seeks.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown. No data on team structure, mentorship, or intern expectations.",
+    "technical_fit": "Strong. Role centers on LLM agent workflows, data pipelines, evaluation infrastructure, and production AI systems — core of what candidate does today. TypeScript is a gap (he's Python/Node.js), but Node.js background transfers well; the role explicitly allows going deeper in one area while getting full-stack exposure. His LLM API experience (Claude, Kimi), multi-step automation pipelines, CI/CD, Docker, and cloud work map directly. Search/retrieval and vector DBs are new but learnable, and role values fast learners.",
+    "contextual_fit": "Excellent. Pre-seed startup, small team, direct founder collaboration, high ownership from day one — exactly the 'zero to production' shape he seeks. Legal domain is unfamiliar but he has law background from Court of Justice of Rio de Janeiro, which is a hidden asset for legal insurance context; role doesn't require legal expertise. 6-month full-time availability fits internship model; his 2-week notice is clean.",
+    "salary_estimate": "CHF 2'500–4'500/month",
+    "culture_fit": "Strong match. Explicitly values ownership, fast learning, close collaboration, shipping real systems. Candidate's self-described excitement for 'taking something from zero to production and owning it' mirrors the role's 'direct impact' and 'high-ownership environment' language.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "TypeScript not in his current stack (though Node.js provides JS foundation)",
+      "German listed as 'working proficiency' preferred — he's A2 studying toward B1; not a blocker but worth noting",
+      "'Near completion of degree' / finished Master's preferred — he has postgraduate specialization (lato sensu), not a full Master's; may need to frame as equivalent or near-completion",
+      "Search systems, vector DBs, Azure specifically are new tools for him; role values learning but these are preferred not required",
+      "On-site twice per week in Zurich — feasible from Zurich area, but confirm commute"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
-    "materials_needed": [],
+    "recommendation": "APPLY",
+    "decision": "APPLY",
+    "materials_needed": [
+      "cv"
+    ],
     "evaluated_at": "2026-08-18T05:36:22.660258+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
     "score": null,
@@ -519,150 +526,166 @@
     "no_posting_text": true
   },
   {
-    "score": null,
+    "score": 82,
     "hard_blockers": [],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [
-      "Strong alignment: Python, pandas, SQL, and data analysis are core to the role. His LLM API and automation experience is a differentiator above a typical data intern. Node.js and cloud/docker skills are bonus plusses."
+      "Strong. Python + data analysis core matches perfectly. LLM-supported applications in production aligns with his primary interest. Nucleus Engine work is data platform engineering in a regulated context. Missing pieces: no explicit mention of agentic systems, but LLM production experience is present.",
+      "Excellent. Real ownership, production code delivery, direct mentoring from senior engineers, B2B client project exposure — all match his 'zero to production' motivation. Financial domain is new to him, but role explicitly states no prior compliance/finance knowledge expected. 6-month fixed term with extension possibility fits career-changer timeline. Hybrid Zurich works with his permit and location."
     ],
     "red_flags": [
-      "Job description is extremely minimal — unclear if this is truly agentic/AI work or more traditional data analysis; may lack the 'zero to production' ownership he seeks",
-      "Title emphasizes 'Data Analysis' over engineering/platform building — could skew toward reporting/support rather than pipeline ownership",
-      "Company size and stage unknown; smaller consultancies sometimes have less greenfield work than advertised",
-      "No mention of LLMs, automation, or modern data stack tools in the sparse description — risk of skill stagnation vs. his stated growth goals",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Start date 1 Sept 2026 is 8 days away — candidate has 2-week notice, may need to negotiate or this may be a tight fit",
+      "No explicit mention of agentic/LLM agent systems in responsibilities, only 'LLM supported applications' — could be narrower than his ideal scope",
+      "STEM enrollment requirement mentions 'Swiss university' — his postgraduate specialisation in Data Science (lato sensu, likely Brazilian) may not technically satisfy 'Swiss university' criterion, though 'recent graduate' clause and work permit B may suffice",
+      "Small team in regulated finance means some support duties (testing, documentation, client prep) alongside development — not pure builder role"
     ],
     "job": {
-      "company": "Intern – Python Development & Data Analysis",
-      "title": "Intern – Python Development & Data Analysis PQ Technologies · Zurich (On-site)",
+      "company": "PQ Technologies",
+      "title": "Intern – Python Development & Data Analysis",
       "location": "PQ Technologies · Zurich (On-site)",
       "url": "https://www.linkedin.com/comm/jobs/view/4448167828/?trackingId=omwoMp%2B0Soqx%2Bj0BWQCnIQ%3D%3D&refId=ZWvVGdtrQK6pY%2F7gYHyXZA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BoDLE2iRmRGqouzl1MZoQCg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3o6IfDGn65sYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~msxasjzv~a6-null-null&eid=gbrmkn-msxasjzv-a6&otpToken=ZTViNDk1OWViYTc3NGM2ZDA0NDgyOTViNjk5ZTFjNzIzZjc4NzUyNDNlNzdiMzZiMThlNzA2ZTA4ZjgzNmEwMzBkMTI2N2ZiMzVkZDA4ZDU4NDgxZTNiYmM1MDFiOTFiOWVjYzBjMTA4Yzg4YmUyNjM5MTIxNTc3MGJmOGI2YjQ2YTNjNmRmZTg2Njk1OGU1LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "Company Description\nAt PQ Technologies AG (PQT), we build data processing solutions for the financial industry, working with both structured and unstructured data. Our focus is the End-to-End Compliance & Risk process at banks and financial institutions, in particular Know Your Customer (KYC) and Anti-Money-Laundering (AML).\nWe are a multidisciplinary team of 10–15 people in Zurich, combining deep domain expertise in Compliance & Risk with strong engineering capabilities. Our software runs inside our clients' critical processes at leading financial institutions, tested and relied on daily.\nRole Description\nWe are looking for an intern for a paid, 6-month fixed-term internship, supporting the development of data processing and evaluation systems on top of our Nucleus Compliance & Risk Engine, for leading financial institutions. You'll work closely with our engineers and our Compliance & Risk specialists, and contribute to projects that go live with our clients.\nKey responsibilities\nDevelop (Python) code for data processing and evaluation on our Nucleus Compliance & Risk Engine\nPerform data analysis on real datasets in the KYC/AML domain\nSupport the delivery teams with analysis, testing, documentation and preparation of client sessions\nWhat you will gain\nExperience in delivering production-ready code\nPractical experience with LLM supported applications in production\nInsight into B2B customer communication with regulated financial institutions, and into how client projects are delivered\nDirect mentoring from senior engineers and real ownership of your work\nLocation & commitment\nHybrid — Zurich office, with remote days\nFixed-term internship, 6 months, 70–100%\nStart date: 1 September 2026\nCHF 4,200 gross per month (paid internship)\nNo relocation support and no visa sponsorship; travel is limited to occasional client meetings\nExtension or permanent role possible after the internship\nQualifications\nCurrently enrolled in a BSc or MSc in a STEM field at a Swiss university, or a recent graduate\nProgramming knowledge and experience in Python\nA good understanding of algorithms and data structures\nAbility to work in a dynamic environment with different types of duties\nValid permission to work in Switzerland\nThe drive to work independently and pick up new things across different areas\nNice to have — experience working on code collaboratively\nNo prior compliance or finance knowledge is expected. We care more about attitude and curiosity than a long list of prior experience — we're there to support you, and we're looking for self-starters."
     },
-    "technical_fit": "Strong alignment: Python, pandas, SQL, and data analysis are core to the role. His LLM API and automation experience is a differentiator above a typical data intern. Node.js and cloud/docker skills are bonus plusses.",
-    "contextual_fit": "Good: Zurich on-site matches his location and permit perfectly. 2-week notice is excellent for internship timing. 'Intern' level matches his current status and ambition for deeper technical growth.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Moderate-positive: PQ Technologies appears to be a tech/data company where ownership of analysis and development tasks is plausible, but limited job description prevents strong assessment.",
+    "technical_fit": "Strong. Python + data analysis core matches perfectly. LLM-supported applications in production aligns with his primary interest. Nucleus Engine work is data platform engineering in a regulated context. Missing pieces: no explicit mention of agentic systems, but LLM production experience is present.",
+    "contextual_fit": "Excellent. Real ownership, production code delivery, direct mentoring from senior engineers, B2B client project exposure — all match his 'zero to production' motivation. Financial domain is new to him, but role explicitly states no prior compliance/finance knowledge expected. 6-month fixed term with extension possibility fits career-changer timeline. Hybrid Zurich works with his permit and location.",
+    "salary_estimate": "CHF 4,200/month (disclosed)",
+    "culture_fit": "Strong match. Self-starter emphasis, independent work, picking up new things across areas — fits deliberate career changer profile. Small team (10-15) means flat hierarchy and real contribution visibility.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Start date 1 Sept 2026 is 8 days away — candidate has 2-week notice, may need to negotiate or this may be a tight fit",
+      "No explicit mention of agentic/LLM agent systems in responsibilities, only 'LLM supported applications' — could be narrower than his ideal scope",
+      "STEM enrollment requirement mentions 'Swiss university' — his postgraduate specialisation in Data Science (lato sensu, likely Brazilian) may not technically satisfy 'Swiss university' criterion, though 'recent graduate' clause and work permit B may suffice",
+      "Small team in regulated finance means some support duties (testing, documentation, client prep) alongside development — not pure builder role"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
-    "materials_needed": [],
+    "recommendation": "APPLY",
+    "decision": "APPLY",
+    "materials_needed": [
+      "cv"
+    ],
     "evaluated_at": "2026-08-18T05:36:22.660258+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
+    "score": 82,
     "hard_blockers": [],
-    "insufficient_info": true,
+    "insufficient_info": false,
+    "language_gap_intermediate": false,
+    "key_match_points": [
+      "Strong. Core Python + data processing aligns perfectly with his pandas/SQL skills. The LLM-supported applications in production match his explicit career goal. Data analysis on real datasets mirrors his current work. The 'Nucleus Engine' is proprietary so no prior knowledge expected — his fast-learning trajectory fits.",
+      "Excellent. Zurich-based, hybrid, 6-month paid internship with real ownership and mentoring. Financial domain is new to him but explicitly welcomed ('No prior compliance or finance knowledge expected'). Start date Sept 1 is tight but his 2-week notice could work if he moves fast. 70-100% flexibility suits internship continuation. Extension possibility is attractive."
+    ],
+    "red_flags": [
+      "Tight start date: Sept 1, 2026 with 2-week notice means immediate action needed",
+      "'Currently enrolled in a BSc or MSc at a Swiss university' — he's in a postgraduate specialisation (lato sensu), not strictly a BSc/MSc; may need to clarify eligibility as 'recent graduate' path",
+      "STEM field requirement — his law background plus data science specialisation may need framing",
+      "No explicit mention of agentic systems/LLM depth in responsibilities beyond 'LLM supported applications' — could be lighter AI exposure than his ideal role shape, though still relevant"
+    ],
+    "job": {
+      "company": "PQ Technologies AG (PQT)",
+      "title": "Intern – Python Development & Data Analysis",
+      "location": "Zurich",
+      "url": "https://www.linkedin.com/comm/jobs/view/4448167828/?trackingId=omwoMp%2B0Soqx%2Bj0BWQCnIQ%3D%3D&refId=ZWvVGdtrQK6pY%2F7gYHyXZA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BoDLE2iRmRGqouzl1MZoQCg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3o6IfDGn65sYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-jobcard_body_4448167828&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-jobcard_body_4448167828-null-gbrmkn~msxasjzv~a6-null-null&eid=gbrmkn-msxasjzv-a6&otpToken=ZTViNDk1OWViYTc3NGM2ZDA0NDgyOTViNjk5ZTFjNzIzZjc4NzUyNDNlNzdiMzZiMThlNzA2ZTA4ZjgzNmEwMzBkMTI2N2ZiMzVkZDA4ZDU4NDgxZTNiYmM1MDFiOTFiOWVjYzBjMTA4Yzg4YmUyNjM5MTIxNTc3MGJmOGI2YjQ2YTNjNmRmZTg2Njk1OGU1LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": "Company Description\nAt PQ Technologies AG (PQT), we build data processing solutions for the financial industry, working with both structured and unstructured data. Our focus is the End-to-End Compliance & Risk process at banks and financial institutions, in particular Know Your Customer (KYC) and Anti-Money-Laundering (AML).\nWe are a multidisciplinary team of 10–15 people in Zurich, combining deep domain expertise in Compliance & Risk with strong engineering capabilities. Our software runs inside our clients' critical processes at leading financial institutions, tested and relied on daily.\nRole Description\nWe are looking for an intern for a paid, 6-month fixed-term internship, supporting the development of data processing and evaluation systems on top of our Nucleus Compliance & Risk Engine, for leading financial institutions. You'll work closely with our engineers and our Compliance & Risk specialists, and contribute to projects that go live with our clients.\nKey responsibilities\nDevelop (Python) code for data processing and evaluation on our Nucleus Compliance & Risk Engine\nPerform data analysis on real datasets in the KYC/AML domain\nSupport the delivery teams with analysis, testing, documentation and preparation of client sessions\nWhat you will gain\nExperience in delivering production-ready code\nPractical experience with LLM supported applications in production\nInsight into B2B customer communication with regulated financial institutions, and into how client projects are delivered\nDirect mentoring from senior engineers and real ownership of your work\nLocation & commitment\nHybrid — Zurich office, with remote days\nFixed-term internship, 6 months, 70–100%\nStart date: 1 September 2026\nCHF 4,200 gross per month (paid internship)\nNo relocation support and no visa sponsorship; travel is limited to occasional client meetings\nExtension or permanent role possible after the internship\nQualifications\nCurrently enrolled in a BSc or MSc in a STEM field at a Swiss university, or a recent graduate\nProgramming knowledge and experience in Python\nA good understanding of algorithms and data structures\nAbility to work in a dynamic environment with different types of duties\nValid permission to work in Switzerland\nThe drive to work independently and pick up new things across different areas\nNice to have — experience working on code collaboratively\nNo prior compliance or finance knowledge is expected. We care more about attitude and curiosity than a long list of prior experience — we're there to support you, and we're looking for self-starters."
+    },
+    "technical_fit": "Strong. Core Python + data processing aligns perfectly with his pandas/SQL skills. The LLM-supported applications in production match his explicit career goal. Data analysis on real datasets mirrors his current work. The 'Nucleus Engine' is proprietary so no prior knowledge expected — his fast-learning trajectory fits.",
+    "contextual_fit": "Excellent. Zurich-based, hybrid, 6-month paid internship with real ownership and mentoring. Financial domain is new to him but explicitly welcomed ('No prior compliance or finance knowledge expected'). Start date Sept 1 is tight but his 2-week notice could work if he moves fast. 70-100% flexibility suits internship continuation. Extension possibility is attractive.",
+    "salary_estimate": "CHF 4,200/month (disclosed)",
+    "culture_fit": "Strong match. 'Self-starters', 'work independently', 'pick up new things across different areas' — exactly his profile. 'Real ownership of your work' and 'delivering production-ready code' resonate with his stated motivation (zero-to-production, audit-and-fix). Small team (10-15) means breadth of exposure, not siloed support work.",
+    "concerns": [
+      "Tight start date: Sept 1, 2026 with 2-week notice means immediate action needed",
+      "'Currently enrolled in a BSc or MSc at a Swiss university' — he's in a postgraduate specialisation (lato sensu), not strictly a BSc/MSc; may need to clarify eligibility as 'recent graduate' path",
+      "STEM field requirement — his law background plus data science specialisation may need framing",
+      "No explicit mention of agentic systems/LLM depth in responsibilities beyond 'LLM supported applications' — could be lighter AI exposure than his ideal role shape, though still relevant"
+    ],
+    "recommendation": "APPLY",
+    "decision": "APPLY",
+    "materials_needed": [
+      "cv"
+    ],
+    "evaluated_at": "2026-08-18T05:36:22.660258+00:00",
+    "recovered": true
+  },
+  {
+    "score": 58,
+    "hard_blockers": [],
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Zero job description — impossible to assess actual work content, tech stack, or growth potential",
-      "Generic title ('Python Development & Data Analysis') is a red flag for scope mismatch with candidate's agentic systems focus",
-      "Unknown company, unknown location, unknown team structure — high uncertainty, likely low ownership",
-      "No signals of LLM/API work, cloud infrastructure, CI/CD, or production pipeline ownership",
-      "Could easily be traditional data analyst or backend intern role with no AI/automation component",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Role is Product Owner, not engineer/builder—he would not be building LLM pipelines or data platforms hands-on",
+      "'Visiting' in title suggests temporary observer status, limited ownership",
+      "Heavy emphasis on stakeholder management, backlog prioritization, and change management—far from his stated motivation of 'taking something from zero to production and owning it' technically",
+      "Master's/PhD enrollment preferred; he has postgraduate specialization (lato sensu, not strict Master's) though this is often flexible in practice",
+      "Construction sector digital transformation sounds impressive but likely means traditional BI/ML use cases, not cutting-edge agentic systems",
+      "Location in Buchs SG requires commute from Zurich area (~1 hour each way), not prohibitive but not ideal"
     ],
     "job": {
-      "company": "Unknown",
-      "title": "Intern – Python Development & Data Analysis",
-      "location": "Unknown",
-      "url": "https://www.linkedin.com/comm/jobs/view/4448167828/?trackingId=omwoMp%2B0Soqx%2Bj0BWQCnIQ%3D%3D&refId=ZWvVGdtrQK6pY%2F7gYHyXZA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BoDLE2iRmRGqouzl1MZoQCg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3o6IfDGn65sYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-jobcard_body_4448167828&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-jobcard_body_4448167828-null-gbrmkn~msxasjzv~a6-null-null&eid=gbrmkn-msxasjzv-a6&otpToken=ZTViNDk1OWViYTc3NGM2ZDA0NDgyOTViNjk5ZTFjNzIzZjc4NzUyNDNlNzdiMzZiMThlNzA2ZTA4ZjgzNmEwMzBkMTI2N2ZiMzVkZDA4ZDU4NDgxZTNiYmM1MDFiOTFiOWVjYzBjMTA4Yzg4YmUyNjM5MTIxNTc3MGJmOGI2YjQ2YTNjNmRmZTg2Njk1OGU1LDIsMQ%3D%3D",
-      "portal": "linkedin.com",
-      "description": ""
-    },
-    "technical_fit": "Weak. The job title suggests generic Python development and data analysis, but zero description is provided. No mention of LLMs, agentic systems, automation pipelines, or cloud infrastructure — the candidate's core strengths and explicit interests. Could be anything from Excel scripting to web scraping to basic BI.",
-    "contextual_fit": "Poor. The candidate wants ownership of end-to-end AI/automation systems from day one. A title this generic at an unknown company with no description signals high risk of support work, maintenance, or siloed tasks — exactly what he's trying to leave. No evidence of greenfield building, production ownership, or agentic/LLM work.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown. No company information, no team structure, no mention of autonomy or ownership culture. Complete information vacuum.",
-    "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
-    ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
-    "materials_needed": [],
-    "evaluated_at": "2026-08-18T05:36:22.660258+00:00",
-    "rescored": true,
-    "no_posting_text": true
-  },
-  {
-    "score": null,
-    "hard_blockers": [],
-    "insufficient_info": true,
-    "language_gap_intermediate": true,
-    "key_match_points": [],
-    "red_flags": [
-      "Role is fundamentally PO not engineering: candidate would be defining backlogs, not building pipelines",
-      "Buchs SG is not Zurich/Zug (commutable? ~1hr by train, but not same labor market)",
-      "German likely needed for stakeholder management at Hilti Switzerland HQ level despite English job posting",
-      "No mention of LLMs, agentic systems, or data platform engineering in description — this is generic data/AI product management",
-      "Candidate's entire motivation is 'building end-to-end with real ownership from day one' — this role offers ownership of decisions, not technical systems",
-      "Low confidence: posting text under 200 chars -- score is title-based"
-    ],
-    "job": {
-      "company": "Intern – Data & AI Product Owner (m/f/x)",
-      "title": "Intern – Data & AI Product Owner (m/f/x) Hilti Group · Buchs (SG)",
+      "company": "Hilti Group",
+      "title": "Intern – Data & AI Product Owner (m/f/x)",
       "location": "Buchs (SG)",
       "url": "https://www.linkedin.com/comm/jobs/view/4375934552/?trackingId=iEf6eKMiTDaalZdJzp1nTQ%3D%3D&refId=W70EZTtQTbGTBvfMmya60Q%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BoDLE2iRmRGqouzl1MZoQCg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3o6IfDGn65sYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~msxasjzv~a6-null-null&eid=gbrmkn-msxasjzv-a6&otpToken=ZTViNDk1OWViYTc3NGM2ZDA0NDgyOTViNjk5ZTFjNzIzZjc4NzUyNDNlNzdiMzZiMThlNzA2ZTA4ZjgzNmEwMzBkMTI2N2ZiMzVkZDA4ZDU4NDgxZTNiYmM1MDFiOTFiOWVjYzBjMTA4Yzg4YmUyNjM5MTIxNTc3MGJmOGI2YjQ2YTNjNmRmZTg2Njk1OGU1LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "What's the role?\nThe Data & AI Product Owner team is part of the Analytics Center of Excellence at Hilti and plays a key role in unlocking the value of our data for Hilti and our customers. Working closely together with business functions, we help shape the vision and roadmap for data and AI solutions across different business areas and actively develop the solution portfolio at Hilti. As a Data & AI Visiting Product Owner Intern you will get the opportunity to work on the most relevant data & AI driven use cases found in a large organization that is leading the digital transformation in the construction sector.\nThe start date for the internship is flexible based on your availability; however, a March start is preferred. The expected duration is six months\nWhat You'll Do\nYou will focus on one business domain (such as product, marketing & sales, logistics, or others) and, together with experienced business partners, help to develop the product vision for a data and AI solution, aligning on targets, requirements, and priorities.\nAs the Product Owner, your responsibility is to translate business needs into actionable requirements and ensure the solution delivers measurable value. You will own and manage the product backlog, prioritize features, and guide development in an agile environment.\nCollaboration is at the heart of this role: you will work closely with data scientists, data engineers, front-end developers, as well as domain experts and other IT verticals to design and deliver tailored solutions. Beyond developing the right products, you will actively drive change management and ensure adoption, optimizing well-defined KPIs through continuous improvement and success measurement.\nWhat You’ll Bring\nEnrolled in a Master’s or PhD program in Data Science, Information Systems, or related fields for the internship period\nStrong ability to bridge the gap between business needs and technological solutions\nComprehensive understanding of the full lifecycle of data and AI solutions—from ideation and ML modeling to operational deployment, change management, and success measurement (e.g., A/B testing)\nSolid knowledge of cloud data platforms, data engineering, as well as Generative AI and Machine Learning\nProven leadership without formal authority; demonstrates ownership, ambition, and influence\nWhat’s In It For You\nWe really value our people, and we've worked hard to develop a reward package that reflects this, creating your future to be just how you would want it. Some of our benefits include:\nConnection with a diverse community of over 2,100 colleagues from 70 nationalities in a region where Liechtenstein, Austria, and Switzer\n[... middle of the posting omitted ...]\nrment and the LGBTQIA+ community.\nLeisure activities like mountain biking and tennis.\nOpportunities for community engagement both locally and internationally.\nShared e-bikes, an on-site gym, dining options, learning opportunities, free parking, fuel discounts, meditation/ relaxation rooms, and Hilti tool rental service.\nWhy Hilti\nHilti is a global leader in construction innovation, with more than 34,000 team members across 120 countries. Guided by our purpose, Making Construction Better, we’re driven to keep learning, growing, and finding new ways to make a lasting impact. Here, you’ll be empowered to use your strengths, work with a global and inclusive team, and take on meaningful challenges. At Hilti, you’ll have the chance to make your ideas, achievements, and growth real through purpose, passion, and teamwork.\nCommitment to Inclusion\nAt Hilti, inclusion is a key focus in how we work, lead, and grow together. We are committed to embracing diversity of thought and creating an environment that is inclusive of everyone, everywhere. We continuously strive to ensure every voice is valued and every team member feels empowered to contribute. By building on this foundation, we strengthen our teams, our innovation, and our impact, making construction better together.\nLegal Notice\nHilti is an equal opportunity employer."
     },
-    "technical_fit": "Mismatch. Role is Product Owner, not builder. The candidate wants hands-on engineering ownership (zero-to-production building of LLM pipelines and data platforms). This is a PM/PO track role focused on roadmap, stakeholder management, and requirements definition — not shipping code or maintaining infrastructure.",
-    "contextual_fit": "Weak. Hilti is a hardware/tools corporation; the role sits in a traditional corporate product management structure. Candidate's excitement comes from building and owning technical systems, not from coordinating between business and engineering teams. The 'ownership' here is product decisions, not technical implementation.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Risk of misalignment. Hilti is a large established corporate (not a small team where a junior gets greenfield AI projects). The '(m/f/x)' and formal title structure suggest bureaucratic processes. Candidate thrives in environments where he can self-direct and ship fast; corporate PO roles typically involve heavy coordination layers.",
+    "technical_fit": "Partial. The role is Product Owner, not hands-on builder. Candidate wants to build LLM pipelines and own technical delivery end-to-end; this role is about backlog management, stakeholder alignment, and 'translating business needs into actionable requirements' for others to build. His technical skills (Python, LLM APIs, Docker, CI/CD) are relevant context but would be underutilized—he'd be guiding development rather than doing it.",
+    "contextual_fit": "Weak for what he wants. Six-month internship, flexible start (his 2-week notice fits), Buchs SG is commuteable from Zurich area (~1hr by train, within Swiss range). However, the role shape is fundamentally mismatched: he explicitly seeks 'real ownership from day one' in building and shipping, not product management. 'Visiting Product Owner Intern' suggests observer/participant rather than builder. Construction sector domain is fine—he's open to new domains—but the functional role is wrong.",
+    "salary_estimate": "CHF 2,200 - 2,800/month (typical Hilti intern range)",
+    "culture_fit": "Mixed. Hilti emphasizes empowerment and inclusion, but the role's collaborative/stakeholder-heavy nature ('leadership without formal authority,' 'drive change management and adoption') is more corporate PMO than the zero-to-production builder culture he craves. The 'Analytics Center of Excellence' structure suggests centralized shared services, not embedded product teams with technical ownership.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Role is Product Owner, not engineer/builder—he would not be building LLM pipelines or data platforms hands-on",
+      "'Visiting' in title suggests temporary observer status, limited ownership",
+      "Heavy emphasis on stakeholder management, backlog prioritization, and change management—far from his stated motivation of 'taking something from zero to production and owning it' technically",
+      "Master's/PhD enrollment preferred; he has postgraduate specialization (lato sensu, not strict Master's) though this is often flexible in practice",
+      "Construction sector digital transformation sounds impressive but likely means traditional BI/ML use cases, not cutting-edge agentic systems",
+      "Location in Buchs SG requires commute from Zurich area (~1 hour each way), not prohibitive but not ideal"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-18T05:36:22.660258+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
-    "hard_blockers": [
-      "Missing critical job information: location, company, role description, requirements. Cannot verify Zurich/Zug/Switzerland eligibility, language requirements, or permit compatibility."
-    ],
-    "insufficient_info": true,
+    "score": 62,
+    "hard_blockers": [],
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Missing critical job information: location, company, role description, requirements. Cannot verify Zurich/Zug/Switzerland eligibility, language requirements, or permit compatibility.",
-      "LinkedIn URL provided but job description is empty — may be a parsing failure or the job was removed/taken down.",
-      "Title 'Data & AI Product Owner' suggests PM/PO track rather than builder/engineer role; candidate seeks hands-on development ownership, not product management.",
-      "Without description, impossible to distinguish from pure PM/support role vs. technical PO with coding responsibilities.",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Role is product management, not engineering—candidate wants to build, not translate business needs into requirements for others",
+      "'Visiting Product Owner Intern' suggests temporary/observational status rather than embedded builder",
+      "Six-month duration with March preference misaligned with immediate availability and 2-week notice",
+      "Large corporate environment (34,000 employees) likely means less end-to-end ownership than candidate seeks",
+      "Construction sector domain unfamiliarity is fine, but combined with non-technical role shape, reduces growth value",
+      "No mention of LLM APIs, agentic systems, or hands-on pipeline work in responsibilities—GenAI knowledge is 'solid knowledge' requirement, not daily tool"
     ],
     "job": {
-      "company": "Unknown",
+      "company": "Hilti",
       "title": "Intern – Data & AI Product Owner (m/f/x)",
-      "location": "Unknown",
+      "location": "Buchs SG (inferred from Liechtenstein/Austria/Switzerland region mention and Hilti headquarters location)",
       "url": "https://www.linkedin.com/comm/jobs/view/4375934552/?trackingId=iEf6eKMiTDaalZdJzp1nTQ%3D%3D&refId=W70EZTtQTbGTBvfMmya60Q%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BoDLE2iRmRGqouzl1MZoQCg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3o6IfDGn65sYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-jobcard_body_4375934552&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-jobcard_body_4375934552-null-gbrmkn~msxasjzv~a6-null-null&eid=gbrmkn-msxasjzv-a6&otpToken=ZTViNDk1OWViYTc3NGM2ZDA0NDgyOTViNjk5ZTFjNzIzZjc4NzUyNDNlNzdiMzZiMThlNzA2ZTA4ZjgzNmEwMzBkMTI2N2ZiMzVkZDA4ZDU4NDgxZTNiYmM1MDFiOTFiOWVjYzBjMTA4Yzg4YmUyNjM5MTIxNTc3MGJmOGI2YjQ2YTNjNmRmZTg2Njk1OGU1LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "What's the role?\nThe Data & AI Product Owner team is part of the Analytics Center of Excellence at Hilti and plays a key role in unlocking the value of our data for Hilti and our customers. Working closely together with business functions, we help shape the vision and roadmap for data and AI solutions across different business areas and actively develop the solution portfolio at Hilti. As a Data & AI Visiting Product Owner Intern you will get the opportunity to work on the most relevant data & AI driven use cases found in a large organization that is leading the digital transformation in the construction sector.\nThe start date for the internship is flexible based on your availability; however, a March start is preferred. The expected duration is six months\nWhat You'll Do\nYou will focus on one business domain (such as product, marketing & sales, logistics, or others) and, together with experienced business partners, help to develop the product vision for a data and AI solution, aligning on targets, requirements, and priorities.\nAs the Product Owner, your responsibility is to translate business needs into actionable requirements and ensure the solution delivers measurable value. You will own and manage the product backlog, prioritize features, and guide development in an agile environment.\nCollaboration is at the heart of this role: you will work closely with data scientists, data engineers, front-end developers, as well as domain experts and other IT verticals to design and deliver tailored solutions. Beyond developing the right products, you will actively drive change management and ensure adoption, optimizing well-defined KPIs through continuous improvement and success measurement.\nWhat You’ll Bring\nEnrolled in a Master’s or PhD program in Data Science, Information Systems, or related fields for the internship period\nStrong ability to bridge the gap between business needs and technological solutions\nComprehensive understanding of the full lifecycle of data and AI solutions—from ideation and ML modeling to operational deployment, change management, and success measurement (e.g., A/B testing)\nSolid knowledge of cloud data platforms, data engineering, as well as Generative AI and Machine Learning\nProven leadership without formal authority; demonstrates ownership, ambition, and influence\nWhat’s In It For You\nWe really value our people, and we've worked hard to develop a reward package that reflects this, creating your future to be just how you would want it. Some of our benefits include:\nConnection with a diverse community of over 2,100 colleagues from 70 nationalities in a region where Liechtenstein, Austria, and Switzer\n[... middle of the posting omitted ...]\nrment and the LGBTQIA+ community.\nLeisure activities like mountain biking and tennis.\nOpportunities for community engagement both locally and internationally.\nShared e-bikes, an on-site gym, dining options, learning opportunities, free parking, fuel discounts, meditation/ relaxation rooms, and Hilti tool rental service.\nWhy Hilti\nHilti is a global leader in construction innovation, with more than 34,000 team members across 120 countries. Guided by our purpose, Making Construction Better, we’re driven to keep learning, growing, and finding new ways to make a lasting impact. Here, you’ll be empowered to use your strengths, work with a global and inclusive team, and take on meaningful challenges. At Hilti, you’ll have the chance to make your ideas, achievements, and growth real through purpose, passion, and teamwork.\nCommitment to Inclusion\nAt Hilti, inclusion is a key focus in how we work, lead, and grow together. We are committed to embracing diversity of thought and creating an environment that is inclusive of everyone, everywhere. We continuously strive to ensure every voice is valued and every team member feels empowered to contribute. By building on this foundation, we strengthen our teams, our innovation, and our impact, making construction better together.\nLegal Notice\nHilti is an equal opportunity employer."
     },
-    "technical_fit": "Cannot assess — no job description provided beyond title. Title suggests product ownership focus rather than hands-on engineering, but insufficient data.",
-    "contextual_fit": "Cannot assess — no information on company, location, working language, or role responsibilities.",
+    "technical_fit": "Moderate. The role requires strong product ownership, backlog management, and stakeholder alignment rather than hands-on building. Candidate's strength is in shipping code and owning technical pipelines end-to-end, not in formal product management, agile ceremonies, or 'leadership without formal authority.' The ML/GenAI knowledge requirement is met, but the role is fundamentally a PO internship, not a builder role.",
+    "contextual_fit": "Weak for candidate's stated goals. He explicitly wants 'real ownership from day one' in agentic systems and data platform engineering with hands-on building. This role is about vision, roadmap, backlog prioritization, and driving adoption—valuable but not what he's seeking. The 'Visiting Product Owner' framing suggests rotational/observership quality. Six-month duration with March preference also mismatches his 2-week notice and immediate availability.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Cannot assess — no data on team structure, ownership model, or culture.",
+    "culture_fit": "Strong corporate culture with excellent benefits and inclusion focus, but likely too structured and consensus-driven for someone who thrives on zero-to-one ownership and rapid iteration. The 'diverse community of 2,100 colleagues' and multiple regional sites suggests larger, slower-moving environment.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Role is product management, not engineering—candidate wants to build, not translate business needs into requirements for others",
+      "'Visiting Product Owner Intern' suggests temporary/observational status rather than embedded builder",
+      "Six-month duration with March preference misaligned with immediate availability and 2-week notice",
+      "Large corporate environment (34,000 employees) likely means less end-to-end ownership than candidate seeks",
+      "Construction sector domain unfamiliarity is fine, but combined with non-technical role shape, reduces growth value",
+      "No mention of LLM APIs, agentic systems, or hands-on pipeline work in responsibilities—GenAI knowledge is 'solid knowledge' requirement, not daily tool"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-18T05:36:22.660258+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
     "score": null,
@@ -1217,157 +1240,169 @@
     "no_posting_text": true
   },
   {
-    "score": null,
+    "score": 58,
     "hard_blockers": [
-      "Location: Basel (not Zurich/Zug area, not remote-Switzerland eligible per auto-SKIP rules)"
+      "Location: Basel-based role, not Zurich/Zug area or remote-Switzerland. Candidate is Zurich-based with 2-week notice; Basel commute/relocation is a significant logistics barrier though not strictly impossible. However, per rules, non-Zurich/Zug is auto-SKIP unless fully remote in Switzerland—this role appears office-based in Basel."
     ],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Location: Basel (not Zurich/Zug area, not remote-Switzerland eligible per auto-SKIP rules)",
-      "No job description provided — cannot assess actual responsibilities or technical stack",
-      "Title suggests solutions/customer success engineering rather than platform/product engineering",
-      "Large enterprise (Adobe) vs. candidate's preference for ownership from day one",
-      "Basel commute/relocation not practical with 2-week notice and Zurich-area targeting",
-      "No evidence of LLM/Claude/API pipeline work in Adobe's typical role profiles",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: Location: Basel-based role, not Zurich/Zug area or remote-Switzerland. Candidate is Zurich-based with 2-week notice; Basel commute/relocation is a significant logistics barrier though not strictly impossible. However, per rules, non-Zurich/Zug is auto-SKIP unless fully remote in Switzerland—this role appears office-based in Basel.",
+      "Deep Adobe ecosystem dependency: AEM, AEP, Experience Cloud are central, candidate has zero exposure",
+      "SEO/GEO expertise listed as strong requirement, candidate has none",
+      "Role shape mismatch: customer-facing implementation engineer optimizing existing product, not builder owning greenfield agentic systems",
+      "Basel location is 1.5h+ from Zurich, not a viable daily commute; unclear if hybrid/remote flexibility exists",
+      "'Lead technical integration' and 'excellent communication and customer-facing skills' suggests mid-level expectations, may be heavy for intern/junior profile",
+      "Postgraduate specialization vs. Bachelor's requirement: candidate has lato sensu postgraduate, not Bachelor's, though 'equivalent experience' clause helps"
     ],
     "job": {
-      "company": "Agentic Outcome Engineer",
-      "title": "Agentic Outcome Engineer Adobe · Basel",
+      "company": "Adobe",
+      "title": "Agentic Outcome Engineer",
       "location": "Adobe · Basel",
       "url": "https://www.linkedin.com/comm/jobs/view/4450348673/?trackingId=hoyjtitp0hwv9UdlKqf%2Bmw%3D%3D&refId=4XUzYa1iQZpSVF3JFU7Y1w%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_facet_suggestions%3BQNMqBKTOTZGBLXpn8FotLg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=12IteBIHy2uco1&trk=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_2-0-job_card_0_jobid_4450348673_sectionid_276008_fmid_gbrmkn~msykf17j~62&trkEmail=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_2-0-job_card_0_jobid_4450348673_sectionid_276008_fmid_gbrmkn~msykf17j~62-null-gbrmkn~msykf17j~62-null-null&eid=gbrmkn-msykf17j-62&otpToken=NDgyNTk3NDU3NDc1ZDU0MzNhYTIzZDYzMmJiMzc0OTQ3ODEzMGU2ZDc3OWUxYzA2ZjU4MWU2Y2I5NTE0ZjA5YmM5OWZhMjJhZjkyYTQ2NmM0NGRiOWYwZWFiMWQyYWQ3YmUxOTQzNjEyZTljZWU3Zjg4OTIyYWYxYmEyOTI4YTIzYzlhZDc2NmY1ZTc5MzBmLDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "The Opportunity\nJoin the Agentic Outcome Engineering team to help enterprise customers succeed with AI‑powered search and discovery. As an Agentic Outcome Engineer specializing in Adobe Brand Visibility (ABV), you’ll combine technical expertise, customer success skills, and AI development to drive brand consistency, site visibility, and customer sentiment. You’ll build tools, automations, and repeatable processes that make measurable outcomes achievable at scale.\nYou’ll partner closely with customers to onboard, implement, and optimize ABV, resolving technical challenges, accelerating adoption, and enabling durable, data‑driven improvements across digital experiences.\nWhat You’ll Do\nCustomer Collaboration & Optimization\nApply Adobe Brand Visibility recommendations to improve brand consistency, visibility, and content quality.\nTranslate insights into concrete changes to content, metadata, and digital experiences.\nBuild tools and automations that streamline ingestion, onboarding, and application of ABV outputs.\nAI Agent & System Development\nDesign and refine intelligent agents that support the ABV lifecycle (e.g., content evaluators, metadata generators, QA agents).\nIntegrate ABV‑powered agents with AEM, AEP, and customer systems via APIs and data pipelines.\nImplement safety and quality guardrails, fallback logic, and human‑in‑the‑loop workflows.\nTechnical Implementation & Delivery\nLead technical integration of ABV, including data mapping, workflow configuration, and resolving challenges.\nProvide hands‑on support through setup, validation, optimization execution, and performance monitoring.\nCommunicate technical concepts clearly to marketing, engineering, and executive partners.\nMeasurement & Continuous Improvement\nDefine success metrics across visibility, consistency, CSAT, content quality, and task completion.\nRun experiments, analyze impact, and iterate based on performance data.\nIdentify edge cases and optimization opportunities across customer workflows.\nWhat You’ll Need\nBachelor’s degree in CS, Engineering, or equivalent experience.\nStrong engineering skills with Python, JavaScript/Node, TypeScript, or similar languages.\nStrong SEO / GEO / content delivery systems experience\nExperience with LLM‑based applications, AI agents, RAG systems, or workflow automation.\nAbility to interpret ABV insights and translate them into actionable optimizations.\nExcellent communication and customer‑facing skills.\nPreferred: Experience with AEM, Adobe Experience Platform, or Adobe Experience Cloud.\nAbout Adobe\nAdobe empowers everyone to create through innovative platforms and tools that unleash creativity, productivity and personalize\n[... middle of the posting omitted ...]\nf empowering everyone to create.\nAdobe is proud to be an Equal Employment Opportunity employer. We do not discriminate based on gender, race or color, ethnicity or national origin, age, disability, religion, sexual orientation, gender identity or expression, veteran status, or any other protected characteristic. Learn more.\nAdobe aims to make our Careers website and recruiting process accessible to any and all users. If you have a disability or special need that requires accommodation to navigate our website or complete the application process, email accommodations@adobe.com or call +1 408-536-3015.\nAI Use Guidelines for Interviews:\nOur interviews are designed to reflect your own skills and thinking. The use of AI or recording tools during live interviews is not permitted unless explicitly invited by the interviewer or approved in advance as part of a reasonable accommodation. If these tools are used inappropriately or in a way that misrepresents your work, your application may not move forward in the process.\nAt Adobe, we empower employees to innovate with AI — and we look for candidates eager to do the same. As part of the hiring experience, we provide clear guidance on where AI is encouraged during the process and where it’s restricted during live interviews. See how we think about AI in the hiring experience."
     },
-    "technical_fit": "Moderate. The role is at Adobe in Basel, but the actual job description is entirely missing from the provided text. The title 'Agentic Outcome Engineer' suggests some alignment with the candidate's interest in agentic systems, but without description we cannot assess whether this involves hands-on building, LLM pipelines, or platform engineering versus sales/solutions/consulting. Adobe's core stack (Adobe Experience Cloud, AEM, Target, Analytics) is not mentioned in the candidate's skills.",
-    "contextual_fit": "Poor. Basel is not Zurich/Zug, and the role appears to be at Adobe's main Basel office rather than remote-first. The candidate is specifically targeting Zurich-area roles with 2-week notice. Basel commute/relocation is a significant logistics mismatch. The title 'Agentic Outcome Engineer' sounds more like a customer-facing/solutions engineering or consulting role than the hands-on builder position the candidate seeks.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown due to missing job description. Adobe is a large enterprise; candidate seeks small-team ownership and greenfield building. Likely culture mismatch even if technical aspects aligned.",
+    "technical_fit": "Moderate. Strong overlap in Python/Node.js, LLM APIs, agent development, guardrails, and API/data pipeline integration. However, the role demands 'strong SEO/GEO/content delivery systems experience' and deep Adobe ecosystem expertise (AEM, AEP, Experience Cloud) as core requirements, not nice-to-haves. The candidate has zero SEO/GEO background and no Adobe stack exposure. The 'Agentic' title is partially misleading—this is a customer-facing implementation/consulting engineer role, not a greenfield platform builder position.",
+    "contextual_fit": "Weak. Role is based in Basel (not Zurich/Zug), requires heavy customer-facing work with enterprise clients, and centers on Adobe's proprietary ABV product rather than general agentic systems. Candidate wants ownership of building from zero to production; this role is about implementing and optimizing an existing Adobe product for customers. Career-changer openness to new domains doesn't help much when the domain (Adobe marketing tech stack) is the entire job.",
+    "salary_estimate": "CHF 90k–120k (Adobe Basel, mid-level engineer with customer-facing component)",
+    "culture_fit": "Moderate concern. Adobe's structured enterprise environment with heavy customer collaboration differs from candidate's preference for autonomous, end-to-end ownership. The 'human-in-the-loop workflows' and 'communicate to marketing, engineering, and executive partners' suggests significant non-coding time.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Deep Adobe ecosystem dependency: AEM, AEP, Experience Cloud are central, candidate has zero exposure",
+      "SEO/GEO expertise listed as strong requirement, candidate has none",
+      "Role shape mismatch: customer-facing implementation engineer optimizing existing product, not builder owning greenfield agentic systems",
+      "Basel location is 1.5h+ from Zurich, not a viable daily commute; unclear if hybrid/remote flexibility exists",
+      "'Lead technical integration' and 'excellent communication and customer-facing skills' suggests mid-level expectations, may be heavy for intern/junior profile",
+      "Postgraduate specialization vs. Bachelor's requirement: candidate has lato sensu postgraduate, not Bachelor's, though 'equivalent experience' clause helps"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-18T12:41:18.611147+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
+    "score": 72,
     "hard_blockers": [],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [
-      "Strong. Role centers on building LLM-powered systems and automation end-to-end — exactly his current work and stated direction. His Claude/Kimi API experience, multi-step pipeline building, and cloud infrastructure (Docker, CI/CD, GCP) map directly. The 'AI Engineer' title at a lab-style org suggests greenfield building, not maintenance."
+      "Strong alignment on core stack: Python backend, LLM APIs, agentic workflows, RAG, cloud deployment, Docker — all directly in his wheelhouse. The posting mentions 'extensive experience' and 'senior' but also explicitly invites applications without requiring seniority ('If you're a (Senior) AI Engineer and a desire to impact...'). His production pipeline experience with Claude/Kimi, multi-step automation, and CI/CD maps well to the 'production-grade AI applications' and 'bring AI solutions into production' requirements. Missing pieces: no explicit mention of RAG or multimodal in his background, and the 'solid foundation in computer science' education requirement is unmet (law background, postgraduate data science). However, his demonstrated self-taught trajectory and production shipping record partially offset this."
     ],
     "red_flags": [
-      "Job description is minimal — cannot confirm if role is truly junior-level or expects more senior autonomy",
-      "'On-site' without clarity on hybrid flexibility; his 2-week notice suggests immediate availability which helps",
-      "No explicit mention of agentic systems in the visible text, though 'AI Engineer' at a lab strongly implies this direction",
-      "Competition for AI roles in Zurich may be stiff; his internship title vs. 'AI Engineer' role title could be a leveling question",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Education gap: 'solid foundation in computer science' is stated qualification; his law + postgraduate data science path is non-traditional, though mitigated by production experience",
+      "Cloud platform mismatch: role likely Azure-heavy via Microsoft for Startups partnership; his experience is GCP",
+      "Senior framing in title may create expectation mismatch — but posting text is inclusive of non-senior applicants",
+      "RAG and multimodal AI not explicitly in his background, though LLM pipeline experience is adjacent",
+      "No front-end experience mentioned; role mentions 'familiarity with front-end' as desirable"
     ],
     "job": {
-      "company": "AI Engineer",
-      "title": "AI Engineer ParetoLabs · Zurich (On-site)",
+      "company": "ParetoLabs",
+      "title": "AI Engineer",
       "location": "ParetoLabs · Zurich (On-site)",
       "url": "https://www.linkedin.com/comm/jobs/view/4452412580/?trackingId=ytUpw8U%2FyHKL8lLOqtM6eA%3D%3D&refId=4XUzYa1iQZpSVF3JFU7Y1w%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_facet_suggestions%3BQNMqBKTOTZGBLXpn8FotLg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=12IteBIHy2uco1&trk=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_2-0-job_card_1_jobid_4452412580_sectionid_276008_fmid_gbrmkn~msykf17j~62&trkEmail=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_2-0-job_card_1_jobid_4452412580_sectionid_276008_fmid_gbrmkn~msykf17j~62-null-gbrmkn~msykf17j~62-null-null&eid=gbrmkn-msykf17j-62&otpToken=NDgyNTk3NDU3NDc1ZDU0MzNhYTIzZDYzMmJiMzc0OTQ3ODEzMGU2ZDc3OWUxYzA2ZjU4MWU2Y2I5NTE0ZjA5YmM5OWZhMjJhZjkyYTQ2NmM0NGRiOWYwZWFiMWQyYWQ3YmUxOTQzNjEyZTljZWU3Zjg4OTIyYWYxYmEyOTI4YTIzYzlhZDc2NmY1ZTc5MzBmLDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "ParetoLabs is looking for a passionate (Senior) AI Engineer to join our growing team in Zurich.\nIn this role, you will design, build, and run production-grade AI applications powered by large language models, agentic AI, RAG, and multimodal technologies. You will work across the full engineering lifecycle: from architecture and backend development to cloud deployment and continuous improvement and help shape AI solutions used by leading Swiss companies across different industries.\nYou will be part of a small, experienced team where you can take real ownership, work directly on customer-facing products, and turn the latest advances in AI into reliable applications used in the real world.\nAbout ParetoLabs\nParetoLabs is a Zurich-based AI software company building customized AI applications for conversation, knowledge, and process automation. We develop solutions ranging from intelligent assistants and enterprise search to agentic AI and next-generation voice applications.\nSince 2023, we have been combining cutting-edge AI technologies with the security, reliability, and integration requirements of Swiss companies. As a Microsoft for Startups partner, we work closely with our customers to bring AI solutions from idea to production.\nAufgaben\nDesign, build, and continuously improve production-grade AI applications powered by LLMs, RAG, agentic workflows, and multimodal AI.\nDevelop robust Python backend services, APIs, and integrations that connect AI capabilities with enterprise systems and data sources.\nBuild intelligent agents and end-to-end AI workflows capable of reasoning, using tools, interacting with APIs, and automating complex user requests.\nTake ownership of bringing AI solutions into production, including testing, deployment, monitoring, observability, and continuous optimization.\nDesign scalable and reliable cloud architectures and contribute to the evolution of our shared AI platform and engineering standards.\nEvaluate and integrate new models, frameworks, and AI technologies where they create real value for our products and customers.\nCollaborate closely with other engineers, product teams, and customers to turn complex requirements into practical AI solutions.\nShare your knowledge within our international team and, depending on your experience, mentor other engineers.\nTake real ownership and bring your own ideas into products that are used by leading companies in Switzerland.\nQualifikation\nEducational Background:\nA solid foundation in computer science.\nProven Experience:\nExtensive experience as a full-stack developer with a strong focus on backend technologies (Python preferred) and familiarity with front-end \n[... middle of the posting omitted ...]\nver Provisioning, and Monitoring & Alerting techniques.\nTechnical Skills:\nA good understanding of networking, databases, backup strategies, and disaster recovery scenarios to support robust and scalable applications.\nTeam Player:\nAn open-minded, solution-oriented team player who thrives in collaborative environments.\nCommunication Skills:\nExcellent communication skills in English or German. Capable of interacting effectively with clients and team members alike.\nBenefits\nCompetitive Remuneration:\nA competitive salary package reflecting your experience and contributions.\nEmployee Participation:\nOpportunity to participate in the long-term success and growth of ParetoLabs through our employee participation program.\nPick Your Gear:\nChoose your preferred devices for work.\nAttractive Benefits:\nAbove-market pension benefits and private accident insurance.\nProfessional Growth:\nParticipation in the Microsoft for Startups program, providing access to valuable resources, events, and support.\nIf you're a (\nSenior) AI Engineer\nand a desire to impact the AI application landscape,\nwe invite you to apply to ParetoLabs\n. Please send your resume and portfolio showcasing your relevant experience (GitHub links preferred).\nJoin us in our mission to deliver cutting-edge AI solutions and shape the future of technology across industries!"
     },
-    "technical_fit": "Strong. Role centers on building LLM-powered systems and automation end-to-end — exactly his current work and stated direction. His Claude/Kimi API experience, multi-step pipeline building, and cloud infrastructure (Docker, CI/CD, GCP) map directly. The 'AI Engineer' title at a lab-style org suggests greenfield building, not maintenance.",
-    "contextual_fit": "Very good. ParetoLabs implies a research/product-building environment where ownership and zero-to-production work would be expected. His non-traditional background (law → tech) is actually well-suited to a lab culture that values autonomous problem-solving over credential-checking. Zurich on-site fits his permit and location perfectly.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Likely strong. 'Labs' environments typically reward the self-directed, audit-and-iterate mindset he explicitly describes. His motivation statement about owning the full lifecycle resonates with early-stage or R&D team cultures.",
+    "technical_fit": "Strong alignment on core stack: Python backend, LLM APIs, agentic workflows, RAG, cloud deployment, Docker — all directly in his wheelhouse. The posting mentions 'extensive experience' and 'senior' but also explicitly invites applications without requiring seniority ('If you're a (Senior) AI Engineer and a desire to impact...'). His production pipeline experience with Claude/Kimi, multi-step automation, and CI/CD maps well to the 'production-grade AI applications' and 'bring AI solutions into production' requirements. Missing pieces: no explicit mention of RAG or multimodal in his background, and the 'solid foundation in computer science' education requirement is unmet (law background, postgraduate data science). However, his demonstrated self-taught trajectory and production shipping record partially offset this.",
+    "contextual_fit": "Excellent. Zurich on-site, no permit friction (B permit, no sponsorship needed), 2-week notice is viable. Small team with real ownership is exactly what he seeks. 'Turn the latest advances in AI into reliable applications' and 'take real ownership' mirror his stated motivation. Microsoft/Azure stack mentioned in benefits (Microsoft for Startups) is a gap — his cloud experience is Google Cloud — but transferable and explicitly framed as learning opportunity in the role.",
+    "salary_estimate": "CHF 90,000–120,000 (junior-to-mid range given 'Senior' in title but startup context and his experience level; competitive package mentioned with equity participation)",
+    "culture_fit": "Strong. International team, English working language, emphasis on ownership and bringing own ideas — matches his 'zero to production' motivation and non-traditional background. Mentoring aspect is aspirational for him, not blocker.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Education gap: 'solid foundation in computer science' is stated qualification; his law + postgraduate data science path is non-traditional, though mitigated by production experience",
+      "Cloud platform mismatch: role likely Azure-heavy via Microsoft for Startups partnership; his experience is GCP",
+      "Senior framing in title may create expectation mismatch — but posting text is inclusive of non-senior applicants",
+      "RAG and multimodal AI not explicitly in his background, though LLM pipeline experience is adjacent",
+      "No front-end experience mentioned; role mentions 'familiarity with front-end' as desirable"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "REVIEW",
+    "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-08-18T12:41:18.611147+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
+    "score": 15,
     "hard_blockers": [
-      "German fluency required: role title and description in German, 'w/m/d' format typical of German-first Swiss employers, vocational track (HMS/BM) implies German as primary working language for customer-facing sales support in Zürich market. Native/C1-level German expected for this role type."
+      "Role explicitly requires 'gute Noten in Deutsch' as a formal requirement and is a German-first environment (Du-Kultur, German job posting, health insurance sector in Zurich). Native/C1-level German is effectively mandatory for client-facing sales support work. Candidate's German is A2, far below operational requirement.",
+      "Role structurally requires current enrollment in Handelsmittelschule with Berufsmaturität as prerequisite; candidate is a postgraduate professional, not a commercial high-school student."
     ],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: German fluency required: role title and description in German, 'w/m/d' format typical of German-first Swiss employers, vocational track (HMS/BM) implies German as primary working language for customer-facing sales support in Zürich market. Native/C1-level German expected for this role type.",
-      "Role is vocational-track-specific (HMS with BM), candidate has law degree + postgraduate data science — overqualified and wrong profile",
-      "Sales support/administrative scope with no technical development",
-      "No mention of Python, APIs, automation, LLMs, or data engineering",
-      "Hybrid model unclear but likely requires regular German-language interaction with sales teams and leads",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: Role explicitly requires 'gute Noten in Deutsch' as a formal requirement and is a German-first environment (Du-Kultur, German job posting, health insurance sector in Zurich). Native/C1-level German is effectively mandatory for client-facing sales support work. Candidate's German is A2, far below operational requirement.",
+      "Blocker: Role structurally requires current enrollment in Handelsmittelschule with Berufsmaturität as prerequisite; candidate is a postgraduate professional, not a commercial high-school student.",
+      "Role is explicitly designed for commercial high-school students completing mandatory long-term internship — candidate is overqualified and misaligned with program structure",
+      "Zero technical growth trajectory toward agentic systems, data platforms, or LLM engineering",
+      "Health insurance domain with no technical infrastructure exposure; 'technisch affin' in this context means comfortable with CMS and digital media, not software engineering",
+      "Hybrid model still implies significant in-office presence where German would be required for daily operations"
     ],
     "job": {
-      "company": "Unknown",
+      "company": "Sanitas",
       "title": "Praktikum für Handelsmittelschüler HMS mit BM (w/m/d) Leads Market Management / Sales Support, Zürich / hybrid",
       "location": "Zürich",
       "url": "https://www.xing.com/m/cttCz3VY5o7AhcnetK7fAK",
       "portal": "mail.xing.com",
-      "description": ""
+      "description": "Über diesen Job\nPraktikum für Handelsmittelschüler HMS mit BM (w/m/d) Leads & Market Management / Sales Support,\nZürich / hybrid\nPraktikum für Handelsmittelschüler HMS mit BM (w/m/d) Leads & Market Management / Sales Support, Zürich / hybrid\nWas du bewegst:\nMit Leidenschaft und Teamgeist treiben wir bei Sanitas Innovationen voran, die die Zukunft der Krankenversicherung aktiv und nachhaltig gestalten. Damit wir unseren Kundinnen und Kunden heute und morgen in Sachen Gesundheit genau den Rückhalt geben, den sie brauchen.\nFür dieses vielseitige und anspruchsvolle Langzeitpraktikum bringst du gute Leistungen in allen Schulfächern der Handelsmittelschule (Berufsmatur) mit. Du interessierst dich für die Themen Gesundheit und Versicherungen und möchtest gerne verschiedene Projekte im Bereich Leads & Market Management kennenlernen und begleiten. Du übernimmst Verantwortung, planst und koordinierst selbständig und bist technisch affin. Die Arbeit mit digitalen Medien bereitet dir Freude, und du arbeitest gerne in verschiedenen Teams.\nErfolgreiche Ausbildung mit Berufsmaturität an der Handelsmittelschule mit guten bis sehr guten Leistungen und Langzeitpraktikum als Voraussetzung\nInteresse für die Themen Gesundheit und Versicherungen und Freude an wirtschaftlichen Themen\nDu bist zuverlässig, zielstrebig, arbeitest gerne im Team und bist kommunikativ\nEin Flair für den Umgang mit Zahlen, Content Management Systemen und gute Noten in Deutsch, Mathematik, Französisch und Englisch\nAnalytisches und logisches Denkvermögen\nWeshalb dir das gelingt:\nMitarbeit bei der Konzeption, Umsetzung und Auswertung von Sales- und Service-Kampagnen für unsere Kund:innen\nErstellung von Briefings für die Kunden- und Verkaufsberatung\nErstellung von Kampagnen-Reportings, Aufbereitung und Präsentation der Ergebnisse sowie Dokumentationen und Anleitungen\nUnterstützung bei der Erstellung und Umsetzung verschiedener Content-Formate\nAllgemeine Unterstützung des Teams im operativen Tagesgeschäft\nWorauf du zählen kannst:\nMit rund 900'000 Kundinnen und Kunden gehört Sanitas zu den grössten Krankenversicherungen der Schweiz. In unserem modernen und flexiblen Arbeitsumfeld entwickelst du deine Fähigkeiten weiter.\nVielseitige Berufsbilder mit spannenden Aufgaben\nOffene und kollegiale Unternehmenskultur\nModerne Büros an urbanen Standorten\nGrosszügige Regelung für das Arbeiten im Home Office\nImpulse und Unterstützungsangebote rund um die Gesundheit\nEinfach Bewerben\nBei Sanitas sind wir alle per Du. Diese Du-Kultur möchten wir daher gerne auch in deinem weiteren Bewerbungsprozess pflegen."
     },
-    "technical_fit": "Very poor. Role is for Handelsmittelschule (HMS) students with Berufsmaturität — a Swiss vocational business track. Work is Sales Support / Market Management leads processing: CRM data entry, campaign coordination, administrative sales support. Zero overlap with LLM engineering, data platform building, agentic systems, or any technical development work.",
-    "contextual_fit": "Severe mismatch. Candidate seeks ownership of technical AI/automation pipelines from zero to production. This role is explicitly structured as vocational business internship with administrative support scope — the antithesis of what motivates him.",
+    "technical_fit": "Very poor. Role is for a commercial high-school student (Handelsmittelschüler) with business maturity, focused on sales campaigns, content management, and insurance operations. Zero overlap with candidate's technical stack (Python, LLM APIs, automation pipelines, cloud infrastructure, CI/CD). Role explicitly requires being currently enrolled in Handelsmittelschule with Berufsmaturität — candidate has a postgraduate Data Science degree and is already working as an AI developer.",
+    "contextual_fit": "Poor. Candidate is a career-changer seeking deep technical ownership in agentic systems and data platform engineering. This role offers operational sales support, campaign reporting, and content creation in health insurance. No path to production engineering, no LLM work, no pipeline building. The 'Langzeitpraktikum' structure is designed for students completing their commercial education, not for someone with existing professional tech experience seeking to level up.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Likely traditional corporate sales operations culture, not a builder/ownership environment. No signal of technical innovation or AI work.",
+    "culture_fit": "Neutral-to-poor. Sanitas appears to have a modern, flexible culture with hybrid work, but the role itself is fundamentally misaligned with candidate's stated motivation for zero-to-production ownership in technical systems.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Role is explicitly designed for commercial high-school students completing mandatory long-term internship — candidate is overqualified and misaligned with program structure",
+      "Zero technical growth trajectory toward agentic systems, data platforms, or LLM engineering",
+      "Health insurance domain with no technical infrastructure exposure; 'technisch affin' in this context means comfortable with CMS and digital media, not software engineering",
+      "Hybrid model still implies significant in-office presence where German would be required for daily operations"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-18T12:41:18.611147+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
+    "score": 15,
     "hard_blockers": [
-      "Role requires German at level far exceeding candidate's A2: 'Vertriebsentschädigung' domain, Swiss commercial apprenticeship context, and 'w/m/d' posting style indicate German as primary working language; candidate lacks B1/B2+ German for this environment",
-      "Role is for Handelsmittelschüler with BM — candidate has postgraduate Data Science specialisation, not Swiss commercial apprenticeship background, making him fundamentally ineligible for this targeted program"
+      "Role explicitly requires good grades in Deutsch (German) as a core eligibility criterion — 'gute Noten in Deutsch' — and the entire job posting is in German with no indication English is sufficient. This is a hard language requirement the candidate cannot meet at A2 level.",
+      "Role is exclusively designed for Handelsmittelschüler (commercial school students) with Berufsmaturität doing a mandatory long-term internship as part of their schooling — the candidate is a postgraduate professional with work experience, not a student in this educational track."
     ],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Role requires German at level far exceeding candidate's A2: 'Vertriebsentschädigung' domain, Swiss commercial apprenticeship context, and 'w/m/d' posting style indicate German as primary working language; candidate lacks B1/B2+ German for this environment",
-      "Blocker: Role is for Handelsmittelschüler with BM — candidate has postgraduate Data Science specialisation, not Swiss commercial apprenticeship background, making him fundamentally ineligible for this targeted program",
-      "Complete career path misalignment: candidate seeks AI/data engineering builder roles, this is administrative commercial track",
-      "Vocational program eligibility: candidate is not enrolled in nor graduate of Swiss HMS+BM pathway",
-      "Hybrid model still requires German-language commercial workplace proficiency far above A2",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: Role explicitly requires good grades in Deutsch (German) as a core eligibility criterion — 'gute Noten in Deutsch' — and the entire job posting is in German with no indication English is sufficient. This is a hard language requirement the candidate cannot meet at A2 level.",
+      "Blocker: Role is exclusively designed for Handelsmittelschüler (commercial school students) with Berufsmaturität doing a mandatory long-term internship as part of their schooling — the candidate is a postgraduate professional with work experience, not a student in this educational track.",
+      "Role is fundamentally a school-mandated internship track, not a professional role open to career-changers",
+      "Zero technical growth in candidate's desired direction (agentic systems, LLM engineering, data platforms)",
+      "Insurance commission processing is maintenance/operations work, not greenfield building with ownership",
+      "Candidate would be significantly overqualified and underchallenged, with no path to the skills he wants to develop"
     ],
     "job": {
-      "company": "Unknown",
+      "company": "Sanitas",
       "title": "Praktikum für Handelsmittelschüler HMS mit BM (w/m/d) Vertriebsentschädigung, Zürich / hybrid",
       "location": "Zürich",
       "url": "https://www.xing.com/m/cttCz3VY5o7AhcnetK7fAL",
       "portal": "mail.xing.com",
-      "description": ""
+      "description": "Über diesen Job\nPraktikum für Handelsmittelschüler HMS mit BM (w/m/d) Vertriebsentschädigung,\nZürich / hybrid\nPraktikum für Handelsmittelschüler HMS mit BM (w/m/d) Vertriebsentschädigung, Zürich / hybrid\nWas du bewegst:\nMit Leidenschaft und Teamgeist treiben wir bei Sanitas Innovationen voran, die die Zukunft der Krankenversicherung aktiv und nachhaltig gestalten. Damit wir unseren Kundinnen und Kunden heute und morgen in Sachen Gesundheit genau den Rückhalt geben, den sie brauchen.\nFür dieses vielseitige und anspruchsvolle Langzeitpraktikum im Bereich Vertrieb bringst du gute Leistungen in allen Schulfächern der Handelsmittelschule (Berufsmatur) mit. Du interessierst dich für die Themen Gesundheit und Versicherungen und möchtest gerne verschiedene Aufgaben im Bereich der Entschädigung - und Incentivierung unserer internen und externen Vertriebskanäle kennen lernen sowie operative Verantwortung übernehmen.\nVon Anfang an bist du Teil unseres engagierten Teams und gewinnst vielseitige Einblicke in die Aufgaben einer Krankenversicherung. Du lernst täglich Neues, profitierst von spannenden Gestaltungs- und Entwicklungsmöglichkeiten und legst einen wertvollen Grundstein für deine berufliche Laufbahn.\nAuslösen und Überwachen von automatisierten und manuellen Entschädigungen, Beantworten von internen und externen Anfragen sowie Koordination mit unseren Service Centern und der Versicherungsabwicklung\nFühren von Kontroll-, Korrektur- und Rückforderungsprozessen und Sicherstellen der Qualität des Systems durch Optimierung und Weiterentwicklung\nUmsetzen neuer Anforderungen in Syrius und in den Prozessen sowie Mitarbeit in Projekten\nAustausch mit relevanten unternehmensinternen Schnittstellen (IT, HR und Finanzen) und mit externen Vertriebskanälen\nWeshalb dir das gelingt:\nErfolgreiche Ausbildung mit Berufsmaturität an der Handelsmittelschule mit guten bis sehr guten Leistungen und Langzeitpraktikum als Voraussetzung\nInteresse für die Themen Gesundheit und Versicherungen und Freude an wirtschaftlichen Themen\nDu bist zuverlässig, zielstrebig, arbeitest gerne im Team und bist kommunikativ\nEin Flair für den Umgang mit Zahlen und gute Noten in Deutsch, Mathematik, Französisch und Englisch\nAnalytisches und logisches Denkvermögen\nWorauf du zählen kannst:\nMit rund 900'000 Kundinnen und Kunden gehört Sanitas zu den grössten Krankenversicherungen der Schweiz. In unserem modernen und flexiblen Arbeitsumfeld entwickelst du deine Fähigkeiten weiter.\nVielseitige Berufsbilder mit spannenden Aufgaben\nOffene und kollegiale Unternehmenskultur\nModerne Büros an urbanen Standorten\nGrosszügige Regelung für das Arbeiten im Home Office\nImpulse und Unterstützungsangebote rund um die Gesundheit\nEinfach Bewerben\nBei Sanitas sind wir alle per Du. Diese Du-Kultur möchten wir daher gerne auch in deinem weiteren Bewerbungsprozess pflegen."
     },
-    "technical_fit": "None. Role is for Handelsmittelschule (HMS) students with Berufsmaturität (BM) in commercial apprenticeship track — a Swiss vocational program completely unrelated to software development, data engineering, or AI. Zero overlap with candidate's Python, LLM APIs, automation pipelines, cloud infrastructure skills.",
-    "contextual_fit": "Severe mismatch. Candidate is a postgraduate-educated career changer into tech seeking ownership in agentic systems and data platform engineering. This is an entry-level commercial/administrative internship in sales compensation ('Vertriebsentschädigung') for current vocational students.",
+    "technical_fit": "Very poor. Role is for a commercial school student (Handelsmittelschüler with Berufsmaturität) doing a mandatory long-term internship in sales compensation/commission processing for a health insurer. Core work is manual/automated compensation processing, quality control, and coordination — not software development, not AI/automation engineering, not data platform building. Zero overlap with candidate's technical stack (Python, LLM APIs, Docker, CI/CD, cloud infrastructure).",
+    "contextual_fit": "Very poor. Candidate is a career-changer with law background now building production LLM pipelines and seeking ownership in agentic systems. This role is designed for teenagers/young adults still in commercial school, requiring good grades in school subjects and interest in insurance/health topics. The 'operational responsibility' mentioned is about processing commissions, not building systems. Complete mismatch in career stage, educational path, and professional trajectory.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Irrelevant — role is in entirely different professional universe. Commercial apprenticeship culture vs. builder/ownership tech culture candidate seeks.",
+    "culture_fit": "Neutral-to-poor. Sanitas seems to have modern offices and hybrid work, but the role itself is a traditional corporate internship in insurance operations, not a builder culture. The 'Du-Kultur' is nice but irrelevant given fundamental mismatch.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Role is fundamentally a school-mandated internship track, not a professional role open to career-changers",
+      "Zero technical growth in candidate's desired direction (agentic systems, LLM engineering, data platforms)",
+      "Insurance commission processing is maintenance/operations work, not greenfield building with ownership",
+      "Candidate would be significantly overqualified and underchallenged, with no path to the skills he wants to develop"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-18T12:41:18.611147+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
     "score": null,
@@ -1478,81 +1513,84 @@
     "no_posting_text": true
   },
   {
-    "score": null,
+    "score": 25,
     "hard_blockers": [
-      "PhD candidacy required — candidate holds only postgraduate specialisation (lato sensu), not enrolled in PhD program"
+      "PhD program enrollment required — candidate does not hold a PhD and is not enrolled in one; role explicitly requires penultimate/final year of accredited full-time PhD degree program in Statistics, Biostatistics, CS, Mathematics, Operations Research, or related field"
     ],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: PhD candidacy required — candidate holds only postgraduate specialisation (lato sensu), not enrolled in PhD program",
-      "Role title explicitly states 'PhD Intern' — this is a hard eligibility criterion, not a preferred qualification",
-      "Candidate's entire value proposition (career changer, practical builder, LLM pipeline generalist) is orthogonal to research-specialist profile",
-      "No evidence of statistical modeling, causal inference, or experimental design in background",
-      "On-site Zurich with no relocation mentioned; permit not an issue but role fundamentally wrong shape",
-      "Google's scale means zero 'ownership from day one' — candidate would be a small cog in massive research machine, opposite of stated motivation",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: PhD program enrollment required — candidate does not hold a PhD and is not enrolled in one; role explicitly requires penultimate/final year of accredited full-time PhD degree program in Statistics, Biostatistics, CS, Mathematics, Operations Research, or related field",
+      "Role is fundamentally a research internship, not a builder/engineer role — candidate would be unhappy and underqualified",
+      "Timeline is completely misaligned: Summer 2027 start vs. immediate availability",
+      "No mention of LLMs, agentic systems, or data platform engineering — core interests of candidate",
+      "Location requires Switzerland presence for duration, but this is manageable; however, role shape is wrong"
     ],
     "job": {
-      "company": "Data Science PhD Intern, 2027",
-      "title": "Data Science PhD Intern, 2027 Google · Zurich (On-site) 1 connection",
+      "company": "Google",
+      "title": "Data Science PhD Intern, 2027",
       "location": "Google · Zurich (On-site)",
       "url": "https://www.linkedin.com/comm/jobs/view/4454295266/?trackingId=fx3ZCshx%2Fr7ueGbhmSkvcg%3D%3D&refId=tJUSjY%2BlGshLiAZ3FfNbsA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BcD1LbpL7QaK3Wc7gVomQCA%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=1y8YquXfcRuco1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_3_jobid_4454295266_ssid_8700305338_fmid_gbrmkn~msyhnrav~j3&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_3_jobid_4454295266_ssid_8700305338_fmid_gbrmkn~msyhnrav~j3-null-gbrmkn~msyhnrav~j3-null-null&eid=gbrmkn-msyhnrav-j3&otpToken=Y2JiNDYwY2Y0YzZhZTg3NDBiMWVmZDE1NmZlODkyNWRhN2Y0ZGQzNzA0M2U0OWViZjQ3ZDVkNTU0NjA2MmIyNmZjMjA4ZTY3ZDcwYTBmZDUzMmQyNmE0ZThkMTAwNjMzZTI4YTU2YWFhMGY2YzNlMjI3ZWNlZjg0NDMwOTMyOTY0MzhiOWE1ODlhMTE3YmZkLDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "Please complete your application before 23rd October 2026. We encourage you to apply as early as possible as we review applications on a rolling basis.\nThis internship is intended for students enrolled in their penultimate/final year of studies in an accredited full-time PhD degree program located in the EMEA region. Participation in the internship program requires that you are located in Switzerland for the duration of the internship program. Interns will be required to be available to work full-time for a minimum of 13 weeks over the Summer 2027 (starting in May, June or July) for the duration of the program.\nTo start the application process, you will need an updated CV or resume and a current unofficial or official transcript in English. Click on the “Apply” button on this page and provide the required materials in the appropriate sections (PDFs preferred):\nIn the “Resume Section:” attach an updated CV or resume\nIn the “Education Section:” attach a current or recent unofficial or official transcript in English.\nUnder “Degree Status,” select “Now attending” to upload a transcript.\nPlease include your expected graduation date (month and year), and availability for the internship on your resume. The specific team and project(s) will be determined based on your educational background, interest and skills.\nMinimum qualifications:\nCurrently enrolled in a PhD program in Statistics, Biostatistics, Computer Science, Mathematics, Operations Research, or a related technical field involving experimental design and quantitative analysis of experimental data, and in your penultimate year of study.\nExperience working with datasets using Python, R, SAS, MATLAB, or other statistical software.\nExperience with methods of statistical data analysis (e.g., linear models, hypothesis testing, multi-level models, Bayesian methods, etc.).\nPreferred qualifications:\nExperience with causal inference methods.\nExperience developing intellectual capital such as peer-reviewed publications.\nAbility to complete a minimum 13 weeks internship in Switzerland starting between May-July 2027.\nAbout The Job\nGoogle's data scientists work within our Software Engineering organization, including Search, YouTube, and Google Ads. We analyze sets of data and continually run live experiments in order to help drive critical decisions at Google. Specifically, we support the development of innovative, highly scalable, next-generation technologies through research and advanced analysis.\nGoogle is and always will be an engineering company. We hire people with a broad set of technical skills who are ready to address some of technology's greatest challenges and make an impact on millions, if not billions, of users. At Google, engineers not only revolutionize search, they routinely work on massive scalability and storage solutions, large-scale applications and entirely new platforms for developers around the world. From Google Ads to Chrome, Android to YouTube, Social to Local, Google engineers are changing the world one technological achievement after another.\nResponsibilities\nProvide research on topics including Google's business model and search techniques.\nProduce quantitative and qualitative modeling of business dynamics, user behavior, and more.\nIdentify areas for further investigation as well as creating innovative methods of analysis.\nGoogle is proud to be an equal opportunity workplace and is an affirmative action employer. We are committed to equal employment opportunity regardless of race, color, ancestry, religion, sex, national origin, sexual orientation, age, citizenship, marital status, disability, gender identity or Veteran status. We also consider qualified applicants regardless of criminal histories, consistent with legal requirements. See also Google's EEO Policy and EEO is the Law. If you have a disability or special need that requires accommodation, please let us know by completing our Accommodations for Applicants form ."
     },
-    "technical_fit": "Poor. Role requires PhD-level research in statistics/ML with focus on causal inference, experimental design, and large-scale systems at Google scale. Candidate is a career-changer with practical automation/LLM engineering skills but no PhD, no academic research background, and no demonstrated depth in statistical modeling or causal inference. This is a research internship, not a builder/ownership role.",
-    "contextual_fit": "Very poor. Candidate explicitly seeks 'ownership from day one,' 'zero to production,' and 'agentic systems and data platform engineering.' This is a structured PhD research program within Google's established infrastructure, with mentorship and research publication goals—not autonomous building. The 'internship where I can go deeper into agentic systems' motivation is mismatched; this role goes deeper into statistical theory and Google-internal systems, not agentic LLM pipelines.",
-    "salary_estimate": "CHF 8,500-10,500/month (Google PhD intern standard)",
-    "culture_fit": "Mismatched. Google research culture values deep theoretical contribution, publication track record, and collaborative research mentorship. Candidate's self-described excitement comes from shipping fast, auditing own output, and iterative fixing—more startup/agency builder mentality than research lab methodology.",
+    "technical_fit": "Poor. Role is deep statistical research (causal inference, experimental design, peer-reviewed publications) within Google's Software Engineering org. Candidate's profile is applied AI/automation engineering (LLM pipelines, CI/CD, dashboards) — very different technical stack and career trajectory. His Python/SQL are present but not in a research context; no R, SAS, MATLAB, or statistical modeling background.",
+    "contextual_fit": "Poor. PhD program enrollment is a hard minimum qualification — candidate holds a postgraduate specialisation (lato sensu), not a PhD, and is not in penultimate/final year of doctoral studies. Role is also 13-week Summer 2027 internship (May-July start), while candidate is available now with 2-week notice. Timeline mismatch is severe.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Neutral-to-poor. Google's engineering culture is prestigious but this specific role is research-oriented within a massive org — candidate explicitly wants ownership and greenfield building, not contributing to large-scale research projects where individual ownership is diluted.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Role is fundamentally a research internship, not a builder/engineer role — candidate would be unhappy and underqualified",
+      "Timeline is completely misaligned: Summer 2027 start vs. immediate availability",
+      "No mention of LLMs, agentic systems, or data platform engineering — core interests of candidate",
+      "Location requires Switzerland presence for duration, but this is manageable; however, role shape is wrong"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-18T12:41:18.611147+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
+    "score": 25,
     "hard_blockers": [
-      "PhD enrollment requirement implied by title 'Data Science PhD Intern' — candidate holds postgraduate specialisation (lato sensu), not enrolled in PhD program"
+      "Role requires physical presence in Switzerland for Summer 2027 (May-July start); candidate available now with 2-week notice, not 2027"
     ],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: PhD enrollment requirement implied by title 'Data Science PhD Intern' — candidate holds postgraduate specialisation (lato sensu), not enrolled in PhD program",
-      "No job description available to assess actual role content; title alone is strongly mismatched",
-      "PhD internships typically require current doctoral candidacy with research focus, not career-changer practical engineering profile",
-      "Candidate explicitly seeks 'internship or junior role' in agentic systems/data platform engineering with real ownership — this appears to be academic research track, not builder role",
-      "Timing '2027' suggests advance recruiting for structured program, not immediate opportunity matching 2-week notice availability",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: Role requires physical presence in Switzerland for Summer 2027 (May-July start); candidate available now with 2-week notice, not 2027",
+      "Timeline completely misaligned: 2027 summer program vs. immediate availability",
+      "Role shape is research analyst/modeler, not builder/owner of production systems",
+      "No statistical research background or experimental design experience",
+      "No causal inference or publication track record (preferred qualifications)",
+      "Located in 'Switzerland' generally, not specifically Zurich/Zug area; however this is moot given other blockers"
     ],
     "job": {
-      "company": "Unknown",
+      "company": "Google",
       "title": "Data Science PhD Intern, 2027",
-      "location": "Unknown",
+      "location": "Switzerland",
       "url": "https://www.linkedin.com/comm/jobs/view/4454295266/?trackingId=fx3ZCshx%2Fr7ueGbhmSkvcg%3D%3D&refId=tJUSjY%2BlGshLiAZ3FfNbsA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BcD1LbpL7QaK3Wc7gVomQCA%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=1y8YquXfcRuco1&trk=eml-email_job_alert_digest_01-primary_job_list-0-jobcard_body_3_jobid_4454295266_ssid_8700305338_fmid_gbrmkn~msyhnrav~j3&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-jobcard_body_3_jobid_4454295266_ssid_8700305338_fmid_gbrmkn~msyhnrav~j3-null-gbrmkn~msyhnrav~j3-null-null&eid=gbrmkn-msyhnrav-j3&otpToken=Y2JiNDYwY2Y0YzZhZTg3NDBiMWVmZDE1NmZlODkyNWRhN2Y0ZGQzNzA0M2U0OWViZjQ3ZDVkNTU0NjA2MmIyNmZjMjA4ZTY3ZDcwYTBmZDUzMmQyNmE0ZThkMTAwNjMzZTI4YTU2YWFhMGY2YzNlMjI3ZWNlZjg0NDMwOTMyOTY0MzhiOWE1ODlhMTE3YmZkLDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "Please complete your application before 23rd October 2026. We encourage you to apply as early as possible as we review applications on a rolling basis.\nThis internship is intended for students enrolled in their penultimate/final year of studies in an accredited full-time PhD degree program located in the EMEA region. Participation in the internship program requires that you are located in Switzerland for the duration of the internship program. Interns will be required to be available to work full-time for a minimum of 13 weeks over the Summer 2027 (starting in May, June or July) for the duration of the program.\nTo start the application process, you will need an updated CV or resume and a current unofficial or official transcript in English. Click on the “Apply” button on this page and provide the required materials in the appropriate sections (PDFs preferred):\nIn the “Resume Section:” attach an updated CV or resume\nIn the “Education Section:” attach a current or recent unofficial or official transcript in English.\nUnder “Degree Status,” select “Now attending” to upload a transcript.\nPlease include your expected graduation date (month and year), and availability for the internship on your resume. The specific team and project(s) will be determined based on your educational background, interest and skills.\nMinimum qualifications:\nCurrently enrolled in a PhD program in Statistics, Biostatistics, Computer Science, Mathematics, Operations Research, or a related technical field involving experimental design and quantitative analysis of experimental data, and in your penultimate year of study.\nExperience working with datasets using Python, R, SAS, MATLAB, or other statistical software.\nExperience with methods of statistical data analysis (e.g., linear models, hypothesis testing, multi-level models, Bayesian methods, etc.).\nPreferred qualifications:\nExperience with causal inference methods.\nExperience developing intellectual capital such as peer-reviewed publications.\nAbility to complete a minimum 13 weeks internship in Switzerland starting between May-July 2027.\nAbout The Job\nGoogle's data scientists work within our Software Engineering organization, including Search, YouTube, and Google Ads. We analyze sets of data and continually run live experiments in order to help drive critical decisions at Google. Specifically, we support the development of innovative, highly scalable, next-generation technologies through research and advanced analysis.\nGoogle is and always will be an engineering company. We hire people with a broad set of technical skills who are ready to address some of technology's greatest challenges and make an impact on millions, if not billions, of users. At Google, engineers not only revolutionize search, they routinely work on massive scalability and storage solutions, large-scale applications and entirely new platforms for developers around the world. From Google Ads to Chrome, Android to YouTube, Social to Local, Google engineers are changing the world one technological achievement after another.\nResponsibilities\nProvide research on topics including Google's business model and search techniques.\nProduce quantitative and qualitative modeling of business dynamics, user behavior, and more.\nIdentify areas for further investigation as well as creating innovative methods of analysis.\nGoogle is proud to be an equal opportunity workplace and is an affirmative action employer. We are committed to equal employment opportunity regardless of race, color, ancestry, religion, sex, national origin, sexual orientation, age, citizenship, marital status, disability, gender identity or Veteran status. We also consider qualified applicants regardless of criminal histories, consistent with legal requirements. See also Google's EEO Policy and EEO is the Law. If you have a disability or special need that requires accommodation, please let us know by completing our Accommodations for Applicants form ."
     },
-    "technical_fit": "Very poor. Role is a PhD-level Data Science research internship, likely requiring deep theoretical ML/AI research, statistical methodology development, and academic publication orientation. Candidate is a self-taught career changer with practical engineering focus (LLM pipelines, automation, dashboards) and a postgraduate lato sensu (non-research) qualification, not a PhD student.",
-    "contextual_fit": "Poor. The '2027' timing suggests a structured PhD program internship (typically for enrolled doctoral students), and the complete lack of job description prevents assessing alignment, but the title alone signals fundamental mismatch with candidate's profile and goals.",
+    "technical_fit": "Poor. The role requires a PhD in Statistics/Biostatistics/CS/Math with experimental design and quantitative analysis focus. The candidate holds a postgraduate specialisation (lato sensu, not a PhD) in Data Science and has no background in statistical research, experimental design, causal inference, or academic publication. His skills are applied engineering: LLM pipelines, automation, cloud infrastructure — not statistical modeling or research methodology.",
+    "contextual_fit": "Very poor. This is a structured summer 2027 PhD internship program (May-July start, 13+ weeks, penultimate/final year PhD). The candidate is already working as an intern with 2-week notice, seeking immediate/junior roles with ownership. The timeline mismatch alone (2027 program vs. immediate availability) is disqualifying. The role is also within Google's Software Engineering org doing research support, not building production AI/automation systems — the 'agentic systems and data platform engineering' with ownership he wants is absent.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown due to missing description, but academic research culture vs. candidate's stated desire for 'zero to production ownership' in industry settings suggests mismatch.",
+    "culture_fit": "Mismatch. Google PhD intern culture is research-oriented, academic mentorship, and embedded within large engineering orgs. The candidate explicitly wants 'real ownership from day one rather than support work' and 'zero to production' building. This role's responsibilities include 'research on Google's business model and search techniques' and 'quantitative modeling' — analysis and support, not end-to-end building.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Timeline completely misaligned: 2027 summer program vs. immediate availability",
+      "Role shape is research analyst/modeler, not builder/owner of production systems",
+      "No statistical research background or experimental design experience",
+      "No causal inference or publication track record (preferred qualifications)",
+      "Located in 'Switzerland' generally, not specifically Zurich/Zug area; however this is moot given other blockers"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-18T12:41:18.611147+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
     "score": null,
@@ -1630,72 +1668,85 @@
     "no_posting_text": true
   },
   {
-    "score": null,
-    "hard_blockers": [],
-    "insufficient_info": true,
+    "score": 32,
+    "hard_blockers": [
+      "Fluent French required (verbal and written) — candidate does not list French; this is a mandatory hard language requirement beyond English"
+    ],
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Role is pure commodity trading operations with zero technical/AI component—complete misalignment with candidate's stated goals and skills",
-      "No data engineering, no software development, no automation building—candidate would be leaving tech entirely",
-      "Even with career-change flexibility, this represents abandonment of deliberate AI/automation trajectory, not a pivot within tech",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: Fluent French required (verbal and written) — candidate does not list French; this is a mandatory hard language requirement beyond English",
+      "Role is pure operational support, not engineering; candidate would be doing logistics coordination, not building LLM pipelines",
+      "Commodity/mining domain interest is required; candidate has no expressed interest in this sector",
+      "6-month duration with 'as soon as possible' start may conflict with 2-week notice if timing is tight",
+      "Postgraduate data science specialization is overqualified for MS Office-level IT requirements",
+      "Candidate would gain minimal relevant experience for his target career path in agentic systems"
     ],
     "job": {
-      "company": "Traffic Intern",
-      "title": "Traffic Intern Glencore · Baar",
+      "company": "Glencore",
+      "title": "Traffic Intern",
       "location": "Baar, Zug",
       "url": "https://www.linkedin.com/comm/jobs/view/4454410038/?trackingId=cooPKHvJzfz%2FGBKzDtJ6Hw%3D%3D&refId=tJUSjY%2BlGshLiAZ3FfNbsA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BcD1LbpL7QaK3Wc7gVomQCA%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=1y8YquXfcRuco1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_5_jobid_4454410038_ssid_8700305338_fmid_gbrmkn~msyhnrav~j3&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_5_jobid_4454410038_ssid_8700305338_fmid_gbrmkn~msyhnrav~j3-null-gbrmkn~msyhnrav~j3-null-null&eid=gbrmkn-msyhnrav-j3&otpToken=Y2JiNDYwY2Y0YzZhZTg3NDBiMWVmZDE1NmZlODkyNWRhN2Y0ZGQzNzA0M2U0OWViZjQ3ZDVkNTU0NjA2MmIyNmZjMjA4ZTY3ZDcwYTBmZDUzMmQyNmE0ZThkMTAwNjMzZTI4YTU2YWFhMGY2YzNlMjI3ZWNlZjg0NDMwOTMyOTY0MzhiOWE1ODlhMTE3YmZkLDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "Department:\nIron Ore Marketing\nInternship duration:\n6 months\nStart date:\nas soon as possible\nFor motivated candidates, we offer the chance to join one of the world’s largest producers and marketers of commodities, and to become part of a global multicultural team, protecting and enhancing the organization’s value and promoting positive change.\nThe qualified candidate will support the Iron Ore Marketing Department’s operations and commercial teams in an array of different tasks conducive to the successful performance of the trade lifecycle, while gaining exposure to different internal and external stakeholders and areas within the organization.\nGlencore, as a leader in the commodities and mining sector, offers candidates an opportunity to tackle a diverse range of challenges that require innovative problem-solving skills. In addition, this role offers the chance to thrive in a flat organizational structure, where collaboration and open communication are encouraged. Our dynamic and entrepreneurial environment fosters innovation and empowers individuals to take initiative, making it an ideal setting for those who seek growth and impact.\nWe Are Looking For a Candidate Who\nis currently undertaking an undergraduate or graduate course, or recently completed university\nhas a strong interest in the commodity and mining business\nhas an open, flexible and team-oriented personality with an interdisciplinary thinking and solution-oriented working attitude\nhas a good know-how in using IT applications (MS office)\nis fluent in English and French verbal and written, a good understanding of any other language is an asset\nhas current Swiss B/C permit or is Swiss/EU passport holder\nThe ideal candidate is\nself-driven with a positive attitude\nwilling to embrace a diversity of tasks and responsibilities\naims to improve processes and procedures to maximize efficiency\nhighly detail-focused and process-oriented\nable to display good time management and organisational skills\nable to work and communicate with people from various multi-cultural backgrounds inside and outside the Company\nBenefits\nWe are committed to providing benefits, which promote mental, physical, and financial well-being. From healthy meal options in our restaurants and bistros to free use of the in-house gym including sport classes with professional trainers.\nWe reimburse public transport for commuting to work; alternatively, we offer free parking space.\nWe provide tuition assistance for further education and training courses.\nWe have a competitive parental leave policy. Our childcare benefits also include emergency childcare services and financial assistance towards daycare co\n[... middle of the posting omitted ...]\ns, performance or achievements to differ materially from any future events, results, performance, achievements or other outcomes expressed or implied by such forward-looking statements. This document does not constitute or form part of any offer or invitation to sell or issue, or any solicitation of any offer to purchase or subscribe for any securities.\nOther information:\nThe companies in which Glencore plc directly and indirectly has an interest are separate and distinct legal entities. In this document, “Glencore”, “Glencore group” and “Group” are used for convenience only where references are made to Glencore plc and its subsidiaries in general. These collective expressions are used for ease of reference only and do not imply any other relationship between the companies. Likewise, the words “we”, “us” and “our” are also used to refer collectively to members of the Group or to those who work for them. These expressions are also used where no useful purpose is served by identifying the particular company or companies.\nNote*: All applications will be subject to potential background checks. You will be informed if this will be the case. Further information about the processing of your personal data will be made available during the application process. We'll seek your explicit consent prior to processing the data."
     },
-    "technical_fit": "Very poor. Role is commodity trading operations/logistics ('Traffic Intern') focused on physical goods movement, shipping documentation, and trade execution. Zero overlap with LLMs, automation pipelines, data platform engineering, or agentic systems. Candidate's entire skillset (Python, LLM APIs, CI/CD, cloud infrastructure) is irrelevant to this role.",
-    "contextual_fit": "Poor. Candidate explicitly seeks ownership in AI/automation engineering from day one. This is a support/operational internship in commodity trading logistics with no technical building component. Career-change openness does not extend to abandoning tech trajectory entirely.",
+    "technical_fit": "Very poor. Role is operational trade support (Iron Ore Marketing traffic/logistics) with MS Office as the primary IT tool. Zero overlap with candidate's core skills: Python, LLM APIs, automation pipelines, CI/CD, cloud infrastructure, dashboarding. The 'IT applications' requirement is basic office software, not engineering.",
+    "contextual_fit": "Poor. Role shape is support tasks across the trade lifecycle in commodities marketing, not building/owning systems from zero to production. No AI, no data platform engineering, no agentic systems. Flat structure and initiative are positives, but the work itself is far from candidate's stated motivation.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Neutral but irrelevant. Glencore is a major commodities firm; culture mismatch is not the issue—complete functional mismatch is.",
+    "culture_fit": "Moderate. Flat, entrepreneurial, multicultural environment aligns with candidate's preferences. However, the actual role is process-oriented trade operations, not the innovative technical building he seeks.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Role is pure operational support, not engineering; candidate would be doing logistics coordination, not building LLM pipelines",
+      "Commodity/mining domain interest is required; candidate has no expressed interest in this sector",
+      "6-month duration with 'as soon as possible' start may conflict with 2-week notice if timing is tight",
+      "Postgraduate data science specialization is overqualified for MS Office-level IT requirements",
+      "Candidate would gain minimal relevant experience for his target career path in agentic systems"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-18T12:41:18.611147+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
-    "hard_blockers": [],
-    "insufficient_info": true,
+    "score": 15,
+    "hard_blockers": [
+      "Fluent French required (verbal and written) — candidate has no French listed; this is a mandatory bilingual requirement beyond English"
+    ],
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job title 'Traffic Intern' does not match target role shape (agentic systems, data platform engineering, LLM pipeline ownership)",
-      "No job description, company name, or location provided — impossible to evaluate fit",
-      "URL suggests LinkedIn job alert but content failed to load or was not extracted",
-      "Role title historically associated with ad operations trafficking, media logistics, or broadcast scheduling — none of which align with candidate's technical trajectory",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: Fluent French required (verbal and written) — candidate has no French listed; this is a mandatory bilingual requirement beyond English",
+      "Role is pure operational support with no technical building or AI/automation components",
+      "Commodity trading domain is irrelevant to candidate's career trajectory",
+      "'Innovative problem-solving' in this context means operational efficiency, not technical innovation",
+      "Candidate would be severely underutilized and gain no relevant skills for target career path",
+      "Even if languages were met, 6-month duration and 'as soon as possible' start create timing friction with 2-week notice"
     ],
     "job": {
-      "company": "Unknown",
+      "company": "Glencore",
       "title": "Traffic Intern",
-      "location": "Unknown",
+      "location": "Zurich",
       "url": "https://www.linkedin.com/comm/jobs/view/4454410038/?trackingId=cooPKHvJzfz%2FGBKzDtJ6Hw%3D%3D&refId=tJUSjY%2BlGshLiAZ3FfNbsA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BcD1LbpL7QaK3Wc7gVomQCA%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=1y8YquXfcRuco1&trk=eml-email_job_alert_digest_01-primary_job_list-0-jobcard_body_5_jobid_4454410038_ssid_8700305338_fmid_gbrmkn~msyhnrav~j3&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-jobcard_body_5_jobid_4454410038_ssid_8700305338_fmid_gbrmkn~msyhnrav~j3-null-gbrmkn~msyhnrav~j3-null-null&eid=gbrmkn-msyhnrav-j3&otpToken=Y2JiNDYwY2Y0YzZhZTg3NDBiMWVmZDE1NmZlODkyNWRhN2Y0ZGQzNzA0M2U0OWViZjQ3ZDVkNTU0NjA2MmIyNmZjMjA4ZTY3ZDcwYTBmZDUzMmQyNmE0ZThkMTAwNjMzZTI4YTU2YWFhMGY2YzNlMjI3ZWNlZjg0NDMwOTMyOTY0MzhiOWE1ODlhMTE3YmZkLDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "Department:\nIron Ore Marketing\nInternship duration:\n6 months\nStart date:\nas soon as possible\nFor motivated candidates, we offer the chance to join one of the world’s largest producers and marketers of commodities, and to become part of a global multicultural team, protecting and enhancing the organization’s value and promoting positive change.\nThe qualified candidate will support the Iron Ore Marketing Department’s operations and commercial teams in an array of different tasks conducive to the successful performance of the trade lifecycle, while gaining exposure to different internal and external stakeholders and areas within the organization.\nGlencore, as a leader in the commodities and mining sector, offers candidates an opportunity to tackle a diverse range of challenges that require innovative problem-solving skills. In addition, this role offers the chance to thrive in a flat organizational structure, where collaboration and open communication are encouraged. Our dynamic and entrepreneurial environment fosters innovation and empowers individuals to take initiative, making it an ideal setting for those who seek growth and impact.\nWe Are Looking For a Candidate Who\nis currently undertaking an undergraduate or graduate course, or recently completed university\nhas a strong interest in the commodity and mining business\nhas an open, flexible and team-oriented personality with an interdisciplinary thinking and solution-oriented working attitude\nhas a good know-how in using IT applications (MS office)\nis fluent in English and French verbal and written, a good understanding of any other language is an asset\nhas current Swiss B/C permit or is Swiss/EU passport holder\nThe ideal candidate is\nself-driven with a positive attitude\nwilling to embrace a diversity of tasks and responsibilities\naims to improve processes and procedures to maximize efficiency\nhighly detail-focused and process-oriented\nable to display good time management and organisational skills\nable to work and communicate with people from various multi-cultural backgrounds inside and outside the Company\nBenefits\nWe are committed to providing benefits, which promote mental, physical, and financial well-being. From healthy meal options in our restaurants and bistros to free use of the in-house gym including sport classes with professional trainers.\nWe reimburse public transport for commuting to work; alternatively, we offer free parking space.\nWe provide tuition assistance for further education and training courses.\nWe have a competitive parental leave policy. Our childcare benefits also include emergency childcare services and financial assistance towards daycare co\n[... middle of the posting omitted ...]\ns, performance or achievements to differ materially from any future events, results, performance, achievements or other outcomes expressed or implied by such forward-looking statements. This document does not constitute or form part of any offer or invitation to sell or issue, or any solicitation of any offer to purchase or subscribe for any securities.\nOther information:\nThe companies in which Glencore plc directly and indirectly has an interest are separate and distinct legal entities. In this document, “Glencore”, “Glencore group” and “Group” are used for convenience only where references are made to Glencore plc and its subsidiaries in general. These collective expressions are used for ease of reference only and do not imply any other relationship between the companies. Likewise, the words “we”, “us” and “our” are also used to refer collectively to members of the Group or to those who work for them. These expressions are also used where no useful purpose is served by identifying the particular company or companies.\nNote*: All applications will be subject to potential background checks. You will be informed if this will be the case. Further information about the processing of your personal data will be made available during the application process. We'll seek your explicit consent prior to processing the data."
     },
-    "technical_fit": "No technical content available to evaluate. Job title 'Traffic Intern' suggests media/advertising operations or logistics coordination, not agentic systems, data platform engineering, or LLM-powered pipeline development.",
-    "contextual_fit": "Cannot assess. No description, company, or location information provided. Title does not align with candidate's stated goal of building LLM-powered pipelines with real ownership.",
+    "technical_fit": "Very poor. Role requires only MS Office IT skills; zero overlap with candidate's core competencies (Python, LLM APIs, automation pipelines, cloud infrastructure, CI/CD). This is a commodity trading operations/support role, not a technical building role.",
+    "contextual_fit": "Very poor. Candidate seeks hands-on ownership building LLM-powered agentic systems and data platforms. This role is supporting trade lifecycle operations in iron ore marketing—heavy on coordination, documentation, and process adherence rather than greenfield technical building. Flat structure and 'initiative' language are misleading; the actual work is compliance and logistics support in commodities trading.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Cannot assess.",
+    "culture_fit": "Neutral-to-poor. Flat structure and entrepreneurial language sound appealing, but the actual role shape (supporting commercial teams, detail-focused process work) contradicts candidate's stated motivation of zero-to-production ownership. The 'diversity of tasks' here means operational variety, not technical breadth.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Role is pure operational support with no technical building or AI/automation components",
+      "Commodity trading domain is irrelevant to candidate's career trajectory",
+      "'Innovative problem-solving' in this context means operational efficiency, not technical innovation",
+      "Candidate would be severely underutilized and gain no relevant skills for target career path",
+      "Even if languages were met, 6-month duration and 'as soon as possible' start create timing friction with 2-week notice"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-18T12:41:18.611147+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   }
 ]

@@ -1793,76 +1793,78 @@
     "no_posting_text": true
   },
   {
-    "score": null,
-    "hard_blockers": [],
-    "insufficient_info": true,
+    "score": 15,
+    "hard_blockers": [
+      "Fluent French required (beyond candidate's languages: Portuguese native, English C1, Spanish B2, German A2). Job explicitly states 'Fluent in French and English' as mandatory. Candidate has no French listed."
+    ],
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Complete domain mismatch: retail marketing vs. AI/automation engineering",
-      "No technical or data work in role description",
-      "On-site at Guerlain boutique/office, not a tech environment",
-      "Candidate would gain zero relevant technical experience for stated career goals",
-      "Title contains 'Marketing' not engineering/data/AI; likely screened out by candidate himself",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: Fluent French required (beyond candidate's languages: Portuguese native, English C1, Spanish B2, German A2). Job explicitly states 'Fluent in French and English' as mandatory. Candidate has no French listed.",
+      "No technical growth path in this role — pure marketing operations with no data/AI/automation exposure",
+      "Luxury retail domain is irrelevant to candidate's stated career direction",
+      "'Ownership' in this context is project coordination, not technical system ownership",
+      "6-12 month duration is standard but role shape is completely misaligned with candidate's goals",
+      "Even German 'is a plus' is irrelevant given French is hard-required"
     ],
     "job": {
-      "company": "INTERN RETAIL & TRADE MARKETING 100% (M/F/D)",
-      "title": "INTERN RETAIL & TRADE MARKETING 100% (M/F/D) Guerlain · Zurich (On-site)",
+      "company": "Guerlain",
+      "title": "INTERN RETAIL & TRADE MARKETING 100% (M/F/D)",
       "location": "Guerlain · Zurich (On-site)",
       "url": "https://www.linkedin.com/comm/jobs/view/4437842471/?trackingId=9iCw%2F2XxZCR6wEr18CAN%2Bw%3D%3D&refId=ejV%2BiCI3ofXvSlWO0YaSsQ%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BX4JiUsiDTCCbcH42NdWd%2Fg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=1ktwEXf-ctsIo1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_0_jobid_4437842471_ssid_8700305346_fmid_gbrmkn~mswxxl9p~11&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_0_jobid_4437842471_ssid_8700305346_fmid_gbrmkn~mswxxl9p~11-null-gbrmkn~mswxxl9p~11-null-null&eid=gbrmkn-mswxxl9p-11&otpToken=N2I4NDNiNzhmODM5MTYzMjYxZjNlNTk3ZjA5MDczZDg0ODM0YzM3OGRhN2FjNTFkNmM1MGQ3MGJhOTI4YmMzNjZlZjE0ZmU5NzkyMmJkMjZkNzcwMTMyNWE4NGE3NmU0YWE2ZDZlNjIyMDA0ZTBiZWNmOTcwZmY4NWNjYjRhZTdjMGU3YWM1N2Y0MDFjN2MyLDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "GUERLAIN is the Parisian alchemist that pursues an infinite quest for wonder of senses and crafts artistic beauty from nature, since 1828. GUERLAIN has been creating exceptional fragrance and beauty products since 1828, and strives to preserve, develop and pass on this unique heritage. The vision is to become the most iconic high perfumery and high cosmetic house, in image and products.\nINTERN RETAIL & TRADE MARKETING 100% (M/F/D)\nIn our Zürich Office as September 1st (6 to 12 months)\nAs part of the DACH Marketing team based in Zurich, you will contribute to the deployment of Guerlain’s Trade & Retail Marketing strategies across Switzerland and Austria, in close collaboration with the other departments, EMEA, and external partners.\nJob Responsibilities\nAs part of the DACH Marketing team based in Zurich, you will contribute to the deployment of Guerlain’s Trade & Retail Marketing strategies across Switzerland and Austria, in close collaboration with the other departments, EMEA, and external partners.\nTrade Marketing %30\nSupport the execution of Trade Marketing plans to drive key product launches\nCoordinate in-store activations (podiums, windows, takeovers, promotions, animations)\nDevelop merchandising tools and POS materials, including agency briefing and production follow-up\nMonitor sell-out performance, ROI, and competitive activities\nRetail Marketing %30\nImplement the annual activation plan across Guerlain’s counters & Salons de Parfum\nCreate monthly activations and elevated client experiences around key launches and commercial moments\nManage activation budgets and track performance\nGuerlain Spa Marketing %20\nSupport the marketing development of Guerlain’s two Spas in Switzerland\nContribute to local activations, events, and client experience initiatives\nSupport business development initiatives and monitor performance\nPartnerships & Events %20\nContribute to the creation of VIC events, strategic partnerships, and immersive brand experiences\nDevelop event concepts and supporting creative assets\nBuild relationships with local luxury partners to drive collaborations and client recruitment opportunities\nCoordinate event execution, budget follow-up, and post-event performance analysis\nProfile\nBachelor’s or master’s degree in marketing, Business, Communication, Luxury Management, or a related field Previous internship or professional experience in marketing, retail, events, luxury, or hospitality International, curious, and passionate about luxury, exclusivity, exceptional craftsmanship, and memorable experiences Team-player, proactive, organized, autonomous, and eager to take ownership Strong communication, project management, and analytical skills Fluent in French and English; German is a plus Proficient in Excel, PowerPoint, Adobe Photoshop, and InDesign\nAdditional Information\nWe want all our employees to feel valued and recognized. Our career paths are designed to prevent discrimination, regardless of gender identity, sexual orientation, religion, ethnicity, age, disabilities, nationality, or any other aspect that makes you unique.\nIn order to ensure the most objective assessment of skills and qualifications possible, we ask all applicants to submit their application documents without a photo.\nWe look forward to receiving your written online application, including details of your earliest possible starting date and your salary expectations."
     },
-    "technical_fit": "Very poor. Role is pure retail/trade marketing (POS materials, merchandising, event coordination, CRM campaign support). Zero overlap with AI, automation, data engineering, or software development.",
-    "contextual_fit": "Very poor. Candidate seeks hands-on technical ownership building LLM-powered pipelines and agentic systems. This is a traditional luxury marketing internship with operational/executional tasks, not a builder role.",
+    "technical_fit": "Very poor. Role requires Excel/PowerPoint/Photoshop/InDesign for merchandising, events, and POS materials. Zero overlap with candidate's Python/SQL/LLM APIs/automation/cloud infrastructure stack. No data pipelines, no engineering, no AI/automation work.",
+    "contextual_fit": "Poor. The role is pure luxury marketing/retail/events coordination — trade marketing, spa marketing, VIC events, partnerships. Candidate explicitly seeks 'agentic systems and data platform engineering' with 'real ownership from day one' in building LLM-powered pipelines. This is the opposite: supporting execution of others' marketing plans, coordinating in-store activations, developing creative assets. Even 'ownership' here means project coordination, not technical ownership of systems.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Mismatch. Large luxury conglomerate (LVMH) marketing function; highly structured, brand-guarded, support-oriented rather than zero-to-production ownership.",
+    "culture_fit": "Mildly positive on surface (luxury brand, international team, values craftsmanship), but fundamentally mismatched. Candidate wants zero-to-production technical building; this is execution of established brand strategies with heavy operational coordination.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "No technical growth path in this role — pure marketing operations with no data/AI/automation exposure",
+      "Luxury retail domain is irrelevant to candidate's stated career direction",
+      "'Ownership' in this context is project coordination, not technical system ownership",
+      "6-12 month duration is standard but role shape is completely misaligned with candidate's goals",
+      "Even German 'is a plus' is irrelevant given French is hard-required"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-17T12:37:56.423423+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
-    "hard_blockers": [],
-    "insufficient_info": true,
+    "score": 15,
+    "hard_blockers": [
+      "Fluent French required — candidate does not list French; role explicitly states 'Fluent in French and English' as mandatory"
+    ],
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Complete domain and function mismatch: marketing execution vs. engineering/building",
-      "No technical skills utilized",
-      "No LLM, automation, or data platform elements",
-      "Role shape is support work in retail marketing, not ownership of technical systems",
-      "Title suggests trade marketing focus (promotions, merchandising, retail execution) not martech or marketing engineering",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: Fluent French required — candidate does not list French; role explicitly states 'Fluent in French and English' as mandatory",
+      "Role is fundamentally wrong career track: marketing operations vs. engineering; no path to agentic systems or data platform work; candidate would be using skills he doesn't have and not using skills he's building; 6-12 month opportunity cost for career trajectory"
     ],
     "job": {
-      "company": "Unknown",
+      "company": "GUERLAIN",
       "title": "INTERN RETAIL & TRADE MARKETING 100% (M/F/D)",
-      "location": "Unknown",
+      "location": "Zürich",
       "url": "https://www.linkedin.com/comm/jobs/view/4437842471/?trackingId=9iCw%2F2XxZCR6wEr18CAN%2Bw%3D%3D&refId=ejV%2BiCI3ofXvSlWO0YaSsQ%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BX4JiUsiDTCCbcH42NdWd%2Fg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=1ktwEXf-ctsIo1&trk=eml-email_job_alert_digest_01-primary_job_list-0-jobcard_body_0_jobid_4437842471_ssid_8700305346_fmid_gbrmkn~mswxxl9p~11&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-jobcard_body_0_jobid_4437842471_ssid_8700305346_fmid_gbrmkn~mswxxl9p~11-null-gbrmkn~mswxxl9p~11-null-null&eid=gbrmkn-mswxxl9p-11&otpToken=N2I4NDNiNzhmODM5MTYzMjYxZjNlNTk3ZjA5MDczZDg0ODM0YzM3OGRhN2FjNTFkNmM1MGQ3MGJhOTI4YmMzNjZlZjE0ZmU5NzkyMmJkMjZkNzcwMTMyNWE4NGE3NmU0YWE2ZDZlNjIyMDA0ZTBiZWNmOTcwZmY4NWNjYjRhZTdjMGU3YWM1N2Y0MDFjN2MyLDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "GUERLAIN is the Parisian alchemist that pursues an infinite quest for wonder of senses and crafts artistic beauty from nature, since 1828. GUERLAIN has been creating exceptional fragrance and beauty products since 1828, and strives to preserve, develop and pass on this unique heritage. The vision is to become the most iconic high perfumery and high cosmetic house, in image and products.\nINTERN RETAIL & TRADE MARKETING 100% (M/F/D)\nIn our Zürich Office as September 1st (6 to 12 months)\nAs part of the DACH Marketing team based in Zurich, you will contribute to the deployment of Guerlain’s Trade & Retail Marketing strategies across Switzerland and Austria, in close collaboration with the other departments, EMEA, and external partners.\nJob Responsibilities\nAs part of the DACH Marketing team based in Zurich, you will contribute to the deployment of Guerlain’s Trade & Retail Marketing strategies across Switzerland and Austria, in close collaboration with the other departments, EMEA, and external partners.\nTrade Marketing %30\nSupport the execution of Trade Marketing plans to drive key product launches\nCoordinate in-store activations (podiums, windows, takeovers, promotions, animations)\nDevelop merchandising tools and POS materials, including agency briefing and production follow-up\nMonitor sell-out performance, ROI, and competitive activities\nRetail Marketing %30\nImplement the annual activation plan across Guerlain’s counters & Salons de Parfum\nCreate monthly activations and elevated client experiences around key launches and commercial moments\nManage activation budgets and track performance\nGuerlain Spa Marketing %20\nSupport the marketing development of Guerlain’s two Spas in Switzerland\nContribute to local activations, events, and client experience initiatives\nSupport business development initiatives and monitor performance\nPartnerships & Events %20\nContribute to the creation of VIC events, strategic partnerships, and immersive brand experiences\nDevelop event concepts and supporting creative assets\nBuild relationships with local luxury partners to drive collaborations and client recruitment opportunities\nCoordinate event execution, budget follow-up, and post-event performance analysis\nProfile\nBachelor’s or master’s degree in marketing, Business, Communication, Luxury Management, or a related field Previous internship or professional experience in marketing, retail, events, luxury, or hospitality International, curious, and passionate about luxury, exclusivity, exceptional craftsmanship, and memorable experiences Team-player, proactive, organized, autonomous, and eager to take ownership Strong communication, project management, and analytical skills Fluent in French and English; German is a plus Proficient in Excel, PowerPoint, Adobe Photoshop, and InDesign\nAdditional Information\nWe want all our employees to feel valued and recognized. Our career paths are designed to prevent discrimination, regardless of gender identity, sexual orientation, religion, ethnicity, age, disabilities, nationality, or any other aspect that makes you unique.\nIn order to ensure the most objective assessment of skills and qualifications possible, we ask all applicants to submit their application documents without a photo.\nWe look forward to receiving your written online application, including details of your earliest possible starting date and your salary expectations."
     },
-    "technical_fit": "Very poor. Role is retail/trade marketing with no technical component. Zero overlap with candidate's skills (Python, LLMs, automation, data engineering, cloud infrastructure).",
-    "contextual_fit": "Very poor. Candidate explicitly seeks hands-on AI/automation engineering with ownership of technical systems. This is a traditional marketing internship in retail sector with no agentic systems, no data platform work, no pipeline building.",
+    "technical_fit": "Very poor. Role requires Adobe Creative Suite, Excel/PowerPoint, and traditional marketing/retail operations. Zero overlap with candidate's Python, LLM APIs, data pipelines, cloud infrastructure, or automation skills.",
+    "contextual_fit": "Poor. Role is pure luxury retail/trade marketing with no technical building, no AI/automation, no data platform work, and no ownership of engineering deliverables. Candidate's entire motivation is zero-to-production technical ownership in agentic systems and data engineering.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown, but role structure (intern in retail marketing) suggests support/execution work rather than zero-to-one ownership. Candidate wants to build and ship technical systems, not execute marketing campaigns.",
+    "culture_fit": "Mismatch. The role values luxury brand passion, creative merchandising, and event coordination. Candidate is a career-changing technologist seeking hands-on engineering autonomy, not marketing operations in beauty/luxury.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Role is fundamentally wrong career track: marketing operations vs. engineering; no path to agentic systems or data platform work; candidate would be using skills he doesn't have and not using skills he's building; 6-12 month opportunity cost for career trajectory"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-17T12:37:56.423423+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
     "score": null,

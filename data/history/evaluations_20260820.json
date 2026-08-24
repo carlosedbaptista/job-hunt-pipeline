@@ -256,42 +256,44 @@
     "no_posting_text": true
   },
   {
-    "score": null,
+    "score": 55,
     "hard_blockers": [],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong overlap: Python, SQL, data pipelines, automation, and cloud infrastructure are core to both the role and candidate's experience. The 'Intelligent Automation' aspect aligns well with his LLM-powered pipeline and multi-step automation work. Missing pieces: no explicit mention of LLM/agentic systems in the job title/description provided, and the banking domain may imply more traditional ETL/BI focus than greenfield AI building."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Role is 'similar to' not the actual posting—uncertainty about true responsibilities, team size, and ownership model",
-      "Large bank culture may conflict with candidate's desire for end-to-end ownership and greenfield building",
-      "No explicit mention of LLMs, agentic systems, or modern AI stack in visible description—could be traditional data engineering with 'intelligent automation' as buzzword",
-      "German may be implicitly useful in Swiss banking client-facing contexts, though English title suggests not required",
-      "Candidate's A2 German could be limiting for internal stakeholders if role involves cross-functional collaboration in Zurich headquarters",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Role is maintenance-heavy, not greenfield building—direct conflict with candidate's stated motivation for ownership and zero-to-production work",
+      "Dataiku and Tableau are proprietary platforms the candidate hasn't used; learning curve for tools that aren't transferrable to his target stack",
+      "'AI/ML' scope is superficial (Copilot, AutoML, experimental NLP) versus his goal of deep agentic systems work",
+      "Private banking domain advantage suggests preference for industry experience he lacks",
+      "Excel/VBA/Power Query are central—skills he has but represent backward-looking tech stack, not platform engineering future",
+      "Heavy governance and documentation burden ('IT artifacts and governance approvals,' 'runbooks') contradicts his preference for fast iteration"
     ],
     "job": {
-      "company": "Jobs similar to",
-      "title": "Jobs similar to Data Engineer – Analytics & Intelligent Automation 100% (f/m/d) at Julius Baer",
+      "company": "Julius Baer",
+      "title": "Data Engineer – Analytics & Intelligent Automation 100% (f/m/d)",
       "location": "Zurich",
       "url": "https://www.linkedin.com/comm/jobs/view/4453369877?refId=2N%2Fh1Bg1Sqy5mcdbR1NwVg%3D%3D&trackingId=PMiUtVb6QNeixQPCDgtPBQ%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BvVI7to4tTial7WvSKJ952w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3cL41T0U75vIo1&trk=eml-email_jobs_viewed_job_reminder_01-null-0-null&trkEmail=eml-email_jobs_viewed_job_reminder_01-null-0-null-null-gbrmkn~mt05o92l~20-null-null&eid=gbrmkn-mt05o92l-20&otpToken=ZjFmMDBkZTc1NzRlOTZjZDFkMDMxMDA0ZThlODBmY2IyN2U5ODA4MGQxZGFiNjBlOTA0MjZkZmEzYWVhZjRjYTQ3Zjg2ZjlmYWI1MTgyNjE0ZDJlZTM2NTdkYjVjZGI2YzUzZWIwYTQ1ZmVkNTA2ODIzZGJhMmMzNzZmNTdhMjZjZDNiNzJlZDI2Y2VhYzU1LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "At Julius Baer, we celebrate and value the individual qualities you bring, enabling you to be impactful, to be entrepreneurial, to be empowered, and to create value beyond wealth. Let’s shape the future of wealth management together.\nThe Data Engineer ensures reliable, high-quality data delivery through the\noperation and continuous improvement of automated analytics workflows.\nCombining technical depth with a collaborative mindset, this role supports sales\nand client-facing teams with accurate, timely, and actionable insights—powered\nby automation and smart tools.\nYOUR CHALLENGE\nOperate and maintain daily data processing jobs in Dataiku, ensuring stability, accuracy, and performance of ETL/ELT pipelines\nSupport, monitor, and enhance existing Tableau dashboards and data sources used by business stakeholders\nProduce and review logical and physical data models with multiple data sources\nDefine reusable tables including business logic which can be adopted across large sets of projects\nIdentify and resolve data quality issues, integrating automated validation and alerting mechanisms\nCollaborate with IT, Architecture, data stewards, and business partners to ensure seamless delivery and alignment, including IT artifacts and governance approvals\nImplement automation solutions using Python, Excel (VBA, Power Query), and platform-native features to reduce manual effort\nLeverage AI and ML data analytics tools for processing natural language data and run experimental analytics with more complex models\nLeverage AI-enabled tools (e.g., Microsoft 365 Copilot, Dataiku AutoML) for faster reporting, documentation, and diagnostics\nMaintain detailed process documentation, runbooks, and metadata records to ensure knowledge continuity\nShare best practices and support team members in advancing data literacy and tool usage\nYOUR PROFILE\nProven experience with Dataiku (flow management, monitoring, scenarios) and Tableau (workbook maintenance, data extracts)\nAdvanced skills in Excel, including macros (VBA), Power Query, and dynamic array functions\nProgramming in Python (pandas, openpyxl) and solid understanding of SQL\nStrong analytical and problem-solving abilities with exceptional attention to detail\nFamiliarity with intelligent automation and practical applications of AI-assisted tools in business environments\nTeam-oriented mindset with clear communication skills—able to bridge technical and non-technical audiences\nFluent in English; German is an asset for internal collaboration\nAdvantage: Basic understanding of private banking, sales reporting, or client relationship data\nAdvantage: experience with front-end development, experience surveys platforms\nWe are looking forward to receiving your full job application through our online application tool. Further interesting job opportunities can be found on our Career site.\nIs this not quite what you are looking for? Set up a\njob alert\nby creating a candidate account here."
     },
-    "technical_fit": "Strong overlap: Python, SQL, data pipelines, automation, and cloud infrastructure are core to both the role and candidate's experience. The 'Intelligent Automation' aspect aligns well with his LLM-powered pipeline and multi-step automation work. Missing pieces: no explicit mention of LLM/agentic systems in the job title/description provided, and the banking domain may imply more traditional ETL/BI focus than greenfield AI building.",
-    "contextual_fit": "Good: Zurich-based, 100% role, no permit issues. Candidate's 2-week notice is excellent. Julius Baer is a major private bank—domain is finance, but the role title emphasizes analytics and intelligent automation rather than deep finance expertise. The 'f/m/d' and English-title suggest English-friendly environment. However, 'similar to' framing and lack of full job description create uncertainty about actual ownership level and whether this is building vs. maintaining.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Moderate concern: large bank (Julius Baer) likely has more structured processes, compliance layers, and less 'zero to production' ownership than a small team or startup. Candidate explicitly wants 'real ownership from day one rather than support work'—banking environments often split build/run functions. The '100%' and 'f/m/d' suggest standard Swiss employment, not necessarily startup-style autonomy.",
+    "technical_fit": "Moderate. The role centers on Dataiku/Tableau maintenance, Excel VBA, and ETL operations rather than greenfield building. Python/pandas/SQL are relevant but used for automation of reporting workflows, not LLM/agentic systems. The 'AI/ML' mention is limited to Copilot/AutoML assistance and experimental NLP analytics—no hands-on LLM pipeline development or agentic architecture.",
+    "contextual_fit": "Weak. This is a support and maintenance role ('operate and maintain,' 'support, monitor, and enhance existing,' 'maintain detailed documentation') with heavy emphasis on governance, approvals, and bridging to business stakeholders. The candidate explicitly seeks ownership from day one, building from zero to production, and agentic systems depth. This role's shape is opposite: stabilizing existing infrastructure in a heavily regulated banking environment with collaborative governance overhead.",
+    "salary_estimate": "CHF 85,000–110,000",
+    "culture_fit": "Mismatched. Julius Baer emphasizes 'impactful, entrepreneurial, empowered' language but the actual role is operational maintenance within strict IT governance and data steward collaboration. The candidate's self-directed, ship-it-and-audit-it style would face friction in this environment.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Role is maintenance-heavy, not greenfield building—direct conflict with candidate's stated motivation for ownership and zero-to-production work",
+      "Dataiku and Tableau are proprietary platforms the candidate hasn't used; learning curve for tools that aren't transferrable to his target stack",
+      "'AI/ML' scope is superficial (Copilot, AutoML, experimental NLP) versus his goal of deep agentic systems work",
+      "Private banking domain advantage suggests preference for industry experience he lacks",
+      "Excel/VBA/Power Query are central—skills he has but represent backward-looking tech stack, not platform engineering future",
+      "Heavy governance and documentation burden ('IT artifacts and governance approvals,' 'runbooks') contradicts his preference for fast iteration"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T05:39:14.438650+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
     "score": null,
@@ -366,78 +368,87 @@
     "no_posting_text": true
   },
   {
-    "score": null,
+    "score": 68,
     "hard_blockers": [
-      "Location: Geneva on-site, not Zurich/Zug area (auto-SKIP per rules)",
-      "Hard language requirement likely: Geneva-based roles at traditional Swiss banks/investment managers typically require fluent French and often fluent German; job posting does not explicitly state English-only working language, and regulatory/client-facing context in Geneva strongly implies French fluency needed"
+      "Location: Geneva on-site, not Zurich/Zug or remote — candidate is Zurich-area with no indication of willingness/ability to relocate or commute 2.5h each way"
     ],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Location: Geneva on-site, not Zurich/Zug area (auto-SKIP per rules)",
-      "Blocker: Hard language requirement likely: Geneva-based roles at traditional Swiss banks/investment managers typically require fluent French and often fluent German; job posting does not explicitly state English-only working language, and regulatory/client-facing context in Geneva strongly implies French fluency needed",
-      "Role appears to be traditional data engineering supporting AI/ML infrastructure, not agentic LLM systems or end-to-end ownership",
-      "Geneva finance culture likely more conservative, less builder-autonomy than desired",
-      "No explicit mention of LLMs, Claude, or automation pipelines in job description visible",
-      "Candidate's German A2 insufficient for Geneva French/German bilingual environment even if location were flexible",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: Location: Geneva on-site, not Zurich/Zug or remote — candidate is Zurich-area with no indication of willingness/ability to relocate or commute 2.5h each way",
+      "Role explicitly states 'you don't build AI applications: you make data AI-ready' — directly contradicts candidate's motivation for end-to-end ownership and agentic systems building",
+      "Azure/GCP cloud mismatch — retrainable but immediate productivity gap",
+      "Financial services domain exposure listed as 'plus' — not penalized, but steep learning curve for regulated investment data",
+      "Geneva on-site with no remote flexibility mentioned — commute or relocation required",
+      "Intermediate German would be useful in Geneva French-speaking environment, though English appears primary working language",
+      "Title is 'AI Data Engineer' but function is platform/data infrastructure, not agentic engineering — potential title/expectation mismatch"
     ],
     "job": {
-      "company": "AI Data Engineer",
-      "title": "AI Data Engineer Lombard Odier Investment Managers · Geneva, Switzerland (On-site)",
+      "company": "Lombard Odier Investment Managers",
+      "title": "AI Data Engineer",
       "location": "Lombard Odier Investment Managers · Geneva, Switzerland (On-site)",
       "url": "https://www.linkedin.com/comm/jobs/view/4447351752/?trackingId=lqhKe4F6TQK8tWXLykZVZA%3D%3D&refId=ZOhjS9FwRJ%2BSB7BmfCpKTg%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BvVI7to4tTial7WvSKJ952w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3cL41T0U75vIo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt05o92l~20-null-null&eid=gbrmkn-mt05o92l-20&otpToken=ZjFmMDBkZTc1NzRlOTZjZDFkMDMxMDA0ZThlODBmY2IyN2U5ODA4MGQxZGFiNjBlOTA0MjZkZmEzYWVhZjRjYTQ3Zjg2ZjlmYWI1MTgyNjE0ZDJlZTM2NTdkYjVjZGI2YzUzZWIwYTQ1ZmVkNTA2ODIzZGJhMmMzNzZmNTdhMjZjZDNiNzJlZDI2Y2VhYzU1LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "A career at Lombard Odier means working for a renowned global wealth and asset manager, with a strong focus on sustainable investing. An innovative bank of choice for private and institutional clients, our independently owned Firm is one of the best-capitalised banking groups in the world, managing close to CHF 300 billion and operating from over 25 offices across 4 continents.\nWith a history spanning over 225 years, Lombard Odier is an investment house providing a comprehensive offering of discretionary and advisory portfolio management, wealth services and custody. We also offer asset management services and investment strategies through Lombard Odier Investment Managers and provide\nadvanced banking technology to other financial institutions.\n“Rethink Everything” is our philosophy – it is at the heart of everything we do. We have grown stronger through more than 40 financial crises by rethinking the world around us to provide a fresh investment perspective for our clients.\nLombard Odier Investment Managers (“LOIM”) is the asset management business of the Lombard Odier Group. To further strengthen our AI Team, we are looking for a:\nAI Data Engineer\nAs AI Data Engineer at Lombard Odier Investment Managers, you sit at the critical boundary between our data platform and our AI capability layer. You don't build AI applications: you make data AI-ready. Your work is the foundation that determines whether our AI systems are reliable, accurate and trustworthy in a regulated investment management environment. You work in squads alongside AI Engineers and AI Transformation Managers to deliver AI use cases across Investment, Business Development and Operations. While the AI Engineer builds the solution, you ensure the data it consumes is properly structured, fresh, and AI-consumable.\nA rare opportunity to build AI data infrastructure from the ground up in a leading asset manager, with direct impact on investment decisions.\nYOUR ROLE\nData pipeline engineering for AI\nBuild and maintain pipelines that transform raw financial data into AI-consumable formats (such as MCP) from our data platform and internal systems into Azure AI Foundry\nContribute to the ingestion, chunking, embedding and indexing of unstructured data such as fund documents, client communications, market research, regulatory filings\nBuild and maintain vector stores and semantic search infrastructure that power RAG and Agentic applications\nEnsure data freshness, consistency and reliability across all AI data pipelines\nAI-ready data foundations\nImplement AI data standards: chunking strategies, embedding models selection, metadata schemas, data lineage for AI consumptio\n[... middle of the posting omitted ...]\nines at production scale\nUnderstanding of unstructured data processing: document parsing, chunking strategies, text preprocessing\nFamiliarity with vector databases and Azure AI Foundry\nExperience with embedding pipelines and semantic search infrastructure\nStrong understanding of data quality principles and monitoring in production environments\nExposure to financial services is a plus\nTeam player with strong communication skills\nAutonomous, pragmatic, and delivery-oriented mindset.\nOur Maison’s DNA\nis defined by five core values.\nExcellence\ndrives us to be the best at what we do, while\nInnovation\nfuels our progress.\nRespect\nunderpins every interaction, and\nIntegrity\nshapes our actions. Together, we are\nOne Team\n, united in serving our clients with unwavering dedication.\nAs a responsible and supportive employer, we promote a diverse and inclusive work environment for our employees and candidates.\nDiversity, Equity and Inclusion\nare woven into the fabric of our Maison’s DNA, and we strive to ensure that our employees can fulfill both their personal and professional aspirations by encouraging internal mobility and individual upskilling programs. We firmly believe that building Diverse Teams contributes to our successes and to deliver on this, we actively embed Diversity, Equity and Inclusion in our business strategy."
     },
-    "technical_fit": "Partial. The role centers on data engineering for AI in investment management—SQL, data pipelines, cloud infrastructure overlap with his skills. However, it lacks the LLM/agentic systems focus and end-to-end ownership he seeks; likely more traditional data platform work for quantitative/AI models rather than building LLM-powered automation. Python/pandas/SQL fit, but no mention of LLM APIs, Claude, or agentic workflows that excite him.",
-    "contextual_fit": "Weak. Geneva is not Zurich/Zug (auto-SKIP trigger). On-site requirement in Geneva makes this geographically infeasible given his Zurich-area base and 2-week notice. Investment management domain is acceptable to him, but the role shape appears to be supporting AI/quant infrastructure rather than greenfield agentic building with real ownership.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown. Lombard Odier is a traditional asset manager; likely hierarchical, process-heavy environment. The 'AI Data Engineer' title suggests specialized team role rather than the zero-to-production ownership he craves. No signals of startup-like autonomy.",
+    "technical_fit": "Strong overlap in core skills: Python, data pipelines, vector stores/semantic search, RAG, embedding pipelines, unstructured data processing, and production monitoring. Azure AI Foundry is a gap (candidate has Google Cloud), but cloud concepts transfer. Missing: financial data domain, MCP format, and deeper data engineering at scale. Role is data-platform-focused rather than agentic-systems-building, which slightly misaligns with candidate's stated priority.",
+    "contextual_fit": "Geneva on-site is a hard logistics mismatch — candidate is Zurich-area with 2-week notice, no mention of relocation willingness. Permit B valid, but commuting Geneva-Zurich daily is impractical. Role shape is infrastructure/enablement ('you don't build AI applications, you make data AI-ready') rather than ownership of end-to-end AI solutions; candidate explicitly wants 'zero to production' ownership and agentic systems building. This is supporting the platform, not owning the agent.",
+    "salary_estimate": "CHF 90k–120k (junior data engineer in Geneva asset management)",
+    "culture_fit": "Professional, regulated, excellence-driven — candidate's self-auditing and delivery orientation fits. 'One Team' and autonomy values align. However, the 'not a startup' structure and explicit 'you don't build AI applications' framing may frustrate candidate's ownership drive.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Role explicitly states 'you don't build AI applications: you make data AI-ready' — directly contradicts candidate's motivation for end-to-end ownership and agentic systems building",
+      "Azure/GCP cloud mismatch — retrainable but immediate productivity gap",
+      "Financial services domain exposure listed as 'plus' — not penalized, but steep learning curve for regulated investment data",
+      "Geneva on-site with no remote flexibility mentioned — commute or relocation required",
+      "Intermediate German would be useful in Geneva French-speaking environment, though English appears primary working language",
+      "Title is 'AI Data Engineer' but function is platform/data infrastructure, not agentic engineering — potential title/expectation mismatch"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T05:39:14.438650+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
+    "score": 72,
     "hard_blockers": [],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [],
+    "key_match_points": [
+      "Strong alignment. The role is exactly at the intersection of data platform engineering and AI infrastructure the candidate wants: building pipelines, vector stores, embedding infrastructure, and making data AI-consumable rather than doing support work. His Python/SQL/pandas, LLM API experience, Docker, CI/CD, and cloud exposure (Google Cloud, transferable to Azure) map well. Missing pieces: Azure-specific stack (Azure AI Foundry, likely Azure-native vector DBs), financial data domain, and production-scale data quality monitoring — but these are learnable, and the role explicitly frames itself as building from ground up."
+    ],
     "red_flags": [
-      "Job description is completely missing from the LinkedIn snippet provided; only a tracking URL is present",
-      "No company name, role details, location, requirements, or any evaluable content",
-      "Cannot assess technical fit, ownership model, or any criteria that drive this candidate's decision-making",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Azure stack gap: Google Cloud + Docker/GitHub Actions experience is relevant but Azure AI Foundry and likely Azure DevOps/Purview are central; ramp-up needed",
+      "Financial services domain: 'Exposure to financial services is a plus' — he has none, though role doesn't require it",
+      "Role may be more data-platform-heavy than agentic-systems-heavy: he builds the data layer that enables RAG/agentic apps, not the agents themselves — still deeply adjacent and foundational, but worth confirming in interview",
+      "Seniority ambiguity: 'AI Data Engineer' title without 'Junior' or 'Intern' — could be mid-level expectation; his internship title may undersell him, but he should clarify level",
+      "German not mentioned as requirement, but Geneva-based LOIM headquarters and '25 offices across 4 continents' — need to confirm if role is Geneva or Zurich; job text doesn't specify location beyond 'Lombard Odier Investment Managers'"
     ],
     "job": {
-      "company": "Unknown",
+      "company": "Lombard Odier Investment Managers (LOIM)",
       "title": "AI Data Engineer",
       "location": "Unknown",
       "url": "https://www.linkedin.com/comm/jobs/view/4447351752/?trackingId=lqhKe4F6TQK8tWXLykZVZA%3D%3D&refId=ZOhjS9FwRJ%2BSB7BmfCpKTg%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BvVI7to4tTial7WvSKJ952w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3cL41T0U75vIo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-jobcard_body_4447351752&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-jobcard_body_4447351752-null-gbrmkn~mt05o92l~20-null-null&eid=gbrmkn-mt05o92l-20&otpToken=ZjFmMDBkZTc1NzRlOTZjZDFkMDMxMDA0ZThlODBmY2IyN2U5ODA4MGQxZGFiNjBlOTA0MjZkZmEzYWVhZjRjYTQ3Zjg2ZjlmYWI1MTgyNjE0ZDJlZTM2NTdkYjVjZGI2YzUzZWIwYTQ1ZmVkNTA2ODIzZGJhMmMzNzZmNTdhMjZjZDNiNzJlZDI2Y2VhYzU1LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "A career at Lombard Odier means working for a renowned global wealth and asset manager, with a strong focus on sustainable investing. An innovative bank of choice for private and institutional clients, our independently owned Firm is one of the best-capitalised banking groups in the world, managing close to CHF 300 billion and operating from over 25 offices across 4 continents.\nWith a history spanning over 225 years, Lombard Odier is an investment house providing a comprehensive offering of discretionary and advisory portfolio management, wealth services and custody. We also offer asset management services and investment strategies through Lombard Odier Investment Managers and provide\nadvanced banking technology to other financial institutions.\n“Rethink Everything” is our philosophy – it is at the heart of everything we do. We have grown stronger through more than 40 financial crises by rethinking the world around us to provide a fresh investment perspective for our clients.\nLombard Odier Investment Managers (“LOIM”) is the asset management business of the Lombard Odier Group. To further strengthen our AI Team, we are looking for a:\nAI Data Engineer\nAs AI Data Engineer at Lombard Odier Investment Managers, you sit at the critical boundary between our data platform and our AI capability layer. You don't build AI applications: you make data AI-ready. Your work is the foundation that determines whether our AI systems are reliable, accurate and trustworthy in a regulated investment management environment. You work in squads alongside AI Engineers and AI Transformation Managers to deliver AI use cases across Investment, Business Development and Operations. While the AI Engineer builds the solution, you ensure the data it consumes is properly structured, fresh, and AI-consumable.\nA rare opportunity to build AI data infrastructure from the ground up in a leading asset manager, with direct impact on investment decisions.\nYOUR ROLE\nData pipeline engineering for AI\nBuild and maintain pipelines that transform raw financial data into AI-consumable formats (such as MCP) from our data platform and internal systems into Azure AI Foundry\nContribute to the ingestion, chunking, embedding and indexing of unstructured data such as fund documents, client communications, market research, regulatory filings\nBuild and maintain vector stores and semantic search infrastructure that power RAG and Agentic applications\nEnsure data freshness, consistency and reliability across all AI data pipelines\nAI-ready data foundations\nImplement AI data standards: chunking strategies, embedding models selection, metadata schemas, data lineage for AI consumptio\n[... middle of the posting omitted ...]\nines at production scale\nUnderstanding of unstructured data processing: document parsing, chunking strategies, text preprocessing\nFamiliarity with vector databases and Azure AI Foundry\nExperience with embedding pipelines and semantic search infrastructure\nStrong understanding of data quality principles and monitoring in production environments\nExposure to financial services is a plus\nTeam player with strong communication skills\nAutonomous, pragmatic, and delivery-oriented mindset.\nOur Maison’s DNA\nis defined by five core values.\nExcellence\ndrives us to be the best at what we do, while\nInnovation\nfuels our progress.\nRespect\nunderpins every interaction, and\nIntegrity\nshapes our actions. Together, we are\nOne Team\n, united in serving our clients with unwavering dedication.\nAs a responsible and supportive employer, we promote a diverse and inclusive work environment for our employees and candidates.\nDiversity, Equity and Inclusion\nare woven into the fabric of our Maison’s DNA, and we strive to ensure that our employees can fulfill both their personal and professional aspirations by encouraging internal mobility and individual upskilling programs. We firmly believe that building Diverse Teams contributes to our successes and to deliver on this, we actively embed Diversity, Equity and Inclusion in our business strategy."
     },
-    "technical_fit": "Unable to evaluate — no job description, requirements, or skills listed in the provided text.",
-    "contextual_fit": "Unable to evaluate — no information about company, team structure, ownership model, or role shape.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Unable to evaluate — no information available.",
+    "technical_fit": "Strong alignment. The role is exactly at the intersection of data platform engineering and AI infrastructure the candidate wants: building pipelines, vector stores, embedding infrastructure, and making data AI-consumable rather than doing support work. His Python/SQL/pandas, LLM API experience, Docker, CI/CD, and cloud exposure (Google Cloud, transferable to Azure) map well. Missing pieces: Azure-specific stack (Azure AI Foundry, likely Azure-native vector DBs), financial data domain, and production-scale data quality monitoring — but these are learnable, and the role explicitly frames itself as building from ground up.",
+    "contextual_fit": "Very good. The candidate explicitly wants ownership and building from zero to production; this role is literally described as 'build AI data infrastructure from the ground up' with 'direct impact on investment decisions.' The squad structure (working alongside AI Engineers and Transformation Managers) suggests real responsibility, not ticket-taking. Regulated environment is unfamiliar but he is open to new domains. Two-week notice is excellent.",
+    "salary_estimate": "CHF 90,000–120,000 (typical for data engineering in Swiss asset management, likely toward lower end for non-senior)",
+    "culture_fit": "Strong potential match. 'Autonomous, pragmatic, and delivery-oriented mindset' mirrors his self-described ownership style. 'Rethink Everything' philosophy and innovation focus align with career-change trajectory. DEI emphasis and upskilling programs support his learning path. Only question: large established institution (225 years, CHF 300bn AUM) may have more process than the 'zero to production' startup-like environments he may idealize, though the AI team itself seems greenfield.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Azure stack gap: Google Cloud + Docker/GitHub Actions experience is relevant but Azure AI Foundry and likely Azure DevOps/Purview are central; ramp-up needed",
+      "Financial services domain: 'Exposure to financial services is a plus' — he has none, though role doesn't require it",
+      "Role may be more data-platform-heavy than agentic-systems-heavy: he builds the data layer that enables RAG/agentic apps, not the agents themselves — still deeply adjacent and foundational, but worth confirming in interview",
+      "Seniority ambiguity: 'AI Data Engineer' title without 'Junior' or 'Intern' — could be mid-level expectation; his internship title may undersell him, but he should clarify level",
+      "German not mentioned as requirement, but Geneva-based LOIM headquarters and '25 offices across 4 continents' — need to confirm if role is Geneva or Zurich; job text doesn't specify location beyond 'Lombard Odier Investment Managers'"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "REVIEW",
+    "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T05:39:14.438650+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
     "score": null,
@@ -509,184 +520,210 @@
     "no_posting_text": true
   },
   {
-    "score": null,
-    "hard_blockers": [],
-    "insufficient_info": true,
+    "score": 35,
+    "hard_blockers": [
+      "Role requires 6+ years experience — candidate is intern-level with ~1-2 years tech experience; not a permit issue but an unbridgeable seniority gap for a role explicitly seeking 'erfahrene' engineers"
+    ],
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Role is pure traditional data engineering with zero AI/LLM/automation component — direct conflict with candidate's stated career direction",
-      "Large consulting firm structure likely means limited ownership and high process overhead",
-      "'Hybrid' unspecified; may involve significant client-site presence",
-      "No evidence of production LLM or agentic work; candidate would be maintaining conventional pipelines not building novel systems",
-      "Skills mismatch: Spark, heavy SQL optimization, data warehousing — not candidate's demonstrated stack",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: Role requires 6+ years experience — candidate is intern-level with ~1-2 years tech experience; not a permit issue but an unbridgeable seniority gap for a role explicitly seeking 'erfahrene' engineers",
+      "Explicitly not actively hiring — talent pool building only, no current opening",
+      "Azure/Databricks/Snowflake/Data Vault stack entirely absent from candidate profile",
+      "'Wartung' (maintenance) prominent in responsibilities — opposite of candidate's zero-to-production preference",
+      "BFSI domain background 'wünschwert' — no relevance to candidate's goals",
+      "Hybrid Zurich is fine, but role shape is fundamentally mismatched"
     ],
     "job": {
-      "company": "Data Engineer",
-      "title": "Data Engineer Expleo Group · Zurich (Hybrid)",
+      "company": "Expleo Group",
+      "title": "Data Engineer",
       "location": "Expleo Group · Zurich (Hybrid)",
       "url": "https://www.linkedin.com/comm/jobs/view/4448899266/?trackingId=4%2BRFn0OVS3qA1G%2FepoQREw%3D%3D&refId=HwW5EQkzQzaX1fw%2BA8xYQA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BvVI7to4tTial7WvSKJ952w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3cL41T0U75vIo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt05o92l~20-null-null&eid=gbrmkn-mt05o92l-20&otpToken=ZjFmMDBkZTc1NzRlOTZjZDFkMDMxMDA0ZThlODBmY2IyN2U5ODA4MGQxZGFiNjBlOTA0MjZkZmEzYWVhZjRjYTQ3Zjg2ZjlmYWI1MTgyNjE0ZDJlZTM2NTdkYjVjZGI2YzUzZWIwYTQ1ZmVkNTA2ODIzZGJhMmMzNzZmNTdhMjZjZDNiNzJlZDI2Y2VhYzU1LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "Expleo bietet ein einzigartiges Spektrum an integrierten Engineering-, Qualitäts- und strategischen Beratungsleistungen für die digitale Transformation. Vor dem Hintergrund einer beispiellosen technologischen Beschleunigung sind wir der vertrauenswürdige Partner für innovative Unternehmen. Wir helfen ihnen, Wettbewerbsvorteile zu entwickeln und das tägliche Leben von Millionen von Menschen zu verbessern.\nWir suchen für unseren Kunden erfahrene\nData Engineers\n, die robuste Datenlösungen in einem dynamischen Umfeld entwickeln und implementieren.\nAuch wenn diese Position als Data Engineer derzeit nicht aktiv ausgeschrieben ist, stehen wir bereits im Austausch mit qualifizierten Fachkräften, um einen starken Talentpool für spannende zukünftige Möglichkeiten aufzubauen.\nResponsibilities\nDesign, Entwicklung und Wartung von Datenpipelines und Datenmodellen\nImplementierung von Lösungen nach Data Vault-Methodik\nArbeiten mit SQL und Optimierung von Abfragen\nEntwicklung und Verwaltung von Daten-Workflows auf Azure\nMitarbeit an Projekten mit Databricks und/oder Snowflake\nSicherstellung von Datenqualität, Sicherheit und Compliance\nUnterstützung von Business-Stakeholdern mit datengestützten Insights\nQualifications\nMindestens 6 Jahre Erfahrung als Data Engineer\nFundierte Kenntnisse in Data Vault, SQL und Azure\nErfahrung in der Entwicklung von Datenpipelines und ETL-Prozessen\nEnglisch ist Pflicht, Deutsch ist von Vorteil (insbesondere für Dokumentation und Kommunikation)\nFähigkeit zur selbstständigen Arbeit und Zusammenarbeit in agilen Teams\nDesired Skills\nErfahrung mit Databricks und/oder Snowflake\nHintergrund in Versicherung oder BFSI (Banking, Financial Services, Insurance) wünschenswert, aber nicht zwingend\nKenntnisse in Data Governance und Compliance\nWhat Do I Need Before I Apply\nNur Bewerber:innen, die berechtigt sind, in der EU oder in der Schweiz zu arbeiten, werden berücksichtigt. Unsere Positionen sind für Menschen mit Behinderungen zugänglich."
     },
-    "technical_fit": "Mismatch. Role is classic data engineering (ETL, data modeling, warehousing, BI pipelines) with no mention of LLMs, agentic systems, or AI automation. Heavy focus on SQL, Spark, cloud data platforms, and traditional BI — candidate's core interest and strength in LLM-powered pipelines and end-to-end ownership of AI/automation systems is not served here.",
-    "contextual_fit": "Weak. Expleo is a large consulting/engineering group; role likely involves client projects with standardized delivery models rather than greenfield ownership. 'Hybrid' in Zurich but no clarity on day-one autonomy. Candidate's motivation explicitly seeks 'ownership from day one' and 'agentic systems' — this is the opposite trajectory.",
-    "salary_estimate": "CHF 85k–110k (typical junior data engineer range in Zurich consulting)",
-    "culture_fit": "Poor. Large consulting group culture emphasizes standardization, client billing, and established methodologies over the candidate's preferred zero-to-one building and self-directed iteration.",
+    "technical_fit": "Poor. The role requires 6+ years of Data Engineer experience, Data Vault methodology, Azure, Databricks/Snowflake — none of which the candidate has. His Python/pandas/SQL and cloud (Google Cloud, not Azure) are junior-level; LLM/agentic work and automation pipelines don't map to enterprise Data Vault/ETL engineering at this seniority.",
+    "contextual_fit": "Poor. This is a senior role (6+ years) building a talent pool for future opportunities, not an internship or junior position. The candidate is explicitly seeking ownership from day one in agentic systems and data platform engineering — this is traditional enterprise data engineering with heavy methodology (Data Vault), maintenance ('Wartung'), and stakeholder support, not greenfield AI/automation building.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Weak. Expleo is a large consulting/engineering group serving enterprise clients; the role emphasizes 'selbstständige Arbeit' but within established methodologies and client projects. The candidate wants zero-to-production ownership in small-team or startup-like settings.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Explicitly not actively hiring — talent pool building only, no current opening",
+      "Azure/Databricks/Snowflake/Data Vault stack entirely absent from candidate profile",
+      "'Wartung' (maintenance) prominent in responsibilities — opposite of candidate's zero-to-production preference",
+      "BFSI domain background 'wünschwert' — no relevance to candidate's goals",
+      "Hybrid Zurich is fine, but role shape is fundamentally mismatched"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T05:39:14.438650+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
+    "score": 35,
     "hard_blockers": [
-      "Location not Zurich/Zug area (Landquart, Graubünden is ~100km from Zurich, not commutable; no indication of remote/hybrid flexibility that would make this Zurich-area equivalent)"
+      "German: 'sehr gute Deutschkenntnisse' = hard requirement for fluent/native-level German in a German-first operational environment; candidate is A2 studying toward B1"
     ],
-    "insufficient_info": true,
-    "language_gap_intermediate": true,
+    "insufficient_info": false,
+    "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Location not Zurich/Zug area (Landquart, Graubünden is ~100km from Zurich, not commutable; no indication of remote/hybrid flexibility that would make this Zurich-area equivalent)",
-      "Domain is healthcare insurance — candidate is open to new domains, but combined with corporate structure this is a double mismatch for his motivations",
-      "No evidence of LLM, agentic, or modern AI/automation work in role scope",
-      "German likely required for internal processes at a Graubünden-based insurer; even if not hard-blocked, A2 German is a practical limitation",
-      "Role title is generic 'Data Engineer' with no platform or AI engineering dimension",
-      "Postgraduate Data Science qualification is somewhat relevant but this role appears to value enterprise DWH/ETL experience more",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: German: 'sehr gute Deutschkenntnisse' = hard requirement for fluent/native-level German in a German-first operational environment; candidate is A2 studying toward B1",
+      "Experience level: role explicitly requires 3-5 years comparable experience or multiple years in software development with DWH intersection; candidate has ~1 year of internships, none in enterprise DWH",
+      "Tech stack gap: Oracle, MS-SQL, Snowflake, dbt, Azure Data Factory are all new to candidate; only Python/SQL overlap",
+      "Location: Landquart, Graubünden is not Zurich/Zug area; hybrid model but not fully remote, regional office culture likely German-dominant",
+      "Role shape: heavily weighted toward DWH maintenance, optimization, and analyst support — not greenfield building, not AI/automation, not agentic systems",
+      "Career trajectory: this would be a sideways-or-backward move into traditional data engineering, away from stated goal of agentic systems and LLM platform engineering"
     ],
     "job": {
-      "company": "Data Engineer",
-      "title": "Data Engineer ÖKK · Landquart",
+      "company": "ÖKK",
+      "title": "Data Engineer",
       "location": "Landquart, Graubünden",
       "url": "https://www.linkedin.com/comm/jobs/view/4423915450/?trackingId=sFw59oRQT9WAu9M60qSrBg%3D%3D&refId=%2Bs4kjcldReOator4TPIDRw%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BvVI7to4tTial7WvSKJ952w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3cL41T0U75vIo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt05o92l~20-null-null&eid=gbrmkn-mt05o92l-20&otpToken=ZjFmMDBkZTc1NzRlOTZjZDFkMDMxMDA0ZThlODBmY2IyN2U5ODA4MGQxZGFiNjBlOTA0MjZkZmEzYWVhZjRjYTQ3Zjg2ZjlmYWI1MTgyNjE0ZDJlZTM2NTdkYjVjZGI2YzUzZWIwYTQ1ZmVkNTA2ODIzZGJhMmMzNzZmNTdhMjZjZDNiNzJlZDI2Y2VhYzU1LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "80-100%, Landquart, Work@Home\nDas erwartet dich\nAufbau und Weiterentwicklung von Data Pipelines zur Datenaufbereitung\ntechnische Umsetzung und Weiterentwicklung der zentralen Datenplattform (inkl. Anbindung neuer Datenquellen)\nKomplexe Datenzusammenstellungen aus den Quellsystemen mittels SQL (Oracle, MS-SQL)\nAutomatisierung von Ladeprozessen und Optimierung der DWH-Umgebung\ntechnische Unterstützung des Data Analysts bei der Identifikation und Spezifikation fachübergreifender Data Use Cases\nSicherstellung von Datenqualität, Monitoring und kontinuierliche Verbesserung der Datenflüsse\nUnterstützung bei der Erarbeitung von Guidelines und Policies zur Datensammlung, -aufbereitung und -nutzung\nDas bringst du mit\nabgeschlossene Aus- und Weiterbildung im Bereich (Wirtschafts-) Informatik\nmindestens 3-5 Jahre Berufserfahrung in einer vergleichbaren Position oder mehrere Jahre Berufserfahrung in der Softwareentwicklung mit Schnittpunkten zum Datawarehouse\nKenntnisse in den Bereichen Datawarehouse und Datenverarbeitung\nsehr gute SQL-Kenntnisse (Python-, Snowflake-, dbt-, Azure Data Factory-Kenntnisse von Vorteil)\nhohe Eigenständigkeit, schnelle Auffassungsgabe sowie strukturierte Arbeitsweise\nFreude an der Arbeit und Kommunikation der Schnittstellen von Business und IT\nsehr gute Deutschkenntnisse\nWir Freuen Uns Auf Deine Bewerbung\nJetzt bewerben\nBei Fragen ist Vera Döbeli, HR Business Partner, gerne für dich da."
     },
-    "technical_fit": "Partial. Core stack overlaps (Python, SQL, cloud/data platforms) but this is a traditional enterprise data engineering role (ETL pipelines, data warehousing, possibly SAP/BW context at a health insurer) rather than LLM-powered pipelines or agentic systems. No mention of AI/ML, automation, or modern API-driven workflows.",
-    "contextual_fit": "Weak. ÖKK is a large established health insurer; the role is likely maintenance-heavy, standardized enterprise data architecture, and team-based rather than ownership-from-day-one. The candidate's stated excitement is zero-to-production greenfield building with LLMs, which this role does not offer.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Mismatched. Large insurance corporate environment with structured teams vs. candidate seeking high-ownership, fast-iteration builder culture.",
+    "technical_fit": "Partial overlap: SQL, data pipelines, DWH, automation are relevant, but the role demands 3-5 years experience in a comparable position and deep enterprise DWH stack (Oracle, MS-SQL, Snowflake, dbt, Azure Data Factory) that the candidate lacks. His Python/pandas and cloud exposure are junior-level; no Snowflake, dbt, ADF, or Oracle experience.",
+    "contextual_fit": "Poor: The role is explicitly mid-level ('3-5 Jahre Berufserfahrung') with emphasis on maintaining and optimizing an existing enterprise DWH, not greenfield building or AI/agentic work. Heavy German-language operations in Graubünden. No LLM, no automation ownership, no production AI pipeline work.",
+    "salary_estimate": "CHF 85'000 - 110'000 (mid-level Data Engineer in Graubünden, 80-100%)",
+    "culture_fit": "Mismatch: The role values 'Kommunikation der Schnittstellen von Business und IT' and policy/guideline work — consultative, stabilizing, cross-functional coordination. Candidate wants zero-to-production ownership and hands-on building. This is maintenance and enablement of analysts, not builder autonomy.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Experience level: role explicitly requires 3-5 years comparable experience or multiple years in software development with DWH intersection; candidate has ~1 year of internships, none in enterprise DWH",
+      "Tech stack gap: Oracle, MS-SQL, Snowflake, dbt, Azure Data Factory are all new to candidate; only Python/SQL overlap",
+      "Location: Landquart, Graubünden is not Zurich/Zug area; hybrid model but not fully remote, regional office culture likely German-dominant",
+      "Role shape: heavily weighted toward DWH maintenance, optimization, and analyst support — not greenfield building, not AI/automation, not agentic systems",
+      "Career trajectory: this would be a sideways-or-backward move into traditional data engineering, away from stated goal of agentic systems and LLM platform engineering"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T05:39:14.438650+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
+    "score": 52,
     "hard_blockers": [],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Complete stack mismatch: Spark, Kafka, Scala/Java ecosystem vs. Python/Node.js LLM pipelines",
-      "No LLM, agentic, or AI platform work in role",
-      "Industrial domain (waste-to-energy) with no indication of greenfield AI building",
-      "Role shape is maintenance/operations of data infrastructure, not zero-to-one ownership",
-      "Candidate would gain little toward stated goal of agentic systems expertise",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Experience requirement 2–5 years is a significant gap for an intern/junior applicant—likely auto-filtered by ATS or HR",
+      "Platform stack (Snowflake, DBT, Azure) is entirely new to him; steep learning curve with no mentorship bandwidth suggested for a mid-level hire",
+      "Domain (waste-to-energy infrastructure) is niche and not leveraged as a career-changer opportunity—no signal that they value non-traditional backgrounds",
+      "Role shape is maintenance/optimization of existing pipelines ('optimise data processes,' 'maintain comprehensive documentation') more than greenfield building",
+      "German 'advantageous' creates subtle pressure though not required; his A2 is below what would make him competitive here",
+      "Streamlit mention is minor consolation; not enough to redefine role as product-building with ownership"
     ],
     "job": {
-      "company": "Data Engineer",
-      "title": "Data Engineer Kanadevia Inova · Zurich",
+      "company": "Kanadevia Inova",
+      "title": "Data Engineer",
       "location": "Kanadevia Inova · Zurich",
       "url": "https://www.linkedin.com/comm/jobs/view/4450258072/?trackingId=8cJCWIjmSESyip74gsU3MA%3D%3D&refId=i5r9qRCBThqVmU05%2F%2BKmjA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BvVI7to4tTial7WvSKJ952w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3cL41T0U75vIo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt05o92l~20-null-null&eid=gbrmkn-mt05o92l-20&otpToken=ZjFmMDBkZTc1NzRlOTZjZDFkMDMxMDA0ZThlODBmY2IyN2U5ODA4MGQxZGFiNjBlOTA0MjZkZmEzYWVhZjRjYTQ3Zjg2ZjlmYWI1MTgyNjE0ZDJlZTM2NTdkYjVjZGI2YzUzZWIwYTQ1ZmVkNTA2ODIzZGJhMmMzNzZmNTdhMjZjZDNiNzJlZDI2Y2VhYzU1LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "Company Description\nWelcome to Kanadevia Inova, a global innovation leader in the waste infrastructure space, where we believe in creating a sustainable future through technology and innovation.\nTransforming Waste into Value\nAt Kanadevia Inova, we pride ourselves on being at the forefront of waste-to-X technology. We are not just waste managers; we are creators of value from what communities discard. Your role at Kanadevia Inova directly contributes to turning something once considered useless - waste - into something invaluable: energy, heat, hydrogen, fertilizer, and beyond.\nJob Description\nJoin our\nData Products Team\nto build scalable data solutions that drive business insights. You will work collaboratively within an agile environment to design, develop, and maintain robust data pipelines using Snowflake, DBT, and Azure. If you are passionate about data and eager to make a significant impact, we would love to hear from you.\nDesign, develop, and optimise scalable data pipelines and ETL processes using Snowflake and its technology stack, enabling reliable ingestion, transformation, storage, and seamless access to data while ensuring high performance, data quality, and operational reliability\nContribute to building intuitive Streamlit applications that transform data into valuable business solutions and insights\nCollaborate with data architects, product managers, analysts, and business stakeholders to understand requirements and deliver solutions that meet business needs\nMonitor and implement data quality measures to ensure accuracy, consistency, and compliance with data governance policies and security standards\nContinuously optimise data processes to improve performance, reduce costs, and maintain comprehensive documentation of pipelines and data models\nQualifications\nBachelor's degree in Computer Science, Information Technology, or a related field, with 2–5 years of proven experience in data engineering roles (ETL/ELT processes, data modelling, and pipeline development)\nStrong programming proficiency in SQL and Python, with demonstrated ability to write efficient, maintainable code\nHands-on experience with Snowflake, DBT, and Azure cloud platforms, including knowledge of data warehousing concepts and best practices\nExcellent problem-solving abilities, attention to detail, and a commitment to implementing data quality measures and governance standards\nFluent English communication skills (verbal and written) with the ability to collaborate effectively in international team environments; German language skills are advantageous.\nAdditional Information\nWe offer\nResponsible challenge with diversified field of activity\nTeam-oriented working atmosphere in an international Company\nPersonal development opportunities through own Inova Academy\nOpportunity to gain an insight into various technical disciplines\nExcellent employment conditions\nAttractive working place (central, good transport links)\nModern infrastructure\nFor HR agencies: Please note that we do not accept applications coming from agencies. Thank you."
     },
-    "technical_fit": "Mismatch. Role is classic data engineering (Spark, Kafka, data lakes, ETL pipelines for energy/waste data). Candidate's strengths are LLM APIs, agentic automation, and lightweight cloud dashboards—not big-data infrastructure or JVM ecosystem tools. No overlap in core stack.",
-    "contextual_fit": "Poor. Kanadevia Inova builds waste-to-energy and biomass plants; this is industrial infrastructure data engineering, not AI/automation product building. Candidate wants ownership of LLM-powered systems from zero to production; this role maintains data pipelines for heavy industry.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown, but industrial engineering culture likely values stability and domain expertise over rapid experimentation. Candidate's self-directed, ship-fast mentality may not align.",
+    "technical_fit": "Partial. Strong SQL/Python overlap and data pipeline experience, but role centers on Snowflake/DBT/Azure stack—none of which are in his toolkit. Heavy emphasis on traditional data warehousing (ETL/ELT, data modeling, governance) rather than LLM-powered pipelines or agentic systems. Streamlit is adjacent but not enough to offset the platform mismatch.",
+    "contextual_fit": "Weak. Role explicitly targets 2–5 years proven data engineering experience; he's an intern/junior with ~1 year in a hybrid AI/automation role. The 'Data Products Team' framing sounds modern, but actual work is conventional enterprise data engineering in waste infrastructure—far from his stated goal of agentic systems and end-to-end ownership of LLM-powered automation. Career-changer openness doesn't help when the role shape is fundamentally different from what excites him.",
+    "salary_estimate": "CHF 85,000–110,000 (typical mid-level data engineer range in Zurich)",
+    "culture_fit": "Neutral-to-slight-mismatch. International team, English working language, agile environment—all fine. But 'collaborate with data architects, product managers, analysts' suggests embedded specialist role with stakeholder management overhead, not the zero-to-production ownership he seeks. 'Diversified field of activity' and 'insight into various technical disciplines' hints at rotational exposure rather than deep ownership in one area.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Experience requirement 2–5 years is a significant gap for an intern/junior applicant—likely auto-filtered by ATS or HR",
+      "Platform stack (Snowflake, DBT, Azure) is entirely new to him; steep learning curve with no mentorship bandwidth suggested for a mid-level hire",
+      "Domain (waste-to-energy infrastructure) is niche and not leveraged as a career-changer opportunity—no signal that they value non-traditional backgrounds",
+      "Role shape is maintenance/optimization of existing pipelines ('optimise data processes,' 'maintain comprehensive documentation') more than greenfield building",
+      "German 'advantageous' creates subtle pressure though not required; his A2 is below what would make him competitive here",
+      "Streamlit mention is minor consolation; not enough to redefine role as product-building with ownership"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T05:39:14.438650+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
-    "hard_blockers": [],
-    "insufficient_info": true,
-    "language_gap_intermediate": true,
-    "key_match_points": [],
-    "red_flags": [
-      "Role location is Bern, not Zurich/Zug — 1h+ commute each way on hybrid schedule, significant lifestyle/cost friction",
-      "German likely de facto working language in Bern office despite English posting; his A2 German insufficient for comfortable hybrid collaboration",
-      "No LLM, agentic, or AI platform elements — pure traditional data engineering, misaligned with his explicit career direction",
-      "'w/m/d' posting and large corporate structure suggest junior roles may be more standardized/support-oriented than ownership-driven",
-      "Data Vault and Kimball methodology emphasis indicates legacy data architecture maintenance, not greenfield building",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+    "score": 35,
+    "hard_blockers": [
+      "German or French is a mandatory hard requirement ('Voraussetzung') — candidate has A2 German, no French. Unmet.",
+      "Location: Bern, not Zurich/Zug (not remote-Swiss; hybrid in Bern).",
+      "Experience: 5+ years required — candidate is intern-level with ~1 year tech experience."
     ],
-    "job": {
-      "company": "Data Engineer (w/m/d)",
-      "title": "Data Engineer (w/m/d) Galenica · Bern (Hybrid)",
-      "location": "Galenica · Bern (Hybrid)",
-      "url": "https://www.linkedin.com/comm/jobs/view/4448867753/?trackingId=qMMYYvYmRoyxuePtIzfbrg%3D%3D&refId=eb0F89XPQbGE61EXGE21XA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BvVI7to4tTial7WvSKJ952w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3cL41T0U75vIo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt05o92l~20-null-null&eid=gbrmkn-mt05o92l-20&otpToken=ZjFmMDBkZTc1NzRlOTZjZDFkMDMxMDA0ZThlODBmY2IyN2U5ODA4MGQxZGFiNjBlOTA0MjZkZmEzYWVhZjRjYTQ3Zjg2ZjlmYWI1MTgyNjE0ZDJlZTM2NTdkYjVjZGI2YzUzZWIwYTQ1ZmVkNTA2ODIzZGJhMmMzNzZmNTdhMjZjZDNiNzJlZDI2Y2VhYzU1LDIsMQ%3D%3D",
-      "portal": "linkedin.com",
-      "description": ""
-    },
-    "technical_fit": "Moderate. Core stack partially overlaps (Python, SQL, cloud) but Galenica's focus on Azure/Synapse/Databricks and heavy data warehousing (Kimball, Data Vault) diverges from his LLM/automation specialization. No mention of LLM APIs, agentic systems, or end-to-end pipeline ownership — role appears more traditional ETL/BI engineering for pharmaceutical retail data.",
-    "contextual_fit": "Weak. Bern-based hybrid role in a large established pharma/retail company implies structured teams, legacy systems, and maintenance over greenfield building. Candidate explicitly seeks 'ownership from day one' and 'zero to production' in agentic/AI systems; this is conventional enterprise data engineering with domain-specific compliance constraints. Career-changer openness doesn't compensate — the role shape is fundamentally mismatched to his stated growth trajectory.",
-    "salary_estimate": "CHF 85'000–105'000 (typical junior data engineer range in Bern pharma/retail)",
-    "culture_fit": "Unclear but likely poor. Large corporate (Galenica is publicly traded, ~6,000 employees), regulated healthcare environment, hierarchical team structures. Contrast with his current small-agency context and desire for ownership. German workplace language probable despite English job posting.",
-    "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
-    ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
-    "materials_needed": [],
-    "evaluated_at": "2026-08-20T05:39:14.438650+00:00",
-    "rescored": true,
-    "no_posting_text": true
-  },
-  {
-    "score": null,
-    "hard_blockers": [],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description is completely missing — only a LinkedIn tracking URL was provided with no extractable role details. Cannot evaluate any dimension of fit.",
-      "Company name, location, and title all unknown.",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: German or French is a mandatory hard requirement ('Voraussetzung') — candidate has A2 German, no French. Unmet.",
+      "Blocker: Location: Bern, not Zurich/Zug (not remote-Swiss; hybrid in Bern).",
+      "Blocker: Experience: 5+ years required — candidate is intern-level with ~1 year tech experience.",
+      "Azure-heavy stack is entirely new to candidate — steep ramp with no mentorship bandwidth implied by senior role framing",
+      "'Data platform in logistics' is maintenance/architecture, not agentic/LLM work — misaligned with candidate's stated growth goals",
+      "No evidence of LLM, automation, or AI platform work in role — would be a domain and technical diversion from his trajectory",
+      "Hybrid Bern commute impractical with 2-week notice and Zurich-based permit/life"
     ],
     "job": {
-      "company": "Unknown",
+      "company": "Galenica",
       "title": "Data Engineer (w/m/d)",
-      "location": "Unknown",
-      "url": "https://www.linkedin.com/comm/jobs/view/4448867753/?trackingId=qMMYYvYmRoyxuePtIzfbrg%3D%3D&refId=eb0F89XPQbGE61EXGE21XA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BvVI7to4tTial7WvSKJ952w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3cL41T0U75vIo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-jobcard_body_4448867753&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-jobcard_body_4448867753-null-gbrmkn~mt05o92l~20-null-null&eid=gbrmkn-mt05o92l-20&otpToken=ZjFmMDBkZTc1NzRlOTZjZDFkMDMxMDA0ZThlODBmY2IyN2U5ODA4MGQxZGFiNjBlOTA0MjZkZmEzYWVhZjRjYTQ3Zjg2ZjlmYWI1MTgyNjE0ZDJlZTM2NTdkYjVjZGI2YzUzZWIwYTQ1ZmVkNTA2ODIzZGJhMmMzNzZmNTdhMjZjZDNiNzJlZDI2Y2VhYzU1LDIsMQ%3D%3D",
+      "location": "Galenica · Bern (Hybrid)",
+      "url": "https://www.linkedin.com/comm/jobs/view/4448867753/?trackingId=qMMYYvYmRoyxuePtIzfbrg%3D%3D&refId=eb0F89XPQbGE61EXGE21XA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BvVI7to4tTial7WvSKJ952w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3cL41T0U75vIo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt05o92l~20-null-null&eid=gbrmkn-mt05o92l-20&otpToken=ZjFmMDBkZTc1NzRlOTZjZDFkMDMxMDA0ZThlODBmY2IyN2U5ODA4MGQxZGFiNjBlOTA0MjZkZmEzYWVhZjRjYTQ3Zjg2ZjlmYWI1MTgyNjE0ZDJlZTM2NTdkYjVjZGI2YzUzZWIwYTQ1ZmVkNTA2ODIzZGJhMmMzNzZmNTdhMjZjZDNiNzJlZDI2Y2VhYzU1LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "Galenica AG\nDas kannst du bewirken\nMitarbeit am Design und der Entwicklung der neuen Datenplattform in der Azure Cloud im Bereich der Logistik\nErstellung von Datenmodellen entsprechend den Anforderungen und Anwendungsfällen der Business Analytics und Data Science\nOrganisation und Strukturierung von Datenbeständen mit Hilfe verschiedener moderner Cloud- und Big-Data-Technologien\nAnbindung von Datenquellen und Entwicklung von Transformations- und Datenintegrationsabläufen\nEnge Zusammenarbeit mit weiteren Spezialisten in einem agilen Umfeld für spezifische Themen wie DevOps oder Datenarchitektur\nDas bringst du mit\nFach-/Hochschulabschluss als Informatiker oder eine vergleichbare Ausbildung und mindestens 5 Jahre Erfahrung als Data Engineer\nSehr gute Erfahrung mit Cloud-Technologien (idealerweise in der Azure Cloud mit Synapse Analytics, Data Lake Storage, Data Factory, Azure DevOps und Microsoft Fabric)\nSolide Kenntnisse von Datenmodellierungs-, Datenspeicherungs- und Datenzugangstechniken mit Erfahrung in Big-Data-Architekturen und Integrationsmodellen\nSehr gute Programmierkenntnisse in Python, Java oder Scala und SQL\nGute Arbeitserfahrung mit dezentralen Systemen und Beherrschung von Tools wie dbt, Apache Spark, Apache Flink oder Apache Beam\nDeutsch- oder Französisch- und gute Englischkenntnisse sind Voraussetzung\nDiese Stelle besetzen wir ohne externe Personaldienstleister.\nKontakt\nDeine Bewerbung wird bearbeitet durch:\nGalenica\nRebekka Borer\nSpecialist Recruiting\nTel. +41 58 852 84 79\nFachliche Auskünfte erteilt dir gerne:"
     },
-    "technical_fit": "No job description provided — cannot assess technical requirements, stack, or responsibilities.",
-    "contextual_fit": "No job description provided — cannot assess ownership level, team structure, or growth opportunity.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "No information available.",
+    "technical_fit": "Mismatch. Role demands 5+ years senior Data Engineer experience with deep Azure-specific stack (Synapse, Fabric, Data Factory, Spark/Flink). Candidate is an intern-level builder with Python/SQL/pandas, some cloud (Google Cloud, Docker), and no Azure, Spark, dbt, or enterprise data platform experience. The 'new data platform' work is architecture-heavy, not greenfield ownership an intern could take from zero.",
+    "contextual_fit": "Poor. Bern-based hybrid role in pharma logistics — not Zurich/Zug area. Requires German OR French as hard prerequisite ('Deutsch- oder Französisch-... sind Voraussetzung'). Candidate's A2 German is below working proficiency; no French. The '5 years experience' barrier alone makes this a senior hire, not a growth internship.",
+    "salary_estimate": "CHF 100k–130k (senior Data Engineer, Bern)",
+    "culture_fit": "Unclear. Agile/DevOps mentioned but role is specialist-team integration, not solo ownership. Candidate's motivation for end-to-end ownership doesn't align with 'enge Zusammenarbeit mit weiteren Spezialisten' for narrow topics.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Azure-heavy stack is entirely new to candidate — steep ramp with no mentorship bandwidth implied by senior role framing",
+      "'Data platform in logistics' is maintenance/architecture, not agentic/LLM work — misaligned with candidate's stated growth goals",
+      "No evidence of LLM, automation, or AI platform work in role — would be a domain and technical diversion from his trajectory",
+      "Hybrid Bern commute impractical with 2-week notice and Zurich-based permit/life"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T05:39:14.438650+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
+  },
+  {
+    "score": 32,
+    "hard_blockers": [
+      "German or French required as hard prerequisite ('Deutsch- oder Französisch- ... sind Voraussetzung') — his German is A2, French absent. This is a mandatory working-language requirement beyond English."
+    ],
+    "insufficient_info": false,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Blocker: German or French required as hard prerequisite ('Deutsch- oder Französisch- ... sind Voraussetzung') — his German is A2, French absent. This is a mandatory working-language requirement beyond English.",
+      "5+ years experience requirement far exceeds his internship-level background",
+      "Azure-heavy stack with no mention of LLMs, agentic systems, or automation ownership",
+      "No greenfield building; enterprise data integration and modeling for logistics analytics",
+      "Pharma/logistics domain irrelevant to his interests, though he's open to domains — the role shape is the bigger issue",
+      "Seniority level suggests 'support work on existing platform' rather than 'ship and own from day one'"
+    ],
+    "job": {
+      "company": "Galenica AG",
+      "title": "Data Engineer (w/m/d)",
+      "location": "Bern area (Galenica HQ in Bern, logistics data platform context)",
+      "url": "https://www.linkedin.com/comm/jobs/view/4448867753/?trackingId=qMMYYvYmRoyxuePtIzfbrg%3D%3D&refId=eb0F89XPQbGE61EXGE21XA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BvVI7to4tTial7WvSKJ952w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3cL41T0U75vIo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-jobcard_body_4448867753&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-jobcard_body_4448867753-null-gbrmkn~mt05o92l~20-null-null&eid=gbrmkn-mt05o92l-20&otpToken=ZjFmMDBkZTc1NzRlOTZjZDFkMDMxMDA0ZThlODBmY2IyN2U5ODA4MGQxZGFiNjBlOTA0MjZkZmEzYWVhZjRjYTQ3Zjg2ZjlmYWI1MTgyNjE0ZDJlZTM2NTdkYjVjZGI2YzUzZWIwYTQ1ZmVkNTA2ODIzZGJhMmMzNzZmNTdhMjZjZDNiNzJlZDI2Y2VhYzU1LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": "Galenica AG\nDas kannst du bewirken\nMitarbeit am Design und der Entwicklung der neuen Datenplattform in der Azure Cloud im Bereich der Logistik\nErstellung von Datenmodellen entsprechend den Anforderungen und Anwendungsfällen der Business Analytics und Data Science\nOrganisation und Strukturierung von Datenbeständen mit Hilfe verschiedener moderner Cloud- und Big-Data-Technologien\nAnbindung von Datenquellen und Entwicklung von Transformations- und Datenintegrationsabläufen\nEnge Zusammenarbeit mit weiteren Spezialisten in einem agilen Umfeld für spezifische Themen wie DevOps oder Datenarchitektur\nDas bringst du mit\nFach-/Hochschulabschluss als Informatiker oder eine vergleichbare Ausbildung und mindestens 5 Jahre Erfahrung als Data Engineer\nSehr gute Erfahrung mit Cloud-Technologien (idealerweise in der Azure Cloud mit Synapse Analytics, Data Lake Storage, Data Factory, Azure DevOps und Microsoft Fabric)\nSolide Kenntnisse von Datenmodellierungs-, Datenspeicherungs- und Datenzugangstechniken mit Erfahrung in Big-Data-Architekturen und Integrationsmodellen\nSehr gute Programmierkenntnisse in Python, Java oder Scala und SQL\nGute Arbeitserfahrung mit dezentralen Systemen und Beherrschung von Tools wie dbt, Apache Spark, Apache Flink oder Apache Beam\nDeutsch- oder Französisch- und gute Englischkenntnisse sind Voraussetzung\nDiese Stelle besetzen wir ohne externe Personaldienstleister.\nKontakt\nDeine Bewerbung wird bearbeitet durch:\nGalenica\nRebekka Borer\nSpecialist Recruiting\nTel. +41 58 852 84 79\nFachliche Auskünfte erteilt dir gerne:"
+    },
+    "technical_fit": "Moderate partial overlap: Azure/cloud data platform engineering aligns with his data platform interest, but role demands 5+ years experience and deep Azure-specific stack (Synapse, Data Factory, Fabric, dbt, Spark/Flink/Beam) he doesn't have. His Python/SQL are relevant, but Java/Scala and big-data distributed systems are gaps. No LLM/agentic work mentioned.",
+    "contextual_fit": "Poor: senior-level role (5+ years) seeking established Data Engineer, not intern/junior. He wants ownership and greenfield AI/automation building; this is enterprise logistics data platform maintenance in regulated pharma/healthcare with heavy collaboration, not zero-to-one ownership.",
+    "salary_estimate": "CHF 110,000–140,000 (senior Data Engineer in Swiss pharma)",
+    "culture_fit": "Mismatch: large corporate pharma (Galenica), structured team collaboration with specialists, not the startup/small-team builder environment he seeks. Agile but not entrepreneurial.",
+    "concerns": [
+      "5+ years experience requirement far exceeds his internship-level background",
+      "Azure-heavy stack with no mention of LLMs, agentic systems, or automation ownership",
+      "No greenfield building; enterprise data integration and modeling for logistics analytics",
+      "Pharma/logistics domain irrelevant to his interests, though he's open to domains — the role shape is the bigger issue",
+      "Seniority level suggests 'support work on existing platform' rather than 'ship and own from day one'"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-08-20T05:39:14.438650+00:00",
+    "recovered": true
   },
   {
     "score": null,
@@ -831,78 +868,87 @@
     "no_posting_text": true
   },
   {
-    "score": null,
-    "hard_blockers": [
-      "Location: Neuchâtel, Switzerland (Hybrid) — not Zurich/Zug area and not fully remote; requires physical presence in Neuchâtel which is ~2 hours from Zurich by train, impractical for regular hybrid work with 2-week notice"
-    ],
-    "insufficient_info": true,
+    "score": 58,
+    "hard_blockers": [],
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Location: Neuchâtel, Switzerland (Hybrid) — not Zurich/Zug area and not fully remote; requires physical presence in Neuchâtel which is ~2 hours from Zurich by train, impractical for regular hybrid work with 2-week notice",
-      "No LLM, agentic systems, or AI platform work — core of candidate's desired growth trajectory",
-      "Traditional data engineering stack (Spark, Airflow, dbt) with significant gaps in candidate's profile",
-      "Healthtech regulatory environment likely constrains the 'ship fast, own end-to-end' working style candidate values",
-      "Neuchâtel hybrid model is logistically challenging from Zurich area without relocation",
-      "Role shape appears to be supporting existing data infrastructure rather than greenfield building with real ownership",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Zero Databricks/Spark/medallion architecture experience — core tech stack mismatch",
+      "Role is explicitly junior/supportive ('working closely with and learning directly from an experienced Senior Data Engineer') vs. candidate's stated desire for ownership from day one",
+      "No LLM, agentic systems, or AI automation work — pure traditional data engineering for clinical data",
+      "Neuchâtel-based hybrid requires weekly commute from Zurich area (doable but not ideal)",
+      "Clinical data domain requires careful handling; candidate has no healthcare/regulatory data experience",
+      "Role shape is maintenance/scaling of existing messy systems, not greenfield building"
     ],
     "job": {
-      "company": "Junior Data Engineer (m/f/d)",
-      "title": "Junior Data Engineer (m/f/d) Hilo by Aktiia · Neuchâtel, Switzerland (Hybrid)",
+      "company": "Hilo by Aktiia",
+      "title": "Junior Data Engineer (m/f/d)",
       "location": "Hilo by Aktiia · Neuchâtel, Switzerland (Hybrid)",
       "url": "https://www.linkedin.com/comm/jobs/view/4438165893/?trackingId=Z4h9HltaQbWGasqm1zfiOw%3D%3D&refId=F0Feya5wR8yiPVQVXi8P0Q%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BvVI7to4tTial7WvSKJ952w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3cL41T0U75vIo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt05o92l~20-null-null&eid=gbrmkn-mt05o92l-20&otpToken=ZjFmMDBkZTc1NzRlOTZjZDFkMDMxMDA0ZThlODBmY2IyN2U5ODA4MGQxZGFiNjBlOTA0MjZkZmEzYWVhZjRjYTQ3Zjg2ZjlmYWI1MTgyNjE0ZDJlZTM2NTdkYjVjZGI2YzUzZWIwYTQ1ZmVkNTA2ODIzZGJhMmMzNzZmNTdhMjZjZDNiNzJlZDI2Y2VhYzU1LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "About Hilo By Aktiia\nHigh blood pressure is the world's most common disease, causing 18 million deaths each year. At Hilo by Aktiia, our vision is a world where no lives are lost or damaged from the effects of high blood pressure, and our mission is to build the technology that helps people control it.\nWe are a venture-backed scale-up that has raised over $96M. Our technology, rooted in 18 years of research at the Swiss Center for Electronics and Microtechnology (CSEM), is the world's only medically accurate, cuffless, continuous blood pressure monitor for daily life. It is CE Marked as a Class IIa medical device and was FDA-cleared in 2026 as the first cuffless OTC blood pressure monitor in the United States. We are remote-first, headquartered in Neuchâtel, Switzerland.\nRole Overview\nImagine using your data engineering skills to improve the way cardiovascular health is monitored and managed. Hilo by Aktiia is redefining blood pressure monitoring through AI-driven optical technology built on more than 20 years of research at the Swiss Center for Electronics and Microtechnology (CSEM). Their solution combines a wearable device (Hilo), a mobile app, and a cloud-based platform for healthcare professionals — empowering users and physicians with continuous, actionable insights into blood-pressure patterns. With more than 200,000 users, over $120M in funding, and a CE-certified medical device already available across several markets, Aktiia is continuing to scale its technology, product ecosystem, and international presence.\nAs Aktiia expands its data capabilities, we're looking for a Junior Data Engineer who will help scale a Databricks-based medallion Lakehouse from a primarily R&D/Core Tech setup into a broader company-wide data platform. Working closely with and learning directly from an experienced Senior Data Engineer, you will support the ingestion, centralization, documentation, and validation of clinical, legacy, and operational data. Your work will help transform complex and sometimes messy data sources into clean, reliable, and model-ready pipelines used by Data Science, ML, Algorithm, and Core Tech teams.\nYour Tasks\nData Ingestion & Lakehouse Development: Design, build, and maintain data ingestion and processing pipelines within Aktiia's Databricks-hosted medallion Lakehouse, working under senior guidance while gradually taking on more ownership\nClinical & Legacy Data Integration: Take an active role in ingesting, centralizing, and documenting clinical data currently spread across EDC platforms such as Castor and RedCap, databases, standalone archives, and other historically grown sources\nData Exploration & Pract\n[... middle of the posting omitted ...]\nroblem-solver, you enjoy bringing structure into complex data environments. You work independently, ask the right questions, stay well organized, and collaborate openly with Data Engineering, Data Science, ML, Algorithm, Core Tech, and Product stakeholders. You are based in Switzerland and are comfortable working in a hybrid setup with one day per week regular presence in Neuchâtel\nWe're looking for a pragmatic, hands-on data builder who enjoys working with real-world clinical and company data — someone who is excited to bring structure into scattered datasets, build reliable pipelines, and help create a modern data foundation for advanced ML and digital health applications.\nDo you want to grow your expertise in Data Engineering and cloud-based lakehouse architectures while contributing to health technology that has a direct impact on hundreds of thousands of people? Then we're excited to meet you!\nBenefits\nWhy Join Us?\nHilo by Aktiia is becoming one of the most important med-tech companies, and you can be part of this exciting story\nWork on a mission that matters: transforming cardiovascular health at global scale\nBe part of a high-impact, fast-growing, and venture-backed scale-up company\nCollaborate with a diverse, passionate, and talented team\nCompetitive compensation and other benefits (depending on location)"
     },
-    "technical_fit": "Partial. The role is data engineering focused on ETL pipelines, data modeling, and cloud infrastructure (AWS/GCP/Azure, Spark, Airflow). Candidate has relevant Python/SQL/pandas/Docker/GCP skills and pipeline experience, but lacks Spark, Airflow, and deep data warehouse modeling exposure. No LLM or agentic systems work mentioned in the role.",
-    "contextual_fit": "Weak. Role is at a healthtech company building a hypertension management platform—domain is healthcare, which candidate is open to, but the work itself is traditional data engineering (batch/streaming pipelines, data quality, BI support) rather than the agentic AI/automation ownership he seeks. 'Junior' title suggests some growth room, but the role shape is maintain/optimize existing infrastructure, not zero-to-production greenfield building.",
-    "salary_estimate": "CHF 75,000–95,000",
-    "culture_fit": "Unclear. Aktiia/Hilo is a structured healthtech with regulatory constraints (FDA/CE-marked medical device). This implies process-heavy environment, documentation rigor, and slower iteration cycles—quite different from the fast-shipping, audit-your-own-output autonomy candidate thrives in. Hybrid model in Neuchâtel is workable but not ideal.",
+    "technical_fit": "Mediocre. The role is heavily Databricks/SQL/data-lakehouse focused with clinical/legacy data integration. Candidate has solid Python/pandas/SQL and cloud basics (GCP, Docker, GitHub Actions) but zero Databricks, Spark, or medallion architecture experience. The role explicitly emphasizes 'cloud-based lakehouse architectures' and scaling a Databricks platform — this is a significant tooling gap. No LLM, agentic, or AI automation work in the role; it's pure data engineering infrastructure for health data.",
+    "contextual_fit": "Weak on role-shape fit. Candidate explicitly wants 'LLM-powered pipelines and automation end to end' with 'real ownership from day one rather than support work.' This role is the opposite: junior data engineer supporting a senior, 'gradually taking on more ownership,' ingesting clinical/legacy data into an existing R&D platform. The 'zero to production' ownership he craves is absent — this is maintenance, documentation, and incremental scaling of messy existing systems. Domain (healthcare/medtech) is fine and he's open to new domains, but the functional work doesn't match his stated motivation.",
+    "salary_estimate": "CHF 75,000 - 95,000",
+    "culture_fit": "Mixed. Remote-first with hybrid (1 day/week Neuchâtel) is workable though not ideal vs. Zurich-area. Fast-growing scale-up with mission-driven work could appeal. However, the 'high-impact' framing clashes with the actual junior/support nature of the role. His self-directed, ownership-seeking style may frustrate in a 'learning directly from senior' setup with gradual responsibility.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Zero Databricks/Spark/medallion architecture experience — core tech stack mismatch",
+      "Role is explicitly junior/supportive ('working closely with and learning directly from an experienced Senior Data Engineer') vs. candidate's stated desire for ownership from day one",
+      "No LLM, agentic systems, or AI automation work — pure traditional data engineering for clinical data",
+      "Neuchâtel-based hybrid requires weekly commute from Zurich area (doable but not ideal)",
+      "Clinical data domain requires careful handling; candidate has no healthcare/regulatory data experience",
+      "Role shape is maintenance/scaling of existing messy systems, not greenfield building"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T05:39:14.438650+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
-    "hard_blockers": [],
-    "insufficient_info": true,
+    "score": 62,
+    "hard_blockers": [
+      "Location: role requires 1 day/week regular presence in Neuchâtel; candidate is Zurich-area based with no relocation indicated. This is a hard logistics blocker for a hybrid mandate — 2+ hour commute each way is not sustainable, and 'remote-first' with weekly in-person requirement is not fully remote."
+    ],
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description is entirely missing from the provided text - only a LinkedIn URL is available",
-      "Cannot determine company name, actual location, role responsibilities, tech stack, or any requirements",
-      "Unable to assess whether this is agentic systems/data platform engineering work or generic data engineering",
-      "Cannot evaluate ownership level, LLM/automation exposure, or any fit criteria",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: Location: role requires 1 day/week regular presence in Neuchâtel; candidate is Zurich-area based with no relocation indicated. This is a hard logistics blocker for a hybrid mandate — 2+ hour commute each way is not sustainable, and 'remote-first' with weekly in-person requirement is not fully remote.",
+      "No Databricks/Spark/lakehouse experience — core tech stack mismatch, though learnable",
+      "No clinical/healthcare/medical device data experience — domain gap, though candidate is open to new domains",
+      "'Gradually taking on more ownership' vs. his stated desire for real ownership from day one — role shape may frustrate him",
+      "Neuchâtel hybrid requirement: even if technically 'remote-first,' the weekly in-person mandate makes this effectively a Neuchâtel-area role, not Zurich-compatible",
+      "Python/pandas/SQL skills match, but the role's emphasis is on data infrastructure/platform rather than LLM/automation/agentic systems he wants to deepen",
+      "200,000 users and scaling data platform suggests maintenance/centralization work over greenfield building"
     ],
     "job": {
-      "company": "Unknown",
+      "company": "Hilo by Aktiia",
       "title": "Junior Data Engineer (m/f/d)",
-      "location": "Unknown",
+      "location": "Neuchâtel, Switzerland",
       "url": "https://www.linkedin.com/comm/jobs/view/4438165893/?trackingId=Z4h9HltaQbWGasqm1zfiOw%3D%3D&refId=F0Feya5wR8yiPVQVXi8P0Q%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BvVI7to4tTial7WvSKJ952w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3cL41T0U75vIo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-jobcard_body_4438165893&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-jobcard_body_4438165893-null-gbrmkn~mt05o92l~20-null-null&eid=gbrmkn-mt05o92l-20&otpToken=ZjFmMDBkZTc1NzRlOTZjZDFkMDMxMDA0ZThlODBmY2IyN2U5ODA4MGQxZGFiNjBlOTA0MjZkZmEzYWVhZjRjYTQ3Zjg2ZjlmYWI1MTgyNjE0ZDJlZTM2NTdkYjVjZGI2YzUzZWIwYTQ1ZmVkNTA2ODIzZGJhMmMzNzZmNTdhMjZjZDNiNzJlZDI2Y2VhYzU1LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "About Hilo By Aktiia\nHigh blood pressure is the world's most common disease, causing 18 million deaths each year. At Hilo by Aktiia, our vision is a world where no lives are lost or damaged from the effects of high blood pressure, and our mission is to build the technology that helps people control it.\nWe are a venture-backed scale-up that has raised over $96M. Our technology, rooted in 18 years of research at the Swiss Center for Electronics and Microtechnology (CSEM), is the world's only medically accurate, cuffless, continuous blood pressure monitor for daily life. It is CE Marked as a Class IIa medical device and was FDA-cleared in 2026 as the first cuffless OTC blood pressure monitor in the United States. We are remote-first, headquartered in Neuchâtel, Switzerland.\nRole Overview\nImagine using your data engineering skills to improve the way cardiovascular health is monitored and managed. Hilo by Aktiia is redefining blood pressure monitoring through AI-driven optical technology built on more than 20 years of research at the Swiss Center for Electronics and Microtechnology (CSEM). Their solution combines a wearable device (Hilo), a mobile app, and a cloud-based platform for healthcare professionals — empowering users and physicians with continuous, actionable insights into blood-pressure patterns. With more than 200,000 users, over $120M in funding, and a CE-certified medical device already available across several markets, Aktiia is continuing to scale its technology, product ecosystem, and international presence.\nAs Aktiia expands its data capabilities, we're looking for a Junior Data Engineer who will help scale a Databricks-based medallion Lakehouse from a primarily R&D/Core Tech setup into a broader company-wide data platform. Working closely with and learning directly from an experienced Senior Data Engineer, you will support the ingestion, centralization, documentation, and validation of clinical, legacy, and operational data. Your work will help transform complex and sometimes messy data sources into clean, reliable, and model-ready pipelines used by Data Science, ML, Algorithm, and Core Tech teams.\nYour Tasks\nData Ingestion & Lakehouse Development: Design, build, and maintain data ingestion and processing pipelines within Aktiia's Databricks-hosted medallion Lakehouse, working under senior guidance while gradually taking on more ownership\nClinical & Legacy Data Integration: Take an active role in ingesting, centralizing, and documenting clinical data currently spread across EDC platforms such as Castor and RedCap, databases, standalone archives, and other historically grown sources\nData Exploration & Pract\n[... middle of the posting omitted ...]\nroblem-solver, you enjoy bringing structure into complex data environments. You work independently, ask the right questions, stay well organized, and collaborate openly with Data Engineering, Data Science, ML, Algorithm, Core Tech, and Product stakeholders. You are based in Switzerland and are comfortable working in a hybrid setup with one day per week regular presence in Neuchâtel\nWe're looking for a pragmatic, hands-on data builder who enjoys working with real-world clinical and company data — someone who is excited to bring structure into scattered datasets, build reliable pipelines, and help create a modern data foundation for advanced ML and digital health applications.\nDo you want to grow your expertise in Data Engineering and cloud-based lakehouse architectures while contributing to health technology that has a direct impact on hundreds of thousands of people? Then we're excited to meet you!\nBenefits\nWhy Join Us?\nHilo by Aktiia is becoming one of the most important med-tech companies, and you can be part of this exciting story\nWork on a mission that matters: transforming cardiovascular health at global scale\nBe part of a high-impact, fast-growing, and venture-backed scale-up company\nCollaborate with a diverse, passionate, and talented team\nCompetitive compensation and other benefits (depending on location)"
     },
-    "technical_fit": "Insufficient information to evaluate. Job description is completely missing.",
-    "contextual_fit": "Insufficient information to evaluate. No details about role responsibilities, ownership level, or company context.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Insufficient information to evaluate.",
+    "technical_fit": "Partial. Strong alignment on data platform building, Python/SQL/pandas, cloud pipelines, and ownership trajectory. However, the role is heavily Databricks/medallion-lakehouse and clinical-data focused (Castor/RedCap EDC platforms, medical device data). Candidate has no Databricks, Spark, or healthcare/clinical data experience. The 'Junior' label with 'working under senior guidance while gradually taking on more ownership' is less day-one ownership than he seeks, though the scale-up context offers growth.",
+    "contextual_fit": "Moderate. Remote-first with 1 day/week in Neuchâtel — candidate is Zurich-area based, so hybrid to Neuchâtel is a significant commute (2+ hours each way), not a local Zurich/Zug role. Swiss-based permit requirement is met. Health tech mission is compelling, but the clinical/legacy data integration focus is quite different from his LLM/agentic systems and automation interests.",
+    "salary_estimate": "CHF 75,000 - 95,000",
+    "culture_fit": "Mixed. Scale-up, mission-driven, high-impact — aligns with his preference for ownership and building. However, the role emphasizes 'supporting' and 'working under senior guidance' with gradual ownership, and the data is clinical/legacy rather than greenfield AI/automation. The 'pragmatic, hands-on data builder' framing fits, but the actual work is more data archaeology than zero-to-production AI pipeline building.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "No Databricks/Spark/lakehouse experience — core tech stack mismatch, though learnable",
+      "No clinical/healthcare/medical device data experience — domain gap, though candidate is open to new domains",
+      "'Gradually taking on more ownership' vs. his stated desire for real ownership from day one — role shape may frustrate him",
+      "Neuchâtel hybrid requirement: even if technically 'remote-first,' the weekly in-person mandate makes this effectively a Neuchâtel-area role, not Zurich-compatible",
+      "Python/pandas/SQL skills match, but the role's emphasis is on data infrastructure/platform rather than LLM/automation/agentic systems he wants to deepen",
+      "200,000 users and scaling data platform suggests maintenance/centralization work over greenfield building"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T05:39:14.438650+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
     "score": null,
@@ -1195,115 +1241,120 @@
     "no_posting_text": true
   },
   {
-    "score": null,
+    "score": 72,
     "hard_blockers": [],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [
-      "Strong backend/MLOps overlap with candidate's Python, Docker, CI/CD, cloud and API integration experience. Missing: explicit LLM/agentic focus in description, but 'Founding AI Platform Engineer' at a fast-growing company implies greenfield building. His LLM API and pipeline experience maps well to MLOps for AI services."
+      "Strong alignment on core stack: Python, cloud infra, Docker, CI/CD, API development, and LLM/GenAI integration are all in his wheelhouse. The role's focus on building production infrastructure for agent workflows and GenAI services maps directly to his current work with Claude/Kimi pipelines and multi-step automation. Gap: 'Founding' role implies senior-level ownership of MLOps at scale (model serving, training infrastructure, experimentation platforms) — he has solid automation/ops experience but limited depth in dedicated ML platform tooling (e.g., Kubeflow, MLflow, feature stores, model registries). However, his proven 'zero to production' ownership mentality and rapid learning trajectory partially offset this."
     ],
     "red_flags": [
-      "Role level ambiguity: 'Founding' title typically signals senior/Staff expectations, not intern/junior; may be a title inflation or actual senior role mislabeled",
-      "Company domain (Jobgether = job platform/recruitment tech) may mean AI work is recommendation/matching engines rather than the agentic systems he seeks",
-      "No explicit mention of LLMs or agentic workflows in visible description—MLOps could be traditional ML infrastructure",
-      "Remote-only at a 'fast growing' company may mean less mentorship structure than he needs at this career stage",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "'Founding' title and breadth of MLOps responsibilities (model training infra, serving at scale, feature stores) may exceed current depth — this is a stretch-up role, not a lateral",
+      "No explicit mention of team size or mentorship structure; founding engineer without senior ML platform mentorship could be a sink-or-swim risk for someone still building specialty depth",
+      "Jobgether intermediary adds opacity: candidate doesn't apply directly to hiring company, and AI-screening step may filter non-traditional backgrounds despite human final review",
+      "Compensation and equity structure completely undisclosed; 'founding' implies equity but no confirmation"
     ],
     "job": {
-      "company": "Founding AI Platform Engineer (MLOps / Backend)",
-      "title": "Founding AI Platform Engineer (MLOps / Backend) Jobgether · Switzerland (Remote) Easy Apply Fast growing",
+      "company": "Jobgether",
+      "title": "Founding AI Platform Engineer (MLOps / Backend)",
       "location": "Jobgether · Switzerland (Remote)",
       "url": "https://www.linkedin.com/comm/jobs/view/4455415955/?trackingId=iON%2F1wP5whnz7fw8UWI5%2BA%3D%3D&refId=%2BoUBffOJ9coAsKAV6VYrng%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_facet_suggestions%3BQHYTbqMHTFimXFFeNfuAXg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=0l399I9BL3wYo1&trk=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_1-0-job_card_1_jobid_4455415955_sectionid_272001_fmid_gbrmkn~mt1fcka4~rj&trkEmail=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_1-0-job_card_1_jobid_4455415955_sectionid_272001_fmid_gbrmkn~mt1fcka4~rj-null-gbrmkn~mt1fcka4~rj-null-null&eid=gbrmkn-mt1fcka4-rj&otpToken=ZWExMzkwNWU4NjMzY2RkNmFmYzMzMWMwYWNjNDk0OWQ5MjU5NmEyY2Q3Mjk1NWZhNGNiODY0NjIwM2Y5YWMyNWI0OGZmYjE5YTVjMDIwMjA3Zjg5YjkxOTAyMWY5M2EyZjJlN2I4MGJlOTFiNzc0ODFjYTQyZWNjYzM4NWMyMzRhNDQ3ZjU1NTk3NjE5NTQzLDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for a Founding AI Platform Engineer (MLOps / Backend) based in Switzerland.\nThis is a foundational engineering opportunity for someone who wants to shape the systems that turn ML and GenAI capabilities into reliable, production-ready products.\nYou will operate at the intersection of backend engineering, cloud infrastructure, MLOps, platform reliability, and product delivery.\nThe role offers broad ownership across model lifecycle management, deployment, serving, experimentation, observability, and CI/CD.\nYou will build the production infrastructure that enables AI systems to scale safely while remaining performant, maintainable, secure, and cost-efficient.\nWorking closely with ML and product teams, you will turn ambiguous technical challenges into practical, durable solutions.\nAs an early platform engineer, your decisions will directly influence engineering standards, tooling, reliability practices, and the future scalability of the platform.\nAccountabilities\nBuild and maintain infrastructure and tooling for training, evaluating, deploying, serving, and monitoring ML models and GenAI services.\nDevelop and operate production backend services, APIs, and pipelines supporting recommendations, agent workflows, and customer-facing integrations.\nImprove CI/CD pipelines, automated testing, release processes, rollback strategies, and environment management.\nEstablish comprehensive observability across application health, model behavior, agent quality, latency, costs, and operational failure modes.\nBuild reproducibility and lifecycle management practices for models, prompts, datasets, configurations, and software releases.\nSupport experimentation and measurement infrastructure that enables ML and product teams to evaluate changes reliably.\nStrengthen platform reliability, scalability, security, performance, and cost efficiency across the technology stack.\nTroubleshoot production issues end-to-end and convert recurring operational problems into long-term engineering improvements.\nCollaborate closely with ML, product, and engineering teams to move ambiguous initiatives from concept to completion.\nEstablish engineering standards and platform practices that can support future growth and increasing system complexity.\nIdentify platform, reliability, and scaling risks early and proactively address them before they affect customers or delivery.\nRequirements\nStrong software engineering background with experience building, deploying, and operating production systems.\nProven experience with backend services, cloud infr\n[... middle of the posting omitted ...]\ning process\nto ensure your application is reviewed quickly, objectively, and fairly against the role's core requirements. Our system identifies the top-fitting candidates, and this shortlist is then shared directly with the hiring company. The final decision and next steps (interviews, assessments) are managed by their internal team.\nWe appreciate your interest and wish you the best!\nWhy Apply Through Jobgether?\nData Privacy Notice:\nBy submitting your application, you acknowledge that Jobgether will process your personal data to evaluate your candidacy and share relevant information with the hiring employer. This processing is based on legitimate interest and pre-contractual measures under applicable data protection laws (including GDPR). You may exercise your rights (access, rectification, erasure, objection) at any time.\nWe may use artificial intelligence (AI) tools to support parts of the hiring process, such as reviewing applications, analyzing resumes, or assessing responses and identifying potential inconsistencies or verification signals in application materials based on available information. These tools assist our recruitment team but do not replace human judgment. Final hiring decisions are ultimately made by humans. If you would like more information about how your data is processed, please contact us."
     },
-    "technical_fit": "Strong backend/MLOps overlap with candidate's Python, Docker, CI/CD, cloud and API integration experience. Missing: explicit LLM/agentic focus in description, but 'Founding AI Platform Engineer' at a fast-growing company implies greenfield building. His LLM API and pipeline experience maps well to MLOps for AI services.",
-    "contextual_fit": "Remote Switzerland role fits permit/location perfectly. 'Founding' suggests early-employee ownership and building from zero—exactly what motivates him. However, 'Founding' title + 'fast growing' may imply more senior expectations than intern/junior; ambiguity on level is a concern. Jobgether itself is a job platform, not an AI-native product company, which may affect the nature of AI work (infrastructure vs. agentic systems).",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "High ownership, greenfield building implied by 'Founding' title. Candidate's self-directed 'zero to production' ethos aligns. Risk: could be more execution-support for existing platform rather than novel AI/agentic development.",
+    "technical_fit": "Strong alignment on core stack: Python, cloud infra, Docker, CI/CD, API development, and LLM/GenAI integration are all in his wheelhouse. The role's focus on building production infrastructure for agent workflows and GenAI services maps directly to his current work with Claude/Kimi pipelines and multi-step automation. Gap: 'Founding' role implies senior-level ownership of MLOps at scale (model serving, training infrastructure, experimentation platforms) — he has solid automation/ops experience but limited depth in dedicated ML platform tooling (e.g., Kubeflow, MLflow, feature stores, model registries). However, his proven 'zero to production' ownership mentality and rapid learning trajectory partially offset this.",
+    "contextual_fit": "Excellent. Remote Switzerland-based role eliminates location friction. His 2-week notice is irrelevant for a new role (he's interning, can transition). The 'founding' aspect and broad ownership across standards, tooling, and reliability practices is exactly the role-shape he seeks: building from scratch, not maintaining legacy. Career-changer background is neutral-to-positive here — the partner company (via Jobgether) seems to value diverse paths.",
+    "salary_estimate": "CHF 95,000–130,000 (founding engineer, remote Swiss contract, likely early-stage startup equity component)",
+    "culture_fit": "Strong. 'Move ambiguous initiatives from concept to completion' and 'establish engineering standards' matches his self-described excitement for owning the full lifecycle. Early-stage, high-autonomy environment suits his profile.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "'Founding' title and breadth of MLOps responsibilities (model training infra, serving at scale, feature stores) may exceed current depth — this is a stretch-up role, not a lateral",
+      "No explicit mention of team size or mentorship structure; founding engineer without senior ML platform mentorship could be a sink-or-swim risk for someone still building specialty depth",
+      "Jobgether intermediary adds opacity: candidate doesn't apply directly to hiring company, and AI-screening step may filter non-traditional backgrounds despite human final review",
+      "Compensation and equity structure completely undisclosed; 'founding' implies equity but no confirmation"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "REVIEW",
+    "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T12:42:34.804221+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
+    "score": 72,
     "hard_blockers": [],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [],
+    "key_match_points": [
+      "Strong alignment on core AI/ML engineering stack: Python, LLMs, RAG, agentic systems, vector DBs, cloud platforms, CI/CD for ML. Candidate has hands-on production experience with LLM APIs (Claude, Kimi), multi-step automation pipelines, Docker, GitHub Actions, and Google Cloud. Gap: no explicit PyTorch/Hugging Face Transformers or LangChain/LangGraph in his stack, though his LLM pipeline project shows conceptual overlap. The role expects deeper ML infrastructure/platform engineering than his current internship level."
+    ],
     "red_flags": [
-      "Job description is nearly empty—impossible to verify role shape, tech stack, or ownership model",
-      "Title 'AI/ML Engineer' typically signals core ML modeling, not the automation/pipeline/platform focus candidate seeks",
-      "'Fast growing' company often means established teams and less greenfield ownership for juniors",
-      "No evidence of LLM, agentic systems, or data platform work in visible description",
-      "On-site may indicate traditional structure rather than flexible, high-autonomy environment",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Role asks for 'AI/ML Engineer' not intern/junior — may expect more senior ML infrastructure depth (PyTorch, model training/fine-tuning, experiment tracking systems) than candidate's current API-orchestration and automation focus",
+      "No explicit mention of LangChain/LangGraph or vector DB experience in candidate profile — these are listed as required skills",
+      "'Strong' Python and 'expertise' with agentic systems may be above intern-level bar; candidate is still building depth in this space",
+      "Company requires EU/EFTA work right: candidate has Swiss Permit B, which is EFTA-adjacent but not identical — likely fine in practice but worth confirming",
+      "Role is on-site only: candidate's 2-week notice and Zurich location make this feasible, but full-time on-site is a shift from any hybrid flexibility"
     ],
     "job": {
-      "company": "AI/ML Engineer",
-      "title": "AI/ML Engineer Rivero · Zurich (On-site) Fast growing",
+      "company": "Rivero",
+      "title": "AI/ML Engineer",
       "location": "Rivero · Zurich (On-site)",
       "url": "https://www.linkedin.com/comm/jobs/view/4453910466/?trackingId=Ng7RAPc5MuEuKHRSViJpyA%3D%3D&refId=lgPzbHiBEt7qyzcZH%2FLeYQ%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_facet_suggestions%3BQHYTbqMHTFimXFFeNfuAXg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=0l399I9BL3wYo1&trk=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_2-0-job_card_0_jobid_4453910466_sectionid_276008_fmid_gbrmkn~mt1fcka4~rj&trkEmail=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_2-0-job_card_0_jobid_4453910466_sectionid_276008_fmid_gbrmkn~mt1fcka4~rj-null-gbrmkn~mt1fcka4~rj-null-null&eid=gbrmkn-mt1fcka4-rj&otpToken=ZWExMzkwNWU4NjMzY2RkNmFmYzMzMWMwYWNjNDk0OWQ5MjU5NmEyY2Q3Mjk1NWZhNGNiODY0NjIwM2Y5YWMyNWI0OGZmYjE5YTVjMDIwMjA3Zjg5YjkxOTAyMWY5M2EyZjJlN2I4MGJlOTFiNzc0ODFjYTQyZWNjYzM4NWMyMzRhNDQ3ZjU1NTk3NjE5NTQzLDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "Role Overview\nAs an AI/ML Engineer at Rivero, you will play a central role in architecting and delivering scalable, production-grade AI solutions. Your work will span from infrastructure to deployment, with a strong emphasis on operational excellence, fast iteration, and applying large language models to real-world problems.\nKey Responsibilities/Tasks\nIn the AI Engineering Domain:\nDesign, implement, and deploy production-ready, scalable AI/ML systems, including multimodal foundation model solutions.\nBuild robust APIs, evaluation pipelines, infrastructure, and observability layers.\nRapidly prototype and assess new AI frameworks, libraries, and tools to improve system performance, developer velocity, or product capabilities, then transition to well-architected, maintainable systems.\nCollaborate with product, data, and engineering teams to translate business problems into AI-powered solutions.\nContribute to building and evolving the internal ML platform and toolset, including CI/CD for ML, and experiment tracking and evaluation.\nEmbrace spec-driven development, where we own the specs and design intent and LLMs handle much of the implementation, always with a human in the loop.\nWhat We Are Looking For\nWe're looking for an AI Engineer who's passionate about building robust systems, experimenting quickly, and shipping value through AI. Above all, you're an AI optimist: you reach for these tools first, push their limits, and get energized by what they make possible rather than waiting to be convinced.\nSkills & Competencies\nYou'll thrive in this role if you have:\nStrong Python programming skills and experience with ML/AI libraries such as PyTorch, Hugging Face Transformers, LangChain and LangGraph.\nExperience deploying and maintaining production-ready ML systems, including monitoring, testing, and continuous delivery.\nExpertise with LLMs, vector databases, retrieval-augmented generation (RAG), and building agentic systems with tool use and orchestration.\nA structured approach to evaluating LLM performance and understanding prompt behaviour across model variants and versions.\nHands-on experience with cloud platforms (GCP, AWS, or Azure). Infrastructure-as-code or container orchestration tools are an advantage.\nAbility to iterate quickly with prototypes, then transition to well-architected, maintainable systems.\nCollaborative mindset and excellent communication skills for working across functions and disciplines.\nAdditional Requirements:\nThis is an on-site role\nCandidates must currently hold the right to live and work in the EU/EFTA area.\nWhat is it like to work at Rivero?\nAt Rivero, we:\nAct with urgency, working in fast, iterat\n[... middle of the posting omitted ...]\nhat everyone is equipped to make informed decisions and contribute to our overall success.\nPerks And Benefits\nCollaborative Workspace: Work from a historic building only two minutes from the Oerlikon station, with a park next door and great food/coffee options. Alternatively, great co-working spaces are available for employees in select locations.\nInternational Startup Culture: Work with a diverse team in a role with room to take ownership and growth opportunities as the company expands.\nLearn Continuously: Benefit from frequent academy sessions hosted by your peers on a variety of topics that help you both learn and grow.\nSocial Events: Enjoy regular social events and bi-annual on-site company events in Zurich.\nGive Back to the Community: Enjoy five extra days beyond your annual holiday allowance to give back to society through volunteering or community work.\nDog-Friendly Office: Bring your furry friends to the office!\nFlexible Tech Set-up: Choose your preferred hardware that best sets you up for success.\nMobile Allowance: Receive an allowance to cover your mobile subscription costs.\nOwnership Opportunities: Participate in the company's success through stock options.\nInterested?\nWe'd love to learn more about you! Please share a few lines about yourself and why you're excited to join our team, along with your CV."
     },
-    "technical_fit": "Weak. Role appears to be a standard AI/ML Engineer position at a fast-growing company, but job description is essentially empty (just 'Fast growing at AI/ML Engineer'). No mention of LLMs, agentic systems, automation pipelines, or data platform engineering. The title suggests core ML/modeling work rather than the candidate's target of building LLM-powered pipelines and automation end-to-end with ownership.",
-    "contextual_fit": "Poor. 'Fast growing' suggests scale-up environment which could mean structured teams and less zero-to-one ownership. On-site requirement in Zurich is logistically fine (permit B, local), but without role details we cannot assess the ownership/shape the candidate prioritizes. The title 'AI/ML Engineer' typically implies model development/training rather than pipeline automation and platform building.",
+    "technical_fit": "Strong alignment on core AI/ML engineering stack: Python, LLMs, RAG, agentic systems, vector DBs, cloud platforms, CI/CD for ML. Candidate has hands-on production experience with LLM APIs (Claude, Kimi), multi-step automation pipelines, Docker, GitHub Actions, and Google Cloud. Gap: no explicit PyTorch/Hugging Face Transformers or LangChain/LangGraph in his stack, though his LLM pipeline project shows conceptual overlap. The role expects deeper ML infrastructure/platform engineering than his current internship level.",
+    "contextual_fit": "Excellent role-shape match: 'own the specs and design intent', 'ship value through AI', 'take ownership and growth opportunities', building internal ML platform and toolset. Candidate's stated motivation ('zero to production and owning it') maps directly. On-site in Zurich Oerlikon is ideal location. Fast-iteration, spec-driven culture with LLM-first development matches his working style.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown due to sparse description. 'Fast growing' often means process-heavy and role-specialization, which conflicts with candidate's desire for broad ownership from day one.",
+    "culture_fit": "Strong match: urgency, fast iteration, AI optimism, ownership culture, continuous learning. Dog-friendly office and social perks are neutral. Candidate's career-change story and self-directed learning (Anthropic courses, Google AI certs) fit 'learn continuously' academy culture.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Role asks for 'AI/ML Engineer' not intern/junior — may expect more senior ML infrastructure depth (PyTorch, model training/fine-tuning, experiment tracking systems) than candidate's current API-orchestration and automation focus",
+      "No explicit mention of LangChain/LangGraph or vector DB experience in candidate profile — these are listed as required skills",
+      "'Strong' Python and 'expertise' with agentic systems may be above intern-level bar; candidate is still building depth in this space",
+      "Company requires EU/EFTA work right: candidate has Swiss Permit B, which is EFTA-adjacent but not identical — likely fine in practice but worth confirming",
+      "Role is on-site only: candidate's 2-week notice and Zurich location make this feasible, but full-time on-site is a shift from any hybrid flexibility"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "REVIEW",
+    "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T12:42:34.804221+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
+    "score": 72,
     "hard_blockers": [],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [
-      "Strong alignment. Role explicitly involves building LLM-powered pipelines and agentic systems end-to-end — exactly what candidate seeks. His current stack (Python, LLM APIs, multi-step automation, Docker, CI/CD, cloud) maps directly. Missing pieces (likely TypeScript/JS heavy given 'Code Compass' context, specific frameworks like LangChain/LangGraph not mentioned in his profile) are learnable gaps for a career changer with his demonstrated self-teaching trajectory."
+      "Strong alignment on core stack: Python, LLMs, multi-agent systems, Docker, and REST API integrations are all in his toolkit. LangGraph is listed as preferred (not required) and he's done multi-step automation pipelines with LLM APIs. AWS is a gap (he has Google Cloud), but cloud concepts transfer. Kubernetes is mentioned but as nice-to-have. The role emphasizes building and owning production AI agents end-to-end — exactly his stated motivation."
     ],
     "red_flags": [
-      "No explicit mention of 'internship' or 'junior' in title — 'AI Engineer' may imply mid-level expectations; need to verify actual level in interview",
-      "Company size/stage unclear — could be early startup with unstructured mentorship vs. defined growth path",
-      "Candidate's German A2 not mentioned as relevant; role appears fully English-working",
-      "Missing some typical Zurich AI startup stack pieces (likely React/Next.js frontend integration, vector DBs like Pinecone/Weaviate not listed in his skills)",
-      "80% minimum might stretch if he's currently interning at 60-80% and studying; need to confirm time commitment feasibility",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "AWS vs Google Cloud experience gap — needs to demonstrate cloud-agnostic skills or upskill quickly",
+      "Kubernetes is nice-to-have but mentioned; he has Docker but not K8s",
+      "3+ years experience is listed as nice-to-have; he's junior/intern level with ~1 year in tech — may face competition but not a hard blocker for an 80-100% role that doesn't specify seniority",
+      "LangGraph specifically preferred; he has general LLM API and pipeline experience but not necessarily this framework — learnable given his Anthropic/LLM background"
     ],
     "job": {
-      "company": "AI Engineer (80%-100%) - Zurich",
-      "title": "AI Engineer (80%-100%) - Zurich Code Compass 🧭 · Zurich, Switzerland (Remote) Easy Apply",
+      "company": "Code Compass 🧭",
+      "title": "AI Engineer (80%-100%) - Zurich",
       "location": "Code Compass 🧭 · Zurich, Switzerland (Remote)",
       "url": "https://www.linkedin.com/comm/jobs/view/4451224579/?trackingId=094rSWdzVQ7ZKWDBcDbBmA%3D%3D&refId=lgPzbHiBEt7qyzcZH%2FLeYQ%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_facet_suggestions%3BQHYTbqMHTFimXFFeNfuAXg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=0l399I9BL3wYo1&trk=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_2-0-job_card_1_jobid_4451224579_sectionid_276008_fmid_gbrmkn~mt1fcka4~rj&trkEmail=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_2-0-job_card_1_jobid_4451224579_sectionid_276008_fmid_gbrmkn~mt1fcka4~rj-null-gbrmkn~mt1fcka4~rj-null-null&eid=gbrmkn-mt1fcka4-rj&otpToken=ZWExMzkwNWU4NjMzY2RkNmFmYzMzMWMwYWNjNDk0OWQ5MjU5NmEyY2Q3Mjk1NWZhNGNiODY0NjIwM2Y5YWMyNWI0OGZmYjE5YTVjMDIwMjA3Zjg5YjkxOTAyMWY5M2EyZjJlN2I4MGJlOTFiNzc0ODFjYTQyZWNjYzM4NWMyMzRhNDQ3ZjU1NTk3NjE5NTQzLDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "🧭 AI Engineer – 100%\n📍 Zürich, Switzerland | 💰 100k-130k + Stock Options | 🌍 Hybrid (2–3 days office)\nOur client is a fast-growing AI technology company building an advanced\nAI agent platform\nfor large global enterprises.\nTheir platform combines\nlarge language models, proprietary AI technology, and deep enterprise integrations\nto orchestrate intelligent AI agents capable of resolving complex customer requests end-to-end.\nThey are looking for an\nAI Engineer\nto join a small, high-impact AI team working on cutting-edge agentic AI systems deployed in real-world enterprise environments.\n⚙️ Tech Stack\nPython\nLarge Language Models (LLMs)\nMulti-Agent Systems / Agent Frameworks\nLangGraph (preferred)\nNLP / AI Orchestration\nAWS Cloud\nDocker & Kubernetes\nEnterprise API Integrations\n🚀 About the Role\nDesign and build\nAI agents and multi-agent orchestration systems\nDevelop\nproduction-ready ML solutions\nusing Python\nResearch and implement\nadvanced NLP and LLM techniques\nIntegrate AI systems with\nenterprise platforms (CRM, ERP, knowledge systems)\nDeploy scalable AI solutions into\nreal-world production environments\nCollaborate closely with product and engineering teams\n➕ Nice to Have\n3+ years experience building and deploying ML systems\nExperience with\nLLM orchestration or agent frameworks (e.g. LangGraph)\nStrong Python engineering skills\nExperience with\nAWS, Docker, or Kubernetes\nInterest in\nagentic AI and large-scale AI systems\n💪 Benefits\nWork on\ncutting-edge AI technology used by global enterprises\nHigh ownership in a\nfast-growing startup environment\nHybrid working\nwith flexible hours\nCompetitive salary +\nequity potential\nInternational team with regular company meetups\n✉️ Due to the volume of applications, we may not be able to respond to everyone individually. However, we genuinely appreciate every application and will contact shortlisted candidates directly."
     },
-    "technical_fit": "Strong alignment. Role explicitly involves building LLM-powered pipelines and agentic systems end-to-end — exactly what candidate seeks. His current stack (Python, LLM APIs, multi-step automation, Docker, CI/CD, cloud) maps directly. Missing pieces (likely TypeScript/JS heavy given 'Code Compass' context, specific frameworks like LangChain/LangGraph not mentioned in his profile) are learnable gaps for a career changer with his demonstrated self-teaching trajectory.",
-    "contextual_fit": "Good. Remote from Zurich fits his permit/location perfectly. 80%-100% flexibility suits internship-to-junior transition. 'Easy Apply' suggests accessible hiring process. Company name 'Code Compass' implies developer tooling/AI infrastructure space — greenfield building likely, not maintenance. No domain specialization required (no finance/healthcare gatekeeping).",
-    "salary_estimate": "CHF 85,000–110,000 (80-100% junior AI engineer in Zurich)",
-    "culture_fit": "Positive signals: 'Code Compass' branding suggests technical, product-building culture. Remote-first with Zurich base matches his preference for ownership without legacy corporate overhead. No red flags in title/structure.",
+    "technical_fit": "Strong alignment on core stack: Python, LLMs, multi-agent systems, Docker, and REST API integrations are all in his toolkit. LangGraph is listed as preferred (not required) and he's done multi-step automation pipelines with LLM APIs. AWS is a gap (he has Google Cloud), but cloud concepts transfer. Kubernetes is mentioned but as nice-to-have. The role emphasizes building and owning production AI agents end-to-end — exactly his stated motivation.",
+    "contextual_fit": "Excellent. This is an AI agent platform company, not a support role. 'High ownership in a fast-growing startup environment' and 'small, high-impact AI team' match his desire for ownership from day one. Hybrid with 2-3 days office is viable from Zurich area. No domain specialization required — he's explicitly open to new domains.",
+    "salary_estimate": "100k-130k CHF + stock options",
+    "culture_fit": "Strong. Fast-growing, high-ownership startup building cutting-edge agentic AI. International team suggests English as working language. Regular meetups fit someone motivated by building and shipping together.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "AWS vs Google Cloud experience gap — needs to demonstrate cloud-agnostic skills or upskill quickly",
+      "Kubernetes is nice-to-have but mentioned; he has Docker but not K8s",
+      "3+ years experience is listed as nice-to-have; he's junior/intern level with ~1 year in tech — may face competition but not a hard blocker for an 80-100% role that doesn't specify seniority",
+      "LangGraph specifically preferred; he has general LLM API and pipeline experience but not necessarily this framework — learnable given his Anthropic/LLM background"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "REVIEW",
+    "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T12:42:34.804221+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
     "score": null,
@@ -1415,78 +1466,87 @@
     "no_posting_text": true
   },
   {
-    "score": null,
+    "score": 58,
     "hard_blockers": [
-      "Role requires active Master student enrollment — candidate is in a postgraduate specialisation (lato sensu), not a formal Master's degree program. This is a potential eligibility blocker depending on Swiss/university definitions, and the '(m/f/d)' + 'Master Student' title strongly implies enrolled student status is required."
+      "Target profile explicitly states 'ETH Zürich Master student or comparable profile'—candidate is a postgraduate specialist (lato sensu, not a Master's degree) and currently employed as an intern, not enrolled in a Master's program. This is a genuine eligibility mismatch for a student assignment designed for enrolled Master's students.",
+      "Assignment type is 'Temporary student assignment' (2-4 months, 40-80%)—candidate is seeking internship or junior role with growth trajectory, not a short-term, part-time student gig. His 2-week notice and permit situation imply immediate full-time availability, making this format a poor logistical fit."
     ],
-    "insufficient_info": true,
+    "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Role requires active Master student enrollment — candidate is in a postgraduate specialisation (lato sensu), not a formal Master's degree program. This is a potential eligibility blocker depending on Swiss/university definitions, and the '(m/f/d)' + 'Master Student' title strongly implies enrolled student status is required.",
-      "No mention of LLMs, automation pipelines, or production engineering in description — completely blank job text provided",
-      "'Master Student' title suggests enrolled student requirement; candidate's postgraduate specialisation may not qualify",
-      "Staffing firm role = likely client-unknown, limited autonomy, support-oriented work",
-      "No evidence of 'agentic systems' or data platform engineering scope",
-      "Hybrid in Zurich is fine but role substance is mismatched to candidate's stated goals",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: Target profile explicitly states 'ETH Zürich Master student or comparable profile'—candidate is a postgraduate specialist (lato sensu, not a Master's degree) and currently employed as an intern, not enrolled in a Master's program. This is a genuine eligibility mismatch for a student assignment designed for enrolled Master's students.",
+      "Blocker: Assignment type is 'Temporary student assignment' (2-4 months, 40-80%)—candidate is seeking internship or junior role with growth trajectory, not a short-term, part-time student gig. His 2-week notice and permit situation imply immediate full-time availability, making this format a poor logistical fit.",
+      "Role is 70% knowledge management/academy design, 20% conceptual AI, 10% technical implementation—inverse of candidate's desired ratio",
+      "'Support' appears 8+ times in responsibilities; 'design and deployment' is misleadingly paired with academy content, not systems",
+      "No mention of LLM APIs (Claude, Kimi), automation pipelines, Docker, CI/CD, or cloud infrastructure in requirements—candidate's core competencies underutilized",
+      "Hybrid Zurich is acceptable but 40-80% workload is below candidate's full-time availability and ambition",
+      "Candidate's German A2 is irrelevant here (English working environment implied), but no upside either"
     ],
     "job": {
-      "company": "AI & Knowledge Management Master Student (m/f/d) - 890676/1",
-      "title": "AI & Knowledge Management Master Student (m/f/d) - 890676/1 Hays · Zurich, Switzerland (Hybrid) Easy Apply Fast growing",
+      "company": "Hays",
+      "title": "AI & Knowledge Management Master Student (m/f/d) - 890676/1",
       "location": "Hays · Zurich, Switzerland (Hybrid)",
       "url": "https://www.linkedin.com/comm/jobs/view/4456327541/?trackingId=VMZ2gwiUCHCtiZqkPYvjBA%3D%3D&refId=iiCWdCQeR3HCuaJ9242IZw%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BIEY%2Bo8Q7Tv6gVyp21hN60w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=1B-l4rOiTZwIo1&trk=eml-email_job_alert_digest_01-secondary_job_list_1-0-job_posting_0_jobid_4456327541_ssid_8700305346_fmid_gbrmkn~mt1894uh~l&trkEmail=eml-email_job_alert_digest_01-secondary_job_list_1-0-job_posting_0_jobid_4456327541_ssid_8700305346_fmid_gbrmkn~mt1894uh~l-null-gbrmkn~mt1894uh~l-null-null&eid=gbrmkn-mt1894uh-l&otpToken=MGVkODViYTMwODRkMjBjNDIyODUxZmQ5NTdmNTQ0YjI4MWYzMjc0MzJkMmJjMjgzNjBmNGJkNTViYzI0ODMxYmMxOGM3NWJmYTU1NjNiZmQ0NDZiZGQ2YjcwNmEyMzI5ZGQ2MzI2NWFhMWJmN2RjMGRhYmU5MjUyYjEzYTUzYTA4YjU4N2UyNWE0YmY4ZmM3LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "Support the preparation of MSAT AI and Data Academies and the development of a Process Wiki / Knowledge Navigator by combining generative AI, knowledge engineering, knowledge graph design, and modern web experience design.\nGeneral Information:\nAssignment type:\nTemporary student assignment\nTarget profile:\nETH Zürich Master student or comparable profile\nDuration:\n2 to 4 months, with option to extend depending on project needs\nWorkload:\n40 to 80%, flexible\nLocation:\nHybrid: Zurich Office / remote\nWe are looking for a highly motivated Master student to support strategic AI and Knowledge Management initiatives within a global biopharmaceutical environment.\nThe role will work closely with the MSAT Knowledge Management Lead and contribute to the design and deployment of the AI Academy, Data Academy, Process Wiki / Knowledge Navigator, and related AI-enabled knowledge solutions.\nThe assignment is ideal for a student who enjoys building at the intersection of AI tools, knowledge management, knowledge graph design, information architecture, and user-centric digital product design.\nKey responsibilities (depending which workstream assigned to)\nAI Academy & Data Academy development\nSupport the design of learning pathways, training curricula, capability frameworks and bootcamp concepts.\nDevelop practical learning & workshop materials, exercise templates and reusable academy content.\nResearch emerging AI tools and translate relevant use cases into MSAT-oriented training examples.\nCreate AI use case catalogues, prompt examples and practical demonstrations for knowledge work, data work and process intelligence.\nSupport launch communication, stakeholder updates and executive-ready summaries.\nProcess Wiki / Knowledge Navigator\nSupport the design of a modern digital knowledge infrastructure for process knowledge, process data and modelling-related content.\nCreate intuitive navigation structures & page concepts\nDevelop page mock-ups, wireframes and proof-of-concept knowledge portal designs.\nImprove discoverability through taxonomy, metadata and search-oriented content structuring.\nContribute to the integration concept for multiple knowledge sources into a unified knowledge navigator experience.\nAI tools, knowledge graphs and agentic knowledge solutions\nApply AI productivity tools such as Microsoft Copilot, Cowork or comparable AI assistant platforms to accelerate content creation, knowledge structuring and prototyping.\nSupport conceptual knowledge graph design by defining entities, relationships and metadata patterns across documents, processes & systems.\nEvaluate approaches for semantic search, retrieval-augmented generation and AI-assist\n[... middle of the posting omitted ...]\nTH Zürich preferably in the field of Computer Science, Data Science, Information Systems, Computational Science, Knowledge Engineering, Digital Design or a related field.\nTechnical experience.\nPractical experience in several of the following areas is recommended:\nGenerative AI and large language model usage in real work scenarios.\nMicrosoft Copilot, Cowork or comparable AI assistant / agent platforms.\nKnowledge graphs, semantic models, taxonomies or metadata modelling.\nRAG architectures, semantic search or AI-enabled knowledge retrieval.\nWeb page creation and design using HTML, CSS, JavaScript or modern web frameworks.\nSharePoint Online, Microsoft 365 or enterprise collaboration platforms.\nUX/UI design, wireframing and user journey development.\nPython, data visualisation or graph database concepts are a plus.\nPersonal profile\nCurious about the future of AI, knowledge management and digital transformation.\nAble to structure ambiguous topics and translate them into executable work packages.\nComfortable working independently while aligning frequently with stakeholders.\nStrong visual communication and storytelling skills.\nInterest in biopharmaceutical manufacturing, process intelligence and enterprise knowledge systems.\nHigh attention to detail, with the ability to make complex knowledge accessible and easy to reuse."
     },
-    "technical_fit": "Weak. Role is a Master Student position in Knowledge Management with unclear technical depth. No mention of LLMs, agentic systems, data platform engineering, or pipeline ownership. Likely heavy on organizational/process KM rather than hands-on AI building.",
-    "contextual_fit": "Poor. Candidate wants real ownership building LLM-powered pipelines from zero to production. A 'Master Student' role via Hays (staffing firm) for an unnamed end client typically means support work, not ownership. Hybrid format is acceptable but role shape is wrong.",
+    "technical_fit": "Partial. The role is heavily weighted toward knowledge management, instructional design, and UX/web design (academy development, wireframing, SharePoint, visual storytelling) rather than hands-on engineering. Candidate's strengths—building production LLM pipelines, automation, CI/CD, cloud infrastructure—are tangential here. The 'agentic knowledge solutions' and RAG mentions are appealing but framed as conceptual/support work, not ownership of production systems. Python and graph databases are explicitly 'a plus,' not core requirements.",
+    "contextual_fit": "Weak on role shape. Candidate explicitly seeks 'real ownership from day one' and 'building from zero to production.' This is a temporary student assignment (2-4 months, 40-80%) supporting strategic initiatives in a large pharma environment—classic consulting/agency-style support work with heavy stakeholder alignment, documentation, and curriculum design. The 'Master student' target profile and 'ETH Zürich preferably' framing suggests academic pipeline hiring, not career-changer friendly. The biopharma domain interest is listed as desired, not required, so no penalty there.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown. Hays is intermediary; end client culture opaque. Master student programs tend toward structured learning over autonomous building.",
+    "culture_fit": "Mixed. The emphasis on 'strong visual communication and storytelling,' 'executive-ready summaries,' and 'stakeholder updates' signals a presentation-heavy, consensus-driven environment. Candidate's self-described excitement for 'shipping it, then auditing my own output and fixing what I find' suggests preference for maker autonomy over organizational enablement roles.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Role is 70% knowledge management/academy design, 20% conceptual AI, 10% technical implementation—inverse of candidate's desired ratio",
+      "'Support' appears 8+ times in responsibilities; 'design and deployment' is misleadingly paired with academy content, not systems",
+      "No mention of LLM APIs (Claude, Kimi), automation pipelines, Docker, CI/CD, or cloud infrastructure in requirements—candidate's core competencies underutilized",
+      "Hybrid Zurich is acceptable but 40-80% workload is below candidate's full-time availability and ambition",
+      "Candidate's German A2 is irrelevant here (English working environment implied), but no upside either"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T12:42:34.804221+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   },
   {
-    "score": null,
-    "hard_blockers": [],
-    "insufficient_info": true,
+    "score": 72,
+    "hard_blockers": [
+      "Requires ETH Zürich Master student or comparable profile — candidate holds postgraduate specialisation (lato sensu), not a Master's degree; this is a formal eligibility requirement stated as 'Target profile'"
+    ],
+    "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [],
+    "key_match_points": [
+      "Good overlap on LLM/AI tooling, RAG, knowledge graphs, and Python; gap is the MS degree requirement (he holds a postgraduate specialisation, not a Master) and the student-assignment format. His hands-on production experience with LLM pipelines, automation, and CI/CD is stronger than typical student profiles, but the role explicitly targets enrolled Master students at ETH/Comparable."
+    ],
     "red_flags": [
-      "Zero job description provided — only title, non-descriptive URL, and no company/location data.",
-      "Title 'Master Student' strongly suggests this is a university master's program position or thesis track, not a professional internship with production ownership.",
-      "Candidate is specifically seeking hands-on builder roles with end-to-end ownership, not academic/research positions.",
-      "Even if Swiss-based, the role shape (student program vs. production builder) is likely fundamentally mismatched with candidate's goals.",
-      "Cannot verify location — if not Zurich/Zug/Swiss remote, would auto-SKIP on location grounds.",
-      "Low confidence: posting text under 200 chars -- score is title-based"
+      "Blocker: Requires ETH Zürich Master student or comparable profile — candidate holds postgraduate specialisation (lato sensu), not a Master's degree; this is a formal eligibility requirement stated as 'Target profile'",
+      "Student-assignment format (40-80%, 2-4 months) vs. his 2-week notice and desire for real ownership/internship-to-junior pipeline",
+      "Explicit Master degree requirement may filter him out at HR screening regardless of experience depth",
+      "Some responsibilities skew toward training content creation and curriculum design rather than hands-on engineering",
+      "Knowledge graph and semantic modelling experience is conceptual/plus-level for him, not demonstrated in depth"
     ],
     "job": {
-      "company": "Unknown",
+      "company": "Hays",
       "title": "AI & Knowledge Management Master Student (m/f/d) - 890676/1",
-      "location": "Unknown",
+      "location": "Zurich",
       "url": "https://www.linkedin.com/comm/jobs/view/4456327541/?trackingId=VMZ2gwiUCHCtiZqkPYvjBA%3D%3D&refId=iiCWdCQeR3HCuaJ9242IZw%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BIEY%2Bo8Q7Tv6gVyp21hN60w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=1B-l4rOiTZwIo1&trk=eml-email_job_alert_digest_01-secondary_job_list_1-0-jobcard_body_0_jobid_4456327541_ssid_8700305346_fmid_gbrmkn~mt1894uh~l&trkEmail=eml-email_job_alert_digest_01-secondary_job_list_1-0-jobcard_body_0_jobid_4456327541_ssid_8700305346_fmid_gbrmkn~mt1894uh~l-null-gbrmkn~mt1894uh~l-null-null&eid=gbrmkn-mt1894uh-l&otpToken=MGVkODViYTMwODRkMjBjNDIyODUxZmQ5NTdmNTQ0YjI4MWYzMjc0MzJkMmJjMjgzNjBmNGJkNTViYzI0ODMxYmMxOGM3NWJmYTU1NjNiZmQ0NDZiZGQ2YjcwNmEyMzI5ZGQ2MzI2NWFhMWJmN2RjMGRhYmU5MjUyYjEzYTUzYTA4YjU4N2UyNWE0YmY4ZmM3LDIsMQ%3D%3D",
       "portal": "linkedin.com",
-      "description": ""
+      "description": "Support the preparation of MSAT AI and Data Academies and the development of a Process Wiki / Knowledge Navigator by combining generative AI, knowledge engineering, knowledge graph design, and modern web experience design.\nGeneral Information:\nAssignment type:\nTemporary student assignment\nTarget profile:\nETH Zürich Master student or comparable profile\nDuration:\n2 to 4 months, with option to extend depending on project needs\nWorkload:\n40 to 80%, flexible\nLocation:\nHybrid: Zurich Office / remote\nWe are looking for a highly motivated Master student to support strategic AI and Knowledge Management initiatives within a global biopharmaceutical environment.\nThe role will work closely with the MSAT Knowledge Management Lead and contribute to the design and deployment of the AI Academy, Data Academy, Process Wiki / Knowledge Navigator, and related AI-enabled knowledge solutions.\nThe assignment is ideal for a student who enjoys building at the intersection of AI tools, knowledge management, knowledge graph design, information architecture, and user-centric digital product design.\nKey responsibilities (depending which workstream assigned to)\nAI Academy & Data Academy development\nSupport the design of learning pathways, training curricula, capability frameworks and bootcamp concepts.\nDevelop practical learning & workshop materials, exercise templates and reusable academy content.\nResearch emerging AI tools and translate relevant use cases into MSAT-oriented training examples.\nCreate AI use case catalogues, prompt examples and practical demonstrations for knowledge work, data work and process intelligence.\nSupport launch communication, stakeholder updates and executive-ready summaries.\nProcess Wiki / Knowledge Navigator\nSupport the design of a modern digital knowledge infrastructure for process knowledge, process data and modelling-related content.\nCreate intuitive navigation structures & page concepts\nDevelop page mock-ups, wireframes and proof-of-concept knowledge portal designs.\nImprove discoverability through taxonomy, metadata and search-oriented content structuring.\nContribute to the integration concept for multiple knowledge sources into a unified knowledge navigator experience.\nAI tools, knowledge graphs and agentic knowledge solutions\nApply AI productivity tools such as Microsoft Copilot, Cowork or comparable AI assistant platforms to accelerate content creation, knowledge structuring and prototyping.\nSupport conceptual knowledge graph design by defining entities, relationships and metadata patterns across documents, processes & systems.\nEvaluate approaches for semantic search, retrieval-augmented generation and AI-assist\n[... middle of the posting omitted ...]\nTH Zürich preferably in the field of Computer Science, Data Science, Information Systems, Computational Science, Knowledge Engineering, Digital Design or a related field.\nTechnical experience.\nPractical experience in several of the following areas is recommended:\nGenerative AI and large language model usage in real work scenarios.\nMicrosoft Copilot, Cowork or comparable AI assistant / agent platforms.\nKnowledge graphs, semantic models, taxonomies or metadata modelling.\nRAG architectures, semantic search or AI-enabled knowledge retrieval.\nWeb page creation and design using HTML, CSS, JavaScript or modern web frameworks.\nSharePoint Online, Microsoft 365 or enterprise collaboration platforms.\nUX/UI design, wireframing and user journey development.\nPython, data visualisation or graph database concepts are a plus.\nPersonal profile\nCurious about the future of AI, knowledge management and digital transformation.\nAble to structure ambiguous topics and translate them into executable work packages.\nComfortable working independently while aligning frequently with stakeholders.\nStrong visual communication and storytelling skills.\nInterest in biopharmaceutical manufacturing, process intelligence and enterprise knowledge systems.\nHigh attention to detail, with the ability to make complex knowledge accessible and easy to reuse."
     },
-    "technical_fit": "Cannot assess — no job description provided beyond title. Title mentions 'AI & Knowledge Management' which sounds adjacent to agentic systems, but 'Master Student' implies a university program or thesis collaboration, not a hands-on builder internship.",
-    "contextual_fit": "Cannot assess — no description, no company, no location. Title suggests academic/master's track rather than the production ownership role candidate seeks.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Cannot assess — no information.",
+    "technical_fit": "Good overlap on LLM/AI tooling, RAG, knowledge graphs, and Python; gap is the MS degree requirement (he holds a postgraduate specialisation, not a Master) and the student-assignment format. His hands-on production experience with LLM pipelines, automation, and CI/CD is stronger than typical student profiles, but the role explicitly targets enrolled Master students at ETH/Comparable.",
+    "contextual_fit": "Strong on role-shape: building AI-enabled knowledge systems from scratch, greenfield work, ownership of workstreams. Biopharma domain is unfamiliar but he is deliberately open to new domains. The temporary student assignment (2-4 months, 40-80%) is a mismatch with his profile as a career-changer seeking real ownership and growth into junior roles, not a side academic assignment.",
+    "salary_estimate": "CHF 25-35/hour typical student rate",
+    "culture_fit": "Strong on autonomous building, stakeholder alignment, and making complex knowledge accessible — matches his self-described zero-to-production drive. However, the 'Master student' framing and academy-support work may skew more toward content/curriculum development than end-to-end system building.",
     "concerns": [
-      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+      "Student-assignment format (40-80%, 2-4 months) vs. his 2-week notice and desire for real ownership/internship-to-junior pipeline",
+      "Explicit Master degree requirement may filter him out at HR screening regardless of experience depth",
+      "Some responsibilities skew toward training content creation and curriculum design rather than hands-on engineering",
+      "Knowledge graph and semantic modelling experience is conceptual/plus-level for him, not demonstrated in depth"
     ],
-    "recommendation": "NOT_EVALUATED",
-    "decision": "NOT_EVALUATED",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T12:42:34.804221+00:00",
-    "rescored": true,
-    "no_posting_text": true
+    "recovered": true
   }
 ]
