@@ -392,6 +392,20 @@ def cv_docx(profile, job, summary, path):
             for run in bullet.runs:
                 run.font.size = Pt(10)
 
+    projects = profile.get("projects") or []
+    if projects:
+        _docx_heading(d, "PROJECTS")
+        for pr in projects[:2]:
+            heading = pr.get("title", "")
+            if pr.get("url"):
+                heading = f"{heading} - {pr['url']}"
+            _docx_body(d, heading, bold=True, space_after=0)
+            for b in pr.get("bullets", []):
+                bullet = d.add_paragraph(b, style="List Bullet")
+                bullet.paragraph_format.space_after = Pt(0)
+                for run in bullet.runs:
+                    run.font.size = Pt(10)
+
     _docx_heading(d, "EDUCATION")
     for edu in profile["education"]:
         _docx_body(d, f"{edu['degree']} | {edu['institution']} | {edu['period']}", space_after=0)
@@ -514,6 +528,32 @@ def cv_pdf(profile, job, summary, path):
             pdf.multi_cell(w, 4, _safe_text("  -- " + b), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
         pdf.ln(1)
     pdf.ln(1)
+
+    # Projects. The profile has carried this section since the beginning and
+    # only the cover letter ever read it, so the CV silently omitted the
+    # strongest evidence on it: an unattended production system the candidate
+    # audited and corrected himself. For someone moving into engineering from
+    # another field, that is what the job titles cannot say.
+    #
+    # Placed after EXPERIENCE, not before it: his current role is the relevant
+    # technical one, and pushing it down the page to lead with a side project
+    # reads as having no job.
+    projects = profile.get("projects") or []
+    if projects:
+        pdf.set_font("Helvetica", "B", 11)
+        pdf.cell(0, 6, "PROJECTS", ln=True)
+        for pr in projects[:2]:
+            pdf.set_font("Helvetica", "B", 10)
+            heading = pr.get("title", "")
+            if pr.get("url"):
+                heading = f"{heading} -- {pr['url']}"
+            pdf.multi_cell(w, 5, _safe_text(heading), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+            pdf.set_font("Helvetica", "", 10)
+            for b in pr.get("bullets", []):
+                pdf.multi_cell(w, 4, _safe_text("  -- " + b),
+                               new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+            pdf.ln(1)
+        pdf.ln(1)
 
     # Education
     pdf.set_font("Helvetica", "B", 11)

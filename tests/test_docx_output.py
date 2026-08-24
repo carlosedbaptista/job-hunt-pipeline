@@ -158,3 +158,57 @@ class TestEmployerLine:
         prompt; changing the rendering must not change the storage."""
         stored = "netzdenker -- Swiss-based digital agency, DACH market"
         assert stored.split("--")[0].strip() == "netzdenker"
+
+
+class TestProjectsSection:
+    """The CV omitted the candidate's strongest evidence.
+
+    config/candidate_profile.json has carried a `projects` entry since the
+    beginning -- an unattended production pipeline he audited and corrected
+    himself -- and only _generate_cover_letter ever read it. The CV rendered
+    PROFILE SUMMARY, SKILLS, EXPERIENCE, EDUCATION, LANGUAGES and never
+    PROJECTS, so the document that reaches a recruiter first said nothing
+    about it.
+
+    For someone moving into engineering from another field, that project is
+    what the job titles cannot say.
+    """
+
+    WITH_PROJECT = {
+        **PROFILE,
+        "projects": [{
+            "title": "Job-Matching Pipeline with LLM Scoring",
+            "url": "github.com/carlosedbaptista/job-hunt-pipeline",
+            "bullets": ["Runs unattended twice a day",
+                        "Guardrails in code rather than trust in the model"],
+        }],
+    }
+
+    @pytest.fixture
+    def cv_with_project(self, tmp_path):
+        path = tmp_path / "cv_proj.docx"
+        dg.cv_docx(self.WITH_PROJECT, {"title": "AI Engineer"}, "summary", str(path))
+        return _text(docx.Document(str(path)))
+
+    def test_the_section_is_rendered(self, cv_with_project):
+        assert "PROJECTS" in cv_with_project
+
+    def test_the_title_and_link_are_there(self, cv_with_project):
+        assert "Job-Matching Pipeline with LLM Scoring" in cv_with_project
+        assert "github.com/carlosedbaptista/job-hunt-pipeline" in cv_with_project
+
+    def test_the_bullets_survive(self, cv_with_project):
+        assert "Runs unattended twice a day" in cv_with_project
+        assert "Guardrails in code rather than trust in the model" in cv_with_project
+
+    def test_it_sits_after_experience_not_before(self, cv_with_project):
+        """His current role is the relevant technical one. Leading with a side
+        project pushes the job down the page and reads as having none."""
+        assert cv_with_project.index("EXPERIENCE") < cv_with_project.index("PROJECTS")
+        assert cv_with_project.index("PROJECTS") < cv_with_project.index("EDUCATION")
+
+    def test_a_profile_without_projects_renders_no_heading(self, tmp_path):
+        """A heading with nothing under it reads as a mistake, same as HOBBIES."""
+        path = tmp_path / "cv_none.docx"
+        dg.cv_docx(PROFILE, {"title": "AI Engineer"}, "summary", str(path))
+        assert "PROJECTS" not in _text(docx.Document(str(path)))
