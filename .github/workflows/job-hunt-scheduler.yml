@@ -156,7 +156,10 @@ jobs:
           # Switch models from the GitHub UI (Settings -> Variables)
           # without touching code. Unset means kimi-k2.6.
           KIMI_MODEL: ${{ vars.KIMI_MODEL }}
-        run: python agents/job_evaluator.py
+          # 'agent' = the tool-using decision agent; 'rules' (or unset) = the
+          # deterministic single-call evaluator, byte-for-byte the old path.
+          EVALUATION_MODE: 'agent'
+        run: python agents/decision_agent.py
 
       - name: Generate daily digest
         env:
@@ -176,26 +179,18 @@ jobs:
           DB_PATH: ./tracker/jobs.db
         run: python src/dashboard.py
 
-      # Deliberately NOT `if: always()`: on a failed evaluator run that made
-      # this regenerate the PREVIOUS run's evaluations, spending real Kimi
-      # calls on CV/CLs that already existed. continue-on-error already
-      # keeps a doc-gen failure from sinking the run.
-      - name: Generate tailored CVs/CLs
-        env:
-          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
-          KIMI_BASE_URL: ${{ secrets.KIMI_BASE_URL }}
-          # Switch models from the GitHub UI (Settings -> Variables)
-          # without touching code. Unset means kimi-k2.6.
-          KIMI_MODEL: ${{ vars.KIMI_MODEL }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
-          GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
-          GDRIVE_PARENT_FOLDER_ID: ${{ secrets.GDRIVE_PARENT_FOLDER_ID }}
-          GDRIVE_REFRESH_TOKEN_B64: ${{ secrets.GDRIVE_REFRESH_TOKEN_B64 }}
-          GDRIVE_CREDENTIALS_JSON_B64: ${{ secrets.GDRIVE_CREDENTIALS_JSON_B64 }}
-        run: python agents/doc_generator.py
-        continue-on-error: true
-
+      # The judgement layer. An LLM orchestrator decides what this run needs:
+      # docs for APPLY jobs, high-score alerts, follow-up drafts, and
+      # re-scoring of stale REVIEW jobs when budget remains. ORCHESTRATION_MODE
+      # 'rules' (or unset) runs the three legacy scripts in the old order
+      # instead -- byte-for-byte the pre-orchestrator behavior. If the agent
+      # fails, the code falls back to that same legacy chain, so a bad
+      # orchestrator day can never skip docs/alerts/follow-ups.
+      # Deliberately NOT `if: always()`: on a failed evaluator run the
+      # evaluations file is yesterday's, and generating docs from it would
+      # spend real Kimi calls on CV/CLs that already exist. The orchestrator
+      # double-checks this freshness in code as well.
+      #
       # NO artifact upload of generated_docs/. This repo is PUBLIC, and on a
       # public repo Actions artifacts are downloadable by any authenticated
       # GitHub user for the whole retention window. The CVs contain the
@@ -210,23 +205,8 @@ jobs:
       # quota" on every upload, and only OAuth2 (GDRIVE_REFRESH_TOKEN_B64)
       # fixes it. Before the e-mail path existed the PDFs simply died with
       # the runner.
-
-      # This step had no env block at all, so high_score_alert.py found no
-      # Gmail credentials, printed "not configured", returned False and
-      # exited 0 -- green, and no alert has ever been sent. (The stray
-      # HIGH_SCORE_THRESHOLD on the doc-generator step above was the giveaway:
-      # nothing there reads it.) alerted_jobs.json is only written on a
-      # successful send, so no job was burned and the backlog can still fire.
-      - name: High-Score Alerts
-        env:
-          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
-          HIGH_SCORE_THRESHOLD: "85"
-        run: python agents/high_score_alert.py
-        continue-on-error: true
-
-      - name: Draft follow-ups for stale applications
+      - name: Orchestrate run (docs, alerts, follow-ups, re-scores)
+        id: orchestrate
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
           KIMI_BASE_URL: ${{ secrets.KIMI_BASE_URL }}
@@ -236,7 +216,12 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
-        run: python agents/followup_sender.py
+          GDRIVE_PARENT_FOLDER_ID: ${{ secrets.GDRIVE_PARENT_FOLDER_ID }}
+          GDRIVE_REFRESH_TOKEN_B64: ${{ secrets.GDRIVE_REFRESH_TOKEN_B64 }}
+          GDRIVE_CREDENTIALS_JSON_B64: ${{ secrets.GDRIVE_CREDENTIALS_JSON_B64 }}
+          HIGH_SCORE_THRESHOLD: "85"
+          ORCHESTRATION_MODE: 'agent'
+        run: python agents/orchestrator_agent.py
         continue-on-error: true
 
       - name: Send email notification

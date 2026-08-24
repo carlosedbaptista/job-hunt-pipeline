@@ -68,8 +68,23 @@ Confident half-knowledge is what produced the 82.
 
 ## Guardrails, because the model is not the authority
 
-The LLM is called in three places: scoring a job, writing the CV summary, and
-writing the cover letter. Nothing else. Its output is never trusted as-is.
+The LLM scores jobs, writes the CV summary and the cover letter, and drafts
+follow-ups — and it now also deliberates, through the two agents below. Its
+output is never trusted as-is.
+
+The evaluator itself is now an agent. For each posting it chooses its own
+evidence: the full text with a deterministic scan for mandatory languages,
+the outcomes of past applications, similar jobs already in the committed
+history. When it has enough, it commits to APPLY, REVIEW or SKIP through a
+mandatory decision tool, and the rationale is stored with the record. The
+guardrails below remain enforced in code around whatever the agent proposes;
+the borderline re-sampling among them is the rules-mode mechanism, since the
+agent investigates instead of re-sampling. The run around the jobs now has
+an agent too: an orchestrator runs the judgement layer around the
+deterministic ingest-score-digest spine — documents, alerts, follow-up
+drafts, a bounded number of re-scores. Its floor is code: any failure falls
+back to the legacy stage chain, so a bad orchestrator day degrades to
+exactly the pipeline before it existed.
 
 **The decision is derived in code, not read from the model.** A mandatory
 German requirement is detected by a deterministic scan of the full posting
@@ -131,7 +146,9 @@ GitHub Actions (cron, 05:00 and 12:00 UTC)
   |-- Unified ingestor       dedup (SQLite, 21-day window), relevance gate,
   |                          cost cap applied BEFORE marking jobs as seen
   |-- Posting resolver       full text from the employer's ATS
-  |-- Evaluator (Kimi)       structured JSON, decision derived in code
+  |-- Decision agent (Kimi)  tool-using; APPLY/REVIEW/SKIP with rationale,
+  |                          safety rails enforced in code
+  |-- Orchestrator (Kimi)    run-level judgement: docs, alerts, follow-ups, re-scores
   |
   |-- Digest + dashboard
   |-- Document generator     tailored CV and cover letter, PDF and .docx

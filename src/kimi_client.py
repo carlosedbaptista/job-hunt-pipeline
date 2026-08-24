@@ -100,12 +100,19 @@ class KimiClient:
             return r.json()
         raise last_error or RuntimeError("Kimi API: all URLs failed")
 
-    def _try_model(self, model, messages, max_tokens, response_format, temperature=None):
+    def _try_model(self, model, messages, max_tokens, response_format, temperature=None,
+                   tools=None, tool_choice=None):
         payload = {"model": model, "messages": messages, "max_tokens": max_tokens}
         if response_format:
             payload["response_format"] = response_format
         if temperature is not None:
             payload["temperature"] = temperature
+        # Tools are opt-in: plain scoring calls must not pay for schema tokens
+        # they never use, so the keys appear only when the caller asked.
+        if tools is not None:
+            payload["tools"] = tools
+        if tool_choice is not None:
+            payload["tool_choice"] = tool_choice
         # Kimi models think by default, and reasoning tokens are spent from the
         # same max_tokens budget as the answer -- so the content comes back
         # empty or cut mid-string, surfacing as a JSONDecodeError. This
@@ -120,9 +127,22 @@ class KimiClient:
         if str(model).startswith("kimi-"):
             payload["thinking"] = {"type": "disabled"}
         data = self._post("/chat/completions", payload, timeout_sec=60)
-        return data["choices"][0]["message"]["content"]
+        message = data["choices"][0]["message"]
+        return {
+            # content is None when the model answers with tool calls only
+            "content": message.get("content"),
+            "tool_calls": message.get("tool_calls") or [],
+            "usage": data.get("usage") or {},
+            # The API echoes the model that actually served the request; fall
+            # back to the requested id for endpoints that omit it.
+            "model": data.get("model", model),
+        }
 
-    def chat(self, messages, model=None, max_tokens=1000, response_format=None, temperature=None):
+    def chat_completion(self, messages, model=None, max_tokens=1000,
+                        response_format=None, temperature=None,
+                        tools=None, tool_choice=None):
+        """Full chat completion.
+        Returns {'content': str|None, 'tool_calls': list, 'usage': dict, 'model': str}."""
         if model:
             models_to_try = [model]
         else:
@@ -135,7 +155,8 @@ class KimiClient:
         for m in models_to_try:
             for attempt in range(max_attempts):
                 try:
-                    return self._try_model(m, messages, max_tokens, response_format, temperature)
+                    return self._try_model(m, messages, max_tokens, response_format,
+                                           temperature, tools, tool_choice)
                 except Exception as e:
                     last_error = e
                     error_str = str(e).lower()
@@ -149,6 +170,13 @@ class KimiClient:
                     if attempt < max_attempts - 1:
                         time.sleep(2 ** (attempt + 1))  # 2s, 4s
         raise RuntimeError(f"Kimi failed after all models: {last_error}")
+
+    def chat(self, messages, model=None, max_tokens=1000, response_format=None, temperature=None):
+        # Thin wrapper kept for call_kimi()/call_kimi_json(): same signature,
+        # same retry/backoff behavior, still returns just the content string.
+        return self.chat_completion(messages, model=model, max_tokens=max_tokens,
+                                    response_format=response_format,
+                                    temperature=temperature)["content"]
 
 
 def test_api_key():
