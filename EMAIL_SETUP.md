@@ -86,14 +86,17 @@ Edit the file `.github/workflows/job-hunt-scheduler.yml`:
 
 Find the `Run Job Hunt Pipeline` section and add at the end:
 
+Note: the current workflow already contains these steps; the snippets below
+show the shape of the integration and are kept for reference.
+
 ```yaml
       - name: Send email notification
         if: always()
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-        run: |
-          python agents/email_notifier.py || true
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
+        run: python agents/email_notifier.py
 ```
 
 **Complete example:**
@@ -101,25 +104,25 @@ Find the `Run Job Hunt Pipeline` section and add at the end:
 ```yaml
       - name: Run Job Hunt Pipeline
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
         run: |
-          python src/week4_pipeline.py --digest-only || true
-          python src/dashboard.py || true
+          python agents/digest_generator.py
+          python src/dashboard.py
 
       - name: Send email notification
         if: always()
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-        run: |
-          python agents/email_notifier.py || true
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
+        run: python agents/email_notifier.py
 ```
 
 ---
 
 ## What happens now
 
-**On every pipeline run (7 AM and 2 PM):**
+**On every pipeline run (05:00 and 12:00 UTC):**
 
 1. ✅ Pipeline runs (ingest → parse → eval → digest)
 2. ✅ Generates the digest (`digests/digest_latest.json`)
