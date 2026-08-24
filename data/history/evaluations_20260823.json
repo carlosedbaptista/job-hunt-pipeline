@@ -153,18 +153,17 @@
     "no_posting_text": true
   },
   {
-    "score": 52,
+    "score": 58,
     "hard_blockers": [],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description was TRUNCATED — requirements/qualifications section not visible, making this evaluation highly uncertain; score kept conservative",
-      "Role shape appears to be support/educational content creation rather than hands-on engineering ownership",
-      "No evidence of production pipeline work, LLM API integration, CI/CD, or infrastructure responsibilities in visible text",
-      "'Support' appears twice in responsibilities, suggesting junior contributor rather than owner",
-      "Knowledge graph and semantic search mentioned only at concept level, not implementation",
-      "Freelance/temporary structure may offer less continuity than candidate seeks for skill deepening",
+      "Job description was truncated; requirements/qualifications section not visible — score kept conservative.",
+      "Role emphasizes support and educational content over hands-on engineering ownership.",
+      "Freelance/temporary structure may not suit internship-seeking candidate with 2-week notice.",
+      "No evidence of LLM API work, pipeline automation, or production agentic systems in visible responsibilities.",
+      "Domain (HR tech / knowledge management platform) is unfamiliar but not penalized; however role shape is misaligned with candidate's stated motivation.",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -175,17 +174,16 @@
       "portal": "adzuna",
       "description": " Junior AI & Data Engineer  (m/f/d) Freelance/temporary employment for a project Zurich Start date: asap Reference number: 890676/1  Responsibilities  * Support the development of AI and Data Academies * Create learning materials, workshops and AI use cases * Contribute to the design of a Process Wiki / Knowledge Navigator * Support knowledge management and AI-driven initiatives * Develop concepts related to knowledge graphs, semantic search and AI assistants * Design user-friendly knowledge po…"
     },
-    "technical_fit": "Weak. The visible responsibilities center on learning content creation, workshops, knowledge management, and conceptual design (Process Wiki, knowledge graphs, semantic search concepts) rather than hands-on engineering, production pipeline building, or agentic system development. The candidate's core strength is shipping code and infrastructure end-to-end, not curriculum design or organizational knowledge initiatives.",
-    "contextual_fit": "Poor shape match. Candidate explicitly seeks 'real ownership from day one' building LLM-powered pipelines and automation; this role appears to be support-oriented ('Support the development,' 'Support knowledge management') with emphasis on educational materials and conceptual work. The 'Academy' framing suggests internal enablement/training rather than product engineering.",
+    "technical_fit": "Partial. The visible responsibilities emphasize educational content creation, learning materials, workshops, and knowledge management rather than hands-on engineering of LLM pipelines or agentic systems. 'Support' appears twice, suggesting a supporting rather than ownership role. The knowledge graph/semantic search/AI assistants concepts are adjacent to his interests but framed as conceptual design work, not production building.",
+    "contextual_fit": "Weak. Role is at a job platform (Job-Room) focused on internal knowledge management and academy development, not a product/engineering team shipping AI automation. The 'freelance/temporary' nature and 'asap' start may conflict with his 2-week notice and internship-seeking status.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unclear. Job-Room appears to be a staffing/platform company; the role's academic/knowledge-management focus doesn't clearly align with candidate's preference for zero-to-production ownership in a technical product environment.",
+    "culture_fit": "Unclear. The academy/educational focus suggests a different culture than his preferred 'zero to production, own it end to end' builder environment.",
     "concerns": [
-      "Job description was TRUNCATED — requirements/qualifications section not visible, making this evaluation highly uncertain; score kept conservative",
-      "Role shape appears to be support/educational content creation rather than hands-on engineering ownership",
-      "No evidence of production pipeline work, LLM API integration, CI/CD, or infrastructure responsibilities in visible text",
-      "'Support' appears twice in responsibilities, suggesting junior contributor rather than owner",
-      "Knowledge graph and semantic search mentioned only at concept level, not implementation",
-      "Freelance/temporary structure may offer less continuity than candidate seeks for skill deepening"
+      "Job description was truncated; requirements/qualifications section not visible — score kept conservative.",
+      "Role emphasizes support and educational content over hands-on engineering ownership.",
+      "Freelance/temporary structure may not suit internship-seeking candidate with 2-week notice.",
+      "No evidence of LLM API work, pipeline automation, or production agentic systems in visible responsibilities.",
+      "Domain (HR tech / knowledge management platform) is unfamiliar but not penalized; however role shape is misaligned with candidate's stated motivation."
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -194,18 +192,21 @@
     "rescored": true
   },
   {
-    "score": 55,
-    "hard_blockers": [],
+    "score": 52,
+    "hard_blockers": [
+      "German is the posting language and workplace context (Universitätsspital Zürich, German job description); 'Universitätsspital' and German-language posting strongly imply German is required for daily work. The candidate's German is A2, far below professional working proficiency needed in a Swiss hospital environment."
+    ],
     "insufficient_info": true,
-    "language_gap_intermediate": true,
+    "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Requirements section was not visible in the truncated description — significant uncertainty about seniority expectations, degree requirements, and specific technical stack",
-      "Role emphasis on Betrieb (operations/maintenance) over building new capabilities conflicts with candidate's core motivation for ownership and greenfield development",
-      "Healthcare domain adds compliance/regulatory overhead not mentioned in candidate's experience",
-      "German-language job title and Zurich hospital context suggests German workplace integration may be needed beyond pure technical work",
-      "No evidence of LLM, agentic systems, or AI-native work in visible description — candidate would be moving away from, not deeper into, his target specialization",
-      "Candidate's A2 German may be below practical needs for a Swiss-German hospital environment even if not formally required",
+      "Blocker: German is the posting language and workplace context (Universitätsspital Zürich, German job description); 'Universitätsspital' and German-language posting strongly imply German is required for daily work. The candidate's German is A2, far below professional working proficiency needed in a Swiss hospital environment.",
+      "Job description was truncated — requirements section not visible, making full assessment impossible; score kept conservative",
+      "Role appears operational/maintenance-focused ('Betrieb' = operation) rather than greenfield building, conflicting with candidate's core motivation",
+      "Large institutional environment (8,600+ employees) likely offers less ownership than candidate seeks",
+      "No visible mention of LLMs, AI, automation, or agentic systems in the description",
+      "Healthcare domain is unfamiliar to candidate; not penalized heavily but adds friction",
+      "Even if German were not a hard blocker, the role shape (platform operations at large hospital) is poorly aligned with candidate's stated goals",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -216,17 +217,17 @@
       "portal": "adzuna",
       "description": " Gestalte die Daten- und Integrationsplattformen des Universitätsspitals Zürich aktiv mit und schaffe die technologische Grundlage für das digitale Spital der Zukunft. Im Data & Integration Platform Team entwickelst und betreibst du die Data Platform of Platforms (DPoP) sowie die Integration Platform und stellst deren sicheren, stabilen und skalierbaren Betrieb für Data- und API-Engineers sicher. Das Universitätsspital Zürich ist eines der grössten Spitäler in der Schweiz. Unsere über 8'600 Mit…"
     },
-    "technical_fit": "Partial. The visible description emphasizes data platform operations, infrastructure stability, and API integration for a large hospital setting. The candidate has relevant skills in cloud infrastructure, Docker, CI/CD, and API work, but the role appears focused on maintaining/betreiben (operating) existing platforms rather than building greenfield AI/automation with ownership. No mention of LLMs, agentic systems, or the zero-to-production building the candidate prioritizes.",
-    "contextual_fit": "Weak. Healthcare domain is unfamiliar (though candidate is open to new domains). The 'Platform of Platforms' and enterprise hospital context suggests heavy governance, compliance, and operational maintenance culture — quite distant from the candidate's desired fast-iteration, ownership-driven, AI-native environment. The German-language job title and hospital setting signal German workplace norms even if English might be used technically.",
+    "technical_fit": "Partial. The visible description emphasizes data platform operations and infrastructure stability for a 'Platform of Platforms' at a major hospital. The candidate's strengths are in LLM-powered pipelines, automation, and building from zero to production. This role appears to be more about operating and maintaining existing data/integration platforms (secure, stable, scalable operation) than building greenfield AI/automation or agentic systems. No mention of LLMs, AI, or automation in visible text.",
+    "contextual_fit": "Weak. The role is at a large, established institution (Universitätsspital Zürich) with 8,600+ employees, which typically means more structured processes, less individual ownership from day one, and more operational/maintenance work than greenfield building. The candidate explicitly wants 'real ownership from day one rather than support work' and to 'take something from zero to production.' This role's framing ('sicherer, stabiler und skalierbarer Betrieb' — secure, stable, scalable operation) suggests platform operations, not greenfield building.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Mismatched. The description emphasizes sicherer, stabiler, skalierbarer Betrieb (secure, stable, scalable operations) — operational excellence and reliability for a critical healthcare institution. This is maintenance and assurance culture, not the build-ship-own-audit-fix loop the candidate explicitly seeks. Large institutional hospital structure likely means less autonomy than desired.",
+    "culture_fit": "Concerning. Large hospital bureaucracy, German-language workplace (implied by 'Universitätsspital Zürich' and German job posting), operational/platform team culture rather than builder/startup culture. The candidate's motivation centers on ownership, speed, and building — this environment appears mismatched.",
     "concerns": [
-      "Requirements section was not visible in the truncated description — significant uncertainty about seniority expectations, degree requirements, and specific technical stack",
-      "Role emphasis on Betrieb (operations/maintenance) over building new capabilities conflicts with candidate's core motivation for ownership and greenfield development",
-      "Healthcare domain adds compliance/regulatory overhead not mentioned in candidate's experience",
-      "German-language job title and Zurich hospital context suggests German workplace integration may be needed beyond pure technical work",
-      "No evidence of LLM, agentic systems, or AI-native work in visible description — candidate would be moving away from, not deeper into, his target specialization",
-      "Candidate's A2 German may be below practical needs for a Swiss-German hospital environment even if not formally required"
+      "Job description was truncated — requirements section not visible, making full assessment impossible; score kept conservative",
+      "Role appears operational/maintenance-focused ('Betrieb' = operation) rather than greenfield building, conflicting with candidate's core motivation",
+      "Large institutional environment (8,600+ employees) likely offers less ownership than candidate seeks",
+      "No visible mention of LLMs, AI, automation, or agentic systems in the description",
+      "Healthcare domain is unfamiliar to candidate; not penalized heavily but adds friction",
+      "Even if German were not a hard blocker, the role shape (platform operations at large hospital) is poorly aligned with candidate's stated goals"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -750,11 +751,11 @@
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description was truncated; requirements, qualifications, and full responsibilities were not visible -- score kept conservative due to missing information",
-      "Role appears heavily research-oriented in computer vision/spatial AI rather than LLM/agentic automation or data platform engineering",
-      "No evidence of the 'zero to production' ownership model the candidate seeks; likely more research collaboration than end-to-end building",
-      "Microsoft research environment may have less hands-on autonomy than candidate's preferred startup/agency builder context",
-      "Candidate's skills (pandas, SQL, data workflows, LLM APIs) don't align with spatial/embodied AI and computer vision focus",
+      "Job description was truncated; requirements/qualifications section not visible—assessment is conservative and incomplete.",
+      "Core technical domain (computer vision, spatial/embodied AI, hardware) is far from candidate's LLM automation and data engineering skills.",
+      "Microsoft Research Applied Sciences Group typically targets research scientists with deep academic credentials; candidate's profile (intern-level, career changer, postgraduate diploma) is likely below the bar.",
+      "No evidence of agentic systems or data platform engineering in the visible description.",
+      "Role shape appears to be research collaboration on hardware-facing technologies, not the production pipeline ownership the candidate seeks.",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -765,16 +766,16 @@
       "portal": "adzuna",
       "description": "Overview The Spatial AI Lab is part of the-Applied Sciences Group,-a Microsoft research and-development organization dedicated to creating next-generation human-computer interaction technologies-leveraging-the most recent AI developments and exploring new hardware capabilities and device form-factors.-Our team has expertise-in computer vision, multi-modal AI, spatial and embodied AI. As Applied AI Scientist you will work closely with several research and product teams to bring compelling new ex…"
     },
-    "technical_fit": "Poor. The role is in computer vision, multi-modal AI, spatial and embodied AI -- domains far from the candidate's core expertise in LLM-powered pipelines, agentic systems, and data platform engineering. No mention of LLM APIs, automation pipelines, or data engineering work. This is a research-heavy computer vision/spatial AI role, not a builder-ownership pipeline role.",
-    "contextual_fit": "Weak. The Spatial AI Lab is a Microsoft research organization focused on next-generation HCI hardware and spatial AI. The candidate's motivation centers on taking LLM/automation systems from zero to production with real ownership. Research-oriented spatial/embodied AI with product collaboration is a different shape -- more research, less end-to-end shipping ownership.",
+    "technical_fit": "Poor. The role centers on computer vision, multi-modal AI, spatial and embodied AI, and new hardware/device form-factors. The candidate's experience is in LLM-powered pipelines, automation, and data engineering—not computer vision, spatial AI, or hardware-interfacing research. No overlap in core technical domain.",
+    "contextual_fit": "Weak. Microsoft Research's Applied Sciences Group is a deep research organization, likely seeking PhD-level or heavily research-oriented scientists. The candidate is an intern-level career changer with a postgraduate diploma (lato sensu), not a research background, and explicitly wants ownership of production pipelines rather than research collaboration on hardware-facing technologies.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown. Truncated description prevents assessment, but Microsoft research org likely process-heavy and less startup-like than candidate prefers.",
+    "culture_fit": "Mismatched. The candidate wants 'zero to production' ownership in agentic/data platform engineering; this role appears to involve collaborative research with product teams on spatial/embodied AI technologies—closer to research science than end-to-end product ownership.",
     "concerns": [
-      "Job description was truncated; requirements, qualifications, and full responsibilities were not visible -- score kept conservative due to missing information",
-      "Role appears heavily research-oriented in computer vision/spatial AI rather than LLM/agentic automation or data platform engineering",
-      "No evidence of the 'zero to production' ownership model the candidate seeks; likely more research collaboration than end-to-end building",
-      "Microsoft research environment may have less hands-on autonomy than candidate's preferred startup/agency builder context",
-      "Candidate's skills (pandas, SQL, data workflows, LLM APIs) don't align with spatial/embodied AI and computer vision focus"
+      "Job description was truncated; requirements/qualifications section not visible—assessment is conservative and incomplete.",
+      "Core technical domain (computer vision, spatial/embodied AI, hardware) is far from candidate's LLM automation and data engineering skills.",
+      "Microsoft Research Applied Sciences Group typically targets research scientists with deep academic credentials; candidate's profile (intern-level, career changer, postgraduate diploma) is likely below the bar.",
+      "No evidence of agentic systems or data platform engineering in the visible description.",
+      "Role shape appears to be research collaboration on hardware-facing technologies, not the production pipeline ownership the candidate seeks."
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -783,17 +784,20 @@
     "rescored": true
   },
   {
-    "score": 55,
-    "hard_blockers": [],
+    "score": 45,
+    "hard_blockers": [
+      "Role title (Co-founder & CTO) is structurally incompatible with candidate's stated search for internship/junior position; this is a senior executive/founder role requiring capabilities and risk profile far beyond his current career stage"
+    ],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Requirements section not visible in truncated job description—unable to assess seniority expectations, degree requirements, or specific technical stack",
-      "Title 'Co-founder & CTO' is fundamentally incompatible with candidate's stated goal of internship/junior role with mentorship and growth trajectory",
-      "Stealth venture implies pre-product, pre-revenue, high ambiguity—candidate currently in internship seeking deeper technical skill development, not entrepreneurial risk",
-      "No evidence of agentic systems or LLM work in visible description; commodity trading focus is distant from candidate's demonstrated interests",
-      "Candidate's 2-week notice and permit B status are irrelevant advantages here given role-shape mismatch",
+      "Blocker: Role title (Co-founder & CTO) is structurally incompatible with candidate's stated search for internship/junior position; this is a senior executive/founder role requiring capabilities and risk profile far beyond his current career stage",
+      "Job description truncated—requirements section not visible, preventing full assessment of technical expectations or seniority assumptions",
+      "CTO title implies 10+ years experience, fundraising exposure, and hiring authority; candidate has ~2 years tech experience post-career-change",
+      "Physical commodity trading domain is highly specialized; even as deliberate career changer, founding-level credibility gap is extreme",
+      "No evidence of team structure that would allow 'internship' or junior embedded role; stealth venture likely needs hands-on leaders, not learners",
+      "Candidate's core motivation ('own it from zero to production') is semantically close but structurally opposite—he wants to build systems, not companies",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -804,16 +808,16 @@
       "portal": "adzuna",
       "description": "What we do Physical commodity trading is one of the world’s largest and least digitised industries. Critical commercial workflows still run through messages, calls, spreadsheets and tacit trader knowledge, while incumbent systems are generally better at recording transactions than preserving the full decision chain behind them. Our thesis is simple: a trader is an information processor, and human bandwidth is the bottleneck . Physical commodity opportunities develop over hours or days, not mill…"
     },
-    "technical_fit": "Partial. The role centers on AI infrastructure for commodity trading, which touches on data platform engineering and automation. However, the title 'Co-founder & CTO' signals a senior leadership/equity position requiring extensive experience building and scaling technical organizations, not an internship or junior builder role. The candidate's profile explicitly seeks hands-on ownership in an intern/junior capacity, not C-suite responsibility.",
-    "contextual_fit": "Poor. The candidate wants real ownership from day one—but as a builder, not as a founder-executive steering company strategy, fundraising, and team building. A stealth CTO role demands entrepreneurial risk tolerance, network access, and typically 5-10+ years of senior engineering leadership. The candidate is 2 weeks from an internship and studying toward B1 German. This is a fundamental role-shape mismatch despite some surface technical overlap.",
-    "salary_estimate": "Equity-heavy, minimal cash typical of pre-seed/stealth ventures; not disclosed",
-    "culture_fit": "Unknown. Stealth startup culture likely intense, all-consuming, and founder-oriented—very different from the structured learning environment the candidate seeks.",
+    "technical_fit": "Partial. The role centers on AI infrastructure for physical commodity trading—LLM/automation relevance is plausible given 'information processor' and 'decision chain' language, but the visible description emphasizes systems architecture, digitization of legacy workflows, and trading-domain infrastructure rather than hands-on LLM pipeline building. Candidate's stack (Python, LLM APIs, CI/CD, dashboards) maps to early-stage infra, but CTO/co-founder title implies senior leadership and likely equity negotiation, not an intern/junior builder role.",
+    "contextual_fit": "Poor. The role shape is fundamentally misaligned: co-founder/CTO demands fundraising capability, team hiring, strategic ownership, and likely deep trading-domain credibility. Candidate seeks 'internship or junior role' with 'real ownership from day one'—not C-suite founding responsibility. Stealth venture stage implies zero-to-one company building, not zero-to-production individual contribution within an existing team. Location (Zollikon/Meilen) is Zurich-area acceptable, but role level is the blocker.",
+    "salary_estimate": "Not disclosed (equity-heavy founder compensation expected)",
+    "culture_fit": "Unknown from truncated text; Merantix Momentum model implies venture-studio structure with shared services, which differs from candidate's desired embedded-team ownership model.",
     "concerns": [
-      "Requirements section not visible in truncated job description—unable to assess seniority expectations, degree requirements, or specific technical stack",
-      "Title 'Co-founder & CTO' is fundamentally incompatible with candidate's stated goal of internship/junior role with mentorship and growth trajectory",
-      "Stealth venture implies pre-product, pre-revenue, high ambiguity—candidate currently in internship seeking deeper technical skill development, not entrepreneurial risk",
-      "No evidence of agentic systems or LLM work in visible description; commodity trading focus is distant from candidate's demonstrated interests",
-      "Candidate's 2-week notice and permit B status are irrelevant advantages here given role-shape mismatch"
+      "Job description truncated—requirements section not visible, preventing full assessment of technical expectations or seniority assumptions",
+      "CTO title implies 10+ years experience, fundraising exposure, and hiring authority; candidate has ~2 years tech experience post-career-change",
+      "Physical commodity trading domain is highly specialized; even as deliberate career changer, founding-level credibility gap is extreme",
+      "No evidence of team structure that would allow 'internship' or junior embedded role; stealth venture likely needs hands-on leaders, not learners",
+      "Candidate's core motivation ('own it from zero to production') is semantically close but structurally opposite—he wants to build systems, not companies"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",

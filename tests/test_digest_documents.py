@@ -122,3 +122,49 @@ class TestDigestSection:
                         [{"title": "AI Engineer", "company": "Acme", "score": 82,
                           "files": [pdf], "link": "javascript:alert(1)"}], _now())
         assert "javascript:" not in notifier.format_digest_as_html(dict(self.DIGEST))
+
+
+class TestDeliveredFormats:
+    """What reaches the inbox, as opposed to what was generated.
+
+    The candidate asked on 2026-08-24 to receive .docx rather than PDF: the
+    file he opens is the one he needs to correct, and the system will not
+    always be right. Both formats are still generated and both still go to
+    Drive -- the PDF is the copy an employer receives, and it stays one click
+    away.
+    """
+
+    DIGEST = {"generated_at": "2026-08-24T08:00:00", "total_evaluated": 1,
+              "top_jobs": [{"job": {"title": "T", "company": "C", "location": "L"},
+                            "score": 92, "decision": "APPLY"}]}
+
+    @pytest.fixture
+    def both_formats(self, tmp_path, monkeypatch):
+        files = []
+        for name in ("CV_Acme.pdf", "CV_Acme.docx", "CL_Acme.pdf", "CL_Acme.docx"):
+            f = tmp_path / name
+            f.write_bytes(b"x")
+            files.append(str(f))
+        _write_manifest(tmp_path, monkeypatch,
+                        [{"title": "AI Engineer", "company": "Acme",
+                          "score": 92, "files": files}], _now())
+        return files
+
+    def test_only_the_editable_copies_are_attached(self, both_formats, monkeypatch):
+        monkeypatch.setattr(notifier, "DELIVER_FORMATS", (".docx",))
+        docs = notifier.load_generated_docs()
+        attached = [f for d in docs if not d.get("link") for f in d["files"]
+                    if f.lower().endswith(notifier.DELIVER_FORMATS)]
+        assert len(attached) == 2
+        assert all(f.endswith(".docx") for f in attached)
+
+    def test_the_manifest_still_lists_everything(self, both_formats):
+        """Drive gets all four; only the delivery is narrowed."""
+        assert len(notifier.load_generated_docs()[0]["files"]) == 4
+
+    def test_the_setting_can_ask_for_both(self, both_formats, monkeypatch):
+        monkeypatch.setattr(notifier, "DELIVER_FORMATS", (".pdf", ".docx"))
+        docs = notifier.load_generated_docs()
+        attached = [f for d in docs if not d.get("link") for f in d["files"]
+                    if f.lower().endswith(notifier.DELIVER_FORMATS)]
+        assert len(attached) == 4

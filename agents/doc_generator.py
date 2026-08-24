@@ -11,6 +11,16 @@ KIMI_TIMEOUT = 30
 # can announce and attach whatever was generated this run.
 DOCS_MANIFEST = os.path.join("digests", "generated_docs_latest.json")
 
+# What gets DELIVERED to the candidate, as opposed to what gets generated.
+# He asked for .docx only (2026-08-24): the PDF is the copy an employer
+# receives, but the one he opens is the one he needs to correct, and the
+# system will not always be right. Both formats are still generated and both
+# still go to Drive, so the send-ready PDF is one click away when he wants
+# it. Set DELIVER_FORMATS to ".pdf,.docx" to get both attached again.
+DELIVER_FORMATS = tuple(
+    f.strip().lower() for f in os.environ.get("DELIVER_FORMATS", ".docx").split(",")
+    if f.strip())
+
 def _generate_summary(client, profile, title, company, description):
     role = profile.get("role", "")
     prompt = (
@@ -692,7 +702,7 @@ def generate_docs_for_job(client, profile, ev: dict, gen_dir: str = "generated_d
                 _email_docs_to_candidate(
                     folder, title, company, score,
                     sorted(os.path.join(folder, f) for f in os.listdir(folder)
-                           if f.lower().endswith((".pdf", ".docx"))),
+                           if f.lower().endswith(DELIVER_FORMATS)),
                 )
             except Exception as e:
                 print(f"  [mail] Failed (continuing): {type(e).__name__}: {str(e)[:120]}")

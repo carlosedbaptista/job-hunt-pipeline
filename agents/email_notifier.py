@@ -31,6 +31,11 @@ MAX_DIGEST_AGE_HOURS = int(os.environ.get("MAX_DIGEST_AGE_HOURS", "18"))
 # Gmail rejects messages over ~25 MB, and a wall of attachments is its own
 # kind of noise. Two PDFs per job, so this is six jobs' worth.
 MAX_ATTACHMENTS = int(os.environ.get("MAX_DIGEST_ATTACHMENTS", "12"))
+# Mirrors doc_generator.DELIVER_FORMATS: what reaches the inbox, as opposed
+# to what was generated. Default .docx -- the editable copy.
+DELIVER_FORMATS = tuple(
+    f.strip().lower() for f in os.environ.get("DELIVER_FORMATS", ".docx").split(",")
+    if f.strip())
 
 
 def load_digest():
@@ -492,7 +497,12 @@ def notify_digest():
     # `link` on the manifest entry (Drive, once OAuth2 is set up) takes over:
     # the HTML then shows a download link and nothing is attached.
     docs = load_generated_docs()
-    attachments = [f for d in docs if not d.get("link") for f in d["files"]]
+    # Only the formats the candidate asked to receive. The manifest lists
+    # everything that was generated (PDF and .docx); the PDF is the copy an
+    # employer gets and lives in Drive, while the one worth putting in his
+    # inbox is the one he can correct.
+    attachments = [f for d in docs if not d.get("link") for f in d["files"]
+                   if f.lower().endswith(DELIVER_FORMATS)]
     if len(attachments) > MAX_ATTACHMENTS:
         print(f"  {len(attachments)} files generated, attaching the first "
               f"{MAX_ATTACHMENTS} (the rest stay in generated_docs/ on the runner)")
