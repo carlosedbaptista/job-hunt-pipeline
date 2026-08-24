@@ -173,3 +173,43 @@ class TestModelFamilyGuard:
     def test_non_kimi_models_are_left_alone(self):
         """moonshot-v1-* does not take the parameter."""
         assert "thinking" not in self._payload("moonshot-v1-128k")
+
+
+class TestModelSelection:
+    """Switching models must be a GitHub UI change, not a code change -- and
+    an unset variable must not become the model id.
+
+    A GitHub Actions `vars.X` that was never defined arrives as an EMPTY
+    STRING, so os.environ.get(name, default) hands back "" and every call
+    asks for a model called "". The same trap crashed the cost guard once on
+    int("").
+    """
+
+    def test_an_unset_variable_falls_back_to_the_default(self, monkeypatch):
+        import importlib
+        import kimi_client
+        monkeypatch.setenv("KIMI_MODEL", "")
+        importlib.reload(kimi_client)
+        assert kimi_client.KIMI_MODEL_PRIMARY == kimi_client.DEFAULT_MODEL
+
+    def test_whitespace_is_not_a_model_id(self, monkeypatch):
+        import importlib
+        import kimi_client
+        monkeypatch.setenv("KIMI_MODEL", "   ")
+        importlib.reload(kimi_client)
+        assert kimi_client.KIMI_MODEL_PRIMARY == kimi_client.DEFAULT_MODEL
+
+    def test_an_explicit_model_is_honoured(self, monkeypatch):
+        import importlib
+        import kimi_client
+        monkeypatch.setenv("KIMI_MODEL", "kimi-k3")
+        importlib.reload(kimi_client)
+        assert kimi_client.KIMI_MODEL_PRIMARY == "kimi-k3"
+
+    def test_the_default_is_the_measured_one(self, monkeypatch):
+        """k3 was compared against it on ground truth and showed no gain."""
+        import importlib
+        import kimi_client
+        monkeypatch.delenv("KIMI_MODEL", raising=False)
+        importlib.reload(kimi_client)
+        assert kimi_client.KIMI_MODEL_PRIMARY == "kimi-k2.6"

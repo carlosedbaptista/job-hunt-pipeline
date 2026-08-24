@@ -18,11 +18,25 @@ KIMI_BASE_URLS = [
     os.environ.get("KIMI_BASE_URL") or "https://api.moonshot.ai/v1",
     "https://api.moonshot.cn/v1",
 ]
-KIMI_MODEL_PRIMARY = os.environ.get("KIMI_MODEL", "kimi-k2.6")
+DEFAULT_MODEL = "kimi-k2.6"
+
+
+def _model_from_env(name, default):
+    """Model id from the environment, treating EMPTY as unset.
+
+    A GitHub Actions `vars.X` that was never defined arrives as an empty
+    string, not as an absent variable, so os.environ.get would hand back ""
+    and every call would ask for a model called "". Same trap that once made
+    a blank workflow input crash the cost guard on int("").
+    """
+    return (os.environ.get(name) or "").strip() or default
+
+
+KIMI_MODEL_PRIMARY = _model_from_env("KIMI_MODEL", DEFAULT_MODEL)
 # Fallback defaults to the primary family; override via env if Moonshot
 # publishes a newer model. moonshot-v1-8k was removed: it sunsets 2026-08-31
 # and a dead fallback silently kills the pipeline's resilience.
-KIMI_MODEL_FALLBACK = os.environ.get("KIMI_MODEL_FALLBACK", "kimi-k2.6")
+KIMI_MODEL_FALLBACK = _model_from_env("KIMI_MODEL_FALLBACK", DEFAULT_MODEL)
 
 # Deprecated models (for reference/debug)
 DEPRECATED_MODELS = ["kimi-k2-6", "kimi-k2", "kimi-k2-0905-preview", "kimi-k2-0711-preview",

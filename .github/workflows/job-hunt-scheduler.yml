@@ -153,12 +153,18 @@ jobs:
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
           KIMI_BASE_URL: ${{ secrets.KIMI_BASE_URL }}
+          # Switch models from the GitHub UI (Settings -> Variables)
+          # without touching code. Unset means kimi-k2.6.
+          KIMI_MODEL: ${{ vars.KIMI_MODEL }}
         run: python agents/job_evaluator.py
 
       - name: Generate daily digest
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
           KIMI_BASE_URL: ${{ secrets.KIMI_BASE_URL }}
+          # Switch models from the GitHub UI (Settings -> Variables)
+          # without touching code. Unset means kimi-k2.6.
+          KIMI_MODEL: ${{ vars.KIMI_MODEL }}
         # Called directly. src/week4_pipeline.py used to wrap this in a
         # subprocess and printed a banner, and its other code path
         # orchestrated a pipeline that no longer exists (JSearch,
@@ -178,6 +184,9 @@ jobs:
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
           KIMI_BASE_URL: ${{ secrets.KIMI_BASE_URL }}
+          # Switch models from the GitHub UI (Settings -> Variables)
+          # without touching code. Unset means kimi-k2.6.
+          KIMI_MODEL: ${{ vars.KIMI_MODEL }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
@@ -221,6 +230,9 @@ jobs:
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
           KIMI_BASE_URL: ${{ secrets.KIMI_BASE_URL }}
+          # Switch models from the GitHub UI (Settings -> Variables)
+          # without touching code. Unset means kimi-k2.6.
+          KIMI_MODEL: ${{ vars.KIMI_MODEL }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
