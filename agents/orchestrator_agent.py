@@ -32,7 +32,7 @@ import re
 import sqlite3
 import subprocess
 import sys
-from datetime import date, datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -139,15 +139,18 @@ def _evaluations_fresh(records):
     embedded evaluated_at stamps decide when any record carries one (a file
     left over from a failed run keeps yesterday's dates even if something
     touched it since); the file mtime is the fallback for records without
-    timestamps."""
+    timestamps. The pipeline's clock is UTC -- the cron fires at 05:00/12:00
+    UTC and the evaluator stamps evaluated_at in UTC -- so 'today' here must
+    be the UTC date, or a runner at UTC+2 refuses its own fresh file for the
+    two hours after local midnight."""
     if not os.path.exists(EVALUATIONS_FILE):
         return False
-    today = date.today().isoformat()
+    today = datetime.now(timezone.utc).date().isoformat()
     embedded = [str(ev.get("evaluated_at") or "")[:10]
                 for ev in records if isinstance(ev, dict) and ev.get("evaluated_at")]
     if embedded:
         return max(embedded) == today
-    mtime = datetime.fromtimestamp(os.path.getmtime(EVALUATIONS_FILE)).date().isoformat()
+    mtime = datetime.fromtimestamp(os.path.getmtime(EVALUATIONS_FILE), timezone.utc).date().isoformat()
     return mtime == today
 
 
@@ -268,10 +271,11 @@ def _hashes_scored_today():
 
 def _history_files_last(days):
     """data/history/evaluations_YYYYMMDD.json files within the window,
-    newest first."""
+    newest first. File names carry UTC dates (the evaluator stamps them
+    so), so the window boundary must use the UTC date as well."""
     if not os.path.isdir(je.HISTORY_DIR):
         return []
-    today = date.today()
+    today = datetime.now(timezone.utc).date()
     picked = []
     for fname in os.listdir(je.HISTORY_DIR):
         m = re.fullmatch(r"evaluations_(\d{8})\.json", fname)
@@ -502,7 +506,7 @@ def _agent_main():
 
     holder = {}
     tools = _build_tools(holder)
-    user = (f"Today's date: {date.today().isoformat()}\n"
+    user = (f"Today's date: {datetime.now(timezone.utc).date().isoformat()}\n"
             "The daily run has finished fetching and scoring jobs. Look at "
             "the run state, do what this run needs with the tools, and "
             "finalize with finish_run.")

@@ -12,15 +12,21 @@ from datetime import datetime, timedelta, timezone
 import pytest
 
 import tracker_updater
+import agents.tracker_updater as agents_tracker_updater
 import followup_sender
 import job_evaluator
 
 
 @pytest.fixture
 def db(tmp_path, monkeypatch):
-    """A fresh tracker DB for both modules that hold the path."""
+    """A fresh tracker DB for every module object that holds the path.
+    followup_sender does `from agents.tracker_updater import ...`, and
+    agents.tracker_updater is a DISTINCT module object from the top-level
+    tracker_updater (dual sys.path entries), so both must be patched --
+    missing one breaks any run whose cwd is not the repo root."""
     path = str(tmp_path / "jobs.db")
     monkeypatch.setattr(tracker_updater, "DB_PATH", path)
+    monkeypatch.setattr(agents_tracker_updater, "DB_PATH", path)
     monkeypatch.setattr(followup_sender, "DB_PATH", path)
     return path
 
@@ -154,6 +160,11 @@ class TestMainRecordsRecommendations:
         monkeypatch.setattr(job_evaluator, "call_kimi_json", lambda *a, **k: {
             "score": 90, "concerns": [], "hard_blockers": [], "language_requirement": "none"})
         monkeypatch.setattr(job_evaluator.time, "sleep", lambda s: None)
+        # The profile guard must not depend on whether the (gitignored)
+        # profile happens to exist on this machine -- in CI no secrets are
+        # restored, so the import-time fallback flag is True there (same
+        # trick as test_decision_agent.py).
+        monkeypatch.setattr(job_evaluator, "PROFILE_IS_FALLBACK", False)
 
         job_evaluator.main()
 

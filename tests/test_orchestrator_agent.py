@@ -10,7 +10,7 @@ and the tracker DB stay local to the test.
 import json
 import os
 import sys
-from datetime import date, datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone
 
 import pytest
 
@@ -317,7 +317,9 @@ class TestFallback:
 
 class TestReevaluation:
     def _seed_history(self, tmp_path, records, days_ago=1):
-        fdate = (date.today() - timedelta(days=days_ago)).strftime("%Y%m%d")
+        # History file names carry UTC dates, so seed with the UTC clock or
+        # the file can land on "today" near local midnight (UTC+2 boxes).
+        fdate = (datetime.now(timezone.utc) - timedelta(days=days_ago)).strftime("%Y%m%d")
         hist_dir = tmp_path / "data" / "history"
         hist_dir.mkdir(parents=True, exist_ok=True)
         with open(hist_dir / f"evaluations_{fdate}.json", "w", encoding="utf-8") as f:

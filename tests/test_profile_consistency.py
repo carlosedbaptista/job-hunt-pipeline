@@ -109,6 +109,15 @@ class TestQuietDayIsVisible:
     yesterday's APPLY jobs.
     """
 
+    @pytest.fixture(autouse=True)
+    def _profile_guard_off(self, monkeypatch):
+        """The profile guard must not depend on whether the (gitignored)
+        profile happens to exist on this machine -- in CI no secrets are
+        restored, so the import-time fallback flag is True there and main()
+        would refuse to run (same trick as test_decision_agent.py)."""
+        import job_evaluator as je
+        monkeypatch.setattr(je, "PROFILE_IS_FALLBACK", False)
+
     def _run_evaluator_with_no_jobs(self, tmp_path, monkeypatch):
         import json
         import job_evaluator as je
