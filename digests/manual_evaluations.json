@@ -193,5 +193,46 @@
     ],
     "evaluated_at": "2026-08-23T15:38:16.410985+00:00",
     "rescored": true
+  },
+  {
+    "score": 35,
+    "hard_blockers": [
+      "German proficiency requirement: 'Proficiency in German is a requirement' for customer-facing work with DACH-region clients. His A2 German is insufficient for a hard requirement tied to daily client interaction.",
+      "Role level: Requires 3 years experience in a full-time position, not an internship/junior role."
+    ],
+    "insufficient_info": false,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Blocker: German proficiency requirement: 'Proficiency in German is a requirement' for customer-facing work with DACH-region clients. His A2 German is insufficient for a hard requirement tied to daily client interaction.",
+      "Blocker: Role level: Requires 3 years experience in a full-time position, not an internship/junior role.",
+      "Core languages Go/Java not in his stack; would require significant ramp-up with no mentorship cushion typical of internships",
+      "'Proficiency in English, on top proficiency in German is preferred' suggests German is genuinely needed, not merely 'nice to have'",
+      "Role shape is maintenance and integration support, not agentic systems or LLM pipeline ownership—misaligned with stated career direction",
+      "Hybrid 3-4 days office with German-remote option suggests Zurich team operates in German business context"
+    ],
+    "job": {
+      "company": "BLP Digital",
+      "title": "Software Engineer ERP Integrations",
+      "location": "Zurich",
+      "url": "https://blp.digital/company/careers?ashby_jid=8c506de2-6c86-4676-ab8a-0942e46411ae",
+      "portal": "manual",
+      "description": "Join BLP Digital — The #1 Solution for ERP Automation  BLP Digital is redefining ERP automation with agentic AI. Spun out of ETH Zurich and HSG, we build AI agents that automate finance, procurement, logistics, sales, and more for some of the world's largest enterprises. We solve real enterprise problems with cutting-edge technology and a strong sense of ownership.  Our solution is live in 40+ countries, used by 550+ customers, and automates 70,000+ processes every day, including for Fortune 500 companies. As one of Switzerland's fastest-growing SaaS scaleups, our success stems from deep expertise in technology and business processes, delivering a product with outstanding product-market fit, proven by a growing global customer base.  We've recently welcomed Goldman Sachs Alternatives as a growth investor, and we're now expanding into the UK with the launch of our London office. We are just getting started. Ready to build the future? Join BLP Digital today.   Location: This is a full-time position and can either be filled on-site at our office in central Zurich, Switzerland or remotely from Germany - This is a hybrid role (3-4 days in the office, 1-2 days working from home).  Job Summary  As Integrations Engineer, you will play a crucial role in enabling our customers to connect their ERP systems with BLP Digital’s platform. This involves designing and implementing interfaces, handling a variety of protocols such as REST, SOAP, and direct database access, and managing file transfers. Additionally, you will map incoming EDI and e-invoice formats to align with our standards. Working closely with our Project Team and client stakeholders, your role will be essential to the technical integration of new clients, contributing directly to our business growth. Proficiency in German is a requirement, as the majority of our customers are based in the DACH region.  Main Duties:   Collaborate with internal and external stakeholders to enable seamless ERP integration.  Work on our standard API’s using Go and Java, including further development and task execution.  Design and implement interfaces for diverse protocols (REST, SOAP, direct DB access, file transfers).  Translate and map incoming EDI and e-invoice formats to our standards.  Explore new ERP systems and determine optimal communication methods.  Document new interfaces and features.  Work with existing customers and maintain their interfaces.  Requirements:   Bachelor's degree or higher in computer science or a related field (or equivalent experience).  3 years of experience in technical role, ideally linked to integrations and/or ERP systems  Proficiency in English, on top proficiency in German is preferred.  Experience with Go, Java, REST/SOAP, and SQL.  Ideally, professional experience in a client-facing role.  Structured and self-reliant working approach.  Strong analytical and problem-solving skills.  Benefits:   Generate real impact and lasting value with your work.  Opportunity to work at the forefront of ERP process automation innovation.  Fast-tracked promotions and an attractive bonus scheme, including company shares.  A collaborative environment that values teamwork and excellence.  Exposure to state-of-the-art technologies and continuous learning opportunities.  Choose your own hardware and join regular team events.  If the role is filled remotely from Germany: Paid visits and stay in Zurich to get to know the team in person."
+    },
+    "technical_fit": "Partial. The role involves API integrations, REST/SOAP, SQL, and some automation-adjacent work (EDI/e-invoice mapping, ERP connectivity) that overlaps with his data pipeline and API integration experience. However, the core stack is Go/Java (neither in his skillset), the role emphasizes maintaining existing customer interfaces and ERP system exploration over building new AI/automation systems from scratch, and the 'agentic AI' company branding doesn't translate to agentic systems work in this particular role.",
+    "contextual_fit": "Poor. This is explicitly not an internship or junior role—3 years of experience required, full-time permanent position. The candidate is seeking internship/junior roles with ownership of LLM-powered pipelines, not a mid-level ERP integration maintenance role. The 'agentic AI' framing is company marketing; the actual job is traditional enterprise integration engineering.",
+    "salary_estimate": "CHF 90,000–120,000 (typical for mid-level integration engineer at Zurich scaleup)",
+    "culture_fit": "Mixed. Strong ownership culture and fast-growing environment align with his preferences, but the actual work (maintaining customer interfaces, EDI mapping, stakeholder coordination for ERP connections) is far from the 'zero to production' AI/automation building he seeks. The role is reactive/maintenance-oriented rather than greenfield builder-oriented.",
+    "concerns": [
+      "Core languages Go/Java not in his stack; would require significant ramp-up with no mentorship cushion typical of internships",
+      "'Proficiency in English, on top proficiency in German is preferred' suggests German is genuinely needed, not merely 'nice to have'",
+      "Role shape is maintenance and integration support, not agentic systems or LLM pipeline ownership—misaligned with stated career direction",
+      "Hybrid 3-4 days office with German-remote option suggests Zurich team operates in German business context"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-08-24T15:50:40.388436+00:00",
+    "source": "manual"
   }
 ]
