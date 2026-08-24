@@ -9,6 +9,9 @@ import sqlite3
 import sys
 from datetime import datetime, timezone
 
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+from utils import THRESHOLD_APPLY, THRESHOLD_REVIEW
+
 DB_PATH = os.environ.get("JOBS_DB_PATH", "tracker/jobs.db")
 
 
@@ -40,6 +43,14 @@ def init_applications_table():
         conn.execute("ALTER TABLE applications ADD COLUMN last_followup_date TEXT")
     if "followup_count" not in existing_cols:
         conn.execute("ALTER TABLE applications ADD COLUMN followup_count INTEGER DEFAULT 0")
+    # Feedback loop (2026-08-24): the system records APPLY-tier jobs as
+    # 'recommended' (score kept), and only a manual action promotes them to
+    # 'sent'. Outcomes are measured ONLY over actually-sent applications --
+    # mixing recommendations in would teach the scorer from jobs never applied to.
+    if "score" not in existing_cols:
+        conn.execute("ALTER TABLE applications ADD COLUMN score INTEGER")
+    if "date_recommended" not in existing_cols:
+        conn.execute("ALTER TABLE applications ADD COLUMN date_recommended TEXT")
 
     # Migration: the data contract used to be PT-BR (empresa/titulo).
     # Rename in place so existing rows survive.
@@ -52,25 +63,78 @@ def init_applications_table():
     conn.close()
 
 
+def record_recommendation(company: str, title: str, url: str, score: int) -> bool:
+    """Records an APPLY-tier evaluation as 'recommended' (the system picked
+    it; the user has NOT applied). date_applied stays NULL on purpose: the
+    follow-up query keys on date_applied, and a follow-up for a job never
+    applied to would be a lie. Returns False when the job is already tracked
+    in a further state (sent/responded/etc.) -- a re-evaluation must never
+    demote a real application back to 'recommended'."""
+    init_applications_table()
+    conn = sqlite3.connect(DB_PATH)
+    now = datetime.now(timezone.utc).isoformat()
+
+    existing = conn.execute(
+        "SELECT id, status FROM applications WHERE company = ? AND title = ?",
+        (company, title),
+    ).fetchone()
+
+    if existing:
+        if existing[1] == "recommended":
+            conn.execute(
+                "UPDATE applications SET score = ?, date_recommended = ?, last_update = ?, url = ? WHERE id = ?",
+                (score, now, now, url, existing[0]),
+            )
+            conn.commit()
+            conn.close()
+            return True
+        conn.close()
+        return False
+
+    conn.execute(
+        """INSERT INTO applications
+           (company, title, url, date_applied, status, last_update, date_recommended, score)
+           VALUES (?, ?, ?, NULL, 'recommended', ?, ?, ?)""",
+        (company, title, url, now, now, score),
+    )
+    conn.commit()
+    conn.close()
+    return True
+
+
 def record_application(company: str, title: str, url: str) -> bool:
     """
     Records a new application.
-    Returns True on success, False if a record already exists.
+    If the job was previously 'recommended', the same row is promoted to
+    'sent' (keeping the score that drove the recommendation) -- that is what
+    closes the score -> outcome loop. Returns False if already 'sent' or later.
     """
     init_applications_table()
     conn = sqlite3.connect(DB_PATH)
 
     existing = conn.execute(
-        "SELECT id FROM applications WHERE company = ? AND title = ?",
+        "SELECT id, status FROM applications WHERE company = ? AND title = ?",
         (company, title),
     ).fetchone()
 
+    now = datetime.now(timezone.utc).isoformat()
+
     if existing:
+        if existing[1] == "recommended":
+            conn.execute(
+                """UPDATE applications
+                   SET status = 'sent', date_applied = ?, last_update = ?, url = ?
+                   WHERE id = ?""",
+                (now, now, url, existing[0]),
+            )
+            conn.commit()
+            conn.close()
+            print(f"OK: promoted recommended -> sent: {company} — {title}")
+            return True
         print(f"WARNING: Already tracked: {company} — {title}")
         conn.close()
         return False
 
-    now = datetime.now(timezone.utc).isoformat()
     conn.execute(
         """INSERT INTO applications
            (company, title, url, date_applied, status, last_update)
@@ -82,6 +146,36 @@ def record_application(company: str, title: str, url: str) -> bool:
     conn.close()
 
     return True
+
+
+def get_outcome_summary() -> dict:
+    """Aggregate score -> outcome evidence for scorer calibration.
+    Counts only applications actually SENT (status != 'recommended')."""
+    init_applications_table()
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    rows = [dict(r) for r in conn.execute(
+        """SELECT company, title, score, status, response_type, date_applied
+           FROM applications WHERE status != 'recommended'
+           ORDER BY date_applied DESC"""
+    ).fetchall()]
+    conn.close()
+
+    def _tier(rows, lo, hi):
+        sel = [r for r in rows if r.get("score") is not None and lo <= r["score"] < hi]
+        return {
+            "applied": len(sel),
+            "responded": sum(1 for r in sel if r.get("response_type")),
+            "interviews": sum(1 for r in sel if r.get("status") == "interview_scheduled"),
+        }
+
+    return {
+        "total_applied": len(rows),
+        "responded": sum(1 for r in rows if r.get("response_type")),
+        "apply_tier": _tier(rows, THRESHOLD_APPLY, 10_000),
+        "review_tier": _tier(rows, THRESHOLD_REVIEW, THRESHOLD_APPLY),
+        "recent": rows[:12],
+    }
 
 
 def record_applications_batch(approvals_file: str) -> int:

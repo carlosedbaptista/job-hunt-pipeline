@@ -104,6 +104,42 @@ def load_profile_summary(p: dict = None) -> str:
 PROFILE_DATA = load_profile()
 PROFILE = load_profile_summary(PROFILE_DATA)
 
+
+def load_outcome_calibration() -> str:
+    """Real score -> outcome evidence, appended to the system prompt so the
+    scorer calibrates against what actually happened (feedback loop,
+    2026-08-24). Empty string when there is nothing to learn from yet or the
+    tracker is unavailable -- calibration must never break a scoring run."""
+    try:
+        import tracker_updater
+        s = tracker_updater.get_outcome_summary()
+    except Exception:
+        return ""
+    if not s.get("total_applied"):
+        return ""
+
+    at = s["apply_tier"]
+    lines = [
+        f"Real outcomes so far: {s['total_applied']} application(s) sent from your "
+        f"recommendations, {s['responded']} response(s).",
+    ]
+    if at["applied"]:
+        lines.append(f"Jobs scored in the APPLY band: {at['applied']} applied, "
+                     f"{at['responded']} responses, {at['interviews']} interviews.")
+    recent = []
+    for r in s["recent"][:6]:
+        outcome = r.get("response_type") or "no response yet"
+        score_txt = f"scored {r['score']}" if r.get("score") is not None else "unscored"
+        recent.append(f"{r['company']} ({str(r['title'])[:40]}): {score_txt}, {outcome}")
+    if recent:
+        lines.append("Recent: " + " | ".join(recent))
+    lines.append("Use this as calibration evidence: if high scores keep earning silence, "
+                 "be stricter; if they earn interviews, the calibration is right.")
+    return "\nOutcome calibration (real application history):\n" + "\n".join(lines) + "\n"
+
+
+OUTCOME_CALIBRATION = load_outcome_calibration()
+
 # The candidate's own German level, read from the profile -- never hardcoded.
 # Everything about the language rules is derived from it: what counts as an
 # unreachable hard requirement, and what counts as the intermediate zone
@@ -170,6 +206,9 @@ SYSTEM_PROMPT = (
     "hands-on AI/automation work -- matters more than a perfect skills or domain "
     "checklist match. Weigh it accordingly."
 )
+
+# What the model actually sees: profile + scoring rules + real outcome history.
+SYSTEM_WITH_OUTCOMES = PROFILE + "\n" + SYSTEM_PROMPT + "\n" + OUTCOME_CALIBRATION
 
 ERROR_LOG = os.path.join("digests", "evaluation_errors.txt")  # .txt: *.log is in .gitignore and would not be committed
 HISTORY_DIR = os.path.join("data", "history")
@@ -409,7 +448,7 @@ def _median_of_three(prompt, first_ev, first_score, title, company):
     samples = [(first_score, first_ev)]
     for _ in range(_borderline_samples()):
         try:
-            again = call_kimi_json(prompt, system=PROFILE + "\n" + SYSTEM_PROMPT,
+            again = call_kimi_json(prompt, system=SYSTEM_WITH_OUTCOMES,
                                    max_tokens=1000)
         except Exception as e:
             print(f"  [borderline] re-sample failed ({type(e).__name__}) -- "
@@ -489,7 +528,7 @@ def evaluate_job(job):
     prompt += "\nEvaluate."
 
     try:
-        ev = call_kimi_json(prompt, system=PROFILE + "\n" + SYSTEM_PROMPT, max_tokens=1000)
+        ev = call_kimi_json(prompt, system=SYSTEM_WITH_OUTCOMES, max_tokens=1000)
 
         score = _sanitize_score(ev.get("score"))
         # Borderline jobs get a second opinion. Measured 2026-08-23 on one
@@ -751,6 +790,25 @@ def main():
         json.dump(evaluations, f, ensure_ascii=False, indent=2)
 
     append_history(evaluations)
+
+    # Close the score -> outcome loop: APPLY-tier evaluations are recorded in
+    # the tracker as 'recommended' (not 'sent' -- only the user's manual action
+    # promotes). Future runs read the outcomes back via load_outcome_calibration.
+    recommended = [e for e in evaluations if e.get("decision") == "APPLY"]
+    if recommended:
+        try:
+            import tracker_updater
+            recorded = 0
+            for e in recommended:
+                j = e.get("job", {})
+                if tracker_updater.record_recommendation(
+                        j.get("company", "Unknown"), j.get("title", "Unknown"),
+                        j.get("url", ""), e.get("score")):
+                    recorded += 1
+            print(f"Tracker: {recorded}/{len(recommended)} APPLY job(s) recorded as 'recommended'.")
+        except Exception as exc:
+            # Tracker bookkeeping must never fail a scoring run.
+            print(f"WARNING: could not record recommendations: {exc}")
 
     if errors:
         print(f"WARNING: {len(errors)}/{len(evaluations)} evaluations failed "

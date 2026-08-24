@@ -53,6 +53,7 @@ def get_stale_applications(days_threshold: int = 7) -> list[dict]:
     FROM applications
     WHERE
         response_type IS NULL          -- no response yet
+        AND status = 'sent'            -- never follow up a job merely recommended
         AND date_applied < ?           -- older than threshold
         AND (
             last_followup_date IS NULL  -- never drafted

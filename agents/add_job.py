@@ -174,6 +174,19 @@ def main():
     print(f"\nSaved to {OUTPUT}")
 
     if decision == "APPLY" or score >= 80:
+        # Close the loop the same way the daily run does: record the
+        # recommendation (never an application) so outcomes can calibrate
+        # future scoring. Only effective APPLY -- a blocked or capped job
+        # keeps its score but is not a recommendation.
+        if decision == "APPLY":
+            try:
+                from tracker_updater import record_recommendation  # noqa: E402
+                record_recommendation(ev["job"].get("company", "Unknown"),
+                                      ev["job"].get("title", "Unknown"),
+                                      ev["job"].get("url", ""), score)
+            except Exception as exc:
+                print(f"WARNING: could not record recommendation ({exc})")
+
         from doc_generator import generate_docs_for_job  # noqa: E402 (deferred: only needed here)
         from utils import load_json  # noqa: E402
         from kimi_client import KimiClient  # noqa: E402

@@ -484,6 +484,11 @@ function getApplicationInfo(job, decision) {
         if (app.status === "sent") {
             return { label: "Applied", badgeClass: "badge-applied", filterKey: "applied" };
         }
+        if (app.status === "recommended") {
+            // System picked it, user hasn't applied: distinct from both
+            // "Applied" and any recruiter response.
+            return { label: "Recommended", badgeClass: "badge-review", filterKey: "recommended" };
+        }
         const label = RESPONSE_LABELS[app.status] || RESPONSE_LABELS[app.response_type] || "Responded";
         const badgeClass = app.status === "rejected" ? "badge-rejected" : "badge-interview";
         return { label, badgeClass, filterKey: "responded" };
