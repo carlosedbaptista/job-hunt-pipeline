@@ -49,8 +49,12 @@ def generate_digest(max_jobs=5):
 
     # ERROR entries (API failures, score None) are excluded from the ranking:
     # they carry no signal and once polluted 8 weeks of history as fake 55s.
+    # NOT_EVALUATED (no posting text) is NOT an API error and is counted
+    # separately -- lumping them pointed you at API credits on a day the API
+    # was perfectly fine (2026-08-24).
     scored = [e for e in evaluations if e.get("score") is not None and e.get("decision") != "ERROR"]
-    errors = len(evaluations) - len(scored)
+    api_errors = sum(1 for e in evaluations if e.get("decision") == "ERROR")
+    no_text = sum(1 for e in evaluations if e.get("decision") == "NOT_EVALUATED")
 
     sorted_evals = sorted(scored, key=lambda x: x.get("score") or 0, reverse=True)
     top_jobs = sorted_evals[:max_jobs]
@@ -59,7 +63,8 @@ def generate_digest(max_jobs=5):
     digest = {
         "generated_at": timestamp.isoformat(),
         "total_evaluated": len(scored),
-        "evaluation_errors": errors,
+        "evaluation_errors": api_errors,
+        "not_evaluated_no_text": no_text,
         # Jobs whose posting text was too thin to judge (an e-mail alert card
         # carries a title and nothing else). utils.effective_decision caps
         # them at REVIEW, so tracking this ratio over time is how you see
@@ -81,6 +86,9 @@ def format_digest_text(digest, top_jobs):
     if digest.get("evaluation_errors"):
         lines.append(f"!! NOT evaluated (API errors): {digest['evaluation_errors']} "
                      f"-- check digests/evaluation_errors.txt and API credits")
+    if digest.get("not_evaluated_no_text"):
+        lines.append(f"   Skipped (no posting text): {digest['not_evaluated_no_text']} "
+                     f"-- not scored, no API call spent")
     if digest.get("scored_title_only"):
         lines.append(f"   Of these, {digest['scored_title_only']} had no posting text "
                      f"(scored on the title alone, capped at REVIEW)")

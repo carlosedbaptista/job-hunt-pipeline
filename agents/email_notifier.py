@@ -123,6 +123,77 @@ def load_generated_docs():
     return fresh
 
 
+DASHBOARD_URL = os.environ.get("DASHBOARD_URL", "https://carlosedbaptista.github.io/job-hunt-pipeline/")
+
+
+def load_ingestion_stats():
+    """Where postings stopped on their way to the scorer (written by
+    unified_ingestor). Missing on old runs -- the heartbeat degrades to
+    question marks, which is fine."""
+    try:
+        with open("digests/ingestion_stats_latest.json", encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {}
+
+
+def format_heartbeat_html(digest, stats):
+    """Quiet-day heartbeat: proof-of-life with the day's funnel, so a
+    MISSING email can only ever mean the pipeline is down."""
+    def row(label, value):
+        return (f'<tr><td style="padding:6px 14px 6px 0;color:#666">{esc(label)}</td>'
+                f'<td style="padding:6px 0;font-weight:600">{esc(value)}</td></tr>')
+
+    rows = "".join([
+        row("Postings ingested", stats.get("total_ingested", "?")),
+        row("Already seen (dedup)", stats.get("already_seen", "?")),
+        row("Dropped off-target", stats.get("dropped_off_target", "?")),
+        row("Deferred by cost cap (back next run)", stats.get("deferred_by_cap", "?")),
+        row("Sent to the scorer", stats.get("sent_to_evaluator", "?")),
+        row("Skipped -- no posting text", digest.get("not_evaluated_no_text", 0)),
+        row("API errors", digest.get("evaluation_errors", 0)),
+    ])
+
+    return f"""<html><head><meta charset="UTF-8"></head>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f5f5;margin:0;padding:20px">
+  <div style="max-width:560px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)">
+    <div style="background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:24px 28px">
+      <h1 style="margin:0;font-size:20px">Job Hunt -- quiet day</h1>
+      <p style="margin:6px 0 0;opacity:.9;font-size:14px">No new jobs scored today. That's the market, not a failure.</p>
+    </div>
+    <div style="padding:20px 28px">
+      <table style="border-collapse:collapse;font-size:14px">{rows}</table>
+      <p style="font-size:13px;color:#666;margin:18px 0 0">
+        Dashboard: <a href="{esc(DASHBOARD_URL)}">{esc(DASHBOARD_URL)}</a>
+      </p>
+      <p style="font-size:13px;color:#999;margin:14px 0 0;border-top:1px solid #eee;padding-top:14px">
+        This heartbeat exists so that a MISSING email always means the pipeline
+        is down. If you ever don't receive this, check the Actions tab.
+      </p>
+    </div>
+  </div>
+</body></html>"""
+
+
+def send_quiet_day_heartbeat(digest):
+    """Sends the quiet-day heartbeat. Returns True on success (a send failure
+    here is a real failure and must mark the step red)."""
+    sender_email = os.environ.get("GMAIL_SENDER", "")
+    recipient_email = os.environ.get("GMAIL_RECIPIENT", "")
+    app_password = os.environ.get("GMAIL_APP_PASSWORD")
+    if not all([sender_email, recipient_email, app_password]):
+        print("Gmail credentials not configured -- heartbeat not sent")
+        return False
+
+    stats = load_ingestion_stats()
+    subject = f"Job Hunt -- quiet day (system OK), {datetime.now().strftime('%B %d')}"
+    print("Quiet day: sending heartbeat email...")
+    success = send_email(recipient_email, subject, format_heartbeat_html(digest, stats),
+                         sender_email, app_password)
+    print("OK Heartbeat sent" if success else "X Heartbeat failed to send")
+    return success
+
+
 def format_digest_as_html(digest):
     top_jobs = digest.get("top_jobs", [])
     total = digest.get("total_evaluated", 0)
@@ -396,11 +467,11 @@ def notify_digest():
     top_jobs = digest.get("top_jobs", [])
     total_evaluated = digest.get("total_evaluated", 0)
     if not top_jobs or total_evaluated == 0:
-        # A day with no new jobs is normal, not a failure: returning False
-        # here made the step (and the whole run) red, training the owner to
-        # ignore red runs -- exactly when a real failure needs attention.
-        print("No jobs in digest -- nothing to send today (not an error)")
-        return True
+        # A quiet day used to skip the send entirely -- but then a missing
+        # email was indistinguishable from a dead pipeline (2026-08-24: the
+        # owner asked "what broke?" on a perfectly healthy run). Send the
+        # heartbeat instead; silence must only ever mean failure.
+        return send_quiet_day_heartbeat(digest)
 
     sender_email = os.environ.get("GMAIL_SENDER", "")
     recipient_email = os.environ.get("GMAIL_RECIPIENT", "")

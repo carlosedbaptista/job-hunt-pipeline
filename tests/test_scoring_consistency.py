@@ -13,6 +13,7 @@ Nothing here calls the Kimi API. The real-model behaviour probe lives in
 scripts/smoke_kimi_brain.py (gitignored, costs API calls).
 """
 import os
+from datetime import datetime
 
 import pytest
 
@@ -586,6 +587,90 @@ class TestDashboardSmoke:
 
 
 # ─── 9. Ingestion normalisation & excerpt window ─────────────────────────────
+
+class TestDigestCounts:
+    def test_not_evaluated_is_not_an_api_error(self, tmp_path, monkeypatch):
+        """2026-08-24: a no-text posting was lumped into 'API errors', telling
+        the owner to check API credits on a day the API was fine."""
+        import json
+        monkeypatch.chdir(tmp_path)
+        os.makedirs("digests", exist_ok=True)
+        evals = [
+            digest_eval(85),
+            digest_eval(None, decision="ERROR", recommendation="ERROR"),
+            digest_eval(None, decision="NOT_EVALUATED", recommendation="NOT_EVALUATED"),
+        ]
+        with open("digests/job_evaluations_latest.json", "w", encoding="utf-8") as f:
+            json.dump(evals, f)
+        digest, top_jobs = digest_generator.generate_digest()
+        assert digest["total_evaluated"] == 1
+        assert digest["evaluation_errors"] == 1
+        assert digest["not_evaluated_no_text"] == 1
+        text = digest_generator.format_digest_text(digest, top_jobs)
+        assert "API errors): 1" in text
+        assert "Skipped (no posting text): 1" in text
+
+
+class TestRelevanceGate:
+    def test_off_target_never_reaches_the_scorer(self, tmp_path, monkeypatch):
+        """The gate used to filter normalized_jobs AFTER fresh_jobs was
+        derived from them -- it logged drops that still flowed to the scorer
+        (dead gate, found 2026-08-24)."""
+        import json
+        from utils import is_off_target_title
+        assert is_off_target_title("Marketing Manager") is True  # example must stay valid
+        assert is_off_target_title("Data Engineer Intern") is False
+
+        monkeypatch.chdir(tmp_path)
+        db = str(tmp_path / "jobs.db")
+        jobs = [
+            {"company": "ACME", "title": "Marketing Manager", "location": "Zurich",
+             "description": "x" * 500, "url": "https://x/1", "portal": "adzuna"},
+            {"company": "ACME", "title": "Data Engineer Intern", "location": "Zurich",
+             "description": "x" * 500, "url": "https://x/2", "portal": "adzuna"},
+        ]
+        unified_ingestor.save_evaluator_input(jobs, db_path=db)
+        with open("digests/new_jobs_latest.json", encoding="utf-8") as f:
+            sent = json.load(f)
+        assert [j["title"] for j in sent] == ["Data Engineer Intern"]
+        with open("digests/ingestion_stats_latest.json", encoding="utf-8") as f:
+            stats = json.load(f)
+        assert stats["dropped_off_target"] == 1
+        assert stats["sent_to_evaluator"] == 1
+
+
+class TestQuietDayHeartbeat:
+    def test_quiet_day_sends_heartbeat(self, tmp_path, monkeypatch):
+        """2026-08-24: a 0-job day meant NO email at all -- indistinguishable
+        from a dead pipeline. The heartbeat must go out and report the funnel."""
+        import json
+        import email_notifier
+
+        monkeypatch.chdir(tmp_path)
+        os.makedirs("digests", exist_ok=True)
+        with open("digests/digest_latest.json", "w", encoding="utf-8") as f:
+            json.dump({"generated_at": datetime.now().isoformat(),
+                       "total_evaluated": 0, "evaluation_errors": 0,
+                       "not_evaluated_no_text": 1, "top_jobs": []}, f)
+        with open("digests/ingestion_stats_latest.json", "w", encoding="utf-8") as f:
+            json.dump({"total_ingested": 22, "already_seen": 21, "dropped_off_target": 0,
+                       "deferred_by_cap": 0, "sent_to_evaluator": 1}, f)
+
+        sent = {}
+        def fake_send(recipient, subject, html_content, sender, password, attachments=None):
+            sent.update(recipient=recipient, subject=subject, html=html_content)
+            return True
+
+        monkeypatch.setenv("GMAIL_SENDER", "sender@example.com")
+        monkeypatch.setenv("GMAIL_RECIPIENT", "me@example.com")
+        monkeypatch.setenv("GMAIL_APP_PASSWORD", "fake")
+        monkeypatch.setattr(email_notifier, "send_email", fake_send)
+
+        assert email_notifier.notify_digest() is True
+        assert sent["recipient"] == "me@example.com"
+        assert "quiet day" in sent["subject"]
+        assert "Already seen (dedup)" in sent["html"]
+        assert ">21<" in sent["html"]  # the funnel number made it into the email
 
 class TestIngestionNormalisation:
     def test_defaults(self):

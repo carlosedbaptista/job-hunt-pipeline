@@ -105,13 +105,15 @@ def save_evaluator_input(jobs: List[Dict[str, Any]], db_path: str = None) -> str
     normalized_jobs = [normalize_job_fields(j) for j in jobs]
 
     db_kwargs = {"db_path": db_path} if db_path else {}
+    reevaluate = os.environ.get("REEVALUATE_ALL", "").lower() in ("1", "true", "yes")
     # REEVALUATE_ALL is a TEST-MODE escape hatch (the workflow's `reevaluate`
     # input). It re-scores jobs already marked as seen, which is the only way
     # to exercise the pipeline end to end without spending job-board quota on
     # a fresh fetch. It costs real LLM calls, so it is opt-in and never set
     # by the scheduled runs.
-    if os.environ.get("REEVALUATE_ALL", "").lower() in ("1", "true", "yes"):
+    if reevaluate:
         fresh_jobs = normalized_jobs
+        already_seen = 0
         print(f"  🔁 Cross-run dedup: SKIPPED (REEVALUATE_ALL) -- "
               f"re-scoring all {len(fresh_jobs)} jobs")
     else:
@@ -128,13 +130,17 @@ def save_evaluator_input(jobs: List[Dict[str, Any]], db_path: str = None) -> str
     #
     # They are NOT marked as seen: the gate is free to re-apply next run, and
     # not persisting the decision means loosening it later brings them back.
-    before_gate = len(normalized_jobs)
-    normalized_jobs = [j for j in normalized_jobs
-                       if not is_off_target_title(j.get("title"))]
-    dropped = before_gate - len(normalized_jobs)
+    #
+    # Operates on fresh_jobs: filtering normalized_jobs here used to leave
+    # fresh_jobs untouched -- the gate logged its drops while the dropped
+    # jobs still flowed to the scorer (dead gate, found 2026-08-24).
+    before_gate = len(fresh_jobs)
+    fresh_jobs = [j for j in fresh_jobs if not is_off_target_title(j.get("title"))]
+    dropped = before_gate - len(fresh_jobs)
     if dropped:
         print(f"  🚫 Relevance gate: {dropped} clearly off-target "
               f"(marketing/sales/M&A with no technical element) dropped before scoring.")
+    new_after_dedup = len(fresh_jobs) + dropped
 
     # Spend the budget on the jobs it can buy the most with. Sources arrive
     # in a fixed order -- e-mail alerts first, Adzuna after -- and the cap
@@ -149,13 +155,30 @@ def save_evaluator_input(jobs: List[Dict[str, Any]], db_path: str = None) -> str
     fresh_jobs.sort(key=lambda j: len((j.get("description") or "").strip()), reverse=True)
 
     cap = max_evaluations_per_run()
+    deferred = 0
     if len(fresh_jobs) > cap:
+        deferred = len(fresh_jobs) - cap
         print(f"  💰 Cost guard: {len(fresh_jobs)} new jobs, evaluating the first {cap}; "
-              f"{len(fresh_jobs) - cap} stay unseen and come back next run.")
+              f"{deferred} stay unseen and come back next run.")
         fresh_jobs = fresh_jobs[:cap]
 
     # Only the jobs that WILL be evaluated get marked as seen.
     filter_new_jobs(fresh_jobs, mark_seen=True, **db_kwargs)
+
+    # Where postings stop on their way to the scorer -- read by
+    # email_notifier's quiet-day heartbeat and useful on its own.
+    stats = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "total_ingested": len(normalized_jobs),
+        "already_seen": already_seen,
+        "new_after_dedup": new_after_dedup,
+        "dropped_off_target": dropped,
+        "deferred_by_cap": deferred,
+        "sent_to_evaluator": len(fresh_jobs),
+        "reevaluate_all": reevaluate,
+    }
+    with open("digests/ingestion_stats_latest.json", "w", encoding="utf-8") as f:
+        json.dump(stats, f, ensure_ascii=False, indent=2)
 
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(fresh_jobs, f, ensure_ascii=False, indent=2)
