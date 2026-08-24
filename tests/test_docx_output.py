@@ -117,3 +117,44 @@ class TestLetter:
         """_safe_text exists for the PDF's Latin-1 fonts. Running it here would
         degrade the editable copy for nothing."""
         assert "—" in _text(letter)
+
+
+class TestEmployerLine:
+    """The CV's EXPERIENCE line used to carry two identical separators.
+
+    The profile stores a company as "Name -- what it is", because
+    job_evaluator splits on that to recover the bare name for the scoring
+    prompt. The CV then rendered "{title} -- {company}", producing:
+
+        AI Software Engineer Intern -- netzdenker -- Swiss-based digital
+        agency, DACH market | 06.2026 - Present
+
+    Two "--" on one line, structural and descriptive, indistinguishable. The
+    descriptor is worth keeping -- netzdenker is not a name a recruiter
+    recognises -- so what changes is the rendering, not the content.
+    """
+
+    def test_the_descriptor_becomes_a_parenthetical(self):
+        assert dg._format_employer("netzdenker -- Swiss-based digital agency") == \
+            "netzdenker (Swiss-based digital agency)"
+
+    def test_a_company_without_a_descriptor_is_untouched(self):
+        assert dg._format_employer("netzdenker") == "netzdenker"
+
+    def test_a_comma_in_the_name_is_not_a_separator(self):
+        """"Criminal Registry, High Court of Rio de Janeiro" is one name."""
+        name = "Criminal Registry, High Court of Rio de Janeiro"
+        assert dg._format_employer(name) == name
+
+    def test_only_the_first_separator_splits(self):
+        assert dg._format_employer("A -- b -- c") == "A (b -- c)"
+
+    def test_empty_input_is_safe(self):
+        assert dg._format_employer("") == ""
+        assert dg._format_employer(None) == ""
+
+    def test_the_evaluator_still_recovers_the_bare_name(self):
+        """job_evaluator splits the SAME stored string on "--" for its
+        prompt; changing the rendering must not change the storage."""
+        stored = "netzdenker -- Swiss-based digital agency, DACH market"
+        assert stored.split("--")[0].strip() == "netzdenker"

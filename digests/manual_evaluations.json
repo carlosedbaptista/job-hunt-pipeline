@@ -119,17 +119,18 @@
     "rescored": true
   },
   {
-    "score": 68,
+    "score": 72,
     "hard_blockers": [],
     "insufficient_info": true,
     "language_gap_intermediate": false,
-    "key_match_points": [],
+    "key_match_points": [
+      "Strong alignment: the role explicitly centers on AI Agentic solutions from ideation to production, LLM-powered automation, and operational efficiency — exactly the candidate's current work and stated growth direction. His hands-on experience with Claude/Kimi APIs, multi-step pipelines, and cloud deployment maps well to 'bring cutting-edge AI Agentic solutions from ideation to production.'"
+    ],
     "red_flags": [
-      "Requirements section was not visible — cannot assess degree requirements, years of experience, specific tech stack details, or whether German is mentioned anywhere in the full posting",
-      "Role title says 'AI Software Engineer' not 'Intern' — may be calibrated for experienced hire despite lab context; seniority level ambiguous from truncated text",
-      "Avaloq's core domain is banking/wealth management software — some financial regulatory context may be assumed though not required",
-      "Candidate's A2 German may or may not be relevant depending on unstated requirements; English appears to be working language from posting",
-      "No explicit mention of 'internship' or 'junior' in visible text — could be mid-level role misaligned with his experience level",
+      "Job description was truncated; requirements/qualifications section not visible — cannot assess explicit seniority expectations, degree requirements, or hard skill gaps",
+      "Avaloq's core domain is banking/financial software; while the AI Lab is cross-functional, some financial services context may be assumed at team level",
+      "No visibility on whether role is internship, junior, or mid-level — title says 'AI Software Engineer' without qualifier, suggesting potential experience expectation above intern level",
+      "German language requirement unknown due to truncated description; Zurich-based financial firms sometimes have German expectations not visible here",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -140,19 +141,18 @@
       "portal": "manual",
       "description": "Job Description We are seeking a highly skilled, fast learner and well rounded, AI Software Engineer to join our AI innovation lab team. The ideal candidate will lead AI experiments and bring cutting-edge AI Agentic solutions from ideation to production. The mission of Avaloq AI Lab is to improve operational efficiency and augment Back-to-Front Office user experiences, through the application of state-of-the-art AI technology. We work collaboratively with industry leaders to deliver responsible"
     },
-    "technical_fit": "Strong alignment on core stack: Python, LLM APIs, automation pipelines, Docker, cloud infrastructure, CI/CD — all directly relevant to building agentic AI solutions. The 'AI innovation lab' framing and 'ideation to production' ownership matches his explicit motivation for zero-to-one building. Missing requirements section prevents full assessment of specific tooling gaps (e.g., Azure vs GCP, specific frameworks like LangChain/LangGraph, or backend languages beyond his Node.js).",
-    "contextual_fit": "Avaloq is a financial software provider (banking/wealth management), but candidate is explicitly open to unfamiliar domains. Zurich-based with permit B already held — no relocation or sponsorship friction. Two-week notice is viable for internship/junior transition. The 'AI Lab' structure suggests greenfield experimentation, which fits his preference for ownership over maintenance.",
+    "technical_fit": "Strong alignment: the role explicitly centers on AI Agentic solutions from ideation to production, LLM-powered automation, and operational efficiency — exactly the candidate's current work and stated growth direction. His hands-on experience with Claude/Kimi APIs, multi-step pipelines, and cloud deployment maps well to 'bring cutting-edge AI Agentic solutions from ideation to production.'",
+    "contextual_fit": "Good. Avaloq is a financial software firm, but the role is in an AI innovation lab focused on cross-functional operational efficiency and user experience augmentation — not deep domain-specific finance engineering. The candidate's openness to new domains and his 'zero to production' ownership mentality fit the lab's experimental-to-production mission. His permit B and 2-week notice are clean logistics.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Positive signals: lab environment implies learning-oriented, experiment-driven culture. 'Fast learner' and 'well rounded' in description values adaptability — matches career-changer trajectory. 'Collaboratively with industry leaders' may mean some stakeholder management, but core mission is technical delivery.",
+    "culture_fit": "Strong — 'fast learner,' 'well rounded,' 'lead AI experiments,' and collaborative innovation lab language suggest a builder culture that values autonomy and end-to-end ownership, matching the candidate's stated motivation.",
     "concerns": [
-      "Requirements section was not visible — cannot assess degree requirements, years of experience, specific tech stack details, or whether German is mentioned anywhere in the full posting",
-      "Role title says 'AI Software Engineer' not 'Intern' — may be calibrated for experienced hire despite lab context; seniority level ambiguous from truncated text",
-      "Avaloq's core domain is banking/wealth management software — some financial regulatory context may be assumed though not required",
-      "Candidate's A2 German may or may not be relevant depending on unstated requirements; English appears to be working language from posting",
-      "No explicit mention of 'internship' or 'junior' in visible text — could be mid-level role misaligned with his experience level"
+      "Job description was truncated; requirements/qualifications section not visible — cannot assess explicit seniority expectations, degree requirements, or hard skill gaps",
+      "Avaloq's core domain is banking/financial software; while the AI Lab is cross-functional, some financial services context may be assumed at team level",
+      "No visibility on whether role is internship, junior, or mid-level — title says 'AI Software Engineer' without qualifier, suggesting potential experience expectation above intern level",
+      "German language requirement unknown due to truncated description; Zurich-based financial firms sometimes have German expectations not visible here"
     ],
-    "recommendation": "SKIP",
-    "decision": "SKIP",
+    "recommendation": "REVIEW",
+    "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-08-23T08:03:46.550223+00:00",
     "rescored": true
@@ -163,14 +163,14 @@
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [
-      "Strong. The role centers on LLM orchestration, agent frameworks, evals, and building production AI systems — exactly what the candidate does today and wants to go deeper into. TypeScript is a gap, but the posting explicitly welcomes candidates confident they can get there fast, and his track record (Python, Node.js, rapid stack adoption as a career changer) supports this. His NetSuite internship gives him direct ERP exposure, a listed bonus. The internal tooling track is a near-perfect match for his zero-to-production ownership drive.",
-      "Excellent. ETH/HSG spinout, Zurich-based, 6-month internship with real ownership from day one, live customer work, and explicit path to permanent role. The role shape — building not supporting, ambiguity tolerance, fast feedback cycles, working with non-technical stakeholders — mirrors his self-described motivation precisely. His legal background and court experience may even differentiate him for enterprise client-facing FDE work."
+      "Strong. The role centers on LLM orchestration, agent frameworks, and building production systems end-to-end — exactly what the candidate seeks. His Python/pandas/SQL/REST API/LLM API experience maps directly. TypeScript is required but he's a fast learner picking up new stacks; his Node.js background helps. The internal tooling track ('days and weeks, not quarters') and FDE track ('own pieces of a live customer engagement') both offer the ownership he craves. NetSuite exposure from his past internship is a direct bonus hit.",
+      "Excellent. ETH/HSG spinout, Zurich-based, 6-month internship with path to permanent — perfect for his permit situation and 2-week notice. The 'real ownership from day one' language mirrors his stated motivation almost verbatim. He'd get to build agentic systems in production for Fortune 500 customers or ship AI internal tools fast — zero-to-production ownership in both tracks. The 'entrepreneurial mindset, built something people used' criterion fits his career-change story and self-directed project work."
     ],
     "red_flags": [
-      "TypeScript fluency not yet demonstrated — mitigated by Node.js background and role's explicit 'confident you can get there fast' framing",
-      "ERP domain exposure is limited to NetSuite internship; SAP/Dynamics/Oracle are different beasts, though this is a 'bonus' not requirement",
-      "German only 'a plus' — no issue, but A2 level means limited advantage in German-speaking client environments if FDE work leans DACH-heavy",
-      "6-month fixed term may not align perfectly with his 2-week notice if he's seeking longer runway, though path to perm is stated"
+      "TypeScript not in current stack — confident learner claim needs to be real, but Node.js helps bridge",
+      "No explicit mention of Docker/CI-CD in role, though likely used; his infra skills may be underutilized",
+      "ERP domain depth (SAP/Dynamics) is bonus not required, but FDE work may have steep learning curve initially",
+      "6-month internship is shorter than ideal for deep agentic system ownership, though 'path to permanent' mitigates"
     ],
     "job": {
       "company": "BLP Digital AG",
@@ -180,15 +180,15 @@
       "portal": "manual",
       "description": "Join BLP Digital — The #1 Solution for ERP Automation \n BLP Digital is redefining ERP automation with agentic AI. Spun out of ETH Zurich and HSG, we build AI agents that automate finance, procurement, logistics, sales, and more for some of the world's largest enterprises. We solve real enterprise problems with cutting-edge technology and a strong sense of ownership.\n Our solution is live in 40+ countries, used by 550+ customers, and automates 70,000+ processes every day, including for Fortune 500 companies. As one of Switzerland's fastest-growing SaaS scaleups, our success stems from deep expertise in technology and business processes, delivering a product with outstanding product-market fit, proven by a growing global customer base.\n We've recently welcomed Goldman Sachs Alternatives as a growth investor, and we're now expanding into the UK with the launch of our London office. We are just getting started. Ready to build the future? Join BLP Digital today. \n \n The Role \n We’re hiring two Software Engineering Interns to join our Zurich team for a 6-month internship. You’ll work closely with our CTO, Sven Beck and with our project and sales teams — not on the sidelines, but on live work.\n Depending on where the business’s priorities sit at any given time, your day-to-day will flex between two areas of our engineering work:\n Forward Deployed Engineering (FDE) — building production systems directly inside customer environments, alongside a Senior Consultant and other FDEs.\n\n Internal Tooling & Applied AI — building the AI-powered internal tools that make our own hiring, finance, and operations run faster.\n\n What You’ll Do \n On Forward Deployed Engineering work \n Sit with end-users, process owners, and client engineers to understand the real workflow — and the real problem underneath the stated one.\n\n Help translate the target-state process into a concrete technical solution: architecture, data model, integrations, agent and workflow design.\n\n Build full-stack: TypeScript backend, integrations, LLM orchestration, evals.\n\n Support demos with real users and help fold their feedback into the next iteration.\n\n Help own observability and evals once a solution is live, iterating until it’s reliable under the customer’s real conditions.\n\n On Internal Tooling & Applied AI work \n Build and ship AI-powered internal tools fast — days and weeks, not quarters.\n\n Evaluate, integrate, and chain the latest AI models, APIs, and frameworks (LLMs, agent frameworks, embedding pipelines, AI coding tools) into internal solutions.\n\n Write clean, maintainable code that integrates with our existing systems — APIs, databases, third-party services.\n\n[... middle of the posting omitted ...]\nodern AI tooling: LLM APIs, AI coding assistants (Claude Code, Cursor, or similar), agent frameworks, or workflow automation.\n\n Comfortable with TypeScript, or confident you can get there fast — you pick up new tools and stacks quickly.\n\n A fast-moving, entrepreneurial mindset — you’ve built something (a side project, a hack, a tool people actually used) rather than just studied how to.\n\n You enjoy working with non-technical teams and can turn a messy, half-stated problem into a clear, working solution.\n\n Comfortable with ambiguity and fast feedback cycles.\n\n Fluent in English; German is a plus.\n\n Bonus: exposure to ERP or business-process environments (SAP, Microsoft Dynamics, Oracle, NetSuite, or similar), or tools like Make, n8n, Retool, or Supabase.\n\n What We Offer \n Solve real problems, fast — join a high-growth deep-tech startup tackling real-world challenges for global industry leaders.\n\n Work at the frontier — use and build with state-of-the-art tech: the latest LLMs, agent frameworks, and AI coding tools.\n\n Real ownership from day one — shape internal tooling from the ground up, or own pieces of a live customer engagement.\n\n A clear, fast path to a permanent role for the right candidates.\n\n Exceptional colleagues — you’ll be growing alongside people from exceptional academic and professional backgrounds."
     },
-    "technical_fit": "Strong. The role centers on LLM orchestration, agent frameworks, evals, and building production AI systems — exactly what the candidate does today and wants to go deeper into. TypeScript is a gap, but the posting explicitly welcomes candidates confident they can get there fast, and his track record (Python, Node.js, rapid stack adoption as a career changer) supports this. His NetSuite internship gives him direct ERP exposure, a listed bonus. The internal tooling track is a near-perfect match for his zero-to-production ownership drive.",
-    "contextual_fit": "Excellent. ETH/HSG spinout, Zurich-based, 6-month internship with real ownership from day one, live customer work, and explicit path to permanent role. The role shape — building not supporting, ambiguity tolerance, fast feedback cycles, working with non-technical stakeholders — mirrors his self-described motivation precisely. His legal background and court experience may even differentiate him for enterprise client-facing FDE work.",
+    "technical_fit": "Strong. The role centers on LLM orchestration, agent frameworks, and building production systems end-to-end — exactly what the candidate seeks. His Python/pandas/SQL/REST API/LLM API experience maps directly. TypeScript is required but he's a fast learner picking up new stacks; his Node.js background helps. The internal tooling track ('days and weeks, not quarters') and FDE track ('own pieces of a live customer engagement') both offer the ownership he craves. NetSuite exposure from his past internship is a direct bonus hit.",
+    "contextual_fit": "Excellent. ETH/HSG spinout, Zurich-based, 6-month internship with path to permanent — perfect for his permit situation and 2-week notice. The 'real ownership from day one' language mirrors his stated motivation almost verbatim. He'd get to build agentic systems in production for Fortune 500 customers or ship AI internal tools fast — zero-to-production ownership in both tracks. The 'entrepreneurial mindset, built something people used' criterion fits his career-change story and self-directed project work.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Strong alignment. High-ownership, fast-moving, entrepreneurial mindset is explicitly sought; candidate's side-project/hack mentality and proven career change demonstrate this. The 'build something people actually used' criterion fits his LLM scoring pipeline and production dashboards.",
+    "culture_fit": "Strong match. Fast-moving, ambiguous, feedback-cycles — aligns with his 'audit my own output and fix it' iterative style. Working with non-technical teams to turn messy problems into working solutions: exactly his law-court-to-engineering translation skill. The 'not on the sidelines, but on live work' framing is what he explicitly wants.",
     "concerns": [
-      "TypeScript fluency not yet demonstrated — mitigated by Node.js background and role's explicit 'confident you can get there fast' framing",
-      "ERP domain exposure is limited to NetSuite internship; SAP/Dynamics/Oracle are different beasts, though this is a 'bonus' not requirement",
-      "German only 'a plus' — no issue, but A2 level means limited advantage in German-speaking client environments if FDE work leans DACH-heavy",
-      "6-month fixed term may not align perfectly with his 2-week notice if he's seeking longer runway, though path to perm is stated"
+      "TypeScript not in current stack — confident learner claim needs to be real, but Node.js helps bridge",
+      "No explicit mention of Docker/CI-CD in role, though likely used; his infra skills may be underutilized",
+      "ERP domain depth (SAP/Dynamics) is bonus not required, but FDE work may have steep learning curve initially",
+      "6-month internship is shorter than ideal for deep agentic system ownership, though 'path to permanent' mitigates"
     ],
     "recommendation": "APPLY",
     "decision": "APPLY",

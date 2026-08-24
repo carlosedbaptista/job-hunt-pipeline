@@ -234,6 +234,27 @@ def _order_skills_for_job(skills, description):
     return wanted + rest
 
 
+def _format_employer(company: str) -> str:
+    """"Name -- what it is" becomes "Name (what it is)".
+
+    The profile stores the descriptor after a "--" separator, which
+    job_evaluator splits on to get the bare company name. Rendering it
+    verbatim put TWO "--" on one CV line:
+
+        AI Software Engineer Intern -- netzdenker -- Swiss-based digital
+        agency, DACH market | 06.2026 - Present
+
+    where the structural separator and the descriptor separator are the same
+    token, so a reader cannot tell which is which. Parentheses make the
+    descriptor visibly subordinate, which is what it is -- and the descriptor
+    earns its place: netzdenker is not a name a recruiter recognises.
+    """
+    name, _, descriptor = str(company or "").partition("--")
+    name = name.strip()
+    descriptor = descriptor.strip()
+    return f"{name} ({descriptor})" if descriptor else name
+
+
 def _role_keywords(title):
     title_lower = title.lower()
     if any(k in title_lower for k in ["data", "analyst", "business intelligence", "bi"]):
@@ -353,7 +374,7 @@ def cv_docx(profile, job, summary, path):
 
     _docx_heading(d, "EXPERIENCE")
     for exp in profile["experience"]:
-        _docx_body(d, f"{exp['title']} - {exp['company']} | {exp['period']}",
+        _docx_body(d, f"{exp['title']} - {_format_employer(exp['company'])} | {exp['period']}",
                    bold=True, space_after=0)
         for b in exp["bullets"]:
             bullet = d.add_paragraph(b, style="List Bullet")
@@ -475,7 +496,8 @@ def cv_pdf(profile, job, summary, path):
         # multi_cell, not cell: cell() clips at the right margin, and these
         # lines are long ("Business Process & NetSuite Intern -- Gestora de
         # Inteligencia de Credito S.A. -- credit-intelligence bureau | ...").
-        pdf.multi_cell(w, 5, _safe_text(f"{exp['title']} -- {exp['company']} | {exp['period']}"),
+        pdf.multi_cell(w, 5, _safe_text(
+            f"{exp['title']} - {_format_employer(exp['company'])} | {exp['period']}"),
                        new_x=XPos.LMARGIN, new_y=YPos.NEXT)
         pdf.set_font("Helvetica", "", 10)
         for b in exp["bullets"]:

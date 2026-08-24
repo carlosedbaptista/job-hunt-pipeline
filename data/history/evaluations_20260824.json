@@ -28,18 +28,17 @@
     "evaluated_at": "2026-08-24T05:39:03.842742+00:00"
   },
   {
-    "score": 52,
+    "score": 55,
     "hard_blockers": [],
     "insufficient_info": true,
-    "language_gap_intermediate": true,
+    "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description was truncated — requirements, seniority expectations, and language requirements were not visible; score is conservative due to missing information",
-      "Title explicitly says 'Senior' — candidate is seeking internship or junior role with ownership, not senior position",
-      "Location is Winterthur, not Zurich/Zug — commutable but less ideal for someone based in Zurich Area",
-      "German-language job posting ('w/m/d', German description) suggests German workplace context; candidate's German is only A2, which may be insufficient if professional German interaction is expected",
-      "Company domain unclear from description — Bison Schweiz AG appears to be real estate/property management adjacent, which may not offer the technical depth in agentic systems the candidate seeks",
-      "No evidence of LLM/agentic systems specifically — 'classical forecasts to modern AI applications' is vague and could mean traditional ML, not agentic LLM work",
+      "Job description was truncated; requirements, qualifications, and full seniority expectations were not visible — score kept conservative pending full details.",
+      "'Senior' title with team-based deployment language suggests role scope mismatched with candidate's explicit intern/junior-level search and ownership goals.",
+      "Location in Winterthur is outside Zurich/Zug core; commute or relocation friction.",
+      "German-language job posting ('Mit unserem wachsenden AI-Umfeld...') may indicate German as working language, though not explicitly stated as required; candidate's German is A2.",
+      "No evidence of agentic systems or LLM-specific work in visible description — 'klassischen Prognosen bis hin zu modernen AI-Anwendungen' is broad and could mean traditional ML/statistical forecasting rather than LLM/agentic pipelines.",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -50,35 +49,35 @@
       "portal": "adzuna",
       "description": "Senior AI Engineer (w/m/d) Mit unserem wachsenden AI-Umfeld entwickeln wir Lösungen, die Daten nutzbar machen, Prozesse automatisieren und unsere Kunden im Alltag konkret unterstützen – von klassischen Prognosen bis hin zu modernen AI-Anwendungen. In dieser Rolle arbeitest du an der Umsetzung solcher Lösungen und bringst sie gemeinsam mit dem Team in den produktiven Einsatz. Wenn du Freude daran hast, technische Lösungen pragmatisch umzusetzen, dich in neue Themen einzuarbeiten und Verantwortun…"
     },
-    "technical_fit": "Partial. The visible description mentions AI solutions, data utilization, process automation, and bringing solutions to production — all aligned with the candidate's interests. However, the title says 'Senior AI Engineer' and the description emphasizes 'growing AI environment' without clarity on whether junior/intern roles exist. The candidate's skill set (Python, LLM APIs, automation pipelines, Docker, CI/CD) matches the technical direction, but seniority level is mismatched.",
-    "contextual_fit": "Weak. Winterthur is in the Zurich canton but not Zurich/Zug city area — commutable but not ideal. The 'Senior' title and the fact that this is a senior role at an established company (Bison Schweiz AG appears to be a real estate/IT services firm) suggests the candidate would be underqualified and potentially slotted into support rather than ownership. The truncated description mentions 'together with the team' which hints at collaborative execution rather than individual ownership.",
+    "technical_fit": "Partial. The role involves AI solution development, data utilization, process automation, and production deployment — all aligned with the candidate's experience. However, the 'Senior' title and implied scope (growing AI environment, team-based production deployment) suggests expectations beyond intern/junior level. The candidate's hands-on LLM pipeline and automation experience is relevant but the seniority gap is significant.",
+    "contextual_fit": "Weak. Winterthur is not Zurich/Zug (though commutable, it's a distinct market). More critically, the visible description emphasizes 'mit unserem wachsenden AI-Umfeld' and team-based delivery ('gemeinsam mit dem Team'), which lacks the zero-to-production individual ownership the candidate explicitly seeks. The 'Senior' framing and team-collaborative language suggests embedded specialist rather than autonomous builder role.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown from truncated description. 'Pragmatic implementation' and 'taking responsibility' are mentioned, which partially aligns with candidate's ownership drive, but insufficient data.",
+    "culture_fit": "Moderate. Pragmatic implementation focus ('technische Lösungen pragmatisch umzusetzen') and willingness to learn new topics align with candidate's career-change adaptability. However, the team-based, established-environment framing contradicts his core motivation for individual ownership from day one.",
     "concerns": [
-      "Job description was truncated — requirements, seniority expectations, and language requirements were not visible; score is conservative due to missing information",
-      "Title explicitly says 'Senior' — candidate is seeking internship or junior role with ownership, not senior position",
-      "Location is Winterthur, not Zurich/Zug — commutable but less ideal for someone based in Zurich Area",
-      "German-language job posting ('w/m/d', German description) suggests German workplace context; candidate's German is only A2, which may be insufficient if professional German interaction is expected",
-      "Company domain unclear from description — Bison Schweiz AG appears to be real estate/property management adjacent, which may not offer the technical depth in agentic systems the candidate seeks",
-      "No evidence of LLM/agentic systems specifically — 'classical forecasts to modern AI applications' is vague and could mean traditional ML, not agentic LLM work"
+      "Job description was truncated; requirements, qualifications, and full seniority expectations were not visible — score kept conservative pending full details.",
+      "'Senior' title with team-based deployment language suggests role scope mismatched with candidate's explicit intern/junior-level search and ownership goals.",
+      "Location in Winterthur is outside Zurich/Zug core; commute or relocation friction.",
+      "German-language job posting ('Mit unserem wachsenden AI-Umfeld...') may indicate German as working language, though not explicitly stated as required; candidate's German is A2.",
+      "No evidence of agentic systems or LLM-specific work in visible description — 'klassischen Prognosen bis hin zu modernen AI-Anwendungen' is broad and could mean traditional ML/statistical forecasting rather than LLM/agentic pipelines."
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-24T12:43:15.180197+00:00"
+    "evaluated_at": "2026-08-24T12:43:15.180197+00:00",
+    "rescored": true
   },
   {
-    "score": 45,
+    "score": 58,
     "hard_blockers": [],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description TRUNCATED — requirements, qualifications, tech stack, and seniority expectations not visible; score conservative accordingly",
-      "Title is 'Senior AI Engineer' while candidate explicitly seeks internship or junior role — likely experience/seniority mismatch even if requirements were flexible",
-      "'Senior' implies mentorship/leadership expectations opposite to candidate's goal of being the junior builder who owns greenfield work",
-      "Winterthur commute from Zurich area is feasible but not ideal for an intern/junior role where flexibility matters",
-      "No evidence of LLM/agentic systems focus in visible text — 'classic forecasts to modern AI applications' is broad and could mean traditional ML, not agentic pipelines",
+      "Job description was TRUNCATED — requirements, seniority expectations, years of experience, degree requirements, and language requirements were not visible. This makes evaluation highly uncertain.",
+      "Title says 'Senior AI Engineer' — candidate is explicitly seeking internship or junior roles. Even if requirements are flexible, the title signals a mismatch in expected seniority level.",
+      "'Together with the team' framing suggests collaborative/team execution rather than the individual ownership ('own it end to end') the candidate prioritizes.",
+      "No visibility on whether this is building greenfield AI/automation vs. maintaining/implementing existing solutions.",
+      "German language requirement unknown due to truncation — Bison is a German name and DACH-market context raises possibility of German requirements not yet visible.",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -89,36 +88,38 @@
       "portal": "adzuna",
       "description": "With our growing AI environment, we develop solutions that make data usable, automate processes, and concretely support our customers in everyday life – from classic forecasts to modern AI applications. In this role, you work on the implementation of such solutions and bring them into productive use together with the team. If you enjoy pragmatically implementing technical solutions, quickly familiarising yourself with new topics, and taking responsibility, then you are a perfect fit for us. Sen…"
     },
-    "technical_fit": "Partial. The visible description mentions AI solutions, data usability, process automation, and bringing solutions to production — all aligned with candidate's experience. However, 'Senior AI Engineer' title and the truncated description mean seniority expectations, specific tech stack, and scope of ownership are unknown. The candidate is explicitly seeking junior/intern roles with growth trajectory, not senior positions.",
-    "contextual_fit": "Weak. Winterthur is in the Zurich metropolitan area (commutable), permit B valid, 2-week notice fine. But the 'Senior' title is a strong mismatch with candidate's stated goals — he wants 'internship or junior role' with 'real ownership from day one rather than support work.' A senior role implies the opposite expectation: that he'd support others, not be supported in growth. The 'taking responsibility' phrasing could hint at ownership, but seniority framing undermines this.",
+    "technical_fit": "Partial. The visible description mentions AI solutions, data usability, process automation, and bringing solutions into production — all aligned with the candidate's interests. However, the title says 'Senior AI Engineer' and the description notes 'together with the team,' which may imply less individual ownership than he seeks. The truncated description prevents assessment of whether this is actually a senior-level hire or mis-titled, and whether the work is hands-on building vs. maintenance/execution of existing systems.",
+    "contextual_fit": "Moderate. Bison Schweiz AG appears to be a Swiss company in the DACH market, which fits his current context. Winterthur is in the Zurich canton, commutable from Zurich. However, the 'Senior' title and team-based framing ('together with the team') suggest this may not offer the 'from zero to production, own it' internship/junior experience he explicitly wants. The candidate is deliberately seeking internship or junior roles with real ownership, not senior positions where he may be expected to mentor or lead.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Moderately positive signals: pragmatic implementation, quick learning, responsibility — match candidate's self-described style. But 'together with the team' is ambiguous on ownership vs. collaboration hierarchy. Bison Schweiz AG appears to be a data/AI services firm, which could mean client project variety (good for learning) or standardization pressure (less greenfield).",
+    "culture_fit": "Unclear from truncated description. 'Pragmatically implementing,' 'quickly familiarising yourself with new topics,' and 'taking responsibility' sound positive, but 'together with the team' and 'Senior' title suggest collaborative execution rather than solo ownership. Culture signals are too thin to score strongly.",
     "concerns": [
-      "Job description TRUNCATED — requirements, qualifications, tech stack, and seniority expectations not visible; score conservative accordingly",
-      "Title is 'Senior AI Engineer' while candidate explicitly seeks internship or junior role — likely experience/seniority mismatch even if requirements were flexible",
-      "'Senior' implies mentorship/leadership expectations opposite to candidate's goal of being the junior builder who owns greenfield work",
-      "Winterthur commute from Zurich area is feasible but not ideal for an intern/junior role where flexibility matters",
-      "No evidence of LLM/agentic systems focus in visible text — 'classic forecasts to modern AI applications' is broad and could mean traditional ML, not agentic pipelines"
+      "Job description was TRUNCATED — requirements, seniority expectations, years of experience, degree requirements, and language requirements were not visible. This makes evaluation highly uncertain.",
+      "Title says 'Senior AI Engineer' — candidate is explicitly seeking internship or junior roles. Even if requirements are flexible, the title signals a mismatch in expected seniority level.",
+      "'Together with the team' framing suggests collaborative/team execution rather than the individual ownership ('own it end to end') the candidate prioritizes.",
+      "No visibility on whether this is building greenfield AI/automation vs. maintaining/implementing existing solutions.",
+      "German language requirement unknown due to truncation — Bison is a German name and DACH-market context raises possibility of German requirements not yet visible."
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-24T12:43:15.180197+00:00"
+    "evaluated_at": "2026-08-24T12:43:15.180197+00:00",
+    "rescored": true
   },
   {
     "score": 55,
     "hard_blockers": [
-      "German is the working language of the role (job posting in German, NZZ is a German-language media company, location in Zollikon). The candidate's German is A2, insufficient for a 'Product & Process Owner' role in a German-speaking organization where stakeholder communication with internal teams and customers would require professional German."
+      "German language requirement implied by German-language posting and NZZ's German-language market; role title and description in German suggest working language is German, likely at professional/fluent level required for 'Product & Process Owner' stakeholder-facing responsibilities"
     ],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: German is the working language of the role (job posting in German, NZZ is a German-language media company, location in Zollikon). The candidate's German is A2, insufficient for a 'Product & Process Owner' role in a German-speaking organization where stakeholder communication with internal teams and customers would require professional German.",
-      "Job description was truncated—requirements section not visible, making full assessment impossible; score kept conservative.",
-      "Role title suggests significant product/process ownership and customer success focus, not the hands-on agentic systems engineering the candidate seeks.",
-      "Even if technical requirements were lighter, the 'Process Owner' framing implies organizational authority and stakeholder management in German.",
-      "NZZ's core business is publishing, not tech/data platform building—limited growth trajectory toward candidate's stated goals.",
+      "Blocker: German language requirement implied by German-language posting and NZZ's German-language market; role title and description in German suggest working language is German, likely at professional/fluent level required for 'Product & Process Owner' stakeholder-facing responsibilities",
+      "Job description truncated — requirements section not visible; seniority, experience requirements, and actual technical depth unknown",
+      "Role shape appears to be process/product ownership in Customer Success, not hands-on AI/data platform engineering",
+      "'Product Owner' title typically means less coding/building, more coordination — candidate explicitly wants to build and ship, not support",
+      "Media company context may mean slower tech adoption and less agentic/LLM-native environment than candidate seeks",
+      "German-language posting strongly suggests German working proficiency required; candidate at A2, far below likely need",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -129,36 +130,35 @@
       "portal": "adzuna",
       "description": "Product & Process Owner Customer Success & AI Automation (m/w) 80-100% Die NZZ gehört zu den bedeutendsten privaten Medienunternehmen der Schweiz. Wir konzentrieren uns auf qualitativ hochstehende, unabhängige Publizistik und vertreten eine liberale Weltanschauung. Mit unseren Produkten bieten wir unseren Nutzerinnen und Nutzern täglich Orientierung und Inspiration. Neben den beiden Flaggschiffen «Neue Zeitung» und «NZZ am Sonntag» gehören diverse weitere Titel, Veranstaltungsreihen, Podcasts u…"
     },
-    "technical_fit": "Partial. The title mentions 'AI Automation' which aligns with the candidate's LLM pipeline and automation experience, but 'Customer Success' and 'Product & Process Owner' suggest a hybrid role likely heavier on process ownership, stakeholder management, and product management than hands-on engineering. The candidate's core strength is building from zero to production, not owning customer success processes.",
-    "contextual_fit": "Weak. NZZ is a traditional media company, not a tech-native environment where agentic systems and data platform engineering would be central. The role shape appears to be process/product ownership rather than builder ownership. The candidate's explicit goal is 'internship or junior role' with 'real ownership from day one' in agentic systems—this reads as a more established, possibly senior-ish hybrid role.",
+    "technical_fit": "Partial. The title mentions 'AI Automation' which aligns with the candidate's LLM pipeline and automation experience, but 'Product & Process Owner' and 'Customer Success' framing suggests a hybrid role likely heavier on process ownership, stakeholder management, and product management than hands-on engineering. The candidate's core strength is building end-to-end, not owning processes in a CS context.",
+    "contextual_fit": "Weak. NZZ is a traditional media company; the role appears to sit in Customer Success rather than engineering or a data/AI platform team. The candidate seeks 'real ownership from day one' in building agentic systems and data platforms, not process optimization within a CS function. The 'Product Owner' aspect may mean roadmap/stakeholder work over greenfield building.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unclear. Media company culture may value editorial independence and traditional hierarchies; candidate's self-directed, zero-to-production builder mentality may clash with process-owner responsibilities.",
+    "culture_fit": "Unclear. NZZ's 'liberal Weltanschauung' and traditional media identity don't obviously conflict, but the CS/PO hybrid shape is a mismatch with the candidate's builder identity. No signal of startup-like 'zero to production' ownership.",
     "concerns": [
-      "Job description was truncated—requirements section not visible, making full assessment impossible; score kept conservative.",
-      "Role title suggests significant product/process ownership and customer success focus, not the hands-on agentic systems engineering the candidate seeks.",
-      "Even if technical requirements were lighter, the 'Process Owner' framing implies organizational authority and stakeholder management in German.",
-      "NZZ's core business is publishing, not tech/data platform building—limited growth trajectory toward candidate's stated goals."
+      "Job description truncated — requirements section not visible; seniority, experience requirements, and actual technical depth unknown",
+      "Role shape appears to be process/product ownership in Customer Success, not hands-on AI/data platform engineering",
+      "'Product Owner' title typically means less coding/building, more coordination — candidate explicitly wants to build and ship, not support",
+      "Media company context may mean slower tech adoption and less agentic/LLM-native environment than candidate seeks",
+      "German-language posting strongly suggests German working proficiency required; candidate at A2, far below likely need"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-24T12:43:15.180197+00:00"
+    "evaluated_at": "2026-08-24T12:43:15.180197+00:00",
+    "rescored": true
   },
   {
     "score": 55,
-    "hard_blockers": [
-      "German language requirement implied by German-language job posting title and description; 'm/w' and full German text strongly suggests German is mandatory working language, likely at professional level or above given 'Product & Process Owner' stakeholder-facing responsibilities in a Swiss-German company"
-    ],
+    "hard_blockers": [],
     "insufficient_info": true,
-    "language_gap_intermediate": false,
+    "language_gap_intermediate": true,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: German language requirement implied by German-language job posting title and description; 'm/w' and full German text strongly suggests German is mandatory working language, likely at professional level or above given 'Product & Process Owner' stakeholder-facing responsibilities in a Swiss-German company",
-      "Job description truncated — requirements, seniority, experience level, and technical stack entirely unknown; scored conservatively due to this",
-      "Role title combines 'Customer Success' with 'AI Automation' — likely more process/product management than hands-on engineering, conflicting with candidate's desire for builder ownership",
-      "German-language posting in Swiss-German media company with stakeholder-facing title strongly implies German working proficiency needed, likely above candidate's A2",
-      "No evidence of LLM/agentic systems depth in visible text; 'AI Automation' could mean basic RPA or rule-based automation rather than LLM-powered pipelines",
-      "Candidate's permit B and 2-week notice are non-issues, but role may be permanent (80-100%) rather than internship/junior, though truncated text prevents confirmation",
+      "Job description was truncated — requirements, seniority level, and technical depth completely unknown; score is conservative due to missing information",
+      "Role title emphasizes 'Customer Success' and 'Process Owner' over engineering — likely not a builder role with real technical ownership",
+      "NZZ is a traditional media company; likely slower-moving, more bureaucratic environment than his proven preference for ship-fast autonomy",
+      "German language level uncertain for this role — job posting is in German, may require B1+ working proficiency for internal processes",
+      "No evidence of LLM/agentic systems work in the visible description — 'AI Automation' could mean simple rule-based tooling or vendor platforms, not the end-to-end pipeline building he seeks",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -169,34 +169,38 @@
       "portal": "adzuna",
       "description": "Product & Process Owner Customer Success & AI Automation (m/w) 80-100% Die NZZ gehört zu den bedeutendsten privaten Medienunternehmen der Schweiz. Wir konzentrieren uns auf qualitativ hochstehende, unabhängige Publizistik und vertreten eine liberale Weltanschauung. Mit unseren Produkten bieten wir unseren Nutzerinnen und Nutzern täglich Orientierung und Inspiration. Neben den beiden Flaggschiffen «Neue Zeitung» und «NZZ am Sonntag» gehören diverse weitere Titel, Veranstaltungsreihen, Podcasts u…"
     },
-    "technical_fit": "Partial. Title mentions 'AI Automation' which aligns with candidate's interest, but 'Customer Success' and 'Product & Process Owner' framing suggests a hybrid role likely heavier on process design, stakeholder management, and product ownership than hands-on building. Candidate's strength is engineering pipelines from zero to production, not owning customer success processes. Missing requirements make it impossible to assess tooling overlap.",
-    "contextual_fit": "Weak. NZZ is a traditional media company; candidate seeks deep technical work in agentic systems and data platform engineering with real ownership. Media domain is acceptable, but 'Customer Success' orientation suggests internal operations/support tooling rather than greenfield AI platform building. Role shape appears mismatched with candidate's stated excitement for end-to-end engineering ownership.",
+    "technical_fit": "Partial. The title mentions 'AI Automation' which aligns with his LLM pipeline and automation experience, but 'Customer Success' and 'Product & Process Owner' framing suggests a hybrid role likely heavier on process design, stakeholder management, and product ownership than hands-on engineering. His core strength is building/shipping technical systems, not owning customer success processes. The actual technical requirements are invisible due to truncation.",
+    "contextual_fit": "Weak-to-uncertain. NZZ is a traditional media company, not a tech-native environment building agentic systems from zero. The title's emphasis on 'Product & Process Owner' and 'Customer Success' suggests a business-facing, operational role rather than the 'zero to production, own the build' engineering internship he seeks. Media domain is unfamiliar but acceptable; role shape is the concern.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown. NZZ's 'liberal Weltanschauung' and traditional media culture visible, but no information on engineering culture, autonomy, or AI investment level.",
+    "culture_fit": "Unclear. NZZ's 'liberal Weltanschauung' and traditional publishing culture may not match his preference for fast-iteration, greenfield technical ownership. Large established media orgs tend to have slower decision cycles and more stakeholder layers than the small-shop autonomy he's thrived in.",
     "concerns": [
-      "Job description truncated — requirements, seniority, experience level, and technical stack entirely unknown; scored conservatively due to this",
-      "Role title combines 'Customer Success' with 'AI Automation' — likely more process/product management than hands-on engineering, conflicting with candidate's desire for builder ownership",
-      "German-language posting in Swiss-German media company with stakeholder-facing title strongly implies German working proficiency needed, likely above candidate's A2",
-      "No evidence of LLM/agentic systems depth in visible text; 'AI Automation' could mean basic RPA or rule-based automation rather than LLM-powered pipelines",
-      "Candidate's permit B and 2-week notice are non-issues, but role may be permanent (80-100%) rather than internship/junior, though truncated text prevents confirmation"
+      "Job description was truncated — requirements, seniority level, and technical depth completely unknown; score is conservative due to missing information",
+      "Role title emphasizes 'Customer Success' and 'Process Owner' over engineering — likely not a builder role with real technical ownership",
+      "NZZ is a traditional media company; likely slower-moving, more bureaucratic environment than his proven preference for ship-fast autonomy",
+      "German language level uncertain for this role — job posting is in German, may require B1+ working proficiency for internal processes",
+      "No evidence of LLM/agentic systems work in the visible description — 'AI Automation' could mean simple rule-based tooling or vendor platforms, not the end-to-end pipeline building he seeks"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-24T12:43:15.180197+00:00"
+    "evaluated_at": "2026-08-24T12:43:15.180197+00:00",
+    "rescored": true
   },
   {
-    "score": 65,
-    "hard_blockers": [],
+    "score": 55,
+    "hard_blockers": [
+      "German: role description is entirely in German ('Deine Zufunft beginnt hier', 'verantwortest du', 'Gemeinsam mit deinem Team'), indicating German is the working language; this is a hard blocker at his A2 level"
+    ],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Requirements/qualifications section was not visible in the truncated description — cannot assess experience level, degree requirements, or full tech stack fit",
-      "German-language posting suggests German may be more than incidental; need to verify working language",
-      "Role appears focused on K8s/platform infrastructure operations rather than data/AI pipeline building or LLM integration — candidate's core interests and recent experience",
-      "No mention of LLMs, agentic systems, or AI automation in visible text — significant mismatch with candidate's stated career direction",
-      "Hybrid model requires partial office presence; unclear if this suits candidate's preferences",
+      "Blocker: German: role description is entirely in German ('Deine Zufunft beginnt hier', 'verantwortest du', 'Gemeinsam mit deinem Team'), indicating German is the working language; this is a hard blocker at his A2 level",
+      "Requirements/qualifications section was not visible in truncated description — score is conservative and may understate gaps",
+      "Role appears to be infrastructure/platform operations rather than AI/agentic systems building — significant shape mismatch with stated motivation",
+      "Kubernetes mentioned prominently — not in his current skill set",
+      "No evidence of LLM, data pipeline, or automation work in visible description — core interest area absent",
+      "Hybrid model requires some German workplace interaction likely beyond A2 capability",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -207,21 +211,22 @@
       "portal": "adzuna",
       "description": " Deine Zukunft beginnt hier  Als Data Platform Engineer verantwortest du den Betrieb, die Weiterentwicklung und die Automatisierung moderner Datenplattformen auf Kubernetes-Basis. Dabei arbeitest du an skalierbaren Cloud- und Containerumgebungen und optimierst Build- und Deployment-Prozesse. Gemeinsam mit deinem Team stärkst du Stabilität, Sicherheit und Observability der Plattform. In Zürich arbeitest du im Hybrid-Modell und nutzt moderne Technologien und Methoden, um Wirkung zu erzielen.  Hig…"
     },
-    "technical_fit": "Partial. The visible description emphasizes Kubernetes operations, container environments, and CI/CD optimization rather than the candidate's core strengths (LLM APIs, agentic systems, Python data pipelines). The 'Data Platform' framing overlaps with his stated interest in data platform engineering, but the visible focus is on infrastructure/platform operations (K8s, cloud, containerization) rather than building data/AI pipelines end-to-end.",
-    "contextual_fit": "Weak-to-moderate. Hybrid in Zürich is logistically viable with his permit and notice period. However, the German-language job title ('Deine Zukunft beginnt hier') and phrasing suggest German may be significant in the workplace. The role shape appears to be platform operations/maintenance ('Betrieb, Weiterentwicklung, Automatisierung') rather than greenfield building with ownership from zero to production.",
+    "technical_fit": "Partial. The visible description emphasizes Kubernetes operations, platform stability, and infrastructure automation rather than LLM-powered pipelines or agentic systems. The candidate has Docker, GitHub Actions, and cloud experience, but Kubernetes and pure data platform operations are gaps. The role appears more 'maintain and optimize' than 'build from zero with ownership', which mismatches his core motivation.",
+    "contextual_fit": "Weak. Job-Room appears to be a job platform (somewhat adjacent to his job-matching project), but the role shape is platform engineering/operations rather than AI/automation building. Hybrid in Zürich is logistically fine, but the 'operate, further develop, automate' framing suggests incremental improvement over greenfield ownership.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unclear. The emphasis on team-based stability, security, and observability suggests a more conservative, maintenance-oriented culture than the candidate's preference for individual ownership and shipping new features.",
+    "culture_fit": "Neutral-to-weak. 'Strengthen stability, security, observability' and 'team-based' language suggests a more conservative, maintenance-oriented culture than his stated preference for zero-to-production ownership and self-directed iteration.",
     "concerns": [
-      "Requirements/qualifications section was not visible in the truncated description — cannot assess experience level, degree requirements, or full tech stack fit",
-      "German-language posting suggests German may be more than incidental; need to verify working language",
-      "Role appears focused on K8s/platform infrastructure operations rather than data/AI pipeline building or LLM integration — candidate's core interests and recent experience",
-      "No mention of LLMs, agentic systems, or AI automation in visible text — significant mismatch with candidate's stated career direction",
-      "Hybrid model requires partial office presence; unclear if this suits candidate's preferences"
+      "Requirements/qualifications section was not visible in truncated description — score is conservative and may understate gaps",
+      "Role appears to be infrastructure/platform operations rather than AI/agentic systems building — significant shape mismatch with stated motivation",
+      "Kubernetes mentioned prominently — not in his current skill set",
+      "No evidence of LLM, data pipeline, or automation work in visible description — core interest area absent",
+      "Hybrid model requires some German workplace interaction likely beyond A2 capability"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-08-24T12:43:15.180197+00:00"
+    "evaluated_at": "2026-08-24T12:43:15.180197+00:00",
+    "rescored": true
   },
   {
     "score": null,
