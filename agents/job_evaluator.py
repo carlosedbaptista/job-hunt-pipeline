@@ -685,13 +685,32 @@ def main():
         sys.exit(1)
 
     os.makedirs("digests", exist_ok=True)
+    def _no_jobs():
+        """Nothing to score: say so, and make the rest of the pipeline agree.
+
+        job_evaluations_latest.json is what the digest and the document
+        generator read. Leaving the PREVIOUS run's evaluations in a file
+        called "latest" makes a quiet day indistinguishable from a busy one:
+        on 2026-08-24 a run with zero new jobs re-sent the previous run's top
+        five stamped with the new timestamp, and the quiet-day heartbeat --
+        which exists precisely for that case -- never fired, because
+        total_evaluated was 5 rather than 0. It would also have re-generated
+        and re-announced documents for yesterday's APPLY jobs.
+
+        Writing an empty list is the honest state, and it is what makes the
+        heartbeat reachable.
+        """
+        print("No jobs to evaluate.")
+        with open("digests/job_evaluations_latest.json", "w", encoding="utf-8") as fh:
+            json.dump([], fh)
+
     try:
         with open("digests/new_jobs_latest.json", "r", encoding="utf-8") as f:
             jobs = json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
-        print("No jobs to evaluate."); return
+        _no_jobs(); return
     if not jobs:
-        print("No jobs to evaluate."); return
+        _no_jobs(); return
 
     if len(jobs) > MAX_EVALUATIONS_PER_RUN:
         print(f"Cost guard: {len(jobs)} jobs found, capping at {MAX_EVALUATIONS_PER_RUN} "

@@ -92,3 +92,51 @@ class TestRequiredFields:
     def test_missing_fields_short_circuit_the_rest(self):
         """Nothing below can be trusted, so only one problem is reported."""
         assert len(check(profile(role=""), CV)) == 1
+
+
+class TestQuietDayIsVisible:
+    """A run with nothing to score must leave the pipeline saying so.
+
+    On 2026-08-24 a run found zero new jobs and still e-mailed the PREVIOUS
+    run's top five, stamped with the new timestamp. The quiet-day heartbeat,
+    added that same day for exactly this case, never fired: it triggers on
+    total_evaluated == 0, and the digest read a stale
+    job_evaluations_latest.json that still held 10 records.
+
+    "Latest" has to mean this run's. Otherwise a quiet day is
+    indistinguishable from a busy one -- and the document generator, which
+    reads the same file, would re-generate and re-announce materials for
+    yesterday's APPLY jobs.
+    """
+
+    def _run_evaluator_with_no_jobs(self, tmp_path, monkeypatch):
+        import json
+        import job_evaluator as je
+
+        monkeypatch.chdir(tmp_path)
+        (tmp_path / "digests").mkdir()
+        (tmp_path / "digests" / "new_jobs_latest.json").write_text("[]", encoding="utf-8")
+        # Stale leftovers from an earlier run, as they really were.
+        (tmp_path / "digests" / "job_evaluations_latest.json").write_text(
+            json.dumps([{"score": 55, "decision": "SKIP", "job": {"title": "Old"}}]),
+            encoding="utf-8")
+        je.main()
+        return json.loads(
+            (tmp_path / "digests" / "job_evaluations_latest.json").read_text(encoding="utf-8"))
+
+    def test_the_previous_runs_evaluations_are_cleared(self, tmp_path, monkeypatch):
+        assert self._run_evaluator_with_no_jobs(tmp_path, monkeypatch) == []
+
+    def test_a_missing_input_file_clears_it_too(self, tmp_path, monkeypatch):
+        """Same reasoning: no input is still a quiet day, not a busy one."""
+        import json
+        import job_evaluator as je
+
+        monkeypatch.chdir(tmp_path)
+        (tmp_path / "digests").mkdir()
+        (tmp_path / "digests" / "job_evaluations_latest.json").write_text(
+            json.dumps([{"score": 90, "decision": "APPLY", "job": {"title": "Old"}}]),
+            encoding="utf-8")
+        je.main()
+        assert json.loads(
+            (tmp_path / "digests" / "job_evaluations_latest.json").read_text(encoding="utf-8")) == []
