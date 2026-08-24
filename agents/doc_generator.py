@@ -668,7 +668,7 @@ def _email_docs_to_candidate(folder, title, company, score, paths):
 
 
 def generate_docs_for_job(client, profile, ev: dict, gen_dir: str = "generated_docs",
-                          mail: bool = True) -> str | None:
+                          mail: bool = True, force: bool = False) -> str | None:
     """Generates (and, if configured, uploads to Drive) the CV/CL for a
     single evaluation record. Shared by main() (daily batch, reads
     job_evaluations_latest.json) and agents/add_job.py (single manual
@@ -680,7 +680,13 @@ def generate_docs_for_job(client, profile, ev: dict, gen_dir: str = "generated_d
     # Only APPLY jobs get tailored materials -- the EFFECTIVE decision:
     # a hard-blocked or low-confidence (insufficient_info) job keeps its
     # high score visible but must never trigger automatic CV/CL generation.
-    if effective_decision(ev) != "APPLY":
+    # The APPLY gate exists to stop the pipeline generating documents on its
+    # own for a job it is not confident about. It was never meant to stop the
+    # CANDIDATE: "scoring is input, not gospel -- the user can override any
+    # decision". force=True is that override, for when he reads a REVIEW job
+    # and decides it is worth applying to. Nothing is sent either way; the
+    # documents go to him.
+    if not force and effective_decision(ev) != "APPLY":
         return None
 
     job = ev.get("job", ev)
