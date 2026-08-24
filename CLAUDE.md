@@ -103,6 +103,35 @@ The scoring brain was audited on 2026-08-17; its *input* was audited on 2026-08-
 5. **Cost control**: `MAX_EVALUATIONS_PER_RUN=30` caps LLM calls per run; `ENRICH_MAX_LOOKUPS=12` caps the enricher's Adzuna calls. Adzuna's free tier is 100 calls/day and the pipeline runs twice: 12 search queries x 2 locations x 2 runs (48) + 12 lookups x 2 runs (24) = 72/day. Adding queries or raising either cap means redoing that arithmetic.
 6. **Provider**: Kimi only. Do not switch the pipeline to Claude/OpenAI/etc.
 
+## The profile is the one input nobody can review
+
+`config/candidate_profile.json` is gitignored, so the candidate's role,
+languages, permit and contact details live in exactly two places: one laptop
+and one GitHub secret. Neither appears in a diff, and CI silently uses
+whichever the secret happens to hold.
+
+That went wrong on 2026-08-24. His title changed to "AI Software Engineer
+Intern", the profile was updated, `CANDIDATE_PROFILE_B64.txt` was not, and
+the two carried different roles. Whether the day's scores were computed
+against the right job title came down to which file someone piped into
+`gh secret set`. Nothing complained.
+
+`agents/check_profile.py` now runs before anything is fetched or scored, in
+both the daily pipeline and add-job, and exits 1 on a contradiction. It
+treats the CV as the source of truth (a human wrote it, an employer reads
+it) and checks: required fields present; `role` appears verbatim in
+`cv_model.txt`; `role` matches `experience[0].title`; and the CEFR level in
+`language_levels` agrees with the prose in `languages` -- that last one
+because the prompt once said B1 while the CV said A2, turning a real German
+gap into a soft mention.
+
+When the profile changes, regenerate the secret from the file, never from the
+stale `.txt`:
+
+```bash
+base64 -w0 config/candidate_profile.json | gh secret set CANDIDATE_PROFILE_B64
+```
+
 ## Security & Credentials
 
 Never commit: `.env`, `config/candidate_profile.json`, `config/photo.*`, `config/cv_model.txt`, `config/cover_letter_model.txt`, `digests/raw_emails*.json`, GDrive credentials. These are restored in CI from base64 GitHub Secrets (`CANDIDATE_PROFILE_B64` etc.).

@@ -66,6 +66,9 @@ jobs:
               || { echo "::warning::CANDIDATE_PHOTO_B64 is not valid base64 -- CV generated without a photo"; rm -f config/photo.jpg; }
           fi
 
+      - name: Verify the restored profile
+        run: python agents/check_profile.py
+
       - name: Evaluate job (generates CV/CL too, if the match is >= APPLY)
         env:
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}

@@ -87,6 +87,15 @@ jobs:
           restore_b64 CV_MODEL_B64 config/cv_model.txt text
           restore_b64 CL_MODEL_B64 config/cover_letter_model.txt text
 
+      - name: Verify the restored profile
+        # Runs BEFORE anything is fetched or scored. The role is injected into
+        # every scoring prompt and printed on every generated CV, so a stale
+        # profile skews the whole day and sends the wrong title to employers.
+        # It failed silently once: the title changed, the base64 secret was
+        # regenerated from a stale file, and nothing complained.
+        # No continue-on-error: this is meant to stop the run.
+        run: python agents/check_profile.py
+
       - name: Fetch Adzuna jobs
         if: inputs.skip_ingestion != true
         env:
