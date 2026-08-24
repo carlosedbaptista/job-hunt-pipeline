@@ -1102,12 +1102,13 @@
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [
-      "Strong alignment: LLM-powered workflows, production AI systems, messy data, solid code, and experiments are exactly what the candidate does today. Python/SQL/pandas/REST APIs/LLM APIs all transfer directly. Small-team ownership culture matches his stated preference for zero-to-production ownership."
+      "Strong alignment: the role explicitly targets building real AI systems that ship to production, working with messy data, and running experiments to improve LLM-powered workflows — exactly what the candidate does today and wants to deepen. His Python, pandas, SQL, LLM APIs (Claude, Kimi), automation pipelines, Docker, and CI/CD experience all map directly. The 'ownership' and 'small team' framing matches his stated motivation perfectly."
     ],
     "red_flags": [
-      "Job description was truncated; requirements/qualifications section not visible — degree requirements (Master's or close to graduation mentioned), exact tech stack details, and any language requirements unknown",
-      "Mention of 'final stretch of studies' and 'graduated Master's student' may suggest they expect someone currently in or just finished a Master's program; his background is postgraduate specialisation in Data Science (lato sensu) plus career change — not a traditional Master's track, could be a fit question",
-      "Pre-seed startup may have limited mentorship structure compared to his current internship; he should assess learning depth vs. his goal of going deeper into agentic systems",
+      "Job description was truncated; requirements/qualifications section not visible — cannot verify degree requirements (Master's mentioned as typical but not necessarily mandatory), specific tech stack gaps, or whether any hidden hard criteria exist",
+      "Mention of 'final stretch of studies' and 'graduated Master's student or close to graduation' could imply degree-level expectations; candidate has postgraduate specialisation (lato sensu) but this may not map cleanly to Swiss Master's-equivalent expectations — needs clarification",
+      "No visibility into whether role requires specific cloud platforms (AWS/Azure vs his Google Cloud) or other infrastructure tools not in his current stack",
+      "Pre-seed startup salary and internship duration unknown",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1118,14 +1119,15 @@
       "portal": "adzuna",
       "description": " About You You're in the final stretch of your studies (in particular graduated Master's student or close to graduation) and you want a hands-on internship where you build real AI systems that ship to production. You enjoy working with messy data, writing solid code, and running experiments to improve LLM-powered workflows. You learn fast, take ownership, and like collaborating closely with a small team.  About INC INC (Iudex Non Calculat) is a pre-seed AI startup based in Zurich, building infr…"
     },
-    "technical_fit": "Strong alignment: LLM-powered workflows, production AI systems, messy data, solid code, and experiments are exactly what the candidate does today. Python/SQL/pandas/REST APIs/LLM APIs all transfer directly. Small-team ownership culture matches his stated preference for zero-to-production ownership.",
-    "contextual_fit": "Excellent: Zurich-based pre-seed startup building AI infrastructure — greenfield, high ownership, hands-on. Career-changer background is non-issue; they explicitly want builders not credential-checkers. His 2-week notice is ideal for internship timing.",
+    "technical_fit": "Strong alignment: the role explicitly targets building real AI systems that ship to production, working with messy data, and running experiments to improve LLM-powered workflows — exactly what the candidate does today and wants to deepen. His Python, pandas, SQL, LLM APIs (Claude, Kimi), automation pipelines, Docker, and CI/CD experience all map directly. The 'ownership' and 'small team' framing matches his stated motivation perfectly.",
+    "contextual_fit": "Excellent: pre-seed startup in Zurich, hands-on builder culture, greenfield AI work with real shipping ownership. Candidate's non-traditional background (law → tech) is irrelevant here and possibly even a plus in a small team valuing diverse problem-solving. Two-week notice is ideal for internship timing. Swiss Work Permit B valid, no sponsorship needed — fully compatible.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Strong match: small team, close collaboration, ownership-oriented. His self-directed 'audit and fix my own output' style fits a startup where everyone ships.",
+    "culture_fit": "Very strong match: candidate explicitly wants 'zero to production' ownership, auditing his own output, and fixing what he finds. Startup's 'small team, close collaboration' and 'take ownership' language mirrors his self-described working style.",
     "concerns": [
-      "Job description was truncated; requirements/qualifications section not visible — degree requirements (Master's or close to graduation mentioned), exact tech stack details, and any language requirements unknown",
-      "Mention of 'final stretch of studies' and 'graduated Master's student' may suggest they expect someone currently in or just finished a Master's program; his background is postgraduate specialisation in Data Science (lato sensu) plus career change — not a traditional Master's track, could be a fit question",
-      "Pre-seed startup may have limited mentorship structure compared to his current internship; he should assess learning depth vs. his goal of going deeper into agentic systems"
+      "Job description was truncated; requirements/qualifications section not visible — cannot verify degree requirements (Master's mentioned as typical but not necessarily mandatory), specific tech stack gaps, or whether any hidden hard criteria exist",
+      "Mention of 'final stretch of studies' and 'graduated Master's student or close to graduation' could imply degree-level expectations; candidate has postgraduate specialisation (lato sensu) but this may not map cleanly to Swiss Master's-equivalent expectations — needs clarification",
+      "No visibility into whether role requires specific cloud platforms (AWS/Azure vs his Google Cloud) or other infrastructure tools not in his current stack",
+      "Pre-seed startup salary and internship duration unknown"
     ],
     "recommendation": "REVIEW",
     "decision": "REVIEW",
@@ -1134,17 +1136,18 @@
     "rescored": true
   },
   {
-    "score": 32,
+    "score": 35,
     "hard_blockers": [],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Role is fundamentally a marketing function, not a technical builder role — complete mismatch with candidate's stated motivation and trajectory",
-      "Requires portfolio of sales enablement assets and competitive positioning experience; candidate has none",
-      "'German is a strong plus' — not a blocker, but candidate's A2 German would be a limitation in DACH-focused customer-facing marketing",
-      "Candidate would be competing against experienced product marketers, not junior technical roles where his career-change story is an asset",
-      "The 'enough technical depth to understand ERP processes' requirement is a soft barrier — he has technical depth but in the wrong domain (LLM pipelines, not enterprise ERP workflows)"
+      "Fundamental role-shape mismatch: candidate wants to build systems, this role markets them",
+      "Zero marketing experience in candidate background — law, courts, engineering, data analytics",
+      "'German is a strong plus' — at A2, candidate below even soft preference level",
+      "Seniority mismatch: this appears to be a mid-level IC role, not intern/junior",
+      "Candidate would be competing against marketing professionals with relevant portfolios and battlecard experience",
+      "BLP likely has engineering roles that would match better; this specific posting is wrong function"
     ],
     "job": {
       "company": "BLP Digital AG",
@@ -1154,16 +1157,17 @@
       "portal": "adzuna",
       "description": "Join BLP Digital — The #1 Solution for ERP Automation \n BLP Digital is redefining ERP automation with agentic AI. Spun out of ETH Zurich and HSG, we build AI agents that automate finance, procurement, logistics, sales, and more for some of the world's largest enterprises. We solve real enterprise problems with cutting-edge technology and a strong sense of ownership.\n Our solution is live in 40+ countries, used by 550+ customers, and automates 70,000+ processes every day, including for Fortune 500 companies. As one of Switzerland's fastest-growing SaaS scaleups, our success stems from deep expertise in technology and business processes, delivering a product with outstanding product-market fit, proven by a growing global customer base.\n We've recently welcomed Goldman Sachs Alternatives as a growth investor, and we're now expanding into the UK with the launch of our London office. We are just getting started. Ready to build the future? Join BLP Digital today. \n \n About The Role Agentic process automation is a category enterprises are actively budgeting for - and one crowded with claims. As our Product Marketing Manager, you make sure BLP's story cuts through; sharp positioning against the alternatives our buyers actually consider, messaging that speaks to CFOs and COOs in business outcomes rather than technology, and sales teams equipped to win against ERP workflow add-ons, RPA vendors, and point-AI copilots. \n This is a hands-on individual contributor role at the center of how BLP goes to market. You will own the translation layer between product capability and buyer value - across launches, enablement, competitive intelligence, and the content that carries our positioning into every deal.\n \n What You'll Do Own positioning and messaging execution . Maintain and evolve BLP's messaging house — value proposition, pillars, proof points, and persona-specific narratives - and enforce its consistent use across web, decks, campaigns, and sales conversations.\n\n Build and maintain competitive intelligence . Own battlecards and competitive positioning against ERP workflow automation, RPA, IDP/point-AI solutions, and adjacent AI platforms; keep sales ahead of competitor moves and objection patterns.\n\n Enable the field. Create and maintain the core sales toolkit - first-meeting decks, discovery guides, objection handling, ROI narratives, and persona playbooks for CFO, COO, shared services, and process excellence audiences.\n\n Sharpen personas and ICP. Continuously refine our understanding of buying committees, triggers (ERP transformation, e-invoicing mandates, shared-services efficiency programs), and where we win and lose - grounde\n[... middle of the posting omitted ...]\nf cost, productivity, working capital, and EBIT - not features.\n\n Strong competitive instincts: experience building battlecards and positioning in crowded categories, and translating technical differentiation into commercial arguments. \n\n A portfolio of enablement assets that sales teams actually used - you measure your work by win rates and message adoption, not asset counts.\n\n Analytical rigor: comfortable with win/loss analysis, market and analyst research, and grounding messaging claims in defensible evidence.\n\n Excellent writing and presentation craft in English; German is a strong plus for our DACH-concentrated customer base.\n\n Enough technical depth to understand ERP processes, AI agents, and enterprise integration well enough to challenge product - and simplify it for buyers.\n\n \n Why Join BLP Category-defining work: agentic process automation is being defined now, and you will shape how the market understands it.\n\n Real substance: 550+ enterprise customers and measurable outcomes mean your positioning rests on proof, not promises.\n\n Scope and access: a seat at the table with product, sales leadership, and the executive team - your work goes straight into deals and board narratives.\n\n A company at an inflection point: strong European base, fresh US market entry, and a proven platform to build the story on."
     },
-    "technical_fit": "Poor. The role is a Product Marketing Manager focused on positioning, messaging, competitive intelligence, and sales enablement — not engineering or building. The candidate's entire profile is about building LLM pipelines, automation infrastructure, and shipping code to production. Zero overlap with marketing, GTM strategy, or commercial narrative creation.",
-    "contextual_fit": "Weak. While BLP Digital is deeply aligned with the candidate's interest area (agentic AI, ERP automation, ETH Zurich roots), the role itself is on the opposite side of the value chain. The candidate wants 'zero to production' ownership of technical systems; this role owns 'translation layer between product capability and buyer value.' The 'hands-on' framing here means hands-on marketing execution, not hands-on engineering.",
+    "technical_fit": "Very poor. Role is pure marketing/GTM (positioning, messaging, battlecards, sales enablement, competitive intelligence) with zero engineering or hands-on building. Candidate's skills are entirely in Python, LLM APIs, data pipelines, automation engineering, and infrastructure. No overlap with marketing craft, persona development, or sales enablement.",
+    "contextual_fit": "Poor. While BLP Digital builds agentic AI (exciting domain), this is a Product Marketing Manager role — the candidate explicitly seeks 'building LLM-powered pipelines and automation end to end, with real ownership from day one rather than support work.' This role is the opposite: translating product capability into buyer value, not building product. The 'hands-on' framing here means hands-on marketing execution, not engineering.",
     "salary_estimate": "CHF 100,000 - 140,000",
-    "culture_fit": "Mixed. The company culture emphasizes ownership, fast growth, and category-defining work — attractive to the candidate. However, the role sits in marketing/sales enablement, not product/engineering. The 'seat at the table with product, sales leadership, and executive team' is appealing, but the work itself (battlecards, decks, ROI narratives) is far from what excites him.",
+    "culture_fit": "Moderate on surface — BLP has strong ownership culture, fast-growing, ETH/HSG roots, technical depth. But role mismatch means candidate would be in wrong function entirely, likely frustrated.",
     "concerns": [
-      "Role is fundamentally a marketing function, not a technical builder role — complete mismatch with candidate's stated motivation and trajectory",
-      "Requires portfolio of sales enablement assets and competitive positioning experience; candidate has none",
-      "'German is a strong plus' — not a blocker, but candidate's A2 German would be a limitation in DACH-focused customer-facing marketing",
-      "Candidate would be competing against experienced product marketers, not junior technical roles where his career-change story is an asset",
-      "The 'enough technical depth to understand ERP processes' requirement is a soft barrier — he has technical depth but in the wrong domain (LLM pipelines, not enterprise ERP workflows)"
+      "Fundamental role-shape mismatch: candidate wants to build systems, this role markets them",
+      "Zero marketing experience in candidate background — law, courts, engineering, data analytics",
+      "'German is a strong plus' — at A2, candidate below even soft preference level",
+      "Seniority mismatch: this appears to be a mid-level IC role, not intern/junior",
+      "Candidate would be competing against marketing professionals with relevant portfolios and battlecard experience",
+      "BLP likely has engineering roles that would match better; this specific posting is wrong function"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1178,11 +1182,10 @@
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description was truncated; requirements, qualifications, and full responsibilities were not visible — score kept conservative due to missing information.",
-      "Role title 'Forward-Deployed Software Engineer (Deployments)' suggests infrastructure/deployment focus rather than AI/automation building or data platform engineering.",
-      "No visible mention of LLMs, agentic systems, data pipelines, or the hands-on AI building the candidate seeks.",
-      "Logistics/ERP domain context visible but no indication this involves the candidate's core skills (Python, pandas, LLM APIs, automation pipelines).",
-      "Founding team context could mean high ownership, but deployment engineering is typically more operational than greenfield product building.",
+      "Job description was truncated; requirements, qualifications, and full role scope were not visible—score is conservative due to missing information.",
+      "Role title and visible description suggest deployment/integration engineering for logistics/ERP SaaS, not agentic AI or data platform work. Mismatch with candidate's stated direction.",
+      "'Forward-Deployed' roles often involve customer-site implementation and configuration of existing product rather than building new AI/automation systems from scratch.",
+      "No evidence of LLM, data pipeline, or agentic system work in visible text.",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1193,16 +1196,15 @@
       "portal": "adzuna",
       "description": "This is a role that Atlas, our AI Recruiter, is hiring for on behalf of one of our customers. He'll pick the best candidates from Nova's network. The next step is to speak to Nova . The Role Job Title: Forward-Deployed Software Engineer (Deployments) Location: Zürich, Switzerland Why this role matters The modern inbox was never built to run a complex logistics business, leading to missed orders, cold RFQs, and manual ERP data entry. By joining our founding team as a Forward-Deployed Software En…"
     },
-    "technical_fit": "Partial. The visible text mentions 'Forward-Deployed Software Engineer (Deployments)' and logistics/ERP context, but the actual technical requirements are missing. The title suggests infrastructure/deployment focus rather than the candidate's preferred AI/agentic systems and data platform engineering. No evidence of LLM, automation pipeline, or data platform work in the visible description.",
-    "contextual_fit": "Weak signal. The truncated description mentions 'founding team' which could imply ownership, but the role title emphasizes deployments/infrastructure rather than building AI/automation from zero to production. Logistics/ERP domain is unfamiliar but not penalized; however, the role shape appears misaligned with candidate's stated goals.",
+    "technical_fit": "Partial. The visible title 'Forward-Deployed Software Engineer (Deployments)' suggests a deployment/infrastructure focus rather than AI/agentic systems or data platform engineering. The context mentions logistics, ERP, and 'modern inbox' problems—closer to SaaS integration or backend tooling than LLM pipelines. Candidate's strengths in LLM APIs, automation pipelines, and data workflows are not obviously aligned with what's visible.",
+    "contextual_fit": "Weak-moderate. The role is at a founding team in Zürich, which matches location and permit. However, the role shape appears to be deployment/integration-focused for a logistics/ERP product, not greenfield AI building with ownership from day one. The candidate's explicit motivation is agentic systems and data platform engineering; this role's visible description does not signal that trajectory.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Insufficient data. 'Founding team' suggests early-stage and potential ownership, but the deployment engineering title and logistics focus don't match the candidate's explicit desire for agentic systems and data platform engineering with real ownership.",
+    "culture_fit": "Unknown. Founding team context could mean ownership, but 'Forward-Deployed Software Engineer' typically implies customer-facing implementation/deployment work rather than product building. The candidate wants 'zero to production' ownership of AI systems; this may be deployment of existing product to customers.",
     "concerns": [
-      "Job description was truncated; requirements, qualifications, and full responsibilities were not visible — score kept conservative due to missing information.",
-      "Role title 'Forward-Deployed Software Engineer (Deployments)' suggests infrastructure/deployment focus rather than AI/automation building or data platform engineering.",
-      "No visible mention of LLMs, agentic systems, data pipelines, or the hands-on AI building the candidate seeks.",
-      "Logistics/ERP domain context visible but no indication this involves the candidate's core skills (Python, pandas, LLM APIs, automation pipelines).",
-      "Founding team context could mean high ownership, but deployment engineering is typically more operational than greenfield product building."
+      "Job description was truncated; requirements, qualifications, and full role scope were not visible—score is conservative due to missing information.",
+      "Role title and visible description suggest deployment/integration engineering for logistics/ERP SaaS, not agentic AI or data platform work. Mismatch with candidate's stated direction.",
+      "'Forward-Deployed' roles often involve customer-site implementation and configuration of existing product rather than building new AI/automation systems from scratch.",
+      "No evidence of LLM, data pipeline, or agentic system work in visible text."
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1217,10 +1219,11 @@
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description was truncated — requirements/qualifications section not visible, so seniority level, experience requirements, and specific tech stack are unknown; score kept conservative due to missing information",
-      "Title explicitly says 'Senior' — even if requirements were junior-friendly, the role shape is senior platform security, not AI/automation/data engineering",
-      "No visible connection to LLMs, agentic systems, data pipelines, or the candidate's core skill set",
-      "Insurance domain is acceptable to candidate, but the functional role is far from his target area",
+      "Job description was truncated — requirements section not visible, so seniority expectations, experience requirements, and language needs are unknown; score kept conservative accordingly.",
+      "Title says 'Senior' — even if requirements are flexible, this signals expectation of substantial prior platform/security experience that candidate lacks.",
+      "Domain is identity/security platform engineering, not AI/data/agentic systems — complete misalignment with candidate's stated career direction.",
+      "No evidence of LLM, automation pipeline, or data platform work in visible description.",
+      "Large corporate insurer unlikely to offer 'internship with real ownership from day one' role shape.",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1231,15 +1234,16 @@
       "portal": "adzuna",
       "description": "Senior Platform Engineer - Identity & Security (m/f/d) 80-100% Zurich is a leading multi-line insurer that serves its customers in global and local markets. With about 55,000 employees, it provides a wide range of property and casualty, life insurance products and services in more than 215 countries and territories. Zurich's customers include individuals, small businesses, and mid-sized and large companies, as well as multinational corporations. Senior Platform Engineer - Identity & Security (m…"
     },
-    "technical_fit": "Poor. The visible title points to a senior role in Identity & Security platform engineering — a pure infrastructure/security specialization with no indication of LLM, automation, data pipeline, or agentic systems work. The candidate's entire profile is oriented toward AI/automation development, LLM APIs, and data platform engineering, not IAM, security platforms, or enterprise identity systems.",
-    "contextual_fit": "Weak. The candidate seeks hands-on ownership building LLM-powered pipelines from zero to production. A senior platform security role at a 55,000-employee insurance multinational is structurally the opposite: maintaining critical security infrastructure at scale, not greenfield AI building. No evidence of the 'internship or junior role' shape he wants.",
+    "technical_fit": "Poor. Role centers on identity & security platform engineering (IAM, security infrastructure) with no visible LLM, agentic systems, or data pipeline work. Candidate's entire profile is Python/LLM automation and data engineering; this is enterprise security platform engineering, a different discipline entirely.",
+    "contextual_fit": "Weak. Large insurer (55k employees), senior-level title, identity/security domain — none of the 'zero-to-production ownership' or greenfield AI building the candidate seeks. Even if down-leveled, the functional area is a mismatch for his stated goals.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Mismatched. Large corporate insurer with hierarchical security functions vs. candidate's explicit desire for real ownership from day one in a small-team, builder-oriented environment.",
+    "culture_fit": "Likely bureaucratic and hierarchical given scale; opposite of the hands-on, high-ownership environment candidate wants.",
     "concerns": [
-      "Job description was truncated — requirements/qualifications section not visible, so seniority level, experience requirements, and specific tech stack are unknown; score kept conservative due to missing information",
-      "Title explicitly says 'Senior' — even if requirements were junior-friendly, the role shape is senior platform security, not AI/automation/data engineering",
-      "No visible connection to LLMs, agentic systems, data pipelines, or the candidate's core skill set",
-      "Insurance domain is acceptable to candidate, but the functional role is far from his target area"
+      "Job description was truncated — requirements section not visible, so seniority expectations, experience requirements, and language needs are unknown; score kept conservative accordingly.",
+      "Title says 'Senior' — even if requirements are flexible, this signals expectation of substantial prior platform/security experience that candidate lacks.",
+      "Domain is identity/security platform engineering, not AI/data/agentic systems — complete misalignment with candidate's stated career direction.",
+      "No evidence of LLM, automation pipeline, or data platform work in visible description.",
+      "Large corporate insurer unlikely to offer 'internship with real ownership from day one' role shape."
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1253,15 +1257,14 @@
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [
-      "Strong. Candidate's core strengths align directly: LLM API integration (Claude, Kimi), multi-step automation pipelines, REST APIs, cloud infra, CI/CD — all map to the role's 'Internal Tooling & Applied AI' track and the LLM orchestration/evals work in FDE. TypeScript is listed but framed as learnable ('confident you can get there fast'); his Node.js background and rapid stack-switching as a career changer support this. The NetSuite internship gives him genuine ERP exposure, ticking the bonus box. Missing pieces: no explicit TypeScript in his stack, no full-stack frontend framework mentioned, no evals/observability experience — but these are gaps he can close, not disqualifiers.",
-      "Excellent. The role's two tracks mirror his exact trajectory: 'zero to production, own it' is literally the job description ('Real ownership from day one', 'shape internal tooling from the ground up'). FDE's 'sit with end-users, translate messy problems into working solutions' matches his law-to-tech path and his current client-facing agency work. The 6-month internship with 'clear, fast path to permanent' fits his permit situation and career stage. ETH/HSG spinout, Goldman-backed, expanding to London — growth trajectory excites."
+      "Strong. Role centers on LLM orchestration, agent frameworks, and building production AI systems—exactly his target area. TypeScript is a gap but he's demonstrated fast stack adaptability (Node.js background, career change from law to Python/cloud). His LLM API experience (Claude, Kimi), multi-step automation pipelines, and evals/observability directly map to both FDE and Internal Tooling tracks. NetSuite internship gives him unexpected ERP/process exposure that matches their bonus criteria.",
+      "Excellent. 'Real ownership from day one' and 'build and ship fast—days and weeks, not quarters' mirrors his stated motivation precisely. ETH/HSG spinout with Goldman Sachs backing offers credibility without bureaucracy. Dual track (customer-facing FDE + internal AI tooling) lets him explore both agentic systems and data platform engineering. 6-month duration fits his 2-week notice. Clear path to permanent role aligns with career change trajectory."
     ],
     "red_flags": [
-      "TypeScript not currently in his listed stack — needs to demonstrate rapid learning curve (he has this narrative, but it's a real gap)",
-      "No explicit evals/observability framework experience mentioned (though his 'auditing my own output' suggests mindset)",
-      "ERP exposure is NetSuite-only, limited depth vs. SAP/Dynamics — but this is bonus, not required",
-      "6-month internship may be shorter than ideal if he seeks longer runway, though permanency path mitigates",
-      "FDE track requires direct client presence; his current client work is remote/DACH-market, not on-site with end-users — adjustment needed"
+      "TypeScript not in current stack—needs rapid ramp-up, though Node.js provides JS foundation and he's proven adaptability",
+      "No explicit mention of cloud infrastructure/CI/CD in role description; his current strengths in Docker/GitHub Actions/GCP may be underutilized or need reframing",
+      "ERP domain depth is light (one NetSuite internship); FDE track may have steep customer-context learning curve initially",
+      "6-month internship is standard but slightly shorter than ideal for deep agentic systems ownership; permanent path mitigates"
     ],
     "job": {
       "company": "BLP Digital AG",
@@ -1271,16 +1274,15 @@
       "portal": "adzuna",
       "description": "Join BLP Digital — The #1 Solution for ERP Automation \n BLP Digital is redefining ERP automation with agentic AI. Spun out of ETH Zurich and HSG, we build AI agents that automate finance, procurement, logistics, sales, and more for some of the world's largest enterprises. We solve real enterprise problems with cutting-edge technology and a strong sense of ownership.\n Our solution is live in 40+ countries, used by 550+ customers, and automates 70,000+ processes every day, including for Fortune 500 companies. As one of Switzerland's fastest-growing SaaS scaleups, our success stems from deep expertise in technology and business processes, delivering a product with outstanding product-market fit, proven by a growing global customer base.\n We've recently welcomed Goldman Sachs Alternatives as a growth investor, and we're now expanding into the UK with the launch of our London office. We are just getting started. Ready to build the future? Join BLP Digital today. \n \n The Role \n We’re hiring two Software Engineering Interns to join our Zurich team for a 6-month internship. You’ll work closely with our CTO, Sven Beck and with our project and sales teams — not on the sidelines, but on live work.\n Depending on where the business’s priorities sit at any given time, your day-to-day will flex between two areas of our engineering work:\n Forward Deployed Engineering (FDE) — building production systems directly inside customer environments, alongside a Senior Consultant and other FDEs.\n\n Internal Tooling & Applied AI — building the AI-powered internal tools that make our own hiring, finance, and operations run faster.\n\n What You’ll Do \n On Forward Deployed Engineering work \n Sit with end-users, process owners, and client engineers to understand the real workflow — and the real problem underneath the stated one.\n\n Help translate the target-state process into a concrete technical solution: architecture, data model, integrations, agent and workflow design.\n\n Build full-stack: TypeScript backend, integrations, LLM orchestration, evals.\n\n Support demos with real users and help fold their feedback into the next iteration.\n\n Help own observability and evals once a solution is live, iterating until it’s reliable under the customer’s real conditions.\n\n On Internal Tooling & Applied AI work \n Build and ship AI-powered internal tools fast — days and weeks, not quarters.\n\n Evaluate, integrate, and chain the latest AI models, APIs, and frameworks (LLMs, agent frameworks, embedding pipelines, AI coding tools) into internal solutions.\n\n Write clean, maintainable code that integrates with our existing systems — APIs, databases, third-party services.\n\n[... middle of the posting omitted ...]\nodern AI tooling: LLM APIs, AI coding assistants (Claude Code, Cursor, or similar), agent frameworks, or workflow automation.\n\n Comfortable with TypeScript, or confident you can get there fast — you pick up new tools and stacks quickly.\n\n A fast-moving, entrepreneurial mindset — you’ve built something (a side project, a hack, a tool people actually used) rather than just studied how to.\n\n You enjoy working with non-technical teams and can turn a messy, half-stated problem into a clear, working solution.\n\n Comfortable with ambiguity and fast feedback cycles.\n\n Fluent in English; German is a plus.\n\n Bonus: exposure to ERP or business-process environments (SAP, Microsoft Dynamics, Oracle, NetSuite, or similar), or tools like Make, n8n, Retool, or Supabase.\n\n What We Offer \n Solve real problems, fast — join a high-growth deep-tech startup tackling real-world challenges for global industry leaders.\n\n Work at the frontier — use and build with state-of-the-art tech: the latest LLMs, agent frameworks, and AI coding tools.\n\n Real ownership from day one — shape internal tooling from the ground up, or own pieces of a live customer engagement.\n\n A clear, fast path to a permanent role for the right candidates.\n\n Exceptional colleagues — you’ll be growing alongside people from exceptional academic and professional backgrounds."
     },
-    "technical_fit": "Strong. Candidate's core strengths align directly: LLM API integration (Claude, Kimi), multi-step automation pipelines, REST APIs, cloud infra, CI/CD — all map to the role's 'Internal Tooling & Applied AI' track and the LLM orchestration/evals work in FDE. TypeScript is listed but framed as learnable ('confident you can get there fast'); his Node.js background and rapid stack-switching as a career changer support this. The NetSuite internship gives him genuine ERP exposure, ticking the bonus box. Missing pieces: no explicit TypeScript in his stack, no full-stack frontend framework mentioned, no evals/observability experience — but these are gaps he can close, not disqualifiers.",
-    "contextual_fit": "Excellent. The role's two tracks mirror his exact trajectory: 'zero to production, own it' is literally the job description ('Real ownership from day one', 'shape internal tooling from the ground up'). FDE's 'sit with end-users, translate messy problems into working solutions' matches his law-to-tech path and his current client-facing agency work. The 6-month internship with 'clear, fast path to permanent' fits his permit situation and career stage. ETH/HSG spinout, Goldman-backed, expanding to London — growth trajectory excites.",
-    "salary_estimate": "CHF 2,500-3,500/month (typical Swiss tech internship range for funded scaleups)",
-    "culture_fit": "Strong match. 'Entrepreneurial mindset', 'built something people actually used', 'comfortable with ambiguity' — all describe his career change and project work. 'Work with non-technical teams' is his daily reality (law background, agency clients). The 'fast feedback cycles' and 'days and weeks, not quarters' pace matches his stated preference for shipping and iterating.",
+    "technical_fit": "Strong. Role centers on LLM orchestration, agent frameworks, and building production AI systems—exactly his target area. TypeScript is a gap but he's demonstrated fast stack adaptability (Node.js background, career change from law to Python/cloud). His LLM API experience (Claude, Kimi), multi-step automation pipelines, and evals/observability directly map to both FDE and Internal Tooling tracks. NetSuite internship gives him unexpected ERP/process exposure that matches their bonus criteria.",
+    "contextual_fit": "Excellent. 'Real ownership from day one' and 'build and ship fast—days and weeks, not quarters' mirrors his stated motivation precisely. ETH/HSG spinout with Goldman Sachs backing offers credibility without bureaucracy. Dual track (customer-facing FDE + internal AI tooling) lets him explore both agentic systems and data platform engineering. 6-month duration fits his 2-week notice. Clear path to permanent role aligns with career change trajectory.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Strong match. Explicitly values 'entrepreneurial mindset,' 'built something people actually used,' and turning 'messy, half-stated problems into clear, working solutions'—all validated by his law-to-tech transition and self-directed project work. Non-technical stakeholder interaction is core to the role; his legal background and client-facing court experience is actually additive here.",
     "concerns": [
-      "TypeScript not currently in his listed stack — needs to demonstrate rapid learning curve (he has this narrative, but it's a real gap)",
-      "No explicit evals/observability framework experience mentioned (though his 'auditing my own output' suggests mindset)",
-      "ERP exposure is NetSuite-only, limited depth vs. SAP/Dynamics — but this is bonus, not required",
-      "6-month internship may be shorter than ideal if he seeks longer runway, though permanency path mitigates",
-      "FDE track requires direct client presence; his current client work is remote/DACH-market, not on-site with end-users — adjustment needed"
+      "TypeScript not in current stack—needs rapid ramp-up, though Node.js provides JS foundation and he's proven adaptability",
+      "No explicit mention of cloud infrastructure/CI/CD in role description; his current strengths in Docker/GitHub Actions/GCP may be underutilized or need reframing",
+      "ERP domain depth is light (one NetSuite internship); FDE track may have steep customer-context learning curve initially",
+      "6-month internship is standard but slightly shorter than ideal for deep agentic systems ownership; permanent path mitigates"
     ],
     "recommendation": "APPLY",
     "decision": "APPLY",
@@ -1292,17 +1294,19 @@
   },
   {
     "score": 35,
-    "hard_blockers": [],
+    "hard_blockers": [
+      "Role requires senior product management track record with enterprise B2B software shipping experience — candidate is seeking internship/junior engineering role, fundamentally wrong seniority and function"
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Role is Senior Product Manager, not intern or junior — massive experience gap",
-      "Candidate has zero product management track record; 'shipping enterprise B2B software customers adopted' is unmet",
-      "No evidence of product discovery, stakeholder management, or executive communication experience",
-      "'Can hold a position with engineers, with sales, and with executives' — untested skillset for candidate",
-      "German listed as 'a plus' for customer base — minor signal, not blocker",
-      "Role shape is decision-maker/influencer, not builder — directly conflicts with candidate's stated motivation of 'zero to production and owning it' technically"
+      "Blocker: Role requires senior product management track record with enterprise B2B software shipping experience — candidate is seeking internship/junior engineering role, fundamentally wrong seniority and function",
+      "Role is Senior PM, not intern/junior; candidate explicitly seeking internship or junior role",
+      "No product management experience in background; all experience is engineering, analytics, and business process",
+      "'Track record of shipping enterprise B2B software that customers actually adopted' is a hard experiential gap he cannot meet",
+      "While agentic AI is mentioned, the role is about managing product for it, not building it",
+      "German listed as 'a plus' for customer base, but not required"
     ],
     "job": {
       "company": "BLP Digital AG",
@@ -1312,17 +1316,16 @@
       "portal": "adzuna",
       "description": "Join BLP Digital — The #1 Solution for ERP Automation \n BLP Digital is redefining ERP automation with agentic AI. Spun out of ETH Zurich and HSG, we build AI agents that automate finance, procurement, logistics, sales, and more for some of the world's largest enterprises. We solve real enterprise problems with cutting-edge technology and a strong sense of ownership.\n Our solution is live in 40+ countries, used by 550+ customers, and automates 70,000+ processes every day, including for Fortune 500 companies. As one of Switzerland's fastest-growing SaaS scaleups, our success stems from deep expertise in technology and business processes, delivering a product with outstanding product-market fit, proven by a growing global customer base.\n We've recently welcomed Goldman Sachs Alternatives as a growth investor, and we're now expanding into the UK with the launch of our London office. We are just getting started. Ready to build the future? Join BLP Digital today. \n \n What You Own \n • The product decisions for your team's area of the BLP Platform: what gets built, in what order, and why.\n • The outcomes your team is accountable for, not the output.\n • Discovery: understanding the users and customers in your area deeply enough that you can make most decisions yourself, and knowing which decisions need evidence first.\n What You Shape With Us \n • The product strategy for your area, in partnership with product leadership and the domain experts.\n • How the product organization works as it scales: intake, prioritization, and the operating rhythm. We are actively iterating these, and we want the people doing the work to shape them.\n • The standard for product management at BLP, which is still being set.\n Who You Work With \n • Your stream-aligned team.\n • Other SATs and the platform teams.\n • Customers and key users directly.\n • Founders and domain experts, who hold a lot of the accumulated product knowledge in this space.\n Required \n • Track record of shipping enterprise B2B software that customers actually adopted.\n • Entrepreneurial judgment. Comfortable operating with incomplete information, choosing a direction, and owning the result.\n • Experienced in product discovery.\n • Can hold a position with engineers, with sales, and with executives, and can say no in a way that keeps the relationship.\n • Fluent English.\n Strongly Preferred \n • Experience working in an empowered product model, where teams were assigned problems to solve rather than features to build.\n A Plus \n • Enterprise ERP or finance exposure.\n • Experience with AI or agentic products in production, particularly reliability, evaluation, and trust in enterprise settings.\n • German, given our customer base.\n Sound Like You? \n We would love to hear from you. Apply through the link on this posting, and our team will be in touch."
     },
-    "technical_fit": "Poor. Role is Senior Product Manager, not builder/engineer. Requires track record shipping enterprise B2B software, product discovery experience, and ability to influence engineers/sales/executives — none of which candidate has. His skills are in Python, LLM APIs, data pipelines, automation engineering — not product management, strategy, or stakeholder leadership.",
-    "contextual_fit": "Poor. Candidate explicitly wants 'ownership from day one' in building/agentic systems engineering, not product management. This role owns decisions about what gets built, not building itself. 'Empowered product model' and 'say no to executives' is opposite of his desired growth path into deeper technical work.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Mixed. Strong ownership culture and agentic AI mission align with his interests, but the role shape is wrong — he's a career-changer seeking technical depth, not a senior PM leading strategy and saying no to stakeholders.",
+    "technical_fit": "Very poor. The role is a Senior Product Manager, not an engineering or builder role. The candidate is seeking hands-on technical work building LLM pipelines and automation with real ownership from day one as an intern/junior engineer. This role demands senior PM experience: shipping enterprise B2B software, product discovery, holding positions with engineers/sales/executives, and shaping product strategy. His background is law-to-tech transition, current AI engineering internship, and explicit desire to go deeper into agentic systems and data platform engineering — not product management.",
+    "contextual_fit": "Poor. While BLP Digital works with agentic AI and ERP automation (aligned with his interests), the role shape is fundamentally wrong: strategic product decisions, stakeholder management, and organizational scaling rather than building, shipping, and owning technical systems end-to-end. The 'ownership' described is product ownership, not technical ownership. He wants zero-to-production building; this is zero-to-roadmap planning.",
+    "salary_estimate": "CHF 120,000 - 160,000 (Senior PM at well-funded Swiss scaleup)",
+    "culture_fit": "Mixed signals. The empowered product model and strong ownership culture could appeal, but the role is senior and cross-functional rather than hands-on technical. The 'build the future' framing is misleading for this specific position — it's build-the-product-organization, not build-the-pipelines.",
     "concerns": [
-      "Role is Senior Product Manager, not intern or junior — massive experience gap",
-      "Candidate has zero product management track record; 'shipping enterprise B2B software customers adopted' is unmet",
-      "No evidence of product discovery, stakeholder management, or executive communication experience",
-      "'Can hold a position with engineers, with sales, and with executives' — untested skillset for candidate",
-      "German listed as 'a plus' for customer base — minor signal, not blocker",
-      "Role shape is decision-maker/influencer, not builder — directly conflicts with candidate's stated motivation of 'zero to production and owning it' technically"
+      "Role is Senior PM, not intern/junior; candidate explicitly seeking internship or junior role",
+      "No product management experience in background; all experience is engineering, analytics, and business process",
+      "'Track record of shipping enterprise B2B software that customers actually adopted' is a hard experiential gap he cannot meet",
+      "While agentic AI is mentioned, the role is about managing product for it, not building it",
+      "German listed as 'a plus' for customer base, but not required"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1331,17 +1334,17 @@
     "rescored": true
   },
   {
-    "score": 15,
+    "score": 25,
     "hard_blockers": [],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Role is entirely wrong functional track: creative/media vs. engineering/development",
-      "Part-time design conflicts with candidate seeking full-time career-building internship",
-      "No technical growth path toward stated goals",
-      "'Bonus points for both' German/English is soft, but even full fluency wouldn't fix fundamental role mismatch",
-      "Candidate would be filming AI products rather than building them — likely frustrating given explicit motivation"
+      "Role is pure videography/content creation — no technical engineering work whatsoever",
+      "Part-time design conflicts with candidate seeking full-time internship/junior role with career growth",
+      "No path to agentic systems or data platform engineering from this role",
+      "Candidate would be leaving tech career trajectory entirely for media production",
+      "Skills developed here (video editing, shooting) don't transfer to stated career goals in AI/data engineering"
     ],
     "job": {
       "company": "BLP Digital AG",
@@ -1351,16 +1354,16 @@
       "portal": "adzuna",
       "description": "Join BLP Digital — The #1 Solution for ERP Automation \n BLP Digital is redefining ERP automation with agentic AI. Spun out of ETH Zurich and HSG, we build AI agents that automate finance, procurement, logistics, sales, and more for some of the world's largest enterprises. We solve real enterprise problems with cutting-edge technology and a strong sense of ownership.\n Our solution is live in 40+ countries, used by 550+ customers, and automates 70,000+ processes every day, including for Fortune 500 companies. As one of Switzerland's fastest-growing SaaS scaleups, our success stems from deep expertise in technology and business processes, delivering a product with outstanding product-market fit, proven by a growing global customer base.\n We've recently welcomed Goldman Sachs Alternatives as a growth investor, and we're now expanding into the UK with the launch of our London office. We are just getting started. Ready to build the future? Join BLP Digital today. \n \n About The Role \n We're hiring a Videographer / Visual Storyteller to own video at BLP. Founders, customers, the team, the moments in between. Not corporate filler. Content people actually stop scrolling for.\n This is part-time by design. Perfect if you're studying video/film/media right now, or already have the chops and want steady, recurring work that doesn't eat your whole calendar.\n \n What You'll Do \n Shoot and edit founder videos : vision pieces, keynote recaps, raw behind-the-scenes\n\n Capture customer stories : on-site or remote, real enterprises, real results\n\n Build out culture content : onboarding, all-hands, team spotlights, the stuff that makes people want to work here\n\n Jump on ad-hoc content for launches, events, and social\n\n Basically: turn any situation into something worth watching\n\n \n You'll Have \n You're currently studying videography, film, or media production, or already hold a qualification in one of these\n\n A portfolio that shows you get story, framing, and pacing, not just gear knowledge (student reels totally count)\n\n The ability to run a shoot solo: plan it, shoot it, edit it, ship it\n\n Fluent German or English (bonus points for both)\n\n You're in or around Zürich, or can get here regularly for shoots\n\n \n Why Join BLP \n Real ownership. You're not executing someone else's shot list. You're shaping how BLP looks on camera.\n\n Interesting subjects. Founders, enterprise customers, a team that's actually building something. Portfolio gold.\n\n Flexible, not flaky. Built to run alongside your studies or other freelance work, with reliable, recurring income.\n\n Room to grow. If it clicks, there's more scope, more projects, more trust over time.\n\n You'll move fast. We're a startup. No 12-person approval chain before you can hit record."
     },
-    "technical_fit": "Very poor. Role is pure videography/content creation (shooting, editing, storytelling, social media). Zero overlap with candidate's skills in Python, LLM APIs, data pipelines, automation, cloud infrastructure, or platform engineering.",
-    "contextual_fit": "Poor. Candidate explicitly seeks 'agentic systems and data platform engineering' with 'real ownership from day one' in building LLM-powered pipelines. This role is creative/media production at an AI company, not technical AI/engineering work. The company's AI focus is irrelevant to the actual job function.",
+    "technical_fit": "Very poor. The role is videography/film/media production with zero overlap in the candidate's technical stack (Python, LLMs, data pipelines, cloud infrastructure). No coding, no AI engineering, no data platform work.",
+    "contextual_fit": "Poor. While BLP Digital builds agentic AI (aligned with candidate's interest area), this specific role is content creation, not engineering. The 'ownership' aspect matches the candidate's preference, but the domain is entirely wrong — visual storytelling vs. software/data engineering.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Moderate-positive on ownership culture and startup speed, but fundamentally mismatched: candidate wants to build production AI systems, not film them.",
+    "culture_fit": "Moderate. Startup environment with real ownership, fast pace, and building something meaningful aligns with candidate preferences. But this is culture fit for a completely different function.",
     "concerns": [
-      "Role is entirely wrong functional track: creative/media vs. engineering/development",
-      "Part-time design conflicts with candidate seeking full-time career-building internship",
-      "No technical growth path toward stated goals",
-      "'Bonus points for both' German/English is soft, but even full fluency wouldn't fix fundamental role mismatch",
-      "Candidate would be filming AI products rather than building them — likely frustrating given explicit motivation"
+      "Role is pure videography/content creation — no technical engineering work whatsoever",
+      "Part-time design conflicts with candidate seeking full-time internship/junior role with career growth",
+      "No path to agentic systems or data platform engineering from this role",
+      "Candidate would be leaving tech career trajectory entirely for media production",
+      "Skills developed here (video editing, shooting) don't transfer to stated career goals in AI/data engineering"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1369,19 +1372,19 @@
     "rescored": true
   },
   {
-    "score": 15,
+    "score": 25,
     "hard_blockers": [
-      "Fluent German explicitly required ('Fluent German and English') — candidate has A2 German, far below fluent/C1-C2 requirement"
+      "Fluent German explicitly required: 'Fluent German and English' — candidate is A2 German, far below fluent/C1 level required for this customer-facing role where candidate 'is the face customers remember' and runs German-language events in DACH market"
     ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Fluent German explicitly required ('Fluent German and English') — candidate has A2 German, far below fluent/C1-C2 requirement",
-      "Zero relevant experience in event marketing, B2B SaaS marketing, trade shows, or vendor management",
-      "Role is fundamentally a marketing/events function, not technical AI/automation building",
-      "3-5 years experience requirement far exceeds candidate's ~2 years in tech internships",
-      "Candidate would be severely underutilized and off-track from stated career goals in agentic systems and data platform engineering"
+      "Blocker: Fluent German explicitly required: 'Fluent German and English' — candidate is A2 German, far below fluent/C1 level required for this customer-facing role where candidate 'is the face customers remember' and runs German-language events in DACH market",
+      "Role is fundamentally misaligned career-wise: 3-5 years event marketing experience required vs. candidate's 0 years and tech career pivot",
+      "Role shape is commercial/relationship, not technical builder — candidate would not grow in agentic systems or data engineering",
+      "Even with perfect German, this would be a domain/career misfit; candidate would be abandoning tech trajectory entirely",
+      "Zürich-based with travel flexibility — logistics fine, but irrelevant given role and language blockers"
     ],
     "job": {
       "company": "BLP Digital AG",
@@ -1391,15 +1394,15 @@
       "portal": "adzuna",
       "description": "Join BLP Digital — The #1 Solution for ERP Automation \n BLP Digital is redefining ERP automation with agentic AI. Spun out of ETH Zurich and HSG, we build AI agents that automate finance, procurement, logistics, sales, and more for some of the world's largest enterprises. We solve real enterprise problems with cutting-edge technology and a strong sense of ownership.\n Our solution is live in 40+ countries, used by 550+ customers, and automates 70,000+ processes every day, including for Fortune 500 companies. As one of Switzerland's fastest-growing SaaS scaleups, our success stems from deep expertise in technology and business processes, delivering a product with outstanding product-market fit, proven by a growing global customer base.\n We've recently welcomed Goldman Sachs Alternatives as a growth investor, and we're now expanding into the UK with the launch of our London office. We are just getting started. Ready to build the future? Join BLP Digital today. \n \n About the Position We're hiring an Event Marketing Manager to own how BLP shows up in the room. You'll run BLP Connect , our flagship annual event, from blank page to sold-out. You'll build our CFO round tables and partner events. You'll be the face customers remember.\n This isn't a support role. It's a build-it-yourself role for someone who wants a flagship event with their name on it.\n \n Key Responsibilities Flagship event. BLP Connect, end to end. Concept, budget, venue, agenda, speakers, logistics, the day itself. Yours.\n\n CFO round tables. Small rooms, big stakeholders. You curate who's in them.\n\n Partner events. You grow the ecosystem, one great event at a time.\n\n Vendors, venues, budgets, timelines across several events at once.\n\n The vibe in the room. Customers and partners meet BLP through you.\n\n Attendee data and event performance in HubSpot (or similar), working tight with Marketing and Sales.\n\n \n Requirements 3 to 5 years in event marketing or event management, ideally B2B or SaaS.\n\n Fluent German and English.\n\n A degree in event marketing, communications or similar helps, but isn't the bar.\n\n Real energy. You light up a room and customers remember you after.\n\n Experience managing agencies and vendors, including negotiation.\n\n Know-how in trade show logistics, booth build and international event operations.\n\n Understanding of complex B2B sales processes as well as CRM and marketing automation systems (HubSpot or comparable).\n\n You stay calm running five things at once and somehow still enjoy it.\n\n Flexibility to travel and work around event dates.\n\n \n Benefits A flagship event with your name on it, visible to the entire leadership team.\n\n Front row seat at a fast-scaling AI company, in the room with CFOs and COOs who matter.\n\n No bureaucracy. No nine layers of approval. You decide, you build, you ship.\n\n Work next to A-players.\n\n Zürich based, with a team across Switzerland, Germany, the UK and the US."
     },
-    "technical_fit": "Very poor. Role requires 3-5 years event marketing/management, trade show logistics, booth builds, vendor negotiation, and CRM/marketing automation for events. Candidate has zero event marketing experience; his background is in law, software development, AI/LLM pipelines, and data automation. No overlap in core competencies.",
-    "contextual_fit": "Poor. While BLP Digital is an AI/agentic company (aligned with candidate's interests), this is a marketing/events role, not a technical builder role. The 'ownership' framing matches candidate's desire for ownership, but the domain (event marketing) is completely wrong. Candidate wants to build LLM-powered pipelines and agentic systems, not run CFO roundtables and flagship conferences.",
+    "technical_fit": "Very poor. Role is pure event marketing/management with no engineering, AI/LLM, data platform, or automation building. Zero overlap with candidate's Python, LLM APIs, CI/CD, cloud infrastructure, or dashboard skills.",
+    "contextual_fit": "Poor. Candidate explicitly seeks agentic systems and data platform engineering with real ownership in building LLM-powered pipelines. This role offers 'ownership' in event marketing, not technical building. Company does agentic AI but this position is entirely non-technical commercial execution.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Moderate on surface (fast-scaling, no bureaucracy, ownership culture), but fundamentally mismatched. The 'A-players' and 'front row seat' language appeals, but the actual work is marketing/events, not engineering.",
+    "culture_fit": "Mixed signals. 'No bureaucracy, you decide, you build, you ship' and 'A-players' aligns with candidate's preference for ownership and fast execution. However, 'build' here means events, not software. The culture is commercial/marketing, not engineering.",
     "concerns": [
-      "Zero relevant experience in event marketing, B2B SaaS marketing, trade shows, or vendor management",
-      "Role is fundamentally a marketing/events function, not technical AI/automation building",
-      "3-5 years experience requirement far exceeds candidate's ~2 years in tech internships",
-      "Candidate would be severely underutilized and off-track from stated career goals in agentic systems and data platform engineering"
+      "Role is fundamentally misaligned career-wise: 3-5 years event marketing experience required vs. candidate's 0 years and tech career pivot",
+      "Role shape is commercial/relationship, not technical builder — candidate would not grow in agentic systems or data engineering",
+      "Even with perfect German, this would be a domain/career misfit; candidate would be abandoning tech trajectory entirely",
+      "Zürich-based with travel flexibility — logistics fine, but irrelevant given role and language blockers"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1408,18 +1411,18 @@
     "rescored": true
   },
   {
-    "score": 35,
+    "score": 32,
     "hard_blockers": [],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Role requires 5+ years experience in entirely different functions; candidate is intern-level with 2 weeks notice",
-      "STEM degree required; candidate has Law degree + postgraduate Data Science (lato sensu, not equivalent)",
-      "Core competency mismatch: role demands 'talent for teaching and educating colleagues' as primary output; candidate's motivation is individual technical ownership and building",
-      "'German is a big plus' — at A2, candidate cannot leverage this",
-      "Role is fundamentally commercial/sales-facing, not engineering-facing; candidate would be disconnected from the technical work he seeks",
-      "The 'agentic AI' company branding is a distractor — this role has no technical building component"
+      "Role requires 5+ years experience in strategy consulting, sales enablement, or founding — candidate has ~2 years tech experience, all in engineering/analytics, zero in sales/GTM",
+      "STEM degree required; candidate has law degree + postgraduate data science (lato sensu, not formal STEM)",
+      "Deep misalignment between role shape (sales enablement builder/teacher) and candidate's stated motivation (building AI systems end-to-end)",
+      "Candidate would be working with sellers and collateral, not with LLMs, agents, or data pipelines — likely rapid disengagement",
+      "German listed as 'big plus' — at A2, candidate undershoots even this soft preference",
+      "Company's agentic AI work is technically interesting but inaccessible from this role; internal mobility from GTM enablement to platform engineering is structurally unlikely at a fast-growing scaleup"
     ],
     "job": {
       "company": "BLP Digital AG",
@@ -1429,17 +1432,17 @@
       "portal": "adzuna",
       "description": "Join BLP Digital — The #1 Solution for ERP Automation \n BLP Digital is redefining ERP automation with agentic AI. Spun out of ETH Zurich and HSG, we build AI agents that automate finance, procurement, logistics, sales, and more for some of the world's largest enterprises. We solve real enterprise problems with cutting-edge technology and a strong sense of ownership.\n Our solution is live in 40+ countries, used by 550+ customers, and automates 70,000+ processes every day, including for Fortune 500 companies. As one of Switzerland's fastest-growing SaaS scaleups, our success stems from deep expertise in technology and business processes, delivering a product with outstanding product-market fit, proven by a growing global customer base.\n We've recently welcomed Goldman Sachs Alternatives as a growth investor, and we're now expanding into the UK with the launch of our London office. We are just getting started. Ready to build the future? Join BLP Digital today. \n \n BLP is hiring fast across four countries, and the product moves every month. Your job is to make sure a new seller is selling within two weeks and a two-year veteran is never behind. You build everything that makes that possible.\n\nYou'd build the GTM enablement function at BLP from zero, run it, and grow the team behind it once the model works. Sales Development, Sales, and Value Engineering all need to sell our product well, and right now nobody owns making that easier. There's no playbook to inherit, and no team or tooling either. You set the agenda and decide what gets built first. You'll work with Product, Product Marketing, Value Engineering, and leadership, and you'll spend most of your time with the sellers themselves.\n \n This role is crucial to BLP's ambitious growth. Therefore, we are looking for a highly skilled individual with a strong track record. That track record can come from strategy consulting, a startup environment, or a comparable enablement function.\n \n Key responsibilities \n Build BLP's go-to-market enablement function from scratch\n\n Design onboarding that gets a new rep selling in two weeks, in a category most people take months to understand\n\n Write the playbooks for enterprise cycles, pilots, and expansions\n\n Work with Product, Product Marketing, Adoption, and Deployment to build the internal and customer-facing collateral the field actually uses\n\n Build the single source of truth for everything a GTM team member needs, and automate how it stays current\n\n Own the Sales and Technical Success training calendar, and run the sessions: process rollouts, product launches, new motions\n\n \n Requirements \n 5+ years in strategy consulting, sales enablement, product marketing, or founding your own company\n\n Bachelor's / Master's / PhD in a STEM field\n\n You understand technically complex products quickly and enjoy it\n\n You communicate precisely towards customers and sellers\n\n You have a talent for teaching and educating colleagues \n\n Fluent English. German is a big plus \n\n \n Benefits \n Solve real problems, fast. Join a high-growth deep-tech scaleup tackling real-world challenges for global industry leaders.\n\n Build from zero to one. Own BLP's entire enablement function, from the first playbook to the team that runs it.\n\n Opportunities to grow. You're controlling your personal development and career trajectory in a rapidly growing, internationally expanding scaleup.\n\n Exceptional colleagues. You'll be growing alongside individuals from exceptional academic backgrounds and careers."
     },
-    "technical_fit": "Very poor. The role is fundamentally a GTM/sales enablement leadership position requiring 5+ years in consulting, enablement, or founding experience plus a STEM degree. The candidate has zero experience in sales enablement, strategy consulting, product marketing, or team leadership. His entire profile is hands-on technical building (Python, LLM APIs, automation pipelines, infrastructure) — the opposite of this role's enablement/teaching/communication focus.",
-    "contextual_fit": "Poor. While BLP Digital is in agentic AI/ERP automation (aligned with candidate's interests), this specific role is about enabling sellers to sell the product, not building the product. The candidate wants 'ownership from day one' in building LLM-powered pipelines and data platforms; this role offers ownership of sales playbooks and onboarding programs. The 'build from zero' framing is seductive but the output is entirely wrong domain — sales collateral, not technical systems.",
-    "salary_estimate": "CHF 120,000–160,000+ (senior IC/founding manager in Zurich scaleup)",
-    "culture_fit": "Mixed signals. BLP's 'strong sense of ownership,' 'build from zero,' and fast-moving culture match candidate's stated preferences. However, the role's daily reality is teaching sellers, writing playbooks, and running training sessions — the candidate's excitement is in shipping technical systems and auditing his own code output, not enabling others to sell.",
+    "technical_fit": "Very poor. Role is pure GTM/sales enablement — building playbooks, onboarding sellers, training calendars, sales collateral. Zero engineering, zero LLM pipeline building, zero data platform work. Candidate's entire skillset (Python, LLM APIs, automation pipelines, cloud infra, dashboards) is irrelevant to this role.",
+    "contextual_fit": "Poor. While the company builds agentic AI (aligned with candidate's interest), this specific role is on the commercial/sales side, not the technical/product side. The 'build from zero' ownership narrative is appealing in abstract, but it's building sales enablement, not AI systems. Candidate wants to build production AI pipelines, not teach sales reps to sell them.",
+    "salary_estimate": "CHF 110,000 - 140,000 (scaleup GTM enablement manager with 5+ YOE requirement)",
+    "culture_fit": "Mixed. Strong ownership ethos and fast-moving environment match candidate's preferences. However, the role sits in sales/GTM org, not engineering — candidate would be isolated from the technical work he wants to do. The 'exceptional academic backgrounds' and STEM degree requirement signal a profile mismatch (law background, bootcamp/career-change path).",
     "concerns": [
-      "Role requires 5+ years experience in entirely different functions; candidate is intern-level with 2 weeks notice",
-      "STEM degree required; candidate has Law degree + postgraduate Data Science (lato sensu, not equivalent)",
-      "Core competency mismatch: role demands 'talent for teaching and educating colleagues' as primary output; candidate's motivation is individual technical ownership and building",
-      "'German is a big plus' — at A2, candidate cannot leverage this",
-      "Role is fundamentally commercial/sales-facing, not engineering-facing; candidate would be disconnected from the technical work he seeks",
-      "The 'agentic AI' company branding is a distractor — this role has no technical building component"
+      "Role requires 5+ years experience in strategy consulting, sales enablement, or founding — candidate has ~2 years tech experience, all in engineering/analytics, zero in sales/GTM",
+      "STEM degree required; candidate has law degree + postgraduate data science (lato sensu, not formal STEM)",
+      "Deep misalignment between role shape (sales enablement builder/teacher) and candidate's stated motivation (building AI systems end-to-end)",
+      "Candidate would be working with sellers and collateral, not with LLMs, agents, or data pipelines — likely rapid disengagement",
+      "German listed as 'big plus' — at A2, candidate undershoots even this soft preference",
+      "Company's agentic AI work is technically interesting but inaccessible from this role; internal mobility from GTM enablement to platform engineering is structurally unlikely at a fast-growing scaleup"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1450,18 +1453,17 @@
   {
     "score": 35,
     "hard_blockers": [
-      "Fluent German explicitly required: 'Fluent English and German (our customer base is DACH-heavy)'. Candidate's German is A2, studying towards B1. This is a hard eligibility blocker."
+      "Fluent German required: 'Fluent English and German (our customer base is DACH-heavy)' — candidate's German is A2, studying toward B1. This is a hard eligibility blocker for a role requiring fluency in German for DACH customer-facing work."
     ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Fluent German explicitly required: 'Fluent English and German (our customer base is DACH-heavy)'. Candidate's German is A2, studying towards B1. This is a hard eligibility blocker.",
-      "Role is fundamentally misaligned with candidate's career trajectory — he is pivoting INTO technical AI/automation engineering, not OUT of it into marketing",
-      "ERP/finance domain familiarity listed as 'large plus' — candidate has none",
-      "3-7 years experience requirement far exceeds candidate's level; this is a lead role, not junior",
-      "Candidate's legal background might help with 'navigating legal review' but this is a stretch for relevance",
-      "The 'agentic AI' company description is a red herring — this role has zero technical AI work"
+      "Blocker: Fluent German required: 'Fluent English and German (our customer base is DACH-heavy)' — candidate's German is A2, studying toward B1. This is a hard eligibility blocker for a role requiring fluency in German for DACH customer-facing work.",
+      "Role is fundamentally misaligned with stated career direction: candidate wants to build AI systems, this role markets them",
+      "3–7 years experience requirement significantly above candidate's level",
+      "ERP/finance domain familiarity listed as 'large plus' — candidate lacks this",
+      "Marketing background would actually be a liability signal for his target trajectory; taking this role would dilute his emerging technical profile"
     ],
     "job": {
       "company": "BLP Digital AG",
@@ -1471,16 +1473,15 @@
       "portal": "adzuna",
       "description": "Join BLP Digital — The #1 Solution for ERP Automation \n BLP Digital is redefining ERP automation with agentic AI. Spun out of ETH Zurich and HSG, we build AI agents that automate finance, procurement, logistics, sales, and more for some of the world's largest enterprises. We solve real enterprise problems with cutting-edge technology and a strong sense of ownership.\n Our solution is live in 40+ countries, used by 550+ customers, and automates 70,000+ processes every day, including for Fortune 500 companies. As one of Switzerland's fastest-growing SaaS scaleups, our success stems from deep expertise in technology and business processes, delivering a product with outstanding product-market fit, proven by a growing global customer base.\n We've recently welcomed Goldman Sachs Alternatives as a growth investor, and we're now expanding into the UK with the launch of our London office. We are just getting started. Ready to build the future? Join BLP Digital today. \n \n About The Role \n We have 550+ enterprise customers running BLP inside their core ERP processes, and most of their stories have never been told. You'll own that end to end: find them, get them talking, turn it into proof that closes deals. No content calendar to inherit, no playbook to follow. You're building the program from scratch.\n Customer proof is about to become one of the highest-leverage things in the company, and right now, almost nobody owns it.\n \n What You'll Do \n Build the reference engine. Find the customers worth referencing, get them warmed up, and make sure sales always has the right voice for the right deal, not just whoever said yes last.\n\n Turn results into stories. Own case studies and customer proof end to end: securing approvals, running the interviews, shipping the asset. You'll be translating things like 5–10× productivity gains and measurable EBIT impact into stories a CFO actually wants to read.\n\n Win the review sites. G2, Gartner Peer Insights, wherever our buyers actually check references before they call us. Make our rating reflect reality.\n\n Put customers on stage. Source and coach champions for webinars, events, and press. The best sales pitch is a customer telling another customer it worked.\n\n Make Sales and CS your closest allies. You don't own the relationships, they do. Build the interface so advocacy asks are coordinated, not chaotic.\n\n Prove it's working. Track reference coverage, asset usage, and pipeline influence. If you can't measure it, it doesn't count.\n\n \n You'll Have \n 3–7 years in customer marketing, advocacy, reference management, or content marketing. B2B software is a plus, not a requirement. What matters is that you've built customer-facing programs, not just executed inside one.\n\n A track record of getting case studies and references out of enterprise customers. You know how to navigate corporate comms, legal review, and long approval cycles, and you have the patience to see them through.\n\n The ability to get a COO to say something quotable and a CFO to believe it.\n\n Structured program-building skills. You've stood up processes, pipelines, and measurement from scratch, not just executed within an existing machine.\n\n Fluent English and German (our customer base is DACH-heavy); additional European languages are a plus.\n\n Familiarity with ERP-centric processes, finance operations, or enterprise software for manufacturing and industrial companies is a large plus."
     },
-    "technical_fit": "Very poor. Role is pure content marketing/customer advocacy — no engineering, no AI/ML, no data pipelines, no automation building. The candidate's entire skillset (Python, LLM APIs, CI/CD, dashboards, agentic systems) is irrelevant to this job. BLP builds agentic AI, but this specific role is about writing case studies and managing reference programs, not building the technology.",
-    "contextual_fit": "Poor. The candidate explicitly wants 'ownership from day one' in building LLM-powered pipelines and agentic systems. This role offers ownership, but in marketing content — not technical building. The 'agentic AI' company context is misleading; this is a marketing job, not a technical one.",
+    "technical_fit": "Very poor. Role is pure content marketing/customer advocacy—case studies, reference management, review sites, webinars. Zero technical engineering work; no Python, no LLM APIs, no data pipelines, no automation building. The company's product is agentic AI, but this role is about storytelling around it, not building it.",
+    "contextual_fit": "Poor. Candidate explicitly seeks 'agentic systems and data platform engineering' with 'real ownership from day one' in building LLM-powered pipelines. This role offers ownership in marketing program creation, not technical building. The 'zero to production' excitement he describes is about shipping code and systems, not content assets.",
     "salary_estimate": "CHF 90,000–120,000",
-    "culture_fit": "Mixed. Strong ownership culture and scaleup energy match candidate's preferences, but the actual work (corporate comms navigation, legal review, sales alignment) is far from his stated interests. The 'build from scratch' aspect appeals, but in entirely wrong domain.",
+    "culture_fit": "Moderate. Strong ownership culture and fast-growing scaleup aligns with his preference. ETH/HSG spin-out with technical depth is appealing. However, he's deliberately pivoting away from non-technical roles (his background includes law, business process, digital marketing)—this would be a backward step into exactly the kind of work he's trying to leave.",
     "concerns": [
-      "Role is fundamentally misaligned with candidate's career trajectory — he is pivoting INTO technical AI/automation engineering, not OUT of it into marketing",
-      "ERP/finance domain familiarity listed as 'large plus' — candidate has none",
-      "3-7 years experience requirement far exceeds candidate's level; this is a lead role, not junior",
-      "Candidate's legal background might help with 'navigating legal review' but this is a stretch for relevance",
-      "The 'agentic AI' company description is a red herring — this role has zero technical AI work"
+      "Role is fundamentally misaligned with stated career direction: candidate wants to build AI systems, this role markets them",
+      "3–7 years experience requirement significantly above candidate's level",
+      "ERP/finance domain familiarity listed as 'large plus' — candidate lacks this",
+      "Marketing background would actually be a liability signal for his target trajectory; taking this role would dilute his emerging technical profile"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1495,10 +1496,12 @@
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description truncated -- requirements section not visible; score is conservative and speculative",
-      "Role title explicitly 'Senior' and in 'Identity & Security' -- likely expects significant prior experience in security/platform domains, not a fit for intern/junior level",
-      "No indication of LLM, agentic, or data pipeline work in visible text; domain and role shape appear misaligned with candidate's stated goals",
-      "Large corporate insurer unlikely to offer 'internship with real ownership from day one' structure candidate seeks",
+      "Job description truncated; requirements section not visible—role seniority, specific experience demands, and language requirements unknown",
+      "Role title explicitly 'Senior' suggesting experience expectations far above intern/junior level",
+      "Enterprise insurance domain with no indication of AI/LLM/agentic work",
+      "Candidate seeking internship/junior role with ownership; this is senior individual contributor in infrastructure security",
+      "Massive company size (55k employees) typically antithetical to 'own it end-to-end' role shape candidate prioritizes",
+      "No overlap with candidate's demonstrated skills: no LLMs, no data pipelines, no automation building, no dashboarding",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1509,15 +1512,17 @@
       "portal": "adzuna",
       "description": "Zurich is a leading multi-line insurer that serves its customers in global and local markets. With about 55,000 employees, it provides a wide range of property and casualty, life insurance products and services in more than 215 countries and territories. Zurich's customers include individuals, small businesses, and mid-sized and large companies, as well as multinational corporations. Senior Platform Engineer - Identity & Security (m/f/d) 80-100% Are you energized by solving complex IT challenge…"
     },
-    "technical_fit": "Poor. The visible title points to identity & security platform engineering -- a senior role in a traditional enterprise insurance stack. No mention of LLMs, agentic systems, data pipelines, or automation. This is infrastructure/identity/security, not the AI/data platform building the candidate seeks.",
-    "contextual_fit": "Weak. Even if requirements were visible, the role title and company context strongly suggest a conventional enterprise platform engineering track (IAM, security tooling, corporate IT), not a greenfield AI/automation builder role with ownership from day one.",
+    "technical_fit": "Poor. The role is Platform Engineering focused on Identity & Security infrastructure, not AI/automation or data platform engineering. The candidate's stack (LLM APIs, Python data pipelines, dashboarding, marketing automation) has minimal overlap with enterprise identity/security platforms.",
+    "contextual_fit": "Poor. Zurich Insurance is a massive enterprise (55,000 employees), which typically means specialized teams, established processes, and limited ownership for junior/intern profiles. The 'Senior' title suggests expectations of deep platform experience the candidate doesn't have. His core motivation—zero-to-production ownership in agentic/AI systems—is fundamentally mismatched with this role shape.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown from truncated text, but Zurich Insurance's scale (55k employees) suggests structured hierarchy, not the small-team ownership environment the candidate prioritizes.",
+    "culture_fit": "Unknown. Large insurer with likely conservative, slow-moving engineering culture. No signal of the hands-on, builder-oriented environment the candidate seeks.",
     "concerns": [
-      "Job description truncated -- requirements section not visible; score is conservative and speculative",
-      "Role title explicitly 'Senior' and in 'Identity & Security' -- likely expects significant prior experience in security/platform domains, not a fit for intern/junior level",
-      "No indication of LLM, agentic, or data pipeline work in visible text; domain and role shape appear misaligned with candidate's stated goals",
-      "Large corporate insurer unlikely to offer 'internship with real ownership from day one' structure candidate seeks"
+      "Job description truncated; requirements section not visible—role seniority, specific experience demands, and language requirements unknown",
+      "Role title explicitly 'Senior' suggesting experience expectations far above intern/junior level",
+      "Enterprise insurance domain with no indication of AI/LLM/agentic work",
+      "Candidate seeking internship/junior role with ownership; this is senior individual contributor in infrastructure security",
+      "Massive company size (55k employees) typically antithetical to 'own it end-to-end' role shape candidate prioritizes",
+      "No overlap with candidate's demonstrated skills: no LLMs, no data pipelines, no automation building, no dashboarding"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1528,17 +1533,18 @@
   {
     "score": 35,
     "hard_blockers": [
-      "Fluent German explicitly required: 'Fluent English and German (our customer base is concentrated in the DACH region)'. Candidate's German is A2, studying towards B1. This is a hard eligibility blocker."
+      "Fluent German explicitly required: 'Fluent English and German (our customer base is concentrated in the DACH region)' — candidate's German is A2, studying toward B1. This is a hard eligibility blocker."
     ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Fluent German explicitly required: 'Fluent English and German (our customer base is concentrated in the DACH region)'. Candidate's German is A2, studying towards B1. This is a hard eligibility blocker.",
-      "Role is pure marketing/CS function with no technical trajectory toward agentic systems engineering",
-      "ERP/process familiarity listed as 'strong advantage' but candidate has no relevant background",
-      "Even without language blocker, this would be a major career misdirection from stated goals",
-      "The 'agentic AI' in company description is product positioning, not role function—risk of bait-and-switch excitement"
+      "Blocker: Fluent German explicitly required: 'Fluent English and German (our customer base is concentrated in the DACH region)' — candidate's German is A2, studying toward B1. This is a hard eligibility blocker.",
+      "Role is fundamentally misaligned with candidate's career direction: he wants to build agentic systems and data platforms, not run customer advocacy programs",
+      "No technical growth path visible in this role",
+      "ERP/finance domain familiarity listed as 'strong advantage' — candidate has none",
+      "Stakeholder management and 'exceptional stakeholder skills' are core requirements; candidate's background is technical, not commercial relationship management",
+      "Interviewing and storytelling ability is a primary skill requirement; not mentioned in candidate's profile"
     ],
     "job": {
       "company": "BLP Digital AG",
@@ -1548,15 +1554,16 @@
       "portal": "adzuna",
       "description": "Join BLP Digital — The #1 Solution for ERP Automation \n BLP Digital is redefining ERP automation with agentic AI. Spun out of ETH Zurich and HSG, we build AI agents that automate finance, procurement, logistics, sales, and more for some of the world's largest enterprises. We solve real enterprise problems with cutting-edge technology and a strong sense of ownership.\n Our solution is live in 40+ countries, used by 550+ customers, and automates 70,000+ processes every day, including for Fortune 500 companies. As one of Switzerland's fastest-growing SaaS scaleups, our success stems from deep expertise in technology and business processes, delivering a product with outstanding product-market fit, proven by a growing global customer base.\n We've recently welcomed Goldman Sachs Alternatives as a growth investor, and we're now expanding into the UK with the launch of our London office. We are just getting started. Ready to build the future? Join BLP Digital today. \n \n About The Role Our customers are our strongest asset - and their stories are still largely untold. As our Customer Marketing & Advocacy Manager, you will own the customer voice at BLP end-to-end: building the advocacy program that turns 550+ enterprise customers into referenceable champions, published case studies, review-site presence, and speakers who carry our story into the market. This is a hands-on individual contributor role with full ownership of the advocacy motion. You will work at the intersection of marketing, sales, and customer success - and directly with CFOs, COOs, and operations leaders at some of Europe's leading industrial enterprises\n \n What You'll Do Build and run the customer reference program . Identify, recruit, and nurture referenceable customers; manage the reference pipeline for sales; match the right customer voice to the right deal stage.\n\n Produce customer proof. Own case studies, success stories, and customer quotes end-to-end - from securing internal and customer-side approvals through interviews to published assets for web, sales decks, and campaigns.\n\n Own review-site presence. Drive systematic review generation and management on platforms like G2 and Gartner Peer Insights, and turn ratings into market-facing proof.\n\n Recruit customer speakers. Source and prepare customer champions for webinars, events, analyst conversations, and press opportunities.\n\n Partner with Customer Success and Sales. Establish a structured interface with account teams - joint identification of advocacy candidates, coordinated asks, and a shared view of which customers are asked for what, and when.\n\n Measure and report. Track reference coverage by indust\n[... middle of the posting omitted ...]\nnts, legal reviews, and long approval cycles, and you have the persistence to see them through.\n\n Exceptional stakeholder skills. Your raw material is owned by customer success and sales; you build the internal relationships that earn you access to accounts.\n\n Strong interviewing and storytelling ability: you can get a COO to articulate business impact in numbers, and turn it into a story a CFO wants to read.\n\n Structured program-building skills - you can stand up processes, pipelines, and measurement from scratch, not just execute within an existing machine.\n\n Fluent English and German (our customer base is concentrated in the DACH region); additional European languages are a plus.\n\n Familiarity with ERP-centric processes, finance operations, or enterprise software for manufacturing/industrial companies is a strong advantage.\n\n \n Why Join BLP Real ownership: you build this program - the strategy, the process, and the results are yours. Substance to work with: 550+ enterprise customers with measurable outcomes means your job is to surface great stories, not manufacture them.\n\n A company at an inflection point: strong European base, fresh US market entry, and a category - agentic process automation - that enterprises are actively budgeting for.\n\n Direct exposure to executive customers and to BLP's leadership team."
     },
-    "technical_fit": "Very poor. Role is marketing/advocacy with zero technical engineering work. No Python, no LLM API integration, no pipeline building, no data platform engineering. The 'agentic AI' mentioned is what BLP sells, not what this role builds.",
-    "contextual_fit": "Poor. Candidate seeks ownership in building AI/automation systems; this role offers ownership in building a marketing program. The 'zero to production' excitement is about shipping code and systems, not case studies and G2 reviews.",
+    "technical_fit": "Very poor. Role is marketing/advocacy-focused (case studies, reference programs, review sites, customer interviews) with zero technical engineering work. No Python, no LLM pipeline building, no data platform engineering, no automation development. The candidate's entire skillset (coding, LLM APIs, CI/CD, cloud infrastructure, dashboards) is irrelevant to this role.",
+    "contextual_fit": "Poor. While BLP Digital builds agentic AI (aligned with candidate's interest area), this specific role is on the commercial/marketing side, not the product/engineering side. The candidate wants to BUILD agentic systems, not market them. Role offers ownership, but ownership of a marketing program, not technical systems.",
     "salary_estimate": "CHF 90,000 - 120,000",
-    "culture_fit": "Moderate. BLP's 'strong sense of ownership' and 'build the future' language resonates, but the actual role is far from the technical builder culture the candidate wants to join.",
+    "culture_fit": "Partial. Strong ownership culture and fast-growing scaleup environment match candidate's preferences. However, the role is individual contributor in marketing, not engineering. Direct exposure to executives and 'build from scratch' mentality partially align, but domain is wrong.",
     "concerns": [
-      "Role is pure marketing/CS function with no technical trajectory toward agentic systems engineering",
-      "ERP/process familiarity listed as 'strong advantage' but candidate has no relevant background",
-      "Even without language blocker, this would be a major career misdirection from stated goals",
-      "The 'agentic AI' in company description is product positioning, not role function—risk of bait-and-switch excitement"
+      "Role is fundamentally misaligned with candidate's career direction: he wants to build agentic systems and data platforms, not run customer advocacy programs",
+      "No technical growth path visible in this role",
+      "ERP/finance domain familiarity listed as 'strong advantage' — candidate has none",
+      "Stakeholder management and 'exceptional stakeholder skills' are core requirements; candidate's background is technical, not commercial relationship management",
+      "Interviewing and storytelling ability is a primary skill requirement; not mentioned in candidate's profile"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1570,14 +1577,14 @@
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [
-      "Strong alignment on core stack (Python, FastAPI, SQLAlchemy, AWS, Docker, GitHub Actions) and the agentic/AI integration work is exactly what excites him. Gap: 4 years experience expected vs his ~1-2 years; role is full Product Engineer not internship. However, his ownership pattern (zero-to-production, self-auditing) and current LLM pipeline work map well to the 'ship features end-to-end' mandate."
+      "Strong alignment on core stack (Python, FastAPI, SQLAlchemy, Docker, GitHub Actions, AWS) and exact domain match (agentic AI systems, LLM orchestration via Bedrock, data pipelines, regulated process automation). Candidate's LLM API experience (Claude, Kimi) and multi-step automation pipelines transfer directly. Gap: 4 years experience requested vs. his intern/junior trajectory, and no explicit AWS/Bedrock exposure yet. However, his cloud infra (Google Cloud) and containerization experience are adjacent, and the role's 'ship end-to-end with guidance' framing suggests some flexibility."
     ],
     "red_flags": [
-      "Experience gap: 'around 4 years' professional SWE vs his ~1-2 years total tech experience; may be screened out by HR for seniority mismatch",
-      "Role level mismatch: titled 'Product Engineer' not internship/junior; he's explicitly seeking internship or junior role",
-      "No explicit mention of German requirement but in-person Zurich role may have implicit German customer exposure; however English working language is clear from posting",
-      "Financial/regulated domain is new; while he's open to it, fintech compliance depth is unproven",
-      "AWS specifics (Bedrock, Aurora, CloudFormation) are not in his current stack though cloud fundamentals transfer"
+      "Experience level mismatch: 'around 4 years' is senior to his current intern/junior status; may be screened out by ATS or hiring manager expecting mid-level independence from day one",
+      "No AWS/Bedrock production experience (Google Cloud background, not AWS; no Aurora MySQL or ECS Fargate exposure)",
+      "No React/frontend experience mentioned (though role is backend-heavy, 'vertical slices' implies some frontend touch)",
+      "Regulated industry experience is a plus, not required, but his legal background is adjacent-not-direct; may need to sell transferable rigor",
+      "A2 German may be social friction in in-person Zurich team, though English is clearly working language"
     ],
     "job": {
       "company": "Porters",
@@ -1587,16 +1594,16 @@
       "portal": "adzuna",
       "description": "The Context Banks still run their most critical, regulated work by hand; reading letters and emails, re-keying data between systems, chasing down missing info. It's the kind of work that's too important to get wrong and too tedious for anyone to want to do.\n Porters fixes this. Our AI agents run these regulated processes end to end, with the audit trails and security banks actually require, so the work moves at the speed customers expect instead of the speed a backlog allows.\n We're just over a year old and already live with real customers, growing the product quickly, and were named Fintech of the Year 2026. The goal is to build the operating system for autonomous banking. We're backed by Earlybird, one of Europe's oldest venture firms, and Seedcamp, who wrote first checks into Revolut, Wise, and UiPath.\n \n The Mission You'll own features in their entirety. Self-standing or with guidance of founders and fellow engineers, you turn a clear problem statement into a strong design and build, test, and ship new features that directly enable our customers. You integrate features across our layered stack, from the API to the data plane, and carry them all the way to production.\n This job is in person in Zurich, or remote in Barcelona or Berlin.\n \n Your responsibilities Ship features end-to-end: Deliver complete vertical slices across the stack, from the API layer to the data model, carried through to running in production.\n\n Grow what the platform does for banks: Build the services Porters performs for banks: Extend the capabilities of our agentic platform such as case handling, customer matching, AI tool integrations, data enrichment, or keeping humans in the loop.\n\n Deliver features that hold together as a system: Design endpoints, contracts, and interfaces that work together, ensuring features integrate cleanly towards one bigger outcome.\n\n Ensure your work is reliable: Own design, development, tests, and deployment, so what reaches production is proven to work.\n\n Wow our customers: You solve for the customer's actual problem, not just the request and measure success by customer outcomes. What would it take for the customer to say “Porters, made my day”.\n\n \n Your profile Experience: Around 4 years of professional software engineering, with a track record of shipping in fast-paced, ambiguous environments. Regulated industry and/or VC-backed startup experiences are a plus.\n\n Product thinking: You naturally understand why you’re building something, not just focusing on how to build.\n\n Quality focus & individual problem solving: Given a clear problem, you reliably produce a clean algorithm, a sensible data model, a well-struct\n[... middle of the posting omitted ...]\ndevelopment budget, free to use for whatever gives you a level-up.\n\n Culture: Strong focus on a healthy, high-performance team culture, ranging from regular team events and dinners to an inclusive, fast-paced team that grows together.\n \n Our stack Core Backend: Python 3.14, FastAPI, Pydantic, and SQLAlchemy 2.0 in a strict four-layer architecture, exposed as separate internal and external APIs.\n\n Background processing: Containerized worker services and event-driven AWS Lambda orchestrators for email ingestion, document triaging, and action running.\n\n AI Integration: AI orchestration deeply integrated into application landscape via AWS Bedrock, e.g., to extract information and drive agentic activity.\n\n Data & Storage: Per-tenant Aurora MySQL in isolated subnets, S3 for document persistence, and an append-only ledger for auditability.\n\n Platform: A multi-tenant AWS environment on ECS Fargate with strict per-tenant network and data isolation (VPC, NACLs, WAF), CloudFront + Cognito (Google SSO/JWT) and API Gateway (IAM) at the edge, defined as code in CloudFormation across dev/staging/prod accounts.\n\n Frontend: React single-page app for the internal workbench.\n\n Dev Workflow: uv, Ruff, ty, pytest (unit, integration, property-based), Docker, GitHub Actions, and heavy use of Agentic IDEs to accelerate feature shipping."
     },
-    "technical_fit": "Strong alignment on core stack (Python, FastAPI, SQLAlchemy, AWS, Docker, GitHub Actions) and the agentic/AI integration work is exactly what excites him. Gap: 4 years experience expected vs his ~1-2 years; role is full Product Engineer not internship. However, his ownership pattern (zero-to-production, self-auditing) and current LLM pipeline work map well to the 'ship features end-to-end' mandate.",
-    "contextual_fit": "Excellent. This is the exact role shape he wants: agentic systems, regulated data platform, end-to-end ownership, building not maintaining. Fintech domain is new but he is deliberately open to unfamiliar domains. The 'operating system for autonomous banking' mission and AI-orchestration via Bedrock directly matches his stated growth direction.",
-    "salary_estimate": "CHF 100,000-130,000 (startup Product Engineer Zurich, Series A stage)",
-    "culture_fit": "Strong. High-ownership, ambiguous-problem-solving, customer-outcome-focused culture matches his self-described work style. 'Healthy high-performance' and inclusive growth culture fits deliberate career-changer trajectory. In-person Zurich matches his location/permit.",
+    "technical_fit": "Strong alignment on core stack (Python, FastAPI, SQLAlchemy, Docker, GitHub Actions, AWS) and exact domain match (agentic AI systems, LLM orchestration via Bedrock, data pipelines, regulated process automation). Candidate's LLM API experience (Claude, Kimi) and multi-step automation pipelines transfer directly. Gap: 4 years experience requested vs. his intern/junior trajectory, and no explicit AWS/Bedrock exposure yet. However, his cloud infra (Google Cloud) and containerization experience are adjacent, and the role's 'ship end-to-end with guidance' framing suggests some flexibility.",
+    "contextual_fit": "Excellent. This is precisely the role shape he wants: zero-to-production ownership, building not supporting, agentic systems in production, real customer impact. The 'own features in their entirety' and 'vertical slices across the stack' language matches his stated motivation perfectly. Fintech domain is new to him but he's explicitly open to unfamiliar domains. In-person Zurich is ideal for his location/permit.",
+    "salary_estimate": "CHF 90,000 - 120,000 (startup Product Engineer in Zurich, likely equity component)",
+    "culture_fit": "Strong. Ownership culture, customer-outcome focus, fast-paced ambiguous environment suits his self-directed, audit-and-fix approach. 'Healthy high-performance' and inclusive language aligns with career-changer trajectory.",
     "concerns": [
-      "Experience gap: 'around 4 years' professional SWE vs his ~1-2 years total tech experience; may be screened out by HR for seniority mismatch",
-      "Role level mismatch: titled 'Product Engineer' not internship/junior; he's explicitly seeking internship or junior role",
-      "No explicit mention of German requirement but in-person Zurich role may have implicit German customer exposure; however English working language is clear from posting",
-      "Financial/regulated domain is new; while he's open to it, fintech compliance depth is unproven",
-      "AWS specifics (Bedrock, Aurora, CloudFormation) are not in his current stack though cloud fundamentals transfer"
+      "Experience level mismatch: 'around 4 years' is senior to his current intern/junior status; may be screened out by ATS or hiring manager expecting mid-level independence from day one",
+      "No AWS/Bedrock production experience (Google Cloud background, not AWS; no Aurora MySQL or ECS Fargate exposure)",
+      "No React/frontend experience mentioned (though role is backend-heavy, 'vertical slices' implies some frontend touch)",
+      "Regulated industry experience is a plus, not required, but his legal background is adjacent-not-direct; may need to sell transferable rigor",
+      "A2 German may be social friction in in-person Zurich team, though English is clearly working language"
     ],
     "recommendation": "REVIEW",
     "decision": "REVIEW",
@@ -1605,17 +1612,18 @@
     "rescored": true
   },
   {
-    "score": 55,
+    "score": 45,
     "hard_blockers": [],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Role is explicitly senior/lead-level ('Founding Engineer (Tech Lead)', 'multiply a team of mid-level engineers', 'set technical bar') — candidate is seeking internship/junior role with room to grow, not to lead engineers",
-      "Requires proven track record architecting systems that 'don't break down in 12 months' and making 'make-or-buy' decisions — signals years of production experience expected",
-      "'Personally engineer the most complex, business-critical components' plus team leadership is dual IC+manager burden that assumes deep battle scars",
-      "Candidate's 2-week notice and permit situation are fine, but career trajectory mismatch: this role would be a dangerous jump that risks failure rather than structured growth",
-      "Despite strong tool overlap, the 'founding' aspect means limited mentorship infrastructure; he's expected to be the mentor"
+      "Role is explicitly senior/tech-lead, not junior or intern—title mismatch with candidate's stated goals",
+      "Requires leading and multiplying a team of mid-level engineers; candidate is currently an intern seeking deeper individual contributor growth",
+      "'Founding Engineer' implies equity-level commitment and startup risk profile, not structured learning environment",
+      "In-person requirement in Zurich (not remote) conflicts with his 2-week notice and likely intern compensation expectations",
+      "Heavy regulatory/financial domain expertise implicitly expected for banking AI agents; though he's open to new domains, the leadership role doesn't allow ramp-up time",
+      "Append-only ledger, VPC isolation, WAF, Cognito/IAM edge security—substantial infra depth beyond his current cloud exposure"
     ],
     "job": {
       "company": "Porters",
@@ -1625,16 +1633,17 @@
       "portal": "adzuna",
       "description": "The Context Banks still run their most critical, regulated work by hand; reading letters and emails, re-keying data between systems, chasing down missing info. It's the kind of work that's too important to get wrong and too tedious for anyone to want to do.\n Porters fixes this. Our AI agents run these regulated processes end to end, with the audit trails and security banks actually require, so the work moves at the speed customers expect instead of the speed a backlog allows.\n We're just over a year old and already live with real customers, growing the product quickly, and were named Fintech of the Year 2026. The goal is to build the operating system for autonomous banking. We're backed by Earlybird, one of Europe's oldest venture firms, and Seedcamp, who wrote first checks into Revolut, Wise, and UiPath.\n \n The Mission You'll own the outcomes. You take an ambiguous business problem and turn it into clear requirements, a design with clear business rationale, sequenced work, and a realistic estimate, build the hardest parts yourself, and multiply a team of mid-level engineers with well-defined, extensible work and the reviews that keep quality high. You stay an IC at heart while making the work legible, sized, and worth doing.\n This job is in person in Zurich, or remote in Barcelona or Berlin.\n \n Your responsibilities Deliver the highest-risk work yourself: Be the IC where it matters. Personally engineer the most complex, business-critical components, from cross-service logic to the boundary where AI outputs become deterministic, auditable actions, and set the technical bar for the team as you go.\n\n Turn business goals into shipped projects: Take an ambiguous problem and own it through to delivery, defining requirements, a design that starts from customer impact and takes the highest-ROI path whether it's make or buy, sequenced work, estimates, and clear engineering acceptance criteria a team can execute with minimal churn.\n\n Design complex systems that don’t break down in 12 months: Architect entire systems so the likely next requirement plugs in cleanly through configuration or a new adapter, keeping components reusable and loosely coupled, separating business logic from shared services, and maintaining a single authoritative, append-only source of truth for critical data - including consideration of make-or-buy options.\n\n Scale the team's autonomy and quality: Set decision thresholds so engineers self-serve low-stakes calls, define sanctioned paths for experimenting with regulated data, and spread understanding of our systems to cut key-person risk. Settle design in review, then build the road to production: CI/CD wi\n[... middle of the posting omitted ...]\n development budget, free to use for whatever gives you a level-up.\n\n Culture: Strong focus on a healthy, high-performance team culture, ranging from regular team events and dinners to an inclusive, fast-paced team that grows together.\n\n Our stack Core Backend: Python 3.14, FastAPI, Pydantic, and SQLAlchemy 2.0 in a strict four-layer architecture, exposed as separate internal and external APIs.\n\n Background processing: Containerized worker services and event-driven AWS Lambda orchestrators for email ingestion, document triaging, and action running.\n\n AI Integration: AI orchestration deeply integrated into application landscape via AWS Bedrock, e.g., to extract information and drive agentic activity.\n\n Data & Storage: Per-tenant Aurora MySQL in isolated subnets, S3 for document persistence, and an append-only ledger for auditability.\n\n Platform: A multi-tenant AWS environment on ECS Fargate with strict per-tenant network and data isolation (VPC, NACLs, WAF), CloudFront + Cognito (Google SSO/JWT) and API Gateway (IAM) at the edge, defined as code in CloudFormation across dev/staging/prod accounts.\n\n Frontend: React single-page app for the internal workbench.\n\n Dev Workflow: uv, Ruff, ty, pytest (unit, integration, property-based), Docker, GitHub Actions, and heavy use of Agentic IDEs to accelerate feature shipping."
     },
-    "technical_fit": "Strong stack alignment (Python, FastAPI, Docker, GitHub Actions, AWS, agentic AI/LLM integration) and domain passion match. However, role demands senior/lead-level system architecture, team multiplication, and ownership of 'highest-risk work' with mid-level engineers — this is a founding engineer/tech lead position, not an internship or junior role. Candidate is an intern with ~1 year of software experience seeking his next internship/junior step.",
-    "contextual_fit": "Mission and technology are exactly what excites him (agentic systems, zero-to-production ownership, regulated AI pipelines). But the role shape is fundamentally wrong: they need someone to lead and multiply a team, not someone seeking mentorship and growth into deeper technical work. The 'in person in Zurich' works for him, but the seniority mismatch is severe.",
-    "salary_estimate": "CHF 140,000–180,000 (founding engineer/tech lead in Zurich fintech)",
-    "culture_fit": "Strong on ownership culture and build-vs-maintain ethos, but the expectation to 'multiply a team of mid-level engineers' and 'set technical bar' assumes experience he doesn't have. Fast-paced, high-autonomy environment would stretch him productively but likely beyond sustainable growth curve.",
+    "technical_fit": "Strong stack overlap (Python, FastAPI, SQLAlchemy, Docker, GitHub Actions, AWS/Cloud, agentic AI/LLM work) but role demands senior/tech-lead level: designing entire systems, leading mid-level engineers, making make-vs-buy architectural decisions, and owning ambiguous business problems end-to-end. Candidate is explicitly seeking internship/junior role with learning mentorship, not leadership position.",
+    "contextual_fit": "Mission alignment is excellent—exactly the agentic systems + regulated AI automation space he wants. But role shape is inverted: he wants ownership as a junior builder, not as a tech lead responsible for team output. The 'IC at heart' framing still assumes senior judgment on complex, regulated banking systems.",
+    "salary_estimate": "CHF 140,000–180,000 (Founding Engineer/TL at funded fintech in Zurich)",
+    "culture_fit": "High-performance, in-person Zurich team with strong ownership culture matches his drive, but pace and seniority expectations likely exceed what he's seeking or ready for.",
     "concerns": [
-      "Role is explicitly senior/lead-level ('Founding Engineer (Tech Lead)', 'multiply a team of mid-level engineers', 'set technical bar') — candidate is seeking internship/junior role with room to grow, not to lead engineers",
-      "Requires proven track record architecting systems that 'don't break down in 12 months' and making 'make-or-buy' decisions — signals years of production experience expected",
-      "'Personally engineer the most complex, business-critical components' plus team leadership is dual IC+manager burden that assumes deep battle scars",
-      "Candidate's 2-week notice and permit situation are fine, but career trajectory mismatch: this role would be a dangerous jump that risks failure rather than structured growth",
-      "Despite strong tool overlap, the 'founding' aspect means limited mentorship infrastructure; he's expected to be the mentor"
+      "Role is explicitly senior/tech-lead, not junior or intern—title mismatch with candidate's stated goals",
+      "Requires leading and multiplying a team of mid-level engineers; candidate is currently an intern seeking deeper individual contributor growth",
+      "'Founding Engineer' implies equity-level commitment and startup risk profile, not structured learning environment",
+      "In-person requirement in Zurich (not remote) conflicts with his 2-week notice and likely intern compensation expectations",
+      "Heavy regulatory/financial domain expertise implicitly expected for banking AI agents; though he's open to new domains, the leadership role doesn't allow ramp-up time",
+      "Append-only ledger, VPC isolation, WAF, Cognito/IAM edge security—substantial infra depth beyond his current cloud exposure"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1649,10 +1658,10 @@
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description was truncated; requirements, qualifications, seniority level, and tech stack are not visible — must assume conservative fit.",
-      "Large corporate reinsurance context may conflict with candidate's strong preference for ownership and greenfield building over maintenance/support in complex regulated environments.",
-      "No evidence of agentic systems or data platform engineering in visible text; could be traditional ML/AI rather than LLM-powered pipelines.",
-      "Domain expertise in insurance/reinsurance may be implicitly expected given Swiss Re's business, though not stated.",
+      "Requirements section not visible — cannot assess seniority expectations, specific tech stack match, or whether role involves true ownership vs. enterprise integration work",
+      "Large established institution may have less of the 'zero to production, own it end to end' role shape he prioritizes",
+      "Insurance domain complexity may involve heavy regulatory/compliance overhead that slows iteration cycles",
+      "No evidence of agentic systems or LLM-specific work in visible description — could be traditional ML engineering",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1663,15 +1672,15 @@
       "portal": "adzuna",
       "description": "Behind every major disaster, every pandemic, every systemic shock, there is a financial system absorbing the impact. We use AI to strengthen that system. Join our Zurich-based team to design intelligent tools that help the world recover from uncertainty - faster and smarter.     About the Role As an AI Engineer at Swiss Re, you'll be at the forefront of developing transformative AI solutions that reshape how we approach complex insurance and reinsurance challenges. You'll collaborate with a div…"
     },
-    "technical_fit": "Partial. Visible text mentions 'AI Engineer' and 'developing transformative AI solutions,' but the truncated description gives no specifics on tech stack, LLM/agentic work, or pipeline ownership. Insurance/reinsurance domain is unfamiliar to the candidate but he is open to new domains.",
-    "contextual_fit": "Moderate. Zurich location and hybrid format are ideal. Swiss Re is a large established corporation, which may mean less zero-to-production ownership than the candidate seeks in a small-team or startup setting. The mission-driven framing ('help the world recover') is appealing but may not translate to the hands-on builder role he wants.",
+    "technical_fit": "Promising but incomplete picture. The visible description emphasizes AI solutions for complex insurance/reinsurance challenges, which aligns with his interest in agentic systems and building production AI tools. However, without requirements section, unclear if this is junior-friendly or expects significant ML engineering depth beyond his current LLM API integration and pipeline experience.",
+    "contextual_fit": "Strong on mission (building tools that matter, zero-to-production ownership ethos matches Swiss Re's 'faster and smarter' framing). Zurich-based hybrid fits his location and permit situation perfectly. Insurance domain is unfamiliar but he's explicitly open to new domains — this should not penalize.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Uncertain. Large corporate reinsurance environment likely has more structured processes, governance, and specialized domain knowledge requirements than the candidate's preferred 'own it end to end' culture. No signal on team size or autonomy level.",
+    "culture_fit": "Large corporate reinsurer vs. his preference for ownership 'from day one' and avoiding 'support work.' Swiss Re's scale and 'collaborate with a div[erse team]' language suggests more structured, less greenfield autonomy than his ideal. May be more maintenance/integration than pure building.",
     "concerns": [
-      "Job description was truncated; requirements, qualifications, seniority level, and tech stack are not visible — must assume conservative fit.",
-      "Large corporate reinsurance context may conflict with candidate's strong preference for ownership and greenfield building over maintenance/support in complex regulated environments.",
-      "No evidence of agentic systems or data platform engineering in visible text; could be traditional ML/AI rather than LLM-powered pipelines.",
-      "Domain expertise in insurance/reinsurance may be implicitly expected given Swiss Re's business, though not stated."
+      "Requirements section not visible — cannot assess seniority expectations, specific tech stack match, or whether role involves true ownership vs. enterprise integration work",
+      "Large established institution may have less of the 'zero to production, own it end to end' role shape he prioritizes",
+      "Insurance domain complexity may involve heavy regulatory/compliance overhead that slows iteration cycles",
+      "No evidence of agentic systems or LLM-specific work in visible description — could be traditional ML engineering"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1795,18 +1804,20 @@
   {
     "score": 15,
     "hard_blockers": [
-      "Fluent French required (beyond candidate's languages: Portuguese native, English C1, Spanish B2, German A2). Job explicitly states 'Fluent in French and English' as mandatory. Candidate has no French listed."
+      "Role requires fluent French ('Fluent in French and English'); candidate has no French proficiency. This is a hard language requirement for a non-English language beyond his capabilities.",
+      "Role is pure marketing/retail/events with zero technical or engineering content; completely misaligned with candidate's stated career direction and skills."
     ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Fluent French required (beyond candidate's languages: Portuguese native, English C1, Spanish B2, German A2). Job explicitly states 'Fluent in French and English' as mandatory. Candidate has no French listed.",
-      "No technical growth path in this role — pure marketing operations with no data/AI/automation exposure",
-      "Luxury retail domain is irrelevant to candidate's stated career direction",
-      "'Ownership' in this context is project coordination, not technical system ownership",
-      "6-12 month duration is standard but role shape is completely misaligned with candidate's goals",
-      "Even German 'is a plus' is irrelevant given French is hard-required"
+      "Blocker: Role requires fluent French ('Fluent in French and English'); candidate has no French proficiency. This is a hard language requirement for a non-English language beyond his capabilities.",
+      "Blocker: Role is pure marketing/retail/events with zero technical or engineering content; completely misaligned with candidate's stated career direction and skills.",
+      "Role shape is entirely wrong: 30% trade marketing, 30% retail marketing, 20% spa marketing, 20% events — no data, no engineering, no AI, no automation",
+      "Skills requested (Excel, PowerPoint, Photoshop, InDesign) are non-technical office/creative tools; candidate's Python, SQL, Docker, cloud, LLM APIs have no application here",
+      "Candidate's entire motivation is 'zero to production' technical ownership; this role's 'ownership' is project-managing perfume counter displays",
+      "Luxury retail domain is irrelevant to candidate's deliberate career path; accepting this would derail his trajectory, not advance it",
+      "Start date September 1st is immediate; candidate has 2 weeks notice, potentially tight but secondary given fundamental misalignment"
     ],
     "job": {
       "company": "Guerlain",
@@ -1816,34 +1827,39 @@
       "portal": "linkedin.com",
       "description": "GUERLAIN is the Parisian alchemist that pursues an infinite quest for wonder of senses and crafts artistic beauty from nature, since 1828. GUERLAIN has been creating exceptional fragrance and beauty products since 1828, and strives to preserve, develop and pass on this unique heritage. The vision is to become the most iconic high perfumery and high cosmetic house, in image and products.\nINTERN RETAIL & TRADE MARKETING 100% (M/F/D)\nIn our Zürich Office as September 1st (6 to 12 months)\nAs part of the DACH Marketing team based in Zurich, you will contribute to the deployment of Guerlain’s Trade & Retail Marketing strategies across Switzerland and Austria, in close collaboration with the other departments, EMEA, and external partners.\nJob Responsibilities\nAs part of the DACH Marketing team based in Zurich, you will contribute to the deployment of Guerlain’s Trade & Retail Marketing strategies across Switzerland and Austria, in close collaboration with the other departments, EMEA, and external partners.\nTrade Marketing %30\nSupport the execution of Trade Marketing plans to drive key product launches\nCoordinate in-store activations (podiums, windows, takeovers, promotions, animations)\nDevelop merchandising tools and POS materials, including agency briefing and production follow-up\nMonitor sell-out performance, ROI, and competitive activities\nRetail Marketing %30\nImplement the annual activation plan across Guerlain’s counters & Salons de Parfum\nCreate monthly activations and elevated client experiences around key launches and commercial moments\nManage activation budgets and track performance\nGuerlain Spa Marketing %20\nSupport the marketing development of Guerlain’s two Spas in Switzerland\nContribute to local activations, events, and client experience initiatives\nSupport business development initiatives and monitor performance\nPartnerships & Events %20\nContribute to the creation of VIC events, strategic partnerships, and immersive brand experiences\nDevelop event concepts and supporting creative assets\nBuild relationships with local luxury partners to drive collaborations and client recruitment opportunities\nCoordinate event execution, budget follow-up, and post-event performance analysis\nProfile\nBachelor’s or master’s degree in marketing, Business, Communication, Luxury Management, or a related field Previous internship or professional experience in marketing, retail, events, luxury, or hospitality International, curious, and passionate about luxury, exclusivity, exceptional craftsmanship, and memorable experiences Team-player, proactive, organized, autonomous, and eager to take ownership Strong communication, project management, and analytical skills Fluent in French and English; German is a plus Proficient in Excel, PowerPoint, Adobe Photoshop, and InDesign\nAdditional Information\nWe want all our employees to feel valued and recognized. Our career paths are designed to prevent discrimination, regardless of gender identity, sexual orientation, religion, ethnicity, age, disabilities, nationality, or any other aspect that makes you unique.\nIn order to ensure the most objective assessment of skills and qualifications possible, we ask all applicants to submit their application documents without a photo.\nWe look forward to receiving your written online application, including details of your earliest possible starting date and your salary expectations."
     },
-    "technical_fit": "Very poor. Role requires Excel/PowerPoint/Photoshop/InDesign for merchandising, events, and POS materials. Zero overlap with candidate's Python/SQL/LLM APIs/automation/cloud infrastructure stack. No data pipelines, no engineering, no AI/automation work.",
-    "contextual_fit": "Poor. The role is pure luxury marketing/retail/events coordination — trade marketing, spa marketing, VIC events, partnerships. Candidate explicitly seeks 'agentic systems and data platform engineering' with 'real ownership from day one' in building LLM-powered pipelines. This is the opposite: supporting execution of others' marketing plans, coordinating in-store activations, developing creative assets. Even 'ownership' here means project coordination, not technical ownership of systems.",
+    "technical_fit": "Very poor. Role requires marketing, retail operations, events, and creative tools (Photoshop, InDesign). Zero overlap with candidate's technical stack (Python, LLMs, data pipelines, cloud infrastructure, automation). This is a pure luxury marketing/retail internship, not a technical or engineering role in any dimension.",
+    "contextual_fit": "Poor. Candidate wants ownership in building AI/automation systems end-to-end. This role offers ownership in coordinating store displays, spa promotions, and VIC events. Career changer from law to AI engineering; this would be a lateral move into yet another non-technical domain (luxury marketing) rather than deepening his deliberate technical trajectory.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Mildly positive on surface (luxury brand, international team, values craftsmanship), but fundamentally mismatched. Candidate wants zero-to-production technical building; this is execution of established brand strategies with heavy operational coordination.",
+    "culture_fit": "Neutral-to-poor. 'Take ownership' language appears but in context of event budgets and retail activations, not technical product ownership. Luxury goods culture values craftsmanship and exclusivity; candidate values shipping technical systems and self-auditing code. Mismatch in what 'ownership' means.",
     "concerns": [
-      "No technical growth path in this role — pure marketing operations with no data/AI/automation exposure",
-      "Luxury retail domain is irrelevant to candidate's stated career direction",
-      "'Ownership' in this context is project coordination, not technical system ownership",
-      "6-12 month duration is standard but role shape is completely misaligned with candidate's goals",
-      "Even German 'is a plus' is irrelevant given French is hard-required"
+      "Role shape is entirely wrong: 30% trade marketing, 30% retail marketing, 20% spa marketing, 20% events — no data, no engineering, no AI, no automation",
+      "Skills requested (Excel, PowerPoint, Photoshop, InDesign) are non-technical office/creative tools; candidate's Python, SQL, Docker, cloud, LLM APIs have no application here",
+      "Candidate's entire motivation is 'zero to production' technical ownership; this role's 'ownership' is project-managing perfume counter displays",
+      "Luxury retail domain is irrelevant to candidate's deliberate career path; accepting this would derail his trajectory, not advance it",
+      "Start date September 1st is immediate; candidate has 2 weeks notice, potentially tight but secondary given fundamental misalignment"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-17T12:37:56.423423+00:00",
-    "recovered": true
+    "rescored": true
   },
   {
     "score": 15,
     "hard_blockers": [
-      "Fluent French required — candidate does not list French; role explicitly states 'Fluent in French and English' as mandatory"
+      "Fluent French required (native/C1 level implied by 'Fluent in French and English' as mandatory, with German as plus). Candidate has no French listed; this is a hard eligibility blocker for a role where French fluency is explicitly mandatory."
     ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Fluent French required — candidate does not list French; role explicitly states 'Fluent in French and English' as mandatory",
-      "Role is fundamentally wrong career track: marketing operations vs. engineering; no path to agentic systems or data platform work; candidate would be using skills he doesn't have and not using skills he's building; 6-12 month opportunity cost for career trajectory"
+      "Blocker: Fluent French required (native/C1 level implied by 'Fluent in French and English' as mandatory, with German as plus). Candidate has no French listed; this is a hard eligibility blocker for a role where French fluency is explicitly mandatory.",
+      "Role is 0% technical; candidate would be deeply unfulfilled and leave/underperform",
+      "Marketing/retail/events domain with no path to agentic systems or data engineering",
+      "Photoshop/InDesign requirements are far from candidate's skill set",
+      "Candidate's law background and career change narrative not leveraged at all",
+      "A2 German noted as 'plus' is soft, but mandatory French is the real blocker",
+      "6-month minimum commitment to non-technical work would stall career trajectory"
     ],
     "job": {
       "company": "GUERLAIN",
@@ -1853,18 +1869,23 @@
       "portal": "linkedin.com",
       "description": "GUERLAIN is the Parisian alchemist that pursues an infinite quest for wonder of senses and crafts artistic beauty from nature, since 1828. GUERLAIN has been creating exceptional fragrance and beauty products since 1828, and strives to preserve, develop and pass on this unique heritage. The vision is to become the most iconic high perfumery and high cosmetic house, in image and products.\nINTERN RETAIL & TRADE MARKETING 100% (M/F/D)\nIn our Zürich Office as September 1st (6 to 12 months)\nAs part of the DACH Marketing team based in Zurich, you will contribute to the deployment of Guerlain’s Trade & Retail Marketing strategies across Switzerland and Austria, in close collaboration with the other departments, EMEA, and external partners.\nJob Responsibilities\nAs part of the DACH Marketing team based in Zurich, you will contribute to the deployment of Guerlain’s Trade & Retail Marketing strategies across Switzerland and Austria, in close collaboration with the other departments, EMEA, and external partners.\nTrade Marketing %30\nSupport the execution of Trade Marketing plans to drive key product launches\nCoordinate in-store activations (podiums, windows, takeovers, promotions, animations)\nDevelop merchandising tools and POS materials, including agency briefing and production follow-up\nMonitor sell-out performance, ROI, and competitive activities\nRetail Marketing %30\nImplement the annual activation plan across Guerlain’s counters & Salons de Parfum\nCreate monthly activations and elevated client experiences around key launches and commercial moments\nManage activation budgets and track performance\nGuerlain Spa Marketing %20\nSupport the marketing development of Guerlain’s two Spas in Switzerland\nContribute to local activations, events, and client experience initiatives\nSupport business development initiatives and monitor performance\nPartnerships & Events %20\nContribute to the creation of VIC events, strategic partnerships, and immersive brand experiences\nDevelop event concepts and supporting creative assets\nBuild relationships with local luxury partners to drive collaborations and client recruitment opportunities\nCoordinate event execution, budget follow-up, and post-event performance analysis\nProfile\nBachelor’s or master’s degree in marketing, Business, Communication, Luxury Management, or a related field Previous internship or professional experience in marketing, retail, events, luxury, or hospitality International, curious, and passionate about luxury, exclusivity, exceptional craftsmanship, and memorable experiences Team-player, proactive, organized, autonomous, and eager to take ownership Strong communication, project management, and analytical skills Fluent in French and English; German is a plus Proficient in Excel, PowerPoint, Adobe Photoshop, and InDesign\nAdditional Information\nWe want all our employees to feel valued and recognized. Our career paths are designed to prevent discrimination, regardless of gender identity, sexual orientation, religion, ethnicity, age, disabilities, nationality, or any other aspect that makes you unique.\nIn order to ensure the most objective assessment of skills and qualifications possible, we ask all applicants to submit their application documents without a photo.\nWe look forward to receiving your written online application, including details of your earliest possible starting date and your salary expectations."
     },
-    "technical_fit": "Very poor. Role requires Adobe Creative Suite, Excel/PowerPoint, and traditional marketing/retail operations. Zero overlap with candidate's Python, LLM APIs, data pipelines, cloud infrastructure, or automation skills.",
-    "contextual_fit": "Poor. Role is pure luxury retail/trade marketing with no technical building, no AI/automation, no data platform work, and no ownership of engineering deliverables. Candidate's entire motivation is zero-to-production technical ownership in agentic systems and data engineering.",
+    "technical_fit": "Very poor. Role requires zero technical skills the candidate possesses. No Python, SQL, APIs, automation, cloud, CI/CD, LLMs, or data engineering. Instead demands Excel/PowerPoint/Photoshop/InDesign proficiency for marketing materials, merchandising, and event coordination.",
+    "contextual_fit": "Poor. This is a pure luxury marketing/retail/events internship with no data platform, AI, automation, or engineering ownership. Candidate wants to build LLM-powered pipelines end-to-end; this role is about coordinating store displays, spa activations, and VIC events. The 'ownership' mentioned is project management ownership in marketing, not technical product ownership.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Mismatch. The role values luxury brand passion, creative merchandising, and event coordination. Candidate is a career-changing technologist seeking hands-on engineering autonomy, not marketing operations in beauty/luxury.",
+    "culture_fit": "Mild positive: luxury brand, international team, autonomy mentioned. However, the work itself (retail marketing, event planning, merchandising) is completely misaligned with candidate's stated motivations and career direction.",
     "concerns": [
-      "Role is fundamentally wrong career track: marketing operations vs. engineering; no path to agentic systems or data platform work; candidate would be using skills he doesn't have and not using skills he's building; 6-12 month opportunity cost for career trajectory"
+      "Role is 0% technical; candidate would be deeply unfulfilled and leave/underperform",
+      "Marketing/retail/events domain with no path to agentic systems or data engineering",
+      "Photoshop/InDesign requirements are far from candidate's skill set",
+      "Candidate's law background and career change narrative not leveraged at all",
+      "A2 German noted as 'plus' is soft, but mandatory French is the real blocker",
+      "6-month minimum commitment to non-technical work would stall career trajectory"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-17T12:37:56.423423+00:00",
-    "recovered": true
+    "rescored": true
   },
   {
     "score": null,
