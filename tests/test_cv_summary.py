@@ -128,3 +128,38 @@ class TestSkillOrdering:
     def test_matching_ignores_case(self):
         ordered = dg._order_skills_for_job(["Docker"], "we use DOCKER daily")
         assert ordered == ["Docker"]
+
+
+class TestSummaryIsReusable:
+    """The CV summary must not read like a cover letter.
+
+    A generated summary ended with "Seeking the BLP Digital internship to
+    apply...". The candidate caught it. Naming the employer makes the
+    document single-use, and in a Drive with one folder per job the wrong
+    attachment eventually goes out -- telling a reader he wants to work
+    somewhere else. The letter already argues for the specific job.
+
+    The same summary also rewrote one of his metrics: the profile says
+    "reducing manual data entry by ~40%", the summary said "automated 40% of
+    manual data entry". Those are different claims, and he is the one who has
+    to defend the number in an interview.
+
+    Model prose cannot be asserted deterministically, so what is pinned is
+    the contract handed to it.
+    """
+
+    def test_the_target_employer_is_forbidden_by_name(self, prompt):
+        assert "NEVER name the employer" in prompt
+        assert "Acme AG" in prompt  # the actual value is interpolated
+
+    def test_metrics_must_be_quoted_not_paraphrased(self, prompt):
+        assert "Quote his metrics exactly" in prompt
+        assert "including any hedge" in prompt
+
+    def test_the_exact_distortion_is_named(self, prompt):
+        """Naming the real failure beats a general rule the model can read
+        past."""
+        assert "automated 40% of" in prompt
+
+    def test_work_in_progress_is_deprioritised(self, prompt):
+        assert "work in progress" in prompt or "still under way" in prompt

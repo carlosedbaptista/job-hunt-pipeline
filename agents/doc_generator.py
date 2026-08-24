@@ -50,8 +50,20 @@ def _generate_summary(client, profile, title, company, description):
         "is heading; if the role must be named, use that exact string.\n\n"
         "Same voice as the rest of his documents: concrete rather than adjectival, "
         'a named system or a number rather than "skilled in". No keyword lists, no '
-        "filler (passionate, proven track record, results-driven). Use only facts "
-        "given above; invent nothing. Return ONLY the summary text."
+        "filler (passionate, proven track record, results-driven).\n\n"
+        f'NEVER name the employer being applied to ("{company}"). This paragraph '
+        "sits on a CV, not a cover letter: a summary that says \"seeking the X "
+        "internship\" makes the document single-use, and if the wrong file is "
+        "attached it tells a reader he wants to work somewhere else. The letter "
+        "already argues for this specific job. Point at the KIND of work instead.\n\n"
+        "Quote his metrics exactly as written above, including any hedge. "
+        '"reducing manual data entry by ~40%" must not become "automated 40% of '
+        'manual data entry" -- that is a different claim, and he has to defend '
+        "the number he prints in an interview.\n\n"
+        "Prefer finished work to work in progress. A migration still under way is "
+        "a task, not a capability, and it competes for words with what actually "
+        "distinguishes him.\n\n"
+        "Use only facts given above; invent nothing. Return ONLY the summary text."
     )
     r = client.chat(
         [{"role": "user", "content": prompt}],
