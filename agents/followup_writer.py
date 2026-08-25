@@ -30,20 +30,39 @@ Language: English (C1 level)
 Return ONLY the email body (no subject line, no greeting, no signature yet)."""
 
 
-def generate_followup(
+def _motivation_line(company: str, title: str) -> str:
+    """One prompt line carrying the candidate's own stated reason for
+    applying, from his private outcome notes (gitignored
+    tracker/outcome_notes.json, read via agents/outcome_notes.py). Any
+    failure -- missing module, no file, corrupt JSON -- returns '' so the
+    prompt stays exactly as without it."""
+    try:
+        import outcome_notes
+        motivation = outcome_notes.motivation_for(company, title)
+    except Exception:
+        return ""
+    if not motivation:
+        return ""
+    return ("CANDIDATE'S OWN REASON FOR APPLYING "
+            f"(echo it naturally in the follow-up): {motivation}\n")
+
+
+def build_followup_prompt(
     company: str,
     title: str,
     days_elapsed: int,
     original_application_date: str,
-) -> str | None:
-    """Generates a personalised follow-up email body."""
-    prompt = f"""Generate a professional follow-up email for this job application:
+) -> str:
+    """The exact prompt sent to Kimi for a follow-up draft. When the private
+    notes carry the candidate's motivation for this application, one extra
+    line relays it so the follow-up can echo his real reason."""
+    return f"""Generate a professional follow-up email for this job application:
 
 COMPANY: {company}
 JOB TITLE: {title}
 DAYS SINCE APPLICATION: {days_elapsed}
 ORIGINAL APPLICATION DATE: {original_application_date}
-
+{_motivation_line(company, title)}
 The follow-up should:
 1. Reference the original application
 2. Reiterate interest in the position
@@ -52,6 +71,16 @@ The follow-up should:
 5. Suggest next steps
 
 Keep it concise and professional."""
+
+
+def generate_followup(
+    company: str,
+    title: str,
+    days_elapsed: int,
+    original_application_date: str,
+) -> str | None:
+    """Generates a personalised follow-up email body."""
+    prompt = build_followup_prompt(company, title, days_elapsed, original_application_date)
 
     try:
         return call_kimi(prompt, system=FOLLOWUP_SYSTEM_PROMPT, temperature=0.4, max_tokens=800).strip()

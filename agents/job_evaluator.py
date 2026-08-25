@@ -109,7 +109,15 @@ def load_outcome_calibration() -> str:
     """Real score -> outcome evidence, appended to the system prompt so the
     scorer calibrates against what actually happened (feedback loop,
     2026-08-24). Empty string when there is nothing to learn from yet or the
-    tracker is unavailable -- calibration must never break a scoring run."""
+    tracker is unavailable -- calibration must never break a scoring run.
+
+    When the candidate's private outcome notes (gitignored
+    tracker/outcome_notes.json, restored in CI from OUTCOME_NOTES_B64) hold
+    dismissal signals, their aggregate is appended as a final paragraph of
+    the calibration text. The import is lazy and the call guarded: ANY notes
+    problem -- missing module, no file, corrupt JSON -- returns the text
+    unchanged, because a private-notes problem must never break scoring
+    either."""
     try:
         import tracker_updater
         s = tracker_updater.get_outcome_summary()
@@ -135,7 +143,19 @@ def load_outcome_calibration() -> str:
         lines.append("Recent: " + " | ".join(recent))
     lines.append("Use this as calibration evidence: if high scores keep earning silence, "
                  "be stricter; if they earn interviews, the calibration is right.")
-    return "\nOutcome calibration (real application history):\n" + "\n".join(lines) + "\n"
+    text = "\nOutcome calibration (real application history):\n" + "\n".join(lines) + "\n"
+
+    # Private dismissal signals (jobs the candidate rejected, and why) ride
+    # along as a new paragraph after the outcome summary. They live in a
+    # gitignored file and reach the model only as this prompt text.
+    try:
+        import outcome_notes
+        dismissal = outcome_notes.dismissal_summary()
+    except Exception:
+        dismissal = ""
+    if dismissal:
+        text += "\n" + dismissal + "\n"
+    return text
 
 
 OUTCOME_CALIBRATION = load_outcome_calibration()

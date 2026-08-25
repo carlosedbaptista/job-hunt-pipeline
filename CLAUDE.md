@@ -113,6 +113,16 @@ The three fixed steps that used to end the daily run (docs, high-score alerts, f
 - **Cost arithmetic.** The conversation itself is ~3-8 calls per run; re-evaluation adds at most 5 jobs x ~2-5 calls. Worst case ~30 extra calls per run on top of the decision agent's ~150, bounded by the two caps rather than by the model's restraint.
 - **New env vars, all read dynamically**: `ORCHESTRATION_MODE` (`rules` default | `agent`), `ORCHESTRATOR_MAX_ITERATIONS` (default 8), `ORCHESTRATOR_MAX_REEVALUATIONS` (default 5). Unchanged, and worth restating as in the decision layer: still Kimi only (`kimi-k2.6`), no new third-party dependencies, all tests mock the LLM.
 
+## Private outcome signals (2026-08-24)
+
+The candidate's own verdicts -- the jobs he dismissed and why, and his stated reason for each application -- now calibrate the scorer and inform follow-up drafts, without ever becoming public data.
+
+- **What is recorded.** `agents/outcome_notes.py` keeps two lists: dismissals (company, title, a free-text note and a reason from a fixed category vocabulary -- `salary`, `tech_mismatch`, `company_culture`, `location`, `seniority`, `language`, `other`) and motivations (company, title, free-text reason for applying). Re-recording the same job replaces the entry -- a change of mind is an update, not a duplicate.
+- **Where it lives, and why.** `tracker/outcome_notes.json`, gitignored, synced to CI as the `OUTCOME_NOTES_B64` secret and restored by the same tolerant base64 step as the profile. `tracker/jobs.db` and the dashboard are committed and therefore public -- they must never carry these signals. The notes reach the LLM only as prompt text at runtime, aggregated, never raw.
+- **How it reaches the agents.** `job_evaluator.load_outcome_calibration()` appends the dismissal aggregate as a new paragraph after the outcome summary -- one change covering both the rules evaluator and the decision agent, which reuses the function. `followup_writer.build_followup_prompt()` adds one line with the candidate's own motivation for that application, so the follow-up can echo his real reason.
+- **The failure contract.** Missing file, corrupt JSON, import error -- any notes problem degrades to exactly the pre-existing behavior: byte-identical calibration text, byte-identical follow-up prompt. A private-notes problem must never break a scoring run.
+- **Recording and syncing.** `python agents/outcome_notes.py dismiss "<company>" "<title>" --category salary --note "..."` and `... motivate "<company>" "<title>" --note "..."` locally (`list`/`summary` to inspect), then `base64 -w0 tracker/outcome_notes.json | gh secret set OUTCOME_NOTES_B64`. The secret is optional: absent, CI warns and runs without the signals.
+
 ## Ingestion quality (2026-08-21 audit -- what the scorer is fed)
 
 The scoring brain was audited on 2026-08-17; its *input* was audited on 2026-08-21, against the committed data. Three findings, all fixed, all pinned by `tests/test_ingestion_quality.py`:
@@ -169,7 +179,7 @@ base64 -w0 config/candidate_profile.json | gh secret set CANDIDATE_PROFILE_B64
 
 ## Security & Credentials
 
-Never commit: `.env`, `config/candidate_profile.json`, `config/photo.*`, `config/cv_model.txt`, `config/cover_letter_model.txt`, `digests/raw_emails*.json`, GDrive credentials. These are restored in CI from base64 GitHub Secrets (`CANDIDATE_PROFILE_B64` etc.).
+Never commit: `.env`, `config/candidate_profile.json`, `config/photo.*`, `config/cv_model.txt`, `config/cover_letter_model.txt`, `digests/raw_emails*.json`, `tracker/outcome_notes.json` (private outcome signals), GDrive credentials. These are restored in CI from base64 GitHub Secrets (`CANDIDATE_PROFILE_B64` etc.).
 
 Secrets used by CI: `KIMI_API_KEY`, `KIMI_BASE_URL` (optional), `ADZUNA_APP_ID`, `ADZUNA_APP_KEY`, `GMAIL_SENDER`, `GMAIL_APP_PASSWORD`, `GMAIL_RECIPIENT`, `CANDIDATE_*_B64`, `GDRIVE_*`.
 
@@ -224,4 +234,4 @@ and belonged to the Service Account path that cannot work at all.
 
 ---
 
-**Last Updated**: August 2026. Two audits so far: 2026-08-17 (scoring consistency: hard-blocker lock, two-tier language detector, head+tail excerpt window, intermediate language zone, cost-cap queue, decision derivation via `utils.effective_decision`) and 2026-08-21 (ingestion quality: description enrichment, card-variant collapse, normalized in-batch dedup, tests in CI, targeting realigned to the AI & Automation Engineer positioning). On 2026-08-24 the evaluation stage became a tool-using agent (`agents/decision_agent.py`; the scheduled run sets `EVALUATION_MODE: agent`) with the safety rails kept in code -- see "The agent decision layer (2026-08-24)". The run-level judgement layer followed the same day: `agents/orchestrator_agent.py` (the scheduled run sets `ORCHESTRATION_MODE: agent`) decides docs, alerts, follow-ups and bounded re-scores, with the legacy three-script chain as its coded fallback -- see "The orchestrator layer (2026-08-24)".
+**Last Updated**: August 2026. Two audits so far: 2026-08-17 (scoring consistency: hard-blocker lock, two-tier language detector, head+tail excerpt window, intermediate language zone, cost-cap queue, decision derivation via `utils.effective_decision`) and 2026-08-21 (ingestion quality: description enrichment, card-variant collapse, normalized in-batch dedup, tests in CI, targeting realigned to the AI & Automation Engineer positioning). On 2026-08-24 the evaluation stage became a tool-using agent (`agents/decision_agent.py`; the scheduled run sets `EVALUATION_MODE: agent`) with the safety rails kept in code -- see "The agent decision layer (2026-08-24)". The run-level judgement layer followed the same day: `agents/orchestrator_agent.py` (the scheduled run sets `ORCHESTRATION_MODE: agent`) decides docs, alerts, follow-ups and bounded re-scores, with the legacy three-script chain as its coded fallback -- see "The orchestrator layer (2026-08-24)". Also on 2026-08-24: private outcome signals (gitignored `tracker/outcome_notes.json`, synced via the `OUTCOME_NOTES_B64` secret) now calibrate the scorer and inform follow-up drafts -- see "Private outcome signals (2026-08-24)".

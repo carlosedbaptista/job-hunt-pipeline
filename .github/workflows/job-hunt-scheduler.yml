@@ -51,6 +51,7 @@ jobs:
           CANDIDATE_PHOTO_B64: ${{ secrets.CANDIDATE_PHOTO_B64 }}
           CV_MODEL_B64: ${{ secrets.CV_MODEL_B64 }}
           CL_MODEL_B64: ${{ secrets.CL_MODEL_B64 }}
+          OUTCOME_NOTES_B64: ${{ secrets.OUTCOME_NOTES_B64 }}
         run: |
           # Tolerant restore: strips whitespace/CR before decoding, validates
           # the result (UTF-8/JSON), and degrades with a warning instead of
@@ -86,6 +87,7 @@ jobs:
           restore_b64 CANDIDATE_PHOTO_B64 config/photo.jpg binary
           restore_b64 CV_MODEL_B64 config/cv_model.txt text
           restore_b64 CL_MODEL_B64 config/cover_letter_model.txt text
+          restore_b64 OUTCOME_NOTES_B64 tracker/outcome_notes.json json
 
       - name: Verify the restored profile
         # Runs BEFORE anything is fetched or scored. The role is injected into

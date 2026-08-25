@@ -20,6 +20,7 @@ told you to create one, which was wrong and has been removed.
 | `CANDIDATE_PROFILE_B64` | yes | `config/candidate_profile.json` in base64. Without it the evaluator exits 1 rather than scoring against a generic profile |
 | `CANDIDATE_PHOTO_B64` | optional | CV photo |
 | `CV_MODEL_B64`, `CL_MODEL_B64` | optional | Voice references for the generated documents |
+| `OUTCOME_NOTES_B64` | optional | base64 of the local gitignored `tracker/outcome_notes.json` -- the private dismissal/motivation signals. Without it the run simply scores without them |
 | `GDRIVE_REFRESH_TOKEN_B64` | optional | Drive upload. See `config/GDRIVE_SETUP.md` |
 | `GDRIVE_PARENT_FOLDER_ID` | optional | Drive root folder id |
 
@@ -31,10 +32,21 @@ base64 -w0 config/candidate_profile.json   # CANDIDATE_PROFILE_B64
 base64 -w0 config/photo.jpg                # CANDIDATE_PHOTO_B64
 base64 -w0 config/cv_model.txt             # CV_MODEL_B64
 base64 -w0 config/cover_letter_model.txt   # CL_MODEL_B64
+base64 -w0 tracker/outcome_notes.json      # OUTCOME_NOTES_B64 (optional)
 ```
 
 These files are gitignored. The repository is **public**: nothing carrying
 personal data belongs in it.
+
+`OUTCOME_NOTES_B64` is how the private outcome signals (why jobs were
+dismissed, why others were applied to) reach CI without ever being
+committed: the file stays gitignored locally, the secret carries the
+base64, and the restore step warns and continues when it is absent. Re-sync
+it whenever the local file changes:
+
+```bash
+base64 -w0 tracker/outcome_notes.json | gh secret set OUTCOME_NOTES_B64
+```
 
 ## Workflows
 
