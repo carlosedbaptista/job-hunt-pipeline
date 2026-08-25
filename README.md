@@ -1,9 +1,9 @@
 # Job Hunt Pipeline
 
-An unattended pipeline that finds engineering roles in Zurich, scores them
-against a candidate profile with an LLM, and writes a tailored CV and cover
-letter for the ones worth applying to. It has run twice a day since June 2026
-on GitHub Actions. No server, no manual step.
+An unattended pipeline that finds engineering roles in Zurich, has tool-using
+LLM agents investigate and score them against a candidate profile, and writes
+a tailored CV and cover letter for the ones worth applying to. It has run
+twice a day since June 2026 on GitHub Actions. No server, no manual step.
 
 The interesting part is not that it works. It is what happened when I audited
 it after three months.
@@ -72,19 +72,11 @@ The LLM scores jobs, writes the CV summary and the cover letter, and drafts
 follow-ups — and it now also deliberates, through the two agents below. Its
 output is never trusted as-is.
 
-The evaluator itself is now an agent. For each posting it chooses its own
-evidence: the full text with a deterministic scan for mandatory languages,
-the outcomes of past applications, similar jobs already in the committed
-history. When it has enough, it commits to APPLY, REVIEW or SKIP through a
-mandatory decision tool, and the rationale is stored with the record. The
-guardrails below remain enforced in code around whatever the agent proposes;
-the borderline re-sampling among them is the rules-mode mechanism, since the
-agent investigates instead of re-sampling. The run around the jobs now has
-an agent too: an orchestrator runs the judgement layer around the
-deterministic ingest-score-digest spine — documents, alerts, follow-up
-drafts, a bounded number of re-scores. Its floor is code: any failure falls
-back to the legacy stage chain, so a bad orchestrator day degrades to
-exactly the pipeline before it existed.
+The evaluator itself is now an agent, and the run around the jobs has one
+too — both described in *The agent layer* below. What has not changed is
+this section: the guardrails below remain enforced in code around whatever
+the agents propose. One of them, the borderline re-sampling, is now the
+rules-mode mechanism, since the agent investigates instead of re-sampling.
 
 **The decision is derived in code, not read from the model.** A mandatory
 German requirement is detected by a deterministic scan of the full posting
@@ -110,6 +102,38 @@ described "a guardrail firing too late in the sequence" — a plausible detail
 that never happened — the fix was not a sterner prompt. It was noticing that
 the generator passed the model a project *title* and no facts. Forbidding
 invention cannot work while the facts are withheld.
+
+---
+
+## The agent layer
+
+Two of the stages are not scripts but agents — an LLM in a loop with tools,
+built on a 98-line runtime ([`src/agent_runtime.py`](src/agent_runtime.py))
+with no framework.
+
+The **decision agent** investigates every posting before scoring it: the full
+text, a deterministic scan for mandatory languages over that full text, the
+candidate profile, how past applications turned out, and how similar jobs
+scored before. It commits through a mandatory decision tool, and the record
+keeps its rationale and every tool call it made. What it cannot do is defined
+in code: the guardrails above fence whatever it proposes.
+
+The **orchestrator** makes the run-level calls a fixed YAML chain cannot:
+whether to generate documents, fire alerts, draft follow-ups, or spend
+leftover budget re-scoring last week's borderline jobs. Its floor is code —
+any failure runs the legacy stage chain, so a bad orchestrator day is
+indistinguishable from the pipeline before it existed. Every run writes a
+committed log (`digests/orchestrator_log_*.json`): what it looked at, what it
+did, why.
+
+Both are switches, not bets: `EVALUATION_MODE=rules` and
+`ORCHESTRATION_MODE=rules` restore the deterministic pipeline byte-for-byte.
+
+The candidate's own signals stay his. Jobs he dismisses (with a reason) and
+his reasons for applying live in a gitignored file, reach CI through a base64
+secret, and enter the scorer's prompt only as aggregates. They are never
+committed, never in the tracker database, never on the dashboard — the
+repository is public, and job-hunt strategy is not public data.
 
 ---
 
@@ -163,7 +187,7 @@ GitHub Actions (cron, 05:00 and 12:00 UTC)
 | Storage | SQLite, JSON artefacts |
 | Documents | fpdf2, python-docx |
 | CI | GitHub Actions; pytest on every push |
-| Tests | 281, LLM mocked, no network |
+| Tests | 436, LLM mocked, no network |
 
 ---
 
@@ -176,6 +200,12 @@ exactly the kind of thing one innocent extra query breaks.
 The LLM cap is applied *before* jobs are marked as seen. An earlier version
 marked everything seen and then evaluated the first 30, so jobs 31 and beyond
 were silently swallowed forever.
+
+Agent mode spends more model calls by design: an investigated job costs two
+to five calls instead of one, and the orchestrator adds a bounded slice on
+top. The brakes are in code, not in prompts: a 30-job evaluation cap, a hard
+iteration limit per conversation, and a re-score budget the orchestrator
+cannot exceed no matter what it asks for.
 
 ---
 
@@ -205,6 +235,12 @@ the scheduled runs: `skip_ingestion` reuses the batch already fetched,
 calls. Together they make the whole pipeline runnable any number of times
 without spending job-board quota — which is the difference between a system
 you can test and one you can only hope about.
+
+Two switches and two probes round it out: `EVALUATION_MODE` and
+`ORCHESTRATION_MODE` (`agent` or `rules`) decide who evaluates and who
+orchestrates, and `scripts/smoke_decision_agent.py` and
+`scripts/smoke_orchestrator.py` run the real agents against synthetic
+postings, so their reasoning can be watched without touching a real run.
 
 ---
 
