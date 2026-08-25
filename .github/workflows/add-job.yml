@@ -124,8 +124,8 @@ jobs:
           JOB_TITLE: ${{ inputs.title }}
           JOB_COMPANY: ${{ inputs.company }}
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add digests/manual_evaluations.json digests/dashboard.html
           if git diff --cached --quiet; then
             echo "No changes to commit"
