@@ -38,6 +38,9 @@ config/candidate_profile.json
 # re-encode to .jpeg/.webp would otherwise become committable.
 config/photo.*
 
+# Private outcome signals -- synced to CI via the OUTCOME_NOTES_B64 base64 secret, never committed
+tracker/outcome_notes.json
+
 # Generated docs (CVs/CLs)
 generated_docs/
 digests/raw_emails*.json
