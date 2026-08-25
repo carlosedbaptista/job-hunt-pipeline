@@ -192,7 +192,8 @@ class TestRails:
     def test_iteration_cap_is_an_error_not_a_guess(self, monkeypatch):
         monkeypatch.setenv("AGENT_MAX_ITERATIONS", "2")
         client = FakeClient([_tool_call("get_posting_text"),
-                             _tool_call("get_posting_text", call_id="c2")])
+                             _tool_call("get_posting_text", call_id="c2"),
+                             _final("no finalization")])  # nudge spent, no decision
         _inject_clients(monkeypatch, client)
 
         rec = da.evaluate_job(_job())
@@ -200,7 +201,7 @@ class TestRails:
         assert rec["decision"] == "ERROR"
         assert rec["score"] is None
         assert "iteration cap" in rec["red_flags"][0]
-        assert client.calls == 2
+        assert client.calls == 3  # 2 capped iterations + the finalize nudge
 
     def test_a_garbage_score_never_becomes_a_number(self, monkeypatch):
         client = FakeClient([_record_decision_call(score="high"), _final()])
@@ -379,3 +380,53 @@ class TestMain:
         latest = json.load(open("digests/job_evaluations_latest.json"))
         assert len(latest) == 1
         assert queue == []  # the second job never even built a client
+
+
+# ─── finalize nudge ───────────────────────────────────────────────────────────
+
+class TestFinalizeNudge:
+    """Measured 2026-08-25 on the first agent-mode run: the five
+    informational tools can fill the whole iteration cap before
+    record_decision gets a turn (three capped evaluations, identical
+    traces). The nudge is one reserved call with an explicit order to
+    finalize -- it rescues a starved investigation without ever inventing
+    a score when the model still does not commit."""
+
+    def test_nudge_rescues_a_starved_investigation(self, monkeypatch):
+        monkeypatch.setenv("AGENT_MAX_ITERATIONS", "2")
+        client = FakeClient([_tool_call("get_posting_text"),
+                             _tool_call("check_language_requirement", call_id="c2"),
+                             _record_decision_call(score=81)])
+        _inject_clients(monkeypatch, client)
+
+        rec = da.evaluate_job(_job())
+
+        assert rec["score"] == 81
+        assert rec["decision"] == "APPLY"
+        assert rec["agent_trace"][-1]["name"] == "record_decision"
+        assert client.calls == 3  # 2 capped iterations + the nudge
+
+    def test_nudge_without_record_decision_stays_an_error(self, monkeypatch):
+        monkeypatch.setenv("AGENT_MAX_ITERATIONS", "2")
+        client = FakeClient([_tool_call("get_posting_text"),
+                             _tool_call("get_posting_text", call_id="c2"),
+                             _final("I need more evidence")])
+        _inject_clients(monkeypatch, client)
+
+        rec = da.evaluate_job(_job())
+
+        assert rec["decision"] == "ERROR"
+        assert rec["score"] is None
+        assert client.calls == 3
+
+    def test_a_nudge_that_fails_api_side_stays_an_error(self, monkeypatch):
+        monkeypatch.setenv("AGENT_MAX_ITERATIONS", "2")
+        client = FakeClient([_tool_call("get_posting_text"),
+                             _tool_call("get_posting_text", call_id="c2"),
+                             RuntimeError("boom")])
+        _inject_clients(monkeypatch, client)
+
+        rec = da.evaluate_job(_job())
+
+        assert rec["decision"] == "ERROR"
+        assert rec["score"] is None

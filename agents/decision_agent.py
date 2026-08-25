@@ -27,7 +27,7 @@ import os
 import re
 import sys
 import time
-from datetime import date
+from datetime import date, datetime, timezone
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 from agent_runtime import Tool, run_agent
@@ -38,7 +38,11 @@ from utils import (MIN_DESCRIPTION_CHARS, THRESHOLD_APPLY, THRESHOLD_REVIEW,
 
 import job_evaluator as je
 
-DEFAULT_AGENT_MAX_ITERATIONS = 5
+# Measured 2026-08-25 on the first agent-mode run: a thorough investigation
+# calls all five informational tools in a row, so a cap of 5 starves the
+# mandatory record_decision (three capped evaluations, identical traces).
+# 8 = full investigation + terminal call + one retry, still bounded.
+DEFAULT_AGENT_MAX_ITERATIONS = 8
 
 
 def evaluation_mode():
@@ -288,6 +292,49 @@ def _agent_error_record(job, err_msg, trace=None):
     return rec
 
 
+def _finalize_nudge(client, result, tools, holder, trace):
+    """One reserved call when the investigation starved the terminal call.
+
+    The five informational tools can fill the whole iteration cap before
+    record_decision gets a turn -- measured 2026-08-25 on the first agent
+    run: three capped evaluations, every trace the same five calls in the
+    same order. Rather than erroring a job the agent already understood,
+    append an explicit order to finalize and give it exactly one more call.
+    Any other tool call in the answer is logged in the trace and ignored:
+    the budget is spent either way."""
+    schemas = [{"type": "function",
+                "function": {"name": t.name, "description": t.description,
+                             "parameters": t.parameters}}
+               for t in tools]
+    nudge = {"role": "user", "content": (
+        "Investigation budget exhausted. Call record_decision NOW with your "
+        "best judgement from the evidence already gathered. Do NOT call any "
+        "other tool.")}
+    try:
+        resp = client.chat_completion((result.get("messages") or []) + [nudge],
+                                      max_tokens=1000, tools=schemas or None,
+                                      tool_choice="auto" if schemas else None)
+    except Exception:
+        return None
+    for call in resp.get("tool_calls") or []:
+        function = call.get("function") or {}
+        name = function.get("name", "")
+        raw = function.get("arguments") or ""
+        try:
+            arguments = json.loads(raw) if raw.strip() else {}
+        except ValueError:
+            arguments = {}
+        trace.append({"name": name, "arguments": arguments})
+        if name == "record_decision":
+            try:
+                tools_by_name = {t.name: t for t in tools}
+                tools_by_name[name].function(**arguments)
+            except Exception:
+                return None
+            return holder.get("payload")
+    return None
+
+
 def evaluate_job(job):
     """Agent-mode twin of job_evaluator.evaluate_job: same record shape (plus
     agent_rationale / agent_decision / agent_trace), the decision reached by
@@ -308,7 +355,7 @@ def evaluate_job(job):
     tools = _build_tools(job, holder)
     # Today's date grounds timeline reasoning (notice period vs start date),
     # same as the deterministic prompt.
-    user = (f"Today's date: {date.today().isoformat()}\n"
+    user = (f"Today's date: {datetime.now(timezone.utc).date().isoformat()}\n"
             f"Job: {title} at {company}\nLocation: {location}\n"
             f"URL: {job.get('url', '')}\n"
             "Investigate this posting with your tools, then finalize by "
@@ -326,13 +373,16 @@ def evaluate_job(job):
 
     trace = result.get("tool_calls_made", [])
     payload = holder.get("payload")
+    if payload is None and result.get("stopped_reason") == "iteration_cap":
+        payload = _finalize_nudge(client, result, tools, holder, trace)
     if payload is None:
         reason = result.get("stopped_reason")
         if reason == "error":
             msg = "Agent run failed at the API level"
         elif reason == "iteration_cap":
-            msg = (f"Agent hit the {agent_max_iterations()}-iteration cap "
-                   "without calling record_decision")
+            msg = (f"Agent never called record_decision "
+                   f"({agent_max_iterations()}-iteration cap and finalization "
+                   "nudge both spent)")
         else:
             msg = "Agent ended without calling record_decision"
         print(f"AGENT ERROR -> {msg}")
