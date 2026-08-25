@@ -1,4 +1,4 @@
-# Job Hunt Pipeline — CLAUDE.md
+# Job Hunt Pipeline — AGENTS.md
 
 ## Project Overview
 
@@ -6,7 +6,7 @@
 
 **Runtime**: GitHub Actions, 2x/day (05:00 and 12:00 UTC). No local server.
 
-**AI provider**: Kimi (Moonshot) API. This is a deliberate decision: do NOT migrate the pipeline to the Claude API or any other provider. Claude acts only as the development assistant on this codebase.
+**AI provider**: Kimi (Moonshot) API, for the pipeline runtime and the development assistant alike (Kimi CLI). This is a deliberate decision: do NOT migrate the pipeline to any other provider.
 
 ---
 

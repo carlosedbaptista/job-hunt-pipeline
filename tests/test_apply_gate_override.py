@@ -8,7 +8,7 @@ a job with a hard eligibility blocker whose score stayed high.
 
 But it was also stopping the candidate. He read the comparis.ch internship --
 72/REVIEW, full 2,880-character posting, no blockers -- decided it was worth
-applying to, and the generator answered None. CLAUDE.md business rule 4 says
+applying to, and the generator answered None. AGENTS.md business rule 4 says
 the opposite: "scoring is input, not gospel: the user can override any
 decision".
 

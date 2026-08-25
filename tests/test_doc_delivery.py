@@ -16,7 +16,7 @@ Two properties matter and both are easy to break by accident:
   * the PDFs must actually be attached, and the container must be
     multipart/mixed -- "alternative" says "the same content in another
     format", and clients are entitled to hide the body or drop the parts;
-  * the recipient is always the candidate. CLAUDE.md's first business rule is
+  * the recipient is always the candidate. AGENTS.md's first business rule is
     that nothing reaches an employer without explicit approval, so a
     regression that mailed a recruiter would be the worst kind.
 

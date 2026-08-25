@@ -1,7 +1,7 @@
 name: Tests
 
 # The scoring-consistency suite exists (tests/, 70+ cases born from the
-# 2026-08-17 audit) but nothing ran it: CLAUDE.md asks you to run pytest
+# 2026-08-17 audit) but nothing ran it: AGENTS.md asks you to run pytest
 # before touching scoring or dedup logic, and that was on the honour system.
 # Every one of those tests pins a bug that already happened once.
 on:

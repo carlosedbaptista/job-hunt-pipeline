@@ -705,7 +705,7 @@ class TestIngestionNormalisation:
 # ─── 10. Language calibration comes from the profile, never from the code ────
 
 class TestLanguageLevelFromProfile:
-    """CLAUDE.md: 'never hardcode a language level in job_evaluator.py (that
+    """AGENTS.md: 'never hardcode a language level in job_evaluator.py (that
     was a real bug)'. The prompt still said 'his German is B1' while the CV
     said A2, and the intermediate band was the fixed set {B2}, so a 'German
     B1 required' posting read as a soft mention when it was in fact a real

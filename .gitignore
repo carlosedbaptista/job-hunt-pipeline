@@ -34,7 +34,7 @@ config/oauth2_client_secret.json
 
 # Candidate PII -- restored from base64 secrets in CI
 config/candidate_profile.json
-# photo.* (not just .png/.jpg): CLAUDE.md specifies the glob, and a
+# photo.* (not just .png/.jpg): AGENTS.md specifies the glob, and a
 # re-encode to .jpeg/.webp would otherwise become committable.
 config/photo.*
 
