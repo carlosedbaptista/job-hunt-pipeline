@@ -1,0 +1,46 @@
+{
+  "ts": "2026-08-25T12:46:13.388029+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5944,
+    "completion_tokens": 620
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run evaluated 18 jobs with 0 APPLY, 0 REVIEW, 8 SKIP, and 10 NOT_EVALUATED. No tailored documents or high-score alerts were needed. No stale applications required follow-ups. Reevaluated 5 borderline REVIEW jobs: 4 remained REVIEW, 1 dropped to SKIP (Hays). No jobs crossed into APPLY.",
+        "rationale": "With zero APPLY jobs and zero stale applications, the only productive use of remaining budget was reevaluating recent REVIEW-band jobs. The reevaluation consumed 5 slots but did not produce any new APPLY candidates, confirming today's pipeline output is final."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 18, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 8, \"ERROR\": 0, \"NOT_EVALUATED\": 10}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"Randstad Digital\", \"title\": \"Junior AI & Knowledge Engineer\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 72, \"new_decision\": \"REVIEW\"}, {\"company\": \"Randstad Digital\", \"title\": \"Junior AI & Knowledge Engineer\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"ne"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run evaluated 18 jobs with 0 APPLY, 0 REVIEW, 8 SKIP, and 10 NOT_EVALUATED. No tailored documents or high-score alerts were needed. No stale applications required follow-ups. Reevaluated 5 borderline REVIEW jobs: 4 remained REVIEW, 1 dropped to SKIP (Hays). No jobs crossed into APPLY.",
+  "agent_rationale": "With zero APPLY jobs and zero stale applications, the only productive use of remaining budget was reevaluating recent REVIEW-band jobs. The reevaluation consumed 5 slots but did not produce any new APPLY candidates, confirming today's pipeline output is final."
+}
