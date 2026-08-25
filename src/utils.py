@@ -197,13 +197,13 @@ def deduplicate_jobs(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     while the same posting from Adzuna carries 4000 chars, and whichever
     happened to be ingested first used to win). Missing fields on the
     winner are backfilled from the loser."""
-    from deduplicator import normalize, normalize_company, normalize_location
+    from deduplicator import normalize, normalize_company, normalize_location, normalize_title
 
     winners: Dict[Any, Dict[str, Any]] = {}
     order: List[Any] = []
     for job in jobs:
         key = (normalize_company(job.get("company") or ""),
-               normalize(job.get("title") or ""),
+               normalize_title(job.get("title") or ""),
                normalize_location(job.get("location") or ""))
         current = winners.get(key)
         if current is None:

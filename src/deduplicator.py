@@ -49,9 +49,61 @@ def normalize_location(text: str) -> str:
     return normalized.split()[0] if normalized else ""
 
 
+# ─── Identity strengthening (2026-08-25) ─────────────────────────────────────
+# The exact hash split ONE posting into two seen/evaluated jobs when a board
+# padded the title ('AI Engineer (80%-100%) - Zurich') or the company arrived
+# under an alias ('iudexnc' vs 'Iudex Non Calculat'). The dashboard got the
+# same rule first, as a view-layer prototype; these are the same definitions,
+# promoted to the shared kernel so ingestion, alerts, orchestrator, rescoring
+# and the dashboard all mean the SAME thing by 'same job'.
+
+_LOCATION_TAIL_RE = re.compile(
+    r"\s*[-–]\s*(zurich|zürich|zug|switzerland|swiss|remote|geneva|genève|"
+    r"bern|berne|basel|lausanne|winterthur|lucerne|lugano)\b.*$",
+    re.IGNORECASE)
+_PAREN_RE = re.compile(r"\([^)]*\)")
+_WORKLOAD_RE = re.compile(r"\b\d{1,3}\s*%\s*(?:[-–]\s*\d{1,3}\s*%)?\b")
+
+
+def normalize_title(title: str) -> str:
+    """Title identity: boards pad titles with workload ('(80%-100%)') and the
+    location (' - Zurich'); the same posting typed by hand carries neither.
+    Strip both before the base normalisation."""
+    t = _PAREN_RE.sub(" ", str(title or ""))
+    t = _WORKLOAD_RE.sub(" ", t)
+    t = _LOCATION_TAIL_RE.sub("", t)
+    return normalize(t)
+
+
+def company_abbreviation(company: str) -> str:
+    """first-token-plus-initials form: 'Iudex Non Calculat' -> 'iudexnc'."""
+    parts = normalize_company(company).split()
+    if len(parts) < 2:
+        return ""
+    return parts[0] + "".join(p[0] for p in parts[1:] if p)
+
+
+def companies_compatible(a: str, b: str) -> bool:
+    """Same employer through formatting or an alias: equal after
+    normalisation, or one side is exactly the first-token-plus-initials
+    abbreviation of the other. Deliberately NOT a similarity threshold --
+    'Swiss International Air Lines' and 'Swiss Re' must never merge, and
+    'Unknown' companies merge nothing (different alert cards with a generic
+    title would collapse distinct postings)."""
+    ka, kb = normalize_company(a or ""), normalize_company(b or "")
+    if not ka or not kb or ka == "unknown" or kb == "unknown":
+        return False
+    if ka == kb:
+        return True
+    return ((len(ka) >= 4 and ka == company_abbreviation(b)) or
+            (len(kb) >= 4 and kb == company_abbreviation(a)))
+
+
 def make_hash(company: str, title: str, location: str) -> str:
-    """Generates a 16-char deduplication hash."""
-    key = f"{normalize_company(company)}|{normalize(title)}|{normalize_location(location)}"
+    """Generates a 16-char deduplication hash. NOTE: the title component was
+    strengthened to normalize_title on 2026-08-25 -- rows stored before that
+    need `rehash_seen_jobs` (a padded title hashes differently now)."""
+    key = f"{normalize_company(company)}|{normalize_title(title)}|{normalize_location(location)}"
     return hashlib.sha256(key.encode()).hexdigest()[:16]
 
 
@@ -148,6 +200,19 @@ def filter_new_jobs(
         ).fetchone()
 
         if row is None:
+            # Second dedup layer: the exact hash misses postings that differ
+            # only by title padding or a company alias, so the same job used
+            # to enter (and cost an evaluation) twice. A cheap scan over the
+            # retention window catches those -- seen_jobs holds hundreds of
+            # rows at most, and compatibility is exact rules, not similarity.
+            compat_hash = _find_compat_hash(conn, job, retention_days)
+            if compat_hash is not None:
+                if mark_seen:
+                    conn.execute(
+                        "UPDATE seen_jobs SET last_seen = ? WHERE hash = ?",
+                        (now, compat_hash),
+                    )
+                continue
             if mark_seen:
                 conn.execute(
                     """INSERT INTO seen_jobs
@@ -179,6 +244,68 @@ def filter_new_jobs(
 
 # ─── Utilities ────────────────────────────────────────────────────────────────
 
+def _find_compat_hash(conn: sqlite3.Connection, job: dict, retention_days: int = 21):
+    """The hash of a seen_jobs row that is the same posting under an alias /
+    padded title, or None. Requires ALL of: equal title identity, equal
+    normalised location, compatible companies -- 'Swiss International Air
+    Lines' vs 'Swiss Re' and 'Unknown' cards never merge."""
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=retention_days)).isoformat()
+    rows = conn.execute(
+        "SELECT hash, company, title, location FROM seen_jobs WHERE last_seen >= ?",
+        (cutoff,),
+    ).fetchall()
+    title_key = normalize_title(job.get("title", ""))
+    loc_key = normalize_location(job.get("location", ""))
+    if not title_key:
+        return None
+    for h, company, title, location in rows:
+        if normalize_title(title or "") != title_key:
+            continue
+        if normalize_location(location or "") != loc_key:
+            continue
+        if companies_compatible(job.get("company", ""), company or ""):
+            return h
+    return None
+
+
+def rehash_seen_jobs(db_path: str = DB_PATH) -> dict:
+    """One-time migration after the 2026-08-25 hash strengthening: recomputes
+    stored hashes from the raw fields. Collisions (two old rows now hashing
+    equal) merge: earliest first_seen, latest last_seen, and a non-'new'
+    status survives over 'new' (applications are never demoted)."""
+    init_db(db_path)
+    conn = sqlite3.connect(db_path)
+    rows = conn.execute(
+        "SELECT hash, company, title, location, first_seen, last_seen, status "
+        "FROM seen_jobs"
+    ).fetchall()
+    rehashed = merged = 0
+    for old_h, company, title, location, first_seen, last_seen, status in rows:
+        new_h = make_hash(company or "", title or "", location or "")
+        if new_h == old_h:
+            continue
+        existing = conn.execute(
+            "SELECT first_seen, last_seen, status FROM seen_jobs WHERE hash = ?",
+            (new_h,),
+        ).fetchone()
+        if existing is None:
+            conn.execute("UPDATE seen_jobs SET hash = ? WHERE hash = ?",
+                         (new_h, old_h))
+            rehashed += 1
+        else:
+            e_first, e_last, e_status = existing
+            conn.execute(
+                "UPDATE seen_jobs SET first_seen = ?, last_seen = ?, status = ? "
+                "WHERE hash = ?",
+                (min(first_seen, e_first), max(last_seen, e_last),
+                 e_status if e_status != "new" else status, new_h),
+            )
+            conn.execute("DELETE FROM seen_jobs WHERE hash = ?", (old_h,))
+            merged += 1
+    conn.commit()
+    conn.close()
+    return {"rows": len(rows), "rehashed": rehashed, "merged": merged}
+
 def get_stats(db_path: str = DB_PATH) -> dict:
     """Returns database statistics."""
     if not os.path.exists(db_path):
@@ -208,6 +335,14 @@ if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "stats":
         stats = get_stats()
         print(json.dumps(stats, indent=2, ensure_ascii=False))
+        sys.exit(0)
+
+    if len(sys.argv) > 1 and sys.argv[1] == "rehash-seen":
+        # One-time migration after the 2026-08-25 hash strengthening.
+        result = rehash_seen_jobs()
+        print(f"rehash-seen: {result['rehashed']} rows re-hashed, "
+              f"{result['merged']} collisions merged "
+              f"(of {result['rows']} rows)")
         sys.exit(0)
 
     input_file = "digests/parsed_jobs_latest.json"

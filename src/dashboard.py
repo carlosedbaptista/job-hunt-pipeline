@@ -67,48 +67,17 @@ def parse_digest_date(filename):
         return datetime.now().strftime("%Y-%m-%d")
 
 
-_LOCATION_TAIL_RE = re.compile(
-    r"\s*[-–]\s*(zurich|zürich|zug|switzerland|swiss|remote|geneva|genève|"
-    r"bern|berne|basel|lausanne|winterthur|lucerne|lugano)\b.*$",
-    re.IGNORECASE)
-_PAREN_RE = re.compile(r"\([^)]*\)")
-_WORKLOAD_RE = re.compile(r"\b\d{1,3}\s*%\s*(?:[-–]\s*\d{1,3}\s*%)?\b")
+# The identity rules (strong title, company alias compatibility) live in
+# src/deduplicator.py since 2026-08-25 -- promoted from here to the shared
+# kernel so ingestion, alerts, orchestrator and this dashboard all mean the
+# same thing by 'same job'. Aliases keep the old names for the merge below
+# and its tests.
+from src.deduplicator import (normalize_title, companies_compatible,
+                              company_abbreviation)
 
-
-def _strong_title(title):
-    """Identity form of a title for the compatibility merge. Job boards pad
-    titles with workload ('(80%-100%)') and the location (' - Zurich'), and
-    a manual re-evaluation typed from the employer's page carries neither --
-    so the exact dedup key splits one posting into two dashboard rows
-    (2026-08-25: 'AI Engineer (80%-100%) - Zurich' vs 'AI Engineer')."""
-    t = _PAREN_RE.sub(" ", str(title or ""))
-    t = _WORKLOAD_RE.sub(" ", t)
-    t = _LOCATION_TAIL_RE.sub("", t)
-    return normalize(t)
-
-
-def _company_abbreviation(company):
-    """first-token-plus-initials form: 'Iudex Non Calculat' -> 'iudexnc'."""
-    parts = normalize_company(company).split()
-    if len(parts) < 2:
-        return ""
-    return parts[0] + "".join(p[0] for p in parts[1:] if p)
-
-
-def _companies_compatible(a, b):
-    """Same employer through formatting or an alias: equal after
-    normalisation, or one side is exactly the first-token-plus-initials
-    abbreviation of the other. Deliberately NOT a similarity threshold --
-    'Swiss International Air Lines' and 'Swiss Re' must never merge, and
-    'Unknown' companies merge nothing (different alert cards, same generic
-    title, would collapse distinct postings)."""
-    ka, kb = normalize_company(a or ""), normalize_company(b or "")
-    if not ka or not kb or ka == "unknown" or kb == "unknown":
-        return False
-    if ka == kb:
-        return True
-    return ((len(ka) >= 4 and ka == _company_abbreviation(b)) or
-            (len(kb) >= 4 and kb == _company_abbreviation(a)))
+_strong_title = normalize_title
+_companies_compatible = companies_compatible
+_company_abbreviation = company_abbreviation
 
 
 def merge_compatible_jobs(jobs):
