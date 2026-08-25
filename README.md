@@ -118,6 +118,12 @@ scored before. It commits through a mandatory decision tool, and the record
 keeps its rationale and every tool call it made. What it cannot do is defined
 in code: the guardrails above fence whatever it proposes.
 
+Its conversation is capped, and a capped investigation earns one reserved
+call to commit with what it has. The cap is measured, not guessed: on the
+first agent-mode run, three evaluations filled every iteration with the five
+informational tools and starved the decision — identical traces, a design
+bug, fixed the same morning.
+
 The **orchestrator** makes the run-level calls a fixed YAML chain cannot:
 whether to generate documents, fire alerts, draft follow-ups, or spend
 leftover budget re-scoring last week's borderline jobs. Its floor is code —
@@ -187,7 +193,7 @@ GitHub Actions (cron, 05:00 and 12:00 UTC)
 | Storage | SQLite, JSON artefacts |
 | Documents | fpdf2, python-docx |
 | CI | GitHub Actions; pytest on every push |
-| Tests | 436, LLM mocked, no network |
+| Tests | 460, LLM mocked, no network |
 
 ---
 
@@ -201,11 +207,19 @@ The LLM cap is applied *before* jobs are marked as seen. An earlier version
 marked everything seen and then evaluated the first 30, so jobs 31 and beyond
 were silently swallowed forever.
 
-Agent mode spends more model calls by design: an investigated job costs two
-to five calls instead of one, and the orchestrator adds a bounded slice on
+Agent mode spends more model calls by design: an investigated job costs
+typically five to six calls instead of one (nine at the hard cap plus the
+reserved finalization call), and the orchestrator adds a bounded slice on
 top. The brakes are in code, not in prompts: a 30-job evaluation cap, a hard
 iteration limit per conversation, and a re-score budget the orchestrator
 cannot exceed no matter what it asks for.
+
+Identity is a cost too. Until 2026-08-25 an alias (`iudexnc` vs `Iudex Non
+Calculat`) or a board-padded title (`AI Engineer (80%-100%) - Zurich`) let
+one posting enter twice and pay two evaluations. Dedup is now two-layer — a
+strengthened hash, then a compatibility scan — and the migration proved the
+point, finding and merging three hidden duplicate pairs in the seen-jobs
+table.
 
 ---
 
