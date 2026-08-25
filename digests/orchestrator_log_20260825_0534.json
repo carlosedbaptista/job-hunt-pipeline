@@ -1,0 +1,54 @@
+{
+  "ts": "2026-08-25T05:34:38.985617+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 5,
+  "usage": {
+    "prompt_tokens": 8327,
+    "completion_tokens": 771
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 3
+      }
+    },
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run evaluated 10 jobs (7 initial + 3 reevaluations), yielding 1 SKIP, 4 ERRORs, and 5 NOT_EVALUATED. Zero jobs reached APPLY threshold, so no documents were generated, no alerts sent, and no follow-ups were needed. Three REVIEW-band reevaluations were attempted but all errored due to the agent hitting the 5-iteration cap.",
+        "rationale": "With no APPLY jobs and no stale applications, the productive work for today was limited. Attempted reevaluation to use remaining budget, but persistent agent iteration-cap errors prevented any decisions from being upgraded. Run finalized to avoid legacy fallback."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 7, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 1, \"ERROR\": 1, \"NOT_EVALUATED\": 5}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:50 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"SimplyVision GmbH\", \"title\": \"AI & Knowledge Management Support (Master Student)\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": null, \"new_decision\": \"ERROR\"}, {\"company\": \"SimplyVision GmbH\", \"title\": \"AI & Knowledge Management Support (Master Student)\", \"ol"
+    },
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 10, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 1, \"ERROR\": 4, \"NOT_EVALUATED\": 5}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 "
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run evaluated 10 jobs (7 initial + 3 reevaluations), yielding 1 SKIP, 4 ERRORs, and 5 NOT_EVALUATED. Zero jobs reached APPLY threshold, so no documents were generated, no alerts sent, and no follow-ups were needed. Three REVIEW-band reevaluations were attempted but all errored due to the agent hitting the 5-iteration cap.",
+  "agent_rationale": "With no APPLY jobs and no stale applications, the productive work for today was limited. Attempted reevaluation to use remaining budget, but persistent agent iteration-cap errors prevented any decisions from being upgraded. Run finalized to avoid legacy fallback."
+}
