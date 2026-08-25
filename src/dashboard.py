@@ -5,6 +5,7 @@ Features: Chart.js, dark mode, filters, CSV export, 30-day history
 
 import json
 import os
+import re
 import sys
 import glob
 from datetime import datetime, timezone, timedelta
@@ -64,6 +65,78 @@ def parse_digest_date(filename):
         return f"{parts[0][:4]}-{parts[0][4:6]}-{parts[0][6:8]}"
     except Exception:
         return datetime.now().strftime("%Y-%m-%d")
+
+
+_LOCATION_TAIL_RE = re.compile(
+    r"\s*[-–]\s*(zurich|zürich|zug|switzerland|swiss|remote|geneva|genève|"
+    r"bern|berne|basel|lausanne|winterthur|lucerne|lugano)\b.*$",
+    re.IGNORECASE)
+_PAREN_RE = re.compile(r"\([^)]*\)")
+_WORKLOAD_RE = re.compile(r"\b\d{1,3}\s*%\s*(?:[-–]\s*\d{1,3}\s*%)?\b")
+
+
+def _strong_title(title):
+    """Identity form of a title for the compatibility merge. Job boards pad
+    titles with workload ('(80%-100%)') and the location (' - Zurich'), and
+    a manual re-evaluation typed from the employer's page carries neither --
+    so the exact dedup key splits one posting into two dashboard rows
+    (2026-08-25: 'AI Engineer (80%-100%) - Zurich' vs 'AI Engineer')."""
+    t = _PAREN_RE.sub(" ", str(title or ""))
+    t = _WORKLOAD_RE.sub(" ", t)
+    t = _LOCATION_TAIL_RE.sub("", t)
+    return normalize(t)
+
+
+def _company_abbreviation(company):
+    """first-token-plus-initials form: 'Iudex Non Calculat' -> 'iudexnc'."""
+    parts = normalize_company(company).split()
+    if len(parts) < 2:
+        return ""
+    return parts[0] + "".join(p[0] for p in parts[1:] if p)
+
+
+def _companies_compatible(a, b):
+    """Same employer through formatting or an alias: equal after
+    normalisation, or one side is exactly the first-token-plus-initials
+    abbreviation of the other. Deliberately NOT a similarity threshold --
+    'Swiss International Air Lines' and 'Swiss Re' must never merge, and
+    'Unknown' companies merge nothing (different alert cards, same generic
+    title, would collapse distinct postings)."""
+    ka, kb = normalize_company(a or ""), normalize_company(b or "")
+    if not ka or not kb or ka == "unknown" or kb == "unknown":
+        return False
+    if ka == kb:
+        return True
+    return ((len(ka) >= 4 and ka == _company_abbreviation(b)) or
+            (len(kb) >= 4 and kb == _company_abbreviation(a)))
+
+
+def merge_compatible_jobs(jobs):
+    """Second dedup pass, after the exact-key one inside collect_jobs. Exact
+    keys miss postings that differ only by board-added title padding or a
+    company alias -- the same job then shows twice with two scores, and a
+    manual re-evaluation cannot replace the older row as designed
+    (2026-08-25: 'Code Compass 🧭' 85 vs 'Code Compass' 82, same LinkedIn
+    job id; 'Iudex Non Calculat' 72 vs 'iudexnc' 78, same title). First-seen
+    order (manual entries first, then newest) decides which record
+    survives."""
+    kept = []
+    for ev in jobs:
+        job = ev.get("job", ev)
+        strong = _strong_title(job.get("title", ""))
+        duplicate = False
+        if strong:
+            for other in kept:
+                oj = other.get("job", other)
+                if _strong_title(oj.get("title", "")) != strong:
+                    continue
+                if _companies_compatible(job.get("company", ""),
+                                         oj.get("company", "")):
+                    duplicate = True
+                    break
+        if not duplicate:
+            kept.append(ev)
+    return kept
 
 
 def collect_jobs(days=30):
@@ -165,7 +238,7 @@ def collect_jobs(days=30):
         for ev in evals:
             add_eval(ev, today)
 
-    return all_jobs
+    return merge_compatible_jobs(all_jobs)
 
 
 def load_application_status() -> dict:
