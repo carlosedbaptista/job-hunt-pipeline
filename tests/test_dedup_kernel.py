@@ -142,3 +142,38 @@ class TestRehashMigration:
         conn.close()
         assert len(rows) == 1
         assert rows[0] == ("2026-07-20", "2026-08-21")  # earliest, latest
+
+
+# ─── location pollution from LinkedIn cards (2026-08-26) ─────────────────────
+
+class TestNormalizeLocationBlob:
+    """LinkedIn alert cards hand over 'Company · City, Country (Type)' as
+    the location. Keying the first token then makes the locality the
+    COMPANY, so the two card variants of one posting hashed differently
+    and BOTH were evaluated (2026-08-26: 'Junior AI & Knowledge Engineer'
+    @ Randstad Digital, twice, same score, ~15 agent calls wasted)."""
+
+    def test_company_city_blob_yields_the_city(self):
+        assert dd.normalize_location(
+            "Randstad Digital · Zurich, Switzerland (Hybrid)") == "zurich"
+
+    def test_plain_and_accented_locations_unchanged(self):
+        assert dd.normalize_location("Zurich") == "zurich"
+        assert dd.normalize_location("Zürich") == "zurich"
+        assert dd.normalize_location("Zurich, Switzerland") == "zurich"
+        assert dd.normalize_location("Zug") == "zug"
+
+    def test_card_variants_of_one_posting_dedup_to_one_row(self, tmp_path):
+        db = str(tmp_path / "jobs.db")
+        _seed_seen(db, [("Randstad Digital", "Junior AI & Knowledge Engineer",
+                         "Randstad Digital · Zurich, Switzerland (Hybrid)")])
+        new = dd.filter_new_jobs(
+            [_job("Randstad Digital", "Junior AI & Knowledge Engineer",
+                  "Zurich")], db_path=db)
+        assert new == []
+
+    def test_card_variants_hash_equal(self):
+        assert dd.make_hash("Randstad Digital", "Junior AI & Knowledge Engineer",
+                            "Randstad Digital · Zurich, Switzerland (Hybrid)") == \
+               dd.make_hash("Randstad Digital", "Junior AI & Knowledge Engineer",
+                            "Zurich")

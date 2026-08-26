@@ -42,10 +42,21 @@ def normalize_company(text: str) -> str:
     return " ".join(tokens)
 
 
+_LOCATION_PAREN_RE = re.compile(r"\([^)]*\)")
+
+
 def normalize_location(text: str) -> str:
     """Location normalisation: keeps only the first locality token so
-    'Zurich', 'Zurich, Zurich' and 'Zurich, Switzerland' all match."""
-    normalized = normalize(text)
+    'Zurich', 'Zurich, Zurich' and 'Zurich, Switzerland' all match.
+    LinkedIn alert cards hand over the 'Company · City, Country (Type)'
+    blob instead ('Randstad Digital · Zurich, Switzerland (Hybrid)'): strip
+    parentheticals and take the part after the middle dot, or the keyed
+    locality becomes the COMPANY and the same posting dedups twice
+    (measured 2026-08-26: one job, two cards, two agent evaluations)."""
+    t = _LOCATION_PAREN_RE.sub(" ", str(text or ""))
+    if "·" in t:
+        t = t.split("·", 1)[1]
+    normalized = normalize(t)
     return normalized.split()[0] if normalized else ""
 
 
