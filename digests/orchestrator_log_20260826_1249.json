@@ -1,0 +1,54 @@
+{
+  "ts": "2026-08-26T12:49:26.734541+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 5,
+  "usage": {
+    "prompt_tokens": 6679,
+    "completion_tokens": 371
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run processed 16 evaluations (0 APPLY, 2 REVIEW, 6 SKIP, 8 not yet evaluated). No APPLY jobs means no documents or high-score alerts needed. Zero stale applications, so no follow-ups drafted. Re-evaluated 4 REVIEW-band borderline jobs: 2 moved to SKIP, 2 remained REVIEW. Run complete.",
+        "rationale": "With no APPLY jobs and no quiet applications, the only productive work was re-scoring recent REVIEW-band jobs to refine decisions. Called finish_run to properly close the agent-mode run."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 16, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 2, \"SKIP\": 6, \"ERROR\": 0, \"NOT_EVALUATED\": 8}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 "
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 0}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"Lombard Odier Investment Managers (LOIM)\", \"title\": \"AI Data Engineer\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 58, \"new_decision\": \"SKIP\"}, {\"company\": \"ParetoLabs\", \"title\": \"AI Engineer\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 78, \"ne"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run processed 16 evaluations (0 APPLY, 2 REVIEW, 6 SKIP, 8 not yet evaluated). No APPLY jobs means no documents or high-score alerts needed. Zero stale applications, so no follow-ups drafted. Re-evaluated 4 REVIEW-band borderline jobs: 2 moved to SKIP, 2 remained REVIEW. Run complete.",
+  "agent_rationale": "With no APPLY jobs and no quiet applications, the only productive work was re-scoring recent REVIEW-band jobs to refine decisions. Called finish_run to properly close the agent-mode run."
+}
