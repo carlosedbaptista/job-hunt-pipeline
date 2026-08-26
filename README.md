@@ -256,6 +256,14 @@ orchestrates, and `scripts/smoke_decision_agent.py` and
 `scripts/smoke_orchestrator.py` run the real agents against synthetic
 postings, so their reasoning can be watched without touching a real run.
 
+And [`agents/history_rag.py`](agents/history_rag.py) makes the committed
+evaluation history interrogable: BM25 retrieval over the records, then an
+answer grounded only in the sources it found — with a refusal below the
+evidence floor, because the no-invention rule applies to RAG too. The
+Moonshot API has no embeddings endpoint (verified via `/v1/models`), so the
+retriever is sparse by design and sits behind one function for a future
+dense swap.
+
 ---
 
 *Built by [Carlos Baptista](https://linkedin.com/in/carlosedbaptista).*
