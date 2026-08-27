@@ -1,0 +1,54 @@
+{
+  "ts": "2026-08-27T15:12:41.483769+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5473,
+    "completion_tokens": 312
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Run complete: 26 evaluations processed (14 SKIP, 0 APPLY, 0 REVIEW, 12 NOT_EVALUATED). No APPLY jobs so no documents or alerts generated. 0 stale applications, so no follow-ups drafted. Re-evaluated 5 borderline REVIEW jobs from the last 14 days; 4 stayed REVIEW and 1 moved to SKIP.",
+        "rationale": "With zero APPLY jobs and zero stale applications, the only productive action was re-evaluating recent REVIEW-band jobs to refine decisions. The 5 re-evaluations consumed remaining budget without generating new APPLYs, leaving the pipeline ready for the next fetch cycle."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 26, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 14, \"ERROR\": 0, \"NOT_EVALUATED\": 12}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-2"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 0}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"PQ Technologies\", \"title\": \"Intern \\u2013 Python Development & Data Analysis\", \"old_score\": 78, \"old_decision\": \"REVIEW\", \"new_score\": 76, \"new_decision\": \"REVIEW\"}, {\"company\": \"ParetoLabs\", \"title\": \"AI Engineer\", \"old_score\": 78, \"old_decision\": \"REVIEW\", \"new_score\""
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Run complete: 26 evaluations processed (14 SKIP, 0 APPLY, 0 REVIEW, 12 NOT_EVALUATED). No APPLY jobs so no documents or alerts generated. 0 stale applications, so no follow-ups drafted. Re-evaluated 5 borderline REVIEW jobs from the last 14 days; 4 stayed REVIEW and 1 moved to SKIP.",
+  "agent_rationale": "With zero APPLY jobs and zero stale applications, the only productive action was re-evaluating recent REVIEW-band jobs to refine decisions. The 5 re-evaluations consumed remaining budget without generating new APPLYs, leaving the pipeline ready for the next fetch cycle."
+}
