@@ -1,1 +1,272 @@
-[]
+[
+  {
+    "score": 30,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated - full requirements not visible",
+      "Role title explicitly says 'Senior' - candidate seeks internship/junior role",
+      "Enterprise financial institution context implies seniority expectations beyond candidate's level",
+      "MLOps/AI Platform/Cloud AI at scale is different from the hands-on LLM pipeline building the candidate wants",
+      "Past evaluation of identical posting was SKIP at 35",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "UBS Card Center AG",
+      "title": "Senior AI Machine Learning Engineer 100%",
+      "location": "Opfikon, Bülach",
+      "url": "https://www.adzuna.ch/details/5858682634",
+      "portal": "adzuna",
+      "description": "Senior AI Machine Learning Engineer 100% (f/m/d) Your team We are looking for a highly experienced Senior AI Machine Learning Engineer to design, build, and operate enterprise-scale AI solutions for a leading financial institution. You will collaborate with AI, Data and Business teams to deliver and support scalable Generative AI, MLOps, AI Platform, and Cloud AI capabilities while ensuring operational excellence, security, and regulatory compliance. Your role lead the design, development, and …"
+    },
+    "technical_fit": "This is a Senior AI Machine Learning Engineer role at UBS Card Center AG. The posting text is heavily truncated (500 chars, truncated=true), so I cannot fully assess requirements. However, what is visible already signals multiple mismatches: 1) The title explicitly says 'Senior' - the candidate is seeking an internship or junior role with ownership, not a senior position. 2) The role describes leading design, development, and operation of enterprise-scale AI solutions for a leading financial institution - this implies significant experience and seniority expectations. 3) The candidate is currently an AI Software Engineer Intern with ~2 weeks notice, looking for internships or junior roles where he can build LLM-powered pipelines with real ownership. A 'Senior' title at a major bank like UBS is fundamentally mismatched with his career stage and stated goals. 4) Past evaluation of this exact same posting scored 35 and was SKIPped, consistent with this assessment. 5) The text mentions MLOps, AI Platform, Cloud AI capabilities, and ensuring operational excellence, security, and regulatory compliance - these are enterprise-scale responsibilities far beyond a junior/intern scope. While the location (Opfikon, Bülach) is Zurich-area acceptable and language requirement is none, the seniority level alone is disqualifying for this candidate's profile and aspirations. The candidate wants to build agentic systems end-to-end with ownership from day one, not step into a senior enterprise role at a bank where he'd likely be expected to have years of experience.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text is truncated - full requirements not visible",
+      "Role title explicitly says 'Senior' - candidate seeks internship/junior role",
+      "Enterprise financial institution context implies seniority expectations beyond candidate's level",
+      "MLOps/AI Platform/Cloud AI at scale is different from the hands-on LLM pipeline building the candidate wants",
+      "Past evaluation of identical posting was SKIP at 35"
+    ],
+    "agent_rationale": "This is a Senior AI Machine Learning Engineer role at UBS Card Center AG. The posting text is heavily truncated (500 chars, truncated=true), so I cannot fully assess requirements. However, what is visible already signals multiple mismatches: 1) The title explicitly says 'Senior' - the candidate is seeking an internship or junior role with ownership, not a senior position. 2) The role describes leading design, development, and operation of enterprise-scale AI solutions for a leading financial institution - this implies significant experience and seniority expectations. 3) The candidate is currently an AI Software Engineer Intern with ~2 weeks notice, looking for internships or junior roles where he can build LLM-powered pipelines with real ownership. A 'Senior' title at a major bank like UBS is fundamentally mismatched with his career stage and stated goals. 4) Past evaluation of this exact same posting scored 35 and was SKIPped, consistent with this assessment. 5) The text mentions MLOps, AI Platform, Cloud AI capabilities, and ensuring operational excellence, security, and regulatory compliance - these are enterprise-scale responsibilities far beyond a junior/intern scope. While the location (Opfikon, Bülach) is Zurich-area acceptable and language requirement is none, the seniority level alone is disqualifying for this candidate's profile and aspirations. The candidate wants to build agentic systems end-to-end with ownership from day one, not step into a senior enterprise role at a bank where he'd likely be expected to have years of experience.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "UBS"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Senior AI Machine Learning Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Machine Learning Engineer"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 30,
+          "decision": "SKIP",
+          "rationale": "This is a Senior AI Machine Learning Engineer role at UBS Card Center AG. The posting text is heavily truncated (500 chars, truncated=true), so I cannot fully assess requirements. However, what is visible already signals multiple mismatches: 1) The title explicitly says 'Senior' - the candidate is seeking an internship or junior role with ownership, not a senior position. 2) The role describes leading design, development, and operation of enterprise-scale AI solutions for a leading financial institution - this implies significant experience and seniority expectations. 3) The candidate is currently an AI Software Engineer Intern with ~2 weeks notice, looking for internships or junior roles where he can build LLM-powered pipelines with real ownership. A 'Senior' title at a major bank like UBS is fundamentally mismatched with his career stage and stated goals. 4) Past evaluation of this exact same posting scored 35 and was SKIPped, consistent with this assessment. 5) The text mentions MLOps, AI Platform, Cloud AI capabilities, and ensuring operational excellence, security, and regulatory compliance - these are enterprise-scale responsibilities far beyond a junior/intern scope. While the location (Opfikon, Bülach) is Zurich-area acceptable and language requirement is none, the seniority level alone is disqualifying for this candidate's profile and aspirations. The candidate wants to build agentic systems end-to-end with ownership from day one, not step into a senior enterprise role at a bank where he'd likely be expected to have years of experience.",
+          "concerns": [
+            "Posting text is truncated - full requirements not visible",
+            "Role title explicitly says 'Senior' - candidate seeks internship/junior role",
+            "Enterprise financial institution context implies seniority expectations beyond candidate's level",
+            "MLOps/AI Platform/Cloud AI at scale is different from the hands-on LLM pipeline building the candidate wants",
+            "Past evaluation of identical posting was SKIP at 35"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 25,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated - full requirements not visible",
+      "Role is Senior-level, not junior/intern",
+      "Pure Java/Spring Boot backend engineering, zero AI/LLM/automation overlap",
+      "Candidate's entire profile and motivation are around Python/LLM/agentic systems, not Java enterprise development",
+      "Role shape is maintaining/building banking platform microservices, not the end-to-end LLM pipeline ownership the candidate seeks",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Swisslinx AG",
+      "title": "Senior Java Engineer – Banking Platform (Hybrid)",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5860953974",
+      "portal": "adzuna",
+      "description": "On behalf of our client, a leading Swiss financial institution, Swisslinx is looking for an experienced Senior Java Engineer to join a team developing a strategic client-data platform. Senior Java Engineer – Banking Platform (Hybrid) Job description: Design, develop and maintain enterprise applications using Java and Spring Boot. Build scalable microservices and distributed systems. Develop event-driven services and integrations using Apache Kafka. Translate business and non-functional requirem…"
+    },
+    "technical_fit": "This is a Senior Java Engineer role at a Swiss bank, requiring enterprise Java/Spring Boot, microservices, Kafka, and banking platform development. The candidate is an AI Software Engineer Intern targeting junior/intern roles in agentic systems and LLM-powered automation. The role is senior-level (not junior/intern), pure backend Java engineering (not AI/automation), and the posting text is truncated so full requirements are unknown. There is zero overlap with the candidate's Python/LLM/API automation skillset. The candidate explicitly wants ownership of LLM pipelines and agentic systems, not enterprise Java maintenance. Location (Zürich) and language (none required) are fine, but the role shape, seniority, and technical stack are fundamentally mismatched. Past evaluation of this exact role scored 25/SKIP, consistent with this assessment.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text is truncated - full requirements not visible",
+      "Role is Senior-level, not junior/intern",
+      "Pure Java/Spring Boot backend engineering, zero AI/LLM/automation overlap",
+      "Candidate's entire profile and motivation are around Python/LLM/agentic systems, not Java enterprise development",
+      "Role shape is maintaining/building banking platform microservices, not the end-to-end LLM pipeline ownership the candidate seeks"
+    ],
+    "agent_rationale": "This is a Senior Java Engineer role at a Swiss bank, requiring enterprise Java/Spring Boot, microservices, Kafka, and banking platform development. The candidate is an AI Software Engineer Intern targeting junior/intern roles in agentic systems and LLM-powered automation. The role is senior-level (not junior/intern), pure backend Java engineering (not AI/automation), and the posting text is truncated so full requirements are unknown. There is zero overlap with the candidate's Python/LLM/API automation skillset. The candidate explicitly wants ownership of LLM pipelines and agentic systems, not enterprise Java maintenance. Location (Zürich) and language (none required) are fine, but the role shape, seniority, and technical stack are fundamentally mismatched. Past evaluation of this exact role scored 25/SKIP, consistent with this assessment.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Swisslinx"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Java Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "banking"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 25,
+          "decision": "SKIP",
+          "rationale": "This is a Senior Java Engineer role at a Swiss bank, requiring enterprise Java/Spring Boot, microservices, Kafka, and banking platform development. The candidate is an AI Software Engineer Intern targeting junior/intern roles in agentic systems and LLM-powered automation. The role is senior-level (not junior/intern), pure backend Java engineering (not AI/automation), and the posting text is truncated so full requirements are unknown. There is zero overlap with the candidate's Python/LLM/API automation skillset. The candidate explicitly wants ownership of LLM pipelines and agentic systems, not enterprise Java maintenance. Location (Zürich) and language (none required) are fine, but the role shape, seniority, and technical stack are fundamentally mismatched. Past evaluation of this exact role scored 25/SKIP, consistent with this assessment.",
+          "concerns": [
+            "Posting text is truncated - full requirements not visible",
+            "Role is Senior-level, not junior/intern",
+            "Pure Java/Spring Boot backend engineering, zero AI/LLM/automation overlap",
+            "Candidate's entire profile and motivation are around Python/LLM/agentic systems, not Java enterprise development",
+            "Role shape is maintaining/building banking platform microservices, not the end-to-end LLM pipeline ownership the candidate seeks"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  },
+  {
+    "score": 35,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting is truncated - full requirements not visible",
+      "Title is 'Senior AI Engineer' - candidate seeks internship/junior role",
+      "Winterthur location - not Zurich/Zug area",
+      "Historical SKIP pattern for similar roles at Job-Room and for 'Senior AI Engineer' titles generally",
+      "German-language posting text raises question about working language despite no hard requirement detected",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Senior AI Engineer",
+      "location": "Winterthur",
+      "url": "https://www.adzuna.ch/details/5855314461",
+      "portal": "adzuna",
+      "description": "Mit unserem wachsenden AI\\\\\\\\-Umfeld entwickeln wir Lösungen, die Daten nutzbar m Senior AI Engineer (w/m/d) Mit unserem wachsenden AI\\\\\\\\-Umfeld entwickeln wir Lösungen, die Daten nutzbar machen, Prozesse automatisieren und unsere Kunden im Alltag konkret unterstützen \\\\\\\\- von klassischen Prognosen bis hin zu modernen AI\\\\\\\\-Anwendungen. In dieser Rolle arbeitest du an der Umsetzung solcher Lösungen und bringst sie gemeinsam mit dem Team in den produktiven Einsatz. Wenn du Freude daran hast, …"
+    },
+    "technical_fit": "The posting is heavily truncated (500 chars, truncated=true) so key requirements like seniority level, experience requirements, and detailed responsibilities are not visible. However, what IS visible is concerning: the title is 'Senior AI Engineer' which is a senior-level role, and the candidate is explicitly looking for an internship or junior role with ownership from day one. Past evaluations for 'Senior AI Engineer' at Job-Room scored 35/SKIP, and similar senior AI roles at other companies have all scored in the SKIP range (52-58). The German text visible ('Mit unserem wachsenden AI-Umfeld...') suggests the role may be German-speaking, though check_language_requirement returned 'none' for hard requirements. The combination of (1) senior title incompatible with candidate's junior/internship target, (2) truncated text hiding requirements, (3) Winterthur location (not Zurich/Zug, though this alone is not a blocker), and (4) historical pattern of SKIP for similar roles at this company all point to SKIP. The candidate wants to build agentic systems end-to-end with real ownership, but a senior role would expect him to come in with significant experience rather than grow into it.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting is truncated - full requirements not visible",
+      "Title is 'Senior AI Engineer' - candidate seeks internship/junior role",
+      "Winterthur location - not Zurich/Zug area",
+      "Historical SKIP pattern for similar roles at Job-Room and for 'Senior AI Engineer' titles generally",
+      "German-language posting text raises question about working language despite no hard requirement detected"
+    ],
+    "agent_rationale": "The posting is heavily truncated (500 chars, truncated=true) so key requirements like seniority level, experience requirements, and detailed responsibilities are not visible. However, what IS visible is concerning: the title is 'Senior AI Engineer' which is a senior-level role, and the candidate is explicitly looking for an internship or junior role with ownership from day one. Past evaluations for 'Senior AI Engineer' at Job-Room scored 35/SKIP, and similar senior AI roles at other companies have all scored in the SKIP range (52-58). The German text visible ('Mit unserem wachsenden AI-Umfeld...') suggests the role may be German-speaking, though check_language_requirement returned 'none' for hard requirements. The combination of (1) senior title incompatible with candidate's junior/internship target, (2) truncated text hiding requirements, (3) Winterthur location (not Zurich/Zug, though this alone is not a blocker), and (4) historical pattern of SKIP for similar roles at this company all point to SKIP. The candidate wants to build agentic systems end-to-end with real ownership, but a senior role would expect him to come in with significant experience rather than grow into it.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Senior AI Engineer"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 35,
+          "decision": "SKIP",
+          "rationale": "The posting is heavily truncated (500 chars, truncated=true) so key requirements like seniority level, experience requirements, and detailed responsibilities are not visible. However, what IS visible is concerning: the title is 'Senior AI Engineer' which is a senior-level role, and the candidate is explicitly looking for an internship or junior role with ownership from day one. Past evaluations for 'Senior AI Engineer' at Job-Room scored 35/SKIP, and similar senior AI roles at other companies have all scored in the SKIP range (52-58). The German text visible ('Mit unserem wachsenden AI-Umfeld...') suggests the role may be German-speaking, though check_language_requirement returned 'none' for hard requirements. The combination of (1) senior title incompatible with candidate's junior/internship target, (2) truncated text hiding requirements, (3) Winterthur location (not Zurich/Zug, though this alone is not a blocker), and (4) historical pattern of SKIP for similar roles at this company all point to SKIP. The candidate wants to build agentic systems end-to-end with real ownership, but a senior role would expect him to come in with significant experience rather than grow into it.",
+          "concerns": [
+            "Posting is truncated - full requirements not visible",
+            "Title is 'Senior AI Engineer' - candidate seeks internship/junior role",
+            "Winterthur location - not Zurich/Zug area",
+            "Historical SKIP pattern for similar roles at Job-Room and for 'Senior AI Engineer' titles generally",
+            "German-language posting text raises question about working language despite no hard requirement detected"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": []
+  }
+]
