@@ -1,0 +1,46 @@
+{
+  "ts": "2026-08-30T15:45:50.356097+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 4867,
+    "completion_tokens": 304
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "No APPLY jobs today (0/10). No stale applications needing follow-up. Re-evaluation of borderline jobs found none eligible. Run complete with no actions required.",
+        "rationale": "Today's run produced 10 evaluations with 5 SKIP and 5 NOT_EVALUATED, zero APPLY or REVIEW jobs. With no high-scoring matches, there are no documents to generate, no alerts to send, and no follow-ups needed. Re-evaluation also found no eligible REVIEW-band jobs from the last 14 days. The run is therefore complete."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 10, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 5, \"ERROR\": 0, \"NOT_EVALUATED\": 5}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 "
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [], \"note\": \"no eligible REVIEW-band jobs in the last 14 days\"}"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "No APPLY jobs today (0/10). No stale applications needing follow-up. Re-evaluation of borderline jobs found none eligible. Run complete with no actions required.",
+  "agent_rationale": "Today's run produced 10 evaluations with 5 SKIP and 5 NOT_EVALUATED, zero APPLY or REVIEW jobs. With no high-scoring matches, there are no documents to generate, no alerts to send, and no follow-ups needed. Re-evaluation also found no eligible REVIEW-band jobs from the last 14 days. The run is therefore complete."
+}

@@ -603,5 +603,583 @@
     "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-08-30T10:18:58.035702+00:00"
+  },
+  {
+    "score": 65,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated — requirements section never visible",
+      "Permanent position (not internship) with 'Hochschulabsolvent/-in' suggests experienced hire, not junior/intern",
+      "Title says 'Professional' which typically implies mid-level, not entry-level",
+      "Candidate seeks internship with ownership from day one; permanent 'Professional' role may expect independent contribution without mentorship structure",
+      "Only 1 application sent so far with 0 responses — limited calibration data",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Professional Process Automation & AI Engineer (Financial Services), 80-100%",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5862206619",
+      "portal": "adzuna",
+      "description": "Berufserfahrung Hochschulabsolvent/-in Arbeitsort Zürich Pensum 80-100% Arbeitsbeginn nach Vereinbarung Bereich Business Development / Project Management Anstellungsart Unbefristete Anstellung  Professional Process Automation & AI Engineer (Financial Services), 80-100%  Das VZ ist der führende unabhängige Finanzdienstleister der Schweiz. Wir beraten Privatpersonen und Firmen rund ums Geld, verwalten Vermögen und bieten attraktive Finanzdienstleistungen an. Da wir kräftig wachsen, suchen wir Ver…"
+    },
+    "technical_fit": "The posting text is severely truncated (500 characters, cut off mid-sentence with \"suchen wir Ver…\"). The visible portion confirms this is at VZ (a Swiss financial services firm) in Zurich, 80-100%, permanent position, in Business Development / Project Management. However, the actual job requirements, responsibilities, and language requirements were never visible. Without seeing whether this is a senior role, what tech stack is required, or whether German fluency is mandatory, I cannot justify an APPLY or even a confident REVIEW. The title \"Professional Process Automation & AI Engineer\" sounds appealing for the candidate's goals, but \"Professional\" often implies experienced hire rather than intern/junior, and the permanent nature plus \"Hochschulabsolvent/-in\" (university graduate) suggests this may not be an internship. Past Job-Room postings have all been SKIP for this candidate, but those were explicitly senior roles. Given the truncated text, I must be conservative and SKIP — the candidate would not want to apply blind to a role where he can't even read the requirements. If the full text were available and showed junior-level AI automation work with English as working language, this could potentially be REVIEW-worthy.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text is truncated — requirements section never visible",
+      "Permanent position (not internship) with 'Hochschulabsolvent/-in' suggests experienced hire, not junior/intern",
+      "Title says 'Professional' which typically implies mid-level, not entry-level",
+      "Candidate seeks internship with ownership from day one; permanent 'Professional' role may expect independent contribution without mentorship structure",
+      "Only 1 application sent so far with 0 responses — limited calibration data"
+    ],
+    "agent_rationale": "The posting text is severely truncated (500 characters, cut off mid-sentence with \"suchen wir Ver…\"). The visible portion confirms this is at VZ (a Swiss financial services firm) in Zurich, 80-100%, permanent position, in Business Development / Project Management. However, the actual job requirements, responsibilities, and language requirements were never visible. Without seeing whether this is a senior role, what tech stack is required, or whether German fluency is mandatory, I cannot justify an APPLY or even a confident REVIEW. The title \"Professional Process Automation & AI Engineer\" sounds appealing for the candidate's goals, but \"Professional\" often implies experienced hire rather than intern/junior, and the permanent nature plus \"Hochschulabsolvent/-in\" (university graduate) suggests this may not be an internship. Past Job-Room postings have all been SKIP for this candidate, but those were explicitly senior roles. Given the truncated text, I must be conservative and SKIP — the candidate would not want to apply blind to a role where he can't even read the requirements. If the full text were available and showed junior-level AI automation work with English as working language, this could potentially be REVIEW-worthy.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 65,
+          "decision": "SKIP",
+          "rationale": "The posting text is severely truncated (500 characters, cut off mid-sentence with \"suchen wir Ver…\"). The visible portion confirms this is at VZ (a Swiss financial services firm) in Zurich, 80-100%, permanent position, in Business Development / Project Management. However, the actual job requirements, responsibilities, and language requirements were never visible. Without seeing whether this is a senior role, what tech stack is required, or whether German fluency is mandatory, I cannot justify an APPLY or even a confident REVIEW. The title \"Professional Process Automation & AI Engineer\" sounds appealing for the candidate's goals, but \"Professional\" often implies experienced hire rather than intern/junior, and the permanent nature plus \"Hochschulabsolvent/-in\" (university graduate) suggests this may not be an internship. Past Job-Room postings have all been SKIP for this candidate, but those were explicitly senior roles. Given the truncated text, I must be conservative and SKIP — the candidate would not want to apply blind to a role where he can't even read the requirements. If the full text were available and showed junior-level AI automation work with English as working language, this could potentially be REVIEW-worthy.",
+          "concerns": [
+            "Posting text is truncated — requirements section never visible",
+            "Permanent position (not internship) with 'Hochschulabsolvent/-in' suggests experienced hire, not junior/intern",
+            "Title says 'Professional' which typically implies mid-level, not entry-level",
+            "Candidate seeks internship with ownership from day one; permanent 'Professional' role may expect independent contribution without mentorship structure",
+            "Only 1 application sent so far with 0 responses — limited calibration data"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-08-30T15:45:35.663593+00:00"
+  },
+  {
+    "score": 55,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting truncated at 500 chars—requirements section never visible",
+      "German-language posting strongly suggests German-first workplace",
+      "BIM/engineering firm context is far from agentic AI/startup environment",
+      "Past Job-Room evaluations all scored 30-55 and were SKIPped",
+      "No visible evidence of LLM APIs, tool-calling agents, or end-to-end ownership",
+      "Role appears to be data architecture/infrastructure rather than hands-on AI pipeline development",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "AI & Data Engineer (60%-100%)",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5862206620",
+      "portal": "adzuna",
+      "description": "Du möchtest die Zukunft von Künstlicher Intelligenz in einem innovativen Ingenieurunternehmen aktiv mitgestalten und moderne Daten- und AI-Technologien vom Konzept bis zum produktiven Einsatz mitentwickeln? Dann freuen wir uns auf deine Bewerbung! Das bewegst du Als AI & Data Engineer im Fachbereich «Digital Lösungen & BIM» entwickelst und betreibst du gesamtbetrieblich die technischen Grundlagen unserer internen generativen AI-Lösung. Du konzipierst skalierbare Datenarchitekturen und Datenpipe…"
+    },
+    "technical_fit": "The posting text is heavily truncated (500 chars, cut off mid-sentence), so key requirements are invisible. What IS visible is concerning: the German-language posting opens with \"Du möchtest...\" and describes the role in an engineering firm's \"Digital Lösungen & BIM\" division, developing \"interne generative AI-Lösung\" and \"skalierbare Datenarchitekturen.\" The German-only teaser, combined with the BIM/engineering context and past Job-Room postings all scoring low (30-55, all SKIP), suggests this is likely a German-first workplace in a traditional engineering domain—poor fit for a candidate seeking English-speaking, startup-style ownership in agentic AI. The truncated text prevents confident scoring, but the visible signals (German posting, engineering/BIM domain, no evidence of LLM/agentic focus) are negative enough to SKIP conservatively. The candidate's A2 German is insufficient if German fluency is required, and the role shape appears to be infrastructure/data architecture in a conservative industry rather than hands-on LLM pipeline building with ownership.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting truncated at 500 chars—requirements section never visible",
+      "German-language posting strongly suggests German-first workplace",
+      "BIM/engineering firm context is far from agentic AI/startup environment",
+      "Past Job-Room evaluations all scored 30-55 and were SKIPped",
+      "No visible evidence of LLM APIs, tool-calling agents, or end-to-end ownership",
+      "Role appears to be data architecture/infrastructure rather than hands-on AI pipeline development"
+    ],
+    "agent_rationale": "The posting text is heavily truncated (500 chars, cut off mid-sentence), so key requirements are invisible. What IS visible is concerning: the German-language posting opens with \"Du möchtest...\" and describes the role in an engineering firm's \"Digital Lösungen & BIM\" division, developing \"interne generative AI-Lösung\" and \"skalierbare Datenarchitekturen.\" The German-only teaser, combined with the BIM/engineering context and past Job-Room postings all scoring low (30-55, all SKIP), suggests this is likely a German-first workplace in a traditional engineering domain—poor fit for a candidate seeking English-speaking, startup-style ownership in agentic AI. The truncated text prevents confident scoring, but the visible signals (German posting, engineering/BIM domain, no evidence of LLM/agentic focus) are negative enough to SKIP conservatively. The candidate's A2 German is insufficient if German fluency is required, and the role shape appears to be infrastructure/data architecture in a conservative industry rather than hands-on LLM pipeline building with ownership.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 55,
+          "decision": "SKIP",
+          "rationale": "The posting text is heavily truncated (500 chars, cut off mid-sentence), so key requirements are invisible. What IS visible is concerning: the German-language posting opens with \"Du möchtest...\" and describes the role in an engineering firm's \"Digital Lösungen & BIM\" division, developing \"interne generative AI-Lösung\" and \"skalierbare Datenarchitekturen.\" The German-only teaser, combined with the BIM/engineering context and past Job-Room postings all scoring low (30-55, all SKIP), suggests this is likely a German-first workplace in a traditional engineering domain—poor fit for a candidate seeking English-speaking, startup-style ownership in agentic AI. The truncated text prevents confident scoring, but the visible signals (German posting, engineering/BIM domain, no evidence of LLM/agentic focus) are negative enough to SKIP conservatively. The candidate's A2 German is insufficient if German fluency is required, and the role shape appears to be infrastructure/data architecture in a conservative industry rather than hands-on LLM pipeline building with ownership.",
+          "concerns": [
+            "Posting truncated at 500 chars—requirements section never visible",
+            "German-language posting strongly suggests German-first workplace",
+            "BIM/engineering firm context is far from agentic AI/startup environment",
+            "Past Job-Room evaluations all scored 30-55 and were SKIPped",
+            "No visible evidence of LLM APIs, tool-calling agents, or end-to-end ownership",
+            "Role appears to be data architecture/infrastructure rather than hands-on AI pipeline development"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-08-30T15:45:35.663593+00:00"
+  },
+  {
+    "score": 55,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting truncated — full requirements not visible, must score conservatively",
+      "Role centers on Microsoft Power Platform / Copilot Studio / Customer Center — proprietary low-code stack candidate has zero experience with",
+      "Visible responsibilities emphasize governance, standards, and supporting business units rather than hands-on building of LLM pipelines",
+      "Role shape appears to be platform maintenance/enabler rather than the end-to-end ownership and building the candidate seeks",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Cembra Money Bank AG",
+      "title": "AI & Automation Platform Engineer - all genders (80-100%)",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5861621906",
+      "portal": "adzuna",
+      "description": "What exactly you will do here: Own and evolve the technical platforms for AI and automation across Cembra, acting as the technical expert for Microsoft Power Platform, Copilot Studio, and Customer Center Define and maintain governance, architecture, development, security, and operational standards, ensuring compliance with risk and regulatory requirements Support business units and project teams in assessing, designing, and implementing AI and automation use cases, including technical feasibili…"
+    },
+    "technical_fit": "The posting is heavily truncated (500 chars, cut off mid-word at 'feasibili...'), so the full requirements are invisible. What IS visible is concerning for fit: the role centers on Microsoft Power Platform, Copilot Studio, and Customer Center as technical platforms — these are low-code/proprietary Microsoft ecosystems the candidate has no experience with. His entire skillset is built around Python-based LLM pipelines, open APIs, and custom automation code. While the title says 'AI & Automation Platform Engineer', the visible responsibilities describe governance, architecture standards, and supporting business units — more of a platform owner/enabler role than a hands-on builder role. The candidate explicitly wants 'real ownership from day one' building LLM-powered pipelines end-to-end, not maintaining governance for low-code platforms. Location (Zürich) and language (no hard German requirement detected) are fine, but the role shape is fundamentally mismatched with what excites him. Given the truncated text, conservative scoring is warranted per pipeline rules, and the visible platform mismatch pushes this below the SKIP threshold.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting truncated — full requirements not visible, must score conservatively",
+      "Role centers on Microsoft Power Platform / Copilot Studio / Customer Center — proprietary low-code stack candidate has zero experience with",
+      "Visible responsibilities emphasize governance, standards, and supporting business units rather than hands-on building of LLM pipelines",
+      "Role shape appears to be platform maintenance/enabler rather than the end-to-end ownership and building the candidate seeks"
+    ],
+    "agent_rationale": "The posting is heavily truncated (500 chars, cut off mid-word at 'feasibili...'), so the full requirements are invisible. What IS visible is concerning for fit: the role centers on Microsoft Power Platform, Copilot Studio, and Customer Center as technical platforms — these are low-code/proprietary Microsoft ecosystems the candidate has no experience with. His entire skillset is built around Python-based LLM pipelines, open APIs, and custom automation code. While the title says 'AI & Automation Platform Engineer', the visible responsibilities describe governance, architecture standards, and supporting business units — more of a platform owner/enabler role than a hands-on builder role. The candidate explicitly wants 'real ownership from day one' building LLM-powered pipelines end-to-end, not maintaining governance for low-code platforms. Location (Zürich) and language (no hard German requirement detected) are fine, but the role shape is fundamentally mismatched with what excites him. Given the truncated text, conservative scoring is warranted per pipeline rules, and the visible platform mismatch pushes this below the SKIP threshold.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Cembra"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Automation Platform Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Power Platform"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Copilot Studio"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 55,
+          "decision": "SKIP",
+          "rationale": "The posting is heavily truncated (500 chars, cut off mid-word at 'feasibili...'), so the full requirements are invisible. What IS visible is concerning for fit: the role centers on Microsoft Power Platform, Copilot Studio, and Customer Center as technical platforms — these are low-code/proprietary Microsoft ecosystems the candidate has no experience with. His entire skillset is built around Python-based LLM pipelines, open APIs, and custom automation code. While the title says 'AI & Automation Platform Engineer', the visible responsibilities describe governance, architecture standards, and supporting business units — more of a platform owner/enabler role than a hands-on builder role. The candidate explicitly wants 'real ownership from day one' building LLM-powered pipelines end-to-end, not maintaining governance for low-code platforms. Location (Zürich) and language (no hard German requirement detected) are fine, but the role shape is fundamentally mismatched with what excites him. Given the truncated text, conservative scoring is warranted per pipeline rules, and the visible platform mismatch pushes this below the SKIP threshold.",
+          "concerns": [
+            "Posting truncated — full requirements not visible, must score conservatively",
+            "Role centers on Microsoft Power Platform / Copilot Studio / Customer Center — proprietary low-code stack candidate has zero experience with",
+            "Visible responsibilities emphasize governance, standards, and supporting business units rather than hands-on building of LLM pipelines",
+            "Role shape appears to be platform maintenance/enabler rather than the end-to-end ownership and building the candidate seeks"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-08-30T15:45:35.663593+00:00"
+  },
+  {
+    "score": 45,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Senior 'Architect' title signals role is far above junior/intern level",
+      "Posting text is truncated — full requirements not visible",
+      "Past evaluation for identical role already scored 45/SKIP",
+      "Candidate seeks ownership in hands-on agentic systems, not enterprise architecture consulting",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "ti&m AG",
+      "title": "AI Platform Architect",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5860953831",
+      "portal": "adzuna",
+      "description": "AI Platform Architect ti&m steht für technology, innovation & management und ist der Leader für Digitalisierungsprojekte und -produkte für alle Branchen. AI Platform Architect Was dich erwartet Spannende und innovative AI-Plattform-Projekte für unsere Kunden: von Kreativ-Workshops über Proof-of-Concepts bis zur gemeinsamen Umsetzung produktiver Lösungen Konzeption und Design holistischer AI-Plattformen auf Basis von Cloud oder Open-Source-Bausteinen, von der Referenzarchitektur bis zur Auswahl …"
+    },
+    "technical_fit": "This is a senior 'AI Platform Architect' role at ti&m AG, which is fundamentally mismatched with the candidate's profile. He is seeking an internship or junior role with hands-on ownership of LLM-powered pipelines, not an architect-level position focused on reference architecture design, PoC-to-production consulting, and client-facing workshops for enterprise customers. The posting text is heavily truncated (500 chars, cut off mid-sentence), so full requirements are invisible, but the title alone signals seniority far beyond his experience level. A past evaluation for this exact role already scored 45 and was skipped, which is consistent. The language requirement is soft/none (German text in the posting but no hard language requirement detected). Location (Zürich) and permit are fine, but role seniority is the decisive blocker.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Senior 'Architect' title signals role is far above junior/intern level",
+      "Posting text is truncated — full requirements not visible",
+      "Past evaluation for identical role already scored 45/SKIP",
+      "Candidate seeks ownership in hands-on agentic systems, not enterprise architecture consulting"
+    ],
+    "agent_rationale": "This is a senior 'AI Platform Architect' role at ti&m AG, which is fundamentally mismatched with the candidate's profile. He is seeking an internship or junior role with hands-on ownership of LLM-powered pipelines, not an architect-level position focused on reference architecture design, PoC-to-production consulting, and client-facing workshops for enterprise customers. The posting text is heavily truncated (500 chars, cut off mid-sentence), so full requirements are invisible, but the title alone signals seniority far beyond his experience level. A past evaluation for this exact role already scored 45 and was skipped, which is consistent. The language requirement is soft/none (German text in the posting but no hard language requirement detected). Location (Zürich) and permit are fine, but role seniority is the decisive blocker.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "ti&m"
+        }
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 45,
+          "decision": "SKIP",
+          "rationale": "This is a senior 'AI Platform Architect' role at ti&m AG, which is fundamentally mismatched with the candidate's profile. He is seeking an internship or junior role with hands-on ownership of LLM-powered pipelines, not an architect-level position focused on reference architecture design, PoC-to-production consulting, and client-facing workshops for enterprise customers. The posting text is heavily truncated (500 chars, cut off mid-sentence), so full requirements are invisible, but the title alone signals seniority far beyond his experience level. A past evaluation for this exact role already scored 45 and was skipped, which is consistent. The language requirement is soft/none (German text in the posting but no hard language requirement detected). Location (Zürich) and permit are fine, but role seniority is the decisive blocker.",
+          "concerns": [
+            "Senior 'Architect' title signals role is far above junior/intern level",
+            "Posting text is truncated — full requirements not visible",
+            "Past evaluation for identical role already scored 45/SKIP",
+            "Candidate seeks ownership in hands-on agentic systems, not enterprise architecture consulting"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-08-30T15:45:35.663593+00:00"
+  },
+  {
+    "score": 45,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated - full requirements not visible",
+      "Role is in M&A advisory/deal transformation, not technical AI engineering",
+      "Likely business consulting context with AI applications rather than building agentic systems",
+      "Past M&A advisory roles scored 15-35 and were all SKIP decisions",
+      "Candidate wants hands-on technical ownership, not advisory support work",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Trainee, AI Scientist (M&A, Deal Transformation and Post-Merger Integration Advisory)",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5861035642",
+      "portal": "adzuna",
+      "description": " Basic information  Business line Strategy, Risk & Transactions Advisory City Zurich Experience level Internship Working time percentage 80% - 100% Date published 27-Aug-2026 Req \\\\ 24449  Job description  Location: Zurich Work Pattern Percentage: 80-100% Help our clients successfully manage global challenges  * Our Swiss market-leading Deal Transformation and Post-Merger Integration Team advises Swiss Corporate and mid-market clients to generate and create value from their Mergers & Acquisitio…"
+    },
+    "technical_fit": "The posting text is severely truncated (500 chars, truncated=true), so I cannot see the full requirements. However, from what is visible, this is a Trainee role in \"Deal Transformation and Post-Merger Integration Advisory\" within M&A at a Big 4 advisory firm (Strategy, Risk & Transactions Advisory line). This is fundamentally a business/consulting role in the M&A domain, not a technical AI engineering role building agentic systems. The title says \"AI Scientist\" but the context is M&A advisory, deal transformation, and post-merger integration -- this suggests the AI work would be applied to business advisory problems (due diligence, synergy analysis, integration planning) rather than building LLM-powered pipelines end-to-end with technical ownership. The candidate's goal is explicitly to go deeper into agentic systems and own real technical projects from day one, not to do AI-adjacent work in a business consulting context. Location (Zurich) is good, permit situation is fine, and language requirement is none. But the role shape is wrong: this is advisory/consulting with an AI label, not hands-on AI engineering. Past evaluations for M&A advisory internships scored very low (15-35, all SKIP). The truncated text means I cannot fully assess, but the visible context strongly suggests this is not the right role shape for this candidate.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text is truncated - full requirements not visible",
+      "Role is in M&A advisory/deal transformation, not technical AI engineering",
+      "Likely business consulting context with AI applications rather than building agentic systems",
+      "Past M&A advisory roles scored 15-35 and were all SKIP decisions",
+      "Candidate wants hands-on technical ownership, not advisory support work"
+    ],
+    "agent_rationale": "The posting text is severely truncated (500 chars, truncated=true), so I cannot see the full requirements. However, from what is visible, this is a Trainee role in \"Deal Transformation and Post-Merger Integration Advisory\" within M&A at a Big 4 advisory firm (Strategy, Risk & Transactions Advisory line). This is fundamentally a business/consulting role in the M&A domain, not a technical AI engineering role building agentic systems. The title says \"AI Scientist\" but the context is M&A advisory, deal transformation, and post-merger integration -- this suggests the AI work would be applied to business advisory problems (due diligence, synergy analysis, integration planning) rather than building LLM-powered pipelines end-to-end with technical ownership. The candidate's goal is explicitly to go deeper into agentic systems and own real technical projects from day one, not to do AI-adjacent work in a business consulting context. Location (Zurich) is good, permit situation is fine, and language requirement is none. But the role shape is wrong: this is advisory/consulting with an AI label, not hands-on AI engineering. Past evaluations for M&A advisory internships scored very low (15-35, all SKIP). The truncated text means I cannot fully assess, but the visible context strongly suggests this is not the right role shape for this candidate.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "AI Scientist"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "M&A"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Deal Transformation"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 45,
+          "decision": "SKIP",
+          "rationale": "The posting text is severely truncated (500 chars, truncated=true), so I cannot see the full requirements. However, from what is visible, this is a Trainee role in \"Deal Transformation and Post-Merger Integration Advisory\" within M&A at a Big 4 advisory firm (Strategy, Risk & Transactions Advisory line). This is fundamentally a business/consulting role in the M&A domain, not a technical AI engineering role building agentic systems. The title says \"AI Scientist\" but the context is M&A advisory, deal transformation, and post-merger integration -- this suggests the AI work would be applied to business advisory problems (due diligence, synergy analysis, integration planning) rather than building LLM-powered pipelines end-to-end with technical ownership. The candidate's goal is explicitly to go deeper into agentic systems and own real technical projects from day one, not to do AI-adjacent work in a business consulting context. Location (Zurich) is good, permit situation is fine, and language requirement is none. But the role shape is wrong: this is advisory/consulting with an AI label, not hands-on AI engineering. Past evaluations for M&A advisory internships scored very low (15-35, all SKIP). The truncated text means I cannot fully assess, but the visible context strongly suggests this is not the right role shape for this candidate.",
+          "concerns": [
+            "Posting text is truncated - full requirements not visible",
+            "Role is in M&A advisory/deal transformation, not technical AI engineering",
+            "Likely business consulting context with AI applications rather than building agentic systems",
+            "Past M&A advisory roles scored 15-35 and were all SKIP decisions",
+            "Candidate wants hands-on technical ownership, not advisory support work"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-08-30T15:45:35.663593+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Business Analyst/in Digitalisierung und Application Manager/in (Support, Applikationsbetreuung, Prozess- und Dokumentenmanagement) Pensum 80 - 100%",
+      "location": "Unknown",
+      "url": "https://www.jobs.ch/de/stellenangebote/detail/51f97fb8-a364-42af-9103-dbd9b9c88a7e/?utm_source=automail-job-push&utm_medium=email&utm_campaign=wb%3Ajobs%7Ctg%3Ab2c%7Ccn%3Aww%7Clg%3Ade%7Cmg%3Ajob-views%7Cpd%3An%7Ccd%3Arecommended-jobs&utm_content=job-link&source=dsp_mail&uid=f5ed677b-f8d7-4eed-834f-a8eb1c8916c2&mid=640d83e9-6a28-499e-9062-9d284659938f",
+      "portal": "jobs.ch",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-08-30T15:45:35.663593+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "apexAI",
+      "title": "Praktikant:in AI Engineering & Delivery (50 bis 60%)",
+      "location": "Bern",
+      "url": "https://www.linkedin.com/comm/jobs/view/4458164360/?trackingId=uhmUqxbZSdat4g9J19qw3g%3D%3D&refId=WtrcvnmvQ021QcrfsYy17A%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BRZzBgNGGT8KTBx%2FgnG0cqw%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=00Gow7fMCBLco1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mtfvimi2~5e-null-null&eid=gbrmkn-mtfvimi2-5e&otpToken=NmQ0NjI5MWFlYTFkN2E1ODJiOTc5YjI0ZWY2ZWZkODUwZDFhZDA3NDI5YzA0OTFiMDhhZmIxMDRkMDU0ZmQwYWU4OWFhYTRlY2VlMmM3MTQ5Y2ZiYTIwYTkzM2FjNzY3MjZlYmJkMTY3OGFjY2MzZTg4YzNjZjIzZDVmNTU3MjFhZTZhNGYwYTM5M2ZlOTZiLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-08-30T15:45:35.663593+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "pom+ Consulting Ltd",
+      "title": "Internship Data & AI",
+      "location": "Zurich, Switzerland",
+      "url": "https://www.linkedin.com/comm/jobs/view/4452437414/?trackingId=%2Bg4%2FDcxCSYKKkwdWN8db1w%3D%3D&refId=TZiQ%2BVlYRPuurmtCpN8LPA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BRZzBgNGGT8KTBx%2FgnG0cqw%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=00Gow7fMCBLco1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mtfvimi2~5e-null-null&eid=gbrmkn-mtfvimi2-5e&otpToken=NmQ0NjI5MWFlYTFkN2E1ODJiOTc5YjI0ZWY2ZWZkODUwZDFhZDA3NDI5YzA0OTFiMDhhZmIxMDRkMDU0ZmQwYWU4OWFhYTRlY2VlMmM3MTQ5Y2ZiYTIwYTkzM2FjNzY3MjZlYmJkMTY3OGFjY2MzZTg4YzNjZjIzZDVmNTU3MjFhZTZhNGYwYTM5M2ZlOTZiLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-08-30T15:45:35.663593+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "ANYbotics",
+      "title": "Software Engineering Internship - AI Platform",
+      "location": "Zurich",
+      "url": "https://www.linkedin.com/comm/jobs/view/4446511489/?trackingId=Z0y6rQtoQ%2FafFyxUNtO3iA%3D%3D&refId=rC5MLCAaThqk4QbShJO4Nw%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BRZzBgNGGT8KTBx%2FgnG0cqw%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=00Gow7fMCBLco1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mtfvimi2~5e-null-null&eid=gbrmkn-mtfvimi2-5e&otpToken=NmQ0NjI5MWFlYTFkN2E1ODJiOTc5YjI0ZWY2ZWZkODUwZDFhZDA3NDI5YzA0OTFiMDhhZmIxMDRkMDU0ZmQwYWU4OWFhYTRlY2VlMmM3MTQ5Y2ZiYTIwYTkzM2FjNzY3MjZlYmJkMTY3OGFjY2MzZTg4YzNjZjIzZDVmNTU3MjFhZTZhNGYwYTM5M2ZlOTZiLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-08-30T15:45:35.663593+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Praktikant/in Data, KI & Softwareentwicklung jobs",
+      "location": "Unknown",
+      "url": "https://www.linkedin.com/comm/jobs/search-results/?keywords=Praktikant%2Fin+Data%2C+KI+%26+Softwareentwicklung&geoId=100505970&origin=BYV_JOB_TITLE_JOBS_EMAIL&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BRZzBgNGGT8KTBx%2FgnG0cqw%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=00Gow7fMCBLco1&trk=eml-email_jobs_viewed_job_reminder_01-null-0-null&trkEmail=eml-email_jobs_viewed_job_reminder_01-null-0-null-null-gbrmkn~mtfvimi2~5e-null-null&eid=gbrmkn-mtfvimi2-5e&otpToken=NmQ0NjI5MWFlYTFkN2E1ODJiOTc5YjI0ZWY2ZWZkODUwZDFhZDA3NDI5YzA0OTFiMDhhZmIxMDRkMDU0ZmQwYWU4OWFhYTRlY2VlMmM3MTQ5Y2ZiYTIwYTkzM2FjNzY3MjZlYmJkMTY3OGFjY2MzZTg4YzNjZjIzZDVmNTU3MjFhZTZhNGYwYTM5M2ZlOTZiLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-08-30T15:45:35.663593+00:00"
   }
 ]
