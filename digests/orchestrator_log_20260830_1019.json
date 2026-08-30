@@ -1,0 +1,54 @@
+{
+  "ts": "2026-08-30T10:19:15.556585+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 5,
+  "usage": {
+    "prompt_tokens": 6844,
+    "completion_tokens": 343
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run produced 3 evaluations (0 APPLY, 0 REVIEW, 2 SKIP, 1 NOT_EVALUATED). No high-score alerts or documents were needed. No stale applications required follow-ups. Re-evaluated 5 borderline jobs from the last 14 days; scores remained stable (all stayed in REVIEW band, with Randstad Digital ticking up from 72 to 76). Run finalized successfully.",
+        "rationale": "The day was quiet with zero APPLY jobs, so the only productive step was re-evaluating recent REVIEW-band jobs to use remaining budget and keep the pipeline current. No documents or alerts were triggered, and no follow-ups were pending."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 3, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 2, \"ERROR\": 0, \"NOT_EVALUATED\": 1}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 0}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"Jobgether\", \"title\": \"Founding AI Platform Engineer (MLOps / Backend)\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 72, \"new_decision\": \"REVIEW\"}, {\"company\": \"Iudex Non Calculat\", \"title\": \"Engineering Internship - AI/Data\", \"old_score\": 72, \"old_decision\":"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run produced 3 evaluations (0 APPLY, 0 REVIEW, 2 SKIP, 1 NOT_EVALUATED). No high-score alerts or documents were needed. No stale applications required follow-ups. Re-evaluated 5 borderline jobs from the last 14 days; scores remained stable (all stayed in REVIEW band, with Randstad Digital ticking up from 72 to 76). Run finalized successfully.",
+  "agent_rationale": "The day was quiet with zero APPLY jobs, so the only productive step was re-evaluating recent REVIEW-band jobs to use remaining budget and keep the pipeline current. No documents or alerts were triggered, and no follow-ups were pending."
+}
