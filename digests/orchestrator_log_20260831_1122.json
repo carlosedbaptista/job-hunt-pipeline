@@ -1,0 +1,54 @@
+{
+  "ts": "2026-08-31T11:22:53.257156+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5524,
+    "completion_tokens": 370
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run evaluated 3 new jobs (0 APPLY, 0 REVIEW, 2 SKIP, 1 NOT_EVALUATED). No APPLY jobs, so no documents to generate and no high-score alerts to send. 0 stale applications, so no follow-up drafts needed. Re-evaluated 5 recent REVIEW-band jobs: VZ VermögensZentrum dropped to SKIP (65), while Randstad Digital, PQ Technologies, Iudex Non Calculat, and Jobgether all remained in REVIEW.",
+        "rationale": "With no APPLY jobs today, the productive work was limited to re-evaluating borderline REVIEW jobs from recent days to keep the pipeline current. One job was downgraded to SKIP, the rest stayed in REVIEW for future consideration. No alerts, documents, or follow-ups were required."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 3, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 2, \"ERROR\": 0, \"NOT_EVALUATED\": 1}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 0}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"VZ Verm\\u00f6gensZentrum\", \"title\": \"Professional Process Automation & AI Engineer\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 65, \"new_decision\": \"SKIP\"}, {\"company\": \"Randstad Digital\", \"title\": \"Junior AI & Knowledge Engineer\", \"old_score\": 76, \"old_dec"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run evaluated 3 new jobs (0 APPLY, 0 REVIEW, 2 SKIP, 1 NOT_EVALUATED). No APPLY jobs, so no documents to generate and no high-score alerts to send. 0 stale applications, so no follow-up drafts needed. Re-evaluated 5 recent REVIEW-band jobs: VZ VermögensZentrum dropped to SKIP (65), while Randstad Digital, PQ Technologies, Iudex Non Calculat, and Jobgether all remained in REVIEW.",
+  "agent_rationale": "With no APPLY jobs today, the productive work was limited to re-evaluating borderline REVIEW jobs from recent days to keep the pipeline current. One job was downgraded to SKIP, the rest stayed in REVIEW for future consideration. No alerts, documents, or follow-ups were required."
+}
