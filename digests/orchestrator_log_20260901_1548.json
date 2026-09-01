@@ -1,0 +1,44 @@
+{
+  "ts": "2026-09-01T15:48:11.487404+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5307,
+    "completion_tokens": 589
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run evaluated 8 jobs (fresh), yielding 0 APPLY, 0 REVIEW, 3 SKIP, and 5 NOT_EVALUATED. No tailored documents or high-score alerts were needed. Follow-up drafting was attempted for 1 stale application but produced 0 drafts (1 still eligible). No reevaluation candidates were available.",
+        "rationale": "With zero APPLY jobs and zero REVIEW-band jobs, the run had no documents to generate, no alerts to send, and no borderline jobs to reevaluate. The only actionable item was the stale application follow-up, which was attempted. The remaining 5 unevaluated jobs and historical evaluation errors are pipeline concerns outside the scope of today's orchestration actions."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 8, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 3, \"ERROR\": 0, \"NOT_EVALUATED\": 5}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run evaluated 8 jobs (fresh), yielding 0 APPLY, 0 REVIEW, 3 SKIP, and 5 NOT_EVALUATED. No tailored documents or high-score alerts were needed. Follow-up drafting was attempted for 1 stale application but produced 0 drafts (1 still eligible). No reevaluation candidates were available.",
+  "agent_rationale": "With zero APPLY jobs and zero REVIEW-band jobs, the run had no documents to generate, no alerts to send, and no borderline jobs to reevaluate. The only actionable item was the stale application follow-up, which was attempted. The remaining 5 unevaluated jobs and historical evaluation errors are pipeline concerns outside the scope of today's orchestration actions."
+}

@@ -592,5 +592,427 @@
     "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-09-01T09:47:03.428662+00:00"
+  },
+  {
+    "score": 55,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated - full requirements not visible",
+      "Role is Data Platform / infrastructure engineering, not agentic AI/automation",
+      "Focus is on operating platforms for others, not building LLM pipelines",
+      "Past Data Platform Engineer roles all scored in SKIP range (45-58)",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Universitätsspital Zürich",
+      "title": "Data Platform Engineer 80-100%",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5864321165",
+      "portal": "adzuna",
+      "description": "Gestalte die Daten- und Integrationsplattformen des Universitätsspitals Zürich aktiv mit und schaffe die technologische Grundlage für das digitale Spital der Zukunft. Im Data & Integration Platform Team entwickelst und betreibst du die Data Platform of Platforms (DPoP) sowie die Integration Platform und stellst deren sicheren, stabilen und skalierbaren Betrieb für Data- und API-Engineers sicher. Das Universitätsspital Zürich ist eines der grössten Spitäler in der Schweiz. Unsere über 8'600 Mita…"
+    },
+    "technical_fit": "The posting text is heavily truncated (500 chars, truncated=true), so the full requirements section was never visible. What is visible describes a Data Platform Engineer role focused on building and operating \"Data Platform of Platforms (DPoP)\" and \"Integration Platform\" for a large Swiss hospital. This is fundamentally infrastructure/platform engineering (data platforms, API platforms, operational stability) rather than the agentic AI/automation work the candidate seeks. The candidate wants to build LLM-powered pipelines end-to-end with real ownership, not operate enterprise data platforms. Past similar Data Platform Engineer roles scored 45-58 and were all SKIPPED. The truncated text means we cannot see full requirements, but the visible role shape is a clear mismatch: it's about platform operations and infrastructure for data/API engineers, not about building AI/automation systems. Location is Zurich (good), language requirement is none (good), but the role shape is wrong.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text is truncated - full requirements not visible",
+      "Role is Data Platform / infrastructure engineering, not agentic AI/automation",
+      "Focus is on operating platforms for others, not building LLM pipelines",
+      "Past Data Platform Engineer roles all scored in SKIP range (45-58)"
+    ],
+    "agent_rationale": "The posting text is heavily truncated (500 chars, truncated=true), so the full requirements section was never visible. What is visible describes a Data Platform Engineer role focused on building and operating \"Data Platform of Platforms (DPoP)\" and \"Integration Platform\" for a large Swiss hospital. This is fundamentally infrastructure/platform engineering (data platforms, API platforms, operational stability) rather than the agentic AI/automation work the candidate seeks. The candidate wants to build LLM-powered pipelines end-to-end with real ownership, not operate enterprise data platforms. Past similar Data Platform Engineer roles scored 45-58 and were all SKIPPED. The truncated text means we cannot see full requirements, but the visible role shape is a clear mismatch: it's about platform operations and infrastructure for data/API engineers, not about building AI/automation systems. Location is Zurich (good), language requirement is none (good), but the role shape is wrong.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Universitätsspital Zürich"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Data Platform Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "platform engineer"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 55,
+          "decision": "SKIP",
+          "rationale": "The posting text is heavily truncated (500 chars, truncated=true), so the full requirements section was never visible. What is visible describes a Data Platform Engineer role focused on building and operating \"Data Platform of Platforms (DPoP)\" and \"Integration Platform\" for a large Swiss hospital. This is fundamentally infrastructure/platform engineering (data platforms, API platforms, operational stability) rather than the agentic AI/automation work the candidate seeks. The candidate wants to build LLM-powered pipelines end-to-end with real ownership, not operate enterprise data platforms. Past similar Data Platform Engineer roles scored 45-58 and were all SKIPPED. The truncated text means we cannot see full requirements, but the visible role shape is a clear mismatch: it's about platform operations and infrastructure for data/API engineers, not about building AI/automation systems. Location is Zurich (good), language requirement is none (good), but the role shape is wrong.",
+          "concerns": [
+            "Posting text is truncated - full requirements not visible",
+            "Role is Data Platform / infrastructure engineering, not agentic AI/automation",
+            "Focus is on operating platforms for others, not building LLM pipelines",
+            "Past Data Platform Engineer roles all scored in SKIP range (45-58)"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-01T15:47:45.017083+00:00"
+  },
+  {
+    "score": 45,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting truncated - full requirements not visible",
+      "Role requires solid project experience in BSI Customer Suite specifically - candidate has none",
+      "Senior consulting role, not an internship or junior builder position",
+      "Role is about implementing/configuring an existing CRM platform, not building LLM/agentic systems from scratch",
+      "Past similar BSI Customer Suite role scored 62/SKIP",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "RM IT Professional Resources AG",
+      "title": "Consultant BSI Customer Suite 100%",
+      "location": "Steinhausen, Zug",
+      "url": "https://www.adzuna.ch/details/5864594198",
+      "portal": "adzuna",
+      "description": "Consultant BSI Customer Suite / CRM (m/w/d), 100% Für eine anspruchsvolle Consulting-Rolle im Bereich CRM, Customer Experience und Marketing Automation suchen wir eine erfahrene Persönlichkeit mit fundierter Projekterfahrung in der BSI Customer Suite. Sie begleiten nationale und internationale Unternehmen von der Analyse ihrer Kundenprozesse über das Solution Design bis zur Implementierung und Weiterentwicklung moderner CRM-, Marketing-Automation- und AI-basierter Lösungen. Dabei verbinden Sie …"
+    },
+    "technical_fit": "The posting is heavily truncated (500 chars, cut off mid-sentence), so the full requirements are not visible. However, what is visible already signals a poor fit: this is a consulting role focused on the BSI Customer Suite (a specific CRM/Marketing Automation platform), requiring \"fundierter Projekterfahrung\" (solid project experience) in that exact suite. The candidate has zero BSI experience and is explicitly seeking an internship/junior role with ownership in agentic systems and LLM-powered automation, not a senior CRM consulting position. The role shape is consulting/implementation of an existing proprietary platform, not building AI pipelines from scratch. Past similar evaluation for \"Consultant BSI Customer Suite\" at gateB scored 62/SKIP. Location (Steinhausen, Zug) is acceptable, language is not a blocker, but the seniority level, proprietary platform focus, and misalignment with the candidate's goal of hands-on AI/automation ownership make this a clear SKIP.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting truncated - full requirements not visible",
+      "Role requires solid project experience in BSI Customer Suite specifically - candidate has none",
+      "Senior consulting role, not an internship or junior builder position",
+      "Role is about implementing/configuring an existing CRM platform, not building LLM/agentic systems from scratch",
+      "Past similar BSI Customer Suite role scored 62/SKIP"
+    ],
+    "agent_rationale": "The posting is heavily truncated (500 chars, cut off mid-sentence), so the full requirements are not visible. However, what is visible already signals a poor fit: this is a consulting role focused on the BSI Customer Suite (a specific CRM/Marketing Automation platform), requiring \"fundierter Projekterfahrung\" (solid project experience) in that exact suite. The candidate has zero BSI experience and is explicitly seeking an internship/junior role with ownership in agentic systems and LLM-powered automation, not a senior CRM consulting position. The role shape is consulting/implementation of an existing proprietary platform, not building AI pipelines from scratch. Past similar evaluation for \"Consultant BSI Customer Suite\" at gateB scored 62/SKIP. Location (Steinhausen, Zug) is acceptable, language is not a blocker, but the seniority level, proprietary platform focus, and misalignment with the candidate's goal of hands-on AI/automation ownership make this a clear SKIP.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "RM IT Professional Resources"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "BSI Customer Suite"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Consultant CRM"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 45,
+          "decision": "SKIP",
+          "rationale": "The posting is heavily truncated (500 chars, cut off mid-sentence), so the full requirements are not visible. However, what is visible already signals a poor fit: this is a consulting role focused on the BSI Customer Suite (a specific CRM/Marketing Automation platform), requiring \"fundierter Projekterfahrung\" (solid project experience) in that exact suite. The candidate has zero BSI experience and is explicitly seeking an internship/junior role with ownership in agentic systems and LLM-powered automation, not a senior CRM consulting position. The role shape is consulting/implementation of an existing proprietary platform, not building AI pipelines from scratch. Past similar evaluation for \"Consultant BSI Customer Suite\" at gateB scored 62/SKIP. Location (Steinhausen, Zug) is acceptable, language is not a blocker, but the seniority level, proprietary platform focus, and misalignment with the candidate's goal of hands-on AI/automation ownership make this a clear SKIP.",
+          "concerns": [
+            "Posting truncated - full requirements not visible",
+            "Role requires solid project experience in BSI Customer Suite specifically - candidate has none",
+            "Senior consulting role, not an internship or junior builder position",
+            "Role is about implementing/configuring an existing CRM platform, not building LLM/agentic systems from scratch",
+            "Past similar BSI Customer Suite role scored 62/SKIP"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-01T15:47:45.017083+00:00"
+  },
+  {
+    "score": 25,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Role is 'Head of' level - senior leadership, not internship/junior",
+      "Domain is geospatial AI/Earth observation - completely unrelated to candidate's LLM automation and business workflow experience",
+      "Posting text truncated at 500 chars - full requirements invisible, but visible content already disqualifies",
+      "No evidence of agentic systems, LLM pipelines, or automation work in the visible description",
+      "Candidate seeking ownership in agentic systems; this is a scientific research leadership role in satellite/geospatial data",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "ETH Zürich",
+      "title": "Head of Geospatial AI - Foundation Models and Geo-Intelligence Platform",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5864318062",
+      "portal": "adzuna",
+      "description": "Head of Geospatial AI - Foundation Models and Geo-Intelligence Platform Head of Geospatial AI - Foundation Models and Geo-Intelligence Platform ETH Zurich is establishing the ETH Swiss GeoLab, a new interdisciplinary unit of ETH Zürich I Space. ETH Space will soon become one of few strategic centres of ETH Zurich, and encompasses overall five units. The GeoLab is focused on Earth observation and its applications. The GeoLab uses satellite, airborne, ground-based and in-situ observations. To the…"
+    },
+    "technical_fit": "This is a 'Head of Geospatial AI' role at ETH Zurich establishing a new GeoLab unit. The title alone signals a senior leadership position requiring extensive experience in geospatial AI, foundation models, and Earth observation - domains far removed from the candidate's current skill set (LLM-powered automation, ad-tech APIs, reporting pipelines). The posting text is severely truncated (500 chars, cut off mid-sentence), so full requirements are invisible, but what is visible confirms this is a strategic center leadership role, not an internship or junior position. The candidate is explicitly seeking an internship or junior role with ownership in agentic systems and automation - this is the opposite: a senior 'Head of' position in a specialized scientific domain (satellite imagery, geospatial data). There is zero domain overlap with his experience in digital marketing automation, LLM APIs for business workflows, and ad-platform dashboards. Location (Zurich) and language (no hard German requirement detected) are fine, but the role level, domain, and shape are fundamentally mismatched. This would be a waste of the candidate's and employer's time.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Role is 'Head of' level - senior leadership, not internship/junior",
+      "Domain is geospatial AI/Earth observation - completely unrelated to candidate's LLM automation and business workflow experience",
+      "Posting text truncated at 500 chars - full requirements invisible, but visible content already disqualifies",
+      "No evidence of agentic systems, LLM pipelines, or automation work in the visible description",
+      "Candidate seeking ownership in agentic systems; this is a scientific research leadership role in satellite/geospatial data"
+    ],
+    "agent_rationale": "This is a 'Head of Geospatial AI' role at ETH Zurich establishing a new GeoLab unit. The title alone signals a senior leadership position requiring extensive experience in geospatial AI, foundation models, and Earth observation - domains far removed from the candidate's current skill set (LLM-powered automation, ad-tech APIs, reporting pipelines). The posting text is severely truncated (500 chars, cut off mid-sentence), so full requirements are invisible, but what is visible confirms this is a strategic center leadership role, not an internship or junior position. The candidate is explicitly seeking an internship or junior role with ownership in agentic systems and automation - this is the opposite: a senior 'Head of' position in a specialized scientific domain (satellite imagery, geospatial data). There is zero domain overlap with his experience in digital marketing automation, LLM APIs for business workflows, and ad-platform dashboards. Location (Zurich) and language (no hard German requirement detected) are fine, but the role level, domain, and shape are fundamentally mismatched. This would be a waste of the candidate's and employer's time.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "ETH"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Geospatial"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Foundation Models"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Head of"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 25,
+          "decision": "SKIP",
+          "rationale": "This is a 'Head of Geospatial AI' role at ETH Zurich establishing a new GeoLab unit. The title alone signals a senior leadership position requiring extensive experience in geospatial AI, foundation models, and Earth observation - domains far removed from the candidate's current skill set (LLM-powered automation, ad-tech APIs, reporting pipelines). The posting text is severely truncated (500 chars, cut off mid-sentence), so full requirements are invisible, but what is visible confirms this is a strategic center leadership role, not an internship or junior position. The candidate is explicitly seeking an internship or junior role with ownership in agentic systems and automation - this is the opposite: a senior 'Head of' position in a specialized scientific domain (satellite imagery, geospatial data). There is zero domain overlap with his experience in digital marketing automation, LLM APIs for business workflows, and ad-platform dashboards. Location (Zurich) and language (no hard German requirement detected) are fine, but the role level, domain, and shape are fundamentally mismatched. This would be a waste of the candidate's and employer's time.",
+          "concerns": [
+            "Role is 'Head of' level - senior leadership, not internship/junior",
+            "Domain is geospatial AI/Earth observation - completely unrelated to candidate's LLM automation and business workflow experience",
+            "Posting text truncated at 500 chars - full requirements invisible, but visible content already disqualifies",
+            "No evidence of agentic systems, LLM pipelines, or automation work in the visible description",
+            "Candidate seeking ownership in agentic systems; this is a scientific research leadership role in satellite/geospatial data"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-01T15:47:45.017083+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Praktikum im Legal (6 Monate)",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=6b2689138a0d7bc7&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QCFpmq66jPpSUoMbATP6CIxOk0_dVYFGXg8O62t5of9Mk&rd=cv__WBhDSvE4qmpjGmxYvJXef5NkBUPQ3HkIyXCDpdM&tk=1k1enen70h0ep801&alid=6a09beeefbc7370ae83f277c&bb=rTBmnmXg6W8ACbSb1_NEQt_Flhe_NsZYE-LoilInr2_YlckAgosjlPWXl9hNcfQuHSp0XJmRM_j-deo6IcaoMBcPcFADRCtpdbgAJ1c9t1dlVFaNyw3Ok_aGz2fc8xIT8O7LFeOih3hBRvsMOIDIaQ%3D%3D&tmtk=1k1enen70h0ep801",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-01T15:47:45.017083+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Intern/Associate Consultant – Financial Services (m/w/d)",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=63dba74f13758c73&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QCFpmq66jPpSUoMbATP6CIxOk0_dVYFGXg8O62t5of9Mk&rd=cv__WBhDSvE4qmpjGmxYvJXef5NkBUPQ3HkIyXCDpdM&tk=1k1enen70h0ep801&alid=6a09beeefbc7370ae83f277c&bb=8xTakxKUpYtz_Jmi5tC09_G92wbpuxblZZ-O9iPSvRWF3YGV-1AvMKgtgKjqqgJ1hxNjcWt-XV3hktGcDcD3lsohynmcWUo6ea-5LAgt_TvByxI-r3QHncDkvJbTrhpH6EVwP02hDyZ0RZAdCUNieQ%3D%3D&tmtk=1k1enen70h0ep801",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-01T15:47:45.017083+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Jobgether",
+      "title": "AI Agent Developer",
+      "location": "Switzerland",
+      "url": "https://www.linkedin.com/comm/jobs/view/4460026473/?trackingId=sJKqV2mShbKolbu2OeC2zg%3D%3D&refId=icdQnr5NUzYLMffMylZG%2BA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_facet_suggestions%3B%2BDoo77VZSr%2BGC00xEjFfGA%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3dp8iUbKJ2NYo1&trk=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_1-0-job_card_0_jobid_4460026473_sectionid_272001_fmid_gbrmkn~mtikkxs3~tx&trkEmail=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_1-0-job_card_0_jobid_4460026473_sectionid_272001_fmid_gbrmkn~mtikkxs3~tx-null-gbrmkn~mtikkxs3~tx-null-null&eid=gbrmkn-mtikkxs3-tx&otpToken=NGViMzFkZjhlODUzNDY1ZDA4YWE0YmQ2Y2Y1MWZjZjljYTdmNTFhMDFmZTY2MTk5NDAxZjZlOTQ3ZjhhY2IxZGVjNjU5ZGEwNzQwN2VkNTk5MDJiZWY0NDY3NGE5YTdmNzMxNjE0NmZiODE0NTRmMWI2ZDBhNmM3NGJjMmVkZjY3N2Q4ZTk2YjRlMjFmY2EyLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-01T15:47:45.017083+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Navique",
+      "title": "Agentic AI Engineer 80-100 % (m/w/d)",
+      "location": "Zurich, Switzerland",
+      "url": "https://www.linkedin.com/comm/jobs/view/4458931815/?trackingId=3x08wh4dZXSdBSMQEXoT%2BA%3D%3D&refId=icdQnr5NUzYLMffMylZG%2BA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_facet_suggestions%3B%2BDoo77VZSr%2BGC00xEjFfGA%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3dp8iUbKJ2NYo1&trk=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_1-0-job_card_1_jobid_4458931815_sectionid_272001_fmid_gbrmkn~mtikkxs3~tx&trkEmail=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_1-0-job_card_1_jobid_4458931815_sectionid_272001_fmid_gbrmkn~mtikkxs3~tx-null-gbrmkn~mtikkxs3~tx-null-null&eid=gbrmkn-mtikkxs3-tx&otpToken=NGViMzFkZjhlODUzNDY1ZDA4YWE0YmQ2Y2Y1MWZjZjljYTdmNTFhMDFmZTY2MTk5NDAxZjZlOTQ3ZjhhY2IxZGVjNjU5ZGEwNzQwN2VkNTk5MDJiZWY0NDY3NGE5YTdmNzMxNjE0NmZiODE0NTRmMWI2ZDBhNmM3NGJjMmVkZjY3N2Q4ZTk2YjRlMjFmY2EyLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-01T15:47:45.017083+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Google",
+      "title": "Research Scientist, AI",
+      "location": "Zurich",
+      "url": "https://www.linkedin.com/comm/jobs/view/4458648220/?trackingId=hpDCkIgZuoLc5haP%2Bd1TPw%3D%3D&refId=DAY4E5ZmrM0oS5TadY6zhA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_facet_suggestions%3B%2BDoo77VZSr%2BGC00xEjFfGA%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3dp8iUbKJ2NYo1&trk=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_2-0-job_card_0_jobid_4458648220_sectionid_286001_fmid_gbrmkn~mtikkxs3~tx&trkEmail=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_2-0-job_card_0_jobid_4458648220_sectionid_286001_fmid_gbrmkn~mtikkxs3~tx-null-gbrmkn~mtikkxs3~tx-null-null&eid=gbrmkn-mtikkxs3-tx&otpToken=NGViMzFkZjhlODUzNDY1ZDA4YWE0YmQ2Y2Y1MWZjZjljYTdmNTFhMDFmZTY2MTk5NDAxZjZlOTQ3ZjhhY2IxZGVjNjU5ZGEwNzQwN2VkNTk5MDJiZWY0NDY3NGE5YTdmNzMxNjE0NmZiODE0NTRmMWI2ZDBhNmM3NGJjMmVkZjY3N2Q4ZTk2YjRlMjFmY2EyLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-01T15:47:45.017083+00:00"
   }
 ]
