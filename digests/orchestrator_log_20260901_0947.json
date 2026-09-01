@@ -1,0 +1,54 @@
+{
+  "ts": "2026-09-01T09:47:19.686861+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5756,
+    "completion_tokens": 663
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 3
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run evaluated 6 jobs (fresh): 3 SKIP, 3 NOT_EVALUATED, 0 APPLY. No tailored documents or high-score alerts were needed. Re-evaluated 3 borderline REVIEW jobs (Jobgether, Iudex Non Calculat, PQ Technologies) — all remained REVIEW with unchanged scores. 1 stale application is still eligible for follow-up but no new draft was produced (likely already handled).",
+        "rationale": "With zero APPLY jobs and no new top matches, the productive output of this run was limited to re-evaluating 3 REVIEW-band jobs to see if any should be promoted. None were. The follow-up pipeline noted 1 eligible stale application but produced no new draft, suggesting it was already addressed. The run is complete."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 6, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 3, \"ERROR\": 0, \"NOT_EVALUATED\": 3}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"Jobgether\", \"title\": \"Founding AI Platform Engineer (MLOps / Backend)\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 72, \"new_decision\": \"REVIEW\"}, {\"company\": \"Iudex Non Calculat\", \"title\": \"Engineering Internship - AI/Data\", \"old_score\": 72, \"old_decision\":"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run evaluated 6 jobs (fresh): 3 SKIP, 3 NOT_EVALUATED, 0 APPLY. No tailored documents or high-score alerts were needed. Re-evaluated 3 borderline REVIEW jobs (Jobgether, Iudex Non Calculat, PQ Technologies) — all remained REVIEW with unchanged scores. 1 stale application is still eligible for follow-up but no new draft was produced (likely already handled).",
+  "agent_rationale": "With zero APPLY jobs and no new top matches, the productive output of this run was limited to re-evaluating 3 REVIEW-band jobs to see if any should be promoted. None were. The follow-up pipeline noted 1 eligible stale application but produced no new draft, suggesting it was already addressed. The run is complete."
+}
