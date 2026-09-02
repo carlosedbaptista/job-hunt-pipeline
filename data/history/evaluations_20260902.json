@@ -518,5 +518,499 @@
     "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-09-02T09:19:09.867868+00:00"
+  },
+  {
+    "score": 25,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting truncated — requirements section not visible, but seniority and platform mismatch are already clear",
+      "Senior-level role requiring ServiceNow specialization — candidate has no ServiceNow experience",
+      "Permanent 80-100% role, not an internship or junior position",
+      "Role shape appears to be roadmap/enterprise platform driven, not greenfield LLM pipeline building with day-one ownership",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Senior ServiceNow AI Engineer",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5867055575",
+      "portal": "adzuna",
+      "description": "Senior ServiceNow AI Engineer What we are looking ? Senior ServiceNow AI Engineer Location: Zurich Workload: 80\\\\-100% Employment: Permanent Our client, a leading Swiss IT services organisation, is looking for an experienced Senior ServiceNow AI Engineer to drive AI, GenAI and intelligent automation within its ServiceNow platform. Your responsibilities: Develop and implement the ServiceNow AI and automation roadmap Identify and deliver AI use cases from PoC to production Build solutions using N…"
+    },
+    "technical_fit": "This is a Senior ServiceNow AI Engineer role (80-100%, permanent) at a Swiss IT services organization. The posting is heavily truncated (500 chars, mid-sentence), so key requirements are not visible. However, what IS clear is a fundamental mismatch on multiple dimensions: (1) SENIOR level — the candidate is an intern seeking junior/internship roles with ownership from day one, not a senior position requiring extensive ServiceNow platform experience. (2) The role centers on ServiceNow AI/automation roadmap, N… (cut off), indicating deep ServiceNow specialization which the candidate does not have — his skills are in Python, LLM APIs, general automation, not enterprise ServiceNow platform development. (3) Permanent employment, 80-100% workload — this is a full senior permanent role, not an internship. (4) Past evaluation for a very similar Job-Room ServiceNow KI Engineer role scored 45/SKIP. The candidate's profile emphasizes agentic systems, LLM pipelines, and ownership in internship/junior contexts — this role is the opposite: senior, platform-specific (ServiceNow), and likely maintenance/roadmap-driven rather than greenfield building. Even if more details were visible, the seniority gap and platform mismatch are disqualifying. No language requirements beyond English were found.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting truncated — requirements section not visible, but seniority and platform mismatch are already clear",
+      "Senior-level role requiring ServiceNow specialization — candidate has no ServiceNow experience",
+      "Permanent 80-100% role, not an internship or junior position",
+      "Role shape appears to be roadmap/enterprise platform driven, not greenfield LLM pipeline building with day-one ownership"
+    ],
+    "agent_rationale": "This is a Senior ServiceNow AI Engineer role (80-100%, permanent) at a Swiss IT services organization. The posting is heavily truncated (500 chars, mid-sentence), so key requirements are not visible. However, what IS clear is a fundamental mismatch on multiple dimensions: (1) SENIOR level — the candidate is an intern seeking junior/internship roles with ownership from day one, not a senior position requiring extensive ServiceNow platform experience. (2) The role centers on ServiceNow AI/automation roadmap, N… (cut off), indicating deep ServiceNow specialization which the candidate does not have — his skills are in Python, LLM APIs, general automation, not enterprise ServiceNow platform development. (3) Permanent employment, 80-100% workload — this is a full senior permanent role, not an internship. (4) Past evaluation for a very similar Job-Room ServiceNow KI Engineer role scored 45/SKIP. The candidate's profile emphasizes agentic systems, LLM pipelines, and ownership in internship/junior contexts — this role is the opposite: senior, platform-specific (ServiceNow), and likely maintenance/roadmap-driven rather than greenfield building. Even if more details were visible, the seniority gap and platform mismatch are disqualifying. No language requirements beyond English were found.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "ServiceNow"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 25,
+          "decision": "SKIP",
+          "rationale": "This is a Senior ServiceNow AI Engineer role (80-100%, permanent) at a Swiss IT services organization. The posting is heavily truncated (500 chars, mid-sentence), so key requirements are not visible. However, what IS clear is a fundamental mismatch on multiple dimensions: (1) SENIOR level — the candidate is an intern seeking junior/internship roles with ownership from day one, not a senior position requiring extensive ServiceNow platform experience. (2) The role centers on ServiceNow AI/automation roadmap, N… (cut off), indicating deep ServiceNow specialization which the candidate does not have — his skills are in Python, LLM APIs, general automation, not enterprise ServiceNow platform development. (3) Permanent employment, 80-100% workload — this is a full senior permanent role, not an internship. (4) Past evaluation for a very similar Job-Room ServiceNow KI Engineer role scored 45/SKIP. The candidate's profile emphasizes agentic systems, LLM pipelines, and ownership in internship/junior contexts — this role is the opposite: senior, platform-specific (ServiceNow), and likely maintenance/roadmap-driven rather than greenfield building. Even if more details were visible, the seniority gap and platform mismatch are disqualifying. No language requirements beyond English were found.",
+          "concerns": [
+            "Posting truncated — requirements section not visible, but seniority and platform mismatch are already clear",
+            "Senior-level role requiring ServiceNow specialization — candidate has no ServiceNow experience",
+            "Permanent 80-100% role, not an internship or junior position",
+            "Role shape appears to be roadmap/enterprise platform driven, not greenfield LLM pipeline building with day-one ownership"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-02T15:39:50.563307+00:00"
+  },
+  {
+    "score": 25,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Role is explicitly SENIOR level - candidate seeks internship/junior role",
+      "Permanent position (not internship)",
+      "ServiceNow platform-specific (Now Assist, AI Agents) - candidate has no ServiceNow experience",
+      "Posting text truncated - full requirements not visible",
+      "80-100% workload for a permanent senior role vs candidate seeking internship",
+      "Skills mismatch: candidate's Python/LLM API skills vs ServiceNow ecosystem expertise",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Finders SA",
+      "title": "Senior ServiceNow AI Engineer",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5866889965",
+      "portal": "adzuna",
+      "description": "What we are looking ? Senior ServiceNow AI Engineer Location: Zurich Workload: 80-100% Employment: Permanent Our client, a leading Swiss IT services organisation, is looking for an experienced Senior ServiceNow AI Engineer to drive AI, GenAI and intelligent automation within its ServiceNow platform. Your responsibilities: Develop and implement the ServiceNow AI and automation roadmap Identify and deliver AI use cases from PoC to production Build solutions using Now Assist, AI Agents and Service…"
+    },
+    "technical_fit": "This is a SENIOR ServiceNow AI Engineer role (80-100%, permanent), which is fundamentally mismatched with the candidate's profile on multiple critical dimensions. First, the role explicitly requires senior-level experience ('Senior' in title, 'experienced' in description) and focuses on ServiceNow platform-specific AI (Now Assist, AI Agents, ServiceNow ecosystem) - a technology stack the candidate has zero exposure to. Second, it's a permanent position requiring 80-100% workload, not an internship or junior role. The candidate is specifically seeking an internship with real ownership from day one, not a senior permanent position. Third, the posting text is truncated at 500 characters, so full requirements are not visible, but what is visible already shows a strong mismatch. The candidate's skills (Python, LLM APIs, general automation) are not ServiceNow-specific, and the role shape (senior, platform-specific, permanent) is the opposite of what he's targeting. Location is Zurich (good), language requirement is none (good), but the seniority and platform mismatch are decisive. Past similar ServiceNow role scored 45/SKIP. This role scores even lower due to the explicit 'Senior' designation.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Role is explicitly SENIOR level - candidate seeks internship/junior role",
+      "Permanent position (not internship)",
+      "ServiceNow platform-specific (Now Assist, AI Agents) - candidate has no ServiceNow experience",
+      "Posting text truncated - full requirements not visible",
+      "80-100% workload for a permanent senior role vs candidate seeking internship",
+      "Skills mismatch: candidate's Python/LLM API skills vs ServiceNow ecosystem expertise"
+    ],
+    "agent_rationale": "This is a SENIOR ServiceNow AI Engineer role (80-100%, permanent), which is fundamentally mismatched with the candidate's profile on multiple critical dimensions. First, the role explicitly requires senior-level experience ('Senior' in title, 'experienced' in description) and focuses on ServiceNow platform-specific AI (Now Assist, AI Agents, ServiceNow ecosystem) - a technology stack the candidate has zero exposure to. Second, it's a permanent position requiring 80-100% workload, not an internship or junior role. The candidate is specifically seeking an internship with real ownership from day one, not a senior permanent position. Third, the posting text is truncated at 500 characters, so full requirements are not visible, but what is visible already shows a strong mismatch. The candidate's skills (Python, LLM APIs, general automation) are not ServiceNow-specific, and the role shape (senior, platform-specific, permanent) is the opposite of what he's targeting. Location is Zurich (good), language requirement is none (good), but the seniority and platform mismatch are decisive. Past similar ServiceNow role scored 45/SKIP. This role scores even lower due to the explicit 'Senior' designation.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "ServiceNow"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Finders"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "AI Engineer"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 25,
+          "decision": "SKIP",
+          "rationale": "This is a SENIOR ServiceNow AI Engineer role (80-100%, permanent), which is fundamentally mismatched with the candidate's profile on multiple critical dimensions. First, the role explicitly requires senior-level experience ('Senior' in title, 'experienced' in description) and focuses on ServiceNow platform-specific AI (Now Assist, AI Agents, ServiceNow ecosystem) - a technology stack the candidate has zero exposure to. Second, it's a permanent position requiring 80-100% workload, not an internship or junior role. The candidate is specifically seeking an internship with real ownership from day one, not a senior permanent position. Third, the posting text is truncated at 500 characters, so full requirements are not visible, but what is visible already shows a strong mismatch. The candidate's skills (Python, LLM APIs, general automation) are not ServiceNow-specific, and the role shape (senior, platform-specific, permanent) is the opposite of what he's targeting. Location is Zurich (good), language requirement is none (good), but the seniority and platform mismatch are decisive. Past similar ServiceNow role scored 45/SKIP. This role scores even lower due to the explicit 'Senior' designation.",
+          "concerns": [
+            "Role is explicitly SENIOR level - candidate seeks internship/junior role",
+            "Permanent position (not internship)",
+            "ServiceNow platform-specific (Now Assist, AI Agents) - candidate has no ServiceNow experience",
+            "Posting text truncated - full requirements not visible",
+            "80-100% workload for a permanent senior role vs candidate seeking internship",
+            "Skills mismatch: candidate's Python/LLM API skills vs ServiceNow ecosystem expertise"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-02T15:39:50.563307+00:00"
+  },
+  {
+    "score": 58,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated - full requirements not visible",
+      "Location is Winterthur, not Zurich/Zug area",
+      "Role appears to be traditional data engineering (Databricks/SAP reporting), not AI/agentic systems",
+      "Language suggests 'support' role rather than ownership from day one",
+      "No visible LLM, AI, or automation components in the role description",
+      "Candidate has no Databricks or SAP experience",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Internship as Data Engineer at AXA Group Risk Management (all genders)",
+      "location": "Winterthur",
+      "url": "https://www.adzuna.ch/details/5867053880",
+      "portal": "adzuna",
+      "description": "80-100%, Winterthur / Smart Working Start date: to be discussed Duration: 12 months Shape your future together with us!  We are looking for a curious, analytical, and motivated data engineer to join AXA Group-s Risk Management team in Winterthur. This is a hands-on internship where you will support the team in building a cutting-edge solvency reporting solution on Databricks. You-ll work on designing and implementing a modern database that transforms our current SAP-based solvency reporting whi…"
+    },
+    "technical_fit": "The posting text is truncated (500 chars), so full requirements are not visible. However, what is visible shows several mismatches with the candidate's goals: (1) Location is Winterthur, not Zurich/Zug area - this is a commute concern; (2) Role is traditional Data Engineering (Databricks, SAP-based solvency reporting) rather than AI/agentic systems or LLM-powered pipelines; (3) Language says 'support the team' rather than offering ownership from day one, which is explicitly what the candidate seeks; (4) No mention of LLMs, AI, or automation in the visible text. The candidate's skills in Python/SQL are relevant but the technology stack (Databricks, SAP) and role shape don't align with his target of building agentic systems. Past similar Data Engineer roles scored 55-62 and were SKIPPED. With truncated requirements and clear role-shape mismatch, this is below the threshold.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text is truncated - full requirements not visible",
+      "Location is Winterthur, not Zurich/Zug area",
+      "Role appears to be traditional data engineering (Databricks/SAP reporting), not AI/agentic systems",
+      "Language suggests 'support' role rather than ownership from day one",
+      "No visible LLM, AI, or automation components in the role description",
+      "Candidate has no Databricks or SAP experience"
+    ],
+    "agent_rationale": "The posting text is truncated (500 chars), so full requirements are not visible. However, what is visible shows several mismatches with the candidate's goals: (1) Location is Winterthur, not Zurich/Zug area - this is a commute concern; (2) Role is traditional Data Engineering (Databricks, SAP-based solvency reporting) rather than AI/agentic systems or LLM-powered pipelines; (3) Language says 'support the team' rather than offering ownership from day one, which is explicitly what the candidate seeks; (4) No mention of LLMs, AI, or automation in the visible text. The candidate's skills in Python/SQL are relevant but the technology stack (Databricks, SAP) and role shape don't align with his target of building agentic systems. Past similar Data Engineer roles scored 55-62 and were SKIPPED. With truncated requirements and clear role-shape mismatch, this is below the threshold.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "AXA"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Data Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Winterthur"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 58,
+          "decision": "SKIP",
+          "rationale": "The posting text is truncated (500 chars), so full requirements are not visible. However, what is visible shows several mismatches with the candidate's goals: (1) Location is Winterthur, not Zurich/Zug area - this is a commute concern; (2) Role is traditional Data Engineering (Databricks, SAP-based solvency reporting) rather than AI/agentic systems or LLM-powered pipelines; (3) Language says 'support the team' rather than offering ownership from day one, which is explicitly what the candidate seeks; (4) No mention of LLMs, AI, or automation in the visible text. The candidate's skills in Python/SQL are relevant but the technology stack (Databricks, SAP) and role shape don't align with his target of building agentic systems. Past similar Data Engineer roles scored 55-62 and were SKIPPED. With truncated requirements and clear role-shape mismatch, this is below the threshold.",
+          "concerns": [
+            "Posting text is truncated - full requirements not visible",
+            "Location is Winterthur, not Zurich/Zug area",
+            "Role appears to be traditional data engineering (Databricks/SAP reporting), not AI/agentic systems",
+            "Language suggests 'support' role rather than ownership from day one",
+            "No visible LLM, AI, or automation components in the role description",
+            "Candidate has no Databricks or SAP experience"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-02T15:39:50.563307+00:00"
+  },
+  {
+    "score": 35,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Senior role requiring 5+ years experience — candidate is an intern seeking junior/internship roles",
+      "Posting text truncated — full requirements not visible, but visible minimums already disqualify",
+      "Role shape is senior SWE, not the hands-on agentic systems ownership the candidate wants at his level",
+      "Google roles historically mismatched for this candidate's experience level",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Senior Software Engineer, Applied AI - Google Careers",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5867053644",
+      "portal": "adzuna",
+      "description": " Minimum qualifications:  * Bachelor-s degree or equivalent practical experience. * 5 years of experience with software development in one or more programming languages. * 3 years of experience testing, maintaining, or launching software products, and 1 year of experience with software design and architecture.  Preferred qualifications:  * Master's degree or PhD in Computer Science, or a related technical field. * 5 years of experience with data structures and algorithms. * 1 year of experience…"
+    },
+    "technical_fit": "This is a Senior Software Engineer role at Google requiring 5 years of software development experience, 3 years testing/maintaining/launching software products, and 1 year of software design and architecture. The candidate is currently an AI Software Engineer Intern with no stated years of professional software engineering experience, seeking an internship or junior role with ownership of agentic systems. The experience gap is massive — this is a senior-level position, not an entry point. Additionally, the posting text is truncated (only 500 characters, cut off mid-sentence), so the full requirements and role description were never visible. The title says \"Applied AI\" but the visible minimum qualifications are pure SWE with heavy experience requirements. No language blockers (English working language, no German requirement). Location is Zurich, which fits. But the seniority mismatch is decisive — the candidate would not realistically qualify or be excited by a role this far above his level. Past Google evaluations include a PhD intern role scored at 45/SKIP, consistent with this pattern of Google roles being mismatched for his profile.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Senior role requiring 5+ years experience — candidate is an intern seeking junior/internship roles",
+      "Posting text truncated — full requirements not visible, but visible minimums already disqualify",
+      "Role shape is senior SWE, not the hands-on agentic systems ownership the candidate wants at his level",
+      "Google roles historically mismatched for this candidate's experience level"
+    ],
+    "agent_rationale": "This is a Senior Software Engineer role at Google requiring 5 years of software development experience, 3 years testing/maintaining/launching software products, and 1 year of software design and architecture. The candidate is currently an AI Software Engineer Intern with no stated years of professional software engineering experience, seeking an internship or junior role with ownership of agentic systems. The experience gap is massive — this is a senior-level position, not an entry point. Additionally, the posting text is truncated (only 500 characters, cut off mid-sentence), so the full requirements and role description were never visible. The title says \"Applied AI\" but the visible minimum qualifications are pure SWE with heavy experience requirements. No language blockers (English working language, no German requirement). Location is Zurich, which fits. But the seniority mismatch is decisive — the candidate would not realistically qualify or be excited by a role this far above his level. Past Google evaluations include a PhD intern role scored at 45/SKIP, consistent with this pattern of Google roles being mismatched for his profile.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Google"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 35,
+          "decision": "SKIP",
+          "rationale": "This is a Senior Software Engineer role at Google requiring 5 years of software development experience, 3 years testing/maintaining/launching software products, and 1 year of software design and architecture. The candidate is currently an AI Software Engineer Intern with no stated years of professional software engineering experience, seeking an internship or junior role with ownership of agentic systems. The experience gap is massive — this is a senior-level position, not an entry point. Additionally, the posting text is truncated (only 500 characters, cut off mid-sentence), so the full requirements and role description were never visible. The title says \"Applied AI\" but the visible minimum qualifications are pure SWE with heavy experience requirements. No language blockers (English working language, no German requirement). Location is Zurich, which fits. But the seniority mismatch is decisive — the candidate would not realistically qualify or be excited by a role this far above his level. Past Google evaluations include a PhD intern role scored at 45/SKIP, consistent with this pattern of Google roles being mismatched for his profile.",
+          "concerns": [
+            "Senior role requiring 5+ years experience — candidate is an intern seeking junior/internship roles",
+            "Posting text truncated — full requirements not visible, but visible minimums already disqualify",
+            "Role shape is senior SWE, not the hands-on agentic systems ownership the candidate wants at his level",
+            "Google roles historically mismatched for this candidate's experience level"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-02T15:39:50.563307+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "LHH",
+      "title": "Senior Business Analyst (m/w/d)",
+      "location": "Zürich",
+      "url": "https://de.glassdoor.ch/partner/jobListing.htm?pos=105&ao=1110586&s=362&guid=000001a061cfc48f979b6f5e06dbf91a&src=GD_JOB_AD&t=REC_JOBS&vt=e&uido=D661EDE7358AA032024678584D685D92&cs=1_a5399d2e&cb=1788349011562&jobListingId=1010240557732&cpc=654405A9B1E0A9F5&jrtk=5-yul1-1-1k1gugl8g2c3f002-c64b587a408a0313---6NYlbfkN0Bj-xBWVmzs7UIwFa-9Zm6MwNuQFkwLehssDYDaWnvIcd5HmIuxn5ic6eqALSc1aXOxvpnbxcg7hfkyi0bK36ahhCC8pejykDXhGN5oKEZsjA5CNH-h8J9vzozxRN7qwelj6WvT9-yYCuGGAbQ5E72y5spfTnxoZxiDvFKh9_wT02PggWFrYnLjXi2b9cY8j3qEnvfLGvW0V8Y3gsmxMkz5xCGrIiXxNUKID6fCDCXtiBy33wxL0YAxeyKbJtny6ZcvZgQt4Vi3twj1SHM96RhBfVVFRV30jA4D_eDXzxkslBkeOvYr2sjBiHAg6GkAogI6NTNs2Y24_bOAWIkACvVd_kfB_FSpqpimslfwXnq_wH6x-D_yPNs6pjFrtYwxGN-U_w5TcZiKzlk9o-KNmQQtgyvvGKN6F8lS8F6uVonW1wJu1uRAfoY1ryBhM0lXP7HMcyVJ1pnhNm9mtKuUK7SkVK5_ZTaisPaMQd8BGJAblp0R9rd8qn5BmYkx3vrP9cnhaE16PJvqzOeUUGuhkz0XlcStMLs_cjf3IsLZjsb2tP6pgHrXPMfOBdQAr17insnTzP2h6FkSlbyRO1IRS8ErICbIE8u-CjQ5-APGWPfz2_9SDqqvL7gkeRGlb54L2G2vJMytZlCy43s-Tf6PICEHJnbJA1To3qmuw8OpOa-5cvcIbM42awaEGzdbHX7DiMkOpNiUXiuuE9lhXdGetubsivK2WdvMzRp7Ej6-av0yNZyHR8WOsBCep41do11lD_mlOR3BxDKRyVrZH7BCjFKIaSt_wBU5M-D4kqn3nk1eDOOn1Z2iZAjBapEBglPchZ6ZJDH_z1FpVXsjc6ZtUJ3OjHNobFumaMGW3or9dVnhTDNp17_SdZInKro8yP55qTrvJO5ArQITNP6qB70pDuBqVsZ5-FgAUB2ll0VuAz6KbaaA-M0xFIP42-zUiscB9IXpesKdX0MA4yG3XnX14qeCVzWZlTtLIgg%3D&utm_medium=email&utm_source=jobsForYou&utm_campaign=jobsForYou&utm_content=jobs-for-you-jobsForYou-jobpos5-age7d-1010240557732&rdforyou=true",
+      "portal": "glassdoor.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-02T15:39:50.563307+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "RAI Institute",
+      "title": "Autonomous Agent Engineering Intern",
+      "location": "Zurich",
+      "url": "https://www.linkedin.com/comm/jobs/view/4460651771/?trackingId=tjKL1J70X9bZ30RsXWRHqg%3D%3D&refId=SzX2H0QwqvAlQkdxVgNPJA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BtpQz7znYRYmNYkS6N%2BUa9w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3JUBsiiFalPco1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_0_jobid_4460651771_ssid_8708019010_fmid_gbrmkn~mtjx9l5n~rx&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_0_jobid_4460651771_ssid_8708019010_fmid_gbrmkn~mtjx9l5n~rx-null-gbrmkn~mtjx9l5n~rx-null-null&eid=gbrmkn-mtjx9l5n-rx&otpToken=NGRmZTBhMTEyMTY2NzU1NTdkZjBlMDllMmFlNmIyYmIxNmJiZTFkMGQzNTVhZjU2YTAyYmJmZmU4ZDVjODEyNDE3MWYwZDAzMThhNmFmZGVjODhkZDQ3MjQxOGFmODQ5NmYyZjcxZjNkMDg2YmQyODM3NTBiYWFiZjgzNzEyZmQyZDliMWVlYWEzMmVlZjEzLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-02T15:39:50.563307+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "EY",
+      "title": "Quant & Analytics Intern - Financial Services Risk Consulting",
+      "location": "Zurich",
+      "url": "https://www.linkedin.com/comm/jobs/view/4442626669/?trackingId=fOzRyv5qyqiaGQE3i%2Fk8ig%3D%3D&refId=SzX2H0QwqvAlQkdxVgNPJA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BtpQz7znYRYmNYkS6N%2BUa9w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3JUBsiiFalPco1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_1_jobid_4442626669_ssid_8708019010_fmid_gbrmkn~mtjx9l5n~rx&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_1_jobid_4442626669_ssid_8708019010_fmid_gbrmkn~mtjx9l5n~rx-null-gbrmkn~mtjx9l5n~rx-null-null&eid=gbrmkn-mtjx9l5n-rx&otpToken=NGRmZTBhMTEyMTY2NzU1NTdkZjBlMDllMmFlNmIyYmIxNmJiZTFkMGQzNTVhZjU2YTAyYmJmZmU4ZDVjODEyNDE3MWYwZDAzMThhNmFmZGVjODhkZDQ3MjQxOGFmODQ5NmYyZjcxZjNkMDg2YmQyODM3NTBiYWFiZjgzNzEyZmQyZDliMWVlYWEzMmVlZjEzLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-02T15:39:50.563307+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Hitachi Energy",
+      "title": "Intern - Process Engineering 80 – 100% (f/m/d)",
+      "location": "Lenzburg",
+      "url": "https://www.linkedin.com/comm/jobs/view/4461791165/?trackingId=%2Fazxu9t4ERVaFxFSCMme6A%3D%3D&refId=SzX2H0QwqvAlQkdxVgNPJA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BtpQz7znYRYmNYkS6N%2BUa9w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3JUBsiiFalPco1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_2_jobid_4461791165_ssid_8708019010_fmid_gbrmkn~mtjx9l5n~rx&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_2_jobid_4461791165_ssid_8708019010_fmid_gbrmkn~mtjx9l5n~rx-null-gbrmkn~mtjx9l5n~rx-null-null&eid=gbrmkn-mtjx9l5n-rx&otpToken=NGRmZTBhMTEyMTY2NzU1NTdkZjBlMDllMmFlNmIyYmIxNmJiZTFkMGQzNTVhZjU2YTAyYmJmZmU4ZDVjODEyNDE3MWYwZDAzMThhNmFmZGVjODhkZDQ3MjQxOGFmODQ5NmYyZjcxZjNkMDg2YmQyODM3NTBiYWFiZjgzNzEyZmQyZDliMWVlYWEzMmVlZjEzLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-02T15:39:50.563307+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "CONSTELLATION CAPITAL",
+      "title": "Private Equity Praktikum",
+      "location": "Freienbach",
+      "url": "https://www.linkedin.com/comm/jobs/view/4461783543/?trackingId=Nxj2Ya7aXUaM5u6LGkpyNA%3D%3D&refId=SzX2H0QwqvAlQkdxVgNPJA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BtpQz7znYRYmNYkS6N%2BUa9w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3JUBsiiFalPco1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_5_jobid_4461783543_ssid_8708019010_fmid_gbrmkn~mtjx9l5n~rx&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_5_jobid_4461783543_ssid_8708019010_fmid_gbrmkn~mtjx9l5n~rx-null-gbrmkn~mtjx9l5n~rx-null-null&eid=gbrmkn-mtjx9l5n-rx&otpToken=NGRmZTBhMTEyMTY2NzU1NTdkZjBlMDllMmFlNmIyYmIxNmJiZTFkMGQzNTVhZjU2YTAyYmJmZmU4ZDVjODEyNDE3MWYwZDAzMThhNmFmZGVjODhkZDQ3MjQxOGFmODQ5NmYyZjcxZjNkMDg2YmQyODM3NTBiYWFiZjgzNzEyZmQyZDliMWVlYWEzMmVlZjEzLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-02T15:39:50.563307+00:00"
   }
 ]
