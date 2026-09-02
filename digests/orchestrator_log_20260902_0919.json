@@ -1,0 +1,54 @@
+{
+  "ts": "2026-09-02T09:19:21.196995+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5728,
+    "completion_tokens": 554
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run evaluated 5 jobs with 1 SKIP and 4 NOT_EVALUATED. Re-evaluated 4 recent REVIEW-band jobs: 3 remained REVIEW, 1 moved to SKIP. No APPLY jobs emerged, so no documents or alerts were needed. 1 stale application remains eligible for follow-up.",
+        "rationale": "With fresh evaluations but zero APPLY jobs, the run focused on clearing backlog: re-scoring borderline REVIEW jobs to surface any potential APPLY candidates, and checking for follow-up drafts. No new top matches appeared, so generating docs or sending alerts would have been unnecessary spend."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 5, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 1, \"ERROR\": 0, \"NOT_EVALUATED\": 4}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"PQ Technologies\", \"title\": \"Intern \\u2013 Python Development & Data Analysis\", \"old_score\": 76, \"old_decision\": \"REVIEW\", \"new_score\": 76, \"new_decision\": \"REVIEW\"}, {\"company\": \"Iudex Non Calculat\", \"title\": \"Engineering Internship - AI/Data\", \"old_score\": 72, \"old_dec"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run evaluated 5 jobs with 1 SKIP and 4 NOT_EVALUATED. Re-evaluated 4 recent REVIEW-band jobs: 3 remained REVIEW, 1 moved to SKIP. No APPLY jobs emerged, so no documents or alerts were needed. 1 stale application remains eligible for follow-up.",
+  "agent_rationale": "With fresh evaluations but zero APPLY jobs, the run focused on clearing backlog: re-scoring borderline REVIEW jobs to surface any potential APPLY candidates, and checking for follow-up drafts. No new top matches appeared, so generating docs or sending alerts would have been unnecessary spend."
+}
