@@ -1189,5 +1189,188 @@
     "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-09-03T09:31:06.831628+00:00"
+  },
+  {
+    "score": 35,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated - full requirements not visible",
+      "Role title explicitly says 'Senior' - far above candidate's intern/junior target level",
+      "Domain is insurance distribution strategy, not agentic systems or automation",
+      "Past similar roles at Job-Room/AXA all scored low and were skipped",
+      "German text in posting suggests potential language considerations despite no hard requirement detected",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Senior (Gen)AI & Data Engineer (all genders)",
+      "location": "Winterthur",
+      "url": "https://www.adzuna.ch/details/5868881189",
+      "portal": "adzuna",
+      "description": "80-100%, Winterthur / Smart Working Gestalte deine Zukunft gemeinsam mit uns Willst Du Teil von etwas Grossem sein? Wir bieten dir ein tolles Team in einem dynamischen Umfeld um das hottest topic around! Bei uns in der «Distribution Strategy, Project & Communication» Abteilung wird die Distributionsstrategie der AXA CH realisiert, Konzepte entwickelt und gemeinsam mit der Produktfabrik, den Technologieteams und den verschiedenen Vertriebskanälen umgesetzt. Unser Ziel ist es, das beste Kundenerl…"
+    },
+    "technical_fit": "The posting text is severely truncated (only 500 characters, truncated=true), so the full requirements section was never visible. What little text is available shows this is a 'Senior (Gen)AI & Data Engineer' role at AXA CH in the 'Distribution Strategy, Project & Communication' department, working on distribution strategy for insurance. The title alone indicates a senior-level position, which is a significant mismatch for a candidate seeking internship or junior roles. The German text ('Gestalte deine Zukunft gemeinsam mit uns', 'Wir bieten dir ein tolles Team') suggests the working environment may involve German, though the language check returned 'none' for hard requirements. Past evaluations for similar roles at Job-Room/AXA (Senior AI Engineer, Data Engineer) have all scored in the 25-58 range and been SKIP decisions. The candidate is an intern-level career changer looking for ownership in agentic systems; a senior data engineering role at a large insurance company's distribution strategy department is far from his target profile. With truncated text preventing proper assessment and strong signals of seniority mismatch, this is a clear SKIP.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text is truncated - full requirements not visible",
+      "Role title explicitly says 'Senior' - far above candidate's intern/junior target level",
+      "Domain is insurance distribution strategy, not agentic systems or automation",
+      "Past similar roles at Job-Room/AXA all scored low and were skipped",
+      "German text in posting suggests potential language considerations despite no hard requirement detected"
+    ],
+    "agent_rationale": "The posting text is severely truncated (only 500 characters, truncated=true), so the full requirements section was never visible. What little text is available shows this is a 'Senior (Gen)AI & Data Engineer' role at AXA CH in the 'Distribution Strategy, Project & Communication' department, working on distribution strategy for insurance. The title alone indicates a senior-level position, which is a significant mismatch for a candidate seeking internship or junior roles. The German text ('Gestalte deine Zukunft gemeinsam mit uns', 'Wir bieten dir ein tolles Team') suggests the working environment may involve German, though the language check returned 'none' for hard requirements. Past evaluations for similar roles at Job-Room/AXA (Senior AI Engineer, Data Engineer) have all scored in the 25-58 range and been SKIP decisions. The candidate is an intern-level career changer looking for ownership in agentic systems; a senior data engineering role at a large insurance company's distribution strategy department is far from his target profile. With truncated text preventing proper assessment and strong signals of seniority mismatch, this is a clear SKIP.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "AXA"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Senior AI Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Data Engineer"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 35,
+          "decision": "SKIP",
+          "rationale": "The posting text is severely truncated (only 500 characters, truncated=true), so the full requirements section was never visible. What little text is available shows this is a 'Senior (Gen)AI & Data Engineer' role at AXA CH in the 'Distribution Strategy, Project & Communication' department, working on distribution strategy for insurance. The title alone indicates a senior-level position, which is a significant mismatch for a candidate seeking internship or junior roles. The German text ('Gestalte deine Zukunft gemeinsam mit uns', 'Wir bieten dir ein tolles Team') suggests the working environment may involve German, though the language check returned 'none' for hard requirements. Past evaluations for similar roles at Job-Room/AXA (Senior AI Engineer, Data Engineer) have all scored in the 25-58 range and been SKIP decisions. The candidate is an intern-level career changer looking for ownership in agentic systems; a senior data engineering role at a large insurance company's distribution strategy department is far from his target profile. With truncated text preventing proper assessment and strong signals of seniority mismatch, this is a clear SKIP.",
+          "concerns": [
+            "Posting text is truncated - full requirements not visible",
+            "Role title explicitly says 'Senior' - far above candidate's intern/junior target level",
+            "Domain is insurance distribution strategy, not agentic systems or automation",
+            "Past similar roles at Job-Room/AXA all scored low and were skipped",
+            "German text in posting suggests potential language considerations despite no hard requirement detected"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-03T15:29:16.185781+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "AI/ML Engineer & MLOps 80-100%",
+      "location": "Unknown",
+      "url": "https://www.jobs.ch/de/stellenangebote/detail/f10d76e3-1777-4a80-8a70-49990cde0b42/?utm_source=automail-job-push&utm_medium=email&utm_campaign=wb%3Ajobs%7Ctg%3Ab2c%7Ccn%3Aww%7Clg%3Ade%7Cmg%3Ajob-views%7Cpd%3An%7Ccd%3Arecommended-jobs&utm_content=job-link&source=dsp_mail&uid=f5ed677b-f8d7-4eed-834f-a8eb1c8916c2&mid=443d9a42-2585-48ef-aed3-9c778666644a",
+      "portal": "jobs.ch",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-03T15:29:16.185781+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Google",
+      "title": "Software Engineer II, YouTube Studio, Full Stack",
+      "location": "Zurich",
+      "url": "https://www.linkedin.com/comm/jobs/view/4458660025/?trackingId=Zbq5YooMdujEwc4BoAdhmg%3D%3D&refId=QeM1x82cVl%2FSH5z2mZhNFg%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_qualification_board%3B38lDdT8kS56VxEYIRGw4GQ%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3M75VUshS2QIo1&trk=eml-email_jobs_qualification_board-JOBS_POSTING_SECTION_1-0-job_card_2_jobid_4458660025_fmid_gbrmkn~mtlfgz4q~ll&trkEmail=eml-email_jobs_qualification_board-JOBS_POSTING_SECTION_1-0-job_card_2_jobid_4458660025_fmid_gbrmkn~mtlfgz4q~ll-null-gbrmkn~mtlfgz4q~ll-null-null&eid=gbrmkn-mtlfgz4q-ll&otpToken=ZGU2ZjNmODA3Y2Q5ZDUwNGEzZDI2NjE5MmQwOTcyYTc1NjZjY2ViOGJhMTQzMWFkYzM3MjE3MjhiNGMxOTJlNTJiZmZiZDZiOGNiYzkzNjJhNTljYWI3YTYzMTI5NWQwYWRjZjczODNhZTZmMjllNzZiNDVkZTUxYWFkNTg3YjhlZjFmZTBkOWU2NWM4YjNkLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-03T15:29:16.185781+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "SUMEX AG",
+      "title": "Machine Learning & Java Engineer",
+      "location": "Zurich",
+      "url": "https://www.linkedin.com/comm/jobs/view/4455686680/?trackingId=5X4abNwzZysbQANPB4qiPg%3D%3D&refId=QeM1x82cVl%2FSH5z2mZhNFg%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_qualification_board%3B38lDdT8kS56VxEYIRGw4GQ%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3M75VUshS2QIo1&trk=eml-email_jobs_qualification_board-JOBS_POSTING_SECTION_1-0-job_card_3_jobid_4455686680_fmid_gbrmkn~mtlfgz4q~ll&trkEmail=eml-email_jobs_qualification_board-JOBS_POSTING_SECTION_1-0-job_card_3_jobid_4455686680_fmid_gbrmkn~mtlfgz4q~ll-null-gbrmkn~mtlfgz4q~ll-null-null&eid=gbrmkn-mtlfgz4q-ll&otpToken=ZGU2ZjNmODA3Y2Q5ZDUwNGEzZDI2NjE5MmQwOTcyYTc1NjZjY2ViOGJhMTQzMWFkYzM3MjE3MjhiNGMxOTJlNTJiZmZiZDZiOGNiYzkzNjJhNTljYWI3YTYzMTI5NWQwYWRjZjczODNhZTZmMjllNzZiNDVkZTUxYWFkNTg3YjhlZjFmZTBkOWU2NWM4YjNkLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-03T15:29:16.185781+00:00"
   }
 ]
