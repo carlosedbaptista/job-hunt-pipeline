@@ -753,5 +753,899 @@
     "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-09-04T09:21:34.527821+00:00"
+  },
+  {
+    "score": 62,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text truncated at 500 chars - full requirements not visible",
+      "Visible role emphasis is on data infrastructure/pipelines rather than agentic systems or LLM-powered automation",
+      "Graph modeling focus may be more traditional data engineering than the candidate's target of building LLM pipelines end-to-end",
+      "No evidence of ownership or building-from-scratch opportunities visible in excerpt",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Academic Work Switzerland SA",
+      "title": "Junior AI Data Engineer",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/land/ad/5870421502",
+      "portal": "adzuna",
+      "description": "Junior AI Data Engineer (graph modeling) Degree: Done. Next stop: Building the data infrastructure that powers the digital world. Everyone hypes up the front-end, but we know the truth-it's the data pipelines that do the heavy lifting. If you're a fresh Data Engineer hungry for massive scale, it's time to trade textbook theory for petabytes of real-world impact Junior AI Data Engineer (graph modeling) About the role As a Junior AI Data Engineer, you will strengthen the technical delivery of an …"
+    },
+    "technical_fit": "The posting text is severely truncated (500 characters, cut mid-sentence) so I cannot see the full requirements, responsibilities, or whether this role involves agentic systems/LLM work. What IS visible: \"Junior AI Data Engineer (graph modeling)\" with focus on \"data pipelines\" and \"petabytes of real-world impact.\" The candidate's target is specifically agentic systems and automation with LLM-powered pipelines and ownership from day one. This role appears to be traditional data engineering (graph modeling, data infrastructure, pipelines) rather than the agentic/LLM-focused work he seeks. The truncated text prevents confident assessment, but the visible emphasis on data infrastructure over AI/agentic systems suggests a mismatch in role shape. Location (Zürich) is good, language requirement is none, and he has data engineering skills, but the role shape mismatch is the primary concern. Score capped below REVIEW threshold due to truncated requirements and apparent misalignment with his core goal of agentic/LLM ownership.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text truncated at 500 chars - full requirements not visible",
+      "Visible role emphasis is on data infrastructure/pipelines rather than agentic systems or LLM-powered automation",
+      "Graph modeling focus may be more traditional data engineering than the candidate's target of building LLM pipelines end-to-end",
+      "No evidence of ownership or building-from-scratch opportunities visible in excerpt"
+    ],
+    "agent_rationale": "The posting text is severely truncated (500 characters, cut mid-sentence) so I cannot see the full requirements, responsibilities, or whether this role involves agentic systems/LLM work. What IS visible: \"Junior AI Data Engineer (graph modeling)\" with focus on \"data pipelines\" and \"petabytes of real-world impact.\" The candidate's target is specifically agentic systems and automation with LLM-powered pipelines and ownership from day one. This role appears to be traditional data engineering (graph modeling, data infrastructure, pipelines) rather than the agentic/LLM-focused work he seeks. The truncated text prevents confident assessment, but the visible emphasis on data infrastructure over AI/agentic systems suggests a mismatch in role shape. Location (Zürich) is good, language requirement is none, and he has data engineering skills, but the role shape mismatch is the primary concern. Score capped below REVIEW threshold due to truncated requirements and apparent misalignment with his core goal of agentic/LLM ownership.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Academic Work"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Junior AI Data Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Data Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "graph modeling"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 62,
+          "decision": "SKIP",
+          "rationale": "The posting text is severely truncated (500 characters, cut mid-sentence) so I cannot see the full requirements, responsibilities, or whether this role involves agentic systems/LLM work. What IS visible: \"Junior AI Data Engineer (graph modeling)\" with focus on \"data pipelines\" and \"petabytes of real-world impact.\" The candidate's target is specifically agentic systems and automation with LLM-powered pipelines and ownership from day one. This role appears to be traditional data engineering (graph modeling, data infrastructure, pipelines) rather than the agentic/LLM-focused work he seeks. The truncated text prevents confident assessment, but the visible emphasis on data infrastructure over AI/agentic systems suggests a mismatch in role shape. Location (Zürich) is good, language requirement is none, and he has data engineering skills, but the role shape mismatch is the primary concern. Score capped below REVIEW threshold due to truncated requirements and apparent misalignment with his core goal of agentic/LLM ownership.",
+          "concerns": [
+            "Posting text truncated at 500 chars - full requirements not visible",
+            "Visible role emphasis is on data infrastructure/pipelines rather than agentic systems or LLM-powered automation",
+            "Graph modeling focus may be more traditional data engineering than the candidate's target of building LLM pipelines end-to-end",
+            "No evidence of ownership or building-from-scratch opportunities visible in excerpt"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-04T15:30:11.297384+00:00"
+  },
+  {
+    "score": 65,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text truncated - requirements and experience level not visible",
+      "Title 'AI Engineer' without junior/intern qualifier suggests mid-level role",
+      "Client-facing project work description may expect more experience than intern level",
+      "Only 1 application in calibration with 0 responses - insufficient data to be aggressive",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "AI Engineer",
+      "location": "Uitikon, Dietikon",
+      "url": "https://www.adzuna.ch/details/5870590733",
+      "portal": "adzuna",
+      "description": "AI Engineer ti\\\\&m steht für technology, innovation \\\\& management und ist der Leader für Digitalisierungsprojekte und \\\\-produkte für alle Branchen. AI Engineer Was dich erwartet Spannende und innovative GenAI\\\\-Projekte für unsere Kunden: von Kreativ\\\\-Workshops über Proof\\\\-of\\\\-Concepts bis zur gemeinsamen Umsetzung produktiver Lösungen Konzeption und Implementierung von LLM\\\\-basierten Applikationen Design und Umsetzung von Retrieval\\\\-Augmented\\\\-Generation\\\\-Systemen (RAG) Umsetzung von …"
+    },
+    "technical_fit": "The posting text is severely truncated (500 chars, cut off mid-sentence), so the requirements section, experience level, and full responsibilities are not visible. The visible content shows strong technical alignment (GenAI, LLM applications, RAG systems) with the candidate's skills and interests, and the location (Dietikon/Uitikon) is in the Zurich area with no German language requirement. However, the title is simply 'AI Engineer' with no junior/intern qualifier visible, and the description mentions client-facing project work ('für unsere Kunden') from workshops through production, which typically implies experience. All 5 past Job-Room evaluations were senior roles scored as SKIP. Without seeing the full requirements or confirming this is entry-level friendly, applying would be speculative. The candidate should find the full posting before considering.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text truncated - requirements and experience level not visible",
+      "Title 'AI Engineer' without junior/intern qualifier suggests mid-level role",
+      "Client-facing project work description may expect more experience than intern level",
+      "Only 1 application in calibration with 0 responses - insufficient data to be aggressive"
+    ],
+    "agent_rationale": "The posting text is severely truncated (500 chars, cut off mid-sentence), so the requirements section, experience level, and full responsibilities are not visible. The visible content shows strong technical alignment (GenAI, LLM applications, RAG systems) with the candidate's skills and interests, and the location (Dietikon/Uitikon) is in the Zurich area with no German language requirement. However, the title is simply 'AI Engineer' with no junior/intern qualifier visible, and the description mentions client-facing project work ('für unsere Kunden') from workshops through production, which typically implies experience. All 5 past Job-Room evaluations were senior roles scored as SKIP. Without seeing the full requirements or confirming this is entry-level friendly, applying would be speculative. The candidate should find the full posting before considering.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "AI Engineer"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 65,
+          "decision": "SKIP",
+          "rationale": "The posting text is severely truncated (500 chars, cut off mid-sentence), so the requirements section, experience level, and full responsibilities are not visible. The visible content shows strong technical alignment (GenAI, LLM applications, RAG systems) with the candidate's skills and interests, and the location (Dietikon/Uitikon) is in the Zurich area with no German language requirement. However, the title is simply 'AI Engineer' with no junior/intern qualifier visible, and the description mentions client-facing project work ('für unsere Kunden') from workshops through production, which typically implies experience. All 5 past Job-Room evaluations were senior roles scored as SKIP. Without seeing the full requirements or confirming this is entry-level friendly, applying would be speculative. The candidate should find the full posting before considering.",
+          "concerns": [
+            "Posting text truncated - requirements and experience level not visible",
+            "Title 'AI Engineer' without junior/intern qualifier suggests mid-level role",
+            "Client-facing project work description may expect more experience than intern level",
+            "Only 1 application in calibration with 0 responses - insufficient data to be aggressive"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-04T15:30:11.297384+00:00"
+  },
+  {
+    "score": 65,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text truncated at 500 characters — requirements section not visible",
+      "Visible description emphasizes digital twin and real-time optimization, not LLM/agentic systems",
+      "Domain (automotive aftersales / bodyshops) is unfamiliar to candidate — not a blocker per se, but adds uncertainty given thin text",
+      "Only 1 past application with no response yet — limited calibration data",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "aspaara AG",
+      "title": "AI Engineer (Applied AI, B2B SaaS)",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5867595415",
+      "portal": "adzuna",
+      "description": "About the Company We are a fast-growing B2B SaaS company building an AI-driven platform to transform automotive aftersales operations. Our product helps bodyshops, dealer groups, and multi-site operators optimize workflows, improve efficiency, and make better decisions through data. Using digital twin technology and real-time optimization, we uncover operational improvements that are often hidden in day-to-day processes. In practice, this means helping workshops plan work more accurately, assig…"
+    },
+    "technical_fit": "The posting text is severely truncated (500 chars, truncated=true) — the requirements section was never visible, so I cannot assess technical fit, experience level, or role shape with any confidence. What is visible describes a B2B SaaS company in automotive aftersales using \"digital twin technology and real-time optimization,\" which sounds more like traditional operations-research / optimization engineering than the agentic LLM-powered pipeline work the candidate is targeting. The candidate wants to build LLM pipelines end-to-end with real ownership; this role's visible description points to workflow optimization and digital twins rather than LLM agents or generative AI. Location is Zürich (good), language requirement is none (good), permit is not an issue. However, without seeing requirements, and given the visible domain/tech mismatch with the candidate's stated goals, the conservative call is SKIP. If the full text were available and revealed LLM/agentic work, this could be revisited.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text truncated at 500 characters — requirements section not visible",
+      "Visible description emphasizes digital twin and real-time optimization, not LLM/agentic systems",
+      "Domain (automotive aftersales / bodyshops) is unfamiliar to candidate — not a blocker per se, but adds uncertainty given thin text",
+      "Only 1 past application with no response yet — limited calibration data"
+    ],
+    "agent_rationale": "The posting text is severely truncated (500 chars, truncated=true) — the requirements section was never visible, so I cannot assess technical fit, experience level, or role shape with any confidence. What is visible describes a B2B SaaS company in automotive aftersales using \"digital twin technology and real-time optimization,\" which sounds more like traditional operations-research / optimization engineering than the agentic LLM-powered pipeline work the candidate is targeting. The candidate wants to build LLM pipelines end-to-end with real ownership; this role's visible description points to workflow optimization and digital twins rather than LLM agents or generative AI. Location is Zürich (good), language requirement is none (good), permit is not an issue. However, without seeing requirements, and given the visible domain/tech mismatch with the candidate's stated goals, the conservative call is SKIP. If the full text were available and revealed LLM/agentic work, this could be revisited.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "aspaara"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "AI Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Applied AI"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "SaaS"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 65,
+          "decision": "SKIP",
+          "rationale": "The posting text is severely truncated (500 chars, truncated=true) — the requirements section was never visible, so I cannot assess technical fit, experience level, or role shape with any confidence. What is visible describes a B2B SaaS company in automotive aftersales using \"digital twin technology and real-time optimization,\" which sounds more like traditional operations-research / optimization engineering than the agentic LLM-powered pipeline work the candidate is targeting. The candidate wants to build LLM pipelines end-to-end with real ownership; this role's visible description points to workflow optimization and digital twins rather than LLM agents or generative AI. Location is Zürich (good), language requirement is none (good), permit is not an issue. However, without seeing requirements, and given the visible domain/tech mismatch with the candidate's stated goals, the conservative call is SKIP. If the full text were available and revealed LLM/agentic work, this could be revisited.",
+          "concerns": [
+            "Posting text truncated at 500 characters — requirements section not visible",
+            "Visible description emphasizes digital twin and real-time optimization, not LLM/agentic systems",
+            "Domain (automotive aftersales / bodyshops) is unfamiliar to candidate — not a blocker per se, but adds uncertainty given thin text",
+            "Only 1 past application with no response yet — limited calibration data"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-04T15:30:11.297384+00:00"
+  },
+  {
+    "score": 58,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated at 500 characters - full requirements invisible",
+      "Role title 'Professional' suggests mid-level, not internship/junior",
+      "Financial services CRM focus may not align with candidate's desire for agentic systems ownership",
+      "Past evaluations of this exact role clustered at 65-72, mostly REVIEW/SKIP range",
+      "Only 1 application sent so far with 0 responses - limited calibration data",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Professional Process Automation & AI Engineer",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5870589687",
+      "portal": "adzuna",
+      "description": "Professional Process Automation \\\\& AI Engineer (Financial Services) Das VZ ist der führende unabhängige Finanzdienstleister der Schweiz. Wir beraten Privatpersonen und Firmen rund ums Geld, verwalten Vermögen und bieten attraktive Finanzdienstleistungen an. Da wir kräftig wachsen, suchen wir Verstärkung für unser Team Unternehmensentwicklung beim Paradeplatz in Zürich. Professional Process Automation \\\\& AI Engineer (Financial Services) Das erwartet dich bei uns Du wirst zur CRM\\\\-Spezialistin…"
+    },
+    "technical_fit": "The posting text is severely truncated (500 chars, mid-sentence), so the full requirements are invisible. What we can see is that this is a 'Professional Process Automation & AI Engineer' role at VZ VermögensZentrum (a Swiss financial services firm) in Zürich, with CRM specialization mentioned. Past evaluations of this exact title at VZ scored 65-72, with most recent ones at 72 (REVIEW) and one at 65 (SKIP). A past evaluation of this exact Job-Room posting scored 65/SKIP. The candidate is looking for an internship or junior role with real ownership in agentic systems. The 'Professional' title and financial services domain suggest this is likely a mid-level role, not an internship. The truncated text prevents confident assessment, but the pattern from past evaluations and the role's seniority indicators point to SKIP. No hard language blockers detected (tier=none). Location is Zürich, which fits. However, without seeing the full requirements, and given the role shape mismatch (professional-level in financial services CRM vs. intern/junior agentic systems builder), this is below the threshold.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text is truncated at 500 characters - full requirements invisible",
+      "Role title 'Professional' suggests mid-level, not internship/junior",
+      "Financial services CRM focus may not align with candidate's desire for agentic systems ownership",
+      "Past evaluations of this exact role clustered at 65-72, mostly REVIEW/SKIP range",
+      "Only 1 application sent so far with 0 responses - limited calibration data"
+    ],
+    "agent_rationale": "The posting text is severely truncated (500 chars, mid-sentence), so the full requirements are invisible. What we can see is that this is a 'Professional Process Automation & AI Engineer' role at VZ VermögensZentrum (a Swiss financial services firm) in Zürich, with CRM specialization mentioned. Past evaluations of this exact title at VZ scored 65-72, with most recent ones at 72 (REVIEW) and one at 65 (SKIP). A past evaluation of this exact Job-Room posting scored 65/SKIP. The candidate is looking for an internship or junior role with real ownership in agentic systems. The 'Professional' title and financial services domain suggest this is likely a mid-level role, not an internship. The truncated text prevents confident assessment, but the pattern from past evaluations and the role's seniority indicators point to SKIP. No hard language blockers detected (tier=none). Location is Zürich, which fits. However, without seeing the full requirements, and given the role shape mismatch (professional-level in financial services CRM vs. intern/junior agentic systems builder), this is below the threshold.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "VZ"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Process Automation"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "AI Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 58,
+          "decision": "SKIP",
+          "rationale": "The posting text is severely truncated (500 chars, mid-sentence), so the full requirements are invisible. What we can see is that this is a 'Professional Process Automation & AI Engineer' role at VZ VermögensZentrum (a Swiss financial services firm) in Zürich, with CRM specialization mentioned. Past evaluations of this exact title at VZ scored 65-72, with most recent ones at 72 (REVIEW) and one at 65 (SKIP). A past evaluation of this exact Job-Room posting scored 65/SKIP. The candidate is looking for an internship or junior role with real ownership in agentic systems. The 'Professional' title and financial services domain suggest this is likely a mid-level role, not an internship. The truncated text prevents confident assessment, but the pattern from past evaluations and the role's seniority indicators point to SKIP. No hard language blockers detected (tier=none). Location is Zürich, which fits. However, without seeing the full requirements, and given the role shape mismatch (professional-level in financial services CRM vs. intern/junior agentic systems builder), this is below the threshold.",
+          "concerns": [
+            "Posting text is truncated at 500 characters - full requirements invisible",
+            "Role title 'Professional' suggests mid-level, not internship/junior",
+            "Financial services CRM focus may not align with candidate's desire for agentic systems ownership",
+            "Past evaluations of this exact role clustered at 65-72, mostly REVIEW/SKIP range",
+            "Only 1 application sent so far with 0 responses - limited calibration data"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-04T15:30:11.297384+00:00"
+  },
+  {
+    "score": 45,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting is truncated (500 chars) — full requirements not visible, keeping score conservative",
+      "Role title 'AI Platform Architect' indicates senior-level architecture position, not internship/junior",
+      "ti&m is a consulting firm; client-facing workshops and PoCs suggest senior responsibility and likely German requirements beyond candidate's A2",
+      "Past identical title evaluations scored 45/SKIP",
+      "Candidate seeking ownership in an intern/junior context, not a senior architect role",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "AI Platform Architect",
+      "location": "Uitikon, Dietikon",
+      "url": "https://www.adzuna.ch/details/5870590727",
+      "portal": "adzuna",
+      "description": "AI Platform Architect ti\\\\&m steht für technology, innovation \\\\& management und ist der Leader für Digitalisierungsprojekte und \\\\-produkte für alle Branchen. AI Platform Architect Was dich erwartet Spannende und innovative AI\\\\-Plattform\\\\-Projekte für unsere Kunden: von Kreativ\\\\-Workshops über Proof\\\\-of\\\\-Concepts bis zur gemeinsamen Umsetzung produktiver Lösungen Konzeption und Design holistischer AI\\\\-Plattformen auf Basis von Cloud oder Open\\\\-Source\\\\-Bausteinen, von der Referenzarchit…"
+    },
+    "technical_fit": "The posting is severely truncated (500 chars, truncated=true), so full requirements are not visible. However, what is visible already shows strong mismatches: (1) The role is \"AI Platform Architect\" at ti&m (a consulting/digital agency), which is a senior-level architecture position, not an internship or junior role. The candidate is explicitly seeking an internship or junior role with ownership but at an entry level. (2) Past evaluations for the exact same title (AI Platform Architect at ti&m AG) scored 45 and were SKIP decisions, consistent with this being a senior role. (3) The visible German text and context suggest this is a client-facing consulting role that likely requires strong German for workshops and customer interaction. (4) The candidate's profile is heavily weighted toward hands-on LLM pipeline building and automation at the junior/intern level, not platform architecture at the senior level. The truncated text prevents full confidence, but the senior title, consulting nature, and past pattern make this a clear SKIP. No hard language blocker was detected in the scanned text, but the role shape is fundamentally wrong.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting is truncated (500 chars) — full requirements not visible, keeping score conservative",
+      "Role title 'AI Platform Architect' indicates senior-level architecture position, not internship/junior",
+      "ti&m is a consulting firm; client-facing workshops and PoCs suggest senior responsibility and likely German requirements beyond candidate's A2",
+      "Past identical title evaluations scored 45/SKIP",
+      "Candidate seeking ownership in an intern/junior context, not a senior architect role"
+    ],
+    "agent_rationale": "The posting is severely truncated (500 chars, truncated=true), so full requirements are not visible. However, what is visible already shows strong mismatches: (1) The role is \"AI Platform Architect\" at ti&m (a consulting/digital agency), which is a senior-level architecture position, not an internship or junior role. The candidate is explicitly seeking an internship or junior role with ownership but at an entry level. (2) Past evaluations for the exact same title (AI Platform Architect at ti&m AG) scored 45 and were SKIP decisions, consistent with this being a senior role. (3) The visible German text and context suggest this is a client-facing consulting role that likely requires strong German for workshops and customer interaction. (4) The candidate's profile is heavily weighted toward hands-on LLM pipeline building and automation at the junior/intern level, not platform architecture at the senior level. The truncated text prevents full confidence, but the senior title, consulting nature, and past pattern make this a clear SKIP. No hard language blocker was detected in the scanned text, but the role shape is fundamentally wrong.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "AI Platform Architect"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 45,
+          "decision": "SKIP",
+          "rationale": "The posting is severely truncated (500 chars, truncated=true), so full requirements are not visible. However, what is visible already shows strong mismatches: (1) The role is \"AI Platform Architect\" at ti&m (a consulting/digital agency), which is a senior-level architecture position, not an internship or junior role. The candidate is explicitly seeking an internship or junior role with ownership but at an entry level. (2) Past evaluations for the exact same title (AI Platform Architect at ti&m AG) scored 45 and were SKIP decisions, consistent with this being a senior role. (3) The visible German text and context suggest this is a client-facing consulting role that likely requires strong German for workshops and customer interaction. (4) The candidate's profile is heavily weighted toward hands-on LLM pipeline building and automation at the junior/intern level, not platform architecture at the senior level. The truncated text prevents full confidence, but the senior title, consulting nature, and past pattern make this a clear SKIP. No hard language blocker was detected in the scanned text, but the role shape is fundamentally wrong.",
+          "concerns": [
+            "Posting is truncated (500 chars) — full requirements not visible, keeping score conservative",
+            "Role title 'AI Platform Architect' indicates senior-level architecture position, not internship/junior",
+            "ti&m is a consulting firm; client-facing workshops and PoCs suggest senior responsibility and likely German requirements beyond candidate's A2",
+            "Past identical title evaluations scored 45/SKIP",
+            "Candidate seeking ownership in an intern/junior context, not a senior architect role"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-04T15:30:11.297384+00:00"
+  },
+  {
+    "score": 35,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated - full requirements not visible",
+      "Senior-level role vs candidate seeking internship/junior position",
+      "Predictive maintenance in aluminum manufacturing is far from agentic AI/LLM systems",
+      "No visible connection to LLMs, automation pipelines, or software engineering",
+      "Candidate lacks industrial engineering/mechanical background",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Novelis",
+      "title": "Senior Predictive Maintenance Engineer (m/f/d)",
+      "location": "Küsnacht, Meilen",
+      "url": "https://www.adzuna.ch/details/5870448620",
+      "portal": "adzuna",
+      "description": "Who we are Novelis is driven by its purpose of Shaping a Sustainable World Together. As a global leader in innovative products and services and the world's largest recycler of aluminum, we partner with customers in the automotive, beverage can, aerospace and specialties industries to deliver solutions that improve the benefits of balanced lightweight aluminum. We have a coordinated network of technically sophisticated rolling and recycling plants as well as foundries across 29 facilities in 9 c…"
+    },
+    "technical_fit": "This is a Senior Predictive Maintenance Engineer role at Novelis, an aluminum manufacturing company. The posting text is heavily truncated (only 500 characters, mid-sentence), so the full requirements were never visible. However, even from what is visible and the job title, this is clearly a senior-level engineering position in industrial/manufacturing predictive maintenance - a domain and seniority level completely misaligned with the candidate's profile. The candidate is seeking an internship or junior role in agentic systems, LLM-powered automation, and AI pipelines with real ownership. This role is: (1) Senior-level (he is looking for internship/junior), (2) In predictive maintenance/engineering for aluminum manufacturing (no domain overlap with AI/LLM/agentic systems), (3) The title suggests mechanical/electrical engineering focus rather than software/AI development. Location is Küsnacht/Meilen (Zurich area), which is acceptable, and language requirement is none (English working language). But the role shape, seniority, and technical domain are fundamentally mismatched. The candidate would not be excited about this, would not grow in his target direction, and likely wouldn't qualify for a senior engineering role given his current experience level.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text is truncated - full requirements not visible",
+      "Senior-level role vs candidate seeking internship/junior position",
+      "Predictive maintenance in aluminum manufacturing is far from agentic AI/LLM systems",
+      "No visible connection to LLMs, automation pipelines, or software engineering",
+      "Candidate lacks industrial engineering/mechanical background"
+    ],
+    "agent_rationale": "This is a Senior Predictive Maintenance Engineer role at Novelis, an aluminum manufacturing company. The posting text is heavily truncated (only 500 characters, mid-sentence), so the full requirements were never visible. However, even from what is visible and the job title, this is clearly a senior-level engineering position in industrial/manufacturing predictive maintenance - a domain and seniority level completely misaligned with the candidate's profile. The candidate is seeking an internship or junior role in agentic systems, LLM-powered automation, and AI pipelines with real ownership. This role is: (1) Senior-level (he is looking for internship/junior), (2) In predictive maintenance/engineering for aluminum manufacturing (no domain overlap with AI/LLM/agentic systems), (3) The title suggests mechanical/electrical engineering focus rather than software/AI development. Location is Küsnacht/Meilen (Zurich area), which is acceptable, and language requirement is none (English working language). But the role shape, seniority, and technical domain are fundamentally mismatched. The candidate would not be excited about this, would not grow in his target direction, and likely wouldn't qualify for a senior engineering role given his current experience level.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Novelis"
+        }
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 35,
+          "decision": "SKIP",
+          "rationale": "This is a Senior Predictive Maintenance Engineer role at Novelis, an aluminum manufacturing company. The posting text is heavily truncated (only 500 characters, mid-sentence), so the full requirements were never visible. However, even from what is visible and the job title, this is clearly a senior-level engineering position in industrial/manufacturing predictive maintenance - a domain and seniority level completely misaligned with the candidate's profile. The candidate is seeking an internship or junior role in agentic systems, LLM-powered automation, and AI pipelines with real ownership. This role is: (1) Senior-level (he is looking for internship/junior), (2) In predictive maintenance/engineering for aluminum manufacturing (no domain overlap with AI/LLM/agentic systems), (3) The title suggests mechanical/electrical engineering focus rather than software/AI development. Location is Küsnacht/Meilen (Zurich area), which is acceptable, and language requirement is none (English working language). But the role shape, seniority, and technical domain are fundamentally mismatched. The candidate would not be excited about this, would not grow in his target direction, and likely wouldn't qualify for a senior engineering role given his current experience level.",
+          "concerns": [
+            "Posting text is truncated - full requirements not visible",
+            "Senior-level role vs candidate seeking internship/junior position",
+            "Predictive maintenance in aluminum manufacturing is far from agentic AI/LLM systems",
+            "No visible connection to LLMs, automation pipelines, or software engineering",
+            "Candidate lacks industrial engineering/mechanical background"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-04T15:30:11.297384+00:00"
+  },
+  {
+    "score": 25,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Truncated posting text - full requirements not visible",
+      "Role is explicitly a Lead position requiring team management and architecture ownership",
+      "Candidate is intern/junior level seeking hands-on building roles, not leadership positions",
+      "Significant experience gap for senior responsibilities",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Software Engineering Lead",
+      "location": "Zug",
+      "url": "https://www.adzuna.ch/details/5870592090",
+      "portal": "adzuna",
+      "description": "Software Engineering Lead Firmenbeschreibung Festanstellung bei unserem Kunden / 80\\\\-100% / 3 Tage onsite Du gestaltest ein Greenfield\\\\-Produkt von Anfang an mit, prägst die Architektur, triffst wichtige Technologieentscheidungen und bringst moderne AI\\\\-Themen aktiv ins Engineering ei Jobbeschreibung Technische Führung und Weiterentwicklung eines Software\\\\-Engineering\\\\-Teams Verantwortung für Softwarearchitektur, Technologie\\\\-Stack und technische Standards Hands\\\\-on Softwareentwicklung m…"
+    },
+    "technical_fit": "This is a Senior/Lead role (\"Software Engineering Lead\", \"Technische Führung\", \"Verantwortung für Softwarearchitektur\") requiring team leadership, architecture ownership, and technology stack decisions. The candidate is an intern/junior-level professional explicitly seeking an internship or junior role with hands-on building, not a leadership position managing teams and architecture. The posting text is truncated (500 chars, mid-sentence), so full requirements are not visible, but what is visible clearly indicates senior-level responsibilities far above the candidate's experience level. Location Zug is acceptable, language is not a blocker (no hard German requirement detected), but the role level is fundamentally mismatched with the candidate's career stage and stated goals.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Truncated posting text - full requirements not visible",
+      "Role is explicitly a Lead position requiring team management and architecture ownership",
+      "Candidate is intern/junior level seeking hands-on building roles, not leadership positions",
+      "Significant experience gap for senior responsibilities"
+    ],
+    "agent_rationale": "This is a Senior/Lead role (\"Software Engineering Lead\", \"Technische Führung\", \"Verantwortung für Softwarearchitektur\") requiring team leadership, architecture ownership, and technology stack decisions. The candidate is an intern/junior-level professional explicitly seeking an internship or junior role with hands-on building, not a leadership position managing teams and architecture. The posting text is truncated (500 chars, mid-sentence), so full requirements are not visible, but what is visible clearly indicates senior-level responsibilities far above the candidate's experience level. Location Zug is acceptable, language is not a blocker (no hard German requirement detected), but the role level is fundamentally mismatched with the candidate's career stage and stated goals.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Software Engineering Lead"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 25,
+          "decision": "SKIP",
+          "rationale": "This is a Senior/Lead role (\"Software Engineering Lead\", \"Technische Führung\", \"Verantwortung für Softwarearchitektur\") requiring team leadership, architecture ownership, and technology stack decisions. The candidate is an intern/junior-level professional explicitly seeking an internship or junior role with hands-on building, not a leadership position managing teams and architecture. The posting text is truncated (500 chars, mid-sentence), so full requirements are not visible, but what is visible clearly indicates senior-level responsibilities far above the candidate's experience level. Location Zug is acceptable, language is not a blocker (no hard German requirement detected), but the role level is fundamentally mismatched with the candidate's career stage and stated goals.",
+          "concerns": [
+            "Truncated posting text - full requirements not visible",
+            "Role is explicitly a Lead position requiring team management and architecture ownership",
+            "Candidate is intern/junior level seeking hands-on building roles, not leadership positions",
+            "Significant experience gap for senior responsibilities"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-04T15:30:11.297384+00:00"
+  },
+  {
+    "score": 25,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Senior leadership role requiring management of three teams - completely mismatched with candidate's target of internship/junior IC role",
+      "Role focuses on organizational transformation and leadership team membership, not hands-on building of agentic systems",
+      "Posting text truncated at 500 characters - full requirements not visible",
+      "Candidate has no leadership/management experience and is explicitly seeking ownership of technical projects, not people management",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Head Analytics & Reporting Kunde & Markt",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5870590099",
+      "portal": "adzuna",
+      "description": "Head Analytics \\\\& Reporting Kunde \\\\& Markt (Senior Leadership) (w/m/d) Gestalte die Analytics\\\\- und Reporting\\\\-Zukunft der Migros mit: Du führst drei agile Teams, verantwortest die Entwicklung von Daten\\\\- und AI\\\\-basierten Lösungen für Kunde \\\\& Markt sowie deren Betrieb und die Migration bestehender Systeme. Als Mitglied des Führungsteams Analytics, Reporting, Data \\\\& Platform treibst du die Transformation zu einer modernen Organisation und die Vision 2035 aktiv voran. Was du bewegst Du…"
+    },
+    "technical_fit": "This is a senior leadership role (\"Head Analytics & Reporting Kunde & Markt (Senior Leadership)\") at Migros that explicitly requires leading three agile teams, being a member of the leadership team, and driving organizational transformation. The candidate is an AI Software Engineer Intern seeking an internship or junior role with hands-on ownership of building LLM-powered pipelines. This role is fundamentally mismatched in seniority - it's a leadership/management position requiring extensive team management and strategic oversight, not an individual contributor building agentic systems. Additionally, the posting text is truncated at only 500 characters, so full requirements are not visible, but the visible content clearly establishes this as a senior leadership role. Past evaluation of the same role at Migros scored 25/SKIP for the same reasons. Location (Zürich) is suitable, and language requirement is none (no hard language blocker), but the seniority gap is insurmountable.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Senior leadership role requiring management of three teams - completely mismatched with candidate's target of internship/junior IC role",
+      "Role focuses on organizational transformation and leadership team membership, not hands-on building of agentic systems",
+      "Posting text truncated at 500 characters - full requirements not visible",
+      "Candidate has no leadership/management experience and is explicitly seeking ownership of technical projects, not people management"
+    ],
+    "agent_rationale": "This is a senior leadership role (\"Head Analytics & Reporting Kunde & Markt (Senior Leadership)\") at Migros that explicitly requires leading three agile teams, being a member of the leadership team, and driving organizational transformation. The candidate is an AI Software Engineer Intern seeking an internship or junior role with hands-on ownership of building LLM-powered pipelines. This role is fundamentally mismatched in seniority - it's a leadership/management position requiring extensive team management and strategic oversight, not an individual contributor building agentic systems. Additionally, the posting text is truncated at only 500 characters, so full requirements are not visible, but the visible content clearly establishes this as a senior leadership role. Past evaluation of the same role at Migros scored 25/SKIP for the same reasons. Location (Zürich) is suitable, and language requirement is none (no hard language blocker), but the seniority gap is insurmountable.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Analytics Reporting"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Migros"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 25,
+          "decision": "SKIP",
+          "rationale": "This is a senior leadership role (\"Head Analytics & Reporting Kunde & Markt (Senior Leadership)\") at Migros that explicitly requires leading three agile teams, being a member of the leadership team, and driving organizational transformation. The candidate is an AI Software Engineer Intern seeking an internship or junior role with hands-on ownership of building LLM-powered pipelines. This role is fundamentally mismatched in seniority - it's a leadership/management position requiring extensive team management and strategic oversight, not an individual contributor building agentic systems. Additionally, the posting text is truncated at only 500 characters, so full requirements are not visible, but the visible content clearly establishes this as a senior leadership role. Past evaluation of the same role at Migros scored 25/SKIP for the same reasons. Location (Zürich) is suitable, and language requirement is none (no hard language blocker), but the seniority gap is insurmountable.",
+          "concerns": [
+            "Senior leadership role requiring management of three teams - completely mismatched with candidate's target of internship/junior IC role",
+            "Role focuses on organizational transformation and leadership team membership, not hands-on building of agentic systems",
+            "Posting text truncated at 500 characters - full requirements not visible",
+            "Candidate has no leadership/management experience and is explicitly seeking ownership of technical projects, not people management"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-04T15:30:11.297384+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Intern Commercial",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=e6a25b200419c5e4&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QCBVPLaK1496tTLMjG6Gl2B-6_RaWH2z0hNOyN2mOioFA&rd=cv__WBhDSvE4qmpjGmxYvJXef5NkBUPQ3HkIyXCDpdM&tk=1k1mfbhgmh0ep800&alid=6a09beeefbc7370ae83f277c&bb=eQHlhrfJhZRghB_0niWuKm8r6kjRMuM66nb_24O2id6JofH4WqG3xoz6IXAhuMZ9H2cli9CeZI8KoyOR-12pqQXYARc1GsPzAlJwEiSYi9WrS-pMw45-4XjUwBsPIue2KPTOo-2YJZ_Ja8w_1Mf72A%3D%3D&tmtk=1k1mfbhgmh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-04T15:30:11.297384+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Banking, Corporate Banking, Full Time Analyst, Zurich - Switzerland, 2027 (applicable for 2026 Citi Summer Interns Only)",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=561a0f7a665f16a3&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QCBVPLaK1496tTLMjG6Gl2B-6_RaWH2z0hNOyN2mOioFA&rd=cv__WBhDSvE4qmpjGmxYvJXef5NkBUPQ3HkIyXCDpdM&tk=1k1mfbhgmh0ep800&alid=6a09beeefbc7370ae83f277c&bb=kxu-Iya8yjCY4wxtq5jmHwDpHntDwM4XGqAYZYlz0_xglKsjzItvMBhg5T0u-yyMVK8ZHCTmo_lb2-fk_NIiy9imWzYiNq_v4XuKhfY_jhYky8cnhn1daDnXYTrDtxlcfBP1s306Zn6pdBq9i6Z3dA%3D%3D&tmtk=1k1mfbhgmh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-04T15:30:11.297384+00:00"
+  },
+  {
+    "score": 25,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Senior-level role, not internship/junior",
+      "Data management & governance consulting is not agentic systems/LLM pipeline building",
+      "Posting truncated - full requirements not visible",
+      "Big-4 consulting culture likely involves heavy client-facing advisory rather than hands-on engineering ownership",
+      "Past similar EY consulting role scored 25/SKIP",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "EY ",
+      "title": "Senior Consultant - Consulting - Data Management & Governance",
+      "location": "Zürich",
+      "url": "https://www.jobs.ch/de/stellenangebote/detail/2a950003-8f6c-4b18-b933-614228140b99/?utm_source=automail-job-push&utm_medium=email&utm_campaign=wb%3Ajobs%7Ctg%3Ab2c%7Ccn%3Aww%7Clg%3Ade%7Cmg%3Ajob-views%7Cpd%3An%7Ccd%3Arecommended-jobs&utm_content=job-link&source=dsp_mail&uid=f5ed677b-f8d7-4eed-834f-a8eb1c8916c2&mid=0bc27528-1bd8-40a4-8a2c-33499b85fdae",
+      "portal": "jobs.ch",
+      "description": "You will collaboratively work on challenging Data management and governance projects for our clients while using the latest technologies. Senior Consultant - Consulting - Data Management & Governance At EY, we're all in to shape your future with confidence. We'll help you succeed in a globally connected powerhouse of diverse teams and take your career wherever you want it to go. Join EY and help to build a better working world. Senior Consultant - Consulting - Data Management & Governance The o…"
+    },
+    "technical_fit": "This is a Senior Consultant role in Data Management & Governance at EY. Multiple fundamental mismatches with the candidate's profile and goals:\n\n1. **Seniority mismatch**: The title explicitly says \"Senior Consultant\" - this is not an internship or junior role. The candidate is specifically looking for internship or junior positions with real ownership, not senior consulting roles.\n\n2. **Role shape mismatch**: The posting mentions \"Data management and governance projects\" using \"latest technologies\" but this is classic big-4 consulting work - likely heavy on strategy, governance frameworks, client presentations, and advisory rather than hands-on building of LLM-powered agentic systems. The candidate wants to build pipelines end-to-end, not do data governance consulting.\n\n3. **Truncated posting**: The text is only 500 characters and truncated mid-sentence, so full requirements are not visible. However, what is visible is enough to determine this is not aligned with the candidate's target role shape.\n\n4. **Past EY evaluation pattern**: Previous EY role \"(Senior) Consultant - Business Consulting - Finance\" was scored 25 and SKIP - similar senior consulting role at same company, similar mismatch.\n\n5. **Language**: No hard language blocker (tier: none), but the German URL and job board (jobs.ch/de) suggest German-language context, though no German requirement was found in the visible text.\n\nThe candidate wants agentic systems, automation, LLM pipelines with ownership - this is traditional data governance consulting at senior level. Complete mismatch on seniority, role shape, and technical focus.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Senior-level role, not internship/junior",
+      "Data management & governance consulting is not agentic systems/LLM pipeline building",
+      "Posting truncated - full requirements not visible",
+      "Big-4 consulting culture likely involves heavy client-facing advisory rather than hands-on engineering ownership",
+      "Past similar EY consulting role scored 25/SKIP"
+    ],
+    "agent_rationale": "This is a Senior Consultant role in Data Management & Governance at EY. Multiple fundamental mismatches with the candidate's profile and goals:\n\n1. **Seniority mismatch**: The title explicitly says \"Senior Consultant\" - this is not an internship or junior role. The candidate is specifically looking for internship or junior positions with real ownership, not senior consulting roles.\n\n2. **Role shape mismatch**: The posting mentions \"Data management and governance projects\" using \"latest technologies\" but this is classic big-4 consulting work - likely heavy on strategy, governance frameworks, client presentations, and advisory rather than hands-on building of LLM-powered agentic systems. The candidate wants to build pipelines end-to-end, not do data governance consulting.\n\n3. **Truncated posting**: The text is only 500 characters and truncated mid-sentence, so full requirements are not visible. However, what is visible is enough to determine this is not aligned with the candidate's target role shape.\n\n4. **Past EY evaluation pattern**: Previous EY role \"(Senior) Consultant - Business Consulting - Finance\" was scored 25 and SKIP - similar senior consulting role at same company, similar mismatch.\n\n5. **Language**: No hard language blocker (tier: none), but the German URL and job board (jobs.ch/de) suggest German-language context, though no German requirement was found in the visible text.\n\nThe candidate wants agentic systems, automation, LLM pipelines with ownership - this is traditional data governance consulting at senior level. Complete mismatch on seniority, role shape, and technical focus.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "EY"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Data Management"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Consulting"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 25,
+          "decision": "SKIP",
+          "rationale": "This is a Senior Consultant role in Data Management & Governance at EY. Multiple fundamental mismatches with the candidate's profile and goals:\n\n1. **Seniority mismatch**: The title explicitly says \"Senior Consultant\" - this is not an internship or junior role. The candidate is specifically looking for internship or junior positions with real ownership, not senior consulting roles.\n\n2. **Role shape mismatch**: The posting mentions \"Data management and governance projects\" using \"latest technologies\" but this is classic big-4 consulting work - likely heavy on strategy, governance frameworks, client presentations, and advisory rather than hands-on building of LLM-powered agentic systems. The candidate wants to build pipelines end-to-end, not do data governance consulting.\n\n3. **Truncated posting**: The text is only 500 characters and truncated mid-sentence, so full requirements are not visible. However, what is visible is enough to determine this is not aligned with the candidate's target role shape.\n\n4. **Past EY evaluation pattern**: Previous EY role \"(Senior) Consultant - Business Consulting - Finance\" was scored 25 and SKIP - similar senior consulting role at same company, similar mismatch.\n\n5. **Language**: No hard language blocker (tier: none), but the German URL and job board (jobs.ch/de) suggest German-language context, though no German requirement was found in the visible text.\n\nThe candidate wants agentic systems, automation, LLM pipelines with ownership - this is traditional data governance consulting at senior level. Complete mismatch on seniority, role shape, and technical focus.",
+          "concerns": [
+            "Senior-level role, not internship/junior",
+            "Data management & governance consulting is not agentic systems/LLM pipeline building",
+            "Posting truncated - full requirements not visible",
+            "Big-4 consulting culture likely involves heavy client-facing advisory rather than hands-on engineering ownership",
+            "Past similar EY consulting role scored 25/SKIP"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-04T15:30:11.297384+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Data Collector / part-time / 8 to 40 hours per week",
+      "location": "Unknown",
+      "url": "https://www.jobs.ch/de/stellenangebote/detail/695bb594-6514-4d7b-b930-f9680a8fb5a6/?utm_source=automail-job-push&utm_medium=email&utm_campaign=wb%3Ajobs%7Ctg%3Ab2c%7Ccn%3Aww%7Clg%3Ade%7Cmg%3Ajob-views%7Cpd%3An%7Ccd%3Arecommended-jobs&utm_content=job-link&source=dsp_mail&uid=f5ed677b-f8d7-4eed-834f-a8eb1c8916c2&mid=0bc27528-1bd8-40a4-8a2c-33499b85fdae",
+      "portal": "jobs.ch",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-04T15:30:11.297384+00:00"
   }
 ]

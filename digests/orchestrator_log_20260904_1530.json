@@ -1,0 +1,54 @@
+{
+  "ts": "2026-09-04T15:30:30.023021+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 5,
+  "usage": {
+    "prompt_tokens": 6292,
+    "completion_tokens": 300
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 3
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run: 12 evaluations (9 SKIP, 3 NOT_EVALUATED, 0 APPLY, 0 REVIEW). No APPLY jobs so no documents or high-score alerts needed. One stale application remains eligible for follow-up but no new drafts were produced. No REVIEW-band jobs to reevaluate. Run is complete.",
+        "rationale": "Evaluations are fresh. With zero APPLY jobs, the only actionable item was follow-ups, which yielded no new drafts. No borderline jobs to re-score. Run finalized cleanly."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 12, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 9, \"ERROR\": 0, \"NOT_EVALUATED\": 3}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 "
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [], \"note\": \"no eligible REVIEW-band jobs in the last 14 days\"}"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run: 12 evaluations (9 SKIP, 3 NOT_EVALUATED, 0 APPLY, 0 REVIEW). No APPLY jobs so no documents or high-score alerts needed. One stale application remains eligible for follow-up but no new drafts were produced. No REVIEW-band jobs to reevaluate. Run is complete.",
+  "agent_rationale": "Evaluations are fresh. With zero APPLY jobs, the only actionable item was follow-ups, which yielded no new drafts. No borderline jobs to re-score. Run finalized cleanly."
+}
