@@ -1,0 +1,54 @@
+{
+  "ts": "2026-09-04T09:21:43.330131+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 5,
+  "usage": {
+    "prompt_tokens": 6645,
+    "completion_tokens": 359
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run had 9 evaluations (fresh), with 4 SKIP, 0 APPLY, 0 REVIEW, and 5 NOT_EVALUATED. No APPLY jobs meant no documents to generate and no high-score alerts to send. One application has gone quiet (>7 days); follow-up drafting found 1 still-eligible but produced 0 new drafts (likely already drafted). Re-evaluated 3 recent REVIEW-band jobs; all stayed in REVIEW (scores 76→76, 72→72, 72→74). No jobs crossed into APPLY. Run complete.",
+        "rationale": "With zero APPLY jobs, the only productive actions were checking for follow-ups and re-evaluating borderline jobs to see if any should be promoted. None were promoted, so the candidate’s queue is unchanged. The run is properly finalized."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 9, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 4, \"ERROR\": 0, \"NOT_EVALUATED\": 5}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"PQ Technologies\", \"title\": \"Intern \\u2013 Python Development & Data Analysis\", \"old_score\": 76, \"old_decision\": \"REVIEW\", \"new_score\": 76, \"new_decision\": \"REVIEW\"}, {\"company\": \"Iudex Non Calculat\", \"title\": \"Engineering Internship - AI/Data\", \"old_score\": 72, \"old_dec"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run had 9 evaluations (fresh), with 4 SKIP, 0 APPLY, 0 REVIEW, and 5 NOT_EVALUATED. No APPLY jobs meant no documents to generate and no high-score alerts to send. One application has gone quiet (>7 days); follow-up drafting found 1 still-eligible but produced 0 new drafts (likely already drafted). Re-evaluated 3 recent REVIEW-band jobs; all stayed in REVIEW (scores 76→76, 72→72, 72→74). No jobs crossed into APPLY. Run complete.",
+  "agent_rationale": "With zero APPLY jobs, the only productive actions were checking for follow-ups and re-evaluating borderline jobs to see if any should be promoted. None were promoted, so the candidate’s queue is unchanged. The run is properly finalized."
+}
