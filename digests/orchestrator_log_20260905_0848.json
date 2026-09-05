@@ -1,0 +1,54 @@
+{
+  "ts": "2026-09-05T08:48:34.652274+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 5,
+  "usage": {
+    "prompt_tokens": 6635,
+    "completion_tokens": 368
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Run completed with 3 evaluations (0 APPLY, 0 REVIEW new, 2 SKIP, 1 not evaluated). No APPLY jobs today, so no documents or high-score alerts needed. 1 stale application remains eligible for follow-up but no new drafts were produced. Re-evaluated 3 borderline REVIEW jobs from the last 14 days; all stayed in REVIEW band.",
+        "rationale": "The day was quiet with zero APPLY jobs and no new high-score matches. I processed the single stale application via draft_followups (0 drafts produced, 1 still eligible), then used remaining budget to reevaluate 3 recent REVIEW-band jobs to see if any should be promoted—none moved. With nothing further to act on, I finalized the run."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 3, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 2, \"ERROR\": 0, \"NOT_EVALUATED\": 1}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"Randstad Digital\", \"title\": \"Junior AI & Knowledge Engineer\", \"old_score\": 74, \"old_decision\": \"REVIEW\", \"new_score\": 74, \"new_decision\": \"REVIEW\"}, {\"company\": \"Iudex Non Calculat\", \"title\": \"Engineering Internship - AI/Data\", \"old_score\": 72, \"old_decision\": \"REVIEW\","
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Run completed with 3 evaluations (0 APPLY, 0 REVIEW new, 2 SKIP, 1 not evaluated). No APPLY jobs today, so no documents or high-score alerts needed. 1 stale application remains eligible for follow-up but no new drafts were produced. Re-evaluated 3 borderline REVIEW jobs from the last 14 days; all stayed in REVIEW band.",
+  "agent_rationale": "The day was quiet with zero APPLY jobs and no new high-score matches. I processed the single stale application via draft_followups (0 drafts produced, 1 still eligible), then used remaining budget to reevaluate 3 recent REVIEW-band jobs to see if any should be promoted—none moved. With nothing further to act on, I finalized the run."
+}
