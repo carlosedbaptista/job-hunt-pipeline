@@ -506,5 +506,403 @@
     "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-09-06T09:09:55.294401+00:00"
+  },
+  {
+    "score": 48,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated (500 chars) — full requirements not visible",
+      "Title explicitly says 'Senior' — candidate seeks internship/junior role",
+      "Large corporate IT services environment (AMAG Informatik) unlikely to offer the 'day one ownership' the candidate wants",
+      "Past Job-Room postings have all been poor fits (scores 15-55)",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Senior Agentic Automation Consultant (m/w/d) 80-100%",
+      "location": "Cham, Zug",
+      "url": "https://www.adzuna.ch/details/5873050230",
+      "portal": "adzuna",
+      "description": " Wir bewegen und begeistern Menschen. Einfach. Nachhaltig. Voraus.  Die zentralisierte AMAG Informatik in Cham ZG verantwortet mit ihren ca. 200 Mitarbeitenden für alle Konzernbereiche die gesamte IT-Wertschöpfungskette, vom Projekt über die Entwicklung und Integration bis hin zum Betrieb und Support. Du möchtest die nächste Generation von AI Agents, Copilots und intelligenter Automatisierung aktiv mitgestalten? Bei uns erhältst du die Möglichkeit, Agentic AI und intelligente Automatisierung au…"
+    },
+    "technical_fit": "This is a SENIOR-level role ('Senior Agentic Automation Consultant') at AMAG Informatik in Cham, Zug. The posting text is severely truncated (500 chars, cut off mid-sentence), so I cannot see the full requirements. However, what is visible already signals major mismatches: (1) The title explicitly says 'Senior' — the candidate is an intern seeking junior/internship roles with real ownership, not a senior consultant position. (2) The role is 80-100%, which typically implies significant experience and client-facing responsibility. (3) The company is AMAG Informatik (a large IT services provider for the AMAG automotive group), not a startup or scale-up where an intern would get the 'from day one' ownership the candidate wants. (4) Past Job-Room postings have all scored poorly (15-55, all SKIP), suggesting this platform tends to surface roles that don't match his profile. The location (Cham, Zug) is acceptable and within commuting distance, and there's no hard language blocker (check_language_requirement returned 'none'). However, the seniority level alone is a fundamental mismatch — the candidate is looking for an internship to go deeper into agentic systems, not a senior consulting role. With truncated text adding uncertainty and the senior title being a clear mismatch, this is well below the threshold.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text is truncated (500 chars) — full requirements not visible",
+      "Title explicitly says 'Senior' — candidate seeks internship/junior role",
+      "Large corporate IT services environment (AMAG Informatik) unlikely to offer the 'day one ownership' the candidate wants",
+      "Past Job-Room postings have all been poor fits (scores 15-55)"
+    ],
+    "agent_rationale": "This is a SENIOR-level role ('Senior Agentic Automation Consultant') at AMAG Informatik in Cham, Zug. The posting text is severely truncated (500 chars, cut off mid-sentence), so I cannot see the full requirements. However, what is visible already signals major mismatches: (1) The title explicitly says 'Senior' — the candidate is an intern seeking junior/internship roles with real ownership, not a senior consultant position. (2) The role is 80-100%, which typically implies significant experience and client-facing responsibility. (3) The company is AMAG Informatik (a large IT services provider for the AMAG automotive group), not a startup or scale-up where an intern would get the 'from day one' ownership the candidate wants. (4) Past Job-Room postings have all scored poorly (15-55, all SKIP), suggesting this platform tends to surface roles that don't match his profile. The location (Cham, Zug) is acceptable and within commuting distance, and there's no hard language blocker (check_language_requirement returned 'none'). However, the seniority level alone is a fundamental mismatch — the candidate is looking for an internship to go deeper into agentic systems, not a senior consulting role. With truncated text adding uncertainty and the senior title being a clear mismatch, this is well below the threshold.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "AMAG"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "agentic"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "automation consultant"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 48,
+          "decision": "SKIP",
+          "rationale": "This is a SENIOR-level role ('Senior Agentic Automation Consultant') at AMAG Informatik in Cham, Zug. The posting text is severely truncated (500 chars, cut off mid-sentence), so I cannot see the full requirements. However, what is visible already signals major mismatches: (1) The title explicitly says 'Senior' — the candidate is an intern seeking junior/internship roles with real ownership, not a senior consultant position. (2) The role is 80-100%, which typically implies significant experience and client-facing responsibility. (3) The company is AMAG Informatik (a large IT services provider for the AMAG automotive group), not a startup or scale-up where an intern would get the 'from day one' ownership the candidate wants. (4) Past Job-Room postings have all scored poorly (15-55, all SKIP), suggesting this platform tends to surface roles that don't match his profile. The location (Cham, Zug) is acceptable and within commuting distance, and there's no hard language blocker (check_language_requirement returned 'none'). However, the seniority level alone is a fundamental mismatch — the candidate is looking for an internship to go deeper into agentic systems, not a senior consulting role. With truncated text adding uncertainty and the senior title being a clear mismatch, this is well below the threshold.",
+          "concerns": [
+            "Posting text is truncated (500 chars) — full requirements not visible",
+            "Title explicitly says 'Senior' — candidate seeks internship/junior role",
+            "Large corporate IT services environment (AMAG Informatik) unlikely to offer the 'day one ownership' the candidate wants",
+            "Past Job-Room postings have all been poor fits (scores 15-55)"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-06T14:38:55.582509+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Médecins Sans Frontières (Switzerland)",
+      "title": "AI Learning Solutions intern",
+      "location": "Geneva, Switzerland",
+      "url": "https://www.linkedin.com/comm/jobs/view/4455704306/?trackingId=nt%2FRVw85QpW6K5djQsRIaQ%3D%3D&refId=aCn258RGS%2Fu%2B%2FOyFeiQhoA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BQiKpHG7RQ0eJZX8meZtX6w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=1M5pzpeOk5Vco1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting_3_jobid_4455704306_fmid_gbrmkn~mtpvlmlr~1z&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting_3_jobid_4455704306_fmid_gbrmkn~mtpvlmlr~1z-null-gbrmkn~mtpvlmlr~1z-null-null&eid=gbrmkn-mtpvlmlr-1z&otpToken=OWVmMGY3NGJjZDFiNzdiMmZmYzAyM2I0OWNlMzI0Mjg2YWM4NDEzM2UxZTcwNDI0YWM3NTcyY2E4ZGI2M2E2ZjI5NjljYWFjZjdiMTAwNGFkOWU4ODQwYTY4MmE4MjQ5YzUxNGY3Y2MyZDE1NzMyMDQ4M2I4ZThkNTYzMzM2M2U5YzZmYjgwYTUyZmY3NGQyLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-06T14:38:55.582509+00:00"
+  },
+  {
+    "score": 35,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated (500 chars) - requirements section not visible",
+      "Location is Geneva, not Zurich/Zug - on-site role far from candidate's base",
+      "Traditional hedge fund environment may not offer the agentic systems ownership the candidate seeks",
+      "Cannot assess technical fit or role shape from available text",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Garda Capital Partners",
+      "title": "Software Engineer Intern (AI Internal Tools)",
+      "location": "Geneva",
+      "url": "https://www.linkedin.com/comm/jobs/view/4452890144/?trackingId=04MsnAkTSAuSK2D2fGIOUg%3D%3D&refId=4oy2vXQ8TGyp2s47szTHbQ%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BQiKpHG7RQ0eJZX8meZtX6w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=1M5pzpeOk5Vco1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting_6_jobid_4452890144_fmid_gbrmkn~mtpvlmlr~1z&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting_6_jobid_4452890144_fmid_gbrmkn~mtpvlmlr~1z-null-gbrmkn~mtpvlmlr~1z-null-null&eid=gbrmkn-mtpvlmlr-1z&otpToken=OWVmMGY3NGJjZDFiNzdiMmZmYzAyM2I0OWNlMzI0Mjg2YWM4NDEzM2UxZTcwNDI0YWM3NTcyY2E4ZGI2M2E2ZjI5NjljYWFjZjdiMTAwNGFkOWU4ODQwYTY4MmE4MjQ5YzUxNGY3Y2MyZDE1NzMyMDQ4M2I4ZThkNTYzMzM2M2U5YzZmYjgwYTUyZmY3NGQyLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": "Garda Capital Partners (Garda) is a multi-billion dollar alternative investment firm with over 22 years of experience deploying relative value strategies across fixed income markets for institutional investors. We hire, grow, and mentor great talent and remain steadfast in our commitment to building a culture that helps them succeed. Garda is more than a workplace. We are built on trust, integrity, and a shared vision for how we work together, the enduring relationships we build, and the consis…"
+    },
+    "technical_fit": "The posting text is severely truncated (500 characters, cut off mid-sentence), so I cannot see the actual job requirements, responsibilities, or technical stack. What is visible is only the company description for Garda Capital Partners, a multi-billion dollar alternative investment firm in Geneva. No past evaluation scores exist for this specific role. \n\nHowever, there are clear reasons to SKIP even without full requirements visibility:\n\n1. LOCATION: Geneva is explicitly NOT Zurich/Zug. The rules state auto-SKIP for roles not in Zurich/Zug unless fully remote and based in Switzerland. This is an on-site role in Geneva, which is a different city ~280km away.\n\n2. TRUNCATED TEXT: With truncated=true and only 500 characters, the requirements section was never seen. This makes it impossible to assess technical fit, role shape, or whether this involves agentic systems and real ownership. The pipeline caps such jobs at REVIEW at best.\n\n3. DOMAIN MISMATCH SIGNAL: The visible text describes a traditional fixed-income alternative investment firm. While the candidate is open to unfamiliar domains, financial services (especially hedge fund/internal tools) often have very specific culture and requirements that may not align with his desire for \"real ownership from day one\" in agentic systems.\n\n4. The language requirement is none (no German/French requirement detected in the visible text), so no language blocker.\n\nGiven the Geneva location (auto-SKIP trigger) and severely truncated job description making proper assessment impossible, this is a clear SKIP.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text is truncated (500 chars) - requirements section not visible",
+      "Location is Geneva, not Zurich/Zug - on-site role far from candidate's base",
+      "Traditional hedge fund environment may not offer the agentic systems ownership the candidate seeks",
+      "Cannot assess technical fit or role shape from available text"
+    ],
+    "agent_rationale": "The posting text is severely truncated (500 characters, cut off mid-sentence), so I cannot see the actual job requirements, responsibilities, or technical stack. What is visible is only the company description for Garda Capital Partners, a multi-billion dollar alternative investment firm in Geneva. No past evaluation scores exist for this specific role. \n\nHowever, there are clear reasons to SKIP even without full requirements visibility:\n\n1. LOCATION: Geneva is explicitly NOT Zurich/Zug. The rules state auto-SKIP for roles not in Zurich/Zug unless fully remote and based in Switzerland. This is an on-site role in Geneva, which is a different city ~280km away.\n\n2. TRUNCATED TEXT: With truncated=true and only 500 characters, the requirements section was never seen. This makes it impossible to assess technical fit, role shape, or whether this involves agentic systems and real ownership. The pipeline caps such jobs at REVIEW at best.\n\n3. DOMAIN MISMATCH SIGNAL: The visible text describes a traditional fixed-income alternative investment firm. While the candidate is open to unfamiliar domains, financial services (especially hedge fund/internal tools) often have very specific culture and requirements that may not align with his desire for \"real ownership from day one\" in agentic systems.\n\n4. The language requirement is none (no German/French requirement detected in the visible text), so no language blocker.\n\nGiven the Geneva location (auto-SKIP trigger) and severely truncated job description making proper assessment impossible, this is a clear SKIP.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Garda Capital Partners"
+        }
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 35,
+          "decision": "SKIP",
+          "rationale": "The posting text is severely truncated (500 characters, cut off mid-sentence), so I cannot see the actual job requirements, responsibilities, or technical stack. What is visible is only the company description for Garda Capital Partners, a multi-billion dollar alternative investment firm in Geneva. No past evaluation scores exist for this specific role. \n\nHowever, there are clear reasons to SKIP even without full requirements visibility:\n\n1. LOCATION: Geneva is explicitly NOT Zurich/Zug. The rules state auto-SKIP for roles not in Zurich/Zug unless fully remote and based in Switzerland. This is an on-site role in Geneva, which is a different city ~280km away.\n\n2. TRUNCATED TEXT: With truncated=true and only 500 characters, the requirements section was never seen. This makes it impossible to assess technical fit, role shape, or whether this involves agentic systems and real ownership. The pipeline caps such jobs at REVIEW at best.\n\n3. DOMAIN MISMATCH SIGNAL: The visible text describes a traditional fixed-income alternative investment firm. While the candidate is open to unfamiliar domains, financial services (especially hedge fund/internal tools) often have very specific culture and requirements that may not align with his desire for \"real ownership from day one\" in agentic systems.\n\n4. The language requirement is none (no German/French requirement detected in the visible text), so no language blocker.\n\nGiven the Geneva location (auto-SKIP trigger) and severely truncated job description making proper assessment impossible, this is a clear SKIP.",
+          "concerns": [
+            "Posting text is truncated (500 chars) - requirements section not visible",
+            "Location is Geneva, not Zurich/Zug - on-site role far from candidate's base",
+            "Traditional hedge fund environment may not offer the agentic systems ownership the candidate seeks",
+            "Cannot assess technical fit or role shape from available text"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-06T14:38:55.582509+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Hilti Group",
+      "title": "Intern – Data & AI Product Owner (m/f/x)",
+      "location": "Buchs",
+      "url": "https://www.linkedin.com/comm/jobs/view/4375934552/?trackingId=im%2BSmlXOQ%2Bm2tiI5eiwbTg%3D%3D&refId=KhGWbhjwRG%2BPqdcwFi117w%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BQiKpHG7RQ0eJZX8meZtX6w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=1M5pzpeOk5Vco1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting_7_jobid_4375934552_fmid_gbrmkn~mtpvlmlr~1z&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting_7_jobid_4375934552_fmid_gbrmkn~mtpvlmlr~1z-null-gbrmkn~mtpvlmlr~1z-null-null&eid=gbrmkn-mtpvlmlr-1z&otpToken=OWVmMGY3NGJjZDFiNzdiMmZmYzAyM2I0OWNlMzI0Mjg2YWM4NDEzM2UxZTcwNDI0YWM3NTcyY2E4ZGI2M2E2ZjI5NjljYWFjZjdiMTAwNGFkOWU4ODQwYTY4MmE4MjQ5YzUxNGY3Y2MyZDE1NzMyMDQ4M2I4ZThkNTYzMzM2M2U5YzZmYjgwYTUyZmY3NGQyLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-06T14:38:55.582509+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Cartier",
+      "title": "Data Scientist Intern",
+      "location": "Meyrin",
+      "url": "https://www.linkedin.com/comm/jobs/view/4431241366/?trackingId=ZkTBXcaCR0ev3E%2FsZgYtuQ%3D%3D&refId=0hUKmnyFQKC0EVfRkV68gQ%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BQiKpHG7RQ0eJZX8meZtX6w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=1M5pzpeOk5Vco1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting_8_jobid_4431241366_fmid_gbrmkn~mtpvlmlr~1z&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting_8_jobid_4431241366_fmid_gbrmkn~mtpvlmlr~1z-null-gbrmkn~mtpvlmlr~1z-null-null&eid=gbrmkn-mtpvlmlr-1z&otpToken=OWVmMGY3NGJjZDFiNzdiMmZmYzAyM2I0OWNlMzI0Mjg2YWM4NDEzM2UxZTcwNDI0YWM3NTcyY2E4ZGI2M2E2ZjI5NjljYWFjZjdiMTAwNGFkOWU4ODQwYTY4MmE4MjQ5YzUxNGY3Y2MyZDE1NzMyMDQ4M2I4ZThkNTYzMzM2M2U5YzZmYjgwYTUyZmY3NGQyLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-06T14:38:55.582509+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Jet Aviation",
+      "title": "Internship - AI Engineering - 6 months",
+      "location": "Basel",
+      "url": "https://www.linkedin.com/comm/jobs/view/4460319933/?trackingId=7HclTlTvTBCeFDzzw9Ktgg%3D%3D&refId=5MjZTUZfQhmIyTue2qCoLQ%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BQiKpHG7RQ0eJZX8meZtX6w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=1M5pzpeOk5Vco1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting_9_jobid_4460319933_fmid_gbrmkn~mtpvlmlr~1z&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting_9_jobid_4460319933_fmid_gbrmkn~mtpvlmlr~1z-null-gbrmkn~mtpvlmlr~1z-null-null&eid=gbrmkn-mtpvlmlr-1z&otpToken=OWVmMGY3NGJjZDFiNzdiMmZmYzAyM2I0OWNlMzI0Mjg2YWM4NDEzM2UxZTcwNDI0YWM3NTcyY2E4ZGI2M2E2ZjI5NjljYWFjZjdiMTAwNGFkOWU4ODQwYTY4MmE4MjQ5YzUxNGY3Y2MyZDE1NzMyMDQ4M2I4ZThkNTYzMzM2M2U5YzZmYjgwYTUyZmY3NGQyLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-06T14:38:55.582509+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Computer Vision Intern",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=8223ffc37c42abda&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QC2oG8ucQabFMs7OTHb9Ea76pdGXteOdVfUsi0ERxGqoI&rd=Ahaf72ZDihptgqsdvrpp6ZXef5NkBUPQ3HkIyXCDpdM&tk=1k1rh5onqh0ep800&alid=6a09beeefbc7370ae83f277c&bb=sjJy5KUuTVgFfCXnfOcN1COGPozjsHvkj3_9nuVnpDBy7IxfRZoSQRYzdwPuG3C2B8pSkxXmQOQ6J5YRmbrBKZepDgDAiAdKIzkQc0s6QC9rZgtYzVcZeHC-co3yek0xEQ27lrpMWnvlLhILtihsxg%3D%3D&tmtk=1k1rh5onqh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-06T14:38:55.582509+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "ML Engineering Intern",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=6b43d95738a53963&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QC2oG8ucQabFMs7OTHb9Ea76pdGXteOdVfUsi0ERxGqoI&rd=Ahaf72ZDihptgqsdvrpp6ZXef5NkBUPQ3HkIyXCDpdM&tk=1k1rh5onqh0ep800&alid=6a09beeefbc7370ae83f277c&bb=d8mOzoeF1wTPMnaR9RywdnaSZ3VdVJDIaNeIyJMQotTHR6bbfB1qmDyT9cjGK3iUOVJ6Dpi2w_qWfBSc9HV_HgZmX2DVexPKJhCSqg6NvIGTMzzeOzvUCKv4gTdMESLLmT_IDdJvMv4fo4DXCLMgdw%3D%3D&tmtk=1k1rh5onqh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-06T14:38:55.582509+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Business Development Manager (H/F/X) – Suisse",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=28c8b614706871b8&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QC2oG8ucQabFMs7OTHb9Ea76pdGXteOdVfUsi0ERxGqoI&rd=cv__WBhDSvE4qmpjGmxYvJXef5NkBUPQ3HkIyXCDpdM&tk=1k1rh5onqh0ep800&alid=6a09beeefbc7370ae83f277c&bb=CXJfVA8UrbrqtihNJMVExS9W8osy8MZrjgjrYBmCv0RdE3m7SWRhLLqc5dY09H00FWzvT5fCq8UjvyQzvAByRPRuvJn-ISFxYVvQgoUMLSPn10kYmvEUxUcjdTY0KMyhN2pFSLzumc-wqkfxrlCACQ%3D%3D&tmtk=1k1rh5onqh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-06T14:38:55.582509+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Deep Learning Algorithm Engineering Intern - 2026",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=04004da694936499&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QC2oG8ucQabFMs7OTHb9Ea76pdGXteOdVfUsi0ERxGqoI&rd=cv__WBhDSvE4qmpjGmxYvJXef5NkBUPQ3HkIyXCDpdM&tk=1k1rh5onqh0ep800&alid=6a09beeefbc7370ae83f277c&bb=bawxucIg1DqILt-U4Zbn7bSAIoNforuKA86Y08JJQF6DkeExrsgHoT93Xqveu6ZSxGN4yIxfGrS9l4G7BNqqzM9dzW7RMbhDEvfbiFDDBKD9lfvq4RJjTx0zhZfH4CR6w9jLrTVzmnU%3D&tmtk=1k1rh5onqh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-06T14:38:55.582509+00:00"
   }
 ]
