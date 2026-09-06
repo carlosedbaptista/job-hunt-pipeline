@@ -1,0 +1,54 @@
+{
+  "ts": "2026-09-06T09:10:07.311359+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5621,
+    "completion_tokens": 560
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run evaluated 7 jobs (1 SKIP, 6 NOT_EVALUATED). No jobs reached APPLY band, so no documents or high-score alerts were produced. 1 stale application remains eligible but no follow-up draft was issued (candidate-side). Re-evaluated 3 REVIEW-band jobs from the last 14 days; all remained REVIEW with unchanged scores. Run complete.",
+        "rationale": "With zero APPLY jobs and no actionable follow-ups, the productive work today was limited to re-scoring 3 borderline REVIEW jobs to confirm their status. The pipeline is healthy but the job feed yielded no strong matches today."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 7, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 1, \"ERROR\": 0, \"NOT_EVALUATED\": 6}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"PQ Technologies\", \"title\": \"Intern \\u2013 Python Development & Data Analysis\", \"old_score\": 76, \"old_decision\": \"REVIEW\", \"new_score\": 76, \"new_decision\": \"REVIEW\"}, {\"company\": \"Iudex Non Calculat\", \"title\": \"Engineering Internship - AI/Data\", \"old_score\": 72, \"old_dec"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run evaluated 7 jobs (1 SKIP, 6 NOT_EVALUATED). No jobs reached APPLY band, so no documents or high-score alerts were produced. 1 stale application remains eligible but no follow-up draft was issued (candidate-side). Re-evaluated 3 REVIEW-band jobs from the last 14 days; all remained REVIEW with unchanged scores. Run complete.",
+  "agent_rationale": "With zero APPLY jobs and no actionable follow-ups, the productive work today was limited to re-scoring 3 borderline REVIEW jobs to confirm their status. The pipeline is healthy but the job feed yielded no strong matches today."
+}
