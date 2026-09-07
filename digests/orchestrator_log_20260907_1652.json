@@ -1,0 +1,54 @@
+{
+  "ts": "2026-09-07T16:52:40.456160+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5482,
+    "completion_tokens": 675
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 3
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Run complete: 3 jobs fetched but remain NOT_EVALUATED (no APPLY or REVIEW decisions produced today). No documents to generate, no high-score alerts to send. 1 application is >7 days quiet and still eligible for follow-up, but 0 new drafts were produced today. No REVIEW-band jobs from the last 14 days were available for reevaluation.",
+        "rationale": "With fresh evaluations but zero APPLY jobs and zero eligible REVIEW-band jobs, there are no candidate-facing actions (documents, alerts, follow-ups) to produce today. The NOT_EVALUATED jobs require the main scorer, not the borderline reevaluator. The run is done."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 3, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 0, \"ERROR\": 0, \"NOT_EVALUATED\": 3}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [], \"note\": \"no eligible REVIEW-band jobs in the last 14 days\"}"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Run complete: 3 jobs fetched but remain NOT_EVALUATED (no APPLY or REVIEW decisions produced today). No documents to generate, no high-score alerts to send. 1 application is >7 days quiet and still eligible for follow-up, but 0 new drafts were produced today. No REVIEW-band jobs from the last 14 days were available for reevaluation.",
+  "agent_rationale": "With fresh evaluations but zero APPLY jobs and zero eligible REVIEW-band jobs, there are no candidate-facing actions (documents, alerts, follow-ups) to produce today. The NOT_EVALUATED jobs require the main scorer, not the borderline reevaluator. The run is done."
+}
