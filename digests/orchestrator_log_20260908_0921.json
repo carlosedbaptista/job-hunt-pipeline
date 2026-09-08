@@ -1,0 +1,54 @@
+{
+  "ts": "2026-09-08T09:21:46.945647+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5617,
+    "completion_tokens": 552
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Quiet day: 1 new evaluation (SKIP), 0 APPLY jobs. Drafted 0 follow-ups (1 stale app still eligible). Re-evaluated 3 borderline REVIEW jobs; all remained REVIEW. No documents or alerts needed.",
+        "rationale": "With zero APPLY jobs there was no document generation or high-score alert work. The only actionable items were the stale-application follow-up queue and using remaining budget to re-score recent REVIEW-band jobs. Both were completed, so the run is finalized."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 1, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 1, \"ERROR\": 0}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 15:52 UTC] Internship"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"PQ Technologies\", \"title\": \"Intern \\u2013 Python Development & Data Analysis\", \"old_score\": 76, \"old_decision\": \"REVIEW\", \"new_score\": 76, \"new_decision\": \"REVIEW\"}, {\"company\": \"Iudex Non Calculat\", \"title\": \"Engineering Internship - AI/Data\", \"old_score\": 72, \"old_dec"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Quiet day: 1 new evaluation (SKIP), 0 APPLY jobs. Drafted 0 follow-ups (1 stale app still eligible). Re-evaluated 3 borderline REVIEW jobs; all remained REVIEW. No documents or alerts needed.",
+  "agent_rationale": "With zero APPLY jobs there was no document generation or high-score alert work. The only actionable items were the stale-application follow-up queue and using remaining budget to re-score recent REVIEW-band jobs. Both were completed, so the run is finalized."
+}
