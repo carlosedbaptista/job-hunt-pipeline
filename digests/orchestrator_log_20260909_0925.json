@@ -1,0 +1,54 @@
+{
+  "ts": "2026-09-09T09:25:33.601608+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 5,
+  "usage": {
+    "prompt_tokens": 7219,
+    "completion_tokens": 571
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run evaluated 7 jobs with 0 APPLY, 0 REVIEW, 2 SKIP, and 5 NOT_EVALUATED. No tailored documents or high-score alerts were needed. 1 stale application remains eligible for follow-up. Re-evaluated 3 borderline REVIEW-band jobs; all remained in REVIEW.",
+        "rationale": "Quiet day with no high-confidence matches. Used remaining budget to re-score 3 recent REVIEW jobs to keep the pipeline current, but none promoted to APPLY. Follow-up tool noted 1 eligible stale application."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 7, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 2, \"ERROR\": 0, \"NOT_EVALUATED\": 5}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"Randstad Digital\", \"title\": \"Junior AI & Knowledge Engineer\", \"old_score\": 76, \"old_decision\": \"REVIEW\", \"new_score\": 76, \"new_decision\": \"REVIEW\"}, {\"company\": \"Iudex Non Calculat\", \"title\": \"Engineering Internship - AI/Data\", \"old_score\": 72, \"old_decision\": \"REVIEW\","
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run evaluated 7 jobs with 0 APPLY, 0 REVIEW, 2 SKIP, and 5 NOT_EVALUATED. No tailored documents or high-score alerts were needed. 1 stale application remains eligible for follow-up. Re-evaluated 3 borderline REVIEW-band jobs; all remained in REVIEW.",
+  "agent_rationale": "Quiet day with no high-confidence matches. Used remaining budget to re-score 3 recent REVIEW jobs to keep the pipeline current, but none promoted to APPLY. Follow-up tool noted 1 eligible stale application."
+}
