@@ -471,5 +471,44 @@
     "materials_needed": [],
     "evaluated_at": "2026-08-29T18:54:46.953409+00:00",
     "source": "manual"
+  },
+  {
+    "score": 62,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": true,
+    "key_match_points": [],
+    "red_flags": [
+      "Job description TRUNCATED — requirements/qualifications section not visible; seniority, years of experience, and full skill requirements unknown",
+      "German explicitly required as working language alongside English ('auf Deutsch und Englisch') — candidate at A2, studying for B1; this is a real gap for a role involving 'Beratung der Fachbereiche' and cross-functional communication",
+      "Role is fundamentally platform engineering / MLOps / infrastructure, not end-to-end LLM application development or agentic systems building — significant mismatch with candidate's stated goals and demonstrated strengths",
+      "'Mitwirkung' and 'Unterstützung' language suggests contributor/participant role rather than day-one ownership candidate seeks",
+      "Public sector pace and process-heaviness likely at odds with candidate's motivation to build fast and own projects",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Kanton Zürich Finanzdirektion",
+      "title": "Platform Engineer KI 80 - 100%",
+      "location": "Zurich",
+      "url": "https://live.solique.ch/ktzh/job/details/4060691/",
+      "portal": "manual",
+      "description": "Das Amt für Informatik (AFI) ist das Informatik-Kompetenzzentrum des Kantons Zürich. Es erbringt umfassende Dienstleistungen im Bereich der zentralen Informatikinfrastruktur und kantonsweiter Applikationen für die Direktionen, Behörden, Rechtspflege und selbstständige Anstalten.  Künstliche Intelligenz (KI) bietet grosses Potenzial, um die Verwaltung wirksam zu unterstützen und ihre Leistungen für die Bevölkerung und die Unternehmen effizient, sicher und adressatengerecht zu erbringen. Gleichzeitig braucht es klare Rahmenbedingungen, Verlässlichkeit sowie einen verantwortungsvollen Umgang mit Daten, Sicherheit und ethischen Fragen. Im Kanton Zürich fördern wir deshalb den sicheren, verantwortungsvollen und mehrwertstiftenden Einsatz von KI. Ein zentraler Baustein ist die KI-Serviceplattform, auf der unter anderem die KI-Basisdienste betrieben werden.  Bist du bereit, das Potenzial von KI im Kanton Zürich nutzbar zu machen und damit die digitale Transformation des Kantons Zürich voranzutreiben? Dafür suchen wir KI Fachspezialisten, die den Aufbau und Weiterentwicklung der KI-Serviceplattform und der dazugehörigen KI-Lösungen mitgestalten. Deine Aufgaben Entwicklung, Integration und Betrieb von produktiven KI-Anwendungen und Modellen auf der kantonalen KI-Serviceplattform  Unterstützung der verantwortlichen Fachbereiche bei der technischen Umsetzung und Integration von KI Use Cases und Mitwirkung bei Proofs of Concept  Sicherstellung von stabilen, skalierbaren, sicheren und wirtschaftlich betriebenen Betriebsprozessen für KI-Lösungen  Etablierung und Betrieb von standardisierten MLOps- und Deployment-Prozessen  Entwicklung und Dokumentation von technischen Standards und wiederverwendbare Komponenten  Beratung der Fachbereiche bei der technischen Umsetzung und Integration von KI-Use-Cases Dein Profil Hochschulabschluss in Informatik, eine vergleichbare Ausbildung oder gleichwertige praktische Erfahrung Fundierte Kenntnisse in MLOps, Deployment sowie im produktiven Einsatz komplexer technischer Plattformen Sicherheit im Umgang mit Architekturfragen, technischem Betrieb und Schnittstellenarbeit. Klare, lösungsorientierte und adressatengerechte Kommunikation auf Deutsch und Englisch. Ausgeprägte Bereitschaft, dich laufend in neue KI- und Cloud-Technologien einzuarbeiten. Was wir Dir bieten Eine technisch anspruchsvolle Rolle mit direktem Beitrag zur kantonalen KI-Umsetzung  Mitarbeit an einer neuen Plattform mit hoher Relevanz für die gesamte Verwaltung  Enge Zusammenarbeit mit Fachspezialistinnen und Fachspezialisten aus unterschiedlichen Disziplinen  Raum für technische Standards, Qualität und Weiterentwicklung  Eine offene Entwicklungskultur nach dem Grundsatz «Public Money, Public Code» und der schweizerischen Praxis gemäss EMBAG: Eigene Komponenten stellen wir, wo immer möglich, als Open Source bereit und leisten Beiträge zu eingesetzter Open-Source-Software.   Einen soliden, fairen und sicheren Arbeitgeber mit modernen Arbeitsplätzen in der Nähe des Hauptbahnhofs Zürich.   Neben Lunchcheck, Homeoffice-Möglichkeiten und flexiblen Arbeitszeiten bieten wir ausserdem interne Aus- und Weiterbildungsmöglichkeiten und unterstützen aktiv die Weiterentwicklung unserer Mitarbeitenden. Bereit, deine neue Herausforderung anzutreten? Wenn wir bereits jetzt deine Begeisterung entfacht haben, freuen wir uns über deine Bewerbung. Bitte beachte, dass wir nur Bewerbungen akzeptieren und bearbeiten, welche über das Online-Tool eingehen.    Fragen zur Stelle beantwortet dir gerne Kevin Mauchle (Recruiting Partner). Tel. +41 43 257 60 43.    Dein neues Umfeld:  www.zh.ch/afi "
+    },
+    "technical_fit": "Partial. Role is platform engineering / MLOps / infrastructure-heavy (deployment, operations, technical standards, 'sicheren, skalierbaren Betriebsprozessen') rather than end-to-end LLM pipeline building. Candidate's strength is shipping LLM-powered applications, prompt engineering, agentic workflows, and automation — not platform infrastructure, MLOps, or enterprise architecture. The 'KI-Anwendungen' mention is promising but framed as integration/operation, not greenfield development.",
+    "contextual_fit": "Moderate. Zurich-based, public sector, 'Public Money, Public Code' — mission-aligned but bureaucratic context. Candidate wants ownership from day one and real project ownership; this is a central government platform team with 'Beratung der Fachbereiche' and 'Mitwirkung bei Proofs of Concept' — collaborative, advisory, standard-setting rather than individual builder ownership. Career-changer openness helps, but role shape is more platform maintainer/operator than agentic systems builder.",
+    "salary_estimate": "CHF 85,000 - 110,000 (Kanton Zürich public sector, 80-100%, likely TVP or similar tariff)",
+    "culture_fit": "Mixed. 'Offene Entwicklungskultur' and open-source commitment are positive; however, 'klare, lösungsorientierte Kommunikation auf Deutsch' signals German is a working requirement, and public-sector formality may clash with candidate's preference for fast-iteration, high-ownership startup-style building.",
+    "concerns": [
+      "Job description TRUNCATED — requirements/qualifications section not visible; seniority, years of experience, and full skill requirements unknown",
+      "German explicitly required as working language alongside English ('auf Deutsch und Englisch') — candidate at A2, studying for B1; this is a real gap for a role involving 'Beratung der Fachbereiche' and cross-functional communication",
+      "Role is fundamentally platform engineering / MLOps / infrastructure, not end-to-end LLM application development or agentic systems building — significant mismatch with candidate's stated goals and demonstrated strengths",
+      "'Mitwirkung' and 'Unterstützung' language suggests contributor/participant role rather than day-one ownership candidate seeks",
+      "Public sector pace and process-heaviness likely at odds with candidate's motivation to build fast and own projects"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-10T18:52:49.436368+00:00",
+    "source": "manual"
   }
 ]
