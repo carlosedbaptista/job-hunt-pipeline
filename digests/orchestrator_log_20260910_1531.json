@@ -1,0 +1,54 @@
+{
+  "ts": "2026-09-10T15:31:38.503611+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5459,
+    "completion_tokens": 613
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 3
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run produced 6 evaluations with 3 SKIP decisions and 3 NOT_EVALUATED. No APPLY jobs were identified, so no documents were generated and no high-score alerts were sent. One application has gone quiet (>7 days, no response) and remains eligible for follow-up. No REVIEW-band jobs from the last 14 days were available for reevaluation.",
+        "rationale": "With zero APPLY jobs and no eligible borderline reevaluations, the run had no actionable outputs beyond recording the SKIP decisions. The stale application is tracked for follow-up. The run is complete."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 6, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 3, \"ERROR\": 0, \"NOT_EVALUATED\": 3}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [], \"note\": \"no eligible REVIEW-band jobs in the last 14 days\"}"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run produced 6 evaluations with 3 SKIP decisions and 3 NOT_EVALUATED. No APPLY jobs were identified, so no documents were generated and no high-score alerts were sent. One application has gone quiet (>7 days, no response) and remains eligible for follow-up. No REVIEW-band jobs from the last 14 days were available for reevaluation.",
+  "agent_rationale": "With zero APPLY jobs and no eligible borderline reevaluations, the run had no actionable outputs beyond recording the SKIP decisions. The stale application is tracked for follow-up. The run is complete."
+}

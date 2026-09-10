@@ -623,5 +623,380 @@
     "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-09-10T09:24:48.653233+00:00"
+  },
+  {
+    "score": 25,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated - requirements section not visible",
+      "Role is in IT Security/Risk & Compliance, not AI/automation/agentic systems",
+      "Location is Winterthur, not Zurich/Zug area",
+      "Role appears to be temporary/befristet",
+      "No overlap with candidate's LLM, automation, or pipeline-building skills",
+      "Candidate seeking ownership in building systems; this role is about evaluating and auditing existing systems",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "ZHAW",
+      "title": "IT Security Analyst, Risk & Compliance 80-100 %",
+      "location": "Winterthur",
+      "url": "https://www.adzuna.ch/details/5878265390",
+      "portal": "adzuna",
+      "description": "IT Security Analyst, Risk & Compliance 80-100 % (hybrid, befristet) Ob Cloud-Service, KI-Lösung oder neue Fachapplikation - Du beurteilst Informatikmittel und IT-Dienstleister aus Sicht der Informationssicherheit, begleitest und gestaltest den Due-Diligence-Prozess mit und unterstützt die ZHAW dabei, dass Digitalisierung und Innovation an der ZHAW sicher und verantwortungsvoll umgesetzt werden. IT Security Analyst, Risk & Compliance 80-100 % (hybrid, befristet) Departement: Finanzen & Services …"
+    },
+    "technical_fit": "This role is fundamentally misaligned with the candidate's career goals and technical profile. The posting is for an IT Security Analyst focused on Risk & Compliance at ZHAW (a university in Winterthur). The candidate is explicitly seeking an internship or junior role in agentic systems and automation, building LLM-powered pipelines end-to-end with real ownership. This role is in cybersecurity/compliance, not AI/automation. Additionally, the posting text is heavily truncated (only 500 characters, truncated=true), so full requirements are not visible. The location is Winterthur, not Zurich/Zug area. The role is also described as 'befristet' (temporary/limited contract). There is no language requirement beyond English (tier: none), but the role shape, domain, and location all make this a poor fit. The candidate would not be excited about compliance and security auditing work when he wants to build AI systems.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text is truncated - requirements section not visible",
+      "Role is in IT Security/Risk & Compliance, not AI/automation/agentic systems",
+      "Location is Winterthur, not Zurich/Zug area",
+      "Role appears to be temporary/befristet",
+      "No overlap with candidate's LLM, automation, or pipeline-building skills",
+      "Candidate seeking ownership in building systems; this role is about evaluating and auditing existing systems"
+    ],
+    "agent_rationale": "This role is fundamentally misaligned with the candidate's career goals and technical profile. The posting is for an IT Security Analyst focused on Risk & Compliance at ZHAW (a university in Winterthur). The candidate is explicitly seeking an internship or junior role in agentic systems and automation, building LLM-powered pipelines end-to-end with real ownership. This role is in cybersecurity/compliance, not AI/automation. Additionally, the posting text is heavily truncated (only 500 characters, truncated=true), so full requirements are not visible. The location is Winterthur, not Zurich/Zug area. The role is also described as 'befristet' (temporary/limited contract). There is no language requirement beyond English (tier: none), but the role shape, domain, and location all make this a poor fit. The candidate would not be excited about compliance and security auditing work when he wants to build AI systems.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "ZHAW"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Security Analyst"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Risk Compliance"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 25,
+          "decision": "SKIP",
+          "rationale": "This role is fundamentally misaligned with the candidate's career goals and technical profile. The posting is for an IT Security Analyst focused on Risk & Compliance at ZHAW (a university in Winterthur). The candidate is explicitly seeking an internship or junior role in agentic systems and automation, building LLM-powered pipelines end-to-end with real ownership. This role is in cybersecurity/compliance, not AI/automation. Additionally, the posting text is heavily truncated (only 500 characters, truncated=true), so full requirements are not visible. The location is Winterthur, not Zurich/Zug area. The role is also described as 'befristet' (temporary/limited contract). There is no language requirement beyond English (tier: none), but the role shape, domain, and location all make this a poor fit. The candidate would not be excited about compliance and security auditing work when he wants to build AI systems.",
+          "concerns": [
+            "Posting text is truncated - requirements section not visible",
+            "Role is in IT Security/Risk & Compliance, not AI/automation/agentic systems",
+            "Location is Winterthur, not Zurich/Zug area",
+            "Role appears to be temporary/befristet",
+            "No overlap with candidate's LLM, automation, or pipeline-building skills",
+            "Candidate seeking ownership in building systems; this role is about evaluating and auditing existing systems"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-10T15:31:07.180043+00:00"
+  },
+  {
+    "score": 35,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Role is LEAD level - significantly above candidate's current intern/junior target level",
+      "Posting text is truncated (500 chars) - full requirements not visible",
+      "Requires leading a delivery pod and enterprise deployment experience",
+      "Candidate is looking for internship/junior role, not a lead position",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Lead Forward Deployed Engineer",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5878453324",
+      "portal": "adzuna",
+      "description": "The ExperienceThe Lead Forward Deployed Engineer is part of Salesforce-s delivery organisation, responsible for designing, building, and deploying agentic AI solutions directly inside enterprise customer environments. In this role, you will lead a delivery pod - partnering closely with a Deployment Strategist to co-build solutions that go live in production environments from day one, spanning configuration, customisation, and full-stack deployment across some of the largest enterprises in the w…"
+    },
+    "technical_fit": "This is a LEAD Forward Deployed Engineer role at Salesforce's delivery organization, which is a senior position requiring leadership of a delivery pod and enterprise customer deployment experience. The candidate is currently an AI Software Engineer INTERN looking for an internship or junior role with ownership but at an entry level. The title 'Lead' and responsibility for 'leading a delivery pod' and deploying solutions 'inside enterprise customer environments' indicates this is a mid-to-senior level role, not a junior or intern position. The posting text is heavily truncated (500 chars, truncated=true), so full requirements are not visible, but what is visible already shows a significant seniority mismatch. The candidate's profile emphasizes wanting 'real ownership from day one' but in an internship context - this role expects someone to lead teams and deploy at enterprise scale immediately. Location is Zurich which is acceptable, and language requirement is none (no German requirement detected). However, the seniority gap is too large to bridge - this is not an entry-level opportunity.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Role is LEAD level - significantly above candidate's current intern/junior target level",
+      "Posting text is truncated (500 chars) - full requirements not visible",
+      "Requires leading a delivery pod and enterprise deployment experience",
+      "Candidate is looking for internship/junior role, not a lead position"
+    ],
+    "agent_rationale": "This is a LEAD Forward Deployed Engineer role at Salesforce's delivery organization, which is a senior position requiring leadership of a delivery pod and enterprise customer deployment experience. The candidate is currently an AI Software Engineer INTERN looking for an internship or junior role with ownership but at an entry level. The title 'Lead' and responsibility for 'leading a delivery pod' and deploying solutions 'inside enterprise customer environments' indicates this is a mid-to-senior level role, not a junior or intern position. The posting text is heavily truncated (500 chars, truncated=true), so full requirements are not visible, but what is visible already shows a significant seniority mismatch. The candidate's profile emphasizes wanting 'real ownership from day one' but in an internship context - this role expects someone to lead teams and deploy at enterprise scale immediately. Location is Zurich which is acceptable, and language requirement is none (no German requirement detected). However, the seniority gap is too large to bridge - this is not an entry-level opportunity.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Forward Deployed Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Salesforce"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "agentic AI"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 35,
+          "decision": "SKIP",
+          "rationale": "This is a LEAD Forward Deployed Engineer role at Salesforce's delivery organization, which is a senior position requiring leadership of a delivery pod and enterprise customer deployment experience. The candidate is currently an AI Software Engineer INTERN looking for an internship or junior role with ownership but at an entry level. The title 'Lead' and responsibility for 'leading a delivery pod' and deploying solutions 'inside enterprise customer environments' indicates this is a mid-to-senior level role, not a junior or intern position. The posting text is heavily truncated (500 chars, truncated=true), so full requirements are not visible, but what is visible already shows a significant seniority mismatch. The candidate's profile emphasizes wanting 'real ownership from day one' but in an internship context - this role expects someone to lead teams and deploy at enterprise scale immediately. Location is Zurich which is acceptable, and language requirement is none (no German requirement detected). However, the seniority gap is too large to bridge - this is not an entry-level opportunity.",
+          "concerns": [
+            "Role is LEAD level - significantly above candidate's current intern/junior target level",
+            "Posting text is truncated (500 chars) - full requirements not visible",
+            "Requires leading a delivery pod and enterprise deployment experience",
+            "Candidate is looking for internship/junior role, not a lead position"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-10T15:31:07.180043+00:00"
+  },
+  {
+    "score": 25,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text truncated - full requirements not visible",
+      "Senior-level role, candidate seeks internship/junior",
+      "Scientific hardware domain (X-ray detectors) far from LLM/agentic automation focus",
+      "Location Baden, not Zurich/Zug area, no remote indication",
+      "Role shape appears to be pre-sales/customer-facing for scientific instruments, not building AI pipelines from scratch",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Senior Scientific Solution Engineer",
+      "location": "Baden",
+      "url": "https://www.adzuna.ch/details/5878432712",
+      "portal": "adzuna",
+      "description": "Senior Scientific Solution Engineer DECTRIS is a successful and expanding high\\\\-tech company that develops and produces X\\\\-ray and electron detectors. Our detectors are used worldwide in large\\\\-scale research facilities and in industry. Their unique properties enable scientific breakthroughs in life sciences and material sciences. Our more than 170 employees are located in Switzerland, the United States and Japan. At DECTRIS, we combine innovation and development with agile industry practice…"
+    },
+    "technical_fit": "The posting text is severely truncated (only 500 characters, truncated=true), so the full requirements were never visible. What IS visible reveals this is a Senior Scientific Solution Engineer role at DECTRIS, a high-tech X-ray/electron detector company in Baden. This is fundamentally mismatched with the candidate's profile on multiple dimensions: (1) Senior-level role vs. candidate seeking internship/junior position; (2) Scientific/physics hardware domain (X-ray detectors, large-scale research facilities) vs. candidate's focus on LLM-powered automation and agentic systems; (3) Location in Baden, not Zurich/Zug area, with no indication of remote work; (4) The title 'Scientific Solution Engineer' suggests a pre-sales/customer-facing technical role supporting scientific instrumentation, not the hands-on AI/automation engineering the candidate wants to do. Even if full requirements were visible, the seniority level, domain mismatch, and location make this a clear SKIP. Language requirement is none (no evidence of German requirement found in visible text).",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text truncated - full requirements not visible",
+      "Senior-level role, candidate seeks internship/junior",
+      "Scientific hardware domain (X-ray detectors) far from LLM/agentic automation focus",
+      "Location Baden, not Zurich/Zug area, no remote indication",
+      "Role shape appears to be pre-sales/customer-facing for scientific instruments, not building AI pipelines from scratch"
+    ],
+    "agent_rationale": "The posting text is severely truncated (only 500 characters, truncated=true), so the full requirements were never visible. What IS visible reveals this is a Senior Scientific Solution Engineer role at DECTRIS, a high-tech X-ray/electron detector company in Baden. This is fundamentally mismatched with the candidate's profile on multiple dimensions: (1) Senior-level role vs. candidate seeking internship/junior position; (2) Scientific/physics hardware domain (X-ray detectors, large-scale research facilities) vs. candidate's focus on LLM-powered automation and agentic systems; (3) Location in Baden, not Zurich/Zug area, with no indication of remote work; (4) The title 'Scientific Solution Engineer' suggests a pre-sales/customer-facing technical role supporting scientific instrumentation, not the hands-on AI/automation engineering the candidate wants to do. Even if full requirements were visible, the seniority level, domain mismatch, and location make this a clear SKIP. Language requirement is none (no evidence of German requirement found in visible text).",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "DECTRIS"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Scientific Solution Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Baden"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Solution Engineer"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 25,
+          "decision": "SKIP",
+          "rationale": "The posting text is severely truncated (only 500 characters, truncated=true), so the full requirements were never visible. What IS visible reveals this is a Senior Scientific Solution Engineer role at DECTRIS, a high-tech X-ray/electron detector company in Baden. This is fundamentally mismatched with the candidate's profile on multiple dimensions: (1) Senior-level role vs. candidate seeking internship/junior position; (2) Scientific/physics hardware domain (X-ray detectors, large-scale research facilities) vs. candidate's focus on LLM-powered automation and agentic systems; (3) Location in Baden, not Zurich/Zug area, with no indication of remote work; (4) The title 'Scientific Solution Engineer' suggests a pre-sales/customer-facing technical role supporting scientific instrumentation, not the hands-on AI/automation engineering the candidate wants to do. Even if full requirements were visible, the seniority level, domain mismatch, and location make this a clear SKIP. Language requirement is none (no evidence of German requirement found in visible text).",
+          "concerns": [
+            "Posting text truncated - full requirements not visible",
+            "Senior-level role, candidate seeks internship/junior",
+            "Scientific hardware domain (X-ray detectors) far from LLM/agentic automation focus",
+            "Location Baden, not Zurich/Zug area, no remote indication",
+            "Role shape appears to be pre-sales/customer-facing for scientific instruments, not building AI pipelines from scratch"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-10T15:31:07.180043+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "EY",
+      "title": "Intern - Consulting - Technology Strategy and Transformation",
+      "location": "Zurich",
+      "url": "https://www.linkedin.com/comm/jobs/view/4454994186/?trackingId=k8mWC039IA7ohQqLOb5ItA%3D%3D&refId=WPU3%2FyGkQ8AcmCotZGXv9g%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BlNipbJRYQCy7iovhFCLqYw%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=0kkMAhxPOl-so1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_0_jobid_4454994186_ssid_8700305338_fmid_gbrmkn~mtvcse7j~3a&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_0_jobid_4454994186_ssid_8700305338_fmid_gbrmkn~mtvcse7j~3a-null-gbrmkn~mtvcse7j~3a-null-null&eid=gbrmkn-mtvcse7j-3a&otpToken=ZjYwNmEwOTRkNTMxMWJkYWZkMDU0YjUwMzZiZWZkZDBkZjQ3MDFkODM1OTVkNDBjYjIwZjQxOGVkNGIyODY0MzA5MWRiOWRmYjYxZDQwYTJlMTczMGYzNTNjNWVlNGI0NzlmNjQ4YmQ0NDg0MTM2NDJjM2Y4NjBhOTFmM2E4NjVkMzRjNWNjNGQ5NzhmOGY0LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-10T15:31:07.180043+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Sensirion",
+      "title": "Intern Process Development in Sensor Testing • 100%",
+      "location": "Stäfa",
+      "url": "https://www.linkedin.com/comm/jobs/view/4465020863/?trackingId=1sNdwIgA4k37xX1br2vVQg%3D%3D&refId=WPU3%2FyGkQ8AcmCotZGXv9g%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BlNipbJRYQCy7iovhFCLqYw%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=0kkMAhxPOl-so1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_3_jobid_4465020863_ssid_8700305338_fmid_gbrmkn~mtvcse7j~3a&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_3_jobid_4465020863_ssid_8700305338_fmid_gbrmkn~mtvcse7j~3a-null-gbrmkn~mtvcse7j~3a-null-null&eid=gbrmkn-mtvcse7j-3a&otpToken=ZjYwNmEwOTRkNTMxMWJkYWZkMDU0YjUwMzZiZWZkZDBkZjQ3MDFkODM1OTVkNDBjYjIwZjQxOGVkNGIyODY0MzA5MWRiOWRmYjYxZDQwYTJlMTczMGYzNTNjNWVlNGI0NzlmNjQ4YmQ0NDg0MTM2NDJjM2Y4NjBhOTFmM2E4NjVkMzRjNWNjNGQ5NzhmOGY0LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-10T15:31:07.180043+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Sensirion",
+      "title": "Intern R&D Gas Sensors • 100%",
+      "location": "Stäfa",
+      "url": "https://www.linkedin.com/comm/jobs/view/4465016820/?trackingId=tOaTzCMGTz2SoNyHYGX%2FHQ%3D%3D&refId=WPU3%2FyGkQ8AcmCotZGXv9g%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BlNipbJRYQCy7iovhFCLqYw%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=0kkMAhxPOl-so1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_5_jobid_4465016820_ssid_8700305338_fmid_gbrmkn~mtvcse7j~3a&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_5_jobid_4465016820_ssid_8700305338_fmid_gbrmkn~mtvcse7j~3a-null-gbrmkn~mtvcse7j~3a-null-null&eid=gbrmkn-mtvcse7j-3a&otpToken=ZjYwNmEwOTRkNTMxMWJkYWZkMDU0YjUwMzZiZWZkZDBkZjQ3MDFkODM1OTVkNDBjYjIwZjQxOGVkNGIyODY0MzA5MWRiOWRmYjYxZDQwYTJlMTczMGYzNTNjNWVlNGI0NzlmNjQ4YmQ0NDg0MTM2NDJjM2Y4NjBhOTFmM2E4NjVkMzRjNWNjNGQ5NzhmOGY0LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-10T15:31:07.180043+00:00"
   }
 ]
