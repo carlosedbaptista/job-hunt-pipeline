@@ -1,0 +1,54 @@
+{
+  "ts": "2026-09-11T15:34:12.068573+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 5,
+  "usage": {
+    "prompt_tokens": 6329,
+    "completion_tokens": 324
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "No APPLY jobs today (0/9 evaluated). Sent 0 high-score alerts, drafted 0 follow-ups (1 stale application remains eligible but not yet drafted), reevaluated 0 borderline jobs (none in last 14 days). Evaluations are fresh; run complete.",
+        "rationale": "The run produced 9 evaluations with 5 SKIP, 0 APPLY, 0 REVIEW, 4 NOT_EVALUATED. With no APPLY jobs, there was nothing to generate documents or alert for. The single stale application is still eligible for follow-up but no new draft was produced this cycle. No recent REVIEW-band jobs existed to reevaluate. The run is fully processed and should be finalized."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 9, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 5, \"ERROR\": 0, \"NOT_EVALUATED\": 4}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [], \"note\": \"no eligible REVIEW-band jobs in the last 14 days\"}"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "No APPLY jobs today (0/9 evaluated). Sent 0 high-score alerts, drafted 0 follow-ups (1 stale application remains eligible but not yet drafted), reevaluated 0 borderline jobs (none in last 14 days). Evaluations are fresh; run complete.",
+  "agent_rationale": "The run produced 9 evaluations with 5 SKIP, 0 APPLY, 0 REVIEW, 4 NOT_EVALUATED. With no APPLY jobs, there was nothing to generate documents or alert for. The single stale application is still eligible for follow-up but no new draft was produced this cycle. No recent REVIEW-band jobs existed to reevaluate. The run is fully processed and should be finalized."
+}

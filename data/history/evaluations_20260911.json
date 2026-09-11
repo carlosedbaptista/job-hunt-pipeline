@@ -743,5 +743,573 @@
     "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-09-11T09:23:59.435618+00:00"
+  },
+  {
+    "score": 25,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Senior-level role fundamentally mismatched with intern/junior candidate profile",
+      "Enterprise-scale AI leadership expectations far beyond candidate's experience level",
+      "Financial institution regulatory compliance experience not demonstrated",
+      "Posting text truncated - full requirements not visible",
+      "Role asks for 'highly experienced' engineer, candidate is early-career career changer",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Senior AI Machine Learning Engineer 100% (w/m/d)",
+      "location": "Opfikon, Bülach",
+      "url": "https://www.adzuna.ch/details/5879721475",
+      "portal": "adzuna",
+      "description": "Your team We are looking for a highly experienced Senior AI Machine Learning Engineer to design, build, and operate enterprise-scale AI solutions for a leading financial institution. You will collaborate with AI, Data and Business teams to deliver and support scalable Generative AI, MLOps, AI Platform, and Cloud AI capabilities while ensuring operational excellence, security, and regulatory compliance. Your role - lead the design, development, and deployment of end-to-end AI/ML and Generative A…"
+    },
+    "technical_fit": "This is a SENIOR AI Machine Learning Engineer role requiring someone to 'lead the design, development, and deployment of end-to-end AI/ML and Generative AI' solutions at enterprise scale for a leading financial institution. The candidate is an intern/junior-level professional seeking his first deep-dive into agentic systems with ownership from day one. This role is explicitly senior-level, targeting highly experienced professionals who can lead enterprise-scale AI initiatives, manage MLOps platforms, and ensure regulatory compliance in finance. The candidate's profile (AI Software Engineer Intern, 2-week notice, seeking internship/junior role) is fundamentally mismatched with a senior leadership position. Additionally, the posting text is truncated at 500 characters, so full requirements are not visible, but what is visible clearly indicates senior-level expectations. Location is Opfikon/Bülach (Zurich area), which is acceptable, and language requirements are none (English working language), but the seniority gap is insurmountable. Past evaluations of Job-Room roles have all been SKIP due to similar mismatches.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Senior-level role fundamentally mismatched with intern/junior candidate profile",
+      "Enterprise-scale AI leadership expectations far beyond candidate's experience level",
+      "Financial institution regulatory compliance experience not demonstrated",
+      "Posting text truncated - full requirements not visible",
+      "Role asks for 'highly experienced' engineer, candidate is early-career career changer"
+    ],
+    "agent_rationale": "This is a SENIOR AI Machine Learning Engineer role requiring someone to 'lead the design, development, and deployment of end-to-end AI/ML and Generative AI' solutions at enterprise scale for a leading financial institution. The candidate is an intern/junior-level professional seeking his first deep-dive into agentic systems with ownership from day one. This role is explicitly senior-level, targeting highly experienced professionals who can lead enterprise-scale AI initiatives, manage MLOps platforms, and ensure regulatory compliance in finance. The candidate's profile (AI Software Engineer Intern, 2-week notice, seeking internship/junior role) is fundamentally mismatched with a senior leadership position. Additionally, the posting text is truncated at 500 characters, so full requirements are not visible, but what is visible clearly indicates senior-level expectations. Location is Opfikon/Bülach (Zurich area), which is acceptable, and language requirements are none (English working language), but the seniority gap is insurmountable. Past evaluations of Job-Room roles have all been SKIP due to similar mismatches.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 25,
+          "decision": "SKIP",
+          "rationale": "This is a SENIOR AI Machine Learning Engineer role requiring someone to 'lead the design, development, and deployment of end-to-end AI/ML and Generative AI' solutions at enterprise scale for a leading financial institution. The candidate is an intern/junior-level professional seeking his first deep-dive into agentic systems with ownership from day one. This role is explicitly senior-level, targeting highly experienced professionals who can lead enterprise-scale AI initiatives, manage MLOps platforms, and ensure regulatory compliance in finance. The candidate's profile (AI Software Engineer Intern, 2-week notice, seeking internship/junior role) is fundamentally mismatched with a senior leadership position. Additionally, the posting text is truncated at 500 characters, so full requirements are not visible, but what is visible clearly indicates senior-level expectations. Location is Opfikon/Bülach (Zurich area), which is acceptable, and language requirements are none (English working language), but the seniority gap is insurmountable. Past evaluations of Job-Room roles have all been SKIP due to similar mismatches.",
+          "concerns": [
+            "Senior-level role fundamentally mismatched with intern/junior candidate profile",
+            "Enterprise-scale AI leadership expectations far beyond candidate's experience level",
+            "Financial institution regulatory compliance experience not demonstrated",
+            "Posting text truncated - full requirements not visible",
+            "Role asks for 'highly experienced' engineer, candidate is early-career career changer"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-11T15:33:52.515091+00:00"
+  },
+  {
+    "score": 45,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting truncated — full requirements invisible, capped by pipeline policy",
+      "Staffing agency model: candidate would be placed at client, not building in-house",
+      "Microsoft Copilot / Power Platform focus mismatches candidate's open LLM API + Python stack",
+      "German-speaking Switzerland client base may require more German than A2 in practice",
+      "Past similar 'Microsoft Copilot / AI Engineer' role scored 55/SKIP",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "yellowshark",
+      "title": "Microsoft Copilot / AI Engineer",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/land/ad/5879525647",
+      "portal": "adzuna",
+      "description": "Microsoft Copilot / AI Engineer Die yellowshark AG ist ein etablierter Personaldienstleister mit einem starken Kundenportfolio in der gesamten deutschsprachigen Schweiz. Unsere spezialisierten Consultants sorgen mit hohem Qualitätsanspruch für die bestmögliche Passung zwischen Talenten und Unternehmen. Profitieren Sie von unserem breiten Netzwerk und spannenden Karrieremöglichkeiten mit nachhaltigen Perspektiven. Aufgaben - Als Microsoft Copilot / AI & Power Platform Engineer trägst du die tech…"
+    },
+    "technical_fit": "The posting is heavily truncated (500 chars, truncated=true), so key requirements like experience level, ownership expectations, and detailed tech stack are invisible. What IS visible is concerning: this is a staffing agency (yellowshark AG) placing candidates at client companies across German-speaking Switzerland, and the role title 'Microsoft Copilot / AI & Power Platform Engineer' signals a Microsoft-centric, Power Platform-heavy stack — not the open-source, Python-based, agentic LLM pipeline work the candidate seeks. The German-language posting and 'gesamten deutschsprachigen Schweiz' focus also suggest German proficiency may matter more than the soft tier indicates. A past similar 'Microsoft Copilot / AI Engineer' role at Job-Room scored 55/SKIP. Given the truncated text, the staffing-agency model (less ownership, client-dependent placement), the Microsoft/Power Platform specialization mismatch with the candidate's open LLM API and Python automation skills, and the German-speaking client base, this does not meet the candidate's criteria for real ownership and agentic systems work from day one.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting truncated — full requirements invisible, capped by pipeline policy",
+      "Staffing agency model: candidate would be placed at client, not building in-house",
+      "Microsoft Copilot / Power Platform focus mismatches candidate's open LLM API + Python stack",
+      "German-speaking Switzerland client base may require more German than A2 in practice",
+      "Past similar 'Microsoft Copilot / AI Engineer' role scored 55/SKIP"
+    ],
+    "agent_rationale": "The posting is heavily truncated (500 chars, truncated=true), so key requirements like experience level, ownership expectations, and detailed tech stack are invisible. What IS visible is concerning: this is a staffing agency (yellowshark AG) placing candidates at client companies across German-speaking Switzerland, and the role title 'Microsoft Copilot / AI & Power Platform Engineer' signals a Microsoft-centric, Power Platform-heavy stack — not the open-source, Python-based, agentic LLM pipeline work the candidate seeks. The German-language posting and 'gesamten deutschsprachigen Schweiz' focus also suggest German proficiency may matter more than the soft tier indicates. A past similar 'Microsoft Copilot / AI Engineer' role at Job-Room scored 55/SKIP. Given the truncated text, the staffing-agency model (less ownership, client-dependent placement), the Microsoft/Power Platform specialization mismatch with the candidate's open LLM API and Python automation skills, and the German-speaking client base, this does not meet the candidate's criteria for real ownership and agentic systems work from day one.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "yellowshark"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Microsoft Copilot"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "AI Engineer"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 45,
+          "decision": "SKIP",
+          "rationale": "The posting is heavily truncated (500 chars, truncated=true), so key requirements like experience level, ownership expectations, and detailed tech stack are invisible. What IS visible is concerning: this is a staffing agency (yellowshark AG) placing candidates at client companies across German-speaking Switzerland, and the role title 'Microsoft Copilot / AI & Power Platform Engineer' signals a Microsoft-centric, Power Platform-heavy stack — not the open-source, Python-based, agentic LLM pipeline work the candidate seeks. The German-language posting and 'gesamten deutschsprachigen Schweiz' focus also suggest German proficiency may matter more than the soft tier indicates. A past similar 'Microsoft Copilot / AI Engineer' role at Job-Room scored 55/SKIP. Given the truncated text, the staffing-agency model (less ownership, client-dependent placement), the Microsoft/Power Platform specialization mismatch with the candidate's open LLM API and Python automation skills, and the German-speaking client base, this does not meet the candidate's criteria for real ownership and agentic systems work from day one.",
+          "concerns": [
+            "Posting truncated — full requirements invisible, capped by pipeline policy",
+            "Staffing agency model: candidate would be placed at client, not building in-house",
+            "Microsoft Copilot / Power Platform focus mismatches candidate's open LLM API + Python stack",
+            "German-speaking Switzerland client base may require more German than A2 in practice",
+            "Past similar 'Microsoft Copilot / AI Engineer' role scored 55/SKIP"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "soft"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-11T15:33:52.515091+00:00"
+  },
+  {
+    "score": 25,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated - no actual requirements visible",
+      "Title indicates senior Principal Engineer level, far above candidate's internship/junior target",
+      "Role appears to be hybrid cloud infrastructure, not agentic systems or LLM automation",
+      "Candidate seeks ownership in AI/automation projects, not cloud infrastructure engineering",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Principal Engineer, Hybrid Cloud Environment - Google Careers",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5879725926",
+      "portal": "adzuna",
+      "description": "*info\\\\_outline* X In accordance with Washington state law, we are highlighting our comprehensive benefits package, which is available to all eligible US based employees. Benefits for this role include: * Health, dental, vision, life, disability insurance * Retirement Benefits: 401(k) with company match * Paid Time Off: 20 days of vacation per year, accruing at a rate of 6.15 hours per pay period for the first five years of employment * Sick Time: 40 hours/year (increased to 69 hours/year for S…"
+    },
+    "technical_fit": "The posting text is severely truncated (500 characters, truncated=true) and only shows US benefits information. No actual job requirements, responsibilities, or role description are visible. However, the title 'Principal Engineer, Hybrid Cloud Environment' at Google strongly signals a senior-level infrastructure/cloud role requiring extensive experience in hybrid cloud architecture, which is completely mismatched with the candidate's profile as an AI Software Engineer Intern seeking junior/internship roles in agentic systems and LLM automation. The 'Principal Engineer' title alone indicates a senior IC track position far above his experience level. His skills focus on LLM pipelines, automation, and AI tooling rather than enterprise cloud infrastructure. Past evaluations of 'Principal Engineer' roles scored 25/SKIP for similar mismatch reasons. The location (Zürich) is acceptable and language requirements are none, but the role shape (senior cloud infrastructure vs. junior AI/automation) is fundamentally incompatible with his career goals and experience level.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text is truncated - no actual requirements visible",
+      "Title indicates senior Principal Engineer level, far above candidate's internship/junior target",
+      "Role appears to be hybrid cloud infrastructure, not agentic systems or LLM automation",
+      "Candidate seeks ownership in AI/automation projects, not cloud infrastructure engineering"
+    ],
+    "agent_rationale": "The posting text is severely truncated (500 characters, truncated=true) and only shows US benefits information. No actual job requirements, responsibilities, or role description are visible. However, the title 'Principal Engineer, Hybrid Cloud Environment' at Google strongly signals a senior-level infrastructure/cloud role requiring extensive experience in hybrid cloud architecture, which is completely mismatched with the candidate's profile as an AI Software Engineer Intern seeking junior/internship roles in agentic systems and LLM automation. The 'Principal Engineer' title alone indicates a senior IC track position far above his experience level. His skills focus on LLM pipelines, automation, and AI tooling rather than enterprise cloud infrastructure. Past evaluations of 'Principal Engineer' roles scored 25/SKIP for similar mismatch reasons. The location (Zürich) is acceptable and language requirements are none, but the role shape (senior cloud infrastructure vs. junior AI/automation) is fundamentally incompatible with his career goals and experience level.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Google"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Principal Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Cloud"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Hybrid Cloud"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 25,
+          "decision": "SKIP",
+          "rationale": "The posting text is severely truncated (500 characters, truncated=true) and only shows US benefits information. No actual job requirements, responsibilities, or role description are visible. However, the title 'Principal Engineer, Hybrid Cloud Environment' at Google strongly signals a senior-level infrastructure/cloud role requiring extensive experience in hybrid cloud architecture, which is completely mismatched with the candidate's profile as an AI Software Engineer Intern seeking junior/internship roles in agentic systems and LLM automation. The 'Principal Engineer' title alone indicates a senior IC track position far above his experience level. His skills focus on LLM pipelines, automation, and AI tooling rather than enterprise cloud infrastructure. Past evaluations of 'Principal Engineer' roles scored 25/SKIP for similar mismatch reasons. The location (Zürich) is acceptable and language requirements are none, but the role shape (senior cloud infrastructure vs. junior AI/automation) is fundamentally incompatible with his career goals and experience level.",
+          "concerns": [
+            "Posting text is truncated - no actual requirements visible",
+            "Title indicates senior Principal Engineer level, far above candidate's internship/junior target",
+            "Role appears to be hybrid cloud infrastructure, not agentic systems or LLM automation",
+            "Candidate seeks ownership in AI/automation projects, not cloud infrastructure engineering"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-11T15:33:52.515091+00:00"
+  },
+  {
+    "score": 25,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text truncated at 500 characters — requirements section not visible",
+      "Senior-level role, candidate targets internship/junior positions",
+      "Location Baden is not Zurich/Zug area",
+      "Scientific detector hardware domain is far from agentic AI/LLM automation focus",
+      "No evidence of LLM, AI pipeline, or automation work in visible posting text",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Dectris AG",
+      "title": "Senior Scientific Solution Engineer",
+      "location": "Baden",
+      "url": "https://www.adzuna.ch/details/5879525104",
+      "portal": "adzuna",
+      "description": "DECTRIS is a successful and expanding high-tech company that develops and produces X-ray and electron detectors. Our detectors are used worldwide in large-scale research facilities and in industry. Their unique properties enable scientific breakthroughs in life sciences and material sciences. Our more than 170 employees are located in Switzerland, the United States and Japan. At DECTRIS, we combine innovation and development with agile industry practices. As a spin-off of the Paul Scherrer Inst…"
+    },
+    "technical_fit": "Multiple strong signals against this role: (1) The posting text is severely truncated (500 chars, truncated=true), so the requirements section was never visible — this alone caps the role at REVIEW. (2) The title is \"Senior Scientific Solution Engineer\" — a senior-level position, while the candidate is explicitly targeting internships or junior roles with ownership from day one. The senior level is a fundamental mismatch. (3) The location is Baden, not Zurich/Zug — outside the candidate's target area. (4) The company is a high-tech X-ray/electron detector manufacturer for scientific research; this is a hardware/scientific domain far removed from the candidate's focus on agentic AI systems, LLM pipelines, and automation. (5) Past evaluation of an identically titled role (Senior Scientific Solution Engineer) scored 25 and was SKIPped. There are no positive signals — no mention of LLMs, automation, AI pipelines, or junior/intern opportunities. The combination of senior level, wrong location, wrong domain, and invisible requirements makes this an unambiguous SKIP.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text truncated at 500 characters — requirements section not visible",
+      "Senior-level role, candidate targets internship/junior positions",
+      "Location Baden is not Zurich/Zug area",
+      "Scientific detector hardware domain is far from agentic AI/LLM automation focus",
+      "No evidence of LLM, AI pipeline, or automation work in visible posting text"
+    ],
+    "agent_rationale": "Multiple strong signals against this role: (1) The posting text is severely truncated (500 chars, truncated=true), so the requirements section was never visible — this alone caps the role at REVIEW. (2) The title is \"Senior Scientific Solution Engineer\" — a senior-level position, while the candidate is explicitly targeting internships or junior roles with ownership from day one. The senior level is a fundamental mismatch. (3) The location is Baden, not Zurich/Zug — outside the candidate's target area. (4) The company is a high-tech X-ray/electron detector manufacturer for scientific research; this is a hardware/scientific domain far removed from the candidate's focus on agentic AI systems, LLM pipelines, and automation. (5) Past evaluation of an identically titled role (Senior Scientific Solution Engineer) scored 25 and was SKIPped. There are no positive signals — no mention of LLMs, automation, AI pipelines, or junior/intern opportunities. The combination of senior level, wrong location, wrong domain, and invisible requirements makes this an unambiguous SKIP.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Dectris"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Scientific Solution Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Baden"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Solution Engineer"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 25,
+          "decision": "SKIP",
+          "rationale": "Multiple strong signals against this role: (1) The posting text is severely truncated (500 chars, truncated=true), so the requirements section was never visible — this alone caps the role at REVIEW. (2) The title is \"Senior Scientific Solution Engineer\" — a senior-level position, while the candidate is explicitly targeting internships or junior roles with ownership from day one. The senior level is a fundamental mismatch. (3) The location is Baden, not Zurich/Zug — outside the candidate's target area. (4) The company is a high-tech X-ray/electron detector manufacturer for scientific research; this is a hardware/scientific domain far removed from the candidate's focus on agentic AI systems, LLM pipelines, and automation. (5) Past evaluation of an identically titled role (Senior Scientific Solution Engineer) scored 25 and was SKIPped. There are no positive signals — no mention of LLMs, automation, AI pipelines, or junior/intern opportunities. The combination of senior level, wrong location, wrong domain, and invisible requirements makes this an unambiguous SKIP.",
+          "concerns": [
+            "Posting text truncated at 500 characters — requirements section not visible",
+            "Senior-level role, candidate targets internship/junior positions",
+            "Location Baden is not Zurich/Zug area",
+            "Scientific detector hardware domain is far from agentic AI/LLM automation focus",
+            "No evidence of LLM, AI pipeline, or automation work in visible posting text"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-11T15:33:52.515091+00:00"
+  },
+  {
+    "score": 45,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated — requirements section not visible, must keep score conservative",
+      "Role appears to be Sales Engineer / Solutions Engineer focused on customer lifecycle, POCs for sales, onboarding and adoption — not hands-on building of agentic systems",
+      "Working language likely German given the German posting text, though no explicit requirement was visible in truncated text",
+      "Candidate wants ownership of building pipelines, not sales support or customer implementation work",
+      "Past Job-Room evaluations all scored low and were SKIP",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "AI Solutions Engineer",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5879719307",
+      "portal": "adzuna",
+      "description": " base: / meta-keywords: meta-viewport: width=device-width, initial-scale=1.0  AI Solutions Engineer (100%)  Aufgaben  Die Rolle Steige bei uns als AI Solutions Engineer ein und übernimm die technische Beziehung zu Interessenten und Kunden über den gesamten Lebenszyklus – vom ersten technischen Call und Sandbox\\\\-Zugang über Proof\\\\-of\\\\-Concepts im Sales\\\\-Zyklus bis hin zu Onboarding, Implementierung und langfristiger Adoption und Optimierung. Du sitzt an der Schnittstelle von Sales Engineerin…"
+    },
+    "technical_fit": "The posting text is severely truncated (500 chars, truncated=true) — the full requirements section was never seen, so confidence must be conservative. What IS visible shows a Sales Engineer / Solutions Engineer role focused on \"technical relationship to Interessenten und Kunden über den gesamten Lebenszyklus\" (prospects and customers over the entire lifecycle), \"Proof-of-Concepts im Sales-Zyklus\", \"Onboarding, Implementierung und langfristiger Adoption\". This is fundamentally a customer-facing sales engineering and implementation role, not a hands-on builder/owner of agentic AI systems. The candidate explicitly wants \"building LLM-powered pipelines end to end, with real ownership from day one rather than support work\" — this role appears to be the opposite: supporting sales cycles and customer onboarding. The German-language posting also suggests the working language may be German, though check_language_requirement returned \"none\" (likely because the truncated text lacked explicit language requirements). Past evaluations for Job-Room roles have all been SKIP (scores 15-35). A similar \"AI Solutions Engineer (100%)\" at rready scored 65/SKIP. Combined with the truncated text uncertainty and the role-shape mismatch (sales engineering vs. hands-on AI builder), this is a clear SKIP.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting text is truncated — requirements section not visible, must keep score conservative",
+      "Role appears to be Sales Engineer / Solutions Engineer focused on customer lifecycle, POCs for sales, onboarding and adoption — not hands-on building of agentic systems",
+      "Working language likely German given the German posting text, though no explicit requirement was visible in truncated text",
+      "Candidate wants ownership of building pipelines, not sales support or customer implementation work",
+      "Past Job-Room evaluations all scored low and were SKIP"
+    ],
+    "agent_rationale": "The posting text is severely truncated (500 chars, truncated=true) — the full requirements section was never seen, so confidence must be conservative. What IS visible shows a Sales Engineer / Solutions Engineer role focused on \"technical relationship to Interessenten und Kunden über den gesamten Lebenszyklus\" (prospects and customers over the entire lifecycle), \"Proof-of-Concepts im Sales-Zyklus\", \"Onboarding, Implementierung und langfristiger Adoption\". This is fundamentally a customer-facing sales engineering and implementation role, not a hands-on builder/owner of agentic AI systems. The candidate explicitly wants \"building LLM-powered pipelines end to end, with real ownership from day one rather than support work\" — this role appears to be the opposite: supporting sales cycles and customer onboarding. The German-language posting also suggests the working language may be German, though check_language_requirement returned \"none\" (likely because the truncated text lacked explicit language requirements). Past evaluations for Job-Room roles have all been SKIP (scores 15-35). A similar \"AI Solutions Engineer (100%)\" at rready scored 65/SKIP. Combined with the truncated text uncertainty and the role-shape mismatch (sales engineering vs. hands-on AI builder), this is a clear SKIP.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "AI Solutions Engineer"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 45,
+          "decision": "SKIP",
+          "rationale": "The posting text is severely truncated (500 chars, truncated=true) — the full requirements section was never seen, so confidence must be conservative. What IS visible shows a Sales Engineer / Solutions Engineer role focused on \"technical relationship to Interessenten und Kunden über den gesamten Lebenszyklus\" (prospects and customers over the entire lifecycle), \"Proof-of-Concepts im Sales-Zyklus\", \"Onboarding, Implementierung und langfristiger Adoption\". This is fundamentally a customer-facing sales engineering and implementation role, not a hands-on builder/owner of agentic AI systems. The candidate explicitly wants \"building LLM-powered pipelines end to end, with real ownership from day one rather than support work\" — this role appears to be the opposite: supporting sales cycles and customer onboarding. The German-language posting also suggests the working language may be German, though check_language_requirement returned \"none\" (likely because the truncated text lacked explicit language requirements). Past evaluations for Job-Room roles have all been SKIP (scores 15-35). A similar \"AI Solutions Engineer (100%)\" at rready scored 65/SKIP. Combined with the truncated text uncertainty and the role-shape mismatch (sales engineering vs. hands-on AI builder), this is a clear SKIP.",
+          "concerns": [
+            "Posting text is truncated — requirements section not visible, must keep score conservative",
+            "Role appears to be Sales Engineer / Solutions Engineer focused on customer lifecycle, POCs for sales, onboarding and adoption — not hands-on building of agentic systems",
+            "Working language likely German given the German posting text, though no explicit requirement was visible in truncated text",
+            "Candidate wants ownership of building pipelines, not sales support or customer implementation work",
+            "Past Job-Room evaluations all scored low and were SKIP"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-11T15:33:52.515091+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "V11",
+      "title": "Venture Capital Intern",
+      "location": "Zurich, Switzerland",
+      "url": "https://www.linkedin.com/comm/jobs/view/4463466160/?trackingId=iPVcxvGeXieLjvFwQ1qrdg%3D%3D&refId=YnweOpc7dheQLnNsCWybiA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BYBZG0wlEQey5HgRzqoW%2Biw%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3Q3R9vZsYB0cs1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_1_jobid_4463466160_ssid_8700305346_fmid_gbrmkn~mtx0svit~pd&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_1_jobid_4463466160_ssid_8700305346_fmid_gbrmkn~mtx0svit~pd-null-gbrmkn~mtx0svit~pd-null-null&eid=gbrmkn-mtx0svit-pd&otpToken=YzBhNTYwODM0YzU5ZWI0YjhlNjc1OTI2MWY5NDZhNmJjOGY0YjA4NTk2Yzk4YWU4MTI1MGZhYmQyMDVjZTU3M2UzZTcyNWY4MTY5OGMwYTM0Y2NiZTMwYjU2YWNhY2NjYjhkMzUzZWUzMjAyNTU4MzQ1NjFhYTYxYjg3OTE0ODMzMTM0MzliNGFkY2QzZDZlLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-11T15:33:52.515091+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Nautica Technologies",
+      "title": "Robotics Engineering Intern",
+      "location": "Dietlikon",
+      "url": "https://www.linkedin.com/comm/jobs/view/4465665307/?trackingId=Dt9VuLmidYducAPcAFu6xg%3D%3D&refId=YnweOpc7dheQLnNsCWybiA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BYBZG0wlEQey5HgRzqoW%2Biw%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3Q3R9vZsYB0cs1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_2_jobid_4465665307_ssid_8700305346_fmid_gbrmkn~mtx0svit~pd&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_2_jobid_4465665307_ssid_8700305346_fmid_gbrmkn~mtx0svit~pd-null-gbrmkn~mtx0svit~pd-null-null&eid=gbrmkn-mtx0svit-pd&otpToken=YzBhNTYwODM0YzU5ZWI0YjhlNjc1OTI2MWY5NDZhNmJjOGY0YjA4NTk2Yzk4YWU4MTI1MGZhYmQyMDVjZTU3M2UzZTcyNWY4MTY5OGMwYTM0Y2NiZTMwYjU2YWNhY2NjYjhkMzUzZWUzMjAyNTU4MzQ1NjFhYTYxYjg3OTE0ODMzMTM0MzliNGFkY2QzZDZlLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-11T15:33:52.515091+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Mercedes-Benz Switzerland",
+      "title": "Praktikant Business Intelligence Mercedes-Benz Vans (m/w/d), 80-100%",
+      "location": "Schlieren",
+      "url": "https://www.linkedin.com/comm/jobs/view/4465812582/?trackingId=%2FFlViwLRXYRHGmbQJYp8LQ%3D%3D&refId=YnweOpc7dheQLnNsCWybiA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BYBZG0wlEQey5HgRzqoW%2Biw%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3Q3R9vZsYB0cs1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_3_jobid_4465812582_ssid_8700305346_fmid_gbrmkn~mtx0svit~pd&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_3_jobid_4465812582_ssid_8700305346_fmid_gbrmkn~mtx0svit~pd-null-gbrmkn~mtx0svit~pd-null-null&eid=gbrmkn-mtx0svit-pd&otpToken=YzBhNTYwODM0YzU5ZWI0YjhlNjc1OTI2MWY5NDZhNmJjOGY0YjA4NTk2Yzk4YWU4MTI1MGZhYmQyMDVjZTU3M2UzZTcyNWY4MTY5OGMwYTM0Y2NiZTMwYjU2YWNhY2NjYjhkMzUzZWUzMjAyNTU4MzQ1NjFhYTYxYjg3OTE0ODMzMTM0MzliNGFkY2QzZDZlLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-11T15:33:52.515091+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Hexagon Robotics",
+      "title": "Mechatronics Intern",
+      "location": "Zurich, Switzerland",
+      "url": "https://www.linkedin.com/comm/jobs/view/4463420270/?trackingId=0J%2FpJWTyhfwfZhgdN1WFZg%3D%3D&refId=YnweOpc7dheQLnNsCWybiA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BYBZG0wlEQey5HgRzqoW%2Biw%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3Q3R9vZsYB0cs1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_5_jobid_4463420270_ssid_8700305346_fmid_gbrmkn~mtx0svit~pd&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_5_jobid_4463420270_ssid_8700305346_fmid_gbrmkn~mtx0svit~pd-null-gbrmkn~mtx0svit~pd-null-null&eid=gbrmkn-mtx0svit-pd&otpToken=YzBhNTYwODM0YzU5ZWI0YjhlNjc1OTI2MWY5NDZhNmJjOGY0YjA4NTk2Yzk4YWU4MTI1MGZhYmQyMDVjZTU3M2UzZTcyNWY4MTY5OGMwYTM0Y2NiZTMwYjU2YWNhY2NjYjhkMzUzZWUzMjAyNTU4MzQ1NjFhYTYxYjg3OTE0ODMzMTM0MzliNGFkY2QzZDZlLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-11T15:33:52.515091+00:00"
   }
 ]
