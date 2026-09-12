@@ -885,5 +885,160 @@
     "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-09-12T09:05:11.074452+00:00"
+  },
+  {
+    "score": 35,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting truncated -- full requirements not visible",
+      "Role title 'AI Software Architect' indicates senior-level position, far above candidate's internship/junior target",
+      "Reports to Head of Software Engineering Practices -- confirms seniority",
+      "SIX Group is a major financial infrastructure company where architect roles require substantial experience",
+      "Past Job-Room evaluations have all been SKIP with low scores",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "AI Software Architect",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5880990087",
+      "portal": "adzuna",
+      "description": "SIX drives the transformation of financial markets. What sets us apart drives us ahead: between local roots and global relevance, we are a unique blend of tradition and future, of foundation and growth. We value bright minds and inspire them to grow with their ideas. Come and shape the future of finance with us.   AI Software Architect  Zurich | Working from home up to 40% possible | Reference 8259 Shape and execute the AI SDLC at SIX · reports to Head of Software Engineering Practices Agentic …"
+    },
+    "technical_fit": "The posting is heavily truncated (500 characters, truncated=true), so the full requirements section was never visible. What IS visible is concerning: the title is 'AI Software Architect' at SIX Group (not Job-Room as the listing suggests -- Job-Room appears to be the aggregator), and it reports to 'Head of Software Engineering Practices.' This is a senior/architect-level role, not an internship or junior position. The candidate is explicitly seeking an internship or junior role with real ownership in agentic systems, not a senior architecture position. The level mismatch is extreme -- an 'Architect' shaping and executing the AI SDLC at a major financial infrastructure company like SIX is far beyond his current experience as an AI Software Engineer Intern. Additionally, the text is too truncated to assess requirements confidently, but the visible seniority level alone is disqualifying. Past evaluations for Job-Room roles have all scored low and been SKIP decisions. Location (Zurich) and language (none required beyond English) are fine, but the role level is fundamentally mismatched.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "concerns": [
+      "Posting truncated -- full requirements not visible",
+      "Role title 'AI Software Architect' indicates senior-level position, far above candidate's internship/junior target",
+      "Reports to Head of Software Engineering Practices -- confirms seniority",
+      "SIX Group is a major financial infrastructure company where architect roles require substantial experience",
+      "Past Job-Room evaluations have all been SKIP with low scores"
+    ],
+    "agent_rationale": "The posting is heavily truncated (500 characters, truncated=true), so the full requirements section was never visible. What IS visible is concerning: the title is 'AI Software Architect' at SIX Group (not Job-Room as the listing suggests -- Job-Room appears to be the aggregator), and it reports to 'Head of Software Engineering Practices.' This is a senior/architect-level role, not an internship or junior position. The candidate is explicitly seeking an internship or junior role with real ownership in agentic systems, not a senior architecture position. The level mismatch is extreme -- an 'Architect' shaping and executing the AI SDLC at a major financial infrastructure company like SIX is far beyond his current experience as an AI Software Engineer Intern. Additionally, the text is too truncated to assess requirements confidently, but the visible seniority level alone is disqualifying. Past evaluations for Job-Room roles have all scored low and been SKIP decisions. Location (Zurich) and language (none required beyond English) are fine, but the role level is fundamentally mismatched.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "SIX"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "AI Software Architect"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "agentic"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 35,
+          "decision": "SKIP",
+          "rationale": "The posting is heavily truncated (500 characters, truncated=true), so the full requirements section was never visible. What IS visible is concerning: the title is 'AI Software Architect' at SIX Group (not Job-Room as the listing suggests -- Job-Room appears to be the aggregator), and it reports to 'Head of Software Engineering Practices.' This is a senior/architect-level role, not an internship or junior position. The candidate is explicitly seeking an internship or junior role with real ownership in agentic systems, not a senior architecture position. The level mismatch is extreme -- an 'Architect' shaping and executing the AI SDLC at a major financial infrastructure company like SIX is far beyond his current experience as an AI Software Engineer Intern. Additionally, the text is too truncated to assess requirements confidently, but the visible seniority level alone is disqualifying. Past evaluations for Job-Room roles have all scored low and been SKIP decisions. Location (Zurich) and language (none required beyond English) are fine, but the role level is fundamentally mismatched.",
+          "concerns": [
+            "Posting truncated -- full requirements not visible",
+            "Role title 'AI Software Architect' indicates senior-level position, far above candidate's internship/junior target",
+            "Reports to Head of Software Engineering Practices -- confirms seniority",
+            "SIX Group is a major financial infrastructure company where architect roles require substantial experience",
+            "Past Job-Room evaluations have all been SKIP with low scores"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-12T14:39:17.324049+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Sobi",
+      "title": "Junior Product Manager",
+      "location": "Zug",
+      "url": "https://de.glassdoor.ch/partner/jobListing.htm?pos=104&ao=1136043&s=362&guid=000001a0954f5e8a985f022f03dd4133&src=GD_JOB_AD&t=REC_JOBS&vt=e&uido=D661EDE7358AA032024678584D685D92&ea=1&cs=1_52139140&cb=1789213540163&jobListingId=1010210928367&jrtk=5-yul1-1-1k2amvvful51u801-95207e6358d3f0cf&utm_medium=email&utm_source=jobsForYou&utm_campaign=jobsForYou&utm_content=jobs-for-you-jobsForYou-jobpos4-age30d-1010210928367&rdforyou=true",
+      "portal": "glassdoor.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-12T14:39:17.324049+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "BCG Platinion",
+      "title": "Visiting Associate - AI Tech Architecture (all genders) - BCG Platinion",
+      "location": "Zurich",
+      "url": "https://www.linkedin.com/comm/jobs/view/4446783865/?trackingId=wl0aqEyi6jOlS%2FAoR1x3rQ%3D%3D&refId=%2Bmsm%2B0OxJzoyEx50W784KQ%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BAaRIhsqUQWmL3r%2FJGnhn5w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=0212h3eN7l1cs1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_0_jobid_4446783865_ssid_8708019010_fmid_gbrmkn~mty7o32m~sz&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_0_jobid_4446783865_ssid_8708019010_fmid_gbrmkn~mty7o32m~sz-null-gbrmkn~mty7o32m~sz-null-null&eid=gbrmkn-mty7o32m-sz&otpToken=Yjg4MmRkMGU4ZTc3ZjI4NzAwMWYzMDM1NGZiY2NiZDU1YjRjMzJlYjZkNGEzM2E2MWZlYTQ3Y2IzOTE0MjdmM2M5N2RlNTU0OTMxODM4YjNmN2MwZDM5OWMxMzkyYjI1OTdlNTAyZjk1YjkxNDIzYzFiYmJiZGRiYTUzMzVjNjRhNmQ4N2M0MTZkNDA5NGY5LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-12T14:39:17.324049+00:00"
   }
 ]
