@@ -1,0 +1,54 @@
+{
+  "ts": "2026-09-13T15:20:52.726726+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5479,
+    "completion_tokens": 632
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run evaluated 5 jobs (3 SKIP, 2 NOT_EVALUATED, 0 APPLY). No tailored documents or high-score alerts were needed. One sent application remains eligible for follow-up but no new draft was created (candidate likely already has a pending draft). No REVIEW-band jobs from the last 14 days were available for reevaluation.",
+        "rationale": "With zero APPLY jobs produced by today's scoring, there is no application paperwork to generate and no top-match alerts to send. The single stale application is still eligible for follow-up but the tool produced 0 drafts, indicating the candidate already has a pending draft to review. Reevaluation of borderline jobs yielded no eligible candidates. All appropriate actions for this run state have been taken."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 5, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 3, \"ERROR\": 0, \"NOT_EVALUATED\": 2}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [], \"note\": \"no eligible REVIEW-band jobs in the last 14 days\"}"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run evaluated 5 jobs (3 SKIP, 2 NOT_EVALUATED, 0 APPLY). No tailored documents or high-score alerts were needed. One sent application remains eligible for follow-up but no new draft was created (candidate likely already has a pending draft). No REVIEW-band jobs from the last 14 days were available for reevaluation.",
+  "agent_rationale": "With zero APPLY jobs produced by today's scoring, there is no application paperwork to generate and no top-match alerts to send. The single stale application is still eligible for follow-up but the tool produced 0 drafts, indicating the candidate already has a pending draft to review. Reevaluation of borderline jobs yielded no eligible candidates. All appropriate actions for this run state have been taken."
+}
