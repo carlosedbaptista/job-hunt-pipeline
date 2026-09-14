@@ -335,19 +335,19 @@
     "no_posting_text": true
   },
   {
-    "score": 72,
-    "hard_blockers": [],
+    "score": 55,
+    "hard_blockers": [
+      "Role is explicitly an internship; candidate requires non-internship, non-working-student position"
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong alignment. The role centers on GenAI/LLM-powered user-facing features, ML model development, and data preparation pipelines -- exactly what the candidate is doing today and wants to go deeper on. Python is explicitly required; his LLM API experience (Claude, Kimi) and pipeline-building background map directly. The 'roll out and shape AI tools across the company' line signals real ownership potential, not just support work."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "No explicit mention of 'agentic systems' or multi-step automation -- the role may lean more toward traditional ML + GenAI feature development than the autonomous pipelines he wants to specialize in",
-      "'Support the implementation' and 'play a part in' phrasing occasionally suggests some shared/team ownership rather than sole ownership; need to probe in interview",
-      "80-100% workload at 80% could mean 4-day week -- verify expected commitment and project scope",
-      "No mention of cloud infrastructure or CI/CD in the role; these are skills he has and wants to use, but may not be central here",
-      "Studying requirement ('currently studying') -- his postgraduate specialization may or may not qualify; worth clarifying if they require enrolled student status"
+      "Blocker: Role is explicitly an internship; candidate requires non-internship, non-working-student position",
+      "Explicitly an internship (6-12 months), violating candidate's stated non-negotiable of 'Not internships or working-student roles'",
+      "Studying requirement ('currently studying') suggests designed for students, not career changers seeking permanent roles",
+      "Despite Generative AI/LLM content, the role shape is support/learning-focused rather than ownership-focused",
+      "Candidate has already done an AI internship and is seeking the next step, not another internship cycle"
     ],
     "job": {
       "company": "Comparis.ch",
@@ -357,19 +357,25 @@
       "portal": "glassdoor.com",
       "description": "comparis.ch is the leading comparison platform in Switzerland. We have been comparing the prices and products of health insurers, other insurance companies, telecom providers and banks for over 25 years and offer the largest Swiss online marketplace for cars and property. Our comprehensive comparisons ensure transparency for our users and help them make the right decisions. With over 80 million visits each year, we rank among the most widely used websites in Switzerland. Four out of five people recognize us as THE independent comparison platform in Switzerland.  \n \nAre you curious about machine learning and AI, and want to see how it all works in a real company? We’re looking for an open-minded and motivated intern to join our data team for 6 to 12 months. This is your chance to dive into real projects, bring your own ideas to the table, and learn how AI is used to solve practical problems. Help develop and improve machine learning models, especially  in the area of  Generative AI , that power user- facing features. \n Work on a variety of use cases and support the implementation and optimization of ML algorithms. \n Get involved in preparing training data: exploring, cleaning, and organizing data so  it’s  ready for our models. \n Play a part in rolling out and shaping AI tools across the company. Curiosity and a genuine interest in finding data-driven solutions. \n Currently  studying computer science, data science, or something similar. \n E xperience with at least one programming language (like Python, Scala, or Java). \n An interest in modern AI models (like large language models) is a plus. \n Fluent English skills. At Comparis, we believe that empowered employees deliver the best results. We cultivate a culture of transparency, mutual respect and trust. Firm believers in lifelong learning, we are always trying out new things and continuously developing – both as individuals and as a team. We also offer flat hierarchies, considerable autonomy and creative freedom, as well as a skilled and motivated team that will advise and support you in your work and make it easy for you to push your own boundaries. Finally, we offer flexible working hours and the freedom to work from almost anywhere you choose. Whether you're enjoying a workation in the Portuguese Algarve, collaborating from a café in Barcelona, or connecting from a mountain chalet in the Swiss Alps, our diverse team of talented professionals spans across Europe, creating an inclusive and dynamic work environment. Then don't hesitate and apply for our position today. If you have any questions, Simone, our People Business Partner, will be happy to help. We look forward to receiving your application! \n\n Note for recruiters: For this position, we only consider direct applications."
     },
-    "technical_fit": "Strong alignment. The role centers on GenAI/LLM-powered user-facing features, ML model development, and data preparation pipelines -- exactly what the candidate is doing today and wants to go deeper on. Python is explicitly required; his LLM API experience (Claude, Kimi) and pipeline-building background map directly. The 'roll out and shape AI tools across the company' line signals real ownership potential, not just support work.",
-    "contextual_fit": "Good. Zurich-based, 6-12 month internship with flexible/remote options fits his permit situation and 2-week notice perfectly. Comparis is a well-known DACH-market platform -- similar B2C digital context to his current agency work, though in price comparison rather than marketing services. Flat hierarchies, autonomy, and 'creative freedom' match his stated preference for ownership.",
-    "salary_estimate": "CHF 3,500–4,500/month (typical Zurich ML/AI internship range)",
-    "culture_fit": "Strong match. The emphasis on 'empowered employees,' 'considerable autonomy,' 'push your own boundaries,' and explicit invitation to 'bring your own ideas' aligns well with his zero-to-production ownership drive. The 'workation' culture and European remote team is a plus for someone with his international background.",
+    "technical_fit": "Partial. The role involves ML/AI work including Generative AI and LLMs, which aligns with candidate's target. However, it is explicitly an internship (6-12 months), and the candidate's core requirement is 'Not internships or working-student roles.' The work described—developing ML models, data prep, rolling out AI tools—matches his skills (Python, LLM APIs, prompt engineering), but the role shape is wrong: intern position, not a permanent or junior-associate builder role with ownership.",
+    "contextual_fit": "Poor on role shape despite good domain alignment. Candidate wants to 'own real projects from day one' and escape intern-level work; this is literally an internship. The flat hierarchy and autonomy mentioned are appealing, but the fundamental contract type is a mismatch with his stated non-negotiable. Location (Zürich) and permit are fine; flexible remote is a plus.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Good culturally—flat hierarchy, autonomy, creative freedom, lifelong learning, diverse European team. These match his career-changer mindset and desire for ownership. But culture cannot override the internship structure mismatch.",
     "concerns": [
-      "No explicit mention of 'agentic systems' or multi-step automation -- the role may lean more toward traditional ML + GenAI feature development than the autonomous pipelines he wants to specialize in",
-      "'Support the implementation' and 'play a part in' phrasing occasionally suggests some shared/team ownership rather than sole ownership; need to probe in interview",
-      "80-100% workload at 80% could mean 4-day week -- verify expected commitment and project scope",
-      "No mention of cloud infrastructure or CI/CD in the role; these are skills he has and wants to use, but may not be central here",
-      "Studying requirement ('currently studying') -- his postgraduate specialization may or may not qualify; worth clarifying if they require enrolled student status"
+      "Explicitly an internship (6-12 months), violating candidate's stated non-negotiable of 'Not internships or working-student roles'",
+      "Studying requirement ('currently studying') suggests designed for students, not career changers seeking permanent roles",
+      "Despite Generative AI/LLM content, the role shape is support/learning-focused rather than ownership-focused",
+      "Candidate has already done an AI internship and is seeking the next step, not another internship cycle"
     ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 1,
+      "prompt_tokens": 2355,
+      "completion_tokens": 401,
+      "cost_usd": null
+    },
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-21T05:39:54.346374+00:00",
     "rescored": true
@@ -567,20 +573,21 @@
     "rescored": true
   },
   {
-    "score": 72,
-    "hard_blockers": [],
+    "score": 45,
+    "hard_blockers": [
+      "Role explicitly targets Master students with 2-4 month duration and 40-80% workload — this is a student internship, which candidate explicitly excludes from his search"
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong alignment on AI/automation focus, knowledge systems, and agentic workflows. Direct overlap with LLM APIs, RAG, semantic search, and multi-step pipelines. Gaps: no explicit Python/pandas/SQL in role; heavier on Microsoft Copilot/Cowork ecosystem, knowledge graphs, and UX/product design than his current stack. His infrastructure/CI-Docker experience less relevant here."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Master student requirement may be a formal eligibility criterion—his postgraduate specialisation (lato sensu) may not qualify; worth clarifying before applying",
-      "Role is 40-80% workload—at lower end, may limit depth of ownership",
-      "Heavy Microsoft ecosystem (Copilot, Cowork, SharePoint) vs. his open-source/cloud-native tooling; relearning curve",
-      "Much work is curriculum design, wiki structuring, and stakeholder communication—not purely engineering; ~30-40% of responsibilities are 'academy' content creation rather than building",
-      "UX/wireframing and 'digital product design' emphasis is outside his current skill set; he'd be learning this on the fly",
-      "Short 2-4 month duration limits how much he can truly 'own' something from zero to production"
+      "Blocker: Role explicitly targets Master students with 2-4 month duration and 40-80% workload — this is a student internship, which candidate explicitly excludes from his search",
+      "Role is fundamentally a student internship, not a permanent or contract junior position — direct conflict with candidate's stated requirements",
+      "Heavy emphasis on training content creation, workshop design, and executive communication rather than production engineering",
+      "Knowledge graph work is conceptual/design-only, not implementation; no evidence of Python, API integration, or system-building in deliverables",
+      "UX/wireframing and 'visual storylines' are significant portions of the role, skills he hasn't demonstrated",
+      "Start date of Oct 1 with 2-week notice is tight but feasible; more problematic is the part-time structure",
+      "Regulated pharma environment may add compliance overhead that slows iteration, contrary to his preference for shipping from scratch"
     ],
     "job": {
       "company": "Randstad Digital",
@@ -590,40 +597,46 @@
       "portal": "linkedin.com",
       "description": "A leading pharmaceutical company is looking for a Junior AI & Knowledge Engineer based in Zurich, Switzerland\nDuration: 2-4 months\nStart date: 1st October 2026\nWorkload: 40-80%\nLanguage: English/ German an advantage\n1. Role overview\nWe are looking for a highly motivated Master student to support strategic AI and Knowledge\nManagement initiatives within a global biopharmaceutical environment. The role will work closely with\nthe MSAT Knowledge Management Lead and contribute to the design and deployment of the AI Academy,\nData Academy, Process Wiki / Knowledge Navigator, and related AI-enabled knowledge solutions.\nThe assignment is ideal for a student who enjoys building at the intersection of AI tools, knowledge\nmanagement, knowledge graph design, information architecture, and user-centric digital product design.\n2. Key responsibilities (depending which workstream assigned to)\nAI Academy & Data Academy development\nSupport the design of learning pathways, training curricula, capability frameworks and bootcamp\nconcepts.\nDevelop practical learning & workshop materials, exercise templates and reusable academy content.\nResearch emerging AI tools and translate relevant use cases into MSAT-oriented training examples.\nCreate AI use case catalogues, prompt examples and practical demonstrations for knowledge work,\ndata work and process intelligence.\nSupport launch communication, stakeholder updates and executive-ready summaries.\nProcess Wiki / Knowledge Navigator\nSupport the design of a modern digital knowledge infrastructure for process knowledge, process data\nand modelling-related content.\nCreate intuitive navigation structures & page concepts\nDevelop page mock-ups, wireframes and proof-of-concept knowledge portal designs.\nImprove discoverability through taxonomy, metadata and search-oriented content structuring.\nContribute to the integration concept for multiple knowledge sources into a unified knowledge navigator\nexperience.\nAI tools, knowledge graphs and agentic knowledge solutions\nApply AI productivity tools such as Microsoft Copilot, Cowork or comparable AI assistant platforms to\naccelerate content creation, knowledge structuring and prototyping.\nSupport conceptual knowledge graph design by defining entities, relationships and metadata patterns\nacross documents, processes & systems.\nEvaluate approaches for semantic search, retrieval-augmented generation and AI-assisted knowledge\nretrieval.\nContribute to concepts for Copilot / Cowork-based assistants, process wiki agents and AI-enabled\nknowledge workflows.\nDocument design decisions, assumptions and recommendations in a structured and reusable way.\nWeb page creation, UX and vi\n[... middle of the posting omitted ...]\n knowledge systems.\nHigh attention to detail, with the ability to make complex knowledge accessible and easy to reuse.\n5. Expected deliverables (depending which workstream assigned to)\nWorkstream Expected contribution\nAcademy design\nAI Academy and Data & Modelling Academy\ncontent structure, learning pathways, workshop\nconcepts and reusable training assets.\nKnowledge product\nProcess Wiki / Knowledge Navigator MVP concept,\nnavigation model, page design prototypes and\nuser journey recommendations.\nAI & knowledge engineering\nKnowledge graph concept, taxonomy and\nmetadata recommendations, RAG / semantic\nsearch options and AI-agent integration ideas.\nCommunication assets\nExecutive-ready summaries, visual storylines,\nstakeholder updates and working materials for\nprogramme adoption.\n6. What the student will gain\nHands-on experience in enterprise AI transformation and AI-enabled knowledge management.\nExposure to strategic academy development, capability building and community enablement.\nOpportunity to work on a visible Process Wiki / Knowledge Navigator MVP with real business impact.\nExperience with modern AI tools, knowledge graph concepts and digital product design in a regulated\nglobal environment.\nClose collaboration with experts in MSAT, Process Intelligence, Knowledge Management, Digital & Data\nScience.\nApply soon!"
     },
-    "technical_fit": "Strong alignment on AI/automation focus, knowledge systems, and agentic workflows. Direct overlap with LLM APIs, RAG, semantic search, and multi-step pipelines. Gaps: no explicit Python/pandas/SQL in role; heavier on Microsoft Copilot/Cowork ecosystem, knowledge graphs, and UX/product design than his current stack. His infrastructure/CI-Docker experience less relevant here.",
-    "contextual_fit": "Good: Zurich hybrid, 2-4 month internship, 40-80% workload fits his availability (2-week notice, permit B). English working language with German as advantage—no blocker. Pharmaceutical domain is new but he's explicitly open to unfamiliar domains. Concern: role is explicitly for a Master student; he's a postgraduate specialist (lato sensu, not a Master's degree). This may or may not be a hard eligibility requirement—worth verifying.",
+    "technical_fit": "Partial overlap but misaligned depth. The role touches AI (Copilot, RAG, semantic search, agentic workflows) and knowledge graphs, which match his interests. However, the actual work is heavily weighted toward curriculum design, training materials, stakeholder communication, executive summaries, and UX/wireframing — not building production systems. His strengths (shipping LLM pipelines, tool-calling agents, output validation, production automation) are underutilized; the role needs a learning-content creator and digital product designer more than an AI engineer.",
+    "contextual_fit": "Poor. Explicitly framed for a Master student (\"highly motivated Master student\"), 2-4 month duration, 40-80% workload, start in 2 weeks. This is a student internship/contract role, which he explicitly excludes. His profile (career changer, postgraduate specialization, seeking permanent/junior-associate level with ownership) is overqualified and misaligned with the role's academic, part-time, temporary structure. The 'Junior' in the title is student-junior, not early-career-professional junior.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Mixed on ownership dimension. Role offers real project exposure (MVP development, visible deliverables) and hands-on AI/knowledge engineering, which he wants. However, much of the work is support/design for academies and wikis rather than end-to-end building with production deployment. 'Support' and 'contribute to' language is frequent; less 'ship and own' than his ideal. Still, agentic knowledge solutions workstream has genuine builder potential.",
+    "culture_fit": "Corporate pharmaceutical, highly structured, regulated environment with heavy emphasis on documentation, stakeholder management, and executive communication. Some appeal in the AI transformation narrative, but the actual work is enablement/academy-building rather than hands-on system building. He'd likely find the pace and bureaucratic layer frustrating given his motivation to 'own real projects from day one' and build systems.",
     "concerns": [
-      "Master student requirement may be a formal eligibility criterion—his postgraduate specialisation (lato sensu) may not qualify; worth clarifying before applying",
-      "Role is 40-80% workload—at lower end, may limit depth of ownership",
-      "Heavy Microsoft ecosystem (Copilot, Cowork, SharePoint) vs. his open-source/cloud-native tooling; relearning curve",
-      "Much work is curriculum design, wiki structuring, and stakeholder communication—not purely engineering; ~30-40% of responsibilities are 'academy' content creation rather than building",
-      "UX/wireframing and 'digital product design' emphasis is outside his current skill set; he'd be learning this on the fly",
-      "Short 2-4 month duration limits how much he can truly 'own' something from zero to production"
+      "Role is fundamentally a student internship, not a permanent or contract junior position — direct conflict with candidate's stated requirements",
+      "Heavy emphasis on training content creation, workshop design, and executive communication rather than production engineering",
+      "Knowledge graph work is conceptual/design-only, not implementation; no evidence of Python, API integration, or system-building in deliverables",
+      "UX/wireframing and 'visual storylines' are significant portions of the role, skills he hasn't demonstrated",
+      "Start date of Oct 1 with 2-week notice is tight but feasible; more problematic is the part-time structure",
+      "Regulated pharma environment may add compliance overhead that slows iteration, contrary to his preference for shipping from scratch"
     ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 1,
+      "prompt_tokens": 2728,
+      "completion_tokens": 543,
+      "cost_usd": null
+    },
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-21T12:42:39.307943+00:00",
     "rescored": true
   },
   {
-    "score": 72,
-    "hard_blockers": [],
+    "score": 35,
+    "hard_blockers": [
+      "Role is explicitly a student internship (Master student, 2-4 months, 40-80%) — candidate explicitly excludes internships and working-student roles"
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong overlap with candidate's interests in AI-powered knowledge systems and agentic workflows. Role involves RAG, semantic search, AI assistants, and knowledge graphs -- directly adjacent to his LLM pipeline and automation experience. However, heavy emphasis on learning content design, academy curricula, and UX/wireframing rather than hands-on engineering/building. His Python/SQL/data pipeline skills are less central than pedagogical design and Microsoft Copilot/Cowork proficiency."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Role is 40-80% workload -- unclear if this is compatible with full-time commitment expectations or if it implies parallel study",
-      "Explicitly framed for 'Master student' -- his postgraduate specialisation may or may not satisfy this; worth clarifying",
-      "Heavy weight on training/academy content creation and UX design rather than engineering implementation; risk of 'support work' vs. 'building'",
-      "Short 2-4 month duration limits depth of ownership and production deployment experience",
-      "Microsoft-centric stack (Copilot, Cowork) rather than open LLM APIs he has worked with",
-      "Knowledge graph and semantic search concepts are mentioned but 'support conceptual design' language suggests junior contribution level",
-      "Regulated environment may slow iteration cycles contrary to his preference for shipping fast"
+      "Blocker: Role is explicitly a student internship (Master student, 2-4 months, 40-80%) — candidate explicitly excludes internships and working-student roles",
+      "Role is 60% knowledge management and instructional design, not hands-on AI engineering; candidate would be building training materials and wiki navigation, not production LLM systems",
+      "Master student requirement suggests academic enrollment expected",
+      "Short duration (2-4 months) prevents meaningful project ownership 'from day one' as candidate seeks",
+      "UX/wireframing and 'visual storylines' are significant skill gaps",
+      "Regulated pharma environment may involve compliance overhead unfamiliar to candidate"
     ],
     "job": {
       "company": "Randstad Digital",
@@ -633,21 +646,26 @@
       "portal": "linkedin.com",
       "description": "A leading pharmaceutical company is looking for a Junior AI & Knowledge Engineer based in Zurich, Switzerland\nDuration: 2-4 months\nStart date: 1st October 2026\nWorkload: 40-80%\nLanguage: English/ German an advantage\n1. Role overview\nWe are looking for a highly motivated Master student to support strategic AI and Knowledge\nManagement initiatives within a global biopharmaceutical environment. The role will work closely with\nthe MSAT Knowledge Management Lead and contribute to the design and deployment of the AI Academy,\nData Academy, Process Wiki / Knowledge Navigator, and related AI-enabled knowledge solutions.\nThe assignment is ideal for a student who enjoys building at the intersection of AI tools, knowledge\nmanagement, knowledge graph design, information architecture, and user-centric digital product design.\n2. Key responsibilities (depending which workstream assigned to)\nAI Academy & Data Academy development\nSupport the design of learning pathways, training curricula, capability frameworks and bootcamp\nconcepts.\nDevelop practical learning & workshop materials, exercise templates and reusable academy content.\nResearch emerging AI tools and translate relevant use cases into MSAT-oriented training examples.\nCreate AI use case catalogues, prompt examples and practical demonstrations for knowledge work,\ndata work and process intelligence.\nSupport launch communication, stakeholder updates and executive-ready summaries.\nProcess Wiki / Knowledge Navigator\nSupport the design of a modern digital knowledge infrastructure for process knowledge, process data\nand modelling-related content.\nCreate intuitive navigation structures & page concepts\nDevelop page mock-ups, wireframes and proof-of-concept knowledge portal designs.\nImprove discoverability through taxonomy, metadata and search-oriented content structuring.\nContribute to the integration concept for multiple knowledge sources into a unified knowledge navigator\nexperience.\nAI tools, knowledge graphs and agentic knowledge solutions\nApply AI productivity tools such as Microsoft Copilot, Cowork or comparable AI assistant platforms to\naccelerate content creation, knowledge structuring and prototyping.\nSupport conceptual knowledge graph design by defining entities, relationships and metadata patterns\nacross documents, processes & systems.\nEvaluate approaches for semantic search, retrieval-augmented generation and AI-assisted knowledge\nretrieval.\nContribute to concepts for Copilot / Cowork-based assistants, process wiki agents and AI-enabled\nknowledge workflows.\nDocument design decisions, assumptions and recommendations in a structured and reusable way.\nWeb page creation, UX and vi\n[... middle of the posting omitted ...]\n knowledge systems.\nHigh attention to detail, with the ability to make complex knowledge accessible and easy to reuse.\n5. Expected deliverables (depending which workstream assigned to)\nWorkstream Expected contribution\nAcademy design\nAI Academy and Data & Modelling Academy\ncontent structure, learning pathways, workshop\nconcepts and reusable training assets.\nKnowledge product\nProcess Wiki / Knowledge Navigator MVP concept,\nnavigation model, page design prototypes and\nuser journey recommendations.\nAI & knowledge engineering\nKnowledge graph concept, taxonomy and\nmetadata recommendations, RAG / semantic\nsearch options and AI-agent integration ideas.\nCommunication assets\nExecutive-ready summaries, visual storylines,\nstakeholder updates and working materials for\nprogramme adoption.\n6. What the student will gain\nHands-on experience in enterprise AI transformation and AI-enabled knowledge management.\nExposure to strategic academy development, capability building and community enablement.\nOpportunity to work on a visible Process Wiki / Knowledge Navigator MVP with real business impact.\nExperience with modern AI tools, knowledge graph concepts and digital product design in a regulated\nglobal environment.\nClose collaboration with experts in MSAT, Process Intelligence, Knowledge Management, Digital & Data\nScience.\nApply soon!"
     },
-    "technical_fit": "Strong overlap with candidate's interests in AI-powered knowledge systems and agentic workflows. Role involves RAG, semantic search, AI assistants, and knowledge graphs -- directly adjacent to his LLM pipeline and automation experience. However, heavy emphasis on learning content design, academy curricula, and UX/wireframing rather than hands-on engineering/building. His Python/SQL/data pipeline skills are less central than pedagogical design and Microsoft Copilot/Cowork proficiency.",
-    "contextual_fit": "Randstad Digital consultancy placement at a pharma client; 2-4 months, 40-80% workload, starting Oct 1 fits his 2-week notice perfectly. Swiss-based, Zurich location matches. However, 'Master student' framing suggests academic enrollment expectation -- he is a career changer with postgraduate diploma, not currently a Master's student. Duration is short-term contract, not a pathway to deeper ownership.",
-    "salary_estimate": "CHF 3,500-4,500/month (typical Randstad Digital junior/student consulting rate)",
-    "culture_fit": "Structured, client-consultancy environment with heavy stakeholder communication, executive summaries, and 'programme adoption' focus. Less startup/ownership culture than he seeks. Regulated pharma context means process-heavy, documentation-intensive work -- valuable exposure but potentially constraining for someone motivated by 'zero to production' autonomy.",
+    "technical_fit": "Partial overlap: role involves AI tools (Copilot, RAG, semantic search, agentic workflows), knowledge graphs, and content structuring — all adjacent to candidate's LLM and automation skills. However, the role is heavily weighted toward knowledge management, training curriculum design, UX/wireframing, and 'academy' content creation rather than hands-on engineering of production AI systems. Candidate's strengths are in building and shipping LLM pipelines, not in instructional design, stakeholder communication, or digital product design for learning platforms.",
+    "contextual_fit": "Poor: role explicitly targets a Master student (candidate is a career changer with work experience and a postgraduate specialization, not a current student). Duration is 2-4 months at 40-80% — this is a short-term student internship/contract, exactly what candidate's rules exclude ('Not internships or working-student roles'). Start date of October 1st with 2-week notice is tight but possible, though the temporary nature is the bigger issue.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Corporate pharmaceutical environment with heavy emphasis on stakeholder management, executive summaries, and structured program adoption — more consultative/enablement than builder culture. Candidate wants to own and ship technical systems, not design training curricula.",
     "concerns": [
-      "Role is 40-80% workload -- unclear if this is compatible with full-time commitment expectations or if it implies parallel study",
-      "Explicitly framed for 'Master student' -- his postgraduate specialisation may or may not satisfy this; worth clarifying",
-      "Heavy weight on training/academy content creation and UX design rather than engineering implementation; risk of 'support work' vs. 'building'",
-      "Short 2-4 month duration limits depth of ownership and production deployment experience",
-      "Microsoft-centric stack (Copilot, Cowork) rather than open LLM APIs he has worked with",
-      "Knowledge graph and semantic search concepts are mentioned but 'support conceptual design' language suggests junior contribution level",
-      "Regulated environment may slow iteration cycles contrary to his preference for shipping fast"
+      "Role is 60% knowledge management and instructional design, not hands-on AI engineering; candidate would be building training materials and wiki navigation, not production LLM systems",
+      "Master student requirement suggests academic enrollment expected",
+      "Short duration (2-4 months) prevents meaningful project ownership 'from day one' as candidate seeks",
+      "UX/wireframing and 'visual storylines' are significant skill gaps",
+      "Regulated pharma environment may involve compliance overhead unfamiliar to candidate"
     ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 1,
+      "prompt_tokens": 2720,
+      "completion_tokens": 439,
+      "cost_usd": null
+    },
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-21T12:42:39.307943+00:00",
     "rescored": true
@@ -760,19 +778,21 @@
     "no_posting_text": true
   },
   {
-    "score": 85,
-    "hard_blockers": [],
+    "score": 45,
+    "hard_blockers": [
+      "Role is explicitly an internship (40-60% contract, 'flexible around semester schedule', 'currently studying' requirement) — candidate explicitly excludes internships and working-student roles from his search"
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong. Role centers on LLM-powered automation, agentic systems, and infrastructure ownership — exactly the candidate's current work and stated growth direction. Direct overlap with his experience: multi-step automation pipelines, LLM APIs, Docker/GitHub Actions CI/CD, cloud infrastructure, and building production systems from zero. The 'second brain' knowledge management, usage monitoring, feedback loops, and provider-agnostic tooling are natural extensions of his pipeline and dashboarding work. Git and structured/systems mindset are explicitly required and present.",
-      "Excellent. Role shape is ideal: 'real ownership,' 'infrastructure the rest of the company relies on,' 'loosely-scoped week-sized tasks with minimal check-ins' — matches his stated preference for zero-to-production ownership and self-directed building. Fintech domain is new to him but he explicitly welcomes unfamiliar domains; the role doesn't require finance background. 40-60% contract fits internship flexibility. 6-month minimum with possible longer-term path aligns with his permit stability. 2-week notice is compatible with 'ASAP/by arrangement' start."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Part-time 40-60% may limit depth of ownership compared to full-time roles, though he may value flexibility",
-      "EU/EFTA work right listed as requirement — candidate has Swiss Permit B (EFTA-adjacent via bilateral agreements, but not strictly EU/EFTA; however Swiss work permits typically satisfy this for Swiss-based roles, worth confirming)",
-      "No explicit mention of Python/pandas/SQL in job description, though 'solid software fundamentals' and git comfort are required — his stack is well-suited",
-      "HR onboarding/compliance automation use cases are adjacent to his legal background but not explicitly leveraging it"
+      "Blocker: Role is explicitly an internship (40-60% contract, 'flexible around semester schedule', 'currently studying' requirement) — candidate explicitly excludes internships and working-student roles from his search",
+      "Internship structure prevents meaningful career progression at this stage",
+      "40-60% time commitment incompatible with full-time career transition goals",
+      "'Currently studying' preferred candidate profile suggests mismatch with his post-graduate, career-changer status",
+      "Salary/hourly rate structure (CHF 30/hour) typical for student intern, not junior professional",
+      "Possible path to longer-term role is speculative, not concrete",
+      "Despite interesting technical work, role shape is support/infrastructure enablement rather than core AI product building"
     ],
     "job": {
       "company": "Rivero",
@@ -782,38 +802,51 @@
       "portal": "linkedin.com",
       "description": "Location:\nZurich\nContract: 40%-60% with flexible duration (min 6 months) Rate: CHF 30/hour\nStart: ASAP / by arrangement\nRole Overview\nAs an AI Operations & Enablement Intern, you will play a central role in turning the AI tools and automations Rivero already relies on into shared, well-governed company infrastructure. Your work will span research, prototyping, and hands-on build-out, from evaluating an internal knowledge-management system to tracking automation usage and closing the feedback loop.\nKey Responsibilities/Tasks\nResearch, prototype, and help select an internal \"second brain\" / knowledge-management system for the company\nHelp move automations and \"skills\" that today live on individual laptops and personal AI accounts into a shared, company-owned, version-controlled repository with a real handover process\nBuild lightweight usage monitoring across our automations, tracking which ones are active and how often they run, so we know what's working and what could be improved.\nDesign a feedback loop so any team can flag quality issues with an automation and get it routed to whoever owns it\nSupport a move toward provider-agnostic tooling, so our automations aren't locked into a single AI vendor\nGet hands-on with further real-world use cases — e.g. compliance/contract-review support, HR onboarding automation, or customer-support and meeting-intelligence agents for our product teams\nWhat We Are Looking For\nYou'll thrive in this role if:\nYou're currently studying Computer Science, Data/AI, or a related technical field (Bachelor's or Master's)\nYou're genuinely curious about and hands-on with modern AI tools — agents, coding assistants, automation frameworks. You follow the latest developments and AI usage patterns.\nYou have solid software fundamentals and you're comfortable with git; cloud knowledge is a plus.\nYou have a structured, process-oriented mindset; you'd rather build a system than ship a one-off script\nYou're comfortable taking a loosely-scoped, week-sized task and driving it yourself with minimal check-ins\nYou're fluent in English and based in or able to work from Zurich\nWhat We Offer\nCHF 30/hour, flexible around your semester schedule\nReal ownership; your work becomes infrastructure the rest of the company relies on\nDirect exposure to how a fast-moving fintech uses AI in production, across engineering, compliance, and operations\nMentorship from our engineering team\nA possible path to a longer-term role\nAdditional Requirements:\nThis is a hybrid role based in Zurich.\nCandidates must currently hold the right to live and work in the EU/EFTA area.\nHow to apply\nSend your CV and a short note about an AI tool, agent, or automation you've built or used and are proud of."
     },
-    "technical_fit": "Strong. Role centers on LLM-powered automation, agentic systems, and infrastructure ownership — exactly the candidate's current work and stated growth direction. Direct overlap with his experience: multi-step automation pipelines, LLM APIs, Docker/GitHub Actions CI/CD, cloud infrastructure, and building production systems from zero. The 'second brain' knowledge management, usage monitoring, feedback loops, and provider-agnostic tooling are natural extensions of his pipeline and dashboarding work. Git and structured/systems mindset are explicitly required and present.",
-    "contextual_fit": "Excellent. Role shape is ideal: 'real ownership,' 'infrastructure the rest of the company relies on,' 'loosely-scoped week-sized tasks with minimal check-ins' — matches his stated preference for zero-to-production ownership and self-directed building. Fintech domain is new to him but he explicitly welcomes unfamiliar domains; the role doesn't require finance background. 40-60% contract fits internship flexibility. 6-month minimum with possible longer-term path aligns with his permit stability. 2-week notice is compatible with 'ASAP/by arrangement' start.",
-    "salary_estimate": "CHF 30/hour (disclosed)",
-    "culture_fit": "Strong match. Emphasizes autonomy, systems thinking over one-off scripts, and direct impact — resonates with his 'build it, ship it, audit it, fix it' motivation. Fast-moving fintech with cross-functional AI exposure (engineering, compliance, operations) offers breadth he values.",
+    "technical_fit": "Moderate. The role involves AI operations, automation infrastructure, and agentic systems which align with his hands-on experience. However, it's explicitly an internship (40-60%), which directly conflicts with his stated target of non-internship roles. The technical work—knowledge management systems, automation migration, usage monitoring, feedback loops, provider-agnostic tooling—is relevant and would build on his current skills, but the role shape is wrong for where he is in his career transition.",
+    "contextual_fit": "Poor. Critical mismatch: this is an internship, not a full-time permanent role. The candidate explicitly excludes internships and working-student positions. The 40-60% contract and 'flexible around your semester schedule' framing confirms this is designed for a current student, not a career-changer seeking ownership and full-time employment. The 'possible path to a longer-term role' is speculative, not guaranteed. His 2-week notice period and permit situation suggest he's ready for immediate full-time commitment, not partial engagement.",
+    "salary_estimate": "CHF 30/hour (stated)",
+    "culture_fit": "Mixed. The 'real ownership' and 'minimal check-ins' autonomy are attractive to him, and the fintech production exposure is valuable. However, the internship structure fundamentally undermines the ownership narrative—he'd be building infrastructure others rely on without being a full team member. The 'currently studying' requirement in the job description signals cultural positioning he doesn't fit.",
     "concerns": [
-      "Part-time 40-60% may limit depth of ownership compared to full-time roles, though he may value flexibility",
-      "EU/EFTA work right listed as requirement — candidate has Swiss Permit B (EFTA-adjacent via bilateral agreements, but not strictly EU/EFTA; however Swiss work permits typically satisfy this for Swiss-based roles, worth confirming)",
-      "No explicit mention of Python/pandas/SQL in job description, though 'solid software fundamentals' and git comfort are required — his stack is well-suited",
-      "HR onboarding/compliance automation use cases are adjacent to his legal background but not explicitly leveraging it"
+      "Internship structure prevents meaningful career progression at this stage",
+      "40-60% time commitment incompatible with full-time career transition goals",
+      "'Currently studying' preferred candidate profile suggests mismatch with his post-graduate, career-changer status",
+      "Salary/hourly rate structure (CHF 30/hour) typical for student intern, not junior professional",
+      "Possible path to longer-term role is speculative, not concrete",
+      "Despite interesting technical work, role shape is support/infrastructure enablement rather than core AI product building"
     ],
-    "recommendation": "APPLY",
-    "decision": "APPLY",
-    "materials_needed": [
-      "cv"
-    ],
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 1,
+      "prompt_tokens": 2570,
+      "completion_tokens": 490,
+      "cost_usd": null
+    },
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
     "evaluated_at": "2026-08-21T12:42:39.307943+00:00",
     "rescored": true
   },
   {
-    "score": 88,
-    "hard_blockers": [],
+    "score": 45,
+    "hard_blockers": [
+      "Role requires candidate to 'currently be studying' (Bachelor's or Master's) — candidate is a career changer with postgraduate specialization already completed, working full-time, seeking permanent employment. This is an eligibility mismatch for an internship targeting students.",
+      "Part-time contract (40-60%) with flexible duration — candidate is seeking full-time permanent roles and has 2 weeks notice, indicating immediate full-time availability.",
+      "Rate of CHF 30/hour and internship structure is incompatible with candidate's career stage and stated goals (not internships or working-student roles)."
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong. The role demands exactly what he delivers: hands-on AI tooling, automation pipelines, version control, cloud infrastructure, and building systems rather than one-off scripts. His LLM API experience (Claude, Kimi), multi-step automation pipelines, Docker/GitHub Actions, and Google Cloud background map directly to the 'shared company-owned repository,' 'usage monitoring,' and 'provider-agnostic tooling' requirements. The 'second brain' knowledge system and feedback-loop design align with his pipeline-building and dashboarding experience.",
-      "Excellent. This is a career-changer's dream: real ownership from day one ('your work becomes infrastructure'), loosely-scoped tasks with minimal check-ins, and direct exposure to production AI across multiple business functions. The 40-60% contract with flexible duration fits an intern arrangement; his 2-week notice is irrelevant here since it's immediate start/by arrangement. Swiss Work Permit B satisfies EU/EFTA requirement."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Part-time 40-60% may limit depth of ownership compared to full-time, though flexible duration mitigates;",
-      "'Currently studying' is listed as preferred — he holds a postgraduate specialization, not currently enrolled in a degree program, but this is a soft preference not a hard requirement;",
-      "Google Cloud vs potential multi-cloud/provider-agnostic setup is a minor tooling gap;",
-      "No explicit mention of agentic frameworks (LangChain, CrewAI, etc.) in his stack, though his LLM pipeline experience is transferable."
+      "Blocker: Role requires candidate to 'currently be studying' (Bachelor's or Master's) — candidate is a career changer with postgraduate specialization already completed, working full-time, seeking permanent employment. This is an eligibility mismatch for an internship targeting students.",
+      "Blocker: Part-time contract (40-60%) with flexible duration — candidate is seeking full-time permanent roles and has 2 weeks notice, indicating immediate full-time availability.",
+      "Blocker: Rate of CHF 30/hour and internship structure is incompatible with candidate's career stage and stated goals (not internships or working-student roles).",
+      "Role is 40-60% part-time — candidate wants full-time permanent work",
+      "Explicitly an internship with 'possible path to longer-term' — candidate rules out internships",
+      "Strong operational/enablement tilt vs. hands-on AI engineering; more 'AI governance intern' than 'AI builder'",
+      "Studying requirement suggests target demographic is students, not career changers with work experience",
+      "Candidate would be overqualified for tasks like 'tracking automation usage' given his experience shipping LLM pipelines from scratch",
+      "Hybrid requirement with 'based in Zurich' — permit B valid, but part-time structure makes this less relevant"
     ],
     "job": {
       "company": "Rivero",
@@ -823,38 +856,46 @@
       "portal": "linkedin.com",
       "description": "Location:\nZurich\nContract: 40%-60% with flexible duration (min 6 months) Rate: CHF 30/hour\nStart: ASAP / by arrangement\nRole Overview\nAs an AI Operations & Enablement Intern, you will play a central role in turning the AI tools and automations Rivero already relies on into shared, well-governed company infrastructure. Your work will span research, prototyping, and hands-on build-out, from evaluating an internal knowledge-management system to tracking automation usage and closing the feedback loop.\nKey Responsibilities/Tasks\nResearch, prototype, and help select an internal \"second brain\" / knowledge-management system for the company\nHelp move automations and \"skills\" that today live on individual laptops and personal AI accounts into a shared, company-owned, version-controlled repository with a real handover process\nBuild lightweight usage monitoring across our automations, tracking which ones are active and how often they run, so we know what's working and what could be improved.\nDesign a feedback loop so any team can flag quality issues with an automation and get it routed to whoever owns it\nSupport a move toward provider-agnostic tooling, so our automations aren't locked into a single AI vendor\nGet hands-on with further real-world use cases — e.g. compliance/contract-review support, HR onboarding automation, or customer-support and meeting-intelligence agents for our product teams\nWhat We Are Looking For\nYou'll thrive in this role if:\nYou're currently studying Computer Science, Data/AI, or a related technical field (Bachelor's or Master's)\nYou're genuinely curious about and hands-on with modern AI tools — agents, coding assistants, automation frameworks. You follow the latest developments and AI usage patterns.\nYou have solid software fundamentals and you're comfortable with git; cloud knowledge is a plus.\nYou have a structured, process-oriented mindset; you'd rather build a system than ship a one-off script\nYou're comfortable taking a loosely-scoped, week-sized task and driving it yourself with minimal check-ins\nYou're fluent in English and based in or able to work from Zurich\nWhat We Offer\nCHF 30/hour, flexible around your semester schedule\nReal ownership; your work becomes infrastructure the rest of the company relies on\nDirect exposure to how a fast-moving fintech uses AI in production, across engineering, compliance, and operations\nMentorship from our engineering team\nA possible path to a longer-term role\nAdditional Requirements:\nThis is a hybrid role based in Zurich.\nCandidates must currently hold the right to live and work in the EU/EFTA area.\nHow to apply\nSend your CV and a short note about an AI tool, agent, or automation you've built or used and are proud of."
     },
-    "technical_fit": "Strong. The role demands exactly what he delivers: hands-on AI tooling, automation pipelines, version control, cloud infrastructure, and building systems rather than one-off scripts. His LLM API experience (Claude, Kimi), multi-step automation pipelines, Docker/GitHub Actions, and Google Cloud background map directly to the 'shared company-owned repository,' 'usage monitoring,' and 'provider-agnostic tooling' requirements. The 'second brain' knowledge system and feedback-loop design align with his pipeline-building and dashboarding experience.",
-    "contextual_fit": "Excellent. This is a career-changer's dream: real ownership from day one ('your work becomes infrastructure'), loosely-scoped tasks with minimal check-ins, and direct exposure to production AI across multiple business functions. The 40-60% contract with flexible duration fits an intern arrangement; his 2-week notice is irrelevant here since it's immediate start/by arrangement. Swiss Work Permit B satisfies EU/EFTA requirement.",
-    "salary_estimate": "CHF 30/hour (stated)",
-    "culture_fit": "Strong match. The role explicitly values 'structured, process-oriented mindset,' 'build a system than ship a one-off script,' and self-driven execution on week-sized tasks — exactly his stated motivation ('zero to production and owning it'). Fintech domain is unfamiliar to him but the role doesn't require finance background; his openness to new domains is a non-issue.",
+    "technical_fit": "Moderate. The role is heavily operational/infrastructure-focused (knowledge management systems, version control for automations, usage monitoring, feedback loops) rather than building LLM pipelines or agentic systems. The candidate has relevant skills (git, cloud, automation frameworks, LLM APIs) but the work is more about governance, consolidation and enablement than hands-on AI engineering. The 'provider-agnostic tooling' and 'compliance/contract-review support' touch AI, but the core thrust is ops/platform rather than build.",
+    "contextual_fit": "Weak on role shape. The candidate explicitly wants to 'contribute to more complex AI systems and own real projects from day one.' This role is explicitly an internship (40-60%, min 6 months, studying required), with tasks like 'research and prototype' and 'help select' — not ownership of production AI systems. The 'real ownership' claim is tempered by 'intern' status and the operational framing. Candidate is NOT currently studying (he's working full-time, notice period 2 weeks, seeking permanent roles). The 'possible path to longer-term role' is speculative.",
+    "salary_estimate": "CHF 30/hour (~CHF 62k-93k annualized at 40-60%), well below market for his target permanent roles",
+    "culture_fit": "Positive elements: fast-moving fintech, mentorship, exposure to AI across functions. Negative: internship structure, studying requirement, part-time nature doesn't match candidate's career stage or goals. The 'loosely-scoped, week-sized task' autonomy is appealing but the overall package is a step backward in seniority.",
     "concerns": [
-      "Part-time 40-60% may limit depth of ownership compared to full-time, though flexible duration mitigates;",
-      "'Currently studying' is listed as preferred — he holds a postgraduate specialization, not currently enrolled in a degree program, but this is a soft preference not a hard requirement;",
-      "Google Cloud vs potential multi-cloud/provider-agnostic setup is a minor tooling gap;",
-      "No explicit mention of agentic frameworks (LangChain, CrewAI, etc.) in his stack, though his LLM pipeline experience is transferable."
+      "Role is 40-60% part-time — candidate wants full-time permanent work",
+      "Explicitly an internship with 'possible path to longer-term' — candidate rules out internships",
+      "Strong operational/enablement tilt vs. hands-on AI engineering; more 'AI governance intern' than 'AI builder'",
+      "Studying requirement suggests target demographic is students, not career changers with work experience",
+      "Candidate would be overqualified for tasks like 'tracking automation usage' given his experience shipping LLM pipelines from scratch",
+      "Hybrid requirement with 'based in Zurich' — permit B valid, but part-time structure makes this less relevant"
     ],
-    "recommendation": "APPLY",
-    "decision": "APPLY",
-    "materials_needed": [
-      "cv"
-    ],
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 1,
+      "prompt_tokens": 2564,
+      "completion_tokens": 620,
+      "cost_usd": null
+    },
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
     "evaluated_at": "2026-08-21T12:42:39.307943+00:00",
     "rescored": true
   },
   {
-    "score": 72,
-    "hard_blockers": [],
+    "score": 45,
+    "hard_blockers": [
+      "Role is explicitly an internship; candidate explicitly excludes internships and working-student roles"
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong alignment: Python, LLM APIs, data pipelines, and cloud/CI tooling directly map to the role's GenAI model development, data preparation, and AI tool rollout. The candidate's production experience with Claude/Kimi and end-to-end ownership of pipelines exceeds typical intern expectations. Minor gap: no explicit mention of model training/fine-tuning (vs. API integration), though 'improve ML models' could encompass this."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Role framing ('help develop,' 'support implementation,' 'play a part in') suggests shared/contribution model rather than sole ownership of end-to-end pipelines—less 'zero to production' than candidate's ideal, though flat hierarchy may offset",
-      "Comparis is established product company (25+ years), not startup/scale-up—may have more existing infrastructure and process than greenfield agency work",
-      "No mention of agentic systems specifically; GenAI focus appears to be user-facing features (content, recommendations?) rather than autonomous agents",
-      "Candidate's A2 German is unmentioned and irrelevant for this role, but Swiss marketplace domain involves German-heavy content—may create friction in data work despite English working language",
-      "Postgraduate specialization (lato sensu) may not satisfy 'currently studying' preference, though many Swiss internships accept recent graduates—worth clarifying"
+      "Blocker: Role is explicitly an internship; candidate explicitly excludes internships and working-student roles",
+      "Explicitly targets 'currently studying' candidates—signals wrong career stage despite candidate's postgraduate specialization",
+      "6-12 month fixed duration with no conversion path mentioned; candidate seeks permanent role with ownership",
+      "'Help develop' and 'support the implementation' language suggests auxiliary role, not day-one ownership",
+      "Candidate's Swiss Work Permit B and 2-week notice are irrelevant advantages for an internship designed for students",
+      "Real outcomes calibration: previous high-scored application (BLP Digital, 80+) yielded no response; this role is weaker fit and wrong category"
     ],
     "job": {
       "company": "comparis.ch AG",
@@ -864,19 +905,26 @@
       "portal": "linkedin.com",
       "description": "About Us\ncomparis.ch is the leading comparison platform in Switzerland. We have been comparing the prices and products of health insurers, other insurance companies, telecom providers and banks for over 25 years and offer the largest Swiss online marketplace for cars and property. Our comprehensive comparisons ensure transparency for our users and help them make the right decisions. With over 80 million visits each year, we rank among the most widely used websites in Switzerland. Four out of five people recognize us as THE independent comparison platform in Switzerland.\nAre you curious about machine learning and AI, and want to see how it all works in a real company? We’re looking for an open-minded and motivated intern to join our data team for 6 to 12 months. This is your chance to dive into real projects, bring your own ideas to the table, and learn how AI is used to solve practical problems.\nWhat You Will Do\nHelp develop and improve machine learning models, especially in the area of Generative AI, that power user-facing features.\nWork on a variety of use cases and support the implementation and optimization of ML algorithms.\nGet involved in preparing training data: exploring, cleaning, and organizing data so it’s ready for our models.\nPlay a part in rolling out and shaping AI tools across the company.\nWhat We Expect From You\nCuriosity and a genuine interest in finding data-driven solutions.\nCurrently studying computer science, data science, or something similar.\nExperience with at least one programming language (like Python, Scala, or Java).\nAn interest in modern AI models (like large language models) is a plus.\nFluent English skills.\nIn return, here is what you can expect from us\nAt Comparis, we believe that empowered employees deliver the best results. We cultivate a culture of transparency, mutual respect and trust. Firm believers in lifelong learning, we are always trying out new things and continuously developing – both as individuals and as a team. We also offer flat hierarchies, considerable autonomy and creative freedom, as well as a skilled and motivated team that will advise and support you in your work and make it easy for you to push your own boundaries. Finally, we offer flexible working hours and the freedom to work from almost anywhere you choose. Whether you're enjoying a workation in the Portuguese Algarve, collaborating from a café in Barcelona, or connecting from a mountain chalet in the Swiss Alps, our diverse team of talented professionals spans across Europe, creating an inclusive and dynamic work environment.\nHave we triggered your interest?\nThen don't hesitate and apply for our position today. If you have any questions, Simone, our People Business Partner, will be happy to help. We look forward to receiving your application!\nNote for recruiters: For this position, we only consider direct applications."
     },
-    "technical_fit": "Strong alignment: Python, LLM APIs, data pipelines, and cloud/CI tooling directly map to the role's GenAI model development, data preparation, and AI tool rollout. The candidate's production experience with Claude/Kimi and end-to-end ownership of pipelines exceeds typical intern expectations. Minor gap: no explicit mention of model training/fine-tuning (vs. API integration), though 'improve ML models' could encompass this.",
-    "contextual_fit": "Good: Zurich on-site matches permit/location perfectly; 6-12 month duration fits intern profile; 2-week notice irrelevant for internship timing. The 'flat hierarchies, considerable autonomy, creative freedom' aligns with candidate's explicit desire for ownership. Comparis is a real product platform with user-facing features, not agency/client work—this is a shift to in-house product, which the candidate may find more or less exciting depending on preference.",
+    "technical_fit": "Moderate. The role involves ML/GenAI model development, data prep, and AI tool rollout—aligned with candidate's LLM pipeline and automation experience. However, it's explicitly an internship position, which the candidate explicitly excludes (\"Not internships or working-student roles\"). The 'currently studying' requirement also signals this is designed for students, not career-changers with postgraduate credentials seeking permanent roles.",
+    "contextual_fit": "Poor. The candidate is seeking ownership of real projects from day one in a permanent or associate-level role, not a 6-12 month internship. The flat hierarchy and autonomy mentioned are attractive, but the role shape is fundamentally wrong—internship structure, student target demographic, and no path to ownership of production systems as a team member.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Moderate-positive: autonomy and ownership language resonates strongly with candidate's stated motivation. However, 'advise and support you' and 'learn how AI is used' framing leans slightly more toward learning/growth narrative than 'own from day one.' The 'work from almost anywhere' flexibility is a plus, though role is listed on-site—likely hybrid flexibility. No explicit signal on whether this is greenfield building vs. optimizing existing systems.",
+    "culture_fit": "Moderate-positive. Comparis emphasizes transparency, autonomy, creative freedom, and remote flexibility—values that resonate with the candidate's self-directed, builder mentality. However, the internship framing undermines cultural fit for someone seeking to be a contributing team member, not a learner.",
     "concerns": [
-      "Role framing ('help develop,' 'support implementation,' 'play a part in') suggests shared/contribution model rather than sole ownership of end-to-end pipelines—less 'zero to production' than candidate's ideal, though flat hierarchy may offset",
-      "Comparis is established product company (25+ years), not startup/scale-up—may have more existing infrastructure and process than greenfield agency work",
-      "No mention of agentic systems specifically; GenAI focus appears to be user-facing features (content, recommendations?) rather than autonomous agents",
-      "Candidate's A2 German is unmentioned and irrelevant for this role, but Swiss marketplace domain involves German-heavy content—may create friction in data work despite English working language",
-      "Postgraduate specialization (lato sensu) may not satisfy 'currently studying' preference, though many Swiss internships accept recent graduates—worth clarifying"
+      "Explicitly targets 'currently studying' candidates—signals wrong career stage despite candidate's postgraduate specialization",
+      "6-12 month fixed duration with no conversion path mentioned; candidate seeks permanent role with ownership",
+      "'Help develop' and 'support the implementation' language suggests auxiliary role, not day-one ownership",
+      "Candidate's Swiss Work Permit B and 2-week notice are irrelevant advantages for an internship designed for students",
+      "Real outcomes calibration: previous high-scored application (BLP Digital, 80+) yielded no response; this role is weaker fit and wrong category"
     ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 1,
+      "prompt_tokens": 2590,
+      "completion_tokens": 418,
+      "cost_usd": null
+    },
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-21T12:42:39.307943+00:00",
     "rescored": true

@@ -413,20 +413,19 @@
     "rescored": true
   },
   {
-    "score": 72,
+    "score": 52,
     "hard_blockers": [],
     "insufficient_info": false,
-    "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong overlap. Role is exactly at the intersection of data platform engineering and AI infrastructure the candidate targets: building pipelines, vector stores, semantic search, RAG/agentic foundations, embedding pipelines, Azure cloud. His Python/SQL/pandas, LLM API experience, Docker, CI/CD, and live dashboard work map well. Gap: Azure-specific stack (Azure AI Foundry, likely Azure-native services) he hasn't used; no explicit vector DB experience mentioned, though his LLM scoring pipeline implies some adjacent work."
-    ],
+    "language_gap_intermediate": true,
+    "key_match_points": [],
     "red_flags": [
-      "Azure stack gap: Azure AI Foundry, likely Azure DevOps/Pipelines instead of GitHub Actions, potential Microsoft ecosystem lock-in — learning curve but not blocker",
-      "No explicit vector database experience listed in his skills; role requires building/maintaining vector stores and semantic search — adjacent to his LLM work but needs upskilling",
-      "Location inferred Geneva (LOIM headquarters), not Zurich/Zug; but fully in-office hybrid in Geneva is a commute/relocate question, though permit B is Switzerland-wide valid",
-      "Financial services domain new to him; role says 'exposure is a plus' not required, but regulatory data sensitivity (investment management) demands carefulness he hasn't proven",
-      "Role emphasis: 'you don't build AI applications, you make data AI-ready' — slightly less agentic-systems-building than his ideal, more data-platform-enabling; still close but worth noting shape difference",
-      "Seniority ambiguity: 'AI Data Engineer' could be mid-level; his internship+junior target may be slightly below role's intended experience band"
+      "Location mismatch: Geneva not Zurich/Zug; no explicit remote/hybrid flexibility stated, and financial services culture typically office-centric",
+      "Azure ecosystem gap: Azure AI Foundry, vector databases, embedding pipelines are central to role; his cloud experience is Google Cloud and Hetzner Linux",
+      "Role is data engineering for AI, not AI engineering: builds data infrastructure that others consume, not the LLM/agentic systems themselves—misaligned with his stated motivation to 'build the systems' and 'own real projects from day one'",
+      "Financial services domain: 'Exposure to financial services is a plus' suggests preference for domain knowledge he lacks",
+      "Intermediate French/German likely useful in Geneva workplace even if not stated; his German A2 is below working proficiency",
+      "Semantic search/embedding production experience gap: BM25 ≠ vector-based RAG infrastructure",
+      "Score capped by location and role-shape mismatch: he wants to build AI systems, this role prepares data for others to build with"
     ],
     "job": {
       "company": "Lombard Odier Investment Managers (LOIM)",
@@ -436,20 +435,28 @@
       "portal": "linkedin.com",
       "description": "A career at Lombard Odier means working for a renowned global wealth and asset manager, with a strong focus on sustainable investing. An innovative bank of choice for private and institutional clients, our independently owned Firm is one of the best-capitalised banking groups in the world, managing close to CHF 300 billion and operating from over 25 offices across 4 continents.\nWith a history spanning over 225 years, Lombard Odier is an investment house providing a comprehensive offering of discretionary and advisory portfolio management, wealth services and custody. We also offer asset management services and investment strategies through Lombard Odier Investment Managers and provide\nadvanced banking technology to other financial institutions.\n“Rethink Everything” is our philosophy – it is at the heart of everything we do. We have grown stronger through more than 40 financial crises by rethinking the world around us to provide a fresh investment perspective for our clients.\nLombard Odier Investment Managers (“LOIM”) is the asset management business of the Lombard Odier Group. To further strengthen our AI Team, we are looking for a:\nAI Data Engineer\nAs AI Data Engineer at Lombard Odier Investment Managers, you sit at the critical boundary between our data platform and our AI capability layer. You don't build AI applications: you make data AI-ready. Your work is the foundation that determines whether our AI systems are reliable, accurate and trustworthy in a regulated investment management environment. You work in squads alongside AI Engineers and AI Transformation Managers to deliver AI use cases across Investment, Business Development and Operations. While the AI Engineer builds the solution, you ensure the data it consumes is properly structured, fresh, and AI-consumable.\nA rare opportunity to build AI data infrastructure from the ground up in a leading asset manager, with direct impact on investment decisions.\nYOUR ROLE\nData pipeline engineering for AI\nBuild and maintain pipelines that transform raw financial data into AI-consumable formats (such as MCP) from our data platform and internal systems into Azure AI Foundry\nContribute to the ingestion, chunking, embedding and indexing of unstructured data such as fund documents, client communications, market research, regulatory filings\nBuild and maintain vector stores and semantic search infrastructure that power RAG and Agentic applications\nEnsure data freshness, consistency and reliability across all AI data pipelines\nAI-ready data foundations\nImplement AI data standards: chunking strategies, embedding models selection, metadata schemas, data lineage for AI consumptio\n[... middle of the posting omitted ...]\nines at production scale\nUnderstanding of unstructured data processing: document parsing, chunking strategies, text preprocessing\nFamiliarity with vector databases and Azure AI Foundry\nExperience with embedding pipelines and semantic search infrastructure\nStrong understanding of data quality principles and monitoring in production environments\nExposure to financial services is a plus\nTeam player with strong communication skills\nAutonomous, pragmatic, and delivery-oriented mindset.\nOur Maison’s DNA\nis defined by five core values.\nExcellence\ndrives us to be the best at what we do, while\nInnovation\nfuels our progress.\nRespect\nunderpins every interaction, and\nIntegrity\nshapes our actions. Together, we are\nOne Team\n, united in serving our clients with unwavering dedication.\nAs a responsible and supportive employer, we promote a diverse and inclusive work environment for our employees and candidates.\nDiversity, Equity and Inclusion\nare woven into the fabric of our Maison’s DNA, and we strive to ensure that our employees can fulfill both their personal and professional aspirations by encouraging internal mobility and individual upskilling programs. We firmly believe that building Diverse Teams contributes to our successes and to deliver on this, we actively embed Diversity, Equity and Inclusion in our business strategy."
     },
-    "technical_fit": "Strong overlap. Role is exactly at the intersection of data platform engineering and AI infrastructure the candidate targets: building pipelines, vector stores, semantic search, RAG/agentic foundations, embedding pipelines, Azure cloud. His Python/SQL/pandas, LLM API experience, Docker, CI/CD, and live dashboard work map well. Gap: Azure-specific stack (Azure AI Foundry, likely Azure-native services) he hasn't used; no explicit vector DB experience mentioned, though his LLM scoring pipeline implies some adjacent work.",
-    "contextual_fit": "Good. 'Build from the ground up' and 'rare opportunity to build AI data infrastructure from the ground up' matches his desire for ownership and greenfield building. Regulated financial environment is unfamiliar domain, but candidate is deliberately open to new domains and the role doesn't require prior finance background. 'Autonomous, pragmatic, delivery-oriented' matches his self-described zero-to-production ownership style. Two-week notice fits immediate-start flexibility. Swiss Work Permit B valid, no sponsorship needed — no issue for Geneva-based LOIM.",
-    "salary_estimate": "CHF 90k–120k (LOIM junior data/engineering roles in Geneva typically band here; exact level unclear from posting)",
-    "culture_fit": "Positive. 'One Team', autonomy, delivery-orientation, innovation values align with his ownership mindset. DEI emphasis and upskilling programs fit career-changer profile. Potential tension: highly regulated, conservative bank culture vs. his preference for rapid ship-and-iterate; but the 'Rethink Everything' philosophy and AI team's greenfield mandate mitigates this.",
+    "technical_fit": "Moderate. The role is data engineering for AI infrastructure (pipelines, chunking, embeddings, vector stores, RAG foundations) rather than building/operating LLM/agentic systems directly. Candidate has relevant pieces—Python, SQL, REST APIs, BM25 retrieval, LLM APIs, structured output, Docker, cloud (Google Cloud, not Azure), GitHub Actions—but lacks Azure ecosystem depth, vector database production experience, financial data domain knowledge, and the core focus is data platform engineering rather than AI application building. His retrieval experience is BM25 (basic) not semantic/embedding-based.",
+    "contextual_fit": "Weak. Geneva-based role; candidate is Zurich-area with no indication of remote flexibility (posting emphasizes 'Maison' culture, on-site collaboration implied). Career changer profile fits LOIM's stated DEI values, but the role's data-platform-heavy, regulated-finance environment differs from his current greenfield LLM-building experience. Notice period (2 weeks) is favorable.",
+    "salary_estimate": "CHF 100,000–130,000",
+    "culture_fit": "Mixed. 'Autonomous, pragmatic, delivery-oriented' aligns; 'team player with strong communication' fits his trajectory. However, 225-year institution with 'Excellence' DNA and regulated investment management may be more conservative/process-heavy than his preference for ownership and building from scratch.",
     "concerns": [
-      "Azure stack gap: Azure AI Foundry, likely Azure DevOps/Pipelines instead of GitHub Actions, potential Microsoft ecosystem lock-in — learning curve but not blocker",
-      "No explicit vector database experience listed in his skills; role requires building/maintaining vector stores and semantic search — adjacent to his LLM work but needs upskilling",
-      "Location inferred Geneva (LOIM headquarters), not Zurich/Zug; but fully in-office hybrid in Geneva is a commute/relocate question, though permit B is Switzerland-wide valid",
-      "Financial services domain new to him; role says 'exposure is a plus' not required, but regulatory data sensitivity (investment management) demands carefulness he hasn't proven",
-      "Role emphasis: 'you don't build AI applications, you make data AI-ready' — slightly less agentic-systems-building than his ideal, more data-platform-enabling; still close but worth noting shape difference",
-      "Seniority ambiguity: 'AI Data Engineer' could be mid-level; his internship+junior target may be slightly below role's intended experience band"
+      "Location mismatch: Geneva not Zurich/Zug; no explicit remote/hybrid flexibility stated, and financial services culture typically office-centric",
+      "Azure ecosystem gap: Azure AI Foundry, vector databases, embedding pipelines are central to role; his cloud experience is Google Cloud and Hetzner Linux",
+      "Role is data engineering for AI, not AI engineering: builds data infrastructure that others consume, not the LLM/agentic systems themselves—misaligned with his stated motivation to 'build the systems' and 'own real projects from day one'",
+      "Financial services domain: 'Exposure to financial services is a plus' suggests preference for domain knowledge he lacks",
+      "Intermediate French/German likely useful in Geneva workplace even if not stated; his German A2 is below working proficiency",
+      "Semantic search/embedding production experience gap: BM25 ≠ vector-based RAG infrastructure",
+      "Score capped by location and role-shape mismatch: he wants to build AI systems, this role prepares data for others to build with"
     ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 1,
+      "prompt_tokens": 2718,
+      "completion_tokens": 530,
+      "cost_usd": null
+    },
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T05:39:14.438650+00:00",
     "rescored": true
@@ -1244,19 +1251,20 @@
     "no_posting_text": true
   },
   {
-    "score": 72,
+    "score": 85,
     "hard_blockers": [],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [
-      "Strong alignment on core stack: Python, cloud infra, Docker, CI/CD, API development, and LLM/GenAI production systems are central to both. Gap: role emphasizes MLOps model lifecycle (training, serving, evaluation infrastructure) more deeply than candidate's current LLM API integration work; no explicit mention of pandas/SQL/data pipelines in requirements, but observability and cost-efficiency match his dashboarding experience. Missing: Kubernetes, Terraform, or explicit model training frameworks (PyTorch/TensorFlow), though 'founding' role may accept learning on the job."
+      "Strong alignment. The role demands production backend/MLOps for ML and GenAI systems — exactly the intersection the candidate is targeting. His current experience building LLM pipelines, tool-calling agents, retrieval systems, CI/CD (GitHub Actions), Docker, cloud infra (GCP, Hetzner/Linux), and API integrations maps directly to the accountabilities. The gap is scale (founding platform engineer implies more infrastructure depth than his 1-2 person agency work), but his demonstrated ownership of full-stack AI systems from scratch is precisely the 'founding' profile they want. Prompt engineering, guardrails, and agent workflows are explicitly mentioned in the role.",
+      "Excellent. Remote Switzerland-based role eliminates location/permit concerns. 'Founding' implies early-stage ownership — candidate's own narrative emphasizes wanting to 'own real projects from day one' and move beyond agency execution to deeper systems. The role's emphasis on 'turning ambiguous technical challenges into practical solutions' matches his career-change story of self-directed learning and building. Two-week notice is no issue."
     ],
     "red_flags": [
-      "Role may expect more backend depth at scale (distributed systems, Kubernetes) than current experience; 'founding' implies limited mentorship structure",
-      "MLOps specifically around model training/serving infrastructure vs. his current LLM API orchestration — gap may require rapid upskilling",
-      "No explicit mention of data platform engineering; role is more ML infrastructure than data platform",
-      "Jobgether intermediary adds friction; candidate's application competes through filtering system",
-      "Title says 'Founding' but listed via Jobgether — actual company stage and team size unclear"
+      "Scale gap: candidate has built production AI systems but not at platform/founding-engineer scale with formal MLOps lifecycle management, model registries, or multi-team serving infrastructure",
+      "No explicit experience with model training infrastructure (role mentions 'training' in accountabilities; candidate's experience is inference/LLM API integration-focused)",
+      "'Proven experience with backend services, cloud infrastructure' — candidate has this but depth may be questioned for 'founding' level; may need to emphasize Hetzner/GCP operational experience more",
+      "Application is through Jobgether's AI-screening system — candidate's non-traditional background may be filtered by automated resume parsing unless he tailors keywords heavily",
+      "Role may expect more formal MLOps tooling (Kubeflow, MLflow, Tecton, etc.) not in his current stack"
     ],
     "job": {
       "company": "Jobgether",
@@ -1266,37 +1274,45 @@
       "portal": "linkedin.com",
       "description": "This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for a Founding AI Platform Engineer (MLOps / Backend) based in Switzerland.\nThis is a foundational engineering opportunity for someone who wants to shape the systems that turn ML and GenAI capabilities into reliable, production-ready products.\nYou will operate at the intersection of backend engineering, cloud infrastructure, MLOps, platform reliability, and product delivery.\nThe role offers broad ownership across model lifecycle management, deployment, serving, experimentation, observability, and CI/CD.\nYou will build the production infrastructure that enables AI systems to scale safely while remaining performant, maintainable, secure, and cost-efficient.\nWorking closely with ML and product teams, you will turn ambiguous technical challenges into practical, durable solutions.\nAs an early platform engineer, your decisions will directly influence engineering standards, tooling, reliability practices, and the future scalability of the platform.\nAccountabilities\nBuild and maintain infrastructure and tooling for training, evaluating, deploying, serving, and monitoring ML models and GenAI services.\nDevelop and operate production backend services, APIs, and pipelines supporting recommendations, agent workflows, and customer-facing integrations.\nImprove CI/CD pipelines, automated testing, release processes, rollback strategies, and environment management.\nEstablish comprehensive observability across application health, model behavior, agent quality, latency, costs, and operational failure modes.\nBuild reproducibility and lifecycle management practices for models, prompts, datasets, configurations, and software releases.\nSupport experimentation and measurement infrastructure that enables ML and product teams to evaluate changes reliably.\nStrengthen platform reliability, scalability, security, performance, and cost efficiency across the technology stack.\nTroubleshoot production issues end-to-end and convert recurring operational problems into long-term engineering improvements.\nCollaborate closely with ML, product, and engineering teams to move ambiguous initiatives from concept to completion.\nEstablish engineering standards and platform practices that can support future growth and increasing system complexity.\nIdentify platform, reliability, and scaling risks early and proactively address them before they affect customers or delivery.\nRequirements\nStrong software engineering background with experience building, deploying, and operating production systems.\nProven experience with backend services, cloud infr\n[... middle of the posting omitted ...]\ning process\nto ensure your application is reviewed quickly, objectively, and fairly against the role's core requirements. Our system identifies the top-fitting candidates, and this shortlist is then shared directly with the hiring company. The final decision and next steps (interviews, assessments) are managed by their internal team.\nWe appreciate your interest and wish you the best!\nWhy Apply Through Jobgether?\nData Privacy Notice:\nBy submitting your application, you acknowledge that Jobgether will process your personal data to evaluate your candidacy and share relevant information with the hiring employer. This processing is based on legitimate interest and pre-contractual measures under applicable data protection laws (including GDPR). You may exercise your rights (access, rectification, erasure, objection) at any time.\nWe may use artificial intelligence (AI) tools to support parts of the hiring process, such as reviewing applications, analyzing resumes, or assessing responses and identifying potential inconsistencies or verification signals in application materials based on available information. These tools assist our recruitment team but do not replace human judgment. Final hiring decisions are ultimately made by humans. If you would like more information about how your data is processed, please contact us."
     },
-    "technical_fit": "Strong alignment on core stack: Python, cloud infra, Docker, CI/CD, API development, and LLM/GenAI production systems are central to both. Gap: role emphasizes MLOps model lifecycle (training, serving, evaluation infrastructure) more deeply than candidate's current LLM API integration work; no explicit mention of pandas/SQL/data pipelines in requirements, but observability and cost-efficiency match his dashboarding experience. Missing: Kubernetes, Terraform, or explicit model training frameworks (PyTorch/TensorFlow), though 'founding' role may accept learning on the job.",
-    "contextual_fit": "Excellent: remote Switzerland-based, no relocation or permit issues. Founding engineer = ownership from day one, exactly what candidate seeks. 'Agent workflows' explicitly mentioned in accountabilities — direct match to his stated interest in agentic systems. Career-changer background not penalized; role values 'turn ambiguous challenges into practical solutions' which matches his self-described zero-to-production ownership style.",
-    "salary_estimate": "CHF 100,000–130,000 (founding engineer, Switzerland remote, likely early-stage startup)",
-    "culture_fit": "Strong: emphasizes broad ownership, moving ambiguous initiatives to completion, establishing standards — matches candidate's stated motivation for 'owning it end to end.' Early-stage risk tolerance and builder mentality required; candidate's project history and career change signal adaptability.",
+    "technical_fit": "Strong alignment. The role demands production backend/MLOps for ML and GenAI systems — exactly the intersection the candidate is targeting. His current experience building LLM pipelines, tool-calling agents, retrieval systems, CI/CD (GitHub Actions), Docker, cloud infra (GCP, Hetzner/Linux), and API integrations maps directly to the accountabilities. The gap is scale (founding platform engineer implies more infrastructure depth than his 1-2 person agency work), but his demonstrated ownership of full-stack AI systems from scratch is precisely the 'founding' profile they want. Prompt engineering, guardrails, and agent workflows are explicitly mentioned in the role.",
+    "contextual_fit": "Excellent. Remote Switzerland-based role eliminates location/permit concerns. 'Founding' implies early-stage ownership — candidate's own narrative emphasizes wanting to 'own real projects from day one' and move beyond agency execution to deeper systems. The role's emphasis on 'turning ambiguous technical challenges into practical solutions' matches his career-change story of self-directed learning and building. Two-week notice is no issue.",
+    "salary_estimate": "CHF 110,000–140,000",
+    "culture_fit": "Strong. Early-stage, high-ownership, builder-oriented culture suits someone who switched careers precisely to build rather than use systems. The 'founding' framing suggests they'll value scrappy self-starters over credentials — his unconventional background (law → self-taught AI engineer) is a feature, not bug, in this context.",
     "concerns": [
-      "Role may expect more backend depth at scale (distributed systems, Kubernetes) than current experience; 'founding' implies limited mentorship structure",
-      "MLOps specifically around model training/serving infrastructure vs. his current LLM API orchestration — gap may require rapid upskilling",
-      "No explicit mention of data platform engineering; role is more ML infrastructure than data platform",
-      "Jobgether intermediary adds friction; candidate's application competes through filtering system",
-      "Title says 'Founding' but listed via Jobgether — actual company stage and team size unclear"
+      "Scale gap: candidate has built production AI systems but not at platform/founding-engineer scale with formal MLOps lifecycle management, model registries, or multi-team serving infrastructure",
+      "No explicit experience with model training infrastructure (role mentions 'training' in accountabilities; candidate's experience is inference/LLM API integration-focused)",
+      "'Proven experience with backend services, cloud infrastructure' — candidate has this but depth may be questioned for 'founding' level; may need to emphasize Hetzner/GCP operational experience more",
+      "Application is through Jobgether's AI-screening system — candidate's non-traditional background may be filtered by automated resume parsing unless he tailors keywords heavily",
+      "Role may expect more formal MLOps tooling (Kubeflow, MLflow, Tecton, etc.) not in his current stack"
     ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
-    "materials_needed": [],
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 3,
+      "prompt_tokens": 8109,
+      "completion_tokens": 1670,
+      "cost_usd": null
+    },
+    "recommendation": "APPLY",
+    "decision": "APPLY",
+    "materials_needed": [
+      "cv"
+    ],
     "evaluated_at": "2026-08-20T12:42:34.804221+00:00",
     "rescored": true
   },
   {
-    "score": 72,
+    "score": 78,
     "hard_blockers": [],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [
-      "Strong alignment on core AI/ML engineering stack: Python, LLM APIs, agentic systems, RAG, vector DBs, cloud deployment, CI/CD for ML. Candidate has hands-on production experience with Claude/Kimi, multi-step automation, Docker, GitHub Actions, GCP — directly transferable. Missing pieces: PyTorch/Hugging Face (self-taught likely feasible), LangChain/LangGraph (has built pipelines with deterministic guardrails, adjacent), infrastructure-as-code/orchestration (Docker is there, K8s/Terraform not mentioned but learnable). The 'spec-driven development with LLMs' philosophy matches his motivation exactly: owning design intent, shipping fast, auditing output."
+      "Strong alignment on LLM/agentic systems, RAG, tool use, and production deployment. Candidate has hands-on experience with LLM APIs, structured output, tool-calling agents, retrieval (BM25), guardrails, and CI/CD. Gap: no explicit PyTorch/Hugging Face Transformers/LangChain/LangGraph in his stack; vector DB experience not listed. However, his self-built pipelines from scratch demonstrate equivalent foundational skills and fast-learning capability. The role's emphasis on 'spec-driven development' with LLMs handling implementation matches his practical, ship-fast mentality."
     ],
     "red_flags": [
-      "Role asks for 'strong' experience with PyTorch/Hugging Face/LangChain/LangGraph — candidate has adjacent pipeline experience but not these specific frameworks; rapid upskilling needed",
-      "'Expertise with LLMs, vector databases, RAG, agentic systems' — he has practical LLM API and automation experience but may lack depth in vector DBs and formal RAG architectures",
-      "Infrastructure-as-code and container orchestration listed as advantage — he has Docker but not K8s/Terraform; not required but gaps platform engineering depth",
-      "On-site requirement is met but worth confirming exact hybrid flexibility given his current internship transition timing",
-      "Title is 'AI/ML Engineer' not 'Intern' — may be targeting mid-level; his profile reads junior/intern, though the 'growth opportunities' and startup context suggest leveling flexibility"
+      "No explicit PyTorch, Hugging Face, LangChain, LangGraph, or vector DB in current stack—self-taught depth may need to be demonstrated in interview",
+      "BM25 retrieval vs. semantic/vector retrieval—gap to address but learnable fast",
+      "Role asks for 'expertise' in several areas where candidate has solid hands-on experience but perhaps not deep specialization; may be screened as junior vs. their expectations",
+      "On-site requirement is fine but commute to Oerlikon from wherever he lives in Zurich area should be confirmed"
     ],
     "job": {
       "company": "Rivero",
@@ -1306,17 +1322,23 @@
       "portal": "linkedin.com",
       "description": "Role Overview\nAs an AI/ML Engineer at Rivero, you will play a central role in architecting and delivering scalable, production-grade AI solutions. Your work will span from infrastructure to deployment, with a strong emphasis on operational excellence, fast iteration, and applying large language models to real-world problems.\nKey Responsibilities/Tasks\nIn the AI Engineering Domain:\nDesign, implement, and deploy production-ready, scalable AI/ML systems, including multimodal foundation model solutions.\nBuild robust APIs, evaluation pipelines, infrastructure, and observability layers.\nRapidly prototype and assess new AI frameworks, libraries, and tools to improve system performance, developer velocity, or product capabilities, then transition to well-architected, maintainable systems.\nCollaborate with product, data, and engineering teams to translate business problems into AI-powered solutions.\nContribute to building and evolving the internal ML platform and toolset, including CI/CD for ML, and experiment tracking and evaluation.\nEmbrace spec-driven development, where we own the specs and design intent and LLMs handle much of the implementation, always with a human in the loop.\nWhat We Are Looking For\nWe're looking for an AI Engineer who's passionate about building robust systems, experimenting quickly, and shipping value through AI. Above all, you're an AI optimist: you reach for these tools first, push their limits, and get energized by what they make possible rather than waiting to be convinced.\nSkills & Competencies\nYou'll thrive in this role if you have:\nStrong Python programming skills and experience with ML/AI libraries such as PyTorch, Hugging Face Transformers, LangChain and LangGraph.\nExperience deploying and maintaining production-ready ML systems, including monitoring, testing, and continuous delivery.\nExpertise with LLMs, vector databases, retrieval-augmented generation (RAG), and building agentic systems with tool use and orchestration.\nA structured approach to evaluating LLM performance and understanding prompt behaviour across model variants and versions.\nHands-on experience with cloud platforms (GCP, AWS, or Azure). Infrastructure-as-code or container orchestration tools are an advantage.\nAbility to iterate quickly with prototypes, then transition to well-architected, maintainable systems.\nCollaborative mindset and excellent communication skills for working across functions and disciplines.\nAdditional Requirements:\nThis is an on-site role\nCandidates must currently hold the right to live and work in the EU/EFTA area.\nWhat is it like to work at Rivero?\nAt Rivero, we:\nAct with urgency, working in fast, iterat\n[... middle of the posting omitted ...]\nhat everyone is equipped to make informed decisions and contribute to our overall success.\nPerks And Benefits\nCollaborative Workspace: Work from a historic building only two minutes from the Oerlikon station, with a park next door and great food/coffee options. Alternatively, great co-working spaces are available for employees in select locations.\nInternational Startup Culture: Work with a diverse team in a role with room to take ownership and growth opportunities as the company expands.\nLearn Continuously: Benefit from frequent academy sessions hosted by your peers on a variety of topics that help you both learn and grow.\nSocial Events: Enjoy regular social events and bi-annual on-site company events in Zurich.\nGive Back to the Community: Enjoy five extra days beyond your annual holiday allowance to give back to society through volunteering or community work.\nDog-Friendly Office: Bring your furry friends to the office!\nFlexible Tech Set-up: Choose your preferred hardware that best sets you up for success.\nMobile Allowance: Receive an allowance to cover your mobile subscription costs.\nOwnership Opportunities: Participate in the company's success through stock options.\nInterested?\nWe'd love to learn more about you! Please share a few lines about yourself and why you're excited to join our team, along with your CV."
     },
-    "technical_fit": "Strong alignment on core AI/ML engineering stack: Python, LLM APIs, agentic systems, RAG, vector DBs, cloud deployment, CI/CD for ML. Candidate has hands-on production experience with Claude/Kimi, multi-step automation, Docker, GitHub Actions, GCP — directly transferable. Missing pieces: PyTorch/Hugging Face (self-taught likely feasible), LangChain/LangGraph (has built pipelines with deterministic guardrails, adjacent), infrastructure-as-code/orchestration (Docker is there, K8s/Terraform not mentioned but learnable). The 'spec-driven development with LLMs' philosophy matches his motivation exactly: owning design intent, shipping fast, auditing output.",
-    "contextual_fit": "Excellent. On-site in Zurich Oerlikon — ideal location, 2 min from station. Swiss Work Permit B valid, no sponsorship needed — fully meets EU/EFTA requirement. 2-week notice fits fast-moving startup urgency. Career-changer trajectory is actually a plus here: Rivero emphasizes 'AI optimist,' experimentation, and reaching for tools first — his self-directed pivot from law to AI engineering demonstrates exactly that mindset. Ownership culture matches his explicit motivation ('zero to production, own it').",
-    "salary_estimate": "CHF 90,000–120,000 (junior AI/ML engineer at Zurich fintech/payments startup with stock options)",
-    "culture_fit": "Strong. Fast iteration, spec-driven development, human-in-the-loop AI, ownership, continuous learning — all map directly to his stated values. Dog-friendly office and social perks are neutral-to-positive. The 'act with urgency' pace may challenge his current 2-week transition but is manageable.",
+    "technical_fit": "Strong alignment on LLM/agentic systems, RAG, tool use, and production deployment. Candidate has hands-on experience with LLM APIs, structured output, tool-calling agents, retrieval (BM25), guardrails, and CI/CD. Gap: no explicit PyTorch/Hugging Face Transformers/LangChain/LangGraph in his stack; vector DB experience not listed. However, his self-built pipelines from scratch demonstrate equivalent foundational skills and fast-learning capability. The role's emphasis on 'spec-driven development' with LLMs handling implementation matches his practical, ship-fast mentality.",
+    "contextual_fit": "Excellent on role shape: building production AI systems, owning projects, fast iteration, operational excellence. Candidate explicitly wants to 'contribute to more complex AI systems and own real projects from day one'—this role offers exactly that. On-site in Zurich Oerlikon is ideal location. Swiss Work Permit B satisfies EU/EFTA requirement. 2-week notice is compatible with startup urgency. Career-changer background is non-issue given technical focus.",
+    "salary_estimate": "CHF 95,000–120,000",
+    "culture_fit": "Strong match: fast iteration, ownership, AI-optimist mindset, learning culture. Candidate's motivation ('build the systems, not just use them') resonates with Rivero's builder ethos. Dog-friendly office and social events are neutral pluses. The 'human in the loop' approach aligns with his guardrails/validation experience.",
     "concerns": [
-      "Role asks for 'strong' experience with PyTorch/Hugging Face/LangChain/LangGraph — candidate has adjacent pipeline experience but not these specific frameworks; rapid upskilling needed",
-      "'Expertise with LLMs, vector databases, RAG, agentic systems' — he has practical LLM API and automation experience but may lack depth in vector DBs and formal RAG architectures",
-      "Infrastructure-as-code and container orchestration listed as advantage — he has Docker but not K8s/Terraform; not required but gaps platform engineering depth",
-      "On-site requirement is met but worth confirming exact hybrid flexibility given his current internship transition timing",
-      "Title is 'AI/ML Engineer' not 'Intern' — may be targeting mid-level; his profile reads junior/intern, though the 'growth opportunities' and startup context suggest leveling flexibility"
+      "No explicit PyTorch, Hugging Face, LangChain, LangGraph, or vector DB in current stack—self-taught depth may need to be demonstrated in interview",
+      "BM25 retrieval vs. semantic/vector retrieval—gap to address but learnable fast",
+      "Role asks for 'expertise' in several areas where candidate has solid hands-on experience but perhaps not deep specialization; may be screened as junior vs. their expectations",
+      "On-site requirement is fine but commute to Oerlikon from wherever he lives in Zurich area should be confirmed"
     ],
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 3,
+      "prompt_tokens": 8337,
+      "completion_tokens": 1512,
+      "cost_usd": null
+    },
     "recommendation": "REVIEW",
     "decision": "REVIEW",
     "materials_needed": [],
@@ -1324,20 +1346,19 @@
     "rescored": true
   },
   {
-    "score": 85,
+    "score": 82,
     "hard_blockers": [],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [
-      "Strong. Core stack aligns directly: Python, LLM APIs, multi-agent systems, Docker, REST/enterprise API integrations. LangGraph is preferred not required; candidate's Claude/Kimi experience and self-built LLM scoring pipeline with deterministic guardrails map well to 'advanced NLP and LLM techniques' and 'production-ready ML solutions'. AWS is a gap (uses Google Cloud) but cloud concepts transfer; Kubernetes is listed as nice-to-have. The '3+ years experience' is nice-to-have, not required, and the role is 80-100% suggesting openness to less experienced hires.",
-      "Excellent. This is exactly the role shape the candidate wants: small high-impact AI team, building (not maintaining) agentic systems end-to-end, real production deployment, high ownership in fast-growing startup. 'Design and build AI agents and multi-agent orchestration systems' matches his stated excitement for 'zero to production and owning it'. Hybrid with 2-3 days office fits Zurich-based candidate."
+      "Strong. Role centers on building agentic AI systems with Python, LLMs, and multi-agent orchestration—exactly what candidate does today and wants to own. LangGraph is listed as preferred not required; he has hands-on experience with tool-calling agents, retrieval, and structured output. Docker and REST API integrations are in his stack. AWS and Kubernetes are gaps but learnable; the 'nice to have' framing keeps them from being blockers.",
+      "Excellent. Small high-impact team, ownership from day one, greenfield building of production AI agents for enterprise—matches his stated motivation perfectly. Fast-growing startup environment with equity aligns with career-changer appetite for growth and impact. Hybrid with 2-3 days office is viable with Zurich base and his permit."
     ],
     "red_flags": [
-      "AWS instead of Google Cloud — transferable but ramp-up needed",
-      "Kubernetes listed as nice-to-have; candidate hasn't used it",
-      "3+ years 'nice to have' may mean competition from more experienced candidates; role is 80-100% suggesting some flexibility but still a stretch for intern/junior positioning",
-      "Salary band at 100-130k suggests mid-level expectations; 80% option might align better with his level but equity conversation unclear",
-      "No explicit mention of internship or junior track — role title is 'AI Engineer' not 'AI Engineer Intern'"
+      "3+ years ML experience is listed as nice-to-have, but candidate has ~1 year of hands-on AI work; may be competing against more experienced profiles",
+      "No prior LangGraph or Kubernetes exposure; these are preferred/relevant tools in the stack",
+      "AWS cloud experience limited to Google Cloud currently; multi-cloud gap is minor but worth flagging",
+      "'Due to volume of applications' note suggests competitive funnel; strong portfolio and project narrative will matter"
     ],
     "job": {
       "company": "Code Compass 🧭",
@@ -1347,17 +1368,23 @@
       "portal": "linkedin.com",
       "description": "🧭 AI Engineer – 100%\n📍 Zürich, Switzerland | 💰 100k-130k + Stock Options | 🌍 Hybrid (2–3 days office)\nOur client is a fast-growing AI technology company building an advanced\nAI agent platform\nfor large global enterprises.\nTheir platform combines\nlarge language models, proprietary AI technology, and deep enterprise integrations\nto orchestrate intelligent AI agents capable of resolving complex customer requests end-to-end.\nThey are looking for an\nAI Engineer\nto join a small, high-impact AI team working on cutting-edge agentic AI systems deployed in real-world enterprise environments.\n⚙️ Tech Stack\nPython\nLarge Language Models (LLMs)\nMulti-Agent Systems / Agent Frameworks\nLangGraph (preferred)\nNLP / AI Orchestration\nAWS Cloud\nDocker & Kubernetes\nEnterprise API Integrations\n🚀 About the Role\nDesign and build\nAI agents and multi-agent orchestration systems\nDevelop\nproduction-ready ML solutions\nusing Python\nResearch and implement\nadvanced NLP and LLM techniques\nIntegrate AI systems with\nenterprise platforms (CRM, ERP, knowledge systems)\nDeploy scalable AI solutions into\nreal-world production environments\nCollaborate closely with product and engineering teams\n➕ Nice to Have\n3+ years experience building and deploying ML systems\nExperience with\nLLM orchestration or agent frameworks (e.g. LangGraph)\nStrong Python engineering skills\nExperience with\nAWS, Docker, or Kubernetes\nInterest in\nagentic AI and large-scale AI systems\n💪 Benefits\nWork on\ncutting-edge AI technology used by global enterprises\nHigh ownership in a\nfast-growing startup environment\nHybrid working\nwith flexible hours\nCompetitive salary +\nequity potential\nInternational team with regular company meetups\n✉️ Due to the volume of applications, we may not be able to respond to everyone individually. However, we genuinely appreciate every application and will contact shortlisted candidates directly."
     },
-    "technical_fit": "Strong. Core stack aligns directly: Python, LLM APIs, multi-agent systems, Docker, REST/enterprise API integrations. LangGraph is preferred not required; candidate's Claude/Kimi experience and self-built LLM scoring pipeline with deterministic guardrails map well to 'advanced NLP and LLM techniques' and 'production-ready ML solutions'. AWS is a gap (uses Google Cloud) but cloud concepts transfer; Kubernetes is listed as nice-to-have. The '3+ years experience' is nice-to-have, not required, and the role is 80-100% suggesting openness to less experienced hires.",
-    "contextual_fit": "Excellent. This is exactly the role shape the candidate wants: small high-impact AI team, building (not maintaining) agentic systems end-to-end, real production deployment, high ownership in fast-growing startup. 'Design and build AI agents and multi-agent orchestration systems' matches his stated excitement for 'zero to production and owning it'. Hybrid with 2-3 days office fits Zurich-based candidate.",
+    "technical_fit": "Strong. Role centers on building agentic AI systems with Python, LLMs, and multi-agent orchestration—exactly what candidate does today and wants to own. LangGraph is listed as preferred not required; he has hands-on experience with tool-calling agents, retrieval, and structured output. Docker and REST API integrations are in his stack. AWS and Kubernetes are gaps but learnable; the 'nice to have' framing keeps them from being blockers.",
+    "contextual_fit": "Excellent. Small high-impact team, ownership from day one, greenfield building of production AI agents for enterprise—matches his stated motivation perfectly. Fast-growing startup environment with equity aligns with career-changer appetite for growth and impact. Hybrid with 2-3 days office is viable with Zurich base and his permit.",
     "salary_estimate": "100k-130k CHF + Stock Options",
-    "culture_fit": "Strong. Fast-growing startup, high ownership, international team, cutting-edge AI work — matches candidate's motivation for ownership and building. No domain specialization required (enterprise AI platform, vertical-agnostic).",
+    "culture_fit": "Strong. International team, English-working environment implied by global focus and job posting language. High ownership and builder culture fits his trajectory from law to hands-on AI engineering.",
     "concerns": [
-      "AWS instead of Google Cloud — transferable but ramp-up needed",
-      "Kubernetes listed as nice-to-have; candidate hasn't used it",
-      "3+ years 'nice to have' may mean competition from more experienced candidates; role is 80-100% suggesting some flexibility but still a stretch for intern/junior positioning",
-      "Salary band at 100-130k suggests mid-level expectations; 80% option might align better with his level but equity conversation unclear",
-      "No explicit mention of internship or junior track — role title is 'AI Engineer' not 'AI Engineer Intern'"
+      "3+ years ML experience is listed as nice-to-have, but candidate has ~1 year of hands-on AI work; may be competing against more experienced profiles",
+      "No prior LangGraph or Kubernetes exposure; these are preferred/relevant tools in the stack",
+      "AWS cloud experience limited to Google Cloud currently; multi-cloud gap is minor but worth flagging",
+      "'Due to volume of applications' note suggests competitive funnel; strong portfolio and project narrative will matter"
     ],
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 3,
+      "prompt_tokens": 7257,
+      "completion_tokens": 1302,
+      "cost_usd": null
+    },
     "recommendation": "APPLY",
     "decision": "APPLY",
     "materials_needed": [
@@ -1519,20 +1546,20 @@
     "rescored": true
   },
   {
-    "score": 72,
-    "hard_blockers": [],
+    "score": 35,
+    "hard_blockers": [
+      "Assignment type: temporary student assignment explicitly requiring current Master student status; candidate is a career-changing professional seeking permanent AI engineering roles, not a student"
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong alignment on generative AI, LLM usage, RAG, and knowledge structuring. The role centers on building AI-enabled knowledge solutions (academy content, knowledge navigator, agentic prototypes) rather than maintaining existing systems. However, it's explicitly designed for a current Master student at ETH Zürich or comparable—candidate is a postgraduate career changer with an internship, not enrolled in a Master's program. Skills in Python, LLM APIs, automation pipelines, and dashboard building transfer well to the prototyping and content creation work. Missing: formal knowledge graph/Semantic Web depth, SharePoint/365 enterprise platform experience, and the 'student' enrollment status."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Explicit target profile is 'ETH Zürich Master student or comparable'—candidate is not currently a Master's student; this may be a formal eligibility requirement for the temporary student assignment structure",
-      "Short 2-4 month duration limits depth of ownership compared to his stated preference",
-      "Lacks SharePoint Online/Microsoft 365 enterprise platform experience which is a recommended skill",
-      "No explicit mention of German requirement, but biopharma in Zurich often has German-speaking stakeholders; his A2 may surface in practice",
-      "Knowledge graph/semantic modeling experience is nascent; he'd need to ramp quickly on taxonomy/metadata formalisms",
-      "Competition from actual ETH Master students for this specifically-targeted role"
+      "Blocker: Assignment type: temporary student assignment explicitly requiring current Master student status; candidate is a career-changing professional seeking permanent AI engineering roles, not a student",
+      "Role is 40-80% workload, not full-time permanent",
+      "Heavy emphasis on knowledge management, UX/UI, and enterprise platforms (SharePoint, Microsoft 365) outside candidate's skill set",
+      "Candidate would be designing training for others rather than building production systems himself",
+      "Biopharma domain experience not required but 'interest' expected; no penalty but not additive",
+      "His practical coding and LLM integration skills are underutilized in this curriculum/wiki design role"
     ],
     "job": {
       "company": "Hays",
@@ -1542,20 +1569,26 @@
       "portal": "linkedin.com",
       "description": "Support the preparation of MSAT AI and Data Academies and the development of a Process Wiki / Knowledge Navigator by combining generative AI, knowledge engineering, knowledge graph design, and modern web experience design.\nGeneral Information:\nAssignment type:\nTemporary student assignment\nTarget profile:\nETH Zürich Master student or comparable profile\nDuration:\n2 to 4 months, with option to extend depending on project needs\nWorkload:\n40 to 80%, flexible\nLocation:\nHybrid: Zurich Office / remote\nWe are looking for a highly motivated Master student to support strategic AI and Knowledge Management initiatives within a global biopharmaceutical environment.\nThe role will work closely with the MSAT Knowledge Management Lead and contribute to the design and deployment of the AI Academy, Data Academy, Process Wiki / Knowledge Navigator, and related AI-enabled knowledge solutions.\nThe assignment is ideal for a student who enjoys building at the intersection of AI tools, knowledge management, knowledge graph design, information architecture, and user-centric digital product design.\nKey responsibilities (depending which workstream assigned to)\nAI Academy & Data Academy development\nSupport the design of learning pathways, training curricula, capability frameworks and bootcamp concepts.\nDevelop practical learning & workshop materials, exercise templates and reusable academy content.\nResearch emerging AI tools and translate relevant use cases into MSAT-oriented training examples.\nCreate AI use case catalogues, prompt examples and practical demonstrations for knowledge work, data work and process intelligence.\nSupport launch communication, stakeholder updates and executive-ready summaries.\nProcess Wiki / Knowledge Navigator\nSupport the design of a modern digital knowledge infrastructure for process knowledge, process data and modelling-related content.\nCreate intuitive navigation structures & page concepts\nDevelop page mock-ups, wireframes and proof-of-concept knowledge portal designs.\nImprove discoverability through taxonomy, metadata and search-oriented content structuring.\nContribute to the integration concept for multiple knowledge sources into a unified knowledge navigator experience.\nAI tools, knowledge graphs and agentic knowledge solutions\nApply AI productivity tools such as Microsoft Copilot, Cowork or comparable AI assistant platforms to accelerate content creation, knowledge structuring and prototyping.\nSupport conceptual knowledge graph design by defining entities, relationships and metadata patterns across documents, processes & systems.\nEvaluate approaches for semantic search, retrieval-augmented generation and AI-assist\n[... middle of the posting omitted ...]\nTH Zürich preferably in the field of Computer Science, Data Science, Information Systems, Computational Science, Knowledge Engineering, Digital Design or a related field.\nTechnical experience.\nPractical experience in several of the following areas is recommended:\nGenerative AI and large language model usage in real work scenarios.\nMicrosoft Copilot, Cowork or comparable AI assistant / agent platforms.\nKnowledge graphs, semantic models, taxonomies or metadata modelling.\nRAG architectures, semantic search or AI-enabled knowledge retrieval.\nWeb page creation and design using HTML, CSS, JavaScript or modern web frameworks.\nSharePoint Online, Microsoft 365 or enterprise collaboration platforms.\nUX/UI design, wireframing and user journey development.\nPython, data visualisation or graph database concepts are a plus.\nPersonal profile\nCurious about the future of AI, knowledge management and digital transformation.\nAble to structure ambiguous topics and translate them into executable work packages.\nComfortable working independently while aligning frequently with stakeholders.\nStrong visual communication and storytelling skills.\nInterest in biopharmaceutical manufacturing, process intelligence and enterprise knowledge systems.\nHigh attention to detail, with the ability to make complex knowledge accessible and easy to reuse."
     },
-    "technical_fit": "Strong alignment on generative AI, LLM usage, RAG, and knowledge structuring. The role centers on building AI-enabled knowledge solutions (academy content, knowledge navigator, agentic prototypes) rather than maintaining existing systems. However, it's explicitly designed for a current Master student at ETH Zürich or comparable—candidate is a postgraduate career changer with an internship, not enrolled in a Master's program. Skills in Python, LLM APIs, automation pipelines, and dashboard building transfer well to the prototyping and content creation work. Missing: formal knowledge graph/Semantic Web depth, SharePoint/365 enterprise platform experience, and the 'student' enrollment status.",
-    "contextual_fit": "Zurich hybrid location perfect. 40-80% workload fits alongside continued German study. Biopharma domain is unfamiliar but candidate is deliberately open to new domains. The 2-4 month temporary student assignment with possible extension is shorter than ideal for deep ownership, but the role shape—building from zero, greenfield AI/knowledge products, direct creation of use cases and prototypes—matches his motivation well. The 'Master student' targeting is a structural mismatch: he's not currently enrolled and holds a postgraduate specialization, not a Master's.",
+    "technical_fit": "Partial overlap in generative AI, LLM usage, and knowledge retrieval concepts, but the role expects knowledge graph design, semantic modelling, web/UX design, and SharePoint/enterprise platforms—areas where the candidate has little to no experience. His strengths in Python-based LLM pipelines, API integration, and automation are somewhat relevant but not central to this role's deliverables (academy curricula, wireframes, process wiki design).",
+    "contextual_fit": "Poor. The role is explicitly a temporary student assignment (2-4 months, 40-80%), targeting current ETH Zürich Master students. The candidate is not a student (he holds a postgraduate specialisation, is working full-time, and seeking permanent roles), has a valid Swiss Work Permit B, and is available with 2 weeks notice for permanent positions. The assignment type fundamentally mismatches his career stage and goals.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "High ownership and independent work style matches. 'Building at the intersection' and translating ambiguous topics into executable work fits his zero-to-production mindset. Visual communication emphasis is slightly less his strength than technical implementation. The stakeholder alignment and executive-summary creation are growth areas he'd likely embrace.",
+    "culture_fit": "The role emphasizes academic/student environment, learning pathway design, and stakeholder alignment in a large biopharma enterprise. The candidate's motivation centers on building production AI systems with ownership, not designing training materials or internal academies. The 'builder' vs. 'enabler/educator' tension is significant.",
     "concerns": [
-      "Explicit target profile is 'ETH Zürich Master student or comparable'—candidate is not currently a Master's student; this may be a formal eligibility requirement for the temporary student assignment structure",
-      "Short 2-4 month duration limits depth of ownership compared to his stated preference",
-      "Lacks SharePoint Online/Microsoft 365 enterprise platform experience which is a recommended skill",
-      "No explicit mention of German requirement, but biopharma in Zurich often has German-speaking stakeholders; his A2 may surface in practice",
-      "Knowledge graph/semantic modeling experience is nascent; he'd need to ramp quickly on taxonomy/metadata formalisms",
-      "Competition from actual ETH Master students for this specifically-targeted role"
+      "Role is 40-80% workload, not full-time permanent",
+      "Heavy emphasis on knowledge management, UX/UI, and enterprise platforms (SharePoint, Microsoft 365) outside candidate's skill set",
+      "Candidate would be designing training for others rather than building production systems himself",
+      "Biopharma domain experience not required but 'interest' expected; no penalty but not additive",
+      "His practical coding and LLM integration skills are underutilized in this curriculum/wiki design role"
     ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 1,
+      "prompt_tokens": 2704,
+      "completion_tokens": 439,
+      "cost_usd": null
+    },
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-20T12:42:34.804221+00:00",
     "rescored": true

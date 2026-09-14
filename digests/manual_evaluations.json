@@ -39,18 +39,20 @@
     "rescored": true
   },
   {
-    "score": 78,
-    "hard_blockers": [],
+    "score": 45,
+    "hard_blockers": [
+      "Role is explicitly an internship; candidate explicitly excludes internships and working-student roles from his search"
+    ],
     "insufficient_info": true,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong. Role centers on LLM agent workflows, data pipelines for document ingestion/structuring, and evaluation infrastructure — exactly the candidate's target space. His production experience with Claude/Kimi APIs, multi-step automation pipelines, and cloud CI/CD maps well to the 'AI-ready structuring' and pipeline work described. The 'messy data' and 'running experiments to improve LLM-powered workflows' language mirrors his current work and stated motivation."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Job description was truncated; requirements/qualifications section not visible — cannot assess degree requirements (role mentions 'final stretch of studies' / graduated Master's student, but candidate has postgraduate Data Science specialisation and may not hold a Master's; this is an unknown eligibility factor)",
-      "Legal domain expertise may accelerate ramp-up but is not stated as required; candidate would need to learn insurance/legal document structures",
-      "Salary at lower end for Zurich, though typical for internship",
-      "Pre-seed stage carries higher risk than established company, though candidate profile suggests risk-tolerance for early-stage environments",
+      "Blocker: Role is explicitly an internship; candidate explicitly excludes internships and working-student roles from his search",
+      "Job description was truncated — requirements/qualifications section not visible, making full assessment impossible; score kept conservative",
+      "Role is internship, not a permanent junior/associate position — conflicts with candidate's stated career trajectory and current job-search parameters",
+      "Legal/insurance domain specificity may require domain knowledge not yet demonstrated, though he is open to new domains",
+      "Pre-seed stage carries inherent risk and potentially less structured mentorship than larger orgs",
+      "Salary range at internship level, below typical junior engineer market rate in Zurich",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -61,18 +63,26 @@
       "portal": "manual",
       "description": "iudexnc hiring Engineering Internship - AI/Data in Zurich, Zurich, Switzerland | LinkedIn\nSkip to main content\nEngineering Internship - AI/Data\niudexnc\nZurich, Zurich, Switzerland\nApply\nJoin or sign in to find your next job\nJoin to apply for the\nEngineering Internship - AI/Data\nrole at\niudexnc\nEmail or phone\nPassword\nShow\nForgot password?\nSign in\nSign in with Email\nor\nNew to LinkedIn?\nJoin now\nBy clicking Continue to join or sign in, you agree to LinkedIn’s\nUser Agreement\n,\nPrivacy Policy\n, and\nCookie Policy\n.\nEngineering Internship - AI/Data\niudexnc\nZurich, Zurich, Switzerland\n1 day ago\n39 applicants\nSee who iudexnc has hired for this role\nApply\nJoin or sign in to find your next job\nJoin to apply for the\nEngineering Internship - AI/Data\nrole at\niudexnc\nEmail or phone\nPassword\nShow\nForgot password?\nSign in\nSign in with Email\nor\nNew to LinkedIn?\nJoin now\nBy clicking Continue to join or sign in, you agree to LinkedIn’s\nUser Agreement\n,\nPrivacy Policy\n, and\nCookie Policy\n.\nSave\nJoin or sign in to save this job\nJoin to save\nEngineering Internship - AI/Data\nat\niudexnc\nEmail or phone\nPassword\nShow\nForgot password?\nSign in\nSign in with Email\nor\nNew to LinkedIn?\nJoin now\nBy clicking Continue to join or sign in, you agree to LinkedIn’s\nUser Agreement\n,\nPrivacy Policy\n, and\nCookie Policy\n.\nReport this job\nUse AI to assess how you fit\nGet AI-powered advice on this job and more exclusive features.\nAm I a good fit for this job?\nTailor my resume\nSign in to access AI-powered advices\nEmail or phone\nPassword\nShow\nForgot password?\nSign in\nSign in with Email\nor\nNew to LinkedIn?\nJoin now\nBy clicking Continue to join or sign in, you agree to LinkedIn’s\nUser Agreement\n,\nPrivacy Policy\n, and\nCookie Policy\n.\nSign in to evaluate your skills\nEmail or phone\nPassword\nShow\nForgot password?\nSign in\nSign in with Email\nor\nNew to LinkedIn?\nJoin now\nBy clicking Continue to join or sign in, you agree to LinkedIn’s\nUser Agreement\n,\nPrivacy Policy\n, and\nCookie Policy\n.\nSign in to tailor your resume\nEmail or phone\nPassword\nShow\nForgot password?\nSign in\nSign in with Email\nor\nNew to LinkedIn?\nJoin now\nBy clicking Continue to join or sign in, you agree to LinkedIn’s\nUser Agreement\n,\nPrivacy Policy\n, and\nCookie Policy\n.\niudexnc provided pay range\nThis range is provided by iudexnc. Your actual pay will be based on your skills and experience — talk with your recruiter to learn more.\nBase pay range\nCHF 2,500.00/mo - CHF 4,000.00/mo\n🌟\nAbout You\nYou're in the final stretch of your studies (in particular graduated Master's student or close to graduation) and you want a hands-on internship where you build real AI systems that ship to production. You enjoy working with messy data, writing solid code, and running experiments to improve LLM-powered workflows. You learn fast, take ownership, and like collaborating closely with a small team.\n🚀\nAbout INC\nINC (Iudex Non Calculat) is a pre-seed AI startup based in Zurich, building infrastructure that automates coverage checks and case handling for legal insurance companies. Legal insurance is a €16.8B European market where every case still requires 15-45 minutes of manual review. We compress that to under 2 minutes. We're backed by a paid pilot with a Swiss insurer and a founder with 120+ B2B customers at his previous AI legal tech company. We work at the intersection of LLM agent systems, document understanding, and domain-specific reasoning — where accuracy, traceability, and auditability matter.\nTasks\n🛠️\nYour Responsibilities\nAs an\nEngineering Intern — AI/Data\n, you will support the founder across data pipelines, LLM agent workflows, and evaluation infrastructure. Depending on your strengths, you'll go deeper in one area while still getting exposure to the full stack.\nData pipelines:\nHelp build and improve ingestion and processing pipelines for insurance policy documents, legal texts, and case descriptions (parsing, normalization, structuring).\nAI-ready structuring:\nSupport chunking, metadata extraction, clause mapping, and schem"
     },
-    "technical_fit": "Strong. Role centers on LLM agent workflows, data pipelines for document ingestion/structuring, and evaluation infrastructure — exactly the candidate's target space. His production experience with Claude/Kimi APIs, multi-step automation pipelines, and cloud CI/CD maps well to the 'AI-ready structuring' and pipeline work described. The 'messy data' and 'running experiments to improve LLM-powered workflows' language mirrors his current work and stated motivation.",
-    "contextual_fit": "Very strong. Pre-seed startup with a paid pilot, small team, direct founder collaboration — this is the 'zero to production with real ownership' environment the candidate explicitly seeks. Legal domain is unfamiliar but he is a deliberate career changer open to new domains; the role does not appear to require legal background. Zurich-based, no relocation or permit issues. 2-week notice aligns with internship timing.",
-    "salary_estimate": "CHF 2,500.00/mo - CHF 4,000.00/mo",
-    "culture_fit": "Excellent match. 'Hands-on', 'build real AI systems that ship to production', 'take ownership', 'small team' — all directly match candidate's stated values. The 'intersection of LLM agent systems, document understanding, and domain-specific reasoning' is precisely where he wants to grow.",
+    "technical_fit": "Promising alignment on visible tasks: LLM agent workflows, data pipelines, document parsing/structuring, and evaluation infrastructure match the candidate's hands-on experience with LLM APIs, tool-calling agents, retrieval, and output validation. The messy-data-to-production path mirrors his current work. However, the role is explicitly an internship, which directly conflicts with his stated target of non-internship positions.",
+    "contextual_fit": "Strong on domain openness (legal/insurance is new but he's a deliberate career changer), Zurich location is ideal, small-team ownership culture matches his motivation. The pre-seed startup stage offers the 'own real projects from day one' he seeks. Critical conflict: he is currently an intern seeking permanent/junior roles, and this is another internship — a step sideways, not forward.",
+    "salary_estimate": "CHF 2,500 - 4,000/mo",
+    "culture_fit": "High — small team, hands-on building, founder-led, shipping to production, close collaboration. Matches his preference for ownership and greenfield work.",
     "concerns": [
-      "Job description was truncated; requirements/qualifications section not visible — cannot assess degree requirements (role mentions 'final stretch of studies' / graduated Master's student, but candidate has postgraduate Data Science specialisation and may not hold a Master's; this is an unknown eligibility factor)",
-      "Legal domain expertise may accelerate ramp-up but is not stated as required; candidate would need to learn insurance/legal document structures",
-      "Salary at lower end for Zurich, though typical for internship",
-      "Pre-seed stage carries higher risk than established company, though candidate profile suggests risk-tolerance for early-stage environments"
+      "Job description was truncated — requirements/qualifications section not visible, making full assessment impossible; score kept conservative",
+      "Role is internship, not a permanent junior/associate position — conflicts with candidate's stated career trajectory and current job-search parameters",
+      "Legal/insurance domain specificity may require domain knowledge not yet demonstrated, though he is open to new domains",
+      "Pre-seed stage carries inherent risk and potentially less structured mentorship than larger orgs",
+      "Salary range at internship level, below typical junior engineer market rate in Zurich"
     ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 1,
+      "prompt_tokens": 2743,
+      "completion_tokens": 402,
+      "cost_usd": null
+    },
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-17T04:38:55.473060+00:00",
     "rescored": true

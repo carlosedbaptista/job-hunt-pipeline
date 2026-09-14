@@ -278,8 +278,21 @@ def recover_pass(limit: int, apply_changes: bool):
     return 0
 
 
-def full_pass(limit: int, apply_changes: bool):
-    """Re-scores with the LLM. Costs one API call per job."""
+def full_pass(limit: int, apply_changes: bool, before=None, decisions=None):
+    """Re-scores with the LLM. Costs one API call per job.
+
+    `before` and `decisions` exist because --limit alone cannot express the
+    job that actually comes up after a target change. Re-scoring the newest
+    N records leaves the older ones carrying scores from the old target, and
+    on 2026-09-14 the five highest-scoring rows on the dashboard were exactly
+    those: stale internships outranking the genuine APPLY results underneath
+    them. Re-scoring everything to reach twenty-one rows would have paid for
+    289 evaluations that had just been done.
+
+    So: `before` selects records older than a date, `decisions` keeps only the
+    ones whose current decision still matters. A record already sitting at
+    SKIP can stay wrong cheaply -- nobody reads the bottom of the list.
+    """
     import job_evaluator
 
     if job_evaluator.PROFILE_IS_FALLBACK:
@@ -287,15 +300,31 @@ def full_pass(limit: int, apply_changes: bool):
               "Re-scoring against the generic profile would corrupt the history.")
         return 1
 
-    records, index = [], []
+    wanted = {d.strip().upper() for d in (decisions or [])} or None
+    records, index, skipped = [], [], 0
     for path in iter_files():
         data = load_json(path, default=None)
         if not isinstance(data, list):
             continue
         for position, record in enumerate(data):
-            if isinstance(record, dict) and record.get("score") is not None:
-                records.append(record)
-                index.append((path, position))
+            if not (isinstance(record, dict) and record.get("score") is not None):
+                continue
+            # The date lives on the record, not on the filename: a record can
+            # be re-evaluated days after the posting first arrived, and the
+            # filename would then select the wrong ones.
+            if before and str(record.get("evaluated_at") or "")[:10] >= before:
+                skipped += 1
+                continue
+            if wanted and str(record.get("decision") or "").upper() not in wanted:
+                skipped += 1
+                continue
+            records.append(record)
+            index.append((path, position))
+    if before or wanted:
+        print(f"Filtered out {skipped} record(s): "
+              f"{'older than ' + before if before else ''}"
+              f"{' and ' if before and wanted else ''}"
+              f"{'decision in ' + ','.join(sorted(wanted)) if wanted else ''}")
 
     # Newest first: if the budget runs out, the freshest jobs are the ones
     # worth having correct.
@@ -391,6 +420,13 @@ def main():
                         help="also re-score with the LLM (costs one call per job)")
     parser.add_argument("--limit", type=int, default=30,
                         help="max jobs to re-score in --full mode (default 30)")
+    parser.add_argument("--before", metavar="YYYY-MM-DD",
+                        help="in --full mode, only records evaluated BEFORE "
+                             "this date -- the ones a --limit run left behind")
+    parser.add_argument("--decision", metavar="A,B",
+                        help="in --full mode, only records whose current "
+                             "decision is one of these (e.g. APPLY,REVIEW). "
+                             "A record already at SKIP can stay wrong cheaply")
     parser.add_argument("--recover", action="store_true",
                         help="find postings for NOT_EVALUATED records on the "
                              "employer's board and score them properly")
@@ -420,7 +456,8 @@ def main():
 
     if args.full:
         print()
-        full_pass(args.limit, args.apply)
+        full_pass(args.limit, args.apply, before=args.before,
+                  decisions=(args.decision or '').split(',') if args.decision else None)
 
     if args.reset_seen:
         print()

@@ -1097,18 +1097,17 @@
     "no_posting_text": true
   },
   {
-    "score": 72,
+    "score": 68,
     "hard_blockers": [],
     "insufficient_info": true,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong alignment: the role explicitly targets building real AI systems that ship to production, working with messy data, and running experiments to improve LLM-powered workflows — exactly what the candidate does today and wants to deepen. His Python, pandas, SQL, LLM APIs (Claude, Kimi), automation pipelines, Docker, and CI/CD experience all map directly. The 'ownership' and 'small team' framing matches his stated motivation perfectly."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Job description was truncated; requirements/qualifications section not visible — cannot verify degree requirements (Master's mentioned as typical but not necessarily mandatory), specific tech stack gaps, or whether any hidden hard criteria exist",
-      "Mention of 'final stretch of studies' and 'graduated Master's student or close to graduation' could imply degree-level expectations; candidate has postgraduate specialisation (lato sensu) but this may not map cleanly to Swiss Master's-equivalent expectations — needs clarification",
-      "No visibility into whether role requires specific cloud platforms (AWS/Azure vs his Google Cloud) or other infrastructure tools not in his current stack",
-      "Pre-seed startup salary and internship duration unknown",
+      "Requirements/qualifications section was not visible in truncated job text — cannot verify degree requirements, experience level, or specific technical stack details",
+      "'Final stretch of studies' / 'graduated Master's student' phrasing may indicate preference for currently-enrolled or recently-completed Master's candidate; candidate's postgraduate specialisation is lato sensu (not Master's equivalent) and he is already working full-time",
+      "No information on duration (6 months typical for Swiss Master's internship?) or whether they accept non-internship candidates given his 2-week notice and work permit B",
+      "Pre-seed startup may have limited salary/budget compared to his current role",
+      "Only 1 prior application from recommendations with 0 responses — no calibration data to adjust",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1119,18 +1118,26 @@
       "portal": "adzuna",
       "description": " About You You're in the final stretch of your studies (in particular graduated Master's student or close to graduation) and you want a hands-on internship where you build real AI systems that ship to production. You enjoy working with messy data, writing solid code, and running experiments to improve LLM-powered workflows. You learn fast, take ownership, and like collaborating closely with a small team.  About INC INC (Iudex Non Calculat) is a pre-seed AI startup based in Zurich, building infr…"
     },
-    "technical_fit": "Strong alignment: the role explicitly targets building real AI systems that ship to production, working with messy data, and running experiments to improve LLM-powered workflows — exactly what the candidate does today and wants to deepen. His Python, pandas, SQL, LLM APIs (Claude, Kimi), automation pipelines, Docker, and CI/CD experience all map directly. The 'ownership' and 'small team' framing matches his stated motivation perfectly.",
-    "contextual_fit": "Excellent: pre-seed startup in Zurich, hands-on builder culture, greenfield AI work with real shipping ownership. Candidate's non-traditional background (law → tech) is irrelevant here and possibly even a plus in a small team valuing diverse problem-solving. Two-week notice is ideal for internship timing. Swiss Work Permit B valid, no sponsorship needed — fully compatible.",
+    "technical_fit": "Strong alignment on core activities: building real AI systems, LLM-powered workflows, messy data, production shipping. Candidate's current internship already covers LLM pipelines, tool-calling agents, retrieval, guardrails — directly transferable. Missing requirements section prevents confirming if they want Master's completion as hard requirement or if Bachelor+postgrad is acceptable.",
+    "contextual_fit": "Startup environment matches candidate's stated desire for ownership and greenfield building. 'Small team' and 'collaborating closely' fits his profile. However, 'final stretch of studies' / 'graduated Master's student or close to graduation' language suggests they may expect enrolled Master's student — candidate has postgraduate specialisation (lato sensu, not Master's degree) and is currently working, not studying. This is a meaningful uncertainty.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Very strong match: candidate explicitly wants 'zero to production' ownership, auditing his own output, and fixing what he finds. Startup's 'small team, close collaboration' and 'take ownership' language mirrors his self-described working style.",
+    "culture_fit": "Strong — pre-seed startup, hands-on, ship-to-production, ownership. Matches candidate's explicit motivation for 'own real projects from day one.'",
     "concerns": [
-      "Job description was truncated; requirements/qualifications section not visible — cannot verify degree requirements (Master's mentioned as typical but not necessarily mandatory), specific tech stack gaps, or whether any hidden hard criteria exist",
-      "Mention of 'final stretch of studies' and 'graduated Master's student or close to graduation' could imply degree-level expectations; candidate has postgraduate specialisation (lato sensu) but this may not map cleanly to Swiss Master's-equivalent expectations — needs clarification",
-      "No visibility into whether role requires specific cloud platforms (AWS/Azure vs his Google Cloud) or other infrastructure tools not in his current stack",
-      "Pre-seed startup salary and internship duration unknown"
+      "Requirements/qualifications section was not visible in truncated job text — cannot verify degree requirements, experience level, or specific technical stack details",
+      "'Final stretch of studies' / 'graduated Master's student' phrasing may indicate preference for currently-enrolled or recently-completed Master's candidate; candidate's postgraduate specialisation is lato sensu (not Master's equivalent) and he is already working full-time",
+      "No information on duration (6 months typical for Swiss Master's internship?) or whether they accept non-internship candidates given his 2-week notice and work permit B",
+      "Pre-seed startup may have limited salary/budget compared to his current role",
+      "Only 1 prior application from recommendations with 0 responses — no calibration data to adjust"
     ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 3,
+      "prompt_tokens": 5355,
+      "completion_tokens": 1117,
+      "cost_usd": null
+    },
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-17T05:39:48.934610+00:00",
     "rescored": true
@@ -1252,19 +1259,19 @@
     "rescored": true
   },
   {
-    "score": 92,
+    "score": 88,
     "hard_blockers": [],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [
-      "Strong. Role centers on LLM orchestration, agent frameworks, and building production AI systems—exactly his target area. TypeScript is a gap but he's demonstrated fast stack adaptability (Node.js background, career change from law to Python/cloud). His LLM API experience (Claude, Kimi), multi-step automation pipelines, and evals/observability directly map to both FDE and Internal Tooling tracks. NetSuite internship gives him unexpected ERP/process exposure that matches their bonus criteria.",
-      "Excellent. 'Real ownership from day one' and 'build and ship fast—days and weeks, not quarters' mirrors his stated motivation precisely. ETH/HSG spinout with Goldman Sachs backing offers credibility without bureaucracy. Dual track (customer-facing FDE + internal AI tooling) lets him explore both agentic systems and data platform engineering. 6-month duration fits his 2-week notice. Clear path to permanent role aligns with career change trajectory."
+      "Strong. Role is split between Forward Deployed Engineering (building production LLM/agent systems in customer environments) and Internal Tooling & Applied AI (shipping AI-powered tools fast) — both directly on-target. Candidate's experience building LLM pipelines, tool-calling agents, retrieval, guardrails, and REST API integrations maps well. TypeScript is a gap but he's done Node.js and the posting explicitly welcomes 'confident you can get there fast.' His NetSuite internship is a direct bonus hit for ERP exposure.",
+      "Excellent. Zurich-based, 6-month internship with clear path to permanent role — fits his 2-week notice and permit situation perfectly. The 'real ownership from day one' and 'build, not maintain' shape matches his stated motivation exactly. High-growth ETH/HSG spinout with Goldman Sachs backing signals credible trajectory."
     ],
     "red_flags": [
-      "TypeScript not in current stack—needs rapid ramp-up, though Node.js provides JS foundation and he's proven adaptability",
-      "No explicit mention of cloud infrastructure/CI/CD in role description; his current strengths in Docker/GitHub Actions/GCP may be underutilized or need reframing",
-      "ERP domain depth is light (one NetSuite internship); FDE track may have steep customer-context learning curve initially",
-      "6-month internship is standard but slightly shorter than ideal for deep agentic systems ownership; permanent path mitigates"
+      "TypeScript fluency gap — though mitigated by Node.js experience and explicit posting openness to fast learners",
+      "6-month internship duration vs. his search for non-internship roles; however, 'clear, fast path to permanent role' is stated and his profile suggests strong conversion candidate",
+      "No explicit mention of Python in stack; role leans TypeScript — but his Python/LLM orchestration skills are transferable and internal tooling work may accommodate",
+      "Some FDE work may involve on-site customer presence; no clarity on hybrid/remote balance"
     ],
     "job": {
       "company": "BLP Digital AG",
@@ -1274,16 +1281,23 @@
       "portal": "adzuna",
       "description": "Join BLP Digital — The #1 Solution for ERP Automation \n BLP Digital is redefining ERP automation with agentic AI. Spun out of ETH Zurich and HSG, we build AI agents that automate finance, procurement, logistics, sales, and more for some of the world's largest enterprises. We solve real enterprise problems with cutting-edge technology and a strong sense of ownership.\n Our solution is live in 40+ countries, used by 550+ customers, and automates 70,000+ processes every day, including for Fortune 500 companies. As one of Switzerland's fastest-growing SaaS scaleups, our success stems from deep expertise in technology and business processes, delivering a product with outstanding product-market fit, proven by a growing global customer base.\n We've recently welcomed Goldman Sachs Alternatives as a growth investor, and we're now expanding into the UK with the launch of our London office. We are just getting started. Ready to build the future? Join BLP Digital today. \n \n The Role \n We’re hiring two Software Engineering Interns to join our Zurich team for a 6-month internship. You’ll work closely with our CTO, Sven Beck and with our project and sales teams — not on the sidelines, but on live work.\n Depending on where the business’s priorities sit at any given time, your day-to-day will flex between two areas of our engineering work:\n Forward Deployed Engineering (FDE) — building production systems directly inside customer environments, alongside a Senior Consultant and other FDEs.\n\n Internal Tooling & Applied AI — building the AI-powered internal tools that make our own hiring, finance, and operations run faster.\n\n What You’ll Do \n On Forward Deployed Engineering work \n Sit with end-users, process owners, and client engineers to understand the real workflow — and the real problem underneath the stated one.\n\n Help translate the target-state process into a concrete technical solution: architecture, data model, integrations, agent and workflow design.\n\n Build full-stack: TypeScript backend, integrations, LLM orchestration, evals.\n\n Support demos with real users and help fold their feedback into the next iteration.\n\n Help own observability and evals once a solution is live, iterating until it’s reliable under the customer’s real conditions.\n\n On Internal Tooling & Applied AI work \n Build and ship AI-powered internal tools fast — days and weeks, not quarters.\n\n Evaluate, integrate, and chain the latest AI models, APIs, and frameworks (LLMs, agent frameworks, embedding pipelines, AI coding tools) into internal solutions.\n\n Write clean, maintainable code that integrates with our existing systems — APIs, databases, third-party services.\n\n[... middle of the posting omitted ...]\nodern AI tooling: LLM APIs, AI coding assistants (Claude Code, Cursor, or similar), agent frameworks, or workflow automation.\n\n Comfortable with TypeScript, or confident you can get there fast — you pick up new tools and stacks quickly.\n\n A fast-moving, entrepreneurial mindset — you’ve built something (a side project, a hack, a tool people actually used) rather than just studied how to.\n\n You enjoy working with non-technical teams and can turn a messy, half-stated problem into a clear, working solution.\n\n Comfortable with ambiguity and fast feedback cycles.\n\n Fluent in English; German is a plus.\n\n Bonus: exposure to ERP or business-process environments (SAP, Microsoft Dynamics, Oracle, NetSuite, or similar), or tools like Make, n8n, Retool, or Supabase.\n\n What We Offer \n Solve real problems, fast — join a high-growth deep-tech startup tackling real-world challenges for global industry leaders.\n\n Work at the frontier — use and build with state-of-the-art tech: the latest LLMs, agent frameworks, and AI coding tools.\n\n Real ownership from day one — shape internal tooling from the ground up, or own pieces of a live customer engagement.\n\n A clear, fast path to a permanent role for the right candidates.\n\n Exceptional colleagues — you’ll be growing alongside people from exceptional academic and professional backgrounds."
     },
-    "technical_fit": "Strong. Role centers on LLM orchestration, agent frameworks, and building production AI systems—exactly his target area. TypeScript is a gap but he's demonstrated fast stack adaptability (Node.js background, career change from law to Python/cloud). His LLM API experience (Claude, Kimi), multi-step automation pipelines, and evals/observability directly map to both FDE and Internal Tooling tracks. NetSuite internship gives him unexpected ERP/process exposure that matches their bonus criteria.",
-    "contextual_fit": "Excellent. 'Real ownership from day one' and 'build and ship fast—days and weeks, not quarters' mirrors his stated motivation precisely. ETH/HSG spinout with Goldman Sachs backing offers credibility without bureaucracy. Dual track (customer-facing FDE + internal AI tooling) lets him explore both agentic systems and data platform engineering. 6-month duration fits his 2-week notice. Clear path to permanent role aligns with career change trajectory.",
+    "technical_fit": "Strong. Role is split between Forward Deployed Engineering (building production LLM/agent systems in customer environments) and Internal Tooling & Applied AI (shipping AI-powered tools fast) — both directly on-target. Candidate's experience building LLM pipelines, tool-calling agents, retrieval, guardrails, and REST API integrations maps well. TypeScript is a gap but he's done Node.js and the posting explicitly welcomes 'confident you can get there fast.' His NetSuite internship is a direct bonus hit for ERP exposure.",
+    "contextual_fit": "Excellent. Zurich-based, 6-month internship with clear path to permanent role — fits his 2-week notice and permit situation perfectly. The 'real ownership from day one' and 'build, not maintain' shape matches his stated motivation exactly. High-growth ETH/HSG spinout with Goldman Sachs backing signals credible trajectory.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Strong match. Explicitly values 'entrepreneurial mindset,' 'built something people actually used,' and turning 'messy, half-stated problems into clear, working solutions'—all validated by his law-to-tech transition and self-directed project work. Non-technical stakeholder interaction is core to the role; his legal background and client-facing court experience is actually additive here.",
+    "culture_fit": "Strong match. Emphasizes entrepreneurial mindset, building things people actually use, working with non-technical teams, comfort with ambiguity — all align with his career-change story and agency background. The 'fast feedback cycles' and 'days and weeks, not quarters' pace matches his demonstrated ability to ship quickly.",
     "concerns": [
-      "TypeScript not in current stack—needs rapid ramp-up, though Node.js provides JS foundation and he's proven adaptability",
-      "No explicit mention of cloud infrastructure/CI/CD in role description; his current strengths in Docker/GitHub Actions/GCP may be underutilized or need reframing",
-      "ERP domain depth is light (one NetSuite internship); FDE track may have steep customer-context learning curve initially",
-      "6-month internship is standard but slightly shorter than ideal for deep agentic systems ownership; permanent path mitigates"
+      "TypeScript fluency gap — though mitigated by Node.js experience and explicit posting openness to fast learners",
+      "6-month internship duration vs. his search for non-internship roles; however, 'clear, fast path to permanent role' is stated and his profile suggests strong conversion candidate",
+      "No explicit mention of Python in stack; role leans TypeScript — but his Python/LLM orchestration skills are transferable and internal tooling work may accommodate",
+      "Some FDE work may involve on-site customer presence; no clarity on hybrid/remote balance"
     ],
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 3,
+      "prompt_tokens": 7536,
+      "completion_tokens": 1261,
+      "cost_usd": null
+    },
     "recommendation": "APPLY",
     "decision": "APPLY",
     "materials_needed": [
@@ -1577,14 +1591,15 @@
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [
-      "Strong alignment on core stack (Python, FastAPI, SQLAlchemy, Docker, GitHub Actions, AWS) and exact domain match (agentic AI systems, LLM orchestration via Bedrock, data pipelines, regulated process automation). Candidate's LLM API experience (Claude, Kimi) and multi-step automation pipelines transfer directly. Gap: 4 years experience requested vs. his intern/junior trajectory, and no explicit AWS/Bedrock exposure yet. However, his cloud infra (Google Cloud) and containerization experience are adjacent, and the role's 'ship end-to-end with guidance' framing suggests some flexibility."
+      "Strong. Python/FastAPI/Pydantic/SQLAlchemy core stack matches his skills directly. AWS (Bedrock, Lambda, ECS) and Docker overlap with his Google Cloud/Linux/Docker experience, though AWS-specific services are new. The role is deeply AI/agentic—'AI orchestration via Bedrock,' 'agentic platform,' 'AI tool integrations'—which is exactly his target. His LLM API, tool-calling agents, structured output, and output validation experience transfer well. Missing: 4 years experience (he has ~1-2), no AWS production experience, no FastAPI/Pydantic specifically (but close with Python/REST/Node.js), no regulated industry background."
     ],
     "red_flags": [
-      "Experience level mismatch: 'around 4 years' is senior to his current intern/junior status; may be screened out by ATS or hiring manager expecting mid-level independence from day one",
-      "No AWS/Bedrock production experience (Google Cloud background, not AWS; no Aurora MySQL or ECS Fargate exposure)",
-      "No React/frontend experience mentioned (though role is backend-heavy, 'vertical slices' implies some frontend touch)",
-      "Regulated industry experience is a plus, not required, but his legal background is adjacent-not-direct; may need to sell transferable rigor",
-      "A2 German may be social friction in in-person Zurich team, though English is clearly working language"
+      "4 years professional experience stated vs. his ~1-2 years; may be screened out by ATS or HR before technical fit is assessed",
+      "No AWS production experience (Google Cloud/Linux only); steep ramp on AWS-specific services (Bedrock, Lambda, ECS Fargate, CloudFormation)",
+      "No regulated industry/fintech background; domain learning curve though not penalized in scoring",
+      "No FastAPI/Pydantic/SQLAlchemy specifically; adjacent Python skills but framework-specific ramp",
+      "Aurora MySQL vs. his PostgreSQL/SQLite; minor SQL dialect adjustment",
+      "In-person requirement in Zurich is fine for him, but note role also lists Barcelona/Berlin remote—he's local so this is neutral/positive"
     ],
     "job": {
       "company": "Porters",
@@ -1594,17 +1609,25 @@
       "portal": "adzuna",
       "description": "The Context Banks still run their most critical, regulated work by hand; reading letters and emails, re-keying data between systems, chasing down missing info. It's the kind of work that's too important to get wrong and too tedious for anyone to want to do.\n Porters fixes this. Our AI agents run these regulated processes end to end, with the audit trails and security banks actually require, so the work moves at the speed customers expect instead of the speed a backlog allows.\n We're just over a year old and already live with real customers, growing the product quickly, and were named Fintech of the Year 2026. The goal is to build the operating system for autonomous banking. We're backed by Earlybird, one of Europe's oldest venture firms, and Seedcamp, who wrote first checks into Revolut, Wise, and UiPath.\n \n The Mission You'll own features in their entirety. Self-standing or with guidance of founders and fellow engineers, you turn a clear problem statement into a strong design and build, test, and ship new features that directly enable our customers. You integrate features across our layered stack, from the API to the data plane, and carry them all the way to production.\n This job is in person in Zurich, or remote in Barcelona or Berlin.\n \n Your responsibilities Ship features end-to-end: Deliver complete vertical slices across the stack, from the API layer to the data model, carried through to running in production.\n\n Grow what the platform does for banks: Build the services Porters performs for banks: Extend the capabilities of our agentic platform such as case handling, customer matching, AI tool integrations, data enrichment, or keeping humans in the loop.\n\n Deliver features that hold together as a system: Design endpoints, contracts, and interfaces that work together, ensuring features integrate cleanly towards one bigger outcome.\n\n Ensure your work is reliable: Own design, development, tests, and deployment, so what reaches production is proven to work.\n\n Wow our customers: You solve for the customer's actual problem, not just the request and measure success by customer outcomes. What would it take for the customer to say “Porters, made my day”.\n\n \n Your profile Experience: Around 4 years of professional software engineering, with a track record of shipping in fast-paced, ambiguous environments. Regulated industry and/or VC-backed startup experiences are a plus.\n\n Product thinking: You naturally understand why you’re building something, not just focusing on how to build.\n\n Quality focus & individual problem solving: Given a clear problem, you reliably produce a clean algorithm, a sensible data model, a well-struct\n[... middle of the posting omitted ...]\ndevelopment budget, free to use for whatever gives you a level-up.\n\n Culture: Strong focus on a healthy, high-performance team culture, ranging from regular team events and dinners to an inclusive, fast-paced team that grows together.\n \n Our stack Core Backend: Python 3.14, FastAPI, Pydantic, and SQLAlchemy 2.0 in a strict four-layer architecture, exposed as separate internal and external APIs.\n\n Background processing: Containerized worker services and event-driven AWS Lambda orchestrators for email ingestion, document triaging, and action running.\n\n AI Integration: AI orchestration deeply integrated into application landscape via AWS Bedrock, e.g., to extract information and drive agentic activity.\n\n Data & Storage: Per-tenant Aurora MySQL in isolated subnets, S3 for document persistence, and an append-only ledger for auditability.\n\n Platform: A multi-tenant AWS environment on ECS Fargate with strict per-tenant network and data isolation (VPC, NACLs, WAF), CloudFront + Cognito (Google SSO/JWT) and API Gateway (IAM) at the edge, defined as code in CloudFormation across dev/staging/prod accounts.\n\n Frontend: React single-page app for the internal workbench.\n\n Dev Workflow: uv, Ruff, ty, pytest (unit, integration, property-based), Docker, GitHub Actions, and heavy use of Agentic IDEs to accelerate feature shipping."
     },
-    "technical_fit": "Strong alignment on core stack (Python, FastAPI, SQLAlchemy, Docker, GitHub Actions, AWS) and exact domain match (agentic AI systems, LLM orchestration via Bedrock, data pipelines, regulated process automation). Candidate's LLM API experience (Claude, Kimi) and multi-step automation pipelines transfer directly. Gap: 4 years experience requested vs. his intern/junior trajectory, and no explicit AWS/Bedrock exposure yet. However, his cloud infra (Google Cloud) and containerization experience are adjacent, and the role's 'ship end-to-end with guidance' framing suggests some flexibility.",
-    "contextual_fit": "Excellent. This is precisely the role shape he wants: zero-to-production ownership, building not supporting, agentic systems in production, real customer impact. The 'own features in their entirety' and 'vertical slices across the stack' language matches his stated motivation perfectly. Fintech domain is new to him but he's explicitly open to unfamiliar domains. In-person Zurich is ideal for his location/permit.",
-    "salary_estimate": "CHF 90,000 - 120,000 (startup Product Engineer in Zurich, likely equity component)",
-    "culture_fit": "Strong. Ownership culture, customer-outcome focus, fast-paced ambiguous environment suits his self-directed, audit-and-fix approach. 'Healthy high-performance' and inclusive language aligns with career-changer trajectory.",
+    "technical_fit": "Strong. Python/FastAPI/Pydantic/SQLAlchemy core stack matches his skills directly. AWS (Bedrock, Lambda, ECS) and Docker overlap with his Google Cloud/Linux/Docker experience, though AWS-specific services are new. The role is deeply AI/agentic—'AI orchestration via Bedrock,' 'agentic platform,' 'AI tool integrations'—which is exactly his target. His LLM API, tool-calling agents, structured output, and output validation experience transfer well. Missing: 4 years experience (he has ~1-2), no AWS production experience, no FastAPI/Pydantic specifically (but close with Python/REST/Node.js), no regulated industry background.",
+    "contextual_fit": "Good. The 'own features end-to-end' and 'ship from problem statement to production' aligns with his motivation for ownership and greenfield building. Banking/regulated domain is unfamiliar but he is deliberately open to new domains. In-person Zurich matches his location/permit perfectly. 4-year experience requirement is a soft gate—he's junior but the role's actual work (AI integration, automation, building) fits his trajectory.",
+    "salary_estimate": "CHF 100,000–130,000",
+    "culture_fit": "Strong. High-performance, fast-paced, ambiguous environments match his startup agency experience. 'Healthy team culture' and growth focus fit a career changer eager to level up. The 'Agentic IDEs' and learning budget signal tool-forward culture he'd appreciate.",
     "concerns": [
-      "Experience level mismatch: 'around 4 years' is senior to his current intern/junior status; may be screened out by ATS or hiring manager expecting mid-level independence from day one",
-      "No AWS/Bedrock production experience (Google Cloud background, not AWS; no Aurora MySQL or ECS Fargate exposure)",
-      "No React/frontend experience mentioned (though role is backend-heavy, 'vertical slices' implies some frontend touch)",
-      "Regulated industry experience is a plus, not required, but his legal background is adjacent-not-direct; may need to sell transferable rigor",
-      "A2 German may be social friction in in-person Zurich team, though English is clearly working language"
+      "4 years professional experience stated vs. his ~1-2 years; may be screened out by ATS or HR before technical fit is assessed",
+      "No AWS production experience (Google Cloud/Linux only); steep ramp on AWS-specific services (Bedrock, Lambda, ECS Fargate, CloudFormation)",
+      "No regulated industry/fintech background; domain learning curve though not penalized in scoring",
+      "No FastAPI/Pydantic/SQLAlchemy specifically; adjacent Python skills but framework-specific ramp",
+      "Aurora MySQL vs. his PostgreSQL/SQLite; minor SQL dialect adjustment",
+      "In-person requirement in Zurich is fine for him, but note role also lists Barcelona/Berlin remote—he's local so this is neutral/positive"
     ],
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 3,
+      "prompt_tokens": 7263,
+      "completion_tokens": 1462,
+      "cost_usd": null
+    },
     "recommendation": "REVIEW",
     "decision": "REVIEW",
     "materials_needed": [],

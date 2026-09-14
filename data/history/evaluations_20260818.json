@@ -261,20 +261,19 @@
     "no_posting_text": true
   },
   {
-    "score": 88,
+    "score": 72,
     "hard_blockers": [],
     "insufficient_info": false,
-    "language_gap_intermediate": false,
+    "language_gap_intermediate": true,
     "key_match_points": [
-      "Strong. Role is exactly at the intersection of LLM agent systems, data pipelines, and evaluation infrastructure the candidate wants. His Python/pandas/SQL/LLM API experience maps well; TypeScript is a gap but he has Node.js background and learns fast. Search/retrieval and vector DBs are new but preferred not required. Docker/CI/CD match directly.",
-      "Excellent. Pre-seed startup with founder access, high ownership, shipping to production from day one — exactly his stated motivation ('zero to production and owning it'). Legal domain is unfamiliar but he explicitly welcomes new domains; his law background from Rio court is actually a subtle asset for legal insurance context. 6-month full-time fits typical intern availability; his 2-week notice is fine."
+      "Strong alignment on core AI/LLM work: LLM agent workflows, retrieval, evaluation, data pipelines, and production shipping match his current experience and stated goals. Minor gaps: TypeScript is not in his stack (Python/Node.js background), Azure ecosystem is new to him, and legal/insurance domain is unfamiliar — but he is a deliberate career changer with proven adaptability. His BM25, tool-calling agents, structured output, and guardrails experience maps directly to their coverage-analysis agent needs."
     ],
     "red_flags": [
-      "TypeScript is main stack but he has Node.js — ramp-up needed, not blocking",
-      "Azure cloud mentioned as plus; his experience is Google Cloud — minor gap",
-      "Search/vector DB experience absent but preferred not required",
-      "'Working proficiency in German' listed as preferred — his A2 is below this, but it's soft (not required) and role operates in English",
-      "Near-completion of degree mentioned as minimum; he's in postgraduate specialization — may need to frame as equivalent or near-completion"
+      "Role is explicitly an internship; candidate specifies 'Not internships or working-student roles' in his target criteria",
+      "'Working proficiency in German' preferred — above his A2, studying toward B1; manageable but not yet met",
+      "TypeScript primary stack vs. his Python/Node.js; learning curve exists though he has JavaScript foundation via Node.js",
+      "Near-completion Master's expected; his profile is postgraduate specialization + career change, not traditional Master's pipeline — potential framing mismatch though not a hard blocker",
+      "Compensation at intern level vs. his current intern role he wants to graduate from"
     ],
     "job": {
       "company": "iudexnc",
@@ -284,22 +283,27 @@
       "portal": "linkedin.com",
       "description": "🌟\nAbout You\nYou're in the final stretch of your studies (in particular graduated Master's student or close to graduation) and you want a hands-on internship where you build real AI systems that ship to production. You enjoy working with messy data, writing solid code, and running experiments to improve LLM-powered workflows. You learn fast, take ownership, and like collaborating closely with a small team.\n🚀\nAbout INC\nINC (Iudex Non Calculat) is a pre-seed AI startup based in Zurich, building infrastructure that automates coverage checks and case handling for legal insurance companies. Legal insurance is a €16.8B European market where every case still requires 15-45 minutes of manual review. We compress that to under 2 minutes. We're backed by a paid pilot with a Swiss insurer and a founder with 120+ B2B customers at his previous AI legal tech company. We work at the intersection of LLM agent systems, document understanding, and domain-specific reasoning — where accuracy, traceability, and auditability matter.\nTasks\n🛠️\nYour Responsibilities\nAs an\nEngineering Intern — AI/Data\n, you will support the founder across data pipelines, LLM agent workflows, and evaluation infrastructure. Depending on your strengths, you'll go deeper in one area while still getting exposure to the full stack.\nData pipelines:\nHelp build and improve ingestion and processing pipelines for insurance policy documents, legal texts, and case descriptions (parsing, normalization, structuring).\nAI-ready structuring:\nSupport chunking, metadata extraction, clause mapping, and schema design so downstream LLM agents work reliably against complex policy wording.\nLLM agent workflows:\nPrototype and implement agentic LLM workflows for coverage analysis — fact extraction, policy cross-referencing, exclusion checking, and decision drafting — with attention to accuracy, cost, and latency.\nSearch & retrieval:\nAssist with indexing strategies, embeddings, hybrid retrieval, and relevance tuning for legal and insurance content.\nEvaluation & quality:\nBuild eval sets from real coverage check examples, run experiments, analyze failure cases, and help turn findings into shipped improvements.\nEngineering fundamentals:\nWrite clean TypeScript code, add tests where appropriate, and improve observability (metrics/logging) for pipelines and services.\nCollaboration:\nWork closely with the founder and domain experts; document decisions and share learnings clearly.\nRequirements\n📌\nQualifications\n✅\nMinimum qualifications\nNear completion of your degree:\nYou are at the end of your studies (e.g. finished Master's program or close to graduating).\nDegree in Computer Science, Data Science, Ma\n[... middle of the posting omitted ...]\nn in English.\nAvailability full-time\nfor the internship, ideally 6 months. On-site in Zurich at least twice per week.\n🎯\nPreferred qualifications\nExperience with one or more of: search systems (Azure AI Search / Elasticsearch), vector databases, or embeddings.\nFamiliarity with data tooling (scraping/parsing, PDF tooling, OCR) and/or pipeline design.\nExperience with Docker and CI/CD basics.\nFamiliarity with cloud platforms (especially\nAzure\n) is a plus.\nWorking proficiency in\nGerman\n.\nSwiss work permit or EU/EFTA citizenship.\nBenefits\n🤝\nBenefits\nDirect impact:\nYour work ships into the product and directly improves how legal insurers process cases.\nLearning & mentorship:\nHands-on exposure to production LLM agent systems, search, and data pipelines in a high-ownership environment.\nBreadth:\nWork across document ingestion → policy parsing → LLM reasoning → evaluation.\nFounder access:\nWork directly with the founder on architecture, product, and technical decisions.\nCompensation:\nCHF 2'500–4'500 per month, depending on experience and skills.\nProspect of a permanent position:\nPossibility of full-time employment with equity (ESOP) after a successful internship.\nWe're excited to hear from candidates who are finishing their studies and want a high-impact engineering internship in AI. Apply today by pressing the Apply button."
     },
-    "technical_fit": "Strong. Role is exactly at the intersection of LLM agent systems, data pipelines, and evaluation infrastructure the candidate wants. His Python/pandas/SQL/LLM API experience maps well; TypeScript is a gap but he has Node.js background and learns fast. Search/retrieval and vector DBs are new but preferred not required. Docker/CI/CD match directly.",
-    "contextual_fit": "Excellent. Pre-seed startup with founder access, high ownership, shipping to production from day one — exactly his stated motivation ('zero to production and owning it'). Legal domain is unfamiliar but he explicitly welcomes new domains; his law background from Rio court is actually a subtle asset for legal insurance context. 6-month full-time fits typical intern availability; his 2-week notice is fine.",
+    "technical_fit": "Strong alignment on core AI/LLM work: LLM agent workflows, retrieval, evaluation, data pipelines, and production shipping match his current experience and stated goals. Minor gaps: TypeScript is not in his stack (Python/Node.js background), Azure ecosystem is new to him, and legal/insurance domain is unfamiliar — but he is a deliberate career changer with proven adaptability. His BM25, tool-calling agents, structured output, and guardrails experience maps directly to their coverage-analysis agent needs.",
+    "contextual_fit": "Excellent on role shape: small team, high ownership, direct founder collaboration, greenfield AI building, real production impact — exactly what motivated his 100-rated calibration example. The 'build real AI systems that ship to production' framing mirrors his own trajectory. However, this is explicitly an internship targeting near-graduation Master's students, and he is seeking non-internship roles per his brief. The 6-month internship structure with 'prospect of permanent position' is a partial mitigation but still a step backward in employment status.",
     "salary_estimate": "CHF 2'500–4'500/month",
-    "culture_fit": "Strong match. Small team, close collaboration with founder, high autonomy, direct impact — aligns with his preference for ownership over support work. Mentorship + potential ESOP conversion is attractive for career-changer seeking growth.",
+    "culture_fit": "Strong — startup environment, fast learning, ownership, small-team collaboration. His legal background is actually a subtle asset for legal-insurance domain work, though not required.",
     "concerns": [
-      "TypeScript is main stack but he has Node.js — ramp-up needed, not blocking",
-      "Azure cloud mentioned as plus; his experience is Google Cloud — minor gap",
-      "Search/vector DB experience absent but preferred not required",
-      "'Working proficiency in German' listed as preferred — his A2 is below this, but it's soft (not required) and role operates in English",
-      "Near-completion of degree mentioned as minimum; he's in postgraduate specialization — may need to frame as equivalent or near-completion"
+      "Role is explicitly an internship; candidate specifies 'Not internships or working-student roles' in his target criteria",
+      "'Working proficiency in German' preferred — above his A2, studying toward B1; manageable but not yet met",
+      "TypeScript primary stack vs. his Python/Node.js; learning curve exists though he has JavaScript foundation via Node.js",
+      "Near-completion Master's expected; his profile is postgraduate specialization + career change, not traditional Master's pipeline — potential framing mismatch though not a hard blocker",
+      "Compensation at intern level vs. his current intern role he wants to graduate from"
     ],
-    "recommendation": "APPLY",
-    "decision": "APPLY",
-    "materials_needed": [
-      "cv"
-    ],
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 3,
+      "prompt_tokens": 8280,
+      "completion_tokens": 1318,
+      "cost_usd": null
+    },
+    "recommendation": "REVIEW",
+    "decision": "REVIEW",
+    "materials_needed": [],
     "evaluated_at": "2026-08-18T05:36:22.660258+00:00",
     "rescored": true
   },
@@ -526,19 +530,23 @@
     "no_posting_text": true
   },
   {
-    "score": 72,
-    "hard_blockers": [],
+    "score": 58,
+    "hard_blockers": [
+      "Role is explicitly an internship — candidate's instructions state 'Not internships or working-student roles'",
+      "Start date of September 1, 2026 has already passed (today is September 14, 2026)",
+      "Requires 'currently enrolled in BSc or MSc at Swiss university or recent graduate' — candidate's postgraduate specialization may not qualify; unclear if he meets enrollment requirement"
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong. Python, data processing, and real production code are core to the role. The 'LLM supported applications in production' directly matches his stated interest in agentic systems and LLM-powered pipelines. SQL/pandas implied by data analysis on real datasets. Missing: explicit mention of LLM APIs or automation pipelines, but the 'LLM supported applications' bullet under 'What you will gain' signals this is present in the work."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "STEM enrollment requirement: currently enrolled in Swiss BSc/MSc or recent graduate — his profile is postgraduate specialisation (lato sensu, not necessarily a Swiss degree); 'recent graduate' may cover him but worth clarifying",
-      "Start date Sept 1 2026 is extremely tight given current date Aug 24 and 2-week notice; may need to negotiate or role may already be filled/started",
-      "Role emphasis is 'supporting' development and 'support delivery teams' alongside 'real ownership' — some ambiguity on ratio of support vs. ownership work",
-      "No explicit mention of agentic systems or end-to-end pipeline building; LLM work is mentioned as something to gain experience in, not guaranteed primary focus",
-      "Finance/compliance domain is new to him; not penalized per rules but steep learning curve for KYC/AML specifics"
+      "Blocker: Role is explicitly an internship — candidate's instructions state 'Not internships or working-student roles'",
+      "Blocker: Start date of September 1, 2026 has already passed (today is September 14, 2026)",
+      "Blocker: Requires 'currently enrolled in BSc or MSc at Swiss university or recent graduate' — candidate's postgraduate specialization may not qualify; unclear if he meets enrollment requirement",
+      "LLM work framed as 'what you will gain' rather than core responsibility — likely exposure, not ownership",
+      "Heavy financial compliance domain with no AI/ML background expected — risk of being siloed in data prep/analysis rather than AI system building",
+      "6-month fixed term with only 'possible' extension vs candidate seeking permanent role",
+      "Past start date suggests either already filled or urgent immediate need"
     ],
     "job": {
       "company": "PQ Technologies",
@@ -548,37 +556,45 @@
       "portal": "linkedin.com",
       "description": "Company Description\nAt PQ Technologies AG (PQT), we build data processing solutions for the financial industry, working with both structured and unstructured data. Our focus is the End-to-End Compliance & Risk process at banks and financial institutions, in particular Know Your Customer (KYC) and Anti-Money-Laundering (AML).\nWe are a multidisciplinary team of 10–15 people in Zurich, combining deep domain expertise in Compliance & Risk with strong engineering capabilities. Our software runs inside our clients' critical processes at leading financial institutions, tested and relied on daily.\nRole Description\nWe are looking for an intern for a paid, 6-month fixed-term internship, supporting the development of data processing and evaluation systems on top of our Nucleus Compliance & Risk Engine, for leading financial institutions. You'll work closely with our engineers and our Compliance & Risk specialists, and contribute to projects that go live with our clients.\nKey responsibilities\nDevelop (Python) code for data processing and evaluation on our Nucleus Compliance & Risk Engine\nPerform data analysis on real datasets in the KYC/AML domain\nSupport the delivery teams with analysis, testing, documentation and preparation of client sessions\nWhat you will gain\nExperience in delivering production-ready code\nPractical experience with LLM supported applications in production\nInsight into B2B customer communication with regulated financial institutions, and into how client projects are delivered\nDirect mentoring from senior engineers and real ownership of your work\nLocation & commitment\nHybrid — Zurich office, with remote days\nFixed-term internship, 6 months, 70–100%\nStart date: 1 September 2026\nCHF 4,200 gross per month (paid internship)\nNo relocation support and no visa sponsorship; travel is limited to occasional client meetings\nExtension or permanent role possible after the internship\nQualifications\nCurrently enrolled in a BSc or MSc in a STEM field at a Swiss university, or a recent graduate\nProgramming knowledge and experience in Python\nA good understanding of algorithms and data structures\nAbility to work in a dynamic environment with different types of duties\nValid permission to work in Switzerland\nThe drive to work independently and pick up new things across different areas\nNice to have — experience working on code collaboratively\nNo prior compliance or finance knowledge is expected. We care more about attitude and curiosity than a long list of prior experience — we're there to support you, and we're looking for self-starters."
     },
-    "technical_fit": "Strong. Python, data processing, and real production code are core to the role. The 'LLM supported applications in production' directly matches his stated interest in agentic systems and LLM-powered pipelines. SQL/pandas implied by data analysis on real datasets. Missing: explicit mention of LLM APIs or automation pipelines, but the 'LLM supported applications' bullet under 'What you will gain' signals this is present in the work.",
-    "contextual_fit": "Good. Zurich on-site/hybrid fits his location and permit B perfectly. 6-month fixed-term with possible extension aligns with his internship-seeking status. Start date Sept 1 2026 is tight (today Aug 24, notice 2 weeks) but he could potentially negotiate or the role may have flexibility — not a hard blocker. STEM enrollment requirement: he has postgraduate Data Science specialisation; 'recent graduate' path may apply, but this is a soft concern.",
+    "technical_fit": "Partial. Strong Python/SQL/data skills match, and explicit mention of LLM-supported applications in production aligns with candidate's core interest. However, role is primarily data processing/evaluation for KYC/AML compliance with LLMs as a secondary 'nice to gain' element, not the primary build-operate-own AI systems focus the candidate seeks. Heavy financial regulatory domain without AI/ML architecture ownership.",
+    "contextual_fit": "Weak for candidate's goals. Fixed-term 6-month internship (he explicitly excludes internships), starts in past (Sept 1, 2026 vs today Sept 14, 2026), requires current STEM enrollment or recent graduate status which he may not meet (postgraduate specialization in Data Science, not BSc/MSc). Candidate wants permanent role with ownership from day one; this is explicitly temporary with only 'possible' extension.",
     "salary_estimate": "CHF 4,200/month (disclosed)",
-    "culture_fit": "Excellent match for his motivation. Explicit 'real ownership of your work,' 'self-starters,' 'drive to work independently,' and 'direct mentoring from senior engineers' mirror his desire for ownership from day one. The 'attitude and curiosity > long list of prior experience' framing is welcoming to a career changer. B2B/regulated environment is unfamiliar domain but he is explicitly open to new domains.",
+    "culture_fit": "Good on paper — self-starter culture, mentorship, independent work valued. But mismatch in role type: he's seeking permanent builder role, not intern support position.",
     "concerns": [
-      "STEM enrollment requirement: currently enrolled in Swiss BSc/MSc or recent graduate — his profile is postgraduate specialisation (lato sensu, not necessarily a Swiss degree); 'recent graduate' may cover him but worth clarifying",
-      "Start date Sept 1 2026 is extremely tight given current date Aug 24 and 2-week notice; may need to negotiate or role may already be filled/started",
-      "Role emphasis is 'supporting' development and 'support delivery teams' alongside 'real ownership' — some ambiguity on ratio of support vs. ownership work",
-      "No explicit mention of agentic systems or end-to-end pipeline building; LLM work is mentioned as something to gain experience in, not guaranteed primary focus",
-      "Finance/compliance domain is new to him; not penalized per rules but steep learning curve for KYC/AML specifics"
+      "LLM work framed as 'what you will gain' rather than core responsibility — likely exposure, not ownership",
+      "Heavy financial compliance domain with no AI/ML background expected — risk of being siloed in data prep/analysis rather than AI system building",
+      "6-month fixed term with only 'possible' extension vs candidate seeking permanent role",
+      "Past start date suggests either already filled or urgent immediate need"
     ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 3,
+      "prompt_tokens": 7347,
+      "completion_tokens": 1378,
+      "cost_usd": null
+    },
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-18T05:36:22.660258+00:00",
     "rescored": true
   },
   {
-    "score": 82,
-    "hard_blockers": [],
+    "score": 45,
+    "hard_blockers": [
+      "Role is explicitly a 6-month fixed-term internship; candidate explicitly excludes internships and working-student roles from search"
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong. Python + data analysis core aligns perfectly. Real LLM-in-production exposure is explicitly promised. Data pipelines on structured/unstructured data maps to his current work. The 'Nucleus Engine' is proprietary, but his proven ability to own pipelines end-to-end and self-teach (career change, CI/CD, cloud infra built from scratch) de-risks the domain-specific tooling gap.",
-      "Excellent. Zurich-based, hybrid, no sponsorship needed (his B permit valid). 6-month fixed term with extension possibility fits his internship-seeking status. 2-week notice aligns with Sept 1 start — tight but feasible. Financial domain is new to him, but role explicitly states 'no prior compliance or finance knowledge expected.' The 'self-starter' framing matches his zero-to-production ownership story."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Start date Sept 1 is aggressive with 2-week notice; candidate should confirm immediate availability or negotiate",
-      "'Currently enrolled in a BSc or MSc at a Swiss university' — he has a postgraduate specialization (lato sensu), not necessarily a Swiss degree; however 'recent graduate' clause and his valid work permit may suffice, worth clarifying in application",
-      "70–100% commitment — he should express preference for 100% to maximize ownership depth",
-      "Financial domain is heavily regulated; his first audit/review cycles may be slower than in ad-tech"
+      "Blocker: Role is explicitly a 6-month fixed-term internship; candidate explicitly excludes internships and working-student roles from search",
+      "Role title is 'Intern' — candidate explicitly filters out internships, seeking permanent employment",
+      "6-month fixed term with only 'possible' extension, not a direct path to permanent role",
+      "Start date Sept 1, 2026 has already passed (today is Sept 14, 2026), suggesting timeline issue or filled role",
+      "LLM exposure described as something you 'will gain,' not core responsibility — likely minimal actual LLM work",
+      "Domain is compliance/AML structured data processing, far from candidate's demonstrated strengths in LLM pipelines and automation",
+      "Hybrid Zurich requirement with no relocation support; candidate is already Zurich-based so this is neutral, but role doesn't leverage his location advantage meaningfully"
     ],
     "job": {
       "company": "PQ Technologies AG (PQT)",
@@ -588,21 +604,28 @@
       "portal": "linkedin.com",
       "description": "Company Description\nAt PQ Technologies AG (PQT), we build data processing solutions for the financial industry, working with both structured and unstructured data. Our focus is the End-to-End Compliance & Risk process at banks and financial institutions, in particular Know Your Customer (KYC) and Anti-Money-Laundering (AML).\nWe are a multidisciplinary team of 10–15 people in Zurich, combining deep domain expertise in Compliance & Risk with strong engineering capabilities. Our software runs inside our clients' critical processes at leading financial institutions, tested and relied on daily.\nRole Description\nWe are looking for an intern for a paid, 6-month fixed-term internship, supporting the development of data processing and evaluation systems on top of our Nucleus Compliance & Risk Engine, for leading financial institutions. You'll work closely with our engineers and our Compliance & Risk specialists, and contribute to projects that go live with our clients.\nKey responsibilities\nDevelop (Python) code for data processing and evaluation on our Nucleus Compliance & Risk Engine\nPerform data analysis on real datasets in the KYC/AML domain\nSupport the delivery teams with analysis, testing, documentation and preparation of client sessions\nWhat you will gain\nExperience in delivering production-ready code\nPractical experience with LLM supported applications in production\nInsight into B2B customer communication with regulated financial institutions, and into how client projects are delivered\nDirect mentoring from senior engineers and real ownership of your work\nLocation & commitment\nHybrid — Zurich office, with remote days\nFixed-term internship, 6 months, 70–100%\nStart date: 1 September 2026\nCHF 4,200 gross per month (paid internship)\nNo relocation support and no visa sponsorship; travel is limited to occasional client meetings\nExtension or permanent role possible after the internship\nQualifications\nCurrently enrolled in a BSc or MSc in a STEM field at a Swiss university, or a recent graduate\nProgramming knowledge and experience in Python\nA good understanding of algorithms and data structures\nAbility to work in a dynamic environment with different types of duties\nValid permission to work in Switzerland\nThe drive to work independently and pick up new things across different areas\nNice to have — experience working on code collaboratively\nNo prior compliance or finance knowledge is expected. We care more about attitude and curiosity than a long list of prior experience — we're there to support you, and we're looking for self-starters."
     },
-    "technical_fit": "Strong. Python + data analysis core aligns perfectly. Real LLM-in-production exposure is explicitly promised. Data pipelines on structured/unstructured data maps to his current work. The 'Nucleus Engine' is proprietary, but his proven ability to own pipelines end-to-end and self-teach (career change, CI/CD, cloud infra built from scratch) de-risks the domain-specific tooling gap.",
-    "contextual_fit": "Excellent. Zurich-based, hybrid, no sponsorship needed (his B permit valid). 6-month fixed term with extension possibility fits his internship-seeking status. 2-week notice aligns with Sept 1 start — tight but feasible. Financial domain is new to him, but role explicitly states 'no prior compliance or finance knowledge expected.' The 'self-starter' framing matches his zero-to-production ownership story.",
+    "technical_fit": "Partial overlap: Python, data processing, and SQL-relevant work with real datasets. However, role is centered on structured data processing for compliance/AML, not LLM/agentic systems. The 'LLM supported applications' mention is a minor nice-to-have exposure, not core work. Candidate's LLM tooling, prompt engineering, agentic workflows, and API integration skills are largely sidelined.",
+    "contextual_fit": "Misfit on role shape: fixed-term 6-month internship with no guarantee of permanence, explicitly seeking current students/recent graduates for a junior support role. Candidate is already working as AI Software Engineer Intern, seeking permanent/non-internship positions with ownership. The 'intern' title and fixed-term structure directly contradict his stated 'Not internships' requirement. Start date (Sept 1, 2026) is in the past relative to today (Sept 14, 2026), suggesting role may already be filled or timeline misaligned.",
     "salary_estimate": "CHF 4,200/month (disclosed)",
-    "culture_fit": "Strong match. 'Real ownership of your work,' 'drive to work independently,' 'pick up new things across different areas' — all map to his demonstrated pattern of auditing his own output and fixing it. Small team (10–15) with direct senior mentoring suits someone who thrives with autonomy + guidance, not bureaucracy.",
+    "culture_fit": "Positive signals: self-starter culture, mentorship, ownership of work, no finance background required. However, the role is compliance-domain data processing, not the AI/LLM building and shipping the candidate is motivated by. The 'attitude over experience' framing fits a career changer, but the work itself doesn't match his trajectory.",
     "concerns": [
-      "Start date Sept 1 is aggressive with 2-week notice; candidate should confirm immediate availability or negotiate",
-      "'Currently enrolled in a BSc or MSc at a Swiss university' — he has a postgraduate specialization (lato sensu), not necessarily a Swiss degree; however 'recent graduate' clause and his valid work permit may suffice, worth clarifying in application",
-      "70–100% commitment — he should express preference for 100% to maximize ownership depth",
-      "Financial domain is heavily regulated; his first audit/review cycles may be slower than in ad-tech"
+      "Role title is 'Intern' — candidate explicitly filters out internships, seeking permanent employment",
+      "6-month fixed term with only 'possible' extension, not a direct path to permanent role",
+      "Start date Sept 1, 2026 has already passed (today is Sept 14, 2026), suggesting timeline issue or filled role",
+      "LLM exposure described as something you 'will gain,' not core responsibility — likely minimal actual LLM work",
+      "Domain is compliance/AML structured data processing, far from candidate's demonstrated strengths in LLM pipelines and automation",
+      "Hybrid Zurich requirement with no relocation support; candidate is already Zurich-based so this is neutral, but role doesn't leverage his location advantage meaningfully"
     ],
-    "recommendation": "APPLY",
-    "decision": "APPLY",
-    "materials_needed": [
-      "cv"
-    ],
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 1,
+      "prompt_tokens": 2457,
+      "completion_tokens": 503,
+      "cost_usd": null
+    },
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
     "evaluated_at": "2026-08-18T05:36:22.660258+00:00",
     "rescored": true
   },
@@ -1279,19 +1302,19 @@
     "rescored": true
   },
   {
-    "score": 72,
+    "score": 82,
     "hard_blockers": [],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [
-      "Strong alignment on core stack: Python, LLM APIs, RAG, agentic workflows, REST APIs, cloud deployment — all directly in his wheelhouse. The posting emphasizes 'production-grade AI applications' and 'end-to-end AI workflows,' matching his stated motivation for zero-to-production ownership. Missing pieces: no explicit mention of Docker/CI/CD (though 'cloud deployment' implies it), no mention of Power BI/GA4 (irrelevant here), and front-end familiarity is listed as a plus — he's backend-focused. The 'Senior' in the title and 'extensive experience' language is slightly mismatched to his junior/intern level, but the actual responsibilities read like hands-on builder work that fits his profile."
+      "Strong alignment. Role centers on exactly what candidate does and wants more of: production LLM/agentic systems, RAG, Python backend, API integrations, tool-calling agents, cloud deployment. His stack matches core requirements (Python, LLM APIs, structured output, retrieval, guardrails, Docker, cloud). Missing pieces (multimodal, advanced observability, Kubernetes, Azure) are learnable and role seems to expect growth.",
+      "Excellent. Small team, real ownership from day one, customer-facing products, greenfield building — matches his explicit motivation. Zurich-based, no domain silo (cross-industry), startup stage fits career-changer hunger. 'Senior' in title but posting reads flexible ('depending on your experience, mentor others' suggests junior-senior spectrum)."
     ],
     "red_flags": [
-      "Title says '(Senior) AI Engineer' and posting asks for 'extensive experience' — he's junior/intern level; may be screened out by HR on seniority mismatch despite task-level fit",
-      "German not required but 'English or German' implies some German utility; his A2 is below working proficiency if German clients predominate",
-      "No explicit mention of internship or junior track — role appears structured for experienced hire, though small-team reality may flex",
-      "Front-end familiarity listed as expected; he's backend/data-focused",
-      "Mentoring expectation in the role may assume more tenure than he has"
+      "Title says '(Senior) AI Engineer' — may anchor expectations above his experience level, though posting language suggests flexibility",
+      "Some infrastructure depth expected (Kubernetes, Terraform, Azure DevOps) that he hasn't explicitly used",
+      "Multimodal AI and voice applications mentioned but not in his current toolkit",
+      "Only 1 application sent so far with 0 responses — no calibration signal to adjust"
     ],
     "job": {
       "company": "ParetoLabs",
@@ -1301,20 +1324,28 @@
       "portal": "linkedin.com",
       "description": "ParetoLabs is looking for a passionate (Senior) AI Engineer to join our growing team in Zurich.\nIn this role, you will design, build, and run production-grade AI applications powered by large language models, agentic AI, RAG, and multimodal technologies. You will work across the full engineering lifecycle: from architecture and backend development to cloud deployment and continuous improvement and help shape AI solutions used by leading Swiss companies across different industries.\nYou will be part of a small, experienced team where you can take real ownership, work directly on customer-facing products, and turn the latest advances in AI into reliable applications used in the real world.\nAbout ParetoLabs\nParetoLabs is a Zurich-based AI software company building customized AI applications for conversation, knowledge, and process automation. We develop solutions ranging from intelligent assistants and enterprise search to agentic AI and next-generation voice applications.\nSince 2023, we have been combining cutting-edge AI technologies with the security, reliability, and integration requirements of Swiss companies. As a Microsoft for Startups partner, we work closely with our customers to bring AI solutions from idea to production.\nAufgaben\nDesign, build, and continuously improve production-grade AI applications powered by LLMs, RAG, agentic workflows, and multimodal AI.\nDevelop robust Python backend services, APIs, and integrations that connect AI capabilities with enterprise systems and data sources.\nBuild intelligent agents and end-to-end AI workflows capable of reasoning, using tools, interacting with APIs, and automating complex user requests.\nTake ownership of bringing AI solutions into production, including testing, deployment, monitoring, observability, and continuous optimization.\nDesign scalable and reliable cloud architectures and contribute to the evolution of our shared AI platform and engineering standards.\nEvaluate and integrate new models, frameworks, and AI technologies where they create real value for our products and customers.\nCollaborate closely with other engineers, product teams, and customers to turn complex requirements into practical AI solutions.\nShare your knowledge within our international team and, depending on your experience, mentor other engineers.\nTake real ownership and bring your own ideas into products that are used by leading companies in Switzerland.\nQualifikation\nEducational Background:\nA solid foundation in computer science.\nProven Experience:\nExtensive experience as a full-stack developer with a strong focus on backend technologies (Python preferred) and familiarity with front-end \n[... middle of the posting omitted ...]\nver Provisioning, and Monitoring & Alerting techniques.\nTechnical Skills:\nA good understanding of networking, databases, backup strategies, and disaster recovery scenarios to support robust and scalable applications.\nTeam Player:\nAn open-minded, solution-oriented team player who thrives in collaborative environments.\nCommunication Skills:\nExcellent communication skills in English or German. Capable of interacting effectively with clients and team members alike.\nBenefits\nCompetitive Remuneration:\nA competitive salary package reflecting your experience and contributions.\nEmployee Participation:\nOpportunity to participate in the long-term success and growth of ParetoLabs through our employee participation program.\nPick Your Gear:\nChoose your preferred devices for work.\nAttractive Benefits:\nAbove-market pension benefits and private accident insurance.\nProfessional Growth:\nParticipation in the Microsoft for Startups program, providing access to valuable resources, events, and support.\nIf you're a (\nSenior) AI Engineer\nand a desire to impact the AI application landscape,\nwe invite you to apply to ParetoLabs\n. Please send your resume and portfolio showcasing your relevant experience (GitHub links preferred).\nJoin us in our mission to deliver cutting-edge AI solutions and shape the future of technology across industries!"
     },
-    "technical_fit": "Strong alignment on core stack: Python, LLM APIs, RAG, agentic workflows, REST APIs, cloud deployment — all directly in his wheelhouse. The posting emphasizes 'production-grade AI applications' and 'end-to-end AI workflows,' matching his stated motivation for zero-to-production ownership. Missing pieces: no explicit mention of Docker/CI/CD (though 'cloud deployment' implies it), no mention of Power BI/GA4 (irrelevant here), and front-end familiarity is listed as a plus — he's backend-focused. The 'Senior' in the title and 'extensive experience' language is slightly mismatched to his junior/intern level, but the actual responsibilities read like hands-on builder work that fits his profile.",
-    "contextual_fit": "Excellent. Zurich on-site, no permit issues (B permit, no sponsorship needed). Small team with 'real ownership,' customer-facing products, greenfield AI building — exactly his stated preference. 2-week notice is viable for an immediate-start role. Microsoft for Startups ecosystem is a growth accelerator he'd value. The 'international team' note suggests English as working language is viable.",
-    "salary_estimate": "CHF 85,000–120,000 (junior-to-mid range at Swiss AI startup; senior title may inflate band but his experience level anchors lower)",
-    "culture_fit": "High. Ownership-centric, flat-ish startup structure, knowledge-sharing expected — matches his self-directed, audit-and-improve mindset. The 'mentor other engineers' line suggests they're open to varying seniority levels. His career-change story (law → tech) fits a company building 'customized AI applications across industries' where domain adaptability matters.",
+    "technical_fit": "Strong alignment. Role centers on exactly what candidate does and wants more of: production LLM/agentic systems, RAG, Python backend, API integrations, tool-calling agents, cloud deployment. His stack matches core requirements (Python, LLM APIs, structured output, retrieval, guardrails, Docker, cloud). Missing pieces (multimodal, advanced observability, Kubernetes, Azure) are learnable and role seems to expect growth.",
+    "contextual_fit": "Excellent. Small team, real ownership from day one, customer-facing products, greenfield building — matches his explicit motivation. Zurich-based, no domain silo (cross-industry), startup stage fits career-changer hunger. 'Senior' in title but posting reads flexible ('depending on your experience, mentor others' suggests junior-senior spectrum).",
+    "salary_estimate": "CHF 95k–130k (junior-mid band at Zurich AI startup; senior would be higher but his profile likely anchors lower-mid)",
+    "culture_fit": "High. International team, English working language, values ownership and ideas — matches his trajectory from non-tech background into builder role.",
     "concerns": [
-      "Title says '(Senior) AI Engineer' and posting asks for 'extensive experience' — he's junior/intern level; may be screened out by HR on seniority mismatch despite task-level fit",
-      "German not required but 'English or German' implies some German utility; his A2 is below working proficiency if German clients predominate",
-      "No explicit mention of internship or junior track — role appears structured for experienced hire, though small-team reality may flex",
-      "Front-end familiarity listed as expected; he's backend/data-focused",
-      "Mentoring expectation in the role may assume more tenure than he has"
+      "Title says '(Senior) AI Engineer' — may anchor expectations above his experience level, though posting language suggests flexibility",
+      "Some infrastructure depth expected (Kubernetes, Terraform, Azure DevOps) that he hasn't explicitly used",
+      "Multimodal AI and voice applications mentioned but not in his current toolkit",
+      "Only 1 application sent so far with 0 responses — no calibration signal to adjust"
     ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
-    "materials_needed": [],
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 3,
+      "prompt_tokens": 8208,
+      "completion_tokens": 1217,
+      "cost_usd": null
+    },
+    "recommendation": "APPLY",
+    "decision": "APPLY",
+    "materials_needed": [
+      "cv"
+    ],
     "evaluated_at": "2026-08-18T12:41:18.611147+00:00",
     "rescored": true
   },

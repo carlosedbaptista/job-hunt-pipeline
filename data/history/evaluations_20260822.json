@@ -408,13 +408,13 @@
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [
-      "Strong alignment: role centers on AI agentic solutions from ideation to production, matching his core interest in end-to-end ownership of LLM-powered systems. His existing experience with Claude/Kimi APIs, multi-step automation pipelines, and production deployment (Docker, CI/CD, cloud) maps directly onto 'AI experiments' and 'Agentic solutions to production'. Missing requirements section prevents full assessment of specific stack gaps."
+      "Strong alignment with core mandate: AI Agentic solutions from ideation to production, LLM/agentic systems, operational efficiency automation, back-to-front office augmentation. Candidate's exact sweet spot: building and shipping LLM pipelines, tool-calling agents, structured output, guardrails, production integration. His current internship is directly adjacent (digital agency LLM work), but Avaloq's financial services domain and enterprise scale would be a significant step up in complexity and regulatory context."
     ],
     "red_flags": [
-      "Job description was truncated; full requirements, qualifications, and seniority expectations were not visible—must verify on application",
-      "Avaloq serves banking/wealth management; some financial domain concepts may require ramp-up though not explicitly required",
-      "Role title says 'AI Software Engineer' not 'Intern'—could be mid-level position; need to confirm if junior/intern track exists or if he's competitive against experienced candidates",
-      "No visibility on specific tech stack (frameworks, cloud provider, LLM platforms used) beyond generic 'state-of-the-art AI'",
+      "Job description was truncated — requirements, qualifications, and full tech stack not visible; seniority level and specific experience demands unknown",
+      "Avaloq's core platform is historically Java/Spring-heavy; candidate's stack is Python/Node.js-centric — possible mismatch if role requires deep legacy integration",
+      "Financial services domain implies regulatory rigor (FINMA, banking compliance) beyond his current experience; steep learning curve for AI governance in regulated context",
+      "No visibility on whether 'lead AI experiments' implies leading people or just technical leadership — could be overstretch if former",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -425,16 +425,23 @@
       "portal": "adzuna",
       "description": "Job Description We are seeking a highly skilled, fast learner and well rounded, AI Software Engineer to join our AI innovation lab team. The ideal candidate will lead AI experiments and bring cutting-edge AI Agentic solutions from ideation to production. The mission of Avaloq AI Lab is to improve operational efficiency and augment Back-to-Front Office user experiences, through the application of state-of-the-art AI technology. We work collaboratively with industry leaders to deliver responsible…"
     },
-    "technical_fit": "Strong alignment: role centers on AI agentic solutions from ideation to production, matching his core interest in end-to-end ownership of LLM-powered systems. His existing experience with Claude/Kimi APIs, multi-step automation pipelines, and production deployment (Docker, CI/CD, cloud) maps directly onto 'AI experiments' and 'Agentic solutions to production'. Missing requirements section prevents full assessment of specific stack gaps.",
-    "contextual_fit": "Excellent: Avaloq is a financial software company, but the role is explicitly in an AI innovation lab focused on operational efficiency and user experience augmentation—not domain-specific finance expertise. His career-changer openness to new domains fits well. 'Fast learner' and 'well rounded' language suggests appetite for his profile. Zurich-based with his valid Swiss permit B and 2-week notice is logistically clean.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Strong: emphasis on 'lead AI experiments', 'ideation to production', and collaborative innovation lab culture matches his stated motivation for zero-to-one ownership and self-auditing his own output. Innovation lab structure typically grants more autonomy than traditional corporate hierarchy, aligning with his preference for real ownership over support work.",
+    "technical_fit": "Strong alignment with core mandate: AI Agentic solutions from ideation to production, LLM/agentic systems, operational efficiency automation, back-to-front office augmentation. Candidate's exact sweet spot: building and shipping LLM pipelines, tool-calling agents, structured output, guardrails, production integration. His current internship is directly adjacent (digital agency LLM work), but Avaloq's financial services domain and enterprise scale would be a significant step up in complexity and regulatory context.",
+    "contextual_fit": "Zürich-based, permit B valid, 2-week notice — zero friction. Avaloq is a major Swiss fintech/wealthtech platform; 'AI innovation lab' signals greenfield building with ownership potential, matching his motivation to 'own real projects from day one.' Career-changer profile fits lab culture (experiments, fast learning). Missing requirements section prevents full assessment of seniority expectations or specific stack demands (e.g., Java-heavy Avaloq ecosystem vs. his Python/Node.js).",
+    "salary_estimate": "CHF 95,000–120,000 (junior-mid AI engineer in Zurich fintech)",
+    "culture_fit": "Lab structure ('innovation lab', 'experiments', 'collaboratively with industry leaders') suggests learning-friendly, builder-oriented environment. His self-directed project ownership and law-to-tech trajectory fit 'fast learner' framing. Financial services domain is unfamiliar but he is deliberately open to new domains.",
     "concerns": [
-      "Job description was truncated; full requirements, qualifications, and seniority expectations were not visible—must verify on application",
-      "Avaloq serves banking/wealth management; some financial domain concepts may require ramp-up though not explicitly required",
-      "Role title says 'AI Software Engineer' not 'Intern'—could be mid-level position; need to confirm if junior/intern track exists or if he's competitive against experienced candidates",
-      "No visibility on specific tech stack (frameworks, cloud provider, LLM platforms used) beyond generic 'state-of-the-art AI'"
+      "Job description was truncated — requirements, qualifications, and full tech stack not visible; seniority level and specific experience demands unknown",
+      "Avaloq's core platform is historically Java/Spring-heavy; candidate's stack is Python/Node.js-centric — possible mismatch if role requires deep legacy integration",
+      "Financial services domain implies regulatory rigor (FINMA, banking compliance) beyond his current experience; steep learning curve for AI governance in regulated context",
+      "No visibility on whether 'lead AI experiments' implies leading people or just technical leadership — could be overstretch if former"
     ],
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 3,
+      "prompt_tokens": 5295,
+      "completion_tokens": 1240,
+      "cost_usd": null
+    },
     "recommendation": "REVIEW",
     "decision": "REVIEW",
     "materials_needed": [],
@@ -867,19 +874,22 @@
     "no_posting_text": true
   },
   {
-    "score": 72,
-    "hard_blockers": [],
+    "score": 45,
+    "hard_blockers": [
+      "Role explicitly requires Master student status; candidate is not currently enrolled in a Master's program (has postgraduate specialization, career-changer profile)",
+      "Role is a 2-4 month student contract at 40-80% workload, not a permanent full-time position — fundamentally wrong role type (candidate explicitly excludes internships and working-student roles)"
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong alignment on LLM/AI tooling, knowledge graphs, RAG, and agentic concepts. Gap: no explicit Microsoft Copilot/SharePoint/M365 enterprise stack experience, though his LLM API and automation background is transferable. Python/data viz noted as 'plus' rather than required."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Role is explicitly 'Support' for a Master Student—shape leans toward curriculum design, content creation, and conceptual support rather than end-to-end production ownership; candidate's core motivation is building and shipping systems, not training materials.",
-      "Microsoft/SharePoint enterprise ecosystem is central; he has Google Cloud/Linux background, no M365 stack listed.",
-      "Master Student eligibility may screen him out at HR level despite his postgraduate qualification and professional experience—worth clarifying in application.",
-      "Duration capped at 4 months initially with 'option to extend'—shorter runway than ideal for deep agentic system ownership.",
-      "Biopharma manufacturing domain knowledge listed as 'interest' expectation; he has none, though this is minor given his career-changer openness."
+      "Blocker: Role explicitly requires Master student status; candidate is not currently enrolled in a Master's program (has postgraduate specialization, career-changer profile)",
+      "Blocker: Role is a 2-4 month student contract at 40-80% workload, not a permanent full-time position — fundamentally wrong role type (candidate explicitly excludes internships and working-student roles)",
+      "Heavy emphasis on Microsoft ecosystem (Copilot, SharePoint, MS365) where candidate has no demonstrated experience",
+      "Knowledge graphs, semantic models, taxonomies are central requirements — candidate only has basic BM25 retrieval, no ontology/KG experience",
+      "UX/UI design, wireframing, visual storytelling are significant asks; candidate's background is backend/data/LLM engineering, not product design",
+      "Biopharma manufacturing domain interest is listed as desirable; candidate has no domain exposure",
+      "Role is more 'AI enablement and curriculum designer' than 'AI engineer building systems' — misaligned with candidate's stated growth trajectory"
     ],
     "job": {
       "company": "SimplyVision GmbH",
@@ -889,38 +899,45 @@
       "portal": "linkedin.com",
       "description": "For our client based in Zurich (CH) we’re urgently looking for a AI & Knowledge Management Support (Master Student) with following details:\nGeneral Information:\nDuration 2 to 4 months, with option to extend depending on project needs\nWorkload 40 to 80%, flexible, expected maximum of 80%\nLocation: Zurich / remote (hybrid)\nBackground:\nWe are looking for a highly motivated Master student to support strategic AI and Knowledge Management initiatives within a global biopharmaceutical environment. The role will work closely with the MSAT Knowledge Management Lead and contribute to the design and deployment of the AI Academy, Data Academy, Process Wiki / Knowledge Navigator, and related AI-enabled knowledge solutions.\nThe assignment is ideal for a student who enjoys building at the intersection of AI tools, knowledge management, knowledge graph design, information architecture, and user-centric digital product design.\nTasks & Responsibilities:\nAI Academy & Data Academy development:\nSupport the design of learning pathways, training curricula, capability frameworks and bootcamp concepts.\nDevelop practical learning & workshop materials, exercise templates and reusable academy content.\nResearch emerging AI tools and translate relevant use cases into MSAT-oriented training examples.\nCreate AI use case catalogues, prompt examples and practical demonstrations for knowledge work, data work and process intelligence.\nSupport launch communication, stakeholder updates and executive-ready summaries.\nProcess Wiki / Knowledge Navigator:\nSupport the design of a modern digital knowledge infrastructure for process knowledge, process data and modelling-related content.\nCreate intuitive navigation structures & page concepts\nDevelop page mock-ups, wireframes and proof-of-concept knowledge portal designs.\nImprove discoverability through taxonomy, metadata and search-oriented content structuring.\nContribute to the integration concept for multiple knowledge sources into a unified knowledge navigator experience.\nAI tools, knowledge graphs and agentic knowledge solutions:\nApply AI productivity tools such as Microsoft Copilot, Cowork or comparable AI assistant platforms to accelerate content creation, knowledge structuring and prototyping.\nSupport conceptual knowledge graph design by defining entities, relationships and metadata patterns across documents, processes & systems.\nEvaluate approaches for semantic search, retrieval-augmented generation and AI-assisted knowledge retrieval.\nContribute to concepts for Copilot / Cowork-based assistants, process wiki agents and AI-enabled knowledge workflows.\nDocument design decisions, assumptions and recommendati\n[... middle of the posting omitted ...]\nH Zürich preferably in the field of Computer Science, Data Science, Information Systems, Computational Science, Knowledge Engineering, Digital Design or a related field.\nTechnical experience. Practical experience in several of the following areas is recommended:\nGenerative AI and large language model usage in real work scenarios.\nMicrosoft Copilot, Cowork or comparable AI assistant / agent platforms.\nKnowledge graphs, semantic models, taxonomies or metadata modelling.\nRAG architectures, semantic search or AI-enabled knowledge retrieval.\nWeb page creation and design using HTML, CSS, JavaScript or modern web frameworks.\nSharePoint Online, Microsoft 365 or enterprise collaboration platforms.\nUX/UI design, wireframing and user journey development.\nPython, data visualisation or graph database concepts are a plus.\nPersonal Profile:\nCurious about the future of AI, knowledge management and digital transformation.\nAble to structure ambiguous topics and translate them into executable work packages.\nComfortable working independently while aligning frequently with stakeholders.\nStrong visual communication and storytelling skills.\nInterest in biopharmaceutical manufacturing, process intelligence and enterprise knowledge systems.\nHigh attention to detail, with the ability to make complex knowledge accessible and easy to reuse."
     },
-    "technical_fit": "Strong alignment on LLM/AI tooling, knowledge graphs, RAG, and agentic concepts. Gap: no explicit Microsoft Copilot/SharePoint/M365 enterprise stack experience, though his LLM API and automation background is transferable. Python/data viz noted as 'plus' rather than required.",
-    "contextual_fit": "Good: Zurich hybrid, 2-4 months with extension option fits his 2-week notice and internship-seeking status. Master student requirement is a soft filter—he holds postgraduate Data Science qualification and is actively building in this space. Biopharma domain is unfamiliar but he is deliberately open to new domains. Concern: 'Support' framing and academy/content development tilt feels more enablement/curriculum than hands-on production building; less 'zero to production ownership' than he wants, though Knowledge Navigator and agentic solutions offer some build opportunity.",
+    "technical_fit": "Partial overlap: candidate has LLM APIs, prompt engineering, RAG (BM25), structured output, and agentic tool-calling experience that maps to the AI/knowledge retrieval aspects. However, role heavily weights knowledge graph design, semantic modelling, taxonomies, metadata architecture, UX/UI wireframing, SharePoint/MS365 enterprise platforms, and visual/storytelling communication — areas where candidate has minimal demonstrated depth. The 'plus' skills (Python, graph DBs) are closer to his core, but the primary requirements skew toward information architecture and digital product design rather than engineering/building.",
+    "contextual_fit": "Poor on multiple dimensions: (1) Role explicitly targets Master students — candidate is a career-changer with postgraduate specialization, not currently enrolled in a Master's program; this is a student position, not a permanent/junior professional role. (2) Duration is 2-4 months with possible extension — this is a short-term contract/student job, not the 'own real projects from day one' permanent position candidate seeks. (3) Workload 40-80% — part-time, not full-time. (4) Heavy emphasis on curriculum design, training materials, stakeholder communication, and 'executive-ready summaries' — more enablement/consulting than hands-on system building. Candidate's motivation emphasizes shipping production systems, not building academies or process wikis for others to use.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Academic-corporate hybrid in regulated biopharma—structured, stakeholder-heavy, documentation-focused. His self-directed 'ship and audit' style may need adaptation to more consensus-driven, compliance-conscious environment. Visual communication and storytelling requirement is a plus-match for his dashboard/Power BI experience.",
+    "culture_fit": "Biopharma enterprise context with heavy stakeholder alignment, communication-heavy, academic/training-oriented culture. Candidate's self-directed builder mentality and preference for ownership of technical systems would likely feel constrained by the enablement/academy focus and hierarchical MSAT structure.",
     "concerns": [
-      "Role is explicitly 'Support' for a Master Student—shape leans toward curriculum design, content creation, and conceptual support rather than end-to-end production ownership; candidate's core motivation is building and shipping systems, not training materials.",
-      "Microsoft/SharePoint enterprise ecosystem is central; he has Google Cloud/Linux background, no M365 stack listed.",
-      "Master Student eligibility may screen him out at HR level despite his postgraduate qualification and professional experience—worth clarifying in application.",
-      "Duration capped at 4 months initially with 'option to extend'—shorter runway than ideal for deep agentic system ownership.",
-      "Biopharma manufacturing domain knowledge listed as 'interest' expectation; he has none, though this is minor given his career-changer openness."
+      "Heavy emphasis on Microsoft ecosystem (Copilot, SharePoint, MS365) where candidate has no demonstrated experience",
+      "Knowledge graphs, semantic models, taxonomies are central requirements — candidate only has basic BM25 retrieval, no ontology/KG experience",
+      "UX/UI design, wireframing, visual storytelling are significant asks; candidate's background is backend/data/LLM engineering, not product design",
+      "Biopharma manufacturing domain interest is listed as desirable; candidate has no domain exposure",
+      "Role is more 'AI enablement and curriculum designer' than 'AI engineer building systems' — misaligned with candidate's stated growth trajectory"
     ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 1,
+      "prompt_tokens": 2701,
+      "completion_tokens": 610,
+      "cost_usd": null
+    },
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-22T12:33:49.645818+00:00",
     "rescored": true
   },
   {
-    "score": 72,
-    "hard_blockers": [],
+    "score": 35,
+    "hard_blockers": [
+      "Role is explicitly a Master Student / working-student position (40-80% workload, 2-4 months), which candidate explicitly excludes; not a full-time permanent or contract role"
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong alignment on AI/LLM tooling, knowledge systems, and content creation. Gap: no explicit mention of Python/pandas/SQL in tasks; heavier on Microsoft 365/Copilot ecosystem, SharePoint, and web frontend (HTML/CSS/JS) which are less in his current stack. His RAG/semantic search evaluation experience is nascent but directionally right."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Master Student eligibility: posting specifies enrolled Master student; his Postgraduate Specialisation may not qualify depending on client's strictness",
-      "Heavy Microsoft ecosystem (Copilot, SharePoint, M365) vs. his current open-source/Cloud/API-heavy stack",
-      "Web frontend skills (HTML/CSS/JS, modern web frameworks) not listed in his skills",
-      "Role shape ambiguity: ~50% curriculum design, communication, 'academy' content creation vs. building agentic systems—less 'shipping production pipelines' than his stated motivation",
-      "Biopharma manufacturing domain knowledge gap—though he's open to new domains, this is quite specialized",
-      "Workload 40-80%: at 80% it's full internship; at 40% it's too light for his goals and notice period investment"
+      "Blocker: Role is explicitly a Master Student / working-student position (40-80% workload, 2-4 months), which candidate explicitly excludes; not a full-time permanent or contract role",
+      "Role is 80% maximum workload with explicit student targeting, fundamentally incompatible with candidate's search parameters",
+      "Heavy emphasis on instructional design, curriculum development, and UX/wireframing—areas with no demonstrated experience",
+      "Knowledge graph and semantic modeling are mentioned but at conceptual/design level, not implementation depth",
+      "Microsoft 365/SharePoint/enterprise collaboration platform focus is a skills gap",
+      "Despite Zurich location and hybrid flexibility, role type is disqualifying"
     ],
     "job": {
       "company": "SimplyVision GmbH",
@@ -930,20 +947,26 @@
       "portal": "linkedin.com",
       "description": "For our client based in Zurich (CH) we’re urgently looking for a AI & Knowledge Management Support (Master Student) with following details:\nGeneral Information:\nDuration 2 to 4 months, with option to extend depending on project needs\nWorkload 40 to 80%, flexible, expected maximum of 80%\nLocation: Zurich / remote (hybrid)\nBackground:\nWe are looking for a highly motivated Master student to support strategic AI and Knowledge Management initiatives within a global biopharmaceutical environment. The role will work closely with the MSAT Knowledge Management Lead and contribute to the design and deployment of the AI Academy, Data Academy, Process Wiki / Knowledge Navigator, and related AI-enabled knowledge solutions.\nThe assignment is ideal for a student who enjoys building at the intersection of AI tools, knowledge management, knowledge graph design, information architecture, and user-centric digital product design.\nTasks & Responsibilities:\nAI Academy & Data Academy development:\nSupport the design of learning pathways, training curricula, capability frameworks and bootcamp concepts.\nDevelop practical learning & workshop materials, exercise templates and reusable academy content.\nResearch emerging AI tools and translate relevant use cases into MSAT-oriented training examples.\nCreate AI use case catalogues, prompt examples and practical demonstrations for knowledge work, data work and process intelligence.\nSupport launch communication, stakeholder updates and executive-ready summaries.\nProcess Wiki / Knowledge Navigator:\nSupport the design of a modern digital knowledge infrastructure for process knowledge, process data and modelling-related content.\nCreate intuitive navigation structures & page concepts\nDevelop page mock-ups, wireframes and proof-of-concept knowledge portal designs.\nImprove discoverability through taxonomy, metadata and search-oriented content structuring.\nContribute to the integration concept for multiple knowledge sources into a unified knowledge navigator experience.\nAI tools, knowledge graphs and agentic knowledge solutions:\nApply AI productivity tools such as Microsoft Copilot, Cowork or comparable AI assistant platforms to accelerate content creation, knowledge structuring and prototyping.\nSupport conceptual knowledge graph design by defining entities, relationships and metadata patterns across documents, processes & systems.\nEvaluate approaches for semantic search, retrieval-augmented generation and AI-assisted knowledge retrieval.\nContribute to concepts for Copilot / Cowork-based assistants, process wiki agents and AI-enabled knowledge workflows.\nDocument design decisions, assumptions and recommendati\n[... middle of the posting omitted ...]\nH Zürich preferably in the field of Computer Science, Data Science, Information Systems, Computational Science, Knowledge Engineering, Digital Design or a related field.\nTechnical experience. Practical experience in several of the following areas is recommended:\nGenerative AI and large language model usage in real work scenarios.\nMicrosoft Copilot, Cowork or comparable AI assistant / agent platforms.\nKnowledge graphs, semantic models, taxonomies or metadata modelling.\nRAG architectures, semantic search or AI-enabled knowledge retrieval.\nWeb page creation and design using HTML, CSS, JavaScript or modern web frameworks.\nSharePoint Online, Microsoft 365 or enterprise collaboration platforms.\nUX/UI design, wireframing and user journey development.\nPython, data visualisation or graph database concepts are a plus.\nPersonal Profile:\nCurious about the future of AI, knowledge management and digital transformation.\nAble to structure ambiguous topics and translate them into executable work packages.\nComfortable working independently while aligning frequently with stakeholders.\nStrong visual communication and storytelling skills.\nInterest in biopharmaceutical manufacturing, process intelligence and enterprise knowledge systems.\nHigh attention to detail, with the ability to make complex knowledge accessible and easy to reuse."
     },
-    "technical_fit": "Strong alignment on AI/LLM tooling, knowledge systems, and content creation. Gap: no explicit mention of Python/pandas/SQL in tasks; heavier on Microsoft 365/Copilot ecosystem, SharePoint, and web frontend (HTML/CSS/JS) which are less in his current stack. His RAG/semantic search evaluation experience is nascent but directionally right.",
-    "contextual_fit": "Good: Zurich hybrid, 2-4 months with extension option matches his internship search timeline. Master student framing is slightly mismatched—he's postgraduate specialist, not currently enrolled Master student, but 'Master Student' in Swiss contracting often means 'advanced student-level' and his profile may pass. Biopharma domain is new but he's explicitly open to unfamiliar domains.",
+    "technical_fit": "Partial overlap but misaligned in depth and direction. The role is heavily weighted toward knowledge management infrastructure, UX/UI design, curriculum development, and enterprise collaboration platforms (SharePoint, Microsoft 365). The candidate's strengths are in building and operating LLM pipelines, agentic systems, and automation—hands-on engineering rather than instructional design, wireframing, or knowledge graph conceptualization. The 'agentic knowledge solutions' and RAG mentions are present but framed as evaluation and concept work, not production implementation.",
+    "contextual_fit": "Poor. This is explicitly a Master Student position (40-80% workload, 2-4 month duration), which the candidate has explicitly excluded from consideration ('Not internships or working-student roles'). He is seeking full-time permanent or contract roles with ownership from day one. The role shape—supporting academies, creating training materials, designing page mockups—is consultative/educational rather than builder-oriented. Even the AI components are about teaching others and prototyping concepts, not shipping production systems.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Mixed: high ownership potential in greenfield AI academy and knowledge navigator design, but 'Support' in title and heavy stakeholder-alignment/communication tasks suggest more coordination-heavy than pure builder role. His excitement is 'zero to production and own it'—this has ownership fragments but also significant 'support the design of' and 'develop materials' which skews toward enablement/content rather than shipping production systems.",
+    "culture_fit": "Likely misaligned. The role emphasizes 'stakeholder updates,' 'executive-ready summaries,' 'visual communication and storytelling,' and 'user-centric digital product design'—skills and activities the candidate has not demonstrated. The biopharmaceutical domain interest is noted as a plus, not a penalty, but the overall role shape does not match his motivation to 'build the systems, not just use them.'",
     "concerns": [
-      "Master Student eligibility: posting specifies enrolled Master student; his Postgraduate Specialisation may not qualify depending on client's strictness",
-      "Heavy Microsoft ecosystem (Copilot, SharePoint, M365) vs. his current open-source/Cloud/API-heavy stack",
-      "Web frontend skills (HTML/CSS/JS, modern web frameworks) not listed in his skills",
-      "Role shape ambiguity: ~50% curriculum design, communication, 'academy' content creation vs. building agentic systems—less 'shipping production pipelines' than his stated motivation",
-      "Biopharma manufacturing domain knowledge gap—though he's open to new domains, this is quite specialized",
-      "Workload 40-80%: at 80% it's full internship; at 40% it's too light for his goals and notice period investment"
+      "Role is 80% maximum workload with explicit student targeting, fundamentally incompatible with candidate's search parameters",
+      "Heavy emphasis on instructional design, curriculum development, and UX/wireframing—areas with no demonstrated experience",
+      "Knowledge graph and semantic modeling are mentioned but at conceptual/design level, not implementation depth",
+      "Microsoft 365/SharePoint/enterprise collaboration platform focus is a skills gap",
+      "Despite Zurich location and hybrid flexibility, role type is disqualifying"
     ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 1,
+      "prompt_tokens": 2692,
+      "completion_tokens": 496,
+      "cost_usd": null
+    },
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
     "evaluated_at": "2026-08-22T12:33:49.645818+00:00",
     "rescored": true
