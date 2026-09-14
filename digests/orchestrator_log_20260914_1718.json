@@ -1,0 +1,55 @@
+{
+  "ts": "2026-09-14T17:18:33.812027+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 5,
+  "usage": {
+    "prompt_tokens": 6609,
+    "completion_tokens": 314,
+    "model": "kimi-k2.6"
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 3
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Run complete: 5 evaluations (0 APPLY, 0 REVIEW, 2 SKIP, 3 NOT_EVALUATED). No high-score alerts or documents needed. 1 stale application remains eligible for follow-up but no new drafts were produced. Re-evaluated 3 REVIEW-band jobs; all stayed in REVIEW with unchanged scores.",
+        "rationale": "A quiet day with no APPLY jobs, so no documents or alerts were generated. Follow-up drafting found 1 eligible stale application but produced 0 drafts. With remaining budget, 3 borderline REVIEW jobs were re-scored; none moved to APPLY, leaving the pipeline clean but with no new actionable jobs today."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 5, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 2, \"ERROR\": 0, \"NOT_EVALUATED\": 3}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"Job-Room\", \"title\": \"AI for Science Engineer\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 72, \"new_decision\": \"REVIEW\"}, {\"company\": \"Jobgether\", \"title\": \"Founding AI Platform Engineer (MLOps / Backend)\", \"old_score\": 78, \"old_decision\": \"REVIEW\", \"new_sco"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Run complete: 5 evaluations (0 APPLY, 0 REVIEW, 2 SKIP, 3 NOT_EVALUATED). No high-score alerts or documents needed. 1 stale application remains eligible for follow-up but no new drafts were produced. Re-evaluated 3 REVIEW-band jobs; all stayed in REVIEW with unchanged scores.",
+  "agent_rationale": "A quiet day with no APPLY jobs, so no documents or alerts were generated. Follow-up drafting found 1 eligible stale application but produced 0 drafts. With remaining budget, 3 borderline REVIEW jobs were re-scored; none moved to APPLY, leaving the pipeline clean but with no new actionable jobs today."
+}
