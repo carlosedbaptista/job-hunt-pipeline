@@ -37,30 +37,53 @@ ADZUNA_DISTANCE_KM = int(os.environ.get("ADZUNA_DISTANCE_KM", "30"))
 # queries instead. If Zug postings stop appearing, that radius is the first
 # thing to check.
 #
-# Aimed at what the CV actually asks for: "seeking a new internship to deepen
-# my expertise in agentic systems and data platform engineering". So the mix
-# is internship/working-student first and junior second, across the two
-# themes (AI/agentic and data platform), plus automation, which is his
-# current job title. English and German both, because Swiss postings split
-# roughly evenly between "Internship" and "Praktikum/Werkstudent".
+# Retargeted 2026-09-14, when the CV moved from "seeking an internship" to
+# AI software engineering at junior/associate level. The 32 target titles the
+# candidate gave collapse into the queries below: Adzuna ranks by relevance
+# across the WHOLE posting, so a short phrase ("Applied AI") is a much wider
+# net than the long title it came from ("Junior Applied AI Engineer"), and
+# adding both would only spend the budget twice on the same postings.
 #
-# Deliberately NOT here: mid-level "Senior/Lead" phrasing, and pure software
-# engineering, which the scoring prompt auto-SKIPs anyway.
+# Dropped in the same pass: every Praktikum/Werkstudent/Intern query. They are
+# off-target now, and the German funnel they were protecting turned out to be
+# mostly noise -- of 525 German-language titles in data/raw_jobs/, the top
+# entries are Praktikum Marketing, Praktikum Tax and Praktikum Legal. "KI
+# Engineer" stays because it DID appear in real returned titles ("Senior
+# ServiceNow KI Engineer", "Werkstudent KI Support"); no German phrase here is
+# invented, same rule as the 2026-08-23 pass.
+#
+# Deliberately NOT here: "Senior/Lead" phrasing. Pure software engineering is
+# still absent as a QUERY, but it is no longer an automatic SKIP downstream --
+# see the auto-SKIP rule in job_evaluator/decision_agent, which now only skips
+# SWE roles with no AI/LLM/data component at all.
 #
 # Override without touching code: ADZUNA_QUERIES="AI Engineer;Data Engineer"
 _DEFAULT_QUERIES = [
-    "AI Engineer Intern",
+    # Core AI engineering. Covers AI Software Engineer, Software Engineer AI,
+    # Python AI Engineer, AI Application/Integration/Solutions/Enablement/
+    # Operations Engineer and their Junior/Associate forms.
+    "AI Engineer",
+    "AI Software Engineer",
     "Junior AI Engineer",
-    "Praktikum AI",
-    "Werkstudent AI",
-    "Machine Learning Intern",
-    "Data Engineer Intern",
+    "LLM Engineer",
+    "Generative AI",
+    "AI Solutions Engineer",
+    "AI Automation",
+    "AI Integration",
+    "KI Engineer",
+    # ML / MLOps / platform.
+    "Machine Learning Engineer",
+    "Junior Machine Learning Engineer",
+    "MLOps Engineer",
+    "AI Platform Engineer",
+    # Data, incl. AI Data Engineer and Data Engineer AI.
+    "AI Data Engineer",
     "Junior Data Engineer",
     "Data Platform Engineer",
-    "Praktikum Data Engineering",
-    "Werkstudent Data",
-    "Junior Automation Engineer",
-    "Praktikum Automation",
+    # Adjacent shapes on the target list that are not "AI <noun>" titles.
+    "Forward Deployed Engineer",
+    "Workflow Automation Engineer",
+    "Internal Tools Engineer",
     # Added 2026-08-23 with the budget freed by dropping the Zug pass. These
     # are shorter on purpose: Adzuna ranks by relevance across the whole
     # posting, so a three-word phrase like "Praktikum Data Engineering" is a
@@ -69,12 +92,8 @@ _DEFAULT_QUERIES = [
     # history, not invented: "agentic", "applied AI", "founding engineer" and
     # the bare "Internship"/"Praktikum" forms account for most of what came
     # through, and none of them matched any of the twelve queries above.
-    "AI Engineer",
     "Agentic AI",
     "Applied AI",
-    "Data Scientist Intern",
-    "Internship Data",
-    "Praktikum Data Science",
 ]
 SEARCH_QUERIES = [q.strip() for q in os.environ.get("ADZUNA_QUERIES", "").split(";")
                   if q.strip()] or _DEFAULT_QUERIES

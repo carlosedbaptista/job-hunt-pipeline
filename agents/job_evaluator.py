@@ -64,7 +64,8 @@ def load_profile_summary(p: dict = None) -> str:
     if not p:
         # Minimal summary without PII.
         return ("Candidate: AI Software Engineer Intern, Zurich Area CH (Permit B), "
-                "2 weeks notice. Looking for: AI / data platform engineering internship. "
+                "2 weeks notice. Looking for: AI software / LLM / agentic engineering, "
+                "junior to associate level. "
                 "Skills: Python, SQL, LLM APIs, GitHub Actions. Languages: PT, EN(C1), ES(B2), DE(A2).")
 
     skills = p.get("skills", {})
@@ -80,9 +81,11 @@ def load_profile_summary(p: dict = None) -> str:
 
     # What he is today vs. what he is looking for next are different things,
     # and only the first used to reach the model. A posting is scored on fit
-    # to the TARGET: the CV says "seeking an internship to deepen my
-    # expertise in agentic systems and data platform engineering", and
-    # without that line the scorer just matched against his current job.
+    # to the TARGET. Until 2026-09-14 the CV said "seeking an internship to
+    # deepen my expertise in agentic systems and data platform engineering";
+    # it now asks for AI software engineering roles at junior/associate level,
+    # and target_role in candidate_profile.json is what carries that. Without
+    # that line the scorer just matches against his current job title.
     target = p.get("target_role", "")
     target_line = f"Looking for (score fit to THIS, not to his current job): {target}. " if target else ""
 
@@ -191,7 +194,12 @@ SYSTEM_PROMPT = (
     '(office address, \'based in\', regulatory/site mentions), or empty if not clearly stated"}. '
     f"Rules: >={THRESHOLD_APPLY} APPLY, {THRESHOLD_REVIEW}-{THRESHOLD_APPLY - 1} REVIEW, "
     f"<{THRESHOLD_REVIEW} SKIP. Auto-SKIP: not Zurich/Zug (a fully-remote role based in "
-    "Switzerland counts as Zurich-area -- do NOT skip it for location), not English, pure SWE. "
+    "Switzerland counts as Zurich-area -- do NOT skip it for location), not English, "
+    "and pure SWE with NO AI/LLM/ML/data/automation component. That last one is "
+    "narrow on purpose: a role that BUILDS, INTEGRATES or OPERATES AI systems is ON "
+    "target even when its title reads Software Engineer, Backend Engineer, Full-Stack "
+    "Engineer, Product Engineer, Forward Deployed Engineer or Internal Tools Engineer. "
+    "Skip only the role with no AI, ML, LLM, data or automation content at all. "
     "Also always auto-SKIP -- score below the SKIP threshold AND an entry in hard_blockers, "
     "no exception, regardless of how strong the rest of the match is -- when the role "
     "explicitly REQUIRES fluent/native German (or any language beyond English) for the "
