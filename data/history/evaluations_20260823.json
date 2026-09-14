@@ -236,17 +236,17 @@
     "rescored": true
   },
   {
-    "score": 35,
+    "score": 55,
     "hard_blockers": [],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Requirements section was not visible in truncated description — role seniority, experience requirements, and actual responsibilities are unknown; score is conservative due to this uncertainty",
-      "Title 'Manager' suggests seniority level well above candidate's intern/junior target and 2 years of experience",
-      "No visible mention of LLMs, agentic systems, or modern data platform engineering in the company description",
-      "Waste-to-energy infrastructure domain is far from candidate's demonstrated and target technical focus",
-      "Likely misalignment on role shape: management/analytics in industrial setting vs. hands-on builder in AI/data platforms",
+      "Job description was truncated — requirements, seniority expectations, and technical stack were not visible; score kept conservative for this reason.",
+      "Title contains 'Manager' which typically implies team leadership/budget responsibility rather than hands-on building; candidate wants IC builder roles.",
+      "No visible evidence of LLM, agentic systems, or modern AI engineering work in the description.",
+      "Industrial/waste infrastructure domain likely means AI is analytics/reporting-focused rather than product/platform engineering.",
+      "Candidate's 2-week notice and Swiss permit B are irrelevant advantages here given the role mismatch.",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -257,16 +257,16 @@
       "portal": "adzuna",
       "description": " Company Description  Welcome to Kanadevia Inova, a global innovation leader in the waste infrastructure space, where we believe in creating a sustainable future through technology and innovation. Transforming Waste into Value At Kanadevia Inova, we pride ourselves on being at the forefront of waste-to-X technology. We are not just waste managers; we are creators of value from what communities discard. Your role at Kanadevia Inova directly contributes to turning something once considered useles…"
     },
-    "technical_fit": "Poor. The visible description frames the company as a waste-to-energy infrastructure firm with no mention of LLMs, agentic systems, data platform engineering, or hands-on AI pipeline building. The title 'Manager Analytics & AI' suggests a management/analytics orientation rather than the intern/junior builder role the candidate seeks.",
-    "contextual_fit": "Weak. The candidate wants ownership building production AI/automation from zero; this appears to be a managerial role in heavy industry/waste infrastructure with no visible connection to his target domain. Career-changer openness to new domains doesn't help when the role shape itself is mismatched.",
+    "technical_fit": "The visible description mentions 'Analytics & AI' but the truncated text reveals almost nothing about the actual technical work. The company is in waste-to-energy infrastructure, not a tech-native environment. No evidence of LLM/agentic systems, production AI engineering, or software building.",
+    "contextual_fit": "Title is 'Manager' which signals seniority/people management; candidate is seeking hands-on builder roles (AI Engineer, LLM Engineer) not management. Domain (waste infrastructure) is acceptable but the role shape (manager vs. individual contributor) is a significant mismatch with candidate's stated goals of owning projects from day one as a builder.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown due to truncated description, but 'global innovation leader' framing in traditional infrastructure suggests established corporate structure rather than the fast-iteration, high-ownership environment the candidate prefers.",
+    "culture_fit": "Sustainability mission is positive, but the industrial/infrastructure context suggests slower tech velocity and less greenfield AI experimentation than candidate thrives on. No signal on ownership culture or startup-like autonomy.",
     "concerns": [
-      "Requirements section was not visible in truncated description — role seniority, experience requirements, and actual responsibilities are unknown; score is conservative due to this uncertainty",
-      "Title 'Manager' suggests seniority level well above candidate's intern/junior target and 2 years of experience",
-      "No visible mention of LLMs, agentic systems, or modern data platform engineering in the company description",
-      "Waste-to-energy infrastructure domain is far from candidate's demonstrated and target technical focus",
-      "Likely misalignment on role shape: management/analytics in industrial setting vs. hands-on builder in AI/data platforms"
+      "Job description was truncated — requirements, seniority expectations, and technical stack were not visible; score kept conservative for this reason.",
+      "Title contains 'Manager' which typically implies team leadership/budget responsibility rather than hands-on building; candidate wants IC builder roles.",
+      "No visible evidence of LLM, agentic systems, or modern AI engineering work in the description.",
+      "Industrial/waste infrastructure domain likely means AI is analytics/reporting-focused rather than product/platform engineering.",
+      "Candidate's 2-week notice and Swiss permit B are irrelevant advantages here given the role mismatch."
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -275,17 +275,18 @@
     "rescored": true
   },
   {
-    "score": 52,
+    "score": 58,
     "hard_blockers": [],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Role is pure SRE, not AI engineering—candidate explicitly seeks agentic systems and data platform engineering with end-to-end ownership",
-      "No LLM pipeline work, no automation building for external clients, no 'zero to production' product ownership as he defines it",
-      "Infrastructure stack (Kubernetes, multi-cloud orchestration, large-scale search reliability) is a significant skill gap from his current tooling",
-      "Legal domain relevance is superficial—he'd be infrastructure support for legal tech product, not leveraging legal expertise in building",
-      "High-urgency 'firefighting' culture is opposite of his preferred build-and-ship rhythm; risk of frustration and poor retention"
+      "Role is fundamentally infrastructure/SRE, not AI/LLM engineering—candidate would not work with LLMs, agents, or AI applications",
+      "Requires expertise in container orchestration, multi-cloud ops, and distributed systems reliability that candidate lacks",
+      "His law background is irrelevant to SRE technical execution; domain match is a false positive",
+      "Career changer trajectory stalls here: SRE is a different track from his target AI/LLM engineer path",
+      "'Build from foundation' framing is appealing but misleading—this is ops discipline, not greenfield AI building",
+      "Recent application to BLP Digital (AI Software Engineer) with no response suggests market competitiveness; this weaker-fit role unlikely to outperform"
     ],
     "job": {
       "company": "DeepJudge",
@@ -295,16 +296,17 @@
       "portal": "adzuna",
       "description": "About Us: \n DeepJudge is Switzerland’s leading AI and ICT scale-up, transforming how law firms and legal departments access and leverage their knowledge. Founded by former Google search engineers with PhDs in AI from ETH Zurich, and backed by top-tier Silicon Valley investors, we are building the intelligence layer that powers the legal industry.\n Every firm can license the same AI models, but no two firms share the same institutional knowledge. Decades of experience, work product, and precedent are often trapped across systems, underused and inaccessible. DeepJudge makes this expertise instantly available through world-class enterprise search and AI infrastructure, enabling firms to automate workflows, build knowledge-powered applications, and turn experience into a lasting advantage.\n Our technology is trusted by many of the world’s leading law firms, including Freshfields, Gunderson Dettmer, Holland & Knight, Arent Fox, and Cozen O’Connor. Headquartered in Switzerland with a growing team across North America, we are expanding rapidly and shaping the future of how professional knowledge is discovered and applied.\n At DeepJudge, we move fast, think rigorously, and care deeply about what we build. We combine cutting-edge research with close collaboration with our clients to deliver solutions that truly make an impact. If you want to be part of a team defining how AI transforms high-stakes knowledge work, this is the place to do it.\n \n \n About the role: \n As a Site Reliability Engineer at DeepJudge, you own the reliability of the systems that leading law firms depend on every day. We run our AI search platform in dedicated production environments, each a large-scale search and retrieval system operating at very high data volumes, alongside our ingestion pipelines and data stores, on container-orchestrated infrastructure across multiple public and private clouds. Keeping those environments fast, available, and trustworthy is a genuine engineering challenge, and it's your mission.\n This is a technical, infrastructure-focused role: you'll spend your time in systems, code, and telemetry. You'll harden the platform so that classes of failure can't recur, build observability and SLOs to let us see problems before they surface, plan capacity ahead of relentless data growth, and automate away the toil of safely operating many production environments. You'll work across our deployment and infrastructure-as-code and partner closely with product engineering to feed reliability learnings back into the platform. If you like operating serious distributed systems at scale and turning firefighting into engineered reliability, this role\n[... middle of the posting omitted ...]\nregulated domains\n\n \n What you can look forward to: \n Owning the reliability of systems that the world's leading law firms rely on: real scale, real impact\n\n Deep, hands-on work with modern infrastructure: distributed search at very large scale, container orchestration across multiple clouds, and a mature infrastructure-as-code and GitOps stack\n\n A rigorous, high-urgency engineering culture founded by ex-Google search engineers and ETH Zurich AI PhDs\n\n The chance to build the reliability discipline, SLOs, incident practice, automation, from a strong foundation, not inherit a rigid one\n\n A collaborative team in Zurich shaping how AI transforms professional knowledge work\n\n \n At DeepJudge, we believe great teams are built on diverse perspectives and experiences. We are proud to be an equal opportunity employer and are committed to fostering an inclusive, high-performance culture where everyone can thrive. We welcome applicants of all backgrounds and do not discriminate based on race, religion, color, national origin, gender, gender identity or expression, sexual orientation, age, marital status, disability, veteran status, or any other characteristic protected by law.\n  \n If this role excites you, but you feel you don’t meet every qualification, we encourage you to apply anyway and tell us why you’d be a great fit."
     },
-    "technical_fit": "Mismatch. Role is pure SRE/infrastructure (Kubernetes, distributed systems reliability, SLOs, incident response, capacity planning) with no LLM/agentic pipeline building, no data platform engineering ownership from zero to one. Candidate's skills are in Python automation, LLM APIs, dashboards, and marketing data pipelines—not production-grade distributed systems ops at scale.",
-    "contextual_fit": "Moderate. Legal domain aligns with his background (law degree, court experience), which is a nice narrative hook. However, role shape is wrong: he wants to build AI/automation products and own them end-to-end; this is operating existing infrastructure, 'turning firefighting into engineered reliability.' The 'building from a strong foundation' language refers to reliability discipline, not greenfield product building.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Strong on paper—ex-Google/ETH founders, high-ownership culture, 'move fast, think rigorously.' But culture mismatch in practice: he wants to build and ship AI features; this team operates and hardens existing systems. The 'encouraged to apply even if not every qualification' is present, suggesting openness, but fundamental role-shape gap remains.",
+    "technical_fit": "Partial. The role demands deep SRE/infrastructure expertise (Kubernetes, multi-cloud orchestration, distributed systems at scale, SLOs, incident management, infrastructure-as-code) that the candidate lacks. His strengths are in AI/LLM application building, not platform reliability engineering. There's minimal overlap with his Python/SQL/LLM API skills, and no mention of AI/LLM work in the actual SRE responsibilities.",
+    "contextual_fit": "Mixed. The legal domain connects to his law background, which is a nice narrative hook but irrelevant to an infrastructure role. Zurich location and his permit are perfect. However, the role shape is wrong: this is about operating systems, not building AI products from scratch. He'd be firefighting and hardening infrastructure, not shipping LLM pipelines.",
+    "salary_estimate": "CHF 110k–140k (SRE at AI scale-up in Zurich)",
+    "culture_fit": "Strong on paper—high-urgency, ownership, building from foundation, diverse backgrounds welcome. But the actual work (distributed systems reliability, not AI feature development) mismatches his builder identity and stated motivation.",
     "concerns": [
-      "Role is pure SRE, not AI engineering—candidate explicitly seeks agentic systems and data platform engineering with end-to-end ownership",
-      "No LLM pipeline work, no automation building for external clients, no 'zero to production' product ownership as he defines it",
-      "Infrastructure stack (Kubernetes, multi-cloud orchestration, large-scale search reliability) is a significant skill gap from his current tooling",
-      "Legal domain relevance is superficial—he'd be infrastructure support for legal tech product, not leveraging legal expertise in building",
-      "High-urgency 'firefighting' culture is opposite of his preferred build-and-ship rhythm; risk of frustration and poor retention"
+      "Role is fundamentally infrastructure/SRE, not AI/LLM engineering—candidate would not work with LLMs, agents, or AI applications",
+      "Requires expertise in container orchestration, multi-cloud ops, and distributed systems reliability that candidate lacks",
+      "His law background is irrelevant to SRE technical execution; domain match is a false positive",
+      "Career changer trajectory stalls here: SRE is a different track from his target AI/LLM engineer path",
+      "'Build from foundation' framing is appealing but misleading—this is ops discipline, not greenfield AI building",
+      "Recent application to BLP Digital (AI Software Engineer) with no response suggests market competitiveness; this weaker-fit role unlikely to outperform"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -972,18 +974,20 @@
     "no_posting_text": true
   },
   {
-    "score": 52,
-    "hard_blockers": [],
+    "score": 35,
+    "hard_blockers": [
+      "Duration and role type: 3-6 month internship — candidate explicitly excludes internships and working-student roles from search"
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Zero robotics or embodied AI background; role requires training neural networks end-to-end, candidate has only API-level LLM experience",
-      "No PyTorch experience listed; his Python work is pandas/SQL/automation, not deep learning frameworks",
-      "No exposure to diffusion policies, transformers for action, VLA, RL, or simulators — all core requirements",
-      "Role is benchmark execution and reproduction, not greenfield building with ownership — opposite of what motivates him",
-      "On-site 5 days/week for 3-6 months is a rigid structure, though logistically possible in Zurich",
-      "Short duration (3-6 months) limits depth of ownership even if skills matched"
+      "Blocker: Duration and role type: 3-6 month internship — candidate explicitly excludes internships and working-student roles from search",
+      "Fundamental skill gap: zero overlap between LLM API engineering and robot learning (PyTorch model training, RL, simulation, hardware evaluation)",
+      "Role is explicitly an internship, which candidate has ruled out — he is looking for permanent positions",
+      "On-site 5 days/week is rigid but not a blocker; however, combined with short duration makes this a poor use of 2-week notice period",
+      "Salary at CHF 3,000/month implies intern-level compensation, far below market for permanent AI engineer roles he targets",
+      "Career changer seeking production ownership would gain limited transferable skills toward his stated goals from academic robotics benchmarking"
     ],
     "job": {
       "company": "ETH get hired",
@@ -993,17 +997,16 @@
       "portal": "linkedin.com",
       "description": "Beschreibung\nFacebook Twitter LinkedIn\nAbout Baseline\nOpen source revolutionised how we write software, but its impact on robotics stays limited due to expensive hardware accessible only to well-funded labs. We run that hardware as shared infrastructure for the broader community, billed only for active compute. For a given task, policies are evaluated under similar conditions, giving researchers common ground for fair comparisons.\nIn this role you will\nTrain policies on demonstration data and run benchmarks on real hardware.\nBuild and characterise datasets behind a benchmark, including failure cases and coverage gaps.\nRun policy evaluations across task variations and analyse where success rates break down.\nReproduce published manipulation results.\nWhat we hope you'll bring\nExperience training neural networks end-to-end.\nFluency in Python and PyTorch.\nExposure to diffusion policies, transformers, or vision-language-action (VLA) models.\nFamiliarity with reinforcement learning (PPO, SAC) or policy learning on demonstration data.\nExperience with GPU-accelerated simulation tools (Isaac Lab, Newton, mjlab, Genesis).\nWe encourage you to apply even if you do not believe you meet every qualification.\nDetails\nLocation: Zurich, on-site 5 days a week.\nDuration: 3-6 months.\nMonthly salary: CHF 3,000.\nDeadline to apply: None. Applications will be reviewed on a rolling basis."
     },
-    "technical_fit": "Significant mismatch. The role is deep robotics/robot learning: training policies on real hardware, diffusion policies, VLA models, RL (PPO/SAC), GPU simulation (Isaac Lab, Genesis). Candidate's experience is in LLM-powered data pipelines, automation, and cloud infrastructure — no robotics, no PyTorch model training, no simulators, no hardware. His 'AI' is API-level LLM orchestration, not embodied AI or policy learning.",
-    "contextual_fit": "Poor. Role demands on-site 5 days/week for 3-6 months — his 2-week notice is irrelevant since he's currently employed and this is a parallel internship application, but the full-time on-site requirement is logistically feasible in Zurich. However, the role shape is wrong: he's seeking ownership of LLM/agentic systems and data platforms, not benchmark-running and policy reproduction in a robotics lab. No 'zero to production' ownership here; it's execution of established research benchmarks.",
-    "salary_estimate": "CHF 3,000/month (disclosed)",
-    "culture_fit": "Academic research lab culture (ETH spinoff), collaborative benchmark-building for open science. Candidate's drive for commercial ownership and shipping products doesn't align. The 'encourage apply even if not qualified' is genuine but doesn't change the fundamental trajectory mismatch.",
+    "technical_fit": "Poor. Role requires deep robotics/RL expertise (diffusion policies, VLA models, PPO/SAC, Isaac Lab/Genesis simulation) that candidate lacks entirely. His experience is in LLM pipelines, API integrations, and business automation — not end-to-end neural network training, robot manipulation, or GPU simulation for embodied AI.",
+    "contextual_fit": "Poor. This is a pure research internship in robot learning with 5-day on-site lab work on physical hardware. Candidate is seeking permanent AI engineering roles with ownership of production LLM/agentic systems, not a 3-6 month academic research internship. The role shape (benchmarking, reproducing papers, dataset curation) is opposite of his stated goal to 'own real projects from day one' building operational systems.",
+    "salary_estimate": "CHF 3,000/month (stated)",
+    "culture_fit": "Neutral. Academic/open-science culture valuing reproducibility and fair benchmarking; no red flags, but misaligned with his trajectory toward industry production engineering.",
     "concerns": [
-      "Zero robotics or embodied AI background; role requires training neural networks end-to-end, candidate has only API-level LLM experience",
-      "No PyTorch experience listed; his Python work is pandas/SQL/automation, not deep learning frameworks",
-      "No exposure to diffusion policies, transformers for action, VLA, RL, or simulators — all core requirements",
-      "Role is benchmark execution and reproduction, not greenfield building with ownership — opposite of what motivates him",
-      "On-site 5 days/week for 3-6 months is a rigid structure, though logistically possible in Zurich",
-      "Short duration (3-6 months) limits depth of ownership even if skills matched"
+      "Fundamental skill gap: zero overlap between LLM API engineering and robot learning (PyTorch model training, RL, simulation, hardware evaluation)",
+      "Role is explicitly an internship, which candidate has ruled out — he is looking for permanent positions",
+      "On-site 5 days/week is rigid but not a blocker; however, combined with short duration makes this a poor use of 2-week notice period",
+      "Salary at CHF 3,000/month implies intern-level compensation, far below market for permanent AI engineer roles he targets",
+      "Career changer seeking production ownership would gain limited transferable skills toward his stated goals from academic robotics benchmarking"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1012,16 +1015,22 @@
     "rescored": true
   },
   {
-    "score": 45,
-    "hard_blockers": [],
+    "score": 35,
+    "hard_blockers": [
+      "Role is explicitly an internship (\"Intern Market Risk\", \"Duration: 6 months\") — candidate explicitly excludes internships from target roles",
+      "Location is Baden, not Zurich/Zug/Zurich-remote; combined with internship structure, this is outside target geography"
+    ],
     "insufficient_info": true,
-    "language_gap_intermediate": false,
+    "language_gap_intermediate": true,
     "key_match_points": [],
     "red_flags": [
-      "Job description was TRUNCATED — requirements/qualifications section not visible, so seniority, exact tech stack, and language requirements are unknown; score kept conservative for this reason.",
-      "Role appears to be traditional BI/reporting in financial risk, not AI/agentic systems — significant departure from candidate's stated direction.",
-      "Baden is not Zurich/Zug (though commute is plausible), and the role is 100% workload with fixed Jan 2027 start, which may not align with his 2-week notice flexibility.",
-      "No evidence of LLM, API integration, or automation pipeline work in visible description.",
+      "Blocker: Role is explicitly an internship (\"Intern Market Risk\", \"Duration: 6 months\") — candidate explicitly excludes internships from target roles",
+      "Blocker: Location is Baden, not Zurich/Zug/Zurich-remote; combined with internship structure, this is outside target geography",
+      "Job description was truncated — requirements/qualifications section not visible; actual technical needs unknown",
+      "No AI/LLM/ML/automation component visible in description — appears to be traditional financial/BI reporting",
+      "Energy trading domain expertise likely expected for market risk PnL reporting",
+      "German may be required for internal processes at Axpo (Swiss energy sector typically operates in German); truncated description prevents confirmation",
+      "6-month fixed internship ending mid-2027 offers no continuity or conversion path visible",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1032,15 +1041,16 @@
       "portal": "linkedin.com",
       "description": "Workload: 100% | Starting Date: 01.01.2027 | Duration: 6 months Join Axpo Solutions AG and contribute to the development of PnL and Market Risk reports and applications that support strategic decision-making, market data analysis, and operational efficiency within the Market Risk Department. What you will do: Within the Market Risk Department, the team of BI and Market Intelligence is responsible for building and maintaining PnL and Market Risk reports and end-user applications used in Market R…"
     },
-    "technical_fit": "Mismatch. Role centers on BI/reporting for market risk/PnL in energy trading, not on building LLM-powered pipelines or agentic systems. The visible description mentions 'BI and Market Intelligence' building reports and end-user applications for market data analysis, but no LLMs, no automation pipelines, no data platform engineering in the candidate's target sense.",
-    "contextual_fit": "Poor. The candidate wants ownership of greenfield AI/automation from zero to production; this role appears to be maintaining and developing reports within an established Market Risk department. Energy/commodities finance domain is unfamiliar to him, and the role shape (reporting support for strategic decision-making) does not match his builder-oriented, agentic-systems career goal.",
+    "technical_fit": "Very weak. Role centers on PnL reporting, market data analysis, and BI applications for energy trading risk management. No mention of AI, LLMs, automation, agentic systems, or even modern data engineering. The BI/Market Intelligence team builds reports and end-user applications, but the visible description suggests traditional financial reporting tools (likely Power BI/Excel/SQL-based) rather than AI/ML pipelines.",
+    "contextual_fit": "Poor. Baden is not Zurich/Zug (though commutable, it's a different labor market). The role is explicitly an internship with fixed 6-month duration starting January 2027—candidate specifically excludes internships. Energy trading risk management is a specialized domain with no overlap to his demonstrated work. Career-changer narrative (law → AI builder) finds no resonance here; this role would be a sideways or backward step into traditional BI reporting.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Neutral/unknown. Axpo is a large energy utility; likely structured, regulated environment. No signal on ownership culture or startup-style autonomy.",
+    "culture_fit": "Unknown. Axpo is a large energy utility—likely conservative, process-oriented. No signal of startup-like ownership or greenfield AI building that excites this candidate.",
     "concerns": [
-      "Job description was TRUNCATED — requirements/qualifications section not visible, so seniority, exact tech stack, and language requirements are unknown; score kept conservative for this reason.",
-      "Role appears to be traditional BI/reporting in financial risk, not AI/agentic systems — significant departure from candidate's stated direction.",
-      "Baden is not Zurich/Zug (though commute is plausible), and the role is 100% workload with fixed Jan 2027 start, which may not align with his 2-week notice flexibility.",
-      "No evidence of LLM, API integration, or automation pipeline work in visible description."
+      "Job description was truncated — requirements/qualifications section not visible; actual technical needs unknown",
+      "No AI/LLM/ML/automation component visible in description — appears to be traditional financial/BI reporting",
+      "Energy trading domain expertise likely expected for market risk PnL reporting",
+      "German may be required for internal processes at Axpo (Swiss energy sector typically operates in German); truncated description prevents confirmation",
+      "6-month fixed internship ending mid-2027 offers no continuity or conversion path visible"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1055,7 +1065,11 @@
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description was truncated — requirements section not visible, so seniority/experience expectations are unknown; role is fundamentally a sales function, not engineering; candidate has no sales, business development, or account management background; even the AI aspect here is about selling AI infrastructure security, not building with LLMs; likely requires extensive enterprise sales experience and executive presence not evidenced in profile",
+      "Requirements section was not visible in truncated description — assume conservative scoring",
+      "Role is fundamentally misaligned: sales/BD vs. engineering, regardless of AI-adjacent market",
+      "No evidence of technical building, integration, or operations work in the visible description",
+      "Candidate would be selling Check Point security products, not building AI systems — this is a career direction he deliberately left (law/High Court) to move INTO engineering",
+      "Even if full description revealed junior-friendly aspects, the core function (Account Executive) is irreconcilable with target role shapes",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1066,12 +1080,16 @@
       "portal": "adzuna",
       "description": "Job Description Check Point is looking for a high-impact Strategic Account Executive to drive strategic growth across the emerging NeoCloud and AI infrastructure ecosystem. In this role, you will acquire new strategic logos, scale multi-motion opportunities across top accounts, and engage founders, CTOs, CISOs, and cloud architects early in the design cycle to position Check Point within foundational GPU, sovereign AI, and next-generation cloud architectures. You will build trusted executive re…"
     },
-    "technical_fit": "Very poor. The role is a sales/account executive position focused on enterprise security sales to C-level executives, not engineering. The candidate's entire profile is built around hands-on technical building (LLM pipelines, automation, data platforms, cloud infrastructure). There is zero overlap with sales, business development, or account management.",
-    "contextual_fit": "Poor. The candidate explicitly seeks 'ownership from day one' in building agentic systems and data platform engineering. This role is about 'acquiring strategic logos' and 'engaging founders/CTOs/CISOs' — commercial relationship management, not technical implementation. Even the domain (cybersecurity/NeoCloud sales) is adjacent to tech but in a completely different function.",
+    "technical_fit": "Very poor. This is a pure enterprise sales/account executive role focused on strategic growth, new logo acquisition, and C-suite relationship building in the AI infrastructure space. The candidate is an AI Software Engineer building and shipping LLM pipelines, automations, and internal tools. There is zero overlap between 'engaging founders/CTOs/CISOs to position Check Point products' and 'building LLM systems from scratch.' The AI mention is market context, not technical work.",
+    "contextual_fit": "Poor. The candidate explicitly seeks builder/engineer roles with hands-on ownership of AI/LLM systems. This role is the opposite: commercial, relationship-driven, pre-sales/strategic sales. Even the 'NeoCloud and AI infrastructure ecosystem' framing is about selling security solutions into that market, not engineering within it.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Mismatched. Check Point is an established enterprise security vendor; the role emphasizes executive relationship building and sales motion. The candidate's motivation centers on zero-to-production technical ownership, self-auditing code, shipping pipelines — antithetical to a strategic sales culture.",
+    "culture_fit": "Unknown from truncated description, but enterprise sales culture at a established cybersecurity vendor (Check Point) is fundamentally different from the small-team, greenfield-building environments the candidate targets.",
     "concerns": [
-      "Job description was truncated — requirements section not visible, so seniority/experience expectations are unknown; role is fundamentally a sales function, not engineering; candidate has no sales, business development, or account management background; even the AI aspect here is about selling AI infrastructure security, not building with LLMs; likely requires extensive enterprise sales experience and executive presence not evidenced in profile"
+      "Requirements section was not visible in truncated description — assume conservative scoring",
+      "Role is fundamentally misaligned: sales/BD vs. engineering, regardless of AI-adjacent market",
+      "No evidence of technical building, integration, or operations work in the visible description",
+      "Candidate would be selling Check Point security products, not building AI systems — this is a career direction he deliberately left (law/High Court) to move INTO engineering",
+      "Even if full description revealed junior-friendly aspects, the core function (Account Executive) is irreconcilable with target role shapes"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1080,18 +1098,18 @@
     "rescored": true
   },
   {
-    "score": 32,
+    "score": 35,
     "hard_blockers": [],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Role is explicitly senior management (team leadership, AI strategy, roadmap definition) — candidate has zero leadership experience and is seeking junior/individual-contributor growth",
-      "'Proven leadership experience' and 'building and developing high-performing teams' are core requirements, not nice-to-haves",
-      "Candidate's 2-week notice and intern status vs. Manager title signals massive experience gap",
-      "Industrial domain (energy/manufacturing) is unfamiliar, though candidate is open to new domains — this is minor compared to seniority mismatch",
-      "MLOps and Azure cloud are mentioned as hands-on requirements at a depth the candidate hasn't demonstrated",
-      "Role shape is strategy + people management + stakeholder influence, not the 'zero to production' building the candidate seeks"
+      "Role requires proven leadership experience candidate does not have and is not seeking",
+      "Explicitly asks for Azure; candidate has Google Cloud and Linux/Hetzner only",
+      "'Manager' title with team-building mandate vs. candidate's individual-contributor trajectory and stated preference for 'owning real projects' hands-on",
+      "Industrial/engineering domain experience listed as plus; candidate has zero exposure",
+      "Career-changer profile with internship-level experience applying to role expecting established track record of 'building and developing high-performing teams'",
+      "Salary and seniority level likely far above candidate's range, risking automatic screening rejection"
     ],
     "job": {
       "company": "Kanadevia Inova AG",
@@ -1101,17 +1119,17 @@
       "portal": "adzuna",
       "description": "Turning advanced analytics and artificial intelligence into real business impact . Join us in shaping the future of AI by leading innovative solutions, driving enterprise-wide adoption, and building high-performing teams that create measurable value across the organisation.\n Your Responsibilities \n Lead & Inspire a team of Data Scientists, ML Engineers, and AI Specialists, fostering innovation, collaboration, and continuous growth.\n Shape AI Strategy by identifying high-value opportunities, defining the Analytics & AI roadmap, and driving responsible AI adoption across the business.\n Partner with Stakeholders across business and technology functions to transform challenges into impactful AI and analytics solutions.\n Drive AI Solutions & Platforms by leading the development, deployment, and operation of scalable AI, Machine Learning, and MLOps capabilities.\n Provide Technical Leadership through hands-on guidance, architectural oversight, and expertise in AI, GenAI, ML, and modern technologies. We are looking for a leader who combines strategic thinking, technical expertise, and a passion for driving business value through AI, ML and advanced analytics.\n Proven leadership experience in Analytics, Data Science, Machine Learning, or AI, with a track record of building and developing high-performing teams.\n Strong expertise in AI, Machine Learning, and Advanced Analytics , including enterprise-scale solution delivery and AI adoption initiatives.\n Hands-on technical knowledge of MLOps, model deployment, cloud platforms (preferably Azure), Python, and modern AI technologies such as LLMs, Generative AI, and AI Agents.\n Business-oriented mindset &#xa0;with the ability to translate opportunities into impactful solutions and measurable outcomes.\n Excellent communication and stakeholder management skills , with the ability to influence, drive change, and collaborate across global teams.\n Education: Bachelor's or Master's degree in Computer Science, Engineering, Data Science, Mathematics, or a related field.\n Experience in Engineering, Manufacturing, Energy, or other industrial environments is a plus. We offer \n Responsible challenge with diversified field of activity\n Team-oriented working atmosphere in an international Company\n Personal development opportunities through own Inova Academy\n Opportunity to gain an insight into various technical disciplines\n Excellent employment conditions\n Attractive working place (central, good transport links)\n Modern infrastructure\n \n For HR agencies: Please note that we do not accept applications coming from agencies. Thank you."
     },
-    "technical_fit": "Mismatch. Role demands senior leadership in MLOps, enterprise-scale ML platforms, and team management — the candidate is an intern/Junior-level builder seeking hands-on ownership of pipelines, not managing teams of Data Scientists/ML Engineers. His experience with LLM APIs and automation is relevant at practitioner level, but this is a Manager/Director role requiring years of proven leadership and strategic roadmap ownership.",
-    "contextual_fit": "Poor. The candidate explicitly wants 'internship or junior role' with 'real ownership from day one rather than support work' — this role is the inverse: leading others who do the building, not building himself. The 'from zero to production and owning it' motivation is about individual contribution, not enterprise AI strategy and stakeholder management across global teams.",
-    "salary_estimate": "CHF 140,000–180,000+ (Manager-level with team leadership responsibility)",
-    "culture_fit": "Moderate misalignment. Team-oriented international company with personal development fits, but the role shape (strategic manager vs. hands-on builder) fundamentally conflicts with candidate's stated career trajectory and excitement drivers.",
+    "technical_fit": "Significant mismatch. Role requires proven leadership experience building and managing high-performing teams of Data Scientists/ML Engineers/AI Specialists, plus enterprise-scale MLOps, Azure cloud, and strategic AI roadmap ownership. Candidate is an intern-level individual contributor with 2 weeks notice, no team leadership experience, no Azure exposure, and no track record of 'driving enterprise-wide adoption' or 'architectural oversight'. The technical skills overlap (Python, LLMs, MLOps concepts) is superficial against the seniority demands.",
+    "contextual_fit": "Poor. This is a MANAGER-level role explicitly seeking someone to 'lead & inspire,' 'shape AI strategy,' 'build high-performing teams,' and 'drive change across global teams.' The candidate's stated goal is to 'contribute to more complex AI systems and own real projects from day one' as a hands-on builder, not to manage teams or set enterprise strategy. His career-change narrative emphasizes shipping pipelines from scratch, not stakeholder management at executive level. The role shape is fundamentally opposite to what excites him.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Neutral-to-poor. Industrial/engineering company (waste-to-energy, manufacturing) with 'international company' structure, 'Inova Academy,' and emphasis on 'team-oriented working atmosphere.' The 'manager' framing and 'global teams' suggests hierarchical, process-heavy environment. Candidate's ideal is small-team ownership and greenfield building; this is large-org transformation leadership.",
     "concerns": [
-      "Role is explicitly senior management (team leadership, AI strategy, roadmap definition) — candidate has zero leadership experience and is seeking junior/individual-contributor growth",
-      "'Proven leadership experience' and 'building and developing high-performing teams' are core requirements, not nice-to-haves",
-      "Candidate's 2-week notice and intern status vs. Manager title signals massive experience gap",
-      "Industrial domain (energy/manufacturing) is unfamiliar, though candidate is open to new domains — this is minor compared to seniority mismatch",
-      "MLOps and Azure cloud are mentioned as hands-on requirements at a depth the candidate hasn't demonstrated",
-      "Role shape is strategy + people management + stakeholder influence, not the 'zero to production' building the candidate seeks"
+      "Role requires proven leadership experience candidate does not have and is not seeking",
+      "Explicitly asks for Azure; candidate has Google Cloud and Linux/Hetzner only",
+      "'Manager' title with team-building mandate vs. candidate's individual-contributor trajectory and stated preference for 'owning real projects' hands-on",
+      "Industrial/engineering domain experience listed as plus; candidate has zero exposure",
+      "Career-changer profile with internship-level experience applying to role expecting established track record of 'building and developing high-performing teams'",
+      "Salary and seniority level likely far above candidate's range, risking automatic screening rejection"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1120,17 +1138,17 @@
     "rescored": true
   },
   {
-    "score": 65,
+    "score": 55,
     "hard_blockers": [],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description was truncated — requirements, qualifications, and seniority expectations were not visible; score is conservative due to missing information",
-      "Significant domain mismatch: robotics autonomy vs. candidate's focus on LLM/data agentic systems",
-      "No evidence of LLM, data platform, or pipeline engineering work in the visible description",
-      "Likely requires robotics, computer vision, or control systems background not present in candidate's profile",
-      "Hardware/physical systems focus is a departure from candidate's software-only, cloud-based experience",
+      "Job description was truncated—requirements, qualifications, and full responsibilities were not visible; score kept conservative due to missing information",
+      "Domain mismatch: construction/robotics autonomy vs. candidate's LLM/agentic AI and workflow automation focus",
+      "Likely technical stack mismatch: robotics, computer vision, sensor fusion, and embedded systems not in candidate's skill set",
+      "Role is an internship, which the candidate explicitly excludes from target roles",
+      "No evidence of LLM, generative AI, or agentic systems in the visible description",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1141,16 +1159,16 @@
       "portal": "adzuna",
       "description": "Gravis Robotics is a startup that turns heavy construction machines into intelligent and autonomous robots. Our unique combination of learning-based automation and augmented remote control lets one operator safely conduct a fleet of machines in a gamified environment—from anywhere in the world. Our team has over a decade of academic experience honing the cutting edge of large-scale robotics, and is rapidly growing to bring that expertise into a trillion-dollar industry through active deployment…"
     },
-    "technical_fit": "Partial. The role is in ML/robotics autonomy, not LLM-powered pipelines or agentic systems. The candidate's strengths are in LLM APIs, data automation, and cloud infrastructure — not robotics, computer vision, or embedded systems. No overlap in tools or domain.",
-    "contextual_fit": "Weak. The candidate explicitly seeks ownership in agentic systems and data platform engineering. This is a robotics autonomy role at a hardware-heavy startup, likely involving perception, control, and physical systems — far from his stated interests and demonstrated trajectory.",
+    "technical_fit": "Partial. The role is ML/robotics-focused with autonomy systems, not LLM/agentic AI. The candidate's strengths are in LLM pipelines, tool-calling agents, and workflow automation—none of which are mentioned in the visible description. Robotics, computer vision, and physical autonomy systems are a significant domain and likely technical stack mismatch.",
+    "contextual_fit": "Weak. Construction robotics and heavy machinery autonomy is far from the candidate's demonstrated interests and experience. The 'gamified environment' and 'augmented remote control' suggest a focus on robotics/embedded systems rather than the AI software engineering and LLM production systems he seeks to grow in.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown. Startup environment with academic roots; likely fast-paced and research-intensive. No signal on ownership structure or intern autonomy.",
+    "culture_fit": "Unknown. Startup environment with academic roots could suit ownership-seeking mindset, but the domain mismatch makes this speculative.",
     "concerns": [
-      "Job description was truncated — requirements, qualifications, and seniority expectations were not visible; score is conservative due to missing information",
-      "Significant domain mismatch: robotics autonomy vs. candidate's focus on LLM/data agentic systems",
-      "No evidence of LLM, data platform, or pipeline engineering work in the visible description",
-      "Likely requires robotics, computer vision, or control systems background not present in candidate's profile",
-      "Hardware/physical systems focus is a departure from candidate's software-only, cloud-based experience"
+      "Job description was truncated—requirements, qualifications, and full responsibilities were not visible; score kept conservative due to missing information",
+      "Domain mismatch: construction/robotics autonomy vs. candidate's LLM/agentic AI and workflow automation focus",
+      "Likely technical stack mismatch: robotics, computer vision, sensor fusion, and embedded systems not in candidate's skill set",
+      "Role is an internship, which the candidate explicitly excludes from target roles",
+      "No evidence of LLM, generative AI, or agentic systems in the visible description"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1159,17 +1177,19 @@
     "rescored": true
   },
   {
-    "score": 58,
-    "hard_blockers": [],
+    "score": 45,
+    "hard_blockers": [
+      "German is required at fluent/native level: 'Gestalte', 'Deine Hauptaufgaben', 'Aufbau, Betrieb und kontinuierliche W...' — the entire job posting is in German, the workplace is Universitätsspital Zürich (public hospital, German-speaking institution in Zürich), and the role involves operating platforms for internal engineers in this environment. The truncated description shows no indication of English as working language. This constitutes a hard German language requirement the candidate cannot meet at A2 level."
+    ],
     "insufficient_info": true,
-    "language_gap_intermediate": true,
+    "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description was truncated — requirements, seniority level, and degree requirements were not visible; score kept conservative due to missing information",
-      "Role appears focused on platform operations and stability ('Betrieb') rather than building/agentic innovation the candidate seeks",
-      "Healthcare/enterprise setting likely means heavy compliance, slower cycles, less greenfield AI work",
-      "German workplace context (Swiss hospital, 'per Dezember 2026 oder nach Vereinbarung') suggests German proficiency may become relevant for collaboration even if not hard-required",
-      "Candidate's A2 German is below likely working needs in a Zurich hospital environment; studying toward B1 but not there yet",
+      "Blocker: German is required at fluent/native level: 'Gestalte', 'Deine Hauptaufgaben', 'Aufbau, Betrieb und kontinuierliche W...' — the entire job posting is in German, the workplace is Universitätsspital Zürich (public hospital, German-speaking institution in Zürich), and the role involves operating platforms for internal engineers in this environment. The truncated description shows no indication of English as working language. This constitutes a hard German language requirement the candidate cannot meet at A2 level.",
+      "Requirements section was not visible due to truncated description—seniority, years of experience, and full skill requirements unknown; score conservative accordingly.",
+      "Role appears to be infrastructure/platform engineering for data teams, not AI/LLM system building—candidate's core target mismatch.",
+      "Healthcare domain with hospital compliance/regulatory burden likely unfamiliar and potentially frustrating for career-changer seeking hands-on product building.",
+      "Location Dübendorf/Uster is Zurich-area acceptable, but hospital campus may have rigid hybrid/onsite expectations not visible in truncated text.",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1180,16 +1200,15 @@
       "portal": "adzuna",
       "description": "per Dezember 2026 oder nach Vereinbarung Gestalte die Daten- und Integrationsplattformen des Universitätsspitals Zürich aktiv mit und schaffe die technologische Grundlage für das digitale Spital der Zukunft. Im Data & Integration Platform Team entwickelst und betreibst du die Data Platform of Platforms (DPoP) sowie die Integration Platform und stellst deren sicheren, stabilen und skalierbaren Betrieb für Data- und API-Engineers sicher. Deine Hauptaufgaben * Aufbau, Betrieb und kontinuierliche W…"
     },
-    "technical_fit": "Partial. The visible description emphasizes data platform operations, infrastructure stability, and integration platforms rather than LLM-powered pipelines or agentic systems. The candidate's strengths in LLM APIs, automation pipelines, and end-to-end ownership don't clearly map to what appears to be an enterprise platform engineering role focused on 'Platform of Platforms' operations for a hospital setting.",
-    "contextual_fit": "Weak. The role is at a university hospital (USZ), which implies heavy regulation, slower innovation cycles, and established enterprise infrastructure rather than greenfield AI building. The candidate's explicit motivation is 'zero to production' ownership with agentic systems; this role's framing ('sicherer, stabiler und skalierbarer Betrieb') suggests maintaining and operating existing platforms over building new AI/automation. Career-changer openness to domains doesn't help when the role shape itself mismatches.",
+    "technical_fit": "Partial. The visible portion emphasizes data platform infrastructure (Data Platform of Platforms, integration platforms, API infrastructure) rather than AI/LLM/agentic systems. The candidate's strengths are in LLM pipelines, prompt engineering, and AI application building—not in enterprise data platform operations, API gateway management, or hospital-scale data infrastructure. Some overlap in Python, SQL, REST APIs, Docker, cloud, and CI/CD, but the core role appears to be platform engineering for data/analytics teams rather than AI system development.",
+    "contextual_fit": "Weak. Healthcare domain is unfamiliar (though candidate is open to new domains). The role is at a university hospital—likely bureaucratic, regulated, and process-heavy environment, which contrasts with the candidate's preference for ownership and greenfield building. 'Platform of Platforms' suggests internal infrastructure serving other engineers, not end-user AI products. The candidate's motivation emphasizes 'building the systems' and 'owning real projects from day one'—this reads more like maintaining critical infrastructure for others to build upon.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unclear from truncated description, but hospital/enterprise IT culture typically differs from the candidate's preferred fast-iteration, high-ownership startup/agency environment. German-language workplace implied by employer type and location.",
+    "culture_fit": "Uncertain. Hospital setting implies formal hierarchy, compliance requirements, and slower change velocity. Candidate's trajectory is startup/small-agency speed and ownership. Mismatch in pace and autonomy expectations likely.",
     "concerns": [
-      "Job description was truncated — requirements, seniority level, and degree requirements were not visible; score kept conservative due to missing information",
-      "Role appears focused on platform operations and stability ('Betrieb') rather than building/agentic innovation the candidate seeks",
-      "Healthcare/enterprise setting likely means heavy compliance, slower cycles, less greenfield AI work",
-      "German workplace context (Swiss hospital, 'per Dezember 2026 oder nach Vereinbarung') suggests German proficiency may become relevant for collaboration even if not hard-required",
-      "Candidate's A2 German is below likely working needs in a Zurich hospital environment; studying toward B1 but not there yet"
+      "Requirements section was not visible due to truncated description—seniority, years of experience, and full skill requirements unknown; score conservative accordingly.",
+      "Role appears to be infrastructure/platform engineering for data teams, not AI/LLM system building—candidate's core target mismatch.",
+      "Healthcare domain with hospital compliance/regulatory burden likely unfamiliar and potentially frustrating for career-changer seeking hands-on product building.",
+      "Location Dübendorf/Uster is Zurich-area acceptable, but hospital campus may have rigid hybrid/onsite expectations not visible in truncated text."
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1198,18 +1217,20 @@
     "rescored": true
   },
   {
-    "score": 45,
-    "hard_blockers": [],
+    "score": 52,
+    "hard_blockers": [
+      "German language requirement: description is in German ('Gestalte deine Zukunft gemeinsam mit uns', 'Smart Working'), company name 'Job-Room' and location Winterthur strongly suggest German-speaking workplace; the German-language job posting itself is a hard indicator that professional German is required for the role, which the candidate does not possess at working level (A2 only)"
+    ],
     "insufficient_info": true,
-    "language_gap_intermediate": true,
+    "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Requirements/qualifications section not visible in truncated description—major uncertainty on seniority expectations, years of experience, and specific skills",
-      "'Senior' title strongly signals experienced hire, not intern/junior role the candidate seeks",
-      "Winterthur location: commutable from Zurich but not ideal, and not fully remote",
-      "Role appears to be platform infrastructure/enabling other teams rather than hands-on agentic system building",
-      "German-language posting environment; unclear if English is sufficient working language",
-      "Data Mesh/Lakehouse focus is more architectural/platform-engineering than LLM pipeline development",
+      "Blocker: German language requirement: description is in German ('Gestalte deine Zukunft gemeinsam mit uns', 'Smart Working'), company name 'Job-Room' and location Winterthur strongly suggest German-speaking workplace; the German-language job posting itself is a hard indicator that professional German is required for the role, which the candidate does not possess at working level (A2 only)",
+      "Requirements section not visible in truncated description — cannot assess years-of-experience, degree, or specific skill demands",
+      "Role title is 'Senior' which typically implies 4+ years experience; candidate has ~1 year tech experience as intern",
+      "Location Winterthur is not Zurich/Zug core area; commute or relocation friction",
+      "Functional mismatch: data platform infrastructure vs. candidate's target of building/integrating LLM and agentic systems directly",
+      "German-language posting strongly signals German as working language; even if not explicitly 'fluent required', the pattern is concerning for A2 candidate",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1220,17 +1241,16 @@
       "portal": "adzuna",
       "description": "60 - 100%, Winterthur / Smart Working Gestalte deine Zukunft gemeinsam mit uns Unsere ambitionierten Agentic- und GenAI-Ziele basieren auf einer soliden Datenbasis. Das Fundament dafür bildet unsere Datenplattform in der Google Cloud, die wir nach Data-Mesh-Prinzipien aufbauten und weiterentwickeln. Mit unserer Lakehouse Plattform stellen wir den Teams die notwendigen Services bereit, um Data Products effizient zu erstellen, zu konsumieren und zu teilen - alles im Sinne einer modernen, skalierb…"
     },
-    "technical_fit": "Partial. Google Cloud and data platform alignment is strong, but the visible description emphasizes Data Mesh, Lakehouse, and platform infrastructure for internal teams—more foundational/platform-engineering than the end-to-end LLM pipeline ownership and agentic systems building the candidate seeks. No mention of LLMs, agentic workflows, or GenAI implementation in the visible text beyond aspirational 'Agentic- und GenAI-Ziele' as future goals, not current hands-on work.",
-    "contextual_fit": "Weak. 'Senior' in title with 60-100% flexibility suggests experienced hire, not intern/junior. Winterthur is not Zurich/Zug (though commutable, not ideal). The role appears to be platform enablement for other teams' data products rather than zero-to-one building with real ownership. Candidate's core motivation—shipping agentic systems end-to-end—unlikely met here.",
+    "technical_fit": "Partial. The role centers on data platform engineering (Google Cloud, Data Mesh, Lakehouse) which touches the candidate's GCP and data skills, but the visible description emphasizes foundational data infrastructure over LLM/agentic system building. The candidate's core strength—shipping LLM pipelines and automations—is not the focus here; this is platform enablement for others' AI work rather than hands-on AI engineering.",
+    "contextual_fit": "Weak. Winterthur is not Zurich/Zug (though commute-adjacent), and the role appears to be about building data infrastructure to support Agentic/GenAI goals rather than building those systems directly. The 'Senior' title and platform-engineering scope suggest ownership of data mesh/lakehouse architecture, which is a level above the candidate's demonstrated project ownership and a different functional track than his target AI/LLM builder roles.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Neutral-to-negative. 'Smart Working' suggests hybrid flexibility, but the role shape (platform services for internal consumers, Data Mesh governance) contrasts with candidate's desire for direct ownership and production shipping. German-language job posting environment suggests working language may not be English-only.",
+    "culture_fit": "Neutral-to-weak signal. 'Smart Working' suggests hybrid flexibility, but the truncated description reveals nothing about team structure, growth paths for career changers, or whether this senior platform role would mentor a junior or expect immediate independent ownership.",
     "concerns": [
-      "Requirements/qualifications section not visible in truncated description—major uncertainty on seniority expectations, years of experience, and specific skills",
-      "'Senior' title strongly signals experienced hire, not intern/junior role the candidate seeks",
-      "Winterthur location: commutable from Zurich but not ideal, and not fully remote",
-      "Role appears to be platform infrastructure/enabling other teams rather than hands-on agentic system building",
-      "German-language posting environment; unclear if English is sufficient working language",
-      "Data Mesh/Lakehouse focus is more architectural/platform-engineering than LLM pipeline development"
+      "Requirements section not visible in truncated description — cannot assess years-of-experience, degree, or specific skill demands",
+      "Role title is 'Senior' which typically implies 4+ years experience; candidate has ~1 year tech experience as intern",
+      "Location Winterthur is not Zurich/Zug core area; commute or relocation friction",
+      "Functional mismatch: data platform infrastructure vs. candidate's target of building/integrating LLM and agentic systems directly",
+      "German-language posting strongly signals German as working language; even if not explicitly 'fluent required', the pattern is concerning for A2 candidate"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1239,16 +1259,18 @@
     "rescored": true
   },
   {
-    "score": 68,
+    "score": 72,
     "hard_blockers": [],
     "insufficient_info": true,
     "language_gap_intermediate": false,
-    "key_match_points": [],
+    "key_match_points": [
+      "Strong alignment: role explicitly builds and ships AI agentic systems to production, matching the candidate's core target. His stack (Python, LLM APIs, tool-calling agents, retrieval, guardrails, REST APIs, Docker, cloud) maps directly onto 'AI experiments' and 'Agentic solutions from ideation to production'. The 'AI innovation lab' framing suggests greenfield building with ownership, which fits his preference for owning projects from day one."
+    ],
     "red_flags": [
-      "Job description was truncated — requirements, qualifications, seniority expectations, and language requirements were not visible; score is conservative due to missing information",
-      "Avaloq serves regulated financial clients — may involve compliance-heavy processes that could slow 'zero to production' ownership pace",
-      "No visibility on whether role is internship/junior-level or expects significant prior production AI experience; title says 'AI Software Engineer' not 'Intern'",
-      "German language requirement unknown due to truncation; Swiss financial firms sometimes require German for internal stakeholders",
+      "Job description was truncated; requirements, qualifications, and seniority expectations were not visible — score is conservative pending full text",
+      "'Lead AI experiments' phrasing may imply expectations above junior/associate level; unclear if this is 'lead' as in 'own' or 'lead' as in 'manage/mentor'",
+      "Avaloq's core banking domain is complex and regulated; steep domain learning curve even for strong technical fit",
+      "No evidence yet of German requirement, but Swiss fintechs sometimes have implicit expectations; full JD needed",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1259,18 +1281,18 @@
       "portal": "adzuna",
       "description": "Job Description We are seeking a highly skilled, fast learner and well rounded, AI Software Engineer to join our AI innovation lab team. The ideal candidate will lead AI experiments and bring cutting-edge AI Agentic solutions from ideation to production. The mission of Avaloq AI Lab is to improve operational efficiency and augment Back-to-Front Office user experiences, through the application of state-of-the-art AI technology. We work collaboratively with industry leaders to deliver responsible…"
     },
-    "technical_fit": "Strong alignment on core stack: Python, LLM APIs, automation pipelines, Docker, cloud infrastructure — all explicitly relevant to an AI Lab building agentic solutions. The 'ideation to production' ownership language matches his zero-to-one builder motivation. Missing requirements section prevents full assessment of specific tooling or depth expectations.",
-    "contextual_fit": "Avaloq is a financial software provider (banking/wealth management), but the role is in an AI innovation lab focused on operational efficiency and user experience augmentation — functional AI engineering rather than domain-specific finance roles. As a career changer open to new domains, this is acceptable. Zurich location and his permit B are perfect.",
+    "technical_fit": "Strong alignment: role explicitly builds and ships AI agentic systems to production, matching the candidate's core target. His stack (Python, LLM APIs, tool-calling agents, retrieval, guardrails, REST APIs, Docker, cloud) maps directly onto 'AI experiments' and 'Agentic solutions from ideation to production'. The 'AI innovation lab' framing suggests greenfield building with ownership, which fits his preference for owning projects from day one.",
+    "contextual_fit": "Good: Avaloq is a Swiss fintech (banking software), Zürich-based, so location and permit are clean. The 'Back-to-Front Office' domain is unfamiliar but candidate is deliberately open to new domains. 'Fast learner' and 'well rounded' language suggests appetite for career-changer trajectory. Truncated description prevents full assessment of seniority expectations.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "AI Lab structure suggests experimentation and ownership, which aligns with his desire to build and ship autonomously. 'Collaboratively with industry leaders' could mean some stakeholder management overhead, but 'lead AI experiments' suggests meaningful responsibility. Truncated description limits confidence.",
+    "culture_fit": "Positive signals: innovation lab structure implies experimentation and building over maintenance; collaborative but with individual ownership of experiments. Candidate's self-directed project history (building from scratch at agency) fits this mode. Risk: 'lead AI experiments' phrasing could imply more seniority than intern-level, but truncated text prevents confirmation.",
     "concerns": [
-      "Job description was truncated — requirements, qualifications, seniority expectations, and language requirements were not visible; score is conservative due to missing information",
-      "Avaloq serves regulated financial clients — may involve compliance-heavy processes that could slow 'zero to production' ownership pace",
-      "No visibility on whether role is internship/junior-level or expects significant prior production AI experience; title says 'AI Software Engineer' not 'Intern'",
-      "German language requirement unknown due to truncation; Swiss financial firms sometimes require German for internal stakeholders"
+      "Job description was truncated; requirements, qualifications, and seniority expectations were not visible — score is conservative pending full text",
+      "'Lead AI experiments' phrasing may imply expectations above junior/associate level; unclear if this is 'lead' as in 'own' or 'lead' as in 'manage/mentor'",
+      "Avaloq's core banking domain is complex and regulated; steep domain learning curve even for strong technical fit",
+      "No evidence yet of German requirement, but Swiss fintechs sometimes have implicit expectations; full JD needed"
     ],
-    "recommendation": "SKIP",
-    "decision": "SKIP",
+    "recommendation": "REVIEW",
+    "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-08-23T15:41:42.144481+00:00",
     "rescored": true
@@ -1311,17 +1333,17 @@
     "no_posting_text": true
   },
   {
-    "score": 45,
+    "score": 35,
     "hard_blockers": [],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description truncated—requirements/qualifications section not visible, score kept conservative",
-      "Role shape is strategy consulting, not engineering; candidate would be advising on technology rather than building it",
-      "No evidence of LLM, agentic systems, or data platform work in visible description",
-      "Likely involves significant German client interaction given DACH market, though not stated as hard requirement",
-      "Big Four intern programs often involve heavy documentation and stakeholder management rather than hands-on system building",
+      "Job description was truncated — requirements/qualifications section not visible, making this assessment conservative by necessity",
+      "Role appears to be pure strategy consulting with no AI/LLM/ML/automation engineering component visible",
+      "Candidate would be advising on technology enablement rather than enabling/building technology himself — misaligned with stated motivation to 'build the systems, not just use them'",
+      "Big Four consulting internship likely involves significant PowerPoint, stakeholder management, and framework application rather than code shipping",
+      "No evidence of production system ownership, LLM pipelines, or technical implementation work",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1332,16 +1354,16 @@
       "portal": "jobalert.indeed.com",
       "description": "At EY, we're all in to shape your future with confidence. We'll help you succeed in a globally connected powerhouse of diverse teams and take your career wherever you want it to go. Join EY and help to build a better working world. The opportunity: your next adventure awaits As part of our high-performing Technology Strategy & Transformation Team, you will deliver exceptional client service - consulting clients on technology strategies, providing advice on how technology enablement, digital tra…"
     },
-    "technical_fit": "Poor. Role is technology strategy consulting—advisory on digital transformation and technology enablement for clients—not hands-on engineering. No mention of building LLM pipelines, agentic systems, data platforms, or production ownership. This is PowerPoint-and-workstream consulting, not builder work.",
-    "contextual_fit": "Weak. Candidate wants zero-to-production ownership of technical systems; this is client-facing strategy consulting at a Big Four firm. Career changer background is fine, but the role shape (advisory, not building) fundamentally mismatches his stated motivation.",
+    "technical_fit": "Poor. The visible description frames this as a technology strategy consulting role focused on advising clients on digital transformation and technology enablement. There is zero mention of AI, LLMs, ML, data engineering, automation, or any hands-on building/operating of systems. This is a strategy and advisory internship, not an engineering or implementation role.",
+    "contextual_fit": "Weak. The candidate's entire profile is built around shipping LLM pipelines, automations, and production systems from scratch. EY's Technology Strategy & Transformation team appears to sit at the advisory/consulting layer — recommending strategies, not building and operating the systems themselves. The 'ownership from day one' and 'greenfield builder' criteria that excite the candidate are absent.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown. EY culture is typical Big Four—hierarchical, client-service oriented, long hours on decks. Not obviously bad, but not aligned with small-team ownership culture he seeks.",
+    "culture_fit": "Neutral-to-poor. EY is a Big Four professional services firm with structured hierarchies and client-facing consulting culture. The candidate deliberately left law/institutional settings to build systems, not advise on them. The 'shape your future with confidence' corporate framing suggests a very different environment from the small-team, hands-on ownership he seeks.",
     "concerns": [
-      "Job description truncated—requirements/qualifications section not visible, score kept conservative",
-      "Role shape is strategy consulting, not engineering; candidate would be advising on technology rather than building it",
-      "No evidence of LLM, agentic systems, or data platform work in visible description",
-      "Likely involves significant German client interaction given DACH market, though not stated as hard requirement",
-      "Big Four intern programs often involve heavy documentation and stakeholder management rather than hands-on system building"
+      "Job description was truncated — requirements/qualifications section not visible, making this assessment conservative by necessity",
+      "Role appears to be pure strategy consulting with no AI/LLM/ML/automation engineering component visible",
+      "Candidate would be advising on technology enablement rather than enabling/building technology himself — misaligned with stated motivation to 'build the systems, not just use them'",
+      "Big Four consulting internship likely involves significant PowerPoint, stakeholder management, and framework application rather than code shipping",
+      "No evidence of production system ownership, LLM pipelines, or technical implementation work"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1384,17 +1406,16 @@
     "no_posting_text": true
   },
   {
-    "score": 65,
-    "hard_blockers": [],
+    "score": 35,
+    "hard_blockers": [
+      "Role is explicitly an internship — candidate explicitly excludes internships and working-student roles from his search"
+    ],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Requirements/qualifications section was not visible in the truncated description — cannot assess actual technical needs, seniority expectations, or whether LLM/agentic work is involved",
-      "No evidence of LLM, generative AI, or agentic systems in the visible description — appears to be traditional comparison/recommendation ML",
-      "Role at mature 25-year-old platform with 80M visits likely involves maintaining existing systems rather than greenfield building with ownership",
-      "Large consumer marketplace context suggests business domain (insurance/telecom/banking comparisons) may not offer the technical growth into agentic systems the candidate seeks",
-      "German likely useful for Swiss consumer platform, though not stated as required; English may suffice for technical work",
+      "Blocker: Role is explicitly an internship — candidate explicitly excludes internships and working-student roles from his search",
+      "Job description truncated — requirements/qualifications section not visible, making full assessment impossible; role duration (6-12 months) suggests fixed-term contract, not permanent employment; established platform likely has mature systems rather than greenfield AI building; German market context (Swiss comparison platform) may involve German content/domain knowledge, though English likely sufficient technically; candidate's stated goal is to 'own real projects from day one' in permanent roles, which internship structure contradicts",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1405,16 +1426,12 @@
       "portal": "jobalert.indeed.com",
       "description": "About us comparis.ch is the leading comparison platform in Switzerland. We have been comparing the prices and products of health insurers, other insurance companies, telecom providers and banks for over 25 years and offer the largest Swiss online marketplace for cars and property. Our comprehensive comparisons ensure transparency for our users and help them make the right decisions. With over 80 million visits each year, we rank among the most widely used websites in Switzerland. Four out of fi…"
     },
-    "technical_fit": "Partial. The role is ML/AI at a comparison platform, which aligns directionally with the candidate's interest in LLM-powered pipelines and automation. However, the visible description mentions price/product comparison for insurance/telecom/banking and a large consumer marketplace — this sounds like traditional ML/recommendation systems and data engineering for comparison tables, not agentic systems or greenfield LLM automation. No mention of LLMs, agents, or generative AI in the visible text.",
-    "contextual_fit": "Weak-moderate. Zurich location and 6-12 month internship duration match well. The candidate's permit and 2-week notice are fine. However, comparis.ch is a mature consumer comparison business — the role shape is likely maintaining/improving existing comparison algorithms and data pipelines, not zero-to-production ownership of new AI systems. The candidate explicitly wants 'real ownership from day one rather than support work' and 'agentic systems' — this role's visible description suggests the opposite: a large established platform where an intern would likely support existing systems.",
+    "technical_fit": "Potentially aligned — comparis.ch is a data-heavy comparison platform where ML/AI would likely involve recommendation systems, pricing models, or NLP for product comparisons. The candidate's LLM pipeline experience, API integration, and automation skills could transfer. However, the 'Internship' title and 6-12 month duration signal a non-permanent role, which conflicts with his explicit exclusion of internships.",
+    "contextual_fit": "Poor — the role is explicitly an internship (\"Internship\" in title, \"f/m/x\" typical of entry-level/temporary Swiss postings). The candidate's own targeting excludes internships and working-student roles entirely. He is seeking permanent AI Engineer positions with ownership from day one.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Unknown from truncated description. Large established platform (80M visits/year) suggests more structured, less startup-like ownership culture. Candidate wants to 'take something from zero to production and own it' — this is harder at a 25-year-old market leader.",
+    "culture_fit": "Unknown — comparis.ch is established and regulated (insurance/finance comparisons), suggesting process-oriented culture. No signal on startup-style ownership or greenfield building.",
     "concerns": [
-      "Requirements/qualifications section was not visible in the truncated description — cannot assess actual technical needs, seniority expectations, or whether LLM/agentic work is involved",
-      "No evidence of LLM, generative AI, or agentic systems in the visible description — appears to be traditional comparison/recommendation ML",
-      "Role at mature 25-year-old platform with 80M visits likely involves maintaining existing systems rather than greenfield building with ownership",
-      "Large consumer marketplace context suggests business domain (insurance/telecom/banking comparisons) may not offer the technical growth into agentic systems the candidate seeks",
-      "German likely useful for Swiss consumer platform, though not stated as required; English may suffice for technical work"
+      "Job description truncated — requirements/qualifications section not visible, making full assessment impossible; role duration (6-12 months) suggests fixed-term contract, not permanent employment; established platform likely has mature systems rather than greenfield AI building; German market context (Swiss comparison platform) may involve German content/domain knowledge, though English likely sufficient technically; candidate's stated goal is to 'own real projects from day one' in permanent roles, which internship structure contradicts"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1429,11 +1446,10 @@
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description was truncated — requirements/qualifications section not visible, score kept conservative",
-      "Role is fundamentally non-technical; candidate would be leaving software engineering entirely",
-      "No evidence of LLM, automation, pipeline, or platform engineering work",
-      "Big 4 graduate programs typically involve heavy documentation, client compliance work, and rigid career ladders rather than hands-on building",
-      "Candidate's entire project portfolio and technical certifications would go unused",
+      "Requirements/qualifications section was not visible in truncated description — unable to assess full criteria",
+      "Role appears to be pure tax consulting with zero technical/AI/automation component, completely misaligned with candidate's career change motivation and skill set",
+      "Even if fully remote or Zurich-based, the functional content is fundamentally wrong for this candidate's goals",
+      "Candidate would likely be deeply dissatisfied — 'I wanted to build the systems, not just use them' directly contradicts a tax compliance/consulting role",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1444,16 +1460,15 @@
       "portal": "jobalert.indeed.com",
       "description": "At EY, we're all in to shape your future with confidence. We'll help you succeed in a globally connected powerhouse of diverse teams and take your career wherever you want it to go. Join EY and help to build a better working world. The opportunity: your next adventure awaits Kick-start a purposeful career and become part of our unique Transfer Pricing Team to tackle exciting daily challenges! As the only one of the Big 4 with a specialist cross-border practice dedicated to the Financial Service…"
     },
-    "technical_fit": "Very poor. The role is in Tax/Transfer Pricing within Financial Services — a pure finance/consulting domain with no software engineering, no LLMs, no data pipelines, no automation, no cloud infrastructure. The candidate's entire skill set (Python, LLM APIs, CI/CD, Docker, dashboards) is irrelevant to this job.",
-    "contextual_fit": "Poor. The candidate explicitly seeks 'agentic systems and data platform engineering' with 'real ownership from day one' building LLM-powered pipelines. This is a graduate internship in tax consulting at a Big 4 firm — the opposite of hands-on technical building. Career-changer openness does not extend to abandoning tech entirely for a non-technical role.",
+    "technical_fit": "None visible. The role is in Transfer Pricing Tax at EY, a purely financial/consulting services function with no technology, AI, LLM, ML, data engineering, or automation component mentioned in the visible description.",
+    "contextual_fit": "Poor. The candidate's entire profile is oriented toward building AI/LLM systems and technical infrastructure. This is a graduate tax consulting role in financial services regulation, diametrically opposed to his stated career direction and motivation ('build the systems, not just use them').",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Mismatched. EY's 'globally connected powerhouse' and 'purposeful career' framing is generic consulting; the candidate wants small-team ownership, zero-to-production building, and technical autonomy. Big 4 structure is hierarchical, client-service oriented, with little of the builder culture he seeks.",
+    "culture_fit": "Likely mismatched. EY's Big 4 consulting culture is client-service oriented, not product-building or engineering-focused. The candidate explicitly seeks ownership of technical projects from day one in AI systems.",
     "concerns": [
-      "Job description was truncated — requirements/qualifications section not visible, score kept conservative",
-      "Role is fundamentally non-technical; candidate would be leaving software engineering entirely",
-      "No evidence of LLM, automation, pipeline, or platform engineering work",
-      "Big 4 graduate programs typically involve heavy documentation, client compliance work, and rigid career ladders rather than hands-on building",
-      "Candidate's entire project portfolio and technical certifications would go unused"
+      "Requirements/qualifications section was not visible in truncated description — unable to assess full criteria",
+      "Role appears to be pure tax consulting with zero technical/AI/automation component, completely misaligned with candidate's career change motivation and skill set",
+      "Even if fully remote or Zurich-based, the functional content is fundamentally wrong for this candidate's goals",
+      "Candidate would likely be deeply dissatisfied — 'I wanted to build the systems, not just use them' directly contradicts a tax compliance/consulting role"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1498,17 +1513,15 @@
     "no_posting_text": true
   },
   {
-    "score": 35,
+    "score": 15,
     "hard_blockers": [],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description truncated — requirements/qualifications section not visible, score kept conservative",
-      "Role is pure finance advisory (M&A, Transaction Diligence, Valuation) with zero technical/AI/engineering component — complete mismatch with candidate's stated direction",
-      "No indication of LLM, automation, data platform, or any hands-on engineering work",
-      "Candidate's non-tech background (Law, Court of Justice) is actually closer to this domain than his current trajectory, but he has deliberately pivoted away from this path",
-      "Large corporate advisory environment unlikely to offer the ownership and building-focused role shape candidate prioritizes",
+      "Requirements/qualifications section not visible due to truncated description — cannot assess degree requirements, language needs, or specific skills expected",
+      "Role is fundamentally misaligned with candidate's stated goals and skills; even if some data analysis were involved, this is not a systems-building position",
+      "M&A advisory is a distinct profession; 'modeling' here means financial/Excel modeling, not ML/AI model development",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1519,16 +1532,14 @@
       "portal": "jobalert.indeed.com",
       "description": "At EY, we're all in to shape your future with confidence. We'll help you succeed in a globally connected powerhouse of diverse teams and take your career wherever you want it to go. Join EY and help to build a better working world. The opportunity: your next adventure awaits EY's Transactions Corporate Finance (TCF) department is a unique nexus between the corporate finance and the M&A transactions landscape, with a focus on Transaction Diligence, Valuation, Modeling & Economics and mid-size M&…"
     },
-    "technical_fit": "Very poor. Role is M&A Lead Advisory in corporate finance/transaction diligence — pure finance advisory with no LLM, automation, data platform, or engineering work. Candidate's entire profile is built around building production AI pipelines and agentic systems; this role is the opposite end of the spectrum.",
-    "contextual_fit": "Poor. While EY is a reputable firm and Zurich location is ideal, the role shape is fundamentally misaligned: no ownership of technical systems, no zero-to-production building, no AI/automation work. Candidate explicitly seeks 'agentic systems and data platform engineering' with 'real ownership from day one rather than support work.' This is traditional advisory/consulting support in M&A.",
+    "technical_fit": "None. This is pure M&A advisory/corporate finance. No AI, ML, LLM, data, automation, or software engineering component visible. The role sits in Transaction Diligence, Valuation, Modeling & Economics — financial analysis and deal advisory, not building systems.",
+    "contextual_fit": "Very poor. Candidate's entire trajectory is toward building AI/LLM systems, not financial advisory. His legal background is irrelevant here; this is a finance career track, not a tech role where domain-agnosticism applies.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Neutral-to-poor. EY's large corporate structure and advisory hierarchy is far from the small-team, builder-centric environments where candidate thrives. His excitement comes from shipping and owning technical systems, not financial analysis in client service teams.",
+    "culture_fit": "Unknown — description is generic EY corporate messaging with no team or culture details visible.",
     "concerns": [
-      "Job description truncated — requirements/qualifications section not visible, score kept conservative",
-      "Role is pure finance advisory (M&A, Transaction Diligence, Valuation) with zero technical/AI/engineering component — complete mismatch with candidate's stated direction",
-      "No indication of LLM, automation, data platform, or any hands-on engineering work",
-      "Candidate's non-tech background (Law, Court of Justice) is actually closer to this domain than his current trajectory, but he has deliberately pivoted away from this path",
-      "Large corporate advisory environment unlikely to offer the ownership and building-focused role shape candidate prioritizes"
+      "Requirements/qualifications section not visible due to truncated description — cannot assess degree requirements, language needs, or specific skills expected",
+      "Role is fundamentally misaligned with candidate's stated goals and skills; even if some data analysis were involved, this is not a systems-building position",
+      "M&A advisory is a distinct profession; 'modeling' here means financial/Excel modeling, not ML/AI model development"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1571,17 +1582,16 @@
     "no_posting_text": true
   },
   {
-    "score": 35,
+    "score": 15,
     "hard_blockers": [],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Job description was truncated — requirements section not visible, forcing conservative scoring",
-      "Role is explicitly in GIS/administration, not software engineering or AI",
-      "Job category 'Administration & Facilities' is far from technical R&D or platform engineering",
-      "No evidence of LLM, automation, data pipeline, or cloud work in visible description",
-      "Candidate would be moving laterally away from his deliberate career trajectory into tech/AI",
+      "Job description was truncated — requirements section not visible, so seniority, experience requirements, and full responsibilities are unknown. Must assume conservative score.",
+      "Title explicitly says 'Internship' — candidate explicitly excludes internships.",
+      "Role appears to be pure project management/GIS administration with zero AI/LLM/software engineering component visible.",
+      "Even if full description revealed some technical elements, 'GIS' and 'Project Manager' framing strongly signals this is not a builder role.",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1592,59 +1602,15 @@
       "portal": "jobalert.indeed.com",
       "description": "Location: Zurich, Zurich, Switzerland Job ID: R0142021 Date Posted: 2026-08-20 Company Name: HITACHI ENERGY LTD Profession (Job Category): Administration & Facilities Job Schedule: Full time Remote: No Job Description: The opportunity Hitachi Energy is a global technology leader that is advancing a sustainable energy future for all. We employ more than 40,000 people in 90 countries who each day work with purpose and use their different backgrounds to challenge the status quo. We welcome you to …"
     },
-    "technical_fit": "Very poor. The role is GIS (Geographic Information Systems) project management in energy infrastructure administration, with zero overlap with the candidate's skills in LLM APIs, agentic systems, Python automation, data platform engineering, or cloud pipelines.",
-    "contextual_fit": "Poor. The candidate seeks hands-on builder ownership in AI/data engineering; this is an administrative/facilities-track project management internship in a traditional industrial sector. No path to the technical depth or autonomy he wants.",
+    "technical_fit": "No technical fit. The visible title is 'Internship Junior Project Manager GIS' — this is a project management and GIS (Geographic Information Systems) administration role, not an AI/LLM/software engineering position. No mention of Python, LLMs, automation, data engineering, or any of the candidate's core skills.",
+    "contextual_fit": "Poor. The candidate's entire profile is about building AI/LLM systems, shipping code, and owning technical projects from day one. This is an internship in project management for GIS/administration at an energy infrastructure company — the opposite of hands-on builder work.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Neutral-to-poor. Hitachi Energy is large and structured; the 'administration & facilities' job category and 'project manager' title suggest process coordination rather than the zero-to-production building culture that excites him.",
+    "culture_fit": "Unknown from truncated description; company culture at Hitachi Energy appears corporate and infrastructure-focused, not startup/AI-product oriented.",
     "concerns": [
-      "Job description was truncated — requirements section not visible, forcing conservative scoring",
-      "Role is explicitly in GIS/administration, not software engineering or AI",
-      "Job category 'Administration & Facilities' is far from technical R&D or platform engineering",
-      "No evidence of LLM, automation, data pipeline, or cloud work in visible description",
-      "Candidate would be moving laterally away from his deliberate career trajectory into tech/AI"
-    ],
-    "recommendation": "SKIP",
-    "decision": "SKIP",
-    "materials_needed": [],
-    "evaluated_at": "2026-08-23T22:04:23.170656+00:00",
-    "rescored": true
-  },
-  {
-    "score": 35,
-    "hard_blockers": [
-      "Role explicitly requires being based in France; candidate is in Zurich Area with Swiss Work Permit B, seeking Switzerland-based roles.",
-      "Role is titled 'Senior Automation Specialist' — candidate explicitly seeks internship or junior roles with real ownership, not senior positions requiring extensive independent senior-level delivery."
-    ],
-    "insufficient_info": false,
-    "language_gap_intermediate": false,
-    "key_match_points": [],
-    "red_flags": [
-      "Blocker: Role explicitly requires being based in France; candidate is in Zurich Area with Swiss Work Permit B, seeking Switzerland-based roles.",
-      "Blocker: Role is titled 'Senior Automation Specialist' — candidate explicitly seeks internship or junior roles with real ownership, not senior positions requiring extensive independent senior-level delivery.",
-      "Senior-level expectations vs. candidate's internship experience and explicit junior-role search",
-      "TypeScript/AWS/cloud-native infrastructure depth gap — candidate's stack is Python/Node.js/Docker/Google Cloud, not AWS/S3/TypeScript frontend",
-      "Frontend development requirement ('Build and maintain frontend applications') is outside candidate's stated skill set",
-      "France-based role may have tax/permit complications despite remote-first structure",
-      "No explicit mention of German, but France-based role may implicitly favor French speakers (candidate has Spanish B2, no French listed)"
-    ],
-    "job": {
-      "company": "Jobgether",
-      "title": "Senior Automation Specialist",
-      "location": "Switzerland",
-      "url": "https://www.linkedin.com/comm/jobs/view/4452555540/?trackingId=PljD0KukSPSX9T7n4PS1GA%3D%3D&refId=TM7c3YoSRWybK%2BLGGpXyDw%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
-      "portal": "linkedin.com",
-      "description": "This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for a Senior Automation Specialist based in France. \n\n This is a hands-on automation role focused on transforming complex operational processes through AI and intelligent workflow design.\nYou will work directly with operational leaders to identify repetitive, high-value manual work and turn it into reliable automation.\nThe role combines AI agents, reasoning systems, APIs, workflow platforms, and software engineering to solve real business problems at scale.\nYou will own automation initiatives from discovery and architecture through production deployment, monitoring, and continuous improvement.\nSuccess will be measured by tangible operational impact, particularly the number of manual hours removed and the reliability of the resulting workflows.\nYou will operate in a fast-moving, remote-first environment where experimentation is encouraged but quality, testing, and responsible deployment remain essential.\nIt is an opportunity to shape how AI-powered automation becomes embedded into the operational infrastructure of a growing international business.\nAccountabilities: Design and maintain intelligent automation and reasoning layers for operational workflows, enabling tasks to be routed and actioned based on business logic rather than simply moving data between systems.\n\n Translate complex manual processes into scalable automation in close partnership with operational and domain experts.\n\n Build AI agents using tools such as Claude, Codex, or equivalent technologies, incorporating structured evaluations, real-world testing, and manual quality assurance.\n\n Define business rules, data-quality controls, validation gates, and safety mechanisms that determine when an automated workflow should escalate a task to a human.\n\n Connect internal systems and third-party services through APIs, webhooks, n8n, and comparable workflow automation technologies.\n\n Navigate complex integration environments and connect systems that were not originally designed to work together.\n\n Build and maintain frontend applications and automation components using TypeScript and cloud-native infrastructure.\n\n Deploy and maintain solutions through GitHub and GitHub Actions, using AWS services and appropriate storage technologies such as S3 and databases.\n\n Own automation projects end to end, from discovery and process mapping through architecture, implementation, production deployment, monitoring, and iteration.\n\n Work directly with operational leaders across areas such as payments, debt, tendering, partner activation, and other business \n[... middle of the posting omitted ...]\n is advantageous.\n\n Background in data engineering or business intelligence is a plus.\n\n Active interest in the rapidly evolving AI tooling ecosystem and an ability to identify and apply useful new technologies.\n\n Comfortable working independently in a remote-first environment while collaborating effectively with cross-functional teams.\n\n Benefits: \n \n Salary aligned with internal market benchmarks, with compensation reviewed twice per year.\n\n Stock options, providing an opportunity to share in the long-term success of the business.\n\n 25 days of annual leave in addition to public holidays.\n\n Flexibility to exchange public holidays for alternative days that are more meaningful to you.\n\n Additional day off for your birthday.\n\n Remote-first and flexible working environment with clearly defined core hours.\n\n No internal meetings on Friday afternoons to support focused work and flexibility.\n\n Annual remote-work setup budget of up to £1,200 / €1,200 .\n\n Monthly wellbeing budget of up to £150 / €150 .\n\n Opportunity to work on meaningful AI-driven automation initiatives with direct and measurable operational impact.\n\n Inclusive environment welcoming people from diverse backgrounds, experiences, and identities.\n\n Fast-moving culture that encourages ownership, experimentation, continuous learning, and practical innovation."
-    },
-    "technical_fit": "Partial overlap: strong alignment on LLM agents (Claude), API integration, workflow automation, GitHub Actions, and end-to-end ownership. However, role requires senior-level TypeScript/AWS/cloud-native infrastructure depth and frontend development, which are gaps. The 'Senior' title and expectation to independently navigate complex integration environments suggests a level above candidate's current internship experience.",
-    "contextual_fit": "Poor: role is explicitly based in France ('based in France'), not Switzerland. While remote-first, the location requirement is a mismatch for candidate's Zurich-area/B-permit situation. Additionally, the 'Senior' designation and expectation for autonomous senior-level delivery conflicts with candidate's explicit search for internship/junior roles with growth structure.",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "Strong cultural alignment on ownership, experimentation, zero-to-production mindset, and measurable impact. Fast-moving, remote-first, inclusive environment matches candidate's preferences. However, the senior-level autonomy expected may mean less structured mentorship than candidate seeks.",
-    "concerns": [
-      "Senior-level expectations vs. candidate's internship experience and explicit junior-role search",
-      "TypeScript/AWS/cloud-native infrastructure depth gap — candidate's stack is Python/Node.js/Docker/Google Cloud, not AWS/S3/TypeScript frontend",
-      "Frontend development requirement ('Build and maintain frontend applications') is outside candidate's stated skill set",
-      "France-based role may have tax/permit complications despite remote-first structure",
-      "No explicit mention of German, but France-based role may implicitly favor French speakers (candidate has Spanish B2, no French listed)"
+      "Job description was truncated — requirements section not visible, so seniority, experience requirements, and full responsibilities are unknown. Must assume conservative score.",
+      "Title explicitly says 'Internship' — candidate explicitly excludes internships.",
+      "Role appears to be pure project management/GIS administration with zero AI/LLM/software engineering component visible.",
+      "Even if full description revealed some technical elements, 'GIS' and 'Project Manager' framing strongly signals this is not a builder role."
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1655,20 +1621,61 @@
   {
     "score": 45,
     "hard_blockers": [
-      "Role requires senior-level experience; candidate is actively seeking internship/junior role with explicit 'from day one' ownership as a learning pathway, not a senior platform architect position",
-      "Explicitly based in Spain with 'permitted employment locations' — Swiss permit B does not confer Spain work authorization; location mismatch despite remote format"
+      "Role explicitly requires being based in France; candidate is Zurich-based with Swiss Permit B, no French work authorization mentioned"
     ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Role requires senior-level experience; candidate is actively seeking internship/junior role with explicit 'from day one' ownership as a learning pathway, not a senior platform architect position",
-      "Blocker: Explicitly based in Spain with 'permitted employment locations' — Swiss permit B does not confer Spain work authorization; location mismatch despite remote format",
-      "Massive seniority gap: 'Senior AI Platform Engineer' vs. candidate's current intern title and explicit job search for 'internship or junior role'",
-      "Accountabilities include 'establish technical patterns,' 'governance standards,' 'evolution of platform architecture' — these are senior/Staff+ scope, not zero-to-one learning opportunities",
-      "Candidate's 'own it end to end' motivation fits better at smaller scope; this role's 'ownership' is organizational influence, not individual pipeline building",
-      "MCP, vector search, embeddings at platform-scale likely require depth candidate is building toward but doesn't yet have",
-      "40 days PTO and global benefits suggest mature org where junior/intern track may not exist or would be structurally different role"
+      "Blocker: Role explicitly requires being based in France; candidate is Zurich-based with Swiss Permit B, no French work authorization mentioned",
+      "Senior-level title with expectation of end-to-end ownership from discovery through production may overreach current intern experience",
+      "TypeScript requirement vs candidate's stronger Python/Node.js background",
+      "France-based requirement likely means French employment law/payroll, not just remote work from anywhere",
+      "No mention of German requirement but location barrier supersedes",
+      "Compensation in GBP/EUR suggests UK/EU payroll, not Swiss"
+    ],
+    "job": {
+      "company": "Jobgether",
+      "title": "Senior Automation Specialist",
+      "location": "Switzerland",
+      "url": "https://www.linkedin.com/comm/jobs/view/4452555540/?trackingId=PljD0KukSPSX9T7n4PS1GA%3D%3D&refId=TM7c3YoSRWybK%2BLGGpXyDw%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BBSPhk6q5Q72EumgUyQRvZg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=30LOvuwnwBBYo1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting-null-gbrmkn~mt6ckxmm~yq-null-null&eid=gbrmkn-mt6ckxmm-yq&otpToken=NmIyNzhmNmE4YjliZTQzODMzYjBhMmVhMDhiN2Q2MWU3NThkNjI0Y2U5ZTM0MjMzZWUwZDNlYzExZmFjYTM2NjIwYzgzZTg3ZWE0NmVmODE4YTJhMDdhM2UxMmRhNTA1YzIzOTE4MzRmZDU3MWRmMDc5NzFhZDg5MTEyNmY5MzI1MjUwNTE2MDkyZDRiYzI5LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": "This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for a Senior Automation Specialist based in France. \n\n This is a hands-on automation role focused on transforming complex operational processes through AI and intelligent workflow design.\nYou will work directly with operational leaders to identify repetitive, high-value manual work and turn it into reliable automation.\nThe role combines AI agents, reasoning systems, APIs, workflow platforms, and software engineering to solve real business problems at scale.\nYou will own automation initiatives from discovery and architecture through production deployment, monitoring, and continuous improvement.\nSuccess will be measured by tangible operational impact, particularly the number of manual hours removed and the reliability of the resulting workflows.\nYou will operate in a fast-moving, remote-first environment where experimentation is encouraged but quality, testing, and responsible deployment remain essential.\nIt is an opportunity to shape how AI-powered automation becomes embedded into the operational infrastructure of a growing international business.\nAccountabilities: Design and maintain intelligent automation and reasoning layers for operational workflows, enabling tasks to be routed and actioned based on business logic rather than simply moving data between systems.\n\n Translate complex manual processes into scalable automation in close partnership with operational and domain experts.\n\n Build AI agents using tools such as Claude, Codex, or equivalent technologies, incorporating structured evaluations, real-world testing, and manual quality assurance.\n\n Define business rules, data-quality controls, validation gates, and safety mechanisms that determine when an automated workflow should escalate a task to a human.\n\n Connect internal systems and third-party services through APIs, webhooks, n8n, and comparable workflow automation technologies.\n\n Navigate complex integration environments and connect systems that were not originally designed to work together.\n\n Build and maintain frontend applications and automation components using TypeScript and cloud-native infrastructure.\n\n Deploy and maintain solutions through GitHub and GitHub Actions, using AWS services and appropriate storage technologies such as S3 and databases.\n\n Own automation projects end to end, from discovery and process mapping through architecture, implementation, production deployment, monitoring, and iteration.\n\n Work directly with operational leaders across areas such as payments, debt, tendering, partner activation, and other business \n[... middle of the posting omitted ...]\n is advantageous.\n\n Background in data engineering or business intelligence is a plus.\n\n Active interest in the rapidly evolving AI tooling ecosystem and an ability to identify and apply useful new technologies.\n\n Comfortable working independently in a remote-first environment while collaborating effectively with cross-functional teams.\n\n Benefits: \n \n Salary aligned with internal market benchmarks, with compensation reviewed twice per year.\n\n Stock options, providing an opportunity to share in the long-term success of the business.\n\n 25 days of annual leave in addition to public holidays.\n\n Flexibility to exchange public holidays for alternative days that are more meaningful to you.\n\n Additional day off for your birthday.\n\n Remote-first and flexible working environment with clearly defined core hours.\n\n No internal meetings on Friday afternoons to support focused work and flexibility.\n\n Annual remote-work setup budget of up to £1,200 / €1,200 .\n\n Monthly wellbeing budget of up to £150 / €150 .\n\n Opportunity to work on meaningful AI-driven automation initiatives with direct and measurable operational impact.\n\n Inclusive environment welcoming people from diverse backgrounds, experiences, and identities.\n\n Fast-moving culture that encourages ownership, experimentation, continuous learning, and practical innovation."
+    },
+    "technical_fit": "Strong overlap in core AI/automation skills: LLM APIs (Claude explicitly named), agent building, structured output validation, API integration, workflow automation, GitHub Actions, cloud deployment. Candidate's Python/SQL/Node.js stack partially matches; TypeScript is a gap but learnable. The role demands senior-level ownership and end-to-end project leadership, which exceeds his current intern experience level.",
+    "contextual_fit": "Critical location mismatch: role explicitly states 'based in France' and the partner company manages hiring. Candidate is Zurich-based with Swiss Work Permit B, not French work authorization. Remote-first culture is appealing, but France-based requirement is a hard logistics barrier. Role shape (ownership, building AI agents, operational impact) is exactly what excites him, but seniority level is a stretch.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Strong alignment on culture: ownership from day one, experimentation, fast-moving, direct operational impact, inclusive of diverse backgrounds. Candidate's career-change story fits 'diverse backgrounds' well. Friday no-meetings policy and remote-first structure match his preferences.",
+    "concerns": [
+      "Senior-level title with expectation of end-to-end ownership from discovery through production may overreach current intern experience",
+      "TypeScript requirement vs candidate's stronger Python/Node.js background",
+      "France-based requirement likely means French employment law/payroll, not just remote work from anywhere",
+      "No mention of German requirement but location barrier supersedes",
+      "Compensation in GBP/EUR suggests UK/EU payroll, not Swiss"
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-08-23T22:04:23.170656+00:00",
+    "rescored": true
+  },
+  {
+    "score": 35,
+    "hard_blockers": [
+      "Role explicitly based in Spain with restricted employment locations; candidate based in Switzerland with Swiss permit B does not match geographic requirement",
+      "Senior-level role requiring platform architecture and cross-org governance experience far beyond candidate's intern/junior level — not an eligibility blocker per se but structurally excludes him from realistic consideration"
+    ],
+    "insufficient_info": false,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Blocker: Role explicitly based in Spain with restricted employment locations; candidate based in Switzerland with Swiss permit B does not match geographic requirement",
+      "Blocker: Senior-level role requiring platform architecture and cross-org governance experience far beyond candidate's intern/junior level — not an eligibility blocker per se but structurally excludes him from realistic consideration",
+      "Senior title with no junior/associate pathway mentioned",
+      "Platform engineering scope (SDKs, reusable frameworks, governance standards) assumes deep prior experience in production infrastructure",
+      "Spain-based hiring focus makes Swiss location a logistical mismatch despite remote format",
+      "Candidate's skills in Docker, CI/CD, cloud are present but at intern depth versus production platform scale",
+      "No evidence of mentorship structure or ramp-up for career-changers"
     ],
     "job": {
       "company": "Jobgether",
@@ -1678,16 +1685,16 @@
       "portal": "linkedin.com",
       "description": "This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for a Senior AI Platform Engineer based in Spain. \n\n This is a senior engineering opportunity focused on building the foundational platform layer behind secure, production-grade AI applications. You will design shared infrastructure, services, integrations, and developer tooling that enable teams to build and scale AI capabilities efficiently. The role combines hands-on work with LLMs, AI agents, RAG, tool calling, and AI workflows with strong data engineering and platform engineering practices. You will leverage modern cloud and data technologies to turn experimental AI use cases into reliable, scalable production systems. Working across Engineering, Product, and IT, you will establish technical patterns, reusable capabilities, and governance standards for AI development. This fully remote role is ideal for an experienced engineer who enjoys solving foundational problems and shaping how AI is built and operated across an organization.\nAccountabilities: Design and build reusable platform capabilities supporting LLM applications, AI agents, RAG, tool calling, and AI workflows.\n\n Develop scalable data and knowledge pipelines covering ingestion, embeddings, retrieval, vector search, metadata, and knowledge management.\n\n Build secure integrations between AI applications, enterprise data, and business systems using APIs, MCP, tool calling, and comparable integration patterns.\n\n Develop reusable frameworks, libraries, services, SDKs, and developer tooling that allow engineering teams to build AI applications efficiently.\n\n Establish technical standards and patterns for AI deployment, observability, evaluation, monitoring, and lifecycle management.\n\n Define and improve approaches for measuring AI quality, accuracy, latency, reliability, security, and cost.\n\n Take AI capabilities from experimentation and prototyping through reliable, scalable, and maintainable production deployment.\n\n Ensure AI platform capabilities comply with security, privacy, authentication, authorization, access control, and data governance requirements.\n\n Work with Engineering, Product, and IT teams to identify AI opportunities and translate ambiguous business needs into practical technical solutions.\n\n Evaluate emerging AI models, frameworks, infrastructure technologies, and development approaches to determine their potential business value.\n\n Contribute to the evolution of platform architecture, engineering standards, and reusable AI capabilities across the organization.\n\n Promote strong data engineering and platform practices aro\n[... middle of the posting omitted ...]\nwith the flexibility to work from home.\n\n Ability to work from anywhere within the permitted employment locations and time-zone range, subject to local work authorization.\n\n Approximately 40 days of paid time off per year, including holidays and vacation, or more where required by local regulations.\n\n Mental health and wellbeing support.\n\n Monthly wellbeing allowance that can be used across a broad range of eligible services and activities.\n\n Flexible parental leave, including at least three months of paid leave for new parents, subject to applicable local requirements.\n\n Work-from-home stipend for laptop and home office equipment.\n\n Fully distributed, international working environment with colleagues across multiple countries and cultures.\n\n Asynchronous and collaborative working model designed for globally distributed teams.\n\n Opportunity to work on foundational AI infrastructure and influence how AI applications are developed and operated at scale.\n\n Exposure to cutting-edge technologies including LLMs, AI agents, RAG, MCP, vector search, modern data platforms, and AI governance.\n\n Strong opportunity for technical ownership, professional growth, and meaningful impact within a global technology organization.\n\n Inclusive and diverse environment that values autonomy, trust, collaboration, and continuous progress."
     },
-    "technical_fit": "Strong conceptual overlap with candidate's interests (LLM pipelines, agentic systems, RAG, vector search, platform engineering), but role demands senior-level depth in platform architecture, SDK/framework development, and cross-org governance that far exceeds his 2-week notice intern/junior profile.",
-    "contextual_fit": "Poor. Listed 'based in Spain' with 'permitted employment locations' constraint; Switzerland mentioned only as listing origin, not work location. Fully remote but explicitly not Swiss-based. Candidate's Swiss permit B and Zurich targeting offer no advantage here.",
+    "technical_fit": "Strong technical overlap in AI/LLM domain (LLMs, agents, RAG, tool calling, vector search, embeddings, MCP) which matches candidate's target direction. However, role is explicitly SENIOR and focused on PLATFORM infrastructure, SDKs, reusable frameworks, and establishing organization-wide standards — far above candidate's current intern/junior level. Requires production-grade platform engineering, governance, and cross-org influence that assumes years of experience he doesn't have.",
+    "contextual_fit": "Poor. Role is listed for Spain-based candidates ('based in Spain'), not Switzerland — candidate's Zurich-area location and Swiss permit B are irrelevant. Fully remote but employment locations are restricted. The 'Senior' title and platform-level ownership scope indicate expectations for autonomous senior contribution, not mentorship or growth path for career-changers. Candidate's stated motivation emphasizes 'own real projects from day one' in a junior/associate capacity, not architecting enterprise-wide AI infrastructure.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "Good on paper (ownership, autonomy, cutting-edge AI, distributed team), but culture of 'senior engineer shaping org-wide standards' mismatches his stated need for 'internship where I can go deeper' with real ownership as a junior builder.",
+    "culture_fit": "Distributed/async culture could suit candidate, but the senior-level autonomy expected and Spain-focused hiring geography create fundamental mismatches. The role's emphasis on 'foundational platform layer' and 'influence how AI applications are developed across organization' is leadership-shaped, not builder-shaped.",
     "concerns": [
-      "Massive seniority gap: 'Senior AI Platform Engineer' vs. candidate's current intern title and explicit job search for 'internship or junior role'",
-      "Accountabilities include 'establish technical patterns,' 'governance standards,' 'evolution of platform architecture' — these are senior/Staff+ scope, not zero-to-one learning opportunities",
-      "Candidate's 'own it end to end' motivation fits better at smaller scope; this role's 'ownership' is organizational influence, not individual pipeline building",
-      "MCP, vector search, embeddings at platform-scale likely require depth candidate is building toward but doesn't yet have",
-      "40 days PTO and global benefits suggest mature org where junior/intern track may not exist or would be structurally different role"
+      "Senior title with no junior/associate pathway mentioned",
+      "Platform engineering scope (SDKs, reusable frameworks, governance standards) assumes deep prior experience in production infrastructure",
+      "Spain-based hiring focus makes Swiss location a logistical mismatch despite remote format",
+      "Candidate's skills in Docker, CI/CD, cloud are present but at intern depth versus production platform scale",
+      "No evidence of mentorship structure or ramp-up for career-changers"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1772,19 +1779,17 @@
   },
   {
     "score": 52,
-    "hard_blockers": [
-      "Senior-level role requiring production experience and mentorship capabilities far beyond candidate's ~1.5 years as intern; explicit 'Senior' title with no junior/intern pathway mentioned"
-    ],
+    "hard_blockers": [],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Senior-level role requiring production experience and mentorship capabilities far beyond candidate's ~1.5 years as intern; explicit 'Senior' title with no junior/intern pathway mentioned",
-      "Role explicitly senior with no intern/junior track indicated; candidate would likely be screened out at first pass for level mismatch",
-      "AWS/GCP stack mismatch — candidate's cloud experience is GCP-centric, role wants Bedrock/AgentCore/K8s",
-      "Mentorship expectation is a core responsibility, not a nice-to-have — candidate has never mentored engineers",
-      "'Supporting Tech Lead' framing suggests second-chair role, not the day-one ownership candidate craves; ownership here means owning your senior slice, not owning the whole pipeline",
-      "Candidate's stated goal is 'internship where I can go deeper' — this is a permanent senior role, not a learning internship"
+      "Senior-level expectation vs. his 1-2 years of hands-on AI engineering experience; likely under-leveled",
+      "No AWS Bedrock, Kubernetes, or large-scale ML engineering experience — all listed as core or strong plus",
+      "No mentorship experience; role may expect this",
+      "ESG domain knowledge not required but senior candidates likely bring some",
+      "Risk of being screened out immediately due to 'Senior' title and experience mismatch; even if he passes, he'd struggle to perform at expected level",
+      "His strongest wins are 'built from scratch' — this role needs 'operated and scaled'"
     ],
     "job": {
       "company": "RepRisk",
@@ -1794,16 +1799,17 @@
       "portal": "linkedin.com",
       "description": "About Us\nRepRisk is the world’s most respected Data as a Service (DaaS) company for reputational risks and responsible business conduct. Our mission is to provide transparency on business conduct risks to drive positive change. Combining advanced AI with deep human expertise, and a proven methodology at the core, RepRisk’s solutions bring performance and peace of mind, enabling clients to know more, be sure, and act faster. With our values of intellectual honesty and humility, operational excellence, and openness and respect, our diverse teams of talented experts are pioneering solutions that enable clients to make better informed decisions. Headquartered in Zurich, and with offices in Toronto, New York, London, Berlin, Manila, and Tokyo, we stay close to clients and bring an independent lens to the industry. United by our shared belief in the power of data, our 400 people are proud to be setting the global standard for business conduct data and driving positive and meaningful change through transparency.\nWe offer\nWe offer a diverse, multicultural, and mission‑driven workplace where your impact truly matters. You’ll join a collaborative team that values openness, respect, and work–life balance.\nWhat you can expect:\nFlexible working hours and a hybrid model (with home office days).\nUp to 4 weeks per year working abroad, subject to policy and approvals.\nPaid training and volunteering days, plus charity donation matching.\nHealth & fitness subsidy to support your well‑being.\nFrequent team and social events that bring our global community together.\nA welcoming office environment with complimentary coffee, refreshments, fresh fruit, and healthy snacks.\nA company that embraces diversity and values different perspectives.\nJob Description\nAbout You\nAre you looking for an opportunity to work on meaningful, cutting-edge projects at the intersection of agentic AI and responsible business conduct? Did you wonder what it would be like to work at a company where your contribution has a real, measurable impact - and you are rewarded for it?\nIf you have a passion for building production-grade AI agents, MCP-based tool ecosystems, and data-rich AI workflows, then this is the perfect role for you! We value autonomy, allowing you to bring your innovative ideas to fruition in an inclusive, feedback-oriented environment. Your work on agentic systems will directly contribute to advancing gloabl corporate responsibility through technology.\nYour Responsibilities\nAs our new Senior AI Engineer, you will play a crucial role in developing state-of-the-art agentic systems and AI integrations within RepRisk’s Agentic delivery team. You will contribu\n[... middle of the posting omitted ...]\ns:\nSolid understanding of software design principles (SOLID, DRY, KISS), Clean Code, and common architecture patterns; ability to translate them into maintainable production code.\nOwnership & drive:\nHigh sense of product ownership, taking full responsibility for assigned work end-to-end, supporting the Tech Lead and PM in discoveries, proposing improvements to existing services, and showing initiative. Strong responsiveness and reliability.\nContinuous learner:\nStays on top of the latest best practices in AI engineering and shares knowledge across the team.\nAdditionally, the following are a plus:\nAWS Bedrock & AgentCore:\nhands-on experience with AWS Bedrock and Bedrock AgentCore for managed agent deployments and tool orchestration.\nKubernetes:\nexperience running containerized workloads on Kubernetes in production.\nML engineering:\nexperience with classical ML / LLM engineering on large datasets — fine-tuning, retrieval, and summarization pipelines over ESG-scale corpora.\nCoding agents:\nexperience building software solutions with the support of coding agents (Claude Code, Cursor, etc.) and leveraging them to accelerate delivery.\nMentorship:\nexperience mentoring engineers and providing thoughtful, constructive feedback.\nAdditional Information\nPlease note that we will only consider candidates with a valid work permit."
     },
-    "technical_fit": "Strong conceptual overlap in agentic AI, LLM pipelines, and data-rich workflows. However, role is explicitly Senior-level requiring 5+ years production experience, deep AWS/K8s expertise, and mentorship capabilities. Candidate has ~1.5 years tech experience, all as intern, with GCP not AWS, no K8s, and no senior/mentorship track record. Skills gap is vertical (depth/seniority), not horizontal (domain).",
-    "contextual_fit": "Zurich-based, hybrid model, valid work permit required (candidate has B permit — satisfies). Mission-driven DaaS company with real ESG impact aligns with candidate's motivation for meaningful ownership. However, 'Senior AI Engineer' title and 'supporting Tech Lead' framing indicate this is a leadership-track role, not a junior builder position. The autonomy described is senior autonomy, not intern/junior growth autonomy.",
-    "salary_estimate": "CHF 120,000–160,000",
-    "culture_fit": "Strong alignment on values: intellectual honesty, operational excellence, openness, diversity, impact-driven work. Candidate's career-change story and hunger for ownership fit the culture. However, the team dynamic (mentoring others, supporting Tech Lead) suggests he'd be the most junior by far, potentially creating growth friction rather than the 'zero-to-production ownership' he seeks.",
+    "technical_fit": "Strong conceptual overlap in agentic AI, LLM pipelines, tool-calling, and RAG — but the role explicitly demands senior-level depth in Python, AWS/GCP/Azure production deployments, and system architecture that the candidate hasn't yet demonstrated at scale. His stack (Hetzner/Linux, Docker, Google Cloud basics, SQLite/PostgreSQL) is lighter than the expected multi-cloud, Kubernetes, large-scale data processing experience. The 'Senior' title is a genuine gap — he's built from scratch but not operated at enterprise scale or mentored others.",
+    "contextual_fit": "Zurich-based, hybrid model, valid work permit required (he has this). 2-week notice is fine. The mission (ESG/ responsible business conduct) is intellectually engaging and aligns with his career-changer appetite for meaningful work. However, the role shape is wrong: this is a senior position expecting end-to-end ownership of complex systems, mentorship capacity, and deep production scars — not a 'junior builder, own from day one' growth role. He'd be under-leveled and potentially overwhelmed.",
+    "salary_estimate": "CHF 130,000–160,000 (senior AI engineer in Zurich fintech/ESG data)",
+    "culture_fit": "Positive: autonomy, feedback-oriented, impact-driven, diverse. Concern: the 'Senior' framing suggests they'd expect him to lead and mentor quickly, which doesn't match his experience level. His enthusiasm for agentic AI is genuine, but the cultural expectation of senior contribution is mismatched.",
     "concerns": [
-      "Role explicitly senior with no intern/junior track indicated; candidate would likely be screened out at first pass for level mismatch",
-      "AWS/GCP stack mismatch — candidate's cloud experience is GCP-centric, role wants Bedrock/AgentCore/K8s",
-      "Mentorship expectation is a core responsibility, not a nice-to-have — candidate has never mentored engineers",
-      "'Supporting Tech Lead' framing suggests second-chair role, not the day-one ownership candidate craves; ownership here means owning your senior slice, not owning the whole pipeline",
-      "Candidate's stated goal is 'internship where I can go deeper' — this is a permanent senior role, not a learning internship"
+      "Senior-level expectation vs. his 1-2 years of hands-on AI engineering experience; likely under-leveled",
+      "No AWS Bedrock, Kubernetes, or large-scale ML engineering experience — all listed as core or strong plus",
+      "No mentorship experience; role may expect this",
+      "ESG domain knowledge not required but senior candidates likely bring some",
+      "Risk of being screened out immediately due to 'Senior' title and experience mismatch; even if he passes, he'd struggle to perform at expected level",
+      "His strongest wins are 'built from scratch' — this role needs 'operated and scaled'"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1812,21 +1818,18 @@
     "rescored": true
   },
   {
-    "score": 42,
-    "hard_blockers": [
-      "Experience requirement: 5+ years ML Engineering is a hard eligibility gap for a candidate seeking junior/intern roles with ~1-2 years total experience in tech"
-    ],
+    "score": 45,
+    "hard_blockers": [],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Blocker: Experience requirement: 5+ years ML Engineering is a hard eligibility gap for a candidate seeking junior/intern roles with ~1-2 years total experience in tech",
-      "Role is explicitly senior-level; applying would waste time and signal poor self-awareness",
-      "'Beyond simple API integration' directly disqualifies his current LLM experience level",
-      "US EST timezone overlap creates unsustainable late-evening work pattern in Zug",
-      "Enterprise consulting model (client delivery, not product ownership) mismatches his stated motivation for end-to-end ownership",
-      "No mention of agentic systems building—evaluation focus is more research/QA than engineering automation",
-      "PyTorch/TensorFlow/JAX experience absent; his stack is Python/pandas/APIs/DevOps, not model development"
+      "5+ years ML Engineering is a hard experience floor that doesn't map to his 1-2 years of AI-adjacent work; even generous interpretation leaves a 3+ year gap",
+      "No evidence of PyTorch/TensorFlow/JAX experience — modern ML frameworks are core requirements, not nice-to-haves",
+      "'Experience training, fine-tuning, or adapting machine learning models' is unmet; his work is API-based LLM orchestration, not model-level work",
+      "'Distributed training or large-scale model inference' in nice-to-haves signals the team operates at scale he hasn't touched",
+      "Senior title implies mentorship expectations and architecture decisions he's not yet equipped for",
+      "Late CET hours (9pm) for US overlap is a lifestyle cost not mentioned in his motivators"
     ],
     "job": {
       "company": "Grid Dynamics",
@@ -1836,17 +1839,17 @@
       "portal": "linkedin.com",
       "description": "We are looking for an exceptional\nMachine Learning Engineer\nto help shape the next generation of AI systems, with a focus on modern LLM architectures, RAG implementations, autonomous agents and AI safety.\nWorking hours: overlap until 3 pm US EST is required.\nResponsibilities\nOwn machine learning projects from problem definition through implementation.\nDesign and implement evaluation methodologies for AI and machine learning systems.\nCreate datasets, benchmarks, and metrics to measure model and product performance.\nEvaluate and improve LLM-based systems, including RAG applications, agents, safety systems, and end-to-end AI products.\nAnalyze model behavior, identify failure modes, and recommend practical improvements.\nBuild and maintain ML pipelines, tooling, and evaluation infrastructure.\nCollaborate with product, engineering, and research teams to translate business goals into measurable ML objectives.\nPrototype and iterate rapidly to solve business and product challenges.\nRequirements\n5+ years of experience in Machine Learning Engineering or a related field.\nStrong Python programming skills and experience with modern ML frameworks such as PyTorch, TensorFlow, or JAX.\nExperience training, fine-tuning, or adapting machine learning models.\nExperience working with Large Language Models beyond simple API integration.\nExperience evaluating AI systems and translating results into actionable recommendations.\nExperience building and maintaining machine learning systems and pipelines.\nUnderstanding of retrieval-augmented generation (RAG), agentic systems, and LLM safety concepts.\nNice to have\nExperience designing benchmarks, evaluation frameworks, or automated evaluation systems.\nExperience with distributed training or large-scale model inference.\nWe offer\nOpportunity to work on bleeding-edge projects\nWork with a highly motivated and dedicated team\nCompetitive salary\nFlexible schedule\nBenefits package - medical insurance, sports\nCorporate social events\nProfessional development opportunities\nAbout Us\nGrid Dynamics (NASDAQ: GDYN) is a leading provider of technology consulting, platform and product engineering, AI, and advanced analytics services. Fusing technical vision with business acumen, we solve the most pressing technical challenges and enable positive business outcomes for enterprise companies undergoing business transformation. A key differentiator for Grid Dynamics is our 8 years of experience and leadership in enterprise AI, supported by profound expertise and ongoing investment in data, analytics, cloud & DevOps, application modernization and customer experience. Founded in 2006, Grid Dynamics is headquartered in Silicon Valley with offices across the Americas, Europe, and India."
     },
-    "technical_fit": "Significant gap. Role requires 5+ years ML Engineering experience, deep model training/fine-tuning (PyTorch/TensorFlow/JAX), and distributed training experience. Candidate has ~1-2 years software/AI experience focused on LLM API integration, automation pipelines, and production tooling—not model training or core ML research engineering. The 'beyond simple API integration' requirement is a direct mismatch with his current API-first skill set.",
-    "contextual_fit": "Poor. Senior-level role with ownership expectations for someone who has built ML systems for years; candidate is explicitly seeking internship/junior roles with growth runway. The 'own projects from problem definition through implementation' and rapid prototyping demands assume senior autonomy he doesn't claim. US EST overlap until 3pm implies late working hours in Zug (until 9pm), which is logistically awkward though not impossible.",
-    "salary_estimate": "CHF 120,000 - 160,000 (senior ML engineer in Zug)",
-    "culture_fit": "Neutral to poor. Grid Dynamics is a large, established consulting/engineering firm (NASDAQ-listed, 8 years enterprise AI, global offices). Candidate seeks small-team, high-ownership, zero-to-production environments with real ownership from day one—not enterprise consulting delivery for Fortune 500 clients. The 'bleeding-edge' framing is marketing; the actual work is client services at scale.",
+    "technical_fit": "Strong overlap in LLM evaluation, RAG, agents, and safety concepts. However, the role demands 5+ years ML Engineering experience, model training/fine-tuning (PyTorch/TensorFlow/JAX), and distributed training — areas where the candidate has minimal depth. His strengths are in LLM API integration, prompt engineering, and lightweight pipeline building, not in training infrastructure or deep ML systems engineering.",
+    "contextual_fit": "Zug location is ideal. US EST overlap until 3pm means working until 9pm CET — manageable but not ideal for work-life balance. The 'Senior' level and 'own projects from problem definition' framing signals expectation of independent ownership that typically comes with experience he doesn't yet have. Career-changer trajectory not accommodated by this seniority bar.",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Fast-paced, bleeding-edge project environment with distributed teams. Candidate's motivation aligns with building complex AI systems, but the seniority expectation and late-hours overlap create friction with his stated desire for ownership-with-growth, not sink-or-swim senior responsibility.",
     "concerns": [
-      "Role is explicitly senior-level; applying would waste time and signal poor self-awareness",
-      "'Beyond simple API integration' directly disqualifies his current LLM experience level",
-      "US EST timezone overlap creates unsustainable late-evening work pattern in Zug",
-      "Enterprise consulting model (client delivery, not product ownership) mismatches his stated motivation for end-to-end ownership",
-      "No mention of agentic systems building—evaluation focus is more research/QA than engineering automation",
-      "PyTorch/TensorFlow/JAX experience absent; his stack is Python/pandas/APIs/DevOps, not model development"
+      "5+ years ML Engineering is a hard experience floor that doesn't map to his 1-2 years of AI-adjacent work; even generous interpretation leaves a 3+ year gap",
+      "No evidence of PyTorch/TensorFlow/JAX experience — modern ML frameworks are core requirements, not nice-to-haves",
+      "'Experience training, fine-tuning, or adapting machine learning models' is unmet; his work is API-based LLM orchestration, not model-level work",
+      "'Distributed training or large-scale model inference' in nice-to-haves signals the team operates at scale he hasn't touched",
+      "Senior title implies mentorship expectations and architecture decisions he's not yet equipped for",
+      "Late CET hours (9pm) for US overlap is a lifestyle cost not mentioned in his motivators"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
@@ -1861,12 +1864,12 @@
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Role is Staff-level (senior IC), not internship or junior—massive experience gap",
-      "'Agentic SDLC' in title is marketing; actual work is platform engineering on GitLab's existing product",
-      "Customer-facing troubleshooting and patching vs. candidate's desired greenfield building",
-      "Location Schwyz is not Zurich/Zug (though within Switzerland, commute/logistics less ideal)",
-      "Deep Ruby/Rails/Go stack mismatch with candidate's Python/Node.js skills",
-      "No evidence of LLM API work, data platform building, or agentic systems in actual responsibilities"
+      "Staff-level role requiring years of production engineering experience; candidate is intern-level with 2 weeks notice",
+      "No Ruby/Rails expertise—core GitLab stack",
+      "No Kubernetes or platform-scale operational experience",
+      "'Agentic SDLC' is branding, not hands-on LLM/agent building; actual work is DevSecOps platform engineering",
+      "Customer-facing escalation resolution vs. greenfield building—role shape mismatch",
+      "Schwyz location is Zurich-area-adjacent but not ideal; fully remote possible but EMEA timezone alignment expected"
     ],
     "job": {
       "company": "GitLab",
@@ -1876,17 +1879,17 @@
       "portal": "linkedin.com",
       "description": "GitLab is the intelligent orchestration platform for DevSecOps. GitLab enables organizations to increase developer productivity, improve operational efficiency, reduce security and compliance risk, and accelerate digital transformation. More than 50 million registered users and more than 50% of the Fortune 100* trust GitLab to ship better, more secure software faster.\nThe same principles built into our products are reflected in how our team works: we embrace AI as a core productivity multiplier, with all team members expected to incorporate AI into their daily workflows to drive efficiency, innovation, and impact. GitLab is where careers accelerate, innovation flourishes, and every voice is valued. Our high-performance culture is driven by our values and continuous knowledge exchange, enabling our team members to reach their full potential while collaborating with industry leaders to solve complex problems. Co-create the future with us as we build technology that transforms how the world develops software.\nFortune 500® is a registered trademark of Fortune Media IP Limited, used under license. Claim based on GitLab data. Fortune 100 refers to the top 20% ranked companies in the 2025 Fortune 500 list, published in June 2025. Fortune and Fortune Media IP Limited are not affiliated with, and do not endorse products or services of GitLab.\nStaff Forward Deployed Engineer, Agentic SDLC - (EMEA Only)\nAn Overview Of This Role\nGitLab’s Forward Deployed Engineering team is a field-situated product engineering function focused on strategic customer outcomes, artificial intelligence (AI) adoption, and direct contributions to GitLab’s product. This isn't a traditional field engineering, solutions architecture, or professional services role. As a Staff Forward Deployed Engineer, you'll work closely with customers while maintaining the technical standards and contribution discipline of a Staff-level product engineer.\nYou'll work where strategic customer urgency, complex technical ambiguity, and GitLab product execution intersect. You'll partner directly with strategic customers and teams across Product, Engineering, Support, Site Reliability Engineering (SRE), Solutions Architecture (SA), Customer Success Architecture (CSA), Customer Success Management (CSM), and Professional Services. You'll diagnose and resolve high-impact adoption blockers, contribute production-quality fixes and features, and turn what you learn into repeatable patterns for GitLab and its customers.\nWhy this role exists\nStrategic customers sometimes encounter challenges that are too broad, deep, urgent, or cross-functional for any single team to own from start to \n[... middle of the posting omitted ...]\ne, however some roles may carry specific location-based eligibility requirements. Our Talent Acquisition team can help answer any questions about location after starting the recruiting process.\nPrivacy Policy:\nPlease review our Recruitment Privacy Policy. Your privacy is important to us.\nGitLab is proud to be an equal opportunity workplace and is an affirmative action employer. GitLab’s policies and practices relating to recruitment, employment, career development and advancement, promotion, and retirement are based solely on merit, regardless of race, color, religion, ancestry, sex (including pregnancy, lactation, sexual orientation, gender identity, or gender expression), national origin, age, citizenship, marital status, mental or physical disability, genetic information (including family medical history), discharge status from the military, protected veteran status (which includes disabled veterans, recently separated veterans, active duty wartime or campaign badge veterans, and Armed Forces service medal veterans), or any other basis protected by law. GitLab will not tolerate discrimination or harassment based on any of these characteristics. See also GitLab’s EEO Policy and EEO is the Law. If you have a disability or special need that requires accommodation, please let us know during the recruiting process."
     },
-    "technical_fit": "Mismatch. Role demands Staff-level backend engineering (Ruby/Rails/Go, Kubernetes, CI/CD internals) with deep GitLab product expertise. Candidate's strengths are Python/Node.js, LLM APIs, data pipelines, and automation—not enterprise DevSecOps platform engineering. The 'Agentic SDLC' framing is aspirational branding; actual work is customer-facing production fixes in GitLab's codebase, not building LLM agents from zero.",
-    "contextual_fit": "Poor. 'Forward Deployed' means embedded at customer sites solving their GitLab problems, not greenfield ownership. Candidate explicitly wants 'zero to production' building with real ownership; this role is troubleshooting and patching an existing massive platform. The 'Staff' level indicates senior individual contributor expectations far above internship/junior scope.",
-    "salary_estimate": "CHF 130,000 - 170,000+ (Staff level, not intern/junior range)",
-    "culture_fit": "Moderate negative. High-performance culture with 'continuous knowledge exchange' sounds collaborative, but the role's customer-facing urgency and Staff-level accountability clash with candidate's stated need for learning-oriented internship structure. GitLab's AI-as-productivity-multiplier ethos is generic corporate framing, not hands-on agentic systems work.",
+    "technical_fit": "Partial. The role is Staff-level (senior IC) requiring deep Ruby/Rails expertise, Kubernetes, and years of production engineering at scale. Candidate's stack is Python/Node.js, no Ruby, no K8s, no Staff-level experience. The 'Agentic SDLC' framing suggests AI involvement, but the actual work described is platform engineering, customer debugging, and upstream contributions to GitLab's core product—not building LLM/agentic systems from scratch.",
+    "contextual_fit": "Weak. This is a senior customer-facing product engineer role at Staff level, not a junior builder position. The candidate seeks ownership of greenfield AI/automation projects; this role is about navigating existing complex systems, cross-functional coordination, and production debugging at enterprise scale. The 'Forward Deployed' label matches his target titles, but the role shape (senior IC, heavy maintenance/integration into existing monolith, customer escalation) is mismatched with his career stage and goals.",
+    "salary_estimate": "CHF 150k-200k+ (Staff level at GitLab EMEA)",
+    "culture_fit": "Mixed. GitLab's all-remote, AI-embedded culture aligns with his values, but the Staff-level expectations and 'high-performance' framing suggest a pace and depth of technical leadership he cannot yet meet. The role explicitly expects Staff-level contribution discipline and independent execution—far above his current internship experience.",
     "concerns": [
-      "Role is Staff-level (senior IC), not internship or junior—massive experience gap",
-      "'Agentic SDLC' in title is marketing; actual work is platform engineering on GitLab's existing product",
-      "Customer-facing troubleshooting and patching vs. candidate's desired greenfield building",
-      "Location Schwyz is not Zurich/Zug (though within Switzerland, commute/logistics less ideal)",
-      "Deep Ruby/Rails/Go stack mismatch with candidate's Python/Node.js skills",
-      "No evidence of LLM API work, data platform building, or agentic systems in actual responsibilities"
+      "Staff-level role requiring years of production engineering experience; candidate is intern-level with 2 weeks notice",
+      "No Ruby/Rails expertise—core GitLab stack",
+      "No Kubernetes or platform-scale operational experience",
+      "'Agentic SDLC' is branding, not hands-on LLM/agent building; actual work is DevSecOps platform engineering",
+      "Customer-facing escalation resolution vs. greenfield building—role shape mismatch",
+      "Schwyz location is Zurich-area-adjacent but not ideal; fully remote possible but EMEA timezone alignment expected"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",

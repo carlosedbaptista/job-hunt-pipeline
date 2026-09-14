@@ -1636,17 +1636,23 @@
     "evaluated_at": "2026-09-14T04:07:56.336684+00:00"
   },
   {
-    "score": 45,
-    "hard_blockers": [],
+    "score": 35,
+    "hard_blockers": [
+      "Role is explicitly an internship (6-month fixed-term, requires enrollment/recent graduate status); candidate is seeking permanent non-internship positions",
+      "Start date of 1 September 2026 has already passed (today is 2026-09-14) — role likely already filled or started"
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Fixed-term internship explicitly excluded by candidate's search criteria",
-      "Requires STEM enrollment/recent graduate status — candidate is a career changer with law background",
-      "LLM work is present but secondary/supporting, not core AI engineering",
-      "Past evaluations of this exact role scored 76 (REVIEW) but candidate's criteria have not changed",
-      "Role shape is intern-level support rather than ownership of production systems"
+      "Blocker: Role is explicitly an internship (6-month fixed-term, requires enrollment/recent graduate status); candidate is seeking permanent non-internship positions",
+      "Blocker: Start date of 1 September 2026 has already passed (today is 2026-09-14) — role likely already filled or started",
+      "Explicitly an internship despite candidate's clear non-internship requirement",
+      "KYC/AML domain is traditional compliance data processing, not AI/LLM system building as primary focus",
+      "'LLM supported applications' mentioned as learning outcome but not core responsibility — likely minor exposure, not ownership",
+      "Start date already passed by two weeks",
+      "Requires 'currently enrolled or recent graduate' — candidate has postgraduate specialization and is currently employed, not fitting typical intern profile",
+      "70-100% commitment suggests possible part-time structure, unclear fit with candidate's availability"
     ],
     "job": {
       "company": "PQ Technologies",
@@ -1656,78 +1662,35 @@
       "portal": "linkedin.com",
       "description": "Company Description\nAt PQ Technologies AG (PQT), we build data processing solutions for the financial industry, working with both structured and unstructured data. Our focus is the End-to-End Compliance & Risk process at banks and financial institutions, in particular Know Your Customer (KYC) and Anti-Money-Laundering (AML).\nWe are a multidisciplinary team of 10–15 people in Zurich, combining deep domain expertise in Compliance & Risk with strong engineering capabilities. Our software runs inside our clients' critical processes at leading financial institutions, tested and relied on daily.\nRole Description\nWe are looking for an intern for a paid, 6-month fixed-term internship, supporting the development of data processing and evaluation systems on top of our Nucleus Compliance & Risk Engine, for leading financial institutions. You'll work closely with our engineers and our Compliance & Risk specialists, and contribute to projects that go live with our clients.\nKey responsibilities\nDevelop (Python) code for data processing and evaluation on our Nucleus Compliance & Risk Engine\nPerform data analysis on real datasets in the KYC/AML domain\nSupport the delivery teams with analysis, testing, documentation and preparation of client sessions\nWhat you will gain\nExperience in delivering production-ready code\nPractical experience with LLM supported applications in production\nInsight into B2B customer communication with regulated financial institutions, and into how client projects are delivered\nDirect mentoring from senior engineers and real ownership of your work\nLocation & commitment\nHybrid — Zurich office, with remote days\nFixed-term internship, 6 months, 70–100%\nStart date: 1 September 2026\nCHF 4,200 gross per month (paid internship)\nNo relocation support and no visa sponsorship; travel is limited to occasional client meetings\nExtension or permanent role possible after the internship\nQualifications\nCurrently enrolled in a BSc or MSc in a STEM field at a Swiss university, or a recent graduate\nProgramming knowledge and experience in Python\nA good understanding of algorithms and data structures\nAbility to work in a dynamic environment with different types of duties\nValid permission to work in Switzerland\nThe drive to work independently and pick up new things across different areas\nNice to have — experience working on code collaboratively\nNo prior compliance or finance knowledge is expected. We care more about attitude and curiosity than a long list of prior experience — we're there to support you, and we're looking for self-starters."
     },
-    "technical_fit": "This is a 6-month fixed-term internship role, and the candidate explicitly excludes internships and working-student roles from his search. He is looking for a permanent or at least open-ended position where he can \"own real projects from day one\" and grow into more complex AI systems. While the posting mentions \"extension or permanent role possible after the internship,\" the core offering is an internship. Additionally, the role requires being \"currently enrolled in a BSc or MSc in a STEM field at a Swiss university, or a recent graduate\" — the candidate is a career changer with a law background and a postgraduate specialization in data science, not a traditional STEM degree path. The LLM component is present but framed as \"LLM supported applications\" rather than core AI/LLM engineering. The candidate has already evaluated this exact role at 76 (REVIEW) in past evaluations, but given his explicit exclusion of internships and the mismatch with his career stage goals, SKIP is the right call. The pay (CHF 4,200/month) and hybrid setup are reasonable, but the role shape is wrong for where he is in his career transition.",
-    "contextual_fit": "",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "",
+    "technical_fit": "Partial. Python, SQL, data analysis, and production code delivery align. However, this is explicitly an internship (6-month fixed-term, requires current enrollment or recent graduate status), and the candidate is seeking non-internship roles. The LLM-supported applications mention is a plus, but the role is heavily weighted toward traditional data processing/evaluation in KYC/AML rather than building AI/LLM systems.",
+    "contextual_fit": "Weak. The candidate has valid Swiss work permit and is Zurich-based, but the role requires enrollment/recent graduation and is explicitly a 6-month internship with possible extension—not a permanent position. The candidate's profile emphasizes 'own real projects from day one' and escaping intern-level roles; this is a step backward in career trajectory despite some technical overlap.",
+    "salary_estimate": "CHF 4,200/month (disclosed)",
+    "culture_fit": "Moderate. Self-starter culture, mentorship, and real ownership are appealing. However, the 'intern' framing and compliance-domain focus (without AI/LLM building emphasis) clash with candidate's stated motivation to build complex AI systems, not support traditional data processing in finance.",
     "concerns": [
-      "Fixed-term internship explicitly excluded by candidate's search criteria",
-      "Requires STEM enrollment/recent graduate status — candidate is a career changer with law background",
-      "LLM work is present but secondary/supporting, not core AI engineering",
-      "Past evaluations of this exact role scored 76 (REVIEW) but candidate's criteria have not changed",
-      "Role shape is intern-level support rather than ownership of production systems"
-    ],
-    "agent_rationale": "This is a 6-month fixed-term internship role, and the candidate explicitly excludes internships and working-student roles from his search. He is looking for a permanent or at least open-ended position where he can \"own real projects from day one\" and grow into more complex AI systems. While the posting mentions \"extension or permanent role possible after the internship,\" the core offering is an internship. Additionally, the role requires being \"currently enrolled in a BSc or MSc in a STEM field at a Swiss university, or a recent graduate\" — the candidate is a career changer with a law background and a postgraduate specialization in data science, not a traditional STEM degree path. The LLM component is present but framed as \"LLM supported applications\" rather than core AI/LLM engineering. The candidate has already evaluated this exact role at 76 (REVIEW) in past evaluations, but given his explicit exclusion of internships and the mismatch with his career stage goals, SKIP is the right call. The pay (CHF 4,200/month) and hybrid setup are reasonable, but the role shape is wrong for where he is in his career transition.",
-    "agent_decision": "SKIP",
-    "agent_trace": [
-      {
-        "name": "get_posting_text",
-        "arguments": {}
-      },
-      {
-        "name": "check_language_requirement",
-        "arguments": {}
-      },
-      {
-        "name": "get_candidate_profile",
-        "arguments": {}
-      },
-      {
-        "name": "get_outcome_calibration",
-        "arguments": {}
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "PQ Technologies"
-        }
-      },
-      {
-        "name": "record_decision",
-        "arguments": {
-          "score": 45,
-          "decision": "SKIP",
-          "rationale": "This is a 6-month fixed-term internship role, and the candidate explicitly excludes internships and working-student roles from his search. He is looking for a permanent or at least open-ended position where he can \"own real projects from day one\" and grow into more complex AI systems. While the posting mentions \"extension or permanent role possible after the internship,\" the core offering is an internship. Additionally, the role requires being \"currently enrolled in a BSc or MSc in a STEM field at a Swiss university, or a recent graduate\" — the candidate is a career changer with a law background and a postgraduate specialization in data science, not a traditional STEM degree path. The LLM component is present but framed as \"LLM supported applications\" rather than core AI/LLM engineering. The candidate has already evaluated this exact role at 76 (REVIEW) in past evaluations, but given his explicit exclusion of internships and the mismatch with his career stage goals, SKIP is the right call. The pay (CHF 4,200/month) and hybrid setup are reasonable, but the role shape is wrong for where he is in his career transition.",
-          "concerns": [
-            "Fixed-term internship explicitly excluded by candidate's search criteria",
-            "Requires STEM enrollment/recent graduate status — candidate is a career changer with law background",
-            "LLM work is present but secondary/supporting, not core AI engineering",
-            "Past evaluations of this exact role scored 76 (REVIEW) but candidate's criteria have not changed",
-            "Role shape is intern-level support rather than ownership of production systems"
-          ],
-          "hard_blockers": [],
-          "language_requirement": "none"
-        }
-      }
+      "Explicitly an internship despite candidate's clear non-internship requirement",
+      "KYC/AML domain is traditional compliance data processing, not AI/LLM system building as primary focus",
+      "'LLM supported applications' mentioned as learning outcome but not core responsibility — likely minor exposure, not ownership",
+      "Start date already passed by two weeks",
+      "Requires 'currently enrolled or recent graduate' — candidate has postgraduate specialization and is currently employed, not fitting typical intern profile",
+      "70-100% commitment suggests possible part-time structure, unclear fit with candidate's availability"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-09-14T04:08:16.894279+00:00"
+    "evaluated_at": "2026-09-14T04:08:16.894279+00:00",
+    "rescored": true
   },
   {
-    "score": 72,
+    "score": 68,
     "hard_blockers": [],
     "insufficient_info": true,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "The posting is truncated (500 chars, cut off mid-description), so the full requirements are not visible. From what is visible: this is a Zurich-based AI startup building LLM-powered workflows, which aligns well with the candidate's target role of building and shipping LLM systems to production. The role mentions messy data, solid code, experiments to improve LLM workflows, and shipping to production -- all directly relevant to his experience. However, this is explicitly an internship, and the candidate's stated target is \"Not internships or working-student roles.\" He is looking for a permanent/junior role where he can own projects from day one. The text mentions \"graduated Master's student or close to graduation\" which suggests this is positioned as a transitional internship, but it's still an internship. Past evaluations for this exact role all scored 72 and landed in REVIEW. No language requirements beyond English were found. The truncated text is a concern since we can't see full requirements. Given the strong technical alignment but the internship nature conflicting with his stated preferences, REVIEW at 72 is appropriate -- he should read the full posting and decide if this internship could be a stepping stone despite his preference for non-internship roles."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Posting is truncated -- full requirements not visible",
-      "Role is explicitly an internship, while candidate targets non-internship roles",
-      "Candidate wants to own projects from day one; internship may not offer that level of ownership",
-      "Only 1 application sent historically with 0 responses -- limited calibration data",
+      "Job description was truncated; requirements/qualifications section not visible — cannot assess degree requirements, specific tech stack gaps, or whether this is truly internship-only vs. potential conversion path",
+      "Explicit target profile is 'graduated Master's student or close to graduation'; candidate's postgraduate specialisation is lato sensu (not a Master's degree) and he is already working, not studying — possible eligibility mismatch even if skills fit",
+      "Pre-seed startup stage may imply limited mentorship structure for a career changer; candidate's self-directedness is an asset but worth noting",
+      "No information on role duration, conversion possibility, or whether they would consider non-students given his 2-week notice and work permit B",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -1738,75 +1701,36 @@
       "portal": "mail.xing.com",
       "description": " About You You're in the final stretch of your studies (in particular graduated Master's student or close to graduation) and you want a hands-on internship where you build real AI systems that ship to production. You enjoy working with messy data, writing solid code, and running experiments to improve LLM-powered workflows. You learn fast, take ownership, and like collaborating closely with a small team.  About INC INC (Iudex Non Calculat) is a pre-seed AI startup based in Zurich, building infr…"
     },
-    "technical_fit": "The posting is truncated (500 chars, cut off mid-description), so the full requirements are not visible. From what is visible: this is a Zurich-based AI startup building LLM-powered workflows, which aligns well with the candidate's target role of building and shipping LLM systems to production. The role mentions messy data, solid code, experiments to improve LLM workflows, and shipping to production -- all directly relevant to his experience. However, this is explicitly an internship, and the candidate's stated target is \"Not internships or working-student roles.\" He is looking for a permanent/junior role where he can own projects from day one. The text mentions \"graduated Master's student or close to graduation\" which suggests this is positioned as a transitional internship, but it's still an internship. Past evaluations for this exact role all scored 72 and landed in REVIEW. No language requirements beyond English were found. The truncated text is a concern since we can't see full requirements. Given the strong technical alignment but the internship nature conflicting with his stated preferences, REVIEW at 72 is appropriate -- he should read the full posting and decide if this internship could be a stepping stone despite his preference for non-internship roles.",
-    "contextual_fit": "",
+    "technical_fit": "Strong alignment with core stack: Python, SQL, LLM APIs, prompt engineering, structured output, agentic workflows, and production shipping are all explicitly mentioned in the role. The candidate's hands-on experience building LLM pipelines and automations from scratch maps well to 'build real AI systems that ship to production.'",
+    "contextual_fit": "Good: pre-seed Zurich startup, small team, ownership-oriented culture matches candidate's stated desire to 'own real projects from day one.' However, the role explicitly targets 'graduated Master's student or close to graduation' — the candidate has a postgraduate specialisation (lato sensu, i.e. not a full Master's) and is already working as an intern, not in final study stretch. This creates tension with the stated profile.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "",
+    "culture_fit": "Strong: startup environment, hands-on building, fast learning, close collaboration — all match candidate's self-described preferences and career-change energy.",
     "concerns": [
-      "Posting is truncated -- full requirements not visible",
-      "Role is explicitly an internship, while candidate targets non-internship roles",
-      "Candidate wants to own projects from day one; internship may not offer that level of ownership",
-      "Only 1 application sent historically with 0 responses -- limited calibration data"
+      "Job description was truncated; requirements/qualifications section not visible — cannot assess degree requirements, specific tech stack gaps, or whether this is truly internship-only vs. potential conversion path",
+      "Explicit target profile is 'graduated Master's student or close to graduation'; candidate's postgraduate specialisation is lato sensu (not a Master's degree) and he is already working, not studying — possible eligibility mismatch even if skills fit",
+      "Pre-seed startup stage may imply limited mentorship structure for a career changer; candidate's self-directedness is an asset but worth noting",
+      "No information on role duration, conversion possibility, or whether they would consider non-students given his 2-week notice and work permit B"
     ],
-    "agent_rationale": "The posting is truncated (500 chars, cut off mid-description), so the full requirements are not visible. From what is visible: this is a Zurich-based AI startup building LLM-powered workflows, which aligns well with the candidate's target role of building and shipping LLM systems to production. The role mentions messy data, solid code, experiments to improve LLM workflows, and shipping to production -- all directly relevant to his experience. However, this is explicitly an internship, and the candidate's stated target is \"Not internships or working-student roles.\" He is looking for a permanent/junior role where he can own projects from day one. The text mentions \"graduated Master's student or close to graduation\" which suggests this is positioned as a transitional internship, but it's still an internship. Past evaluations for this exact role all scored 72 and landed in REVIEW. No language requirements beyond English were found. The truncated text is a concern since we can't see full requirements. Given the strong technical alignment but the internship nature conflicting with his stated preferences, REVIEW at 72 is appropriate -- he should read the full posting and decide if this internship could be a stepping stone despite his preference for non-internship roles.",
-    "agent_decision": "REVIEW",
-    "agent_trace": [
-      {
-        "name": "get_posting_text",
-        "arguments": {}
-      },
-      {
-        "name": "get_candidate_profile",
-        "arguments": {}
-      },
-      {
-        "name": "check_language_requirement",
-        "arguments": {}
-      },
-      {
-        "name": "get_outcome_calibration",
-        "arguments": {}
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "Iudex Non Calculat"
-        }
-      },
-      {
-        "name": "record_decision",
-        "arguments": {
-          "score": 72,
-          "decision": "REVIEW",
-          "rationale": "The posting is truncated (500 chars, cut off mid-description), so the full requirements are not visible. From what is visible: this is a Zurich-based AI startup building LLM-powered workflows, which aligns well with the candidate's target role of building and shipping LLM systems to production. The role mentions messy data, solid code, experiments to improve LLM workflows, and shipping to production -- all directly relevant to his experience. However, this is explicitly an internship, and the candidate's stated target is \"Not internships or working-student roles.\" He is looking for a permanent/junior role where he can own projects from day one. The text mentions \"graduated Master's student or close to graduation\" which suggests this is positioned as a transitional internship, but it's still an internship. Past evaluations for this exact role all scored 72 and landed in REVIEW. No language requirements beyond English were found. The truncated text is a concern since we can't see full requirements. Given the strong technical alignment but the internship nature conflicting with his stated preferences, REVIEW at 72 is appropriate -- he should read the full posting and decide if this internship could be a stepping stone despite his preference for non-internship roles.",
-          "concerns": [
-            "Posting is truncated -- full requirements not visible",
-            "Role is explicitly an internship, while candidate targets non-internship roles",
-            "Candidate wants to own projects from day one; internship may not offer that level of ownership",
-            "Only 1 application sent historically with 0 responses -- limited calibration data"
-          ],
-          "hard_blockers": [],
-          "language_requirement": "none"
-        }
-      }
-    ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-09-14T04:08:16.894279+00:00"
+    "evaluated_at": "2026-09-14T04:08:16.894279+00:00",
+    "rescored": true
   },
   {
-    "score": 62,
+    "score": 52,
     "hard_blockers": [],
     "insufficient_info": false,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Role is explicitly a Master student assignment (2-4 months, 40-80% workload)",
-      "Temporary/part-time contract, not a permanent or full-time role",
-      "Candidate explicitly excludes internships and working-student roles from his search",
-      "Work is more about designing training materials and knowledge management concepts than building production AI systems",
-      "Reduced ownership potential given student/contractor nature of the role"
+      "Explicitly designed for a Master student (duration, start date, workload, 'what the student will gain')—candidate is a career-changer with internship experience seeking permanent non-internship roles",
+      "Heavy emphasis on Microsoft Copilot/Cowork, no-code/low-code platforms, and UX/wireframing rather than Python/LLM API engineering where candidate is strongest",
+      "Knowledge graph design and semantic search mentioned but at conceptual level; no evidence of hands-on coding or production system ownership",
+      "40-80% workload incompatible with candidate's stated availability and career stage",
+      "Pharma domain experience not required, but the 'MSAT' (Manufacturing Science & Technology) context suggests steep domain learning curve for conceptual work",
+      "Start date of Oct 1 is immediate; candidate has 2-week notice but role may need faster onboarding",
+      "No mention of permit requirements, but Randstad Digital as staffing firm may have additional compliance layers"
     ],
     "job": {
       "company": "Randstad Digital",
@@ -1816,63 +1740,23 @@
       "portal": "linkedin.com",
       "description": "A leading pharmaceutical company is looking for a Junior AI & Knowledge Engineer based in Zurich, Switzerland\nDuration: 2-4 months\nStart date: 1st October 2026\nWorkload: 40-80%\nLanguage: English/ German an advantage\n1. Role overview\nWe are looking for a highly motivated Master student to support strategic AI and Knowledge\nManagement initiatives within a global biopharmaceutical environment. The role will work closely with\nthe MSAT Knowledge Management Lead and contribute to the design and deployment of the AI Academy,\nData Academy, Process Wiki / Knowledge Navigator, and related AI-enabled knowledge solutions.\nThe assignment is ideal for a student who enjoys building at the intersection of AI tools, knowledge\nmanagement, knowledge graph design, information architecture, and user-centric digital product design.\n2. Key responsibilities (depending which workstream assigned to)\nAI Academy & Data Academy development\nSupport the design of learning pathways, training curricula, capability frameworks and bootcamp\nconcepts.\nDevelop practical learning & workshop materials, exercise templates and reusable academy content.\nResearch emerging AI tools and translate relevant use cases into MSAT-oriented training examples.\nCreate AI use case catalogues, prompt examples and practical demonstrations for knowledge work,\ndata work and process intelligence.\nSupport launch communication, stakeholder updates and executive-ready summaries.\nProcess Wiki / Knowledge Navigator\nSupport the design of a modern digital knowledge infrastructure for process knowledge, process data\nand modelling-related content.\nCreate intuitive navigation structures & page concepts\nDevelop page mock-ups, wireframes and proof-of-concept knowledge portal designs.\nImprove discoverability through taxonomy, metadata and search-oriented content structuring.\nContribute to the integration concept for multiple knowledge sources into a unified knowledge navigator\nexperience.\nAI tools, knowledge graphs and agentic knowledge solutions\nApply AI productivity tools such as Microsoft Copilot, Cowork or comparable AI assistant platforms to\naccelerate content creation, knowledge structuring and prototyping.\nSupport conceptual knowledge graph design by defining entities, relationships and metadata patterns\nacross documents, processes & systems.\nEvaluate approaches for semantic search, retrieval-augmented generation and AI-assisted knowledge\nretrieval.\nContribute to concepts for Copilot / Cowork-based assistants, process wiki agents and AI-enabled\nknowledge workflows.\nDocument design decisions, assumptions and recommendations in a structured and reusable way.\nWeb page creation, UX and vi\n[... middle of the posting omitted ...]\n knowledge systems.\nHigh attention to detail, with the ability to make complex knowledge accessible and easy to reuse.\n5. Expected deliverables (depending which workstream assigned to)\nWorkstream Expected contribution\nAcademy design\nAI Academy and Data & Modelling Academy\ncontent structure, learning pathways, workshop\nconcepts and reusable training assets.\nKnowledge product\nProcess Wiki / Knowledge Navigator MVP concept,\nnavigation model, page design prototypes and\nuser journey recommendations.\nAI & knowledge engineering\nKnowledge graph concept, taxonomy and\nmetadata recommendations, RAG / semantic\nsearch options and AI-agent integration ideas.\nCommunication assets\nExecutive-ready summaries, visual storylines,\nstakeholder updates and working materials for\nprogramme adoption.\n6. What the student will gain\nHands-on experience in enterprise AI transformation and AI-enabled knowledge management.\nExposure to strategic academy development, capability building and community enablement.\nOpportunity to work on a visible Process Wiki / Knowledge Navigator MVP with real business impact.\nExperience with modern AI tools, knowledge graph concepts and digital product design in a regulated\nglobal environment.\nClose collaboration with experts in MSAT, Process Intelligence, Knowledge Management, Digital & Data\nScience.\nApply soon!"
     },
-    "technical_fit": "This is a student/Master student assignment (2-4 months, 40-80% workload, explicitly targeting a Master student) at a pharmaceutical company through Randstad Digital. The candidate is a career changer with a postgraduate specialization in Data Science, currently working as an AI Software Engineer Intern, and explicitly looking for non-internship roles where he can \"own real projects from day one.\" This role is the opposite: it's a temporary student assignment with reduced workload, not a permanent or full-time position. The work content is interesting (AI Academy, knowledge graphs, RAG, agentic solutions) and aligns with his skills, but the role shape is fundamentally wrong — it's part-time, temporary, and designed for students still in university. His target is to build and operate LLM/agentic systems in production as a full team member, not to design training curricula and workshop materials as a student contractor. Past evaluations of this exact role have all scored in the 72-76 REVIEW range, but those did not fully account for the candidate's explicit exclusion of internships/student roles from his search. The language requirement is soft (\"German an advantage\"), which is fine. Location is Zurich, which is good. But the role type is a hard mismatch with his career goals.",
-    "contextual_fit": "",
+    "technical_fit": "Moderate. The role involves AI-adjacent work (RAG, semantic search, knowledge graphs, Copilot agents) but heavily skewed toward knowledge management, curriculum design, and UX/product prototyping rather than hands-on engineering. Candidate's strengths in Python, LLM APIs, tool-calling agents, and production pipeline building are underutilized; the role wants Microsoft Copilot/Cowork, wireframing, and 'executive-ready summaries' more than code.",
+    "contextual_fit": "Poor. Duration (2-4 months), start date (Oct 1, 2026), and workload (40-80%) all signal this is explicitly a Master student's internship/HiWi assignment, not a permanent or even contract-to-hire role. Candidate is not a Master student, has a valid Swiss work permit B, is seeking non-internship positions with 2-week notice. The 'student who enjoys building' framing and 'what the student will gain' section confirm this is designed for academic credit/term-time employment.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "",
+    "culture_fit": "Neutral-to-mild mismatch. Highly structured, regulated pharma environment with heavy emphasis on documentation, stakeholder communication, and executive presentations. Candidate's self-described style is 'ship from scratch,' 'own real projects from day one'—this role's deliverables are concepts, curricula, and 'adoption materials' rather than shipped production systems.",
     "concerns": [
-      "Role is explicitly a Master student assignment (2-4 months, 40-80% workload)",
-      "Temporary/part-time contract, not a permanent or full-time role",
-      "Candidate explicitly excludes internships and working-student roles from his search",
-      "Work is more about designing training materials and knowledge management concepts than building production AI systems",
-      "Reduced ownership potential given student/contractor nature of the role"
-    ],
-    "agent_rationale": "This is a student/Master student assignment (2-4 months, 40-80% workload, explicitly targeting a Master student) at a pharmaceutical company through Randstad Digital. The candidate is a career changer with a postgraduate specialization in Data Science, currently working as an AI Software Engineer Intern, and explicitly looking for non-internship roles where he can \"own real projects from day one.\" This role is the opposite: it's a temporary student assignment with reduced workload, not a permanent or full-time position. The work content is interesting (AI Academy, knowledge graphs, RAG, agentic solutions) and aligns with his skills, but the role shape is fundamentally wrong — it's part-time, temporary, and designed for students still in university. His target is to build and operate LLM/agentic systems in production as a full team member, not to design training curricula and workshop materials as a student contractor. Past evaluations of this exact role have all scored in the 72-76 REVIEW range, but those did not fully account for the candidate's explicit exclusion of internships/student roles from his search. The language requirement is soft (\"German an advantage\"), which is fine. Location is Zurich, which is good. But the role type is a hard mismatch with his career goals.",
-    "agent_decision": "SKIP",
-    "agent_trace": [
-      {
-        "name": "get_posting_text",
-        "arguments": {}
-      },
-      {
-        "name": "get_candidate_profile",
-        "arguments": {}
-      },
-      {
-        "name": "get_outcome_calibration",
-        "arguments": {}
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "Randstad"
-        }
-      },
-      {
-        "name": "check_language_requirement",
-        "arguments": {}
-      },
-      {
-        "name": "record_decision",
-        "arguments": {
-          "score": 62,
-          "decision": "SKIP",
-          "rationale": "This is a student/Master student assignment (2-4 months, 40-80% workload, explicitly targeting a Master student) at a pharmaceutical company through Randstad Digital. The candidate is a career changer with a postgraduate specialization in Data Science, currently working as an AI Software Engineer Intern, and explicitly looking for non-internship roles where he can \"own real projects from day one.\" This role is the opposite: it's a temporary student assignment with reduced workload, not a permanent or full-time position. The work content is interesting (AI Academy, knowledge graphs, RAG, agentic solutions) and aligns with his skills, but the role shape is fundamentally wrong — it's part-time, temporary, and designed for students still in university. His target is to build and operate LLM/agentic systems in production as a full team member, not to design training curricula and workshop materials as a student contractor. Past evaluations of this exact role have all scored in the 72-76 REVIEW range, but those did not fully account for the candidate's explicit exclusion of internships/student roles from his search. The language requirement is soft (\"German an advantage\"), which is fine. Location is Zurich, which is good. But the role type is a hard mismatch with his career goals.",
-          "concerns": [
-            "Role is explicitly a Master student assignment (2-4 months, 40-80% workload)",
-            "Temporary/part-time contract, not a permanent or full-time role",
-            "Candidate explicitly excludes internships and working-student roles from his search",
-            "Work is more about designing training materials and knowledge management concepts than building production AI systems",
-            "Reduced ownership potential given student/contractor nature of the role"
-          ],
-          "hard_blockers": [],
-          "language_requirement": "soft"
-        }
-      }
+      "Explicitly designed for a Master student (duration, start date, workload, 'what the student will gain')—candidate is a career-changer with internship experience seeking permanent non-internship roles",
+      "Heavy emphasis on Microsoft Copilot/Cowork, no-code/low-code platforms, and UX/wireframing rather than Python/LLM API engineering where candidate is strongest",
+      "Knowledge graph design and semantic search mentioned but at conceptual level; no evidence of hands-on coding or production system ownership",
+      "40-80% workload incompatible with candidate's stated availability and career stage",
+      "Pharma domain experience not required, but the 'MSAT' (Manufacturing Science & Technology) context suggests steep domain learning curve for conceptual work",
+      "Start date of Oct 1 is immediate; candidate has 2-week notice but role may need faster onboarding",
+      "No mention of permit requirements, but Randstad Digital as staffing firm may have additional compliance layers"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-09-14T04:08:16.894279+00:00"
+    "evaluated_at": "2026-09-14T04:08:16.894279+00:00",
+    "rescored": true
   }
 ]

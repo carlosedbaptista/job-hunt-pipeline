@@ -1,15 +1,18 @@
 [
   {
-    "score": 55,
-    "hard_blockers": [],
+    "score": 58,
+    "hard_blockers": [
+      "Role is explicitly an internship; candidate's stated requirement excludes internships and working-student roles"
+    ],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Posting text truncated — full requirements not visible",
-      "Role appears to be business analytics/sentiment analysis in banking marketing, not agentic systems or LLM pipeline engineering",
-      "MBA-HSG off-cycle framing suggests target profile is business/finance students, not technical career changers",
-      "Unclear whether this offers 'ownership from day one' vs. support work in a large bank",
+      "Blocker: Role is explicitly an internship; candidate's stated requirement excludes internships and working-student roles",
+      "Requirements/qualifications section not visible in truncated description -- cannot assess technical depth, language requirements, or exact role expectations",
+      "MBA-HSG program likely requires enrollment at University of St.Gallen, unclear if candidate qualifies",
+      "Role appears to be business-facing analytics (sentiment analysis, summarization) rather than engineering/production AI systems",
+      "Candidate's stated motivation emphasizes 'own real projects from day one' and escaping intern-level roles; this contradicts the program structure",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -20,62 +23,21 @@
       "portal": "adzuna",
       "description": "Event details Your role: Interested in working in finance, specifically with private clients across Switzerland, but not sure where to start? Do you want to work for a firm with a truly global footprint? We're looking for ambitious students to join our 2026 Off-cycle Internship within our Personal & Corporate Banking, Products Channels & Marketing business in Switzerland. You'll get to: • contribute to Conversation Analytics such as topic identification, sentiment analysis, and summarization of…"
     },
-    "technical_fit": "The posting text is severely truncated (500 chars, truncated=true) — the requirements section was never visible, so this cannot be evaluated properly. What IS visible describes a finance-focused internship in \"Personal & Corporate Banking, Products Channels & Marketing\" with work on \"Conversation Analytics such as topic identification, sentiment analysis, and summarization.\" This is a data science/analytics role in a traditional banking business unit, not an agentic systems / LLM pipeline engineering role. The candidate's core goal is to build LLM-powered pipelines end-to-end with real ownership in agentic systems; this role appears to be analytics support in a marketing/banking context. Additionally, the truncated text means we lack visibility on requirements, skills needed, and whether this is truly a technical build role or a business analytics internship. The MBA-HSG framing also signals a business/finance student target, not a career-changer engineer. Location (Zürich) is fine, permit is fine, language is no issue (none tier). But role shape mismatch + invisible requirements = below threshold.",
-    "contextual_fit": "",
+    "technical_fit": "Partial. The visible description mentions 'Conversation Analytics' including topic identification, sentiment analysis and summarization -- NLP/ML work that touches LLM-adjacent territory. However, the framing is explicitly 'MBA-HSG Off-cycle Internship' aimed at 'ambitious students', and the business unit is Personal & Corporate Banking, Products Channels & Marketing. This reads as a business-analytics internship with some NLP flavor, not a role building or operating AI/LLM systems. The candidate's core target is engineering production LLM/agentic systems, not analytics in a banking context.",
+    "contextual_fit": "Weak. MBA internship program, not a permanent role. The candidate explicitly excludes internships from his search ('Not internships or working-student roles'). HSG MBA program implies specific university affiliation. Banking domain is acceptable to him, but the role shape is wrong: it's an internship, not ownership of projects from day one.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "",
+    "culture_fit": "Unknown. UBS large corporate culture, likely structured program. No signal on ownership or greenfield building.",
     "concerns": [
-      "Posting text truncated — full requirements not visible",
-      "Role appears to be business analytics/sentiment analysis in banking marketing, not agentic systems or LLM pipeline engineering",
-      "MBA-HSG off-cycle framing suggests target profile is business/finance students, not technical career changers",
-      "Unclear whether this offers 'ownership from day one' vs. support work in a large bank"
-    ],
-    "agent_rationale": "The posting text is severely truncated (500 chars, truncated=true) — the requirements section was never visible, so this cannot be evaluated properly. What IS visible describes a finance-focused internship in \"Personal & Corporate Banking, Products Channels & Marketing\" with work on \"Conversation Analytics such as topic identification, sentiment analysis, and summarization.\" This is a data science/analytics role in a traditional banking business unit, not an agentic systems / LLM pipeline engineering role. The candidate's core goal is to build LLM-powered pipelines end-to-end with real ownership in agentic systems; this role appears to be analytics support in a marketing/banking context. Additionally, the truncated text means we lack visibility on requirements, skills needed, and whether this is truly a technical build role or a business analytics internship. The MBA-HSG framing also signals a business/finance student target, not a career-changer engineer. Location (Zürich) is fine, permit is fine, language is no issue (none tier). But role shape mismatch + invisible requirements = below threshold.",
-    "agent_decision": "SKIP",
-    "agent_trace": [
-      {
-        "name": "get_posting_text",
-        "arguments": {}
-      },
-      {
-        "name": "get_candidate_profile",
-        "arguments": {}
-      },
-      {
-        "name": "get_outcome_calibration",
-        "arguments": {}
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "UBS"
-        }
-      },
-      {
-        "name": "check_language_requirement",
-        "arguments": {}
-      },
-      {
-        "name": "record_decision",
-        "arguments": {
-          "score": 55,
-          "decision": "SKIP",
-          "rationale": "The posting text is severely truncated (500 chars, truncated=true) — the requirements section was never visible, so this cannot be evaluated properly. What IS visible describes a finance-focused internship in \"Personal & Corporate Banking, Products Channels & Marketing\" with work on \"Conversation Analytics such as topic identification, sentiment analysis, and summarization.\" This is a data science/analytics role in a traditional banking business unit, not an agentic systems / LLM pipeline engineering role. The candidate's core goal is to build LLM-powered pipelines end-to-end with real ownership in agentic systems; this role appears to be analytics support in a marketing/banking context. Additionally, the truncated text means we lack visibility on requirements, skills needed, and whether this is truly a technical build role or a business analytics internship. The MBA-HSG framing also signals a business/finance student target, not a career-changer engineer. Location (Zürich) is fine, permit is fine, language is no issue (none tier). But role shape mismatch + invisible requirements = below threshold.",
-          "concerns": [
-            "Posting text truncated — full requirements not visible",
-            "Role appears to be business analytics/sentiment analysis in banking marketing, not agentic systems or LLM pipeline engineering",
-            "MBA-HSG off-cycle framing suggests target profile is business/finance students, not technical career changers",
-            "Unclear whether this offers 'ownership from day one' vs. support work in a large bank"
-          ],
-          "hard_blockers": [],
-          "language_requirement": "none"
-        }
-      }
+      "Requirements/qualifications section not visible in truncated description -- cannot assess technical depth, language requirements, or exact role expectations",
+      "MBA-HSG program likely requires enrollment at University of St.Gallen, unclear if candidate qualifies",
+      "Role appears to be business-facing analytics (sentiment analysis, summarization) rather than engineering/production AI systems",
+      "Candidate's stated motivation emphasizes 'own real projects from day one' and escaping intern-level roles; this contradicts the program structure"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-09-06T09:08:27.728422+00:00"
+    "evaluated_at": "2026-09-06T09:08:27.728422+00:00",
+    "rescored": true
   },
   {
     "score": null,
@@ -246,18 +208,22 @@
     "evaluated_at": "2026-09-06T09:08:27.728422+00:00"
   },
   {
-    "score": 76,
-    "hard_blockers": [],
+    "score": 35,
+    "hard_blockers": [
+      "Role is explicitly an internship — candidate instruction: 'Not internships or working-student roles'",
+      "Requires current enrollment in Swiss university or recent graduate; candidate's profile (career changer with prior professional experience in law, now interning) is mismatched with this eligibility criterion"
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "This is a strong match with some caveats. The role is in Zurich (hybrid), requires no German, offers a paid 6-month internship with real production code exposure and LLM applications in production. The candidate has strong Python skills, data analysis experience, and LLM pipeline experience that directly aligns with the 'practical experience with LLM supported applications in production' mentioned. He has valid Swiss work permit, 2-week notice, and the start date (1 Sep 2026) is very soon - he could potentially start quickly. The role explicitly states 'No prior compliance or finance knowledge is expected' and values attitude over experience, which fits his career-change profile well. However, the role is primarily data processing and analysis in KYC/AML rather than agentic systems/automation, which is his stated target. The 'support the delivery teams' language suggests some support work rather than pure ownership from day one. Past evaluations consistently scored this at 76/REVIEW, and with only 1 application sent with 0 responses so far, there's no strong calibration signal to deviate. The role is a good fit but not a perfect match for his agentic systems focus."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Role is more data processing/analysis in financial compliance rather than agentic systems/automation focus",
-      "Some support work implied ('support delivery teams with analysis, testing, documentation') rather than pure ownership from day one",
-      "Start date of 1 Sep 2026 is very soon - may be tight even with 2-week notice",
-      "Domain is financial compliance (KYC/AML) which is unfamiliar, though explicitly not required"
+      "Blocker: Role is explicitly an internship — candidate instruction: 'Not internships or working-student roles'",
+      "Blocker: Requires current enrollment in Swiss university or recent graduate; candidate's profile (career changer with prior professional experience in law, now interning) is mismatched with this eligibility criterion",
+      "LLM exposure is listed under 'what you will gain' rather than core responsibility — likely minimal hands-on AI building",
+      "Heavy emphasis on compliance/AML domain data analysis, testing, documentation, and client session prep — maintenance/support shape, not greenfield building",
+      "6-month fixed term with only possible extension conflicts with desire for permanent role and project ownership",
+      "Despite 'no finance knowledge expected,' the role is deeply embedded in financial compliance processes — domain-heavy context with limited transferable AI engineering skills",
+      "Hybrid/on-site Zurich is fine, but no relocation support irrelevant given candidate is already local"
     ],
     "job": {
       "company": "PQ Technologies",
@@ -267,94 +233,37 @@
       "portal": "linkedin.com",
       "description": "Company Description\nAt PQ Technologies AG (PQT), we build data processing solutions for the financial industry, working with both structured and unstructured data. Our focus is the End-to-End Compliance & Risk process at banks and financial institutions, in particular Know Your Customer (KYC) and Anti-Money-Laundering (AML).\nWe are a multidisciplinary team of 10–15 people in Zurich, combining deep domain expertise in Compliance & Risk with strong engineering capabilities. Our software runs inside our clients' critical processes at leading financial institutions, tested and relied on daily.\nRole Description\nWe are looking for an intern for a paid, 6-month fixed-term internship, supporting the development of data processing and evaluation systems on top of our Nucleus Compliance & Risk Engine, for leading financial institutions. You'll work closely with our engineers and our Compliance & Risk specialists, and contribute to projects that go live with our clients.\nKey responsibilities\nDevelop (Python) code for data processing and evaluation on our Nucleus Compliance & Risk Engine\nPerform data analysis on real datasets in the KYC/AML domain\nSupport the delivery teams with analysis, testing, documentation and preparation of client sessions\nWhat you will gain\nExperience in delivering production-ready code\nPractical experience with LLM supported applications in production\nInsight into B2B customer communication with regulated financial institutions, and into how client projects are delivered\nDirect mentoring from senior engineers and real ownership of your work\nLocation & commitment\nHybrid — Zurich office, with remote days\nFixed-term internship, 6 months, 70–100%\nStart date: 1 September 2026\nCHF 4,200 gross per month (paid internship)\nNo relocation support and no visa sponsorship; travel is limited to occasional client meetings\nExtension or permanent role possible after the internship\nQualifications\nCurrently enrolled in a BSc or MSc in a STEM field at a Swiss university, or a recent graduate\nProgramming knowledge and experience in Python\nA good understanding of algorithms and data structures\nAbility to work in a dynamic environment with different types of duties\nValid permission to work in Switzerland\nThe drive to work independently and pick up new things across different areas\nNice to have — experience working on code collaboratively\nNo prior compliance or finance knowledge is expected. We care more about attitude and curiosity than a long list of prior experience — we're there to support you, and we're looking for self-starters."
     },
-    "technical_fit": "This is a strong match with some caveats. The role is in Zurich (hybrid), requires no German, offers a paid 6-month internship with real production code exposure and LLM applications in production. The candidate has strong Python skills, data analysis experience, and LLM pipeline experience that directly aligns with the 'practical experience with LLM supported applications in production' mentioned. He has valid Swiss work permit, 2-week notice, and the start date (1 Sep 2026) is very soon - he could potentially start quickly. The role explicitly states 'No prior compliance or finance knowledge is expected' and values attitude over experience, which fits his career-change profile well. However, the role is primarily data processing and analysis in KYC/AML rather than agentic systems/automation, which is his stated target. The 'support the delivery teams' language suggests some support work rather than pure ownership from day one. Past evaluations consistently scored this at 76/REVIEW, and with only 1 application sent with 0 responses so far, there's no strong calibration signal to deviate. The role is a good fit but not a perfect match for his agentic systems focus.",
-    "contextual_fit": "",
-    "salary_estimate": "Not disclosed",
-    "culture_fit": "",
+    "technical_fit": "Partial overlap. Role is Python/data processing heavy with some LLM exposure ('LLM supported applications in production'), but the core work is KYC/AML data evaluation, testing, documentation, and client support — not building, integrating or operating AI/LLM/agentic systems. The LLM component appears to be a 'gain' (exposure) rather than the primary responsibility.",
+    "contextual_fit": "Poor. This is explicitly an internship — the candidate's instructions are to skip internships and working-student roles. Additionally, the role requires current enrollment in a Swiss university or recent graduate status; the candidate is a career changer with a postgraduate specialisation and work experience, not a typical intern profile. Fixed-term 6 months with possible extension is also misaligned with his goal of permanent ownership from day one.",
+    "salary_estimate": "CHF 4,200/month (stated)",
+    "culture_fit": "Strong mentoring culture and self-starter values align, but the role shape (intern, support-heavy, client documentation and testing) is far from the 'junior builder with ownership' he seeks.",
     "concerns": [
-      "Role is more data processing/analysis in financial compliance rather than agentic systems/automation focus",
-      "Some support work implied ('support delivery teams with analysis, testing, documentation') rather than pure ownership from day one",
-      "Start date of 1 Sep 2026 is very soon - may be tight even with 2-week notice",
-      "Domain is financial compliance (KYC/AML) which is unfamiliar, though explicitly not required"
+      "LLM exposure is listed under 'what you will gain' rather than core responsibility — likely minimal hands-on AI building",
+      "Heavy emphasis on compliance/AML domain data analysis, testing, documentation, and client session prep — maintenance/support shape, not greenfield building",
+      "6-month fixed term with only possible extension conflicts with desire for permanent role and project ownership",
+      "Despite 'no finance knowledge expected,' the role is deeply embedded in financial compliance processes — domain-heavy context with limited transferable AI engineering skills",
+      "Hybrid/on-site Zurich is fine, but no relocation support irrelevant given candidate is already local"
     ],
-    "agent_rationale": "This is a strong match with some caveats. The role is in Zurich (hybrid), requires no German, offers a paid 6-month internship with real production code exposure and LLM applications in production. The candidate has strong Python skills, data analysis experience, and LLM pipeline experience that directly aligns with the 'practical experience with LLM supported applications in production' mentioned. He has valid Swiss work permit, 2-week notice, and the start date (1 Sep 2026) is very soon - he could potentially start quickly. The role explicitly states 'No prior compliance or finance knowledge is expected' and values attitude over experience, which fits his career-change profile well. However, the role is primarily data processing and analysis in KYC/AML rather than agentic systems/automation, which is his stated target. The 'support the delivery teams' language suggests some support work rather than pure ownership from day one. Past evaluations consistently scored this at 76/REVIEW, and with only 1 application sent with 0 responses so far, there's no strong calibration signal to deviate. The role is a good fit but not a perfect match for his agentic systems focus.",
-    "agent_decision": "REVIEW",
-    "agent_trace": [
-      {
-        "name": "get_posting_text",
-        "arguments": {}
-      },
-      {
-        "name": "check_language_requirement",
-        "arguments": {}
-      },
-      {
-        "name": "get_candidate_profile",
-        "arguments": {}
-      },
-      {
-        "name": "get_outcome_calibration",
-        "arguments": {}
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "PQ Technologies"
-        }
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "Python Development"
-        }
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "Data Analysis"
-        }
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "Zurich"
-        }
-      },
-      {
-        "name": "record_decision",
-        "arguments": {
-          "score": 76,
-          "decision": "REVIEW",
-          "rationale": "This is a strong match with some caveats. The role is in Zurich (hybrid), requires no German, offers a paid 6-month internship with real production code exposure and LLM applications in production. The candidate has strong Python skills, data analysis experience, and LLM pipeline experience that directly aligns with the 'practical experience with LLM supported applications in production' mentioned. He has valid Swiss work permit, 2-week notice, and the start date (1 Sep 2026) is very soon - he could potentially start quickly. The role explicitly states 'No prior compliance or finance knowledge is expected' and values attitude over experience, which fits his career-change profile well. However, the role is primarily data processing and analysis in KYC/AML rather than agentic systems/automation, which is his stated target. The 'support the delivery teams' language suggests some support work rather than pure ownership from day one. Past evaluations consistently scored this at 76/REVIEW, and with only 1 application sent with 0 responses so far, there's no strong calibration signal to deviate. The role is a good fit but not a perfect match for his agentic systems focus.",
-          "concerns": [
-            "Role is more data processing/analysis in financial compliance rather than agentic systems/automation focus",
-            "Some support work implied ('support delivery teams with analysis, testing, documentation') rather than pure ownership from day one",
-            "Start date of 1 Sep 2026 is very soon - may be tight even with 2-week notice",
-            "Domain is financial compliance (KYC/AML) which is unfamiliar, though explicitly not required"
-          ],
-          "hard_blockers": [],
-          "language_requirement": "none"
-        }
-      }
-    ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-09-06T09:09:55.294401+00:00"
+    "evaluated_at": "2026-09-06T09:09:55.294401+00:00",
+    "rescored": true
   },
   {
-    "score": 72,
-    "hard_blockers": [],
+    "score": 68,
+    "hard_blockers": [
+      "Role is explicitly an internship — candidate's instructions specify 'Not internships or working-student roles'"
+    ],
     "insufficient_info": true,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "Strong role-shape match: pre-seed Zurich AI startup, building real LLM systems that ship to production, ownership culture, small team - exactly what the candidate seeks. Technical fit is good (LLM APIs, pipelines, guardrails, Python). Location (Zurich), permit (B, no sponsorship), and availability (2 weeks) are all favorable. However, the posting is truncated so full requirements are not visible. Additionally, the posting targets Master's students in their final stretch, while the candidate has a postgraduate specialisation (lato sensu) and is already working - there may be an education-level mismatch. Past evaluations of this exact role consistently scored 72/REVIEW, suggesting the market has viewed this as a good-but-not-perfect fit. The candidate should review whether his profile meets their degree expectations and apply if he feels his work experience compensates."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Posting truncated - full requirements not visible",
-      "Education level ambiguity: posting targets Master's students, candidate has postgraduate specialisation (lato sensu)",
-      "Already working rather than in final study stretch - may not fit target profile",
-      "Past evaluations consistently score this at 72 - market consensus is REVIEW tier",
+      "Blocker: Role is explicitly an internship — candidate's instructions specify 'Not internships or working-student roles'",
+      "Requirements section was not visible in truncated description — unable to assess degree requirements, specific tech stack, or whether 'internship' is strict or flexible in title",
+      "Role explicitly labeled 'Internship' which candidate has excluded from target scope; however, given pre-seed startup context and 'build real AI systems that ship to production' framing, the substance may exceed typical internship scope",
+      "Missing visibility on whether this could convert to permanent role or is strictly fixed-term academic internship",
+      "German language requirements not visible — assume English working language given startup/AI context but unverified",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -365,82 +274,37 @@
       "portal": "mail.xing.com",
       "description": " About You You're in the final stretch of your studies (in particular graduated Master's student or close to graduation) and you want a hands-on internship where you build real AI systems that ship to production. You enjoy working with messy data, writing solid code, and running experiments to improve LLM-powered workflows. You learn fast, take ownership, and like collaborating closely with a small team.  About INC INC (Iudex Non Calculat) is a pre-seed AI startup based in Zurich, building infr…"
     },
-    "technical_fit": "Strong role-shape match: pre-seed Zurich AI startup, building real LLM systems that ship to production, ownership culture, small team - exactly what the candidate seeks. Technical fit is good (LLM APIs, pipelines, guardrails, Python). Location (Zurich), permit (B, no sponsorship), and availability (2 weeks) are all favorable. However, the posting is truncated so full requirements are not visible. Additionally, the posting targets Master's students in their final stretch, while the candidate has a postgraduate specialisation (lato sensu) and is already working - there may be an education-level mismatch. Past evaluations of this exact role consistently scored 72/REVIEW, suggesting the market has viewed this as a good-but-not-perfect fit. The candidate should review whether his profile meets their degree expectations and apply if he feels his work experience compensates.",
-    "contextual_fit": "",
+    "technical_fit": "Strong alignment with visible elements: LLM-powered workflows, production AI systems, messy data handling, and experimentation are core to candidate's experience. Python, SQL, LLM APIs, prompt engineering, and building from scratch all map directly. The 'ship to production' emphasis matches his current trajectory and motivation.",
+    "contextual_fit": "Excellent: small startup, hands-on ownership, building real systems from day one — exactly the role shape candidate prioritizes. Zurich-based, no relocation or permit issues. 'Final stretch of studies' framing is slightly awkward given he's a career changer with work experience, but internship label itself is the concern, not the study wording.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "",
+    "culture_fit": "Strong: small team, collaboration, ownership, fast learning — matches candidate's self-described working style and explicit preference for greenfield building over maintenance.",
     "concerns": [
-      "Posting truncated - full requirements not visible",
-      "Education level ambiguity: posting targets Master's students, candidate has postgraduate specialisation (lato sensu)",
-      "Already working rather than in final study stretch - may not fit target profile",
-      "Past evaluations consistently score this at 72 - market consensus is REVIEW tier"
+      "Requirements section was not visible in truncated description — unable to assess degree requirements, specific tech stack, or whether 'internship' is strict or flexible in title",
+      "Role explicitly labeled 'Internship' which candidate has excluded from target scope; however, given pre-seed startup context and 'build real AI systems that ship to production' framing, the substance may exceed typical internship scope",
+      "Missing visibility on whether this could convert to permanent role or is strictly fixed-term academic internship",
+      "German language requirements not visible — assume English working language given startup/AI context but unverified"
     ],
-    "agent_rationale": "Strong role-shape match: pre-seed Zurich AI startup, building real LLM systems that ship to production, ownership culture, small team - exactly what the candidate seeks. Technical fit is good (LLM APIs, pipelines, guardrails, Python). Location (Zurich), permit (B, no sponsorship), and availability (2 weeks) are all favorable. However, the posting is truncated so full requirements are not visible. Additionally, the posting targets Master's students in their final stretch, while the candidate has a postgraduate specialisation (lato sensu) and is already working - there may be an education-level mismatch. Past evaluations of this exact role consistently scored 72/REVIEW, suggesting the market has viewed this as a good-but-not-perfect fit. The candidate should review whether his profile meets their degree expectations and apply if he feels his work experience compensates.",
-    "agent_decision": "REVIEW",
-    "agent_trace": [
-      {
-        "name": "get_posting_text",
-        "arguments": {}
-      },
-      {
-        "name": "check_language_requirement",
-        "arguments": {}
-      },
-      {
-        "name": "get_candidate_profile",
-        "arguments": {}
-      },
-      {
-        "name": "get_outcome_calibration",
-        "arguments": {}
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "Iudex Non Calculat"
-        }
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "AI intern"
-        }
-      },
-      {
-        "name": "record_decision",
-        "arguments": {
-          "score": 72,
-          "decision": "REVIEW",
-          "rationale": "Strong role-shape match: pre-seed Zurich AI startup, building real LLM systems that ship to production, ownership culture, small team - exactly what the candidate seeks. Technical fit is good (LLM APIs, pipelines, guardrails, Python). Location (Zurich), permit (B, no sponsorship), and availability (2 weeks) are all favorable. However, the posting is truncated so full requirements are not visible. Additionally, the posting targets Master's students in their final stretch, while the candidate has a postgraduate specialisation (lato sensu) and is already working - there may be an education-level mismatch. Past evaluations of this exact role consistently scored 72/REVIEW, suggesting the market has viewed this as a good-but-not-perfect fit. The candidate should review whether his profile meets their degree expectations and apply if he feels his work experience compensates.",
-          "concerns": [
-            "Posting truncated - full requirements not visible",
-            "Education level ambiguity: posting targets Master's students, candidate has postgraduate specialisation (lato sensu)",
-            "Already working rather than in final study stretch - may not fit target profile",
-            "Past evaluations consistently score this at 72 - market consensus is REVIEW tier"
-          ],
-          "hard_blockers": [],
-          "language_requirement": "none"
-        }
-      }
-    ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-09-06T09:09:55.294401+00:00"
+    "evaluated_at": "2026-09-06T09:09:55.294401+00:00",
+    "rescored": true
   },
   {
-    "score": 74,
-    "hard_blockers": [],
+    "score": 45,
+    "hard_blockers": [
+      "Role is explicitly a student internship (Master student, 2-4 months, 40-80%) — candidate explicitly excludes internships and working-student roles from his search"
+    ],
     "insufficient_info": false,
     "language_gap_intermediate": false,
-    "key_match_points": [
-      "This is a 2-4 month internship at a leading pharmaceutical company in Zurich, working on AI Academy, Knowledge Navigator, and agentic knowledge solutions. The role is at the intersection of AI tools, knowledge graphs, and RAG/semantic search — all directly relevant to the candidate's interests in agentic systems. Key positives: Zurich-based, English is the working language (German is only \"an advantage\" — soft requirement), start date of October 1st aligns well with his 2-week notice period, and the role explicitly mentions \"agentic knowledge solutions,\" \"RAG / semantic search,\" and \"AI-agent integration ideas\" — matching his technical profile. However, there are notable mismatches on role shape: the posting repeatedly says \"support the design,\" \"develop practical learning materials,\" \"create page mock-ups,\" and \"research emerging AI tools\" — this reads more like content creation, instructional design, and knowledge management support rather than hands-on engineering ownership of LLM pipelines. The candidate wants to \"build LLM-powered pipelines end to end, with real ownership from day one\" and this role appears to be more about designing training curricula, wiki navigation, and conceptual knowledge graphs rather than shipping production code. The \"Master student\" framing and 40-80% workload also suggest a lighter, more academic-style internship than he's seeking. Past evaluations of this exact role have consistently scored 72-74 and landed in REVIEW, which aligns with this assessment — it's close enough to explore but the role shape mismatch warrants a closer look before applying."
-    ],
+    "key_match_points": [],
     "red_flags": [
-      "Role shape mismatch: heavy emphasis on content creation, instructional design, and 'support' work rather than hands-on engineering ownership",
-      "Framed for 'Master student' with 40-80% workload, suggesting lighter commitment than candidate seeks",
-      "Pharma domain is unfamiliar, though candidate is open to new domains",
-      "Despite 'agentic' and 'RAG' keywords, actual deliverables skew toward academy design and wiki navigation rather than production LLM pipelines"
+      "Blocker: Role is explicitly a student internship (Master student, 2-4 months, 40-80%) — candidate explicitly excludes internships and working-student roles from his search",
+      "Role shape is content/curriculum design and knowledge management, not production AI engineering — misaligned with candidate's motivation to 'build systems, not just use them'",
+      "Duration and workload indicate student position, not career-level opportunity",
+      "Knowledge graph design, formal UX/wireframing, and instructional design are gaps vs. candidate's production-engineering skillset",
+      "Regulated pharma environment requires domain learning without corresponding technical depth payoff",
+      "Candidate would likely be frustrated by academy-content creation and executive-summary work vs. hands-on system building"
     ],
     "job": {
       "company": "Randstad Digital",
@@ -450,74 +314,35 @@
       "portal": "linkedin.com",
       "description": "A leading pharmaceutical company is looking for a Junior AI & Knowledge Engineer based in Zurich, Switzerland\nDuration: 2-4 months\nStart date: 1st October 2026\nWorkload: 40-80%\nLanguage: English/ German an advantage\n1. Role overview\nWe are looking for a highly motivated Master student to support strategic AI and Knowledge\nManagement initiatives within a global biopharmaceutical environment. The role will work closely with\nthe MSAT Knowledge Management Lead and contribute to the design and deployment of the AI Academy,\nData Academy, Process Wiki / Knowledge Navigator, and related AI-enabled knowledge solutions.\nThe assignment is ideal for a student who enjoys building at the intersection of AI tools, knowledge\nmanagement, knowledge graph design, information architecture, and user-centric digital product design.\n2. Key responsibilities (depending which workstream assigned to)\nAI Academy & Data Academy development\nSupport the design of learning pathways, training curricula, capability frameworks and bootcamp\nconcepts.\nDevelop practical learning & workshop materials, exercise templates and reusable academy content.\nResearch emerging AI tools and translate relevant use cases into MSAT-oriented training examples.\nCreate AI use case catalogues, prompt examples and practical demonstrations for knowledge work,\ndata work and process intelligence.\nSupport launch communication, stakeholder updates and executive-ready summaries.\nProcess Wiki / Knowledge Navigator\nSupport the design of a modern digital knowledge infrastructure for process knowledge, process data\nand modelling-related content.\nCreate intuitive navigation structures & page concepts\nDevelop page mock-ups, wireframes and proof-of-concept knowledge portal designs.\nImprove discoverability through taxonomy, metadata and search-oriented content structuring.\nContribute to the integration concept for multiple knowledge sources into a unified knowledge navigator\nexperience.\nAI tools, knowledge graphs and agentic knowledge solutions\nApply AI productivity tools such as Microsoft Copilot, Cowork or comparable AI assistant platforms to\naccelerate content creation, knowledge structuring and prototyping.\nSupport conceptual knowledge graph design by defining entities, relationships and metadata patterns\nacross documents, processes & systems.\nEvaluate approaches for semantic search, retrieval-augmented generation and AI-assisted knowledge\nretrieval.\nContribute to concepts for Copilot / Cowork-based assistants, process wiki agents and AI-enabled\nknowledge workflows.\nDocument design decisions, assumptions and recommendations in a structured and reusable way.\nWeb page creation, UX and vi\n[... middle of the posting omitted ...]\n knowledge systems.\nHigh attention to detail, with the ability to make complex knowledge accessible and easy to reuse.\n5. Expected deliverables (depending which workstream assigned to)\nWorkstream Expected contribution\nAcademy design\nAI Academy and Data & Modelling Academy\ncontent structure, learning pathways, workshop\nconcepts and reusable training assets.\nKnowledge product\nProcess Wiki / Knowledge Navigator MVP concept,\nnavigation model, page design prototypes and\nuser journey recommendations.\nAI & knowledge engineering\nKnowledge graph concept, taxonomy and\nmetadata recommendations, RAG / semantic\nsearch options and AI-agent integration ideas.\nCommunication assets\nExecutive-ready summaries, visual storylines,\nstakeholder updates and working materials for\nprogramme adoption.\n6. What the student will gain\nHands-on experience in enterprise AI transformation and AI-enabled knowledge management.\nExposure to strategic academy development, capability building and community enablement.\nOpportunity to work on a visible Process Wiki / Knowledge Navigator MVP with real business impact.\nExperience with modern AI tools, knowledge graph concepts and digital product design in a regulated\nglobal environment.\nClose collaboration with experts in MSAT, Process Intelligence, Knowledge Management, Digital & Data\nScience.\nApply soon!"
     },
-    "technical_fit": "This is a 2-4 month internship at a leading pharmaceutical company in Zurich, working on AI Academy, Knowledge Navigator, and agentic knowledge solutions. The role is at the intersection of AI tools, knowledge graphs, and RAG/semantic search — all directly relevant to the candidate's interests in agentic systems. Key positives: Zurich-based, English is the working language (German is only \"an advantage\" — soft requirement), start date of October 1st aligns well with his 2-week notice period, and the role explicitly mentions \"agentic knowledge solutions,\" \"RAG / semantic search,\" and \"AI-agent integration ideas\" — matching his technical profile. However, there are notable mismatches on role shape: the posting repeatedly says \"support the design,\" \"develop practical learning materials,\" \"create page mock-ups,\" and \"research emerging AI tools\" — this reads more like content creation, instructional design, and knowledge management support rather than hands-on engineering ownership of LLM pipelines. The candidate wants to \"build LLM-powered pipelines end to end, with real ownership from day one\" and this role appears to be more about designing training curricula, wiki navigation, and conceptual knowledge graphs rather than shipping production code. The \"Master student\" framing and 40-80% workload also suggest a lighter, more academic-style internship than he's seeking. Past evaluations of this exact role have consistently scored 72-74 and landed in REVIEW, which aligns with this assessment — it's close enough to explore but the role shape mismatch warrants a closer look before applying.",
-    "contextual_fit": "",
+    "technical_fit": "Partial overlap. Role involves AI tools, RAG, semantic search, knowledge graphs, and agentic workflows — all relevant to candidate's target space. However, the work is heavily weighted toward knowledge management, learning content design, academy curriculum development, UX/wireframing, and stakeholder communication rather than hands-on engineering. The 'engineering' label is misleading: actual responsibilities are content creation, taxonomy design, and conceptual architecture, not building or operating production LLM/agentic systems. Candidate's strengths (Python, APIs, tool-calling agents, CI/CD, Docker, production pipelines) are largely unused; his gaps (knowledge graph design, formal UX, instructional design, regulated pharma environment) are central.",
+    "contextual_fit": "Poor. Role is explicitly for a Master student, 2-4 months duration, 40-80% workload, starting October 1 — this is a student internship, not a permanent or contract role. Candidate is seeking non-internship positions with ownership and project responsibility. The 'student' framing, academic deliverables structure, and limited duration are fundamentally misaligned with his career stage and stated goals. Location Zurich and English working language are compatible; German listed as 'advantage' is soft.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "",
+    "culture_fit": "Academic/enterprise hybrid with heavy stakeholder communication and structured documentation requirements. Candidate's self-directed, builder-oriented style may clash with the program management, executive-summary, and curriculum-design focus. The 'high attention to detail' and 'make complex knowledge accessible' emphasis suggests a communication-heavy, less technical-execution role than he seeks.",
     "concerns": [
-      "Role shape mismatch: heavy emphasis on content creation, instructional design, and 'support' work rather than hands-on engineering ownership",
-      "Framed for 'Master student' with 40-80% workload, suggesting lighter commitment than candidate seeks",
-      "Pharma domain is unfamiliar, though candidate is open to new domains",
-      "Despite 'agentic' and 'RAG' keywords, actual deliverables skew toward academy design and wiki navigation rather than production LLM pipelines"
+      "Role shape is content/curriculum design and knowledge management, not production AI engineering — misaligned with candidate's motivation to 'build systems, not just use them'",
+      "Duration and workload indicate student position, not career-level opportunity",
+      "Knowledge graph design, formal UX/wireframing, and instructional design are gaps vs. candidate's production-engineering skillset",
+      "Regulated pharma environment requires domain learning without corresponding technical depth payoff",
+      "Candidate would likely be frustrated by academy-content creation and executive-summary work vs. hands-on system building"
     ],
-    "agent_rationale": "This is a 2-4 month internship at a leading pharmaceutical company in Zurich, working on AI Academy, Knowledge Navigator, and agentic knowledge solutions. The role is at the intersection of AI tools, knowledge graphs, and RAG/semantic search — all directly relevant to the candidate's interests in agentic systems. Key positives: Zurich-based, English is the working language (German is only \"an advantage\" — soft requirement), start date of October 1st aligns well with his 2-week notice period, and the role explicitly mentions \"agentic knowledge solutions,\" \"RAG / semantic search,\" and \"AI-agent integration ideas\" — matching his technical profile. However, there are notable mismatches on role shape: the posting repeatedly says \"support the design,\" \"develop practical learning materials,\" \"create page mock-ups,\" and \"research emerging AI tools\" — this reads more like content creation, instructional design, and knowledge management support rather than hands-on engineering ownership of LLM pipelines. The candidate wants to \"build LLM-powered pipelines end to end, with real ownership from day one\" and this role appears to be more about designing training curricula, wiki navigation, and conceptual knowledge graphs rather than shipping production code. The \"Master student\" framing and 40-80% workload also suggest a lighter, more academic-style internship than he's seeking. Past evaluations of this exact role have consistently scored 72-74 and landed in REVIEW, which aligns with this assessment — it's close enough to explore but the role shape mismatch warrants a closer look before applying.",
-    "agent_decision": "REVIEW",
-    "agent_trace": [
-      {
-        "name": "get_posting_text",
-        "arguments": {}
-      },
-      {
-        "name": "check_language_requirement",
-        "arguments": {}
-      },
-      {
-        "name": "get_candidate_profile",
-        "arguments": {}
-      },
-      {
-        "name": "get_outcome_calibration",
-        "arguments": {}
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "Randstad"
-        }
-      },
-      {
-        "name": "record_decision",
-        "arguments": {
-          "score": 74,
-          "decision": "REVIEW",
-          "rationale": "This is a 2-4 month internship at a leading pharmaceutical company in Zurich, working on AI Academy, Knowledge Navigator, and agentic knowledge solutions. The role is at the intersection of AI tools, knowledge graphs, and RAG/semantic search — all directly relevant to the candidate's interests in agentic systems. Key positives: Zurich-based, English is the working language (German is only \"an advantage\" — soft requirement), start date of October 1st aligns well with his 2-week notice period, and the role explicitly mentions \"agentic knowledge solutions,\" \"RAG / semantic search,\" and \"AI-agent integration ideas\" — matching his technical profile. However, there are notable mismatches on role shape: the posting repeatedly says \"support the design,\" \"develop practical learning materials,\" \"create page mock-ups,\" and \"research emerging AI tools\" — this reads more like content creation, instructional design, and knowledge management support rather than hands-on engineering ownership of LLM pipelines. The candidate wants to \"build LLM-powered pipelines end to end, with real ownership from day one\" and this role appears to be more about designing training curricula, wiki navigation, and conceptual knowledge graphs rather than shipping production code. The \"Master student\" framing and 40-80% workload also suggest a lighter, more academic-style internship than he's seeking. Past evaluations of this exact role have consistently scored 72-74 and landed in REVIEW, which aligns with this assessment — it's close enough to explore but the role shape mismatch warrants a closer look before applying.",
-          "concerns": [
-            "Role shape mismatch: heavy emphasis on content creation, instructional design, and 'support' work rather than hands-on engineering ownership",
-            "Framed for 'Master student' with 40-80% workload, suggesting lighter commitment than candidate seeks",
-            "Pharma domain is unfamiliar, though candidate is open to new domains",
-            "Despite 'agentic' and 'RAG' keywords, actual deliverables skew toward academy design and wiki navigation rather than production LLM pipelines"
-          ],
-          "hard_blockers": [],
-          "language_requirement": "soft"
-        }
-      }
-    ],
-    "recommendation": "REVIEW",
-    "decision": "REVIEW",
+    "recommendation": "SKIP",
+    "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-09-06T09:09:55.294401+00:00"
+    "evaluated_at": "2026-09-06T09:09:55.294401+00:00",
+    "rescored": true
   },
   {
-    "score": 48,
+    "score": 55,
     "hard_blockers": [],
     "insufficient_info": true,
-    "language_gap_intermediate": false,
+    "language_gap_intermediate": true,
     "key_match_points": [],
     "red_flags": [
-      "Posting text is truncated (500 chars) — full requirements not visible",
-      "Title explicitly says 'Senior' — candidate seeks internship/junior role",
-      "Large corporate IT services environment (AMAG Informatik) unlikely to offer the 'day one ownership' the candidate wants",
-      "Past Job-Room postings have all been poor fits (scores 15-55)",
+      "Job description truncated — requirements, seniority expectations, and technical stack completely unknown; score must be conservative",
+      "Title contains 'Senior' which may indicate experience expectations beyond candidate's level",
+      "'Consultant' role shape likely emphasizes advisory/client-facing work over hands-on building and shipping, which conflicts with candidate's stated motivation to 'build the systems' and 'own real projects from day one'",
+      "German workplace context (Zug, AMAG corporate) with German-language job posting; working proficiency in German may be expected even if not hard-required",
+      "Location is Cham, Zug — commutable from Zurich area but not ideal; hybrid expectations unknown due to truncation",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -528,80 +353,22 @@
       "portal": "adzuna",
       "description": " Wir bewegen und begeistern Menschen. Einfach. Nachhaltig. Voraus.  Die zentralisierte AMAG Informatik in Cham ZG verantwortet mit ihren ca. 200 Mitarbeitenden für alle Konzernbereiche die gesamte IT-Wertschöpfungskette, vom Projekt über die Entwicklung und Integration bis hin zum Betrieb und Support. Du möchtest die nächste Generation von AI Agents, Copilots und intelligenter Automatisierung aktiv mitgestalten? Bei uns erhältst du die Möglichkeit, Agentic AI und intelligente Automatisierung au…"
     },
-    "technical_fit": "This is a SENIOR-level role ('Senior Agentic Automation Consultant') at AMAG Informatik in Cham, Zug. The posting text is severely truncated (500 chars, cut off mid-sentence), so I cannot see the full requirements. However, what is visible already signals major mismatches: (1) The title explicitly says 'Senior' — the candidate is an intern seeking junior/internship roles with real ownership, not a senior consultant position. (2) The role is 80-100%, which typically implies significant experience and client-facing responsibility. (3) The company is AMAG Informatik (a large IT services provider for the AMAG automotive group), not a startup or scale-up where an intern would get the 'from day one' ownership the candidate wants. (4) Past Job-Room postings have all scored poorly (15-55, all SKIP), suggesting this platform tends to surface roles that don't match his profile. The location (Cham, Zug) is acceptable and within commuting distance, and there's no hard language blocker (check_language_requirement returned 'none'). However, the seniority level alone is a fundamental mismatch — the candidate is looking for an internship to go deeper into agentic systems, not a senior consulting role. With truncated text adding uncertainty and the senior title being a clear mismatch, this is well below the threshold.",
-    "contextual_fit": "",
+    "technical_fit": "Partial. The visible description mentions 'Agentic AI and intelligente Automatisierung' which aligns with the candidate's target area, but the title 'Senior Consultant' suggests senior-level expectations, and the actual technical requirements (stack, tools, implementation vs. advisory split) are completely invisible due to truncation.",
+    "contextual_fit": "Weak-to-unclear. 'Consultant' framing often implies client-facing advisory, strategy, and pre-sales over hands-on building/ownership. The candidate wants to build and ship systems, not primarily advise. AMAG Informatik is a centralized IT provider for a large automotive group (AMAG), which could mean interesting scale but also heavy enterprise process overhead.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "",
+    "culture_fit": "Unclear. Large corporate IT shared service center (~200 employees) with 'Konzernbereiche' language suggests traditional enterprise structure. The 'einfach. nachhaltig. voraus.' slogan is generic. No signal on ownership culture or greenfield building vs. maintaining legacy.",
     "concerns": [
-      "Posting text is truncated (500 chars) — full requirements not visible",
-      "Title explicitly says 'Senior' — candidate seeks internship/junior role",
-      "Large corporate IT services environment (AMAG Informatik) unlikely to offer the 'day one ownership' the candidate wants",
-      "Past Job-Room postings have all been poor fits (scores 15-55)"
-    ],
-    "agent_rationale": "This is a SENIOR-level role ('Senior Agentic Automation Consultant') at AMAG Informatik in Cham, Zug. The posting text is severely truncated (500 chars, cut off mid-sentence), so I cannot see the full requirements. However, what is visible already signals major mismatches: (1) The title explicitly says 'Senior' — the candidate is an intern seeking junior/internship roles with real ownership, not a senior consultant position. (2) The role is 80-100%, which typically implies significant experience and client-facing responsibility. (3) The company is AMAG Informatik (a large IT services provider for the AMAG automotive group), not a startup or scale-up where an intern would get the 'from day one' ownership the candidate wants. (4) Past Job-Room postings have all scored poorly (15-55, all SKIP), suggesting this platform tends to surface roles that don't match his profile. The location (Cham, Zug) is acceptable and within commuting distance, and there's no hard language blocker (check_language_requirement returned 'none'). However, the seniority level alone is a fundamental mismatch — the candidate is looking for an internship to go deeper into agentic systems, not a senior consulting role. With truncated text adding uncertainty and the senior title being a clear mismatch, this is well below the threshold.",
-    "agent_decision": "SKIP",
-    "agent_trace": [
-      {
-        "name": "get_posting_text",
-        "arguments": {}
-      },
-      {
-        "name": "check_language_requirement",
-        "arguments": {}
-      },
-      {
-        "name": "get_candidate_profile",
-        "arguments": {}
-      },
-      {
-        "name": "get_outcome_calibration",
-        "arguments": {}
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "Job-Room"
-        }
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "AMAG"
-        }
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "agentic"
-        }
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "automation consultant"
-        }
-      },
-      {
-        "name": "record_decision",
-        "arguments": {
-          "score": 48,
-          "decision": "SKIP",
-          "rationale": "This is a SENIOR-level role ('Senior Agentic Automation Consultant') at AMAG Informatik in Cham, Zug. The posting text is severely truncated (500 chars, cut off mid-sentence), so I cannot see the full requirements. However, what is visible already signals major mismatches: (1) The title explicitly says 'Senior' — the candidate is an intern seeking junior/internship roles with real ownership, not a senior consultant position. (2) The role is 80-100%, which typically implies significant experience and client-facing responsibility. (3) The company is AMAG Informatik (a large IT services provider for the AMAG automotive group), not a startup or scale-up where an intern would get the 'from day one' ownership the candidate wants. (4) Past Job-Room postings have all scored poorly (15-55, all SKIP), suggesting this platform tends to surface roles that don't match his profile. The location (Cham, Zug) is acceptable and within commuting distance, and there's no hard language blocker (check_language_requirement returned 'none'). However, the seniority level alone is a fundamental mismatch — the candidate is looking for an internship to go deeper into agentic systems, not a senior consulting role. With truncated text adding uncertainty and the senior title being a clear mismatch, this is well below the threshold.",
-          "concerns": [
-            "Posting text is truncated (500 chars) — full requirements not visible",
-            "Title explicitly says 'Senior' — candidate seeks internship/junior role",
-            "Large corporate IT services environment (AMAG Informatik) unlikely to offer the 'day one ownership' the candidate wants",
-            "Past Job-Room postings have all been poor fits (scores 15-55)"
-          ],
-          "hard_blockers": [],
-          "language_requirement": "none"
-        }
-      }
+      "Job description truncated — requirements, seniority expectations, and technical stack completely unknown; score must be conservative",
+      "Title contains 'Senior' which may indicate experience expectations beyond candidate's level",
+      "'Consultant' role shape likely emphasizes advisory/client-facing work over hands-on building and shipping, which conflicts with candidate's stated motivation to 'build the systems' and 'own real projects from day one'",
+      "German workplace context (Zug, AMAG corporate) with German-language job posting; working proficiency in German may be expected even if not hard-required",
+      "Location is Cham, Zug — commutable from Zurich area but not ideal; hybrid expectations unknown due to truncation"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-09-06T14:38:55.582509+00:00"
+    "evaluated_at": "2026-09-06T14:38:55.582509+00:00",
+    "rescored": true
   },
   {
     "score": null,
@@ -632,16 +399,18 @@
     "evaluated_at": "2026-09-06T14:38:55.582509+00:00"
   },
   {
-    "score": 35,
+    "score": 55,
     "hard_blockers": [],
     "insufficient_info": true,
     "language_gap_intermediate": false,
     "key_match_points": [],
     "red_flags": [
-      "Posting text is truncated (500 chars) - requirements section not visible",
-      "Location is Geneva, not Zurich/Zug - on-site role far from candidate's base",
-      "Traditional hedge fund environment may not offer the agentic systems ownership the candidate seeks",
-      "Cannot assess technical fit or role shape from available text",
+      "Job description was TRUNCATED — requirements, qualifications, and full responsibilities were not visible; score is conservative due to missing information",
+      "Role title is 'Intern' — candidate explicitly excludes internships from his search and currently holds an intern title he wants to graduate from",
+      "Geneva location, not Zurich/Zug; while not a hard blocker, it's a different city/canton with commute/relocation friction",
+      "Finance domain with no visible AI/LLM specificity in description — could be traditional internal tooling (reporting, workflow, data infrastructure) rather than LLM/agentic systems",
+      "No evidence of LLM, agentic workflows, or production AI systems in visible text — 'AI Internal Tools' is vague and may not mean what the candidate targets",
+      "Hedge fund environment may not offer the ownership/growth culture the candidate prioritizes; 'mentor great talent' language suggests junior-support model rather than builder-ownership model",
       "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
     ],
     "job": {
@@ -652,62 +421,23 @@
       "portal": "linkedin.com",
       "description": "Garda Capital Partners (Garda) is a multi-billion dollar alternative investment firm with over 22 years of experience deploying relative value strategies across fixed income markets for institutional investors. We hire, grow, and mentor great talent and remain steadfast in our commitment to building a culture that helps them succeed. Garda is more than a workplace. We are built on trust, integrity, and a shared vision for how we work together, the enduring relationships we build, and the consis…"
     },
-    "technical_fit": "The posting text is severely truncated (500 characters, cut off mid-sentence), so I cannot see the actual job requirements, responsibilities, or technical stack. What is visible is only the company description for Garda Capital Partners, a multi-billion dollar alternative investment firm in Geneva. No past evaluation scores exist for this specific role. \n\nHowever, there are clear reasons to SKIP even without full requirements visibility:\n\n1. LOCATION: Geneva is explicitly NOT Zurich/Zug. The rules state auto-SKIP for roles not in Zurich/Zug unless fully remote and based in Switzerland. This is an on-site role in Geneva, which is a different city ~280km away.\n\n2. TRUNCATED TEXT: With truncated=true and only 500 characters, the requirements section was never seen. This makes it impossible to assess technical fit, role shape, or whether this involves agentic systems and real ownership. The pipeline caps such jobs at REVIEW at best.\n\n3. DOMAIN MISMATCH SIGNAL: The visible text describes a traditional fixed-income alternative investment firm. While the candidate is open to unfamiliar domains, financial services (especially hedge fund/internal tools) often have very specific culture and requirements that may not align with his desire for \"real ownership from day one\" in agentic systems.\n\n4. The language requirement is none (no German/French requirement detected in the visible text), so no language blocker.\n\nGiven the Geneva location (auto-SKIP trigger) and severely truncated job description making proper assessment impossible, this is a clear SKIP.",
-    "contextual_fit": "",
+    "technical_fit": "The visible description mentions 'AI Internal Tools' in the title, which aligns with the candidate's target area. However, no technical stack details, project descriptions, or specific AI/LLM responsibilities are visible in the truncated text. The 'internal tools' framing could range from LLM-powered automation to traditional dashboarding or infrastructure maintenance.",
+    "contextual_fit": "Geneva-based role at a multi-billion dollar hedge fund. The candidate has no finance domain experience, though this is explicitly non-decisive per instructions. More concerning: the firm emphasizes 'trust, integrity, and enduring relationships' — culture signals of a conservative, relationship-driven environment that may not match a career-changer seeking hands-on ownership and greenfield AI building. The 'intern' title is a step backward from his current 'AI Software Engineer Intern' role and he specifically excludes internships from his search.",
     "salary_estimate": "Not disclosed",
-    "culture_fit": "",
+    "culture_fit": "Potentially mismatched. Hedge fund culture tends toward risk-aversion, hierarchical decision-making, and long-tenure stability — quite different from the 'ship from scratch, own from day one' environment the candidate seeks. The emphasis on 'enduring relationships' and 'how we work together' suggests process and politics matter more than rapid iteration.",
     "concerns": [
-      "Posting text is truncated (500 chars) - requirements section not visible",
-      "Location is Geneva, not Zurich/Zug - on-site role far from candidate's base",
-      "Traditional hedge fund environment may not offer the agentic systems ownership the candidate seeks",
-      "Cannot assess technical fit or role shape from available text"
-    ],
-    "agent_rationale": "The posting text is severely truncated (500 characters, cut off mid-sentence), so I cannot see the actual job requirements, responsibilities, or technical stack. What is visible is only the company description for Garda Capital Partners, a multi-billion dollar alternative investment firm in Geneva. No past evaluation scores exist for this specific role. \n\nHowever, there are clear reasons to SKIP even without full requirements visibility:\n\n1. LOCATION: Geneva is explicitly NOT Zurich/Zug. The rules state auto-SKIP for roles not in Zurich/Zug unless fully remote and based in Switzerland. This is an on-site role in Geneva, which is a different city ~280km away.\n\n2. TRUNCATED TEXT: With truncated=true and only 500 characters, the requirements section was never seen. This makes it impossible to assess technical fit, role shape, or whether this involves agentic systems and real ownership. The pipeline caps such jobs at REVIEW at best.\n\n3. DOMAIN MISMATCH SIGNAL: The visible text describes a traditional fixed-income alternative investment firm. While the candidate is open to unfamiliar domains, financial services (especially hedge fund/internal tools) often have very specific culture and requirements that may not align with his desire for \"real ownership from day one\" in agentic systems.\n\n4. The language requirement is none (no German/French requirement detected in the visible text), so no language blocker.\n\nGiven the Geneva location (auto-SKIP trigger) and severely truncated job description making proper assessment impossible, this is a clear SKIP.",
-    "agent_decision": "SKIP",
-    "agent_trace": [
-      {
-        "name": "get_posting_text",
-        "arguments": {}
-      },
-      {
-        "name": "get_candidate_profile",
-        "arguments": {}
-      },
-      {
-        "name": "get_outcome_calibration",
-        "arguments": {}
-      },
-      {
-        "name": "search_past_evaluations",
-        "arguments": {
-          "query": "Garda Capital Partners"
-        }
-      },
-      {
-        "name": "check_language_requirement",
-        "arguments": {}
-      },
-      {
-        "name": "record_decision",
-        "arguments": {
-          "score": 35,
-          "decision": "SKIP",
-          "rationale": "The posting text is severely truncated (500 characters, cut off mid-sentence), so I cannot see the actual job requirements, responsibilities, or technical stack. What is visible is only the company description for Garda Capital Partners, a multi-billion dollar alternative investment firm in Geneva. No past evaluation scores exist for this specific role. \n\nHowever, there are clear reasons to SKIP even without full requirements visibility:\n\n1. LOCATION: Geneva is explicitly NOT Zurich/Zug. The rules state auto-SKIP for roles not in Zurich/Zug unless fully remote and based in Switzerland. This is an on-site role in Geneva, which is a different city ~280km away.\n\n2. TRUNCATED TEXT: With truncated=true and only 500 characters, the requirements section was never seen. This makes it impossible to assess technical fit, role shape, or whether this involves agentic systems and real ownership. The pipeline caps such jobs at REVIEW at best.\n\n3. DOMAIN MISMATCH SIGNAL: The visible text describes a traditional fixed-income alternative investment firm. While the candidate is open to unfamiliar domains, financial services (especially hedge fund/internal tools) often have very specific culture and requirements that may not align with his desire for \"real ownership from day one\" in agentic systems.\n\n4. The language requirement is none (no German/French requirement detected in the visible text), so no language blocker.\n\nGiven the Geneva location (auto-SKIP trigger) and severely truncated job description making proper assessment impossible, this is a clear SKIP.",
-          "concerns": [
-            "Posting text is truncated (500 chars) - requirements section not visible",
-            "Location is Geneva, not Zurich/Zug - on-site role far from candidate's base",
-            "Traditional hedge fund environment may not offer the agentic systems ownership the candidate seeks",
-            "Cannot assess technical fit or role shape from available text"
-          ],
-          "hard_blockers": [],
-          "language_requirement": "none"
-        }
-      }
+      "Job description was TRUNCATED — requirements, qualifications, and full responsibilities were not visible; score is conservative due to missing information",
+      "Role title is 'Intern' — candidate explicitly excludes internships from his search and currently holds an intern title he wants to graduate from",
+      "Geneva location, not Zurich/Zug; while not a hard blocker, it's a different city/canton with commute/relocation friction",
+      "Finance domain with no visible AI/LLM specificity in description — could be traditional internal tooling (reporting, workflow, data infrastructure) rather than LLM/agentic systems",
+      "No evidence of LLM, agentic workflows, or production AI systems in visible text — 'AI Internal Tools' is vague and may not mean what the candidate targets",
+      "Hedge fund environment may not offer the ownership/growth culture the candidate prioritizes; 'mentor great talent' language suggests junior-support model rather than builder-ownership model"
     ],
     "recommendation": "SKIP",
     "decision": "SKIP",
     "materials_needed": [],
-    "evaluated_at": "2026-09-06T14:38:55.582509+00:00"
+    "evaluated_at": "2026-09-06T14:38:55.582509+00:00",
+    "rescored": true
   },
   {
     "score": null,
