@@ -1,0 +1,63 @@
+{
+  "ts": "2026-09-14T10:20:32.571241+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5849,
+    "completion_tokens": 619,
+    "model": "kimi-k2.6"
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "send_high_score_alerts",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 3
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run produced 5 evaluations with 0 APPLY, 1 REVIEW, 2 SKIP, and 2 NOT_EVALUATED. No high-score alerts were sent (no APPLY jobs). 1 application is stale (>7 days, no response) but follow-up drafting returned 0 drafts (still eligible for future follow-up). Re-evaluated 3 borderline REVIEW jobs (smino AG, lastminute.com, aspaara AG); all remained at score 72 and REVIEW. Run complete.",
+        "rationale": "With fresh evaluations but zero APPLY jobs, the run needed no document generation. The quiet day warranted re-evaluating borderline REVIEW jobs to maximize opportunity, and follow-up drafting was attempted for the one stale application. All appropriate actions were taken within budget."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 5, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 1, \"SKIP\": 2, \"ERROR\": 0, \"NOT_EVALUATED\": 2}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "send_high_score_alerts",
+      "result": "{\"alerts_sent\": 0}"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"smino AG\", \"title\": \"Full Stack Engineer (AI-First) (m/w/d) 100%\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 72, \"new_decision\": \"REVIEW\"}, {\"company\": \"lastminute.com\", \"title\": \"AI Automation Engineer\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_sco"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run produced 5 evaluations with 0 APPLY, 1 REVIEW, 2 SKIP, and 2 NOT_EVALUATED. No high-score alerts were sent (no APPLY jobs). 1 application is stale (>7 days, no response) but follow-up drafting returned 0 drafts (still eligible for future follow-up). Re-evaluated 3 borderline REVIEW jobs (smino AG, lastminute.com, aspaara AG); all remained at score 72 and REVIEW. Run complete.",
+  "agent_rationale": "With fresh evaluations but zero APPLY jobs, the run needed no document generation. The quiet day warranted re-evaluating borderline REVIEW jobs to maximize opportunity, and follow-up drafting was attempted for the one stale application. All appropriate actions were taken within budget."
+}
