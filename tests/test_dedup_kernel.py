@@ -8,8 +8,18 @@ the compatibility second layer in filter_new_jobs, and the rehash_seen_jobs
 migration for rows stored under the old function.
 """
 import sqlite3
+from datetime import datetime, timedelta, timezone
 
 import deduplicator as dd
+
+# Seeded rows must sit INSIDE filter_new_jobs' retention window: it purges
+# anything older than retention_days (21) before it looks the hash up, so a
+# hardcoded seed date stops testing anything 21 days after it is written.
+# This file's was "2026-08-20" and expired on 2026-09-10, turning three
+# dedup tests green-to-red with no code change. CI did not catch it because
+# tests.yml skips the data-only commits the scheduler pushes, so the suite
+# had not run since 2026-08-26.
+SEEDED_AT = (datetime.now(timezone.utc) - timedelta(days=1)).isoformat()
 
 
 def _job(company, title, location="Zurich"):
@@ -20,7 +30,7 @@ def _job(company, title, location="Zurich"):
 def _seed_seen(db_path, rows):
     dd.init_db(db_path)
     conn = sqlite3.connect(db_path)
-    now = "2026-08-20T00:00:00+00:00"
+    now = SEEDED_AT
     for company, title, location in rows:
         h = dd.make_hash(company, title, location)
         conn.execute(
@@ -64,7 +74,7 @@ class TestFilterCompatLayer:
         touched = conn.execute("SELECT last_seen FROM seen_jobs").fetchone()[0]
         conn.close()
         assert rows == 1                      # no second row for the same job
-        assert touched > "2026-08-20"         # last_seen updated by the hit
+        assert touched > SEEDED_AT            # last_seen updated by the hit
 
     def test_swiss_near_miss_stays_separate(self, tmp_path):
         db = str(tmp_path / "jobs.db")
