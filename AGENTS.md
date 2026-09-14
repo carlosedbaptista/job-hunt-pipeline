@@ -201,6 +201,92 @@ Known caveat: the repo is public. Everything committed (digests, dashboard, raw 
 - Contact/PII: `config/candidate_profile.json` (local only, not in git)
 - **Keep the targeting in sync with this section.** `agents/adzuna_ingestor.py` searches for what he wants *next*; when the positioning here changes, `SEARCH_QUERIES` (or the `ADZUNA_QUERIES` env override) and `config/candidate_profile.json`'s `role`/`summary` have to move with it, or the pipeline keeps scoring him against a profile he has outgrown.
 
+## The 2026-09-14 retarget, and what it cost to carry out
+
+The CV moved from "seeking an internship to deepen my expertise in agentic
+systems and data platform engineering" to AI software engineering at junior to
+associate level, across 32 target titles. Three things had to change before a
+run scored against that instead of the old target, and none of them is
+obvious from the diff alone.
+
+- **`target_role` in `config/candidate_profile.json` is the real switch.** The
+  queries decide what the pipeline SEES; `target_role` decides what it VALUES.
+  It is gitignored and reaches CI through `CANDIDATE_PROFILE_B64`, so changing
+  the code without regenerating the secret changes nothing at all. `summary`
+  matters too -- it also reached the prompt saying "looking for an internship".
+- **`pure SWE` was an unconditional auto-SKIP** in both scoring prompts.
+  Software Engineer AI, Backend Engineer AI, Full-Stack Engineer AI, Product
+  Engineer AI, Forward Deployed Engineer and Internal Tools Engineer are all on
+  the target list and would all have been discarded UNSCORED. It now skips only
+  a role with no AI, ML, LLM, data or automation content at all.
+- **The Adzuna queries dropped Praktikum/Werkstudent.** The 2026-08-23 note
+  warned this would delete the German funnel. Re-measured over `data/raw_jobs/`:
+  that funnel is 525 titles led by Praktikum Marketing, Praktikum Tax and
+  Praktikum Legal. "KI Engineer" stays because it appeared in real returned
+  titles. No query here is invented.
+
+**Re-scoring history is not automatic and never was.** A normal run only scores
+what is NOT in `seen_jobs`, so a target change leaves every stored score
+answering the old question. `agents/rescore_history.py --full` re-runs the
+evaluator; the deterministic pass cannot change a score, only the model can.
+289 records were re-scored on 2026-09-14 and 214 of 351 comparable ones moved:
+52 REVIEW fell to SKIP, 7 rose to APPLY. Seven postings the pipeline had
+already seen and discarded under the wrong target turned out to be good ones.
+
+`--before` and `--decision` were added for the second half of that job. A
+`--limit` run is newest-first, so the older records keep the old target -- and
+the five highest scores on the dashboard were exactly those, internships
+outranking the genuine APPLY results below them. Reaching twenty-odd rows with
+`--limit` alone would have paid to re-evaluate 289 records done an hour
+earlier. `--decision` is the cheap half of the idea: a record already at SKIP
+can stay wrong for free, because nobody reads the bottom of the list.
+
+## Token accounting (2026-09-14)
+
+There was a cost CONTROL and no cost ACCOUNTING. `max_evaluations_per_run`
+bounds a run at 30 calls but never measures it: tokens were persisted for the
+orchestrator -- one call per run -- and not for the evaluations, up to thirty
+of them. Estimating a run meant measuring prompt strings by hand.
+
+Every call reaches the API through `KimiClient.chat_completion`, the
+single-shot JSON path and the agent tool loop alike, so it is instrumented
+once there. Callers snapshot module-level counters instead of changing
+signatures, because the suite monkeypatches `call_kimi_json` with plain fakes;
+a fake leaves the counters untouched, which correctly reads as "nothing was
+spent", and `usage_since` returns None rather than a row of zeros.
+
+The snapshot is taken BEFORE the call so borderline re-sampling is charged to
+the job that triggered it -- a score of 71 fires three samples, and the record
+now shows `calls: 3` where it previously showed nothing.
+
+`config/model_pricing.json` ships with every price null and `pricing.cost_usd`
+returns None rather than a number, including when only one direction is set.
+A fabricated price gets averaged, charted and believed. Fill it from the
+provider's dashboard or leave it; `summarise()` reports `unknown_share` so a
+summary never reads as complete when it is not. There is a test that fails if
+someone pastes a plausible-looking price in.
+
+## What 35% "duplicate" evaluations actually were (2026-09-14)
+
+130 of 370 scored evaluations are re-scores of byte-identical text, and that
+looks exactly like a dedup failure. It is not: **112 of them are
+`orchestrator_agent.reevaluate_borderline`** doing its job -- up to 5
+REVIEW-band jobs from the last 14 days, re-scored every run, cap enforced in
+code. The worst "offenders" were the REVIEW-band postings, which is the point.
+Do not go hunting for a dedup bug here without checking the band first.
+
+Of the 18 that remain, one cause is closed: a LinkedIn card fills `company`
+from the same blob as `title`, so the two come out identical and the field
+looks populated while the real employer sits in the card tail. The old guard
+only overwrote an "Unknown" company and threw the employer away; the posting
+then hashed as (title, title, city) against (company, title, city) from a job
+board. 428 cards, all from linkedin.com.
+
+**Still open**: `filter_new_jobs(..., mark_seen=False)` does not refresh
+`last_seen` on a row it recognises, so a posting seen every day still ages out
+of the 21-day retention window and re-enters. Reproduced in isolation on
+2026-09-14; not fixed.
+
 ## Dead code: there is none left
 
 Removed on 2026-08-23, after verifying that no workflow invoked them and
@@ -234,4 +320,4 @@ and belonged to the Service Account path that cannot work at all.
 
 ---
 
-**Last Updated**: August 2026. Two audits so far: 2026-08-17 (scoring consistency: hard-blocker lock, two-tier language detector, head+tail excerpt window, intermediate language zone, cost-cap queue, decision derivation via `utils.effective_decision`) and 2026-08-21 (ingestion quality: description enrichment, card-variant collapse, normalized in-batch dedup, tests in CI, targeting realigned to the AI & Automation Engineer positioning). On 2026-08-24 the evaluation stage became a tool-using agent (`agents/decision_agent.py`; the scheduled run sets `EVALUATION_MODE: agent`) with the safety rails kept in code -- see "The agent decision layer (2026-08-24)". The run-level judgement layer followed the same day: `agents/orchestrator_agent.py` (the scheduled run sets `ORCHESTRATION_MODE: agent`) decides docs, alerts, follow-ups and bounded re-scores, with the legacy three-script chain as its coded fallback -- see "The orchestrator layer (2026-08-24)". Also on 2026-08-24: private outcome signals (gitignored `tracker/outcome_notes.json`, synced via the `OUTCOME_NOTES_B64` secret) now calibrate the scorer and inform follow-up drafts -- see "Private outcome signals (2026-08-24)".
+**Last Updated**: 2026-09-14 (retarget to AI software engineering, token accounting, LinkedIn card employer fix -- see the sections above). Two audits so far: 2026-08-17 (scoring consistency: hard-blocker lock, two-tier language detector, head+tail excerpt window, intermediate language zone, cost-cap queue, decision derivation via `utils.effective_decision`) and 2026-08-21 (ingestion quality: description enrichment, card-variant collapse, normalized in-batch dedup, tests in CI, targeting realigned to the AI & Automation Engineer positioning). On 2026-08-24 the evaluation stage became a tool-using agent (`agents/decision_agent.py`; the scheduled run sets `EVALUATION_MODE: agent`) with the safety rails kept in code -- see "The agent decision layer (2026-08-24)". The run-level judgement layer followed the same day: `agents/orchestrator_agent.py` (the scheduled run sets `ORCHESTRATION_MODE: agent`) decides docs, alerts, follow-ups and bounded re-scores, with the legacy three-script chain as its coded fallback -- see "The orchestrator layer (2026-08-24)". Also on 2026-08-24: private outcome signals (gitignored `tracker/outcome_notes.json`, synced via the `OUTCOME_NOTES_B64` secret) now calibrate the scorer and inform follow-up drafts -- see "Private outcome signals (2026-08-24)".
