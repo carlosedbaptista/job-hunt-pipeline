@@ -94,6 +94,37 @@ def _split_card_remainder(remainder: str):
     return ("", single) if _TRAILING_CITY_RE.search(" " + single) else (single, "")
 
 
+def _company_is_unset(job: dict) -> bool:
+    """True when the company field carries no employer.
+
+    "Unknown" is the obvious case. The other one cost 4% of every LinkedIn
+    card and was invisible: the parser fills company from the same blob it
+    fills the title from, so the two come out identical and the field looks
+    populated. The real employer is in the card tail, and the old guard --
+    "only overwrite an Unknown company" -- threw it away. Downstream the
+    posting then hashes as (title, title, city) while the same job from a job
+    board hashes as (company, title, city), the two never dedup, and both get
+    evaluated. Measured 2026-09-14 over data/raw_jobs/: 428 cards, every one
+    of them from linkedin.com.
+    """
+    company = job.get("company", "Unknown")
+    if company in ("Unknown", "", None):
+        return True
+    return str(company).strip().casefold() == str(job.get("title", "")).strip().casefold()
+
+
+def _location_is_unset(job: dict) -> bool:
+    """True when the location field holds no locality. Same blob, same cause:
+    "Arcplace AG - Zurich (Hybrid)" is an employer and a city, not a location.
+    normalize_location salvages the hash, but the stored value is still wrong
+    and reaches the scoring prompt and the dashboard.
+    """
+    location = job.get("location", "Unknown")
+    if location in ("Unknown", "", None):
+        return True
+    return any(sep in str(location) for sep in ("\u00b7", "\u2022", "|"))
+
+
 def _strip_company_prefix(title: str, company: str) -> str:
     """Glassdoor renders '<Company> <Job title> <City>' as one blob while the
     company is also extracted into its own field. Drop the duplicated prefix
@@ -138,9 +169,9 @@ def _collapse_card_variants(jobs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                 continue
             base, variant = by_title[short], by_title[long]
             company, location = _split_card_remainder(long[len(short):])
-            if company and base.get("company", "Unknown") in ("Unknown", "", None):
+            if company and _company_is_unset(base):
                 base["company"] = company
-            if location and base.get("location", "Unknown") in ("Unknown", "", None):
+            if location and _location_is_unset(base):
                 base["location"] = location
             if not base.get("url"):
                 base["url"] = variant.get("url", "")
