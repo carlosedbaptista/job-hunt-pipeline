@@ -92,7 +92,16 @@ class TestHappyPath:
     def test_usage_is_summed_across_iterations(self):
         client = FakeClient([_tool_call("lookup", "{}"), _final("done")])
         result = run_agent(client, "sys", "usr", [_make_tool(lambda: "x")])
-        assert result["usage"] == {"prompt_tokens": 8, "completion_tokens": 6}
+        assert result["usage"]["prompt_tokens"] == 8
+        assert result["usage"]["completion_tokens"] == 6
+
+    def test_usage_carries_the_model_that_served_the_run(self):
+        """Pricing is per-model and the client fails over to a secondary id,
+        so assuming the requested model would misprice exactly the runs that
+        failed over."""
+        client = FakeClient([_tool_call("lookup", "{}"), _final("done")])
+        result = run_agent(client, "sys", "usr", [_make_tool(lambda: "x")])
+        assert result["usage"]["model"] == "fake"
 
 
 class TestIterationCap:

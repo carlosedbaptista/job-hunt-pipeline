@@ -13,6 +13,7 @@ import time
 from datetime import date, datetime, timezone
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+import kimi_client
 from kimi_client import call_kimi_json
 from utils import (MIN_DESCRIPTION_CHARS, THRESHOLD_APPLY, THRESHOLD_REVIEW,
                    candidate_language_level, effective_decision,
@@ -555,6 +556,10 @@ def evaluate_job(job):
                        f"as a prominent concern.]")
     prompt += "\nEvaluate."
 
+    # Snapshot BEFORE the call so borderline re-sampling -- three calls for
+    # one job -- is charged to that job instead of vanishing.
+    _usage_before = kimi_client.usage_snapshot()
+
     try:
         ev = call_kimi_json(prompt, system=SYSTEM_WITH_OUTCOMES, max_tokens=1000)
 
@@ -693,6 +698,10 @@ def evaluate_job(job):
             "salary_estimate": ev.get("salary_estimate", "Not disclosed"),
             "culture_fit": ev.get("culture_fit", ""),
             "concerns": concerns,
+            # What this evaluation actually cost. None when nothing was spent
+            # (a mocked call in the suite), so the field is never a row of
+            # zeros pretending to be a measurement.
+            "usage": kimi_client.usage_since(_usage_before),
         }
 
         # Decision is ALWAYS derived locally, never trusted verbatim from the

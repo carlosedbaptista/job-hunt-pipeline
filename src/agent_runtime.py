@@ -37,7 +37,11 @@ def run_agent(client, system, user, tools, max_iterations=5, max_tokens=2000):
     messages = [{"role": "system", "content": system},
                 {"role": "user", "content": user}]
     tool_calls_made = []
-    usage = {"prompt_tokens": 0, "completion_tokens": 0}
+    # The model is carried alongside the counters: pricing is per-model, and
+    # the client falls back to a secondary id when the primary is unavailable,
+    # so assuming the requested model would misprice exactly the runs that
+    # failed over.
+    usage = {"prompt_tokens": 0, "completion_tokens": 0, "model": ""}
 
     def result(stopped_reason, final, iterations):
         return {"final": final, "messages": messages,
@@ -59,6 +63,8 @@ def run_agent(client, system, user, tools, max_iterations=5, max_tokens=2000):
         iter_usage = response.get("usage") or {}
         usage["prompt_tokens"] += iter_usage.get("prompt_tokens", 0)
         usage["completion_tokens"] += iter_usage.get("completion_tokens", 0)
+        if response.get("model"):
+            usage["model"] = response["model"]
 
         tool_calls = response.get("tool_calls") or []
         if not tool_calls:

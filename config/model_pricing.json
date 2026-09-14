@@ -1,0 +1,7 @@
+{
+  "_comment": "Token prices per 1,000,000 tokens, in USD. Every value ships as null ON PURPOSE: src/pricing.py returns None rather than guessing, because a fabricated price gets averaged and believed. Fill these from the provider's own dashboard (platform.moonshot.ai for Kimi) and re-check them periodically -- published prices change, and a hardcoded one rots silently. A model missing from this table is simply unpriced; nothing breaks.",
+  "models": {
+    "kimi-k2.6": {"input_per_1m_usd": null, "output_per_1m_usd": null},
+    "kimi-k2.5": {"input_per_1m_usd": null, "output_per_1m_usd": null}
+  }
+}

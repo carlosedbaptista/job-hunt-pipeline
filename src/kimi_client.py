@@ -128,6 +128,7 @@ class KimiClient:
             payload["thinking"] = {"type": "disabled"}
         data = self._post("/chat/completions", payload, timeout_sec=60)
         message = data["choices"][0]["message"]
+        _record_usage(data.get("usage") or {}, data.get("model", model))
         return {
             # content is None when the model answers with tool calls only
             "content": message.get("content"),
@@ -194,6 +195,46 @@ def test_api_key():
         print(f"[Kimi] API key FAILED: {e}")
         print("[Kimi] -> Check your key at https://platform.moonshot.ai")
         return False
+
+
+# Every call -- the single-shot json path AND the agent tool loop -- reaches
+# the API through KimiClient.chat_completion, so instrumenting it once covers
+# both. Callers snapshot this rather than having their signature changed:
+# the suite monkeypatches call_kimi_json with plain fakes, and a fake simply
+# leaves the counters where they were, which reads as "nothing was spent".
+# Single-threaded by assumption, like the rest of the pipeline.
+SESSION_USAGE = {"calls": 0, "prompt_tokens": 0, "completion_tokens": 0, "model": ""}
+
+
+def _record_usage(usage, model):
+    SESSION_USAGE["calls"] += 1
+    SESSION_USAGE["prompt_tokens"] += int(usage.get("prompt_tokens") or 0)
+    SESSION_USAGE["completion_tokens"] += int(usage.get("completion_tokens") or 0)
+    if model:
+        SESSION_USAGE["model"] = str(model)
+
+
+def usage_snapshot():
+    """A copy of the counters as they stand now."""
+    return dict(SESSION_USAGE)
+
+
+def usage_since(before):
+    """What was spent between `before` (an earlier snapshot) and now, priced
+    if the model has a configured price. Returns None when nothing was spent,
+    so a mocked or short-circuited evaluation records no usage block at all
+    rather than a misleading row of zeros."""
+    import pricing
+    now = SESSION_USAGE
+    calls = now["calls"] - (before or {}).get("calls", 0)
+    if calls <= 0:
+        return None
+    pt = now["prompt_tokens"] - (before or {}).get("prompt_tokens", 0)
+    ct = now["completion_tokens"] - (before or {}).get("completion_tokens", 0)
+    model = now.get("model") or ""
+    return {"model": model, "calls": calls,
+            "prompt_tokens": pt, "completion_tokens": ct,
+            "cost_usd": pricing.cost_usd(model, pt, ct)}
 
 
 def call_kimi(prompt, system=None, max_tokens=4096, response_format=None, temperature=None):

@@ -30,6 +30,7 @@ import time
 from datetime import date, datetime, timezone
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+import pricing
 from agent_runtime import Tool, run_agent
 from kimi_client import KimiClient
 from utils import (MIN_DESCRIPTION_CHARS, THRESHOLD_APPLY, THRESHOLD_REVIEW,
@@ -461,6 +462,8 @@ def evaluate_job(job):
 
     key_match_points = [agent_rationale] if agent_rationale and score >= THRESHOLD_REVIEW else []
 
+    _usage = dict(result.get("usage") or {})
+    _model = _usage.get("model") or ""
     record = {
         "score": score,
         "hard_blockers": real_blockers,
@@ -473,6 +476,18 @@ def evaluate_job(job):
         "contextual_fit": "",
         "salary_estimate": "Not disclosed",
         "culture_fit": "",
+        # The agent spends one call per tool-loop iteration, which is why a
+        # long posting costs several times what a short one does. Recording
+        # iterations alongside the tokens is what makes that visible.
+        "usage": {
+            "model": _model,
+            "calls": int(result.get("iterations") or 0),
+            "prompt_tokens": int(_usage.get("prompt_tokens") or 0),
+            "completion_tokens": int(_usage.get("completion_tokens") or 0),
+            "cost_usd": pricing.cost_usd(_model,
+                                         _usage.get("prompt_tokens") or 0,
+                                         _usage.get("completion_tokens") or 0),
+        } if _usage.get("prompt_tokens") or _usage.get("completion_tokens") else None,
         "concerns": concerns,
         "agent_rationale": agent_rationale,
         "agent_decision": agent_decision,
