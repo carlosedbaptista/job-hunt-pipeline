@@ -1,0 +1,55 @@
+{
+  "ts": "2026-09-15T09:47:54.436086+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5786,
+    "completion_tokens": 680,
+    "model": "kimi-k2.6"
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 3
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Run completed: 3 evaluations fresh, 0 APPLY jobs, 1 NOT_EVALUATED. Re-evaluated 3 borderline REVIEW jobs (2 stayed REVIEW, 1 moved to SKIP). 1 stale application remains eligible for follow-up but no new draft was produced today. No documents or alerts needed.",
+        "rationale": "Quiet day with no high-match APPLY jobs, so no documents or alerts were generated. Used remaining budget to reevaluate 3 recent REVIEW-band jobs to keep the pipeline current. Follow-up tool reported the quiet application is still eligible but produced no new draft, indicating candidate-side action is pending."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 3, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 2, \"ERROR\": 0, \"NOT_EVALUATED\": 1}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"Jurata\", \"title\": \"Legal AI Engineer (100%)\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 72, \"new_decision\": \"REVIEW\"}, {\"company\": \"Jobgether\", \"title\": \"Founding AI Platform Engineer (MLOps / Backend)\", \"old_score\": 78, \"old_decision\": \"REVIEW\", \"new_scor"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Run completed: 3 evaluations fresh, 0 APPLY jobs, 1 NOT_EVALUATED. Re-evaluated 3 borderline REVIEW jobs (2 stayed REVIEW, 1 moved to SKIP). 1 stale application remains eligible for follow-up but no new draft was produced today. No documents or alerts needed.",
+  "agent_rationale": "Quiet day with no high-match APPLY jobs, so no documents or alerts were generated. Used remaining budget to reevaluate 3 recent REVIEW-band jobs to keep the pipeline current. Follow-up tool reported the quiet application is still eligible but produced no new draft, indicating candidate-side action is pending."
+}
