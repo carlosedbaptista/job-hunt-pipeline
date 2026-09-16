@@ -1,0 +1,55 @@
+{
+  "ts": "2026-09-16T09:42:58.361874+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 5,
+  "usage": {
+    "prompt_tokens": 6840,
+    "completion_tokens": 340,
+    "model": "kimi-k2.6"
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "No APPLY jobs today (0 APPLY, 1 REVIEW, 0 SKIP). Drafted 0 follow-ups (1 application still eligible but likely already drafted). Re-evaluated 5 borderline REVIEW jobs from the last 14 days; all stayed in REVIEW. No high-score alerts needed. Run complete.",
+        "rationale": "With no top-scoring APPLY jobs, there were no documents to generate and no alerts to send. The quiet day was used to re-score 5 REVIEW-band jobs, none of which moved to APPLY. The single stale application is still in the follow-up window but no new drafts were produced, indicating it may already have a pending draft."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 9, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 1, \"SKIP\": 0, \"ERROR\": 0, \"NOT_EVALUATED\": 8}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"DeepJudge\", \"title\": \"Machine Learning Engineer\", \"old_score\": 75, \"old_decision\": \"REVIEW\", \"new_score\": 74, \"new_decision\": \"REVIEW\"}, {\"company\": \"smino AG\", \"title\": \"Full Stack Engineer (AI-First) (m/w/d) 100%\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "No APPLY jobs today (0 APPLY, 1 REVIEW, 0 SKIP). Drafted 0 follow-ups (1 application still eligible but likely already drafted). Re-evaluated 5 borderline REVIEW jobs from the last 14 days; all stayed in REVIEW. No high-score alerts needed. Run complete.",
+  "agent_rationale": "With no top-scoring APPLY jobs, there were no documents to generate and no alerts to send. The quiet day was used to re-score 5 REVIEW-band jobs, none of which moved to APPLY. The single stale application is still in the follow-up window but no new drafts were produced, indicating it may already have a pending draft."
+}
