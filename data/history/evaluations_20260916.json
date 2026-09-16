@@ -751,5 +751,345 @@
     "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-09-16T09:42:51.330610+00:00"
+  },
+  {
+    "score": 25,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Role requires 10 years PM experience and 5 years people management - candidate has 0 in both categories",
+      "Truncated posting - full requirements not visible",
+      "Role is senior product leadership, not individual contributor engineering",
+      "No prior product management background",
+      "Level mismatch: Group Product Manager is senior/staff level, candidate is intern-level seeking junior roles",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Group Product Manager, Search Content Platform - Google Careers",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5886136629",
+      "portal": "adzuna",
+      "description": " Minimum qualifications:  * Bachelor's degree or equivalent practical experience. * 10 years of experience in product management or a related technical role. * 5 years of experience taking technical products from conception to launch (e.g., ideation to execution, end-to-end, 0 to 1, etc). * 5 years of experience in people management, with technical leadership. * Experience integrating generative AI tools or LLM interfaces into workflows.  Preferred qualifications:  * Experience balancing consum…"
+    },
+    "technical_fit": "This is a Group Product Manager role at Google requiring 10 years of product management experience, 5 years of people management with technical leadership, and experience taking products from conception to launch. The candidate is an AI Software Engineer Intern with ~1 year of technical experience, no product management background, and no people management experience. The role is fundamentally a senior leadership product management position, not an individual contributor engineering role. While it mentions 'experience integrating generative AI tools or LLM interfaces into workflows' as a minimum qualification, this is one bullet among heavy senior PM requirements. The posting is also truncated (500 chars, truncated=true), so full requirements aren't visible, but what's visible is already disqualifying. The candidate is looking for hands-on AI/LLM engineering roles where he builds systems, not senior product strategy/leadership roles. Past similar evaluations (Product Manager II, Retail Ads at Google - score 35 SKIP; Senior Product Manager at BLP Digital - score 35 SKIP) confirm this pattern.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 4,
+      "prompt_tokens": 11777,
+      "completion_tokens": 615,
+      "cost_usd": null
+    },
+    "concerns": [
+      "Role requires 10 years PM experience and 5 years people management - candidate has 0 in both categories",
+      "Truncated posting - full requirements not visible",
+      "Role is senior product leadership, not individual contributor engineering",
+      "No prior product management background",
+      "Level mismatch: Group Product Manager is senior/staff level, candidate is intern-level seeking junior roles"
+    ],
+    "agent_rationale": "This is a Group Product Manager role at Google requiring 10 years of product management experience, 5 years of people management with technical leadership, and experience taking products from conception to launch. The candidate is an AI Software Engineer Intern with ~1 year of technical experience, no product management background, and no people management experience. The role is fundamentally a senior leadership product management position, not an individual contributor engineering role. While it mentions 'experience integrating generative AI tools or LLM interfaces into workflows' as a minimum qualification, this is one bullet among heavy senior PM requirements. The posting is also truncated (500 chars, truncated=true), so full requirements aren't visible, but what's visible is already disqualifying. The candidate is looking for hands-on AI/LLM engineering roles where he builds systems, not senior product strategy/leadership roles. Past similar evaluations (Product Manager II, Retail Ads at Google - score 35 SKIP; Senior Product Manager at BLP Digital - score 35 SKIP) confirm this pattern.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Google"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Product Manager"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 25,
+          "decision": "SKIP",
+          "rationale": "This is a Group Product Manager role at Google requiring 10 years of product management experience, 5 years of people management with technical leadership, and experience taking products from conception to launch. The candidate is an AI Software Engineer Intern with ~1 year of technical experience, no product management background, and no people management experience. The role is fundamentally a senior leadership product management position, not an individual contributor engineering role. While it mentions 'experience integrating generative AI tools or LLM interfaces into workflows' as a minimum qualification, this is one bullet among heavy senior PM requirements. The posting is also truncated (500 chars, truncated=true), so full requirements aren't visible, but what's visible is already disqualifying. The candidate is looking for hands-on AI/LLM engineering roles where he builds systems, not senior product strategy/leadership roles. Past similar evaluations (Product Manager II, Retail Ads at Google - score 35 SKIP; Senior Product Manager at BLP Digital - score 35 SKIP) confirm this pattern.",
+          "concerns": [
+            "Role requires 10 years PM experience and 5 years people management - candidate has 0 in both categories",
+            "Truncated posting - full requirements not visible",
+            "Role is senior product leadership, not individual contributor engineering",
+            "No prior product management background",
+            "Level mismatch: Group Product Manager is senior/staff level, candidate is intern-level seeking junior roles"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-16T15:48:06.303435+00:00"
+  },
+  {
+    "score": 45,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting truncated at 500 chars -- full requirements not visible",
+      "Requires 2 years experience in data analysis and 2 years in Data Science/Applied AI -- candidate is an intern without stated full-time experience",
+      "Role appears data/analytics-focused rather than LLM/agentic AI engineering-focused",
+      "No mention of LLMs, agents, or generative AI in visible text",
+      "Google roles tend to have high bar; candidate has only 1 application sent with 0 responses so far",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Engineering Analyst, Account and Device Intelligence - Google Careers",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5886137969",
+      "portal": "adzuna",
+      "description": " Minimum qualifications:  * Bachelor's degree in Computer Science, Engineering, Statistics, Mathematics, or equivalent practical experience. * 2 years of experience in data analysis, including identifying trends, generating summary statistics, and drawing insights from quantitative and qualitative data. * 2 years of experience in Data Science, Applied AI, or similar technical roles.  Preferred qualifications:  * 2 years of experience or familiarity with one or more of the following languages: S…"
+    },
+    "technical_fit": "The posting is severely truncated (500 chars, truncated=true), so most requirements are invisible. What IS visible shows a mismatch: minimum qualifications require 2 years of experience in data analysis AND 2 years in Data Science/Applied AI. The candidate is currently an intern with no stated years of full-time experience. The role is titled 'Engineering Analyst' in 'Account and Device Intelligence' -- this sounds like a data/analytics role rather than one focused on building, integrating or operating LLM/agentic systems. The preferred qualifications mention programming languages but are cut off. The candidate's core strength is LLM pipelines, prompt engineering, and agentic systems -- none of which are mentioned in the visible text. The role appears to be a mid-level data analysis position at Google Zurich, which is likely too senior and too data-analytics-focused rather than AI-engineering-focused for this candidate's profile and career goals. Given the truncation, conservative scoring is warranted, but the visible signals point away from a strong fit.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 8,
+      "prompt_tokens": 21526,
+      "completion_tokens": 149,
+      "cost_usd": null
+    },
+    "concerns": [
+      "Posting truncated at 500 chars -- full requirements not visible",
+      "Requires 2 years experience in data analysis and 2 years in Data Science/Applied AI -- candidate is an intern without stated full-time experience",
+      "Role appears data/analytics-focused rather than LLM/agentic AI engineering-focused",
+      "No mention of LLMs, agents, or generative AI in visible text",
+      "Google roles tend to have high bar; candidate has only 1 application sent with 0 responses so far"
+    ],
+    "agent_rationale": "The posting is severely truncated (500 chars, truncated=true), so most requirements are invisible. What IS visible shows a mismatch: minimum qualifications require 2 years of experience in data analysis AND 2 years in Data Science/Applied AI. The candidate is currently an intern with no stated years of full-time experience. The role is titled 'Engineering Analyst' in 'Account and Device Intelligence' -- this sounds like a data/analytics role rather than one focused on building, integrating or operating LLM/agentic systems. The preferred qualifications mention programming languages but are cut off. The candidate's core strength is LLM pipelines, prompt engineering, and agentic systems -- none of which are mentioned in the visible text. The role appears to be a mid-level data analysis position at Google Zurich, which is likely too senior and too data-analytics-focused rather than AI-engineering-focused for this candidate's profile and career goals. Given the truncation, conservative scoring is warranted, but the visible signals point away from a strong fit.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Google"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Engineering Analyst"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Account and Device Intelligence"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Data Science"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 45,
+          "decision": "SKIP",
+          "rationale": "The posting is severely truncated (500 chars, truncated=true), so most requirements are invisible. What IS visible shows a mismatch: minimum qualifications require 2 years of experience in data analysis AND 2 years in Data Science/Applied AI. The candidate is currently an intern with no stated years of full-time experience. The role is titled 'Engineering Analyst' in 'Account and Device Intelligence' -- this sounds like a data/analytics role rather than one focused on building, integrating or operating LLM/agentic systems. The preferred qualifications mention programming languages but are cut off. The candidate's core strength is LLM pipelines, prompt engineering, and agentic systems -- none of which are mentioned in the visible text. The role appears to be a mid-level data analysis position at Google Zurich, which is likely too senior and too data-analytics-focused rather than AI-engineering-focused for this candidate's profile and career goals. Given the truncation, conservative scoring is warranted, but the visible signals point away from a strong fit.",
+          "concerns": [
+            "Posting truncated at 500 chars -- full requirements not visible",
+            "Requires 2 years experience in data analysis and 2 years in Data Science/Applied AI -- candidate is an intern without stated full-time experience",
+            "Role appears data/analytics-focused rather than LLM/agentic AI engineering-focused",
+            "No mention of LLMs, agents, or generative AI in visible text",
+            "Google roles tend to have high bar; candidate has only 1 application sent with 0 responses so far"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-16T15:48:06.303435+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Givaudan",
+      "title": "Process Safety Data Analyst Intern (m/w/d)",
+      "location": "Kemptthal",
+      "url": "https://www.linkedin.com/comm/jobs/view/4458236714/?trackingId=9buoWvv1ItlTEACrh%2BGLYA%3D%3D&refId=b0KTMfH37L7DHajhvqkhoQ%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BDW%2BWyPNETWiHwG90mEwuhw%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=1RU5TGZsTd6Ys1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_2_jobid_4458236714_ssid_8700305346_fmid_gbrmkn~mu41ptz7~kd&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_2_jobid_4458236714_ssid_8700305346_fmid_gbrmkn~mu41ptz7~kd-null-gbrmkn~mu41ptz7~kd-null-null&eid=gbrmkn-mu41ptz7-kd&otpToken=YzdhY2E2NjM0OTBkZGUyMzJkYTZhMzQyNWI0ZWU4ZDA1YTgyMTc5Njk4MjdkOWVkZGMwY2ExZDAwMWNkMWI0YWU0NGMzMjYyOTMwYmY3MTc0NWI1MzJkYzkxMzlmY2M1YzI2ZmViMmJmOThmMzdhNTc3MTkwNDdhZjBmZjUwZWIzZjI2NjM1ODI2NzViODA3LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-16T15:48:06.303435+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Ergon Informatik AG",
+      "title": "Praktikum Software Engineering",
+      "location": "Zurich",
+      "url": "https://www.linkedin.com/comm/jobs/view/4456506461/?trackingId=4dRf90u4QMUh%2FSuBvdBGrA%3D%3D&refId=b0KTMfH37L7DHajhvqkhoQ%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BDW%2BWyPNETWiHwG90mEwuhw%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=1RU5TGZsTd6Ys1&trk=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_3_jobid_4456506461_ssid_8700305346_fmid_gbrmkn~mu41ptz7~kd&trkEmail=eml-email_job_alert_digest_01-primary_job_list-0-job_posting_3_jobid_4456506461_ssid_8700305346_fmid_gbrmkn~mu41ptz7~kd-null-gbrmkn~mu41ptz7~kd-null-null&eid=gbrmkn-mu41ptz7-kd&otpToken=YzdhY2E2NjM0OTBkZGUyMzJkYTZhMzQyNWI0ZWU4ZDA1YTgyMTc5Njk4MjdkOWVkZGMwY2ExZDAwMWNkMWI0YWU0NGMzMjYyOTMwYmY3MTc0NWI1MzJkYzkxMzlmY2M1YzI2ZmViMmJmOThmMzdhNTc3MTkwNDdhZjBmZjUwZWIzZjI2NjM1ODI2NzViODA3LDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-16T15:48:06.303435+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Data Engineer",
+      "location": "Unknown",
+      "url": "https://www.jobs.ch/de/stellenangebote/detail/c8148e8f-443c-4789-8bf2-398ccdf21063/?utm_source=automail-job-push&utm_medium=email&utm_campaign=wb%3Ajobs%7Ctg%3Ab2c%7Ccn%3Aww%7Clg%3Ade%7Cmg%3Ajob-views%7Cpd%3An%7Ccd%3Arecommended-jobs&utm_content=job-link&source=dsp_mail&uid=f5ed677b-f8d7-4eed-834f-a8eb1c8916c2&mid=d67d984b-85c2-48e9-bb09-8166098c699c",
+      "portal": "jobs.ch",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-16T15:48:06.303435+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Intern Purchasing",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=cdfc5aa658e452ce&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QC1FOsjOkK1sJAQRug9gZuk6xxKlFCuerUg86dp9m2nAU&rd=cv__WBhDSvE4qmpjGmxYvJXef5NkBUPQ3HkIyXCDpdM&tk=1k2lc8ummh0ep801&alid=6a09beeefbc7370ae83f277c&bb=SHKRnSLIRgb88paMz9-gUHflP2BUE4ZK6Y2uZmoW6T1ZlJGrxm55T96ljN1_de3rB1tNDKR6lvHCSYKWO2egB47TrQerpVL6T6Nw60ZAgZFzOepbfj2MtM5kh4AmIdjBnnYvVZ4xy5Mg9x8yiqW4SA%3D%3D&tmtk=1k2lc8ummh0ep801",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-16T15:48:06.303435+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "LHH",
+      "title": "Business Development Manager – IT Consulting",
+      "location": "Zürich",
+      "url": "https://de.glassdoor.ch/partner/jobListing.htm?pos=104&ao=1110586&s=362&guid=000001a0a9e8cbe281405e7802da2b9e&src=GD_JOB_AD&t=REC_JOBS&vt=e&uido=D661EDE7358AA032024678584D685D92&cs=1_a8bf0f8f&cb=1789559026791&jobListingId=1010156415777&cpc=5EFBB0462F9C6B7A&jrtk=5-yul1-1-1k2l0fcnji95j800-8d6cc4fb6bcbccbf---6NYlbfkN0DJyih6TOEvtZr1xQmit858yzvEmh1c-1bGsbaSyDqS3Gx3vXdpdcxGM37fdK7EfuBRWoYG1N1To23retwm7dnRS15VnKvFL4Z-cGMzem_xY8DS1t9RFKb9O-fWk9bIf8OLRiwkQSRuQdOt_uVurVxbmeNfmDq6XzPza_651eARtxA1wJo6e4JlNadCocg7vwVvVH57racjrrLISYS1BUBQi9Wp--xP_H6GeFQboMWGSc3Erl_bq8Kcy63PppmzPVDpVCQS_JYsd2JulDQ4NJrdmfxXsqr5wtIco9DCWzS5DAYWHYLEE-_bdWfNaYHDu9uWCTaoDxpv-LLqDkVl6Fx42YxkkUGnF3e3mMvA42hsj1yVYKVDDj1_Waj18aQ97SU7HBtxO6uAS8Aay74h7IMLitrXgDLsa2rRYWCBunAxrDkuPPYT2gYrqs4V1fdWlu1B5zJPMkob3lZ8z4235us6UGpH9-XVXVSnS1VaQs-DxQhruStbrqbitQUn0AG8qN7PiWULK-OK96kd3zr1Dv7I91hvybEx1s9tRhCEfHAevp2FAk_5TeTJy6HeuYrKKTc5b8dV40cfIa0oo1IjKExE673xiPfMPYbifBbPOA9lqCMt_EmmsFHPCUhrjJcpY0ZS3Cgb3HsEjKV4XgFoQfG_N6hpdaTXY27C9qT98U5icGg0ozmKffAWVrKgrJu2S-0GjMys9_zTWeCaPsm8jV6PipsEwmmjDQkIRk1FgPjJJtNKSU9-voQgVBJ1aPqdGLolOr56DEQnWwtQM9hQLTfLjx5ogRXy8WpTj33mSQHbuN-7qa7XspyP6pmWTPq6j0uPbmD1SRKOpcmJWZtWHxhfwrHa6f12k2ZWb66dLWBQ9lhkvPNM4SFc-XL781Fneliynvqn4omOcxBWYpVp5qSg6x4l-VyFzWSIwE1hwDGpfn94AirMbMTJa_2WEL_HjKqFXQQ6atMMdSFsj6ZNPtmk1i3f11GDSi4KbX6JTkVFXj4-WZOkdLS-6BJUww_a1imsYDjEx09PQs-i0SVcH6b_TldQRVzg_4DEs_AaPhIKmWvbAaMEbLvSDzn9jB_rcHw%3D&utm_medium=email&utm_source=jobsForYou&utm_campaign=jobsForYou&utm_content=jobs-for-you-jobsForYou-jobpos4-age30d-1010156415777&rdforyou=true",
+      "portal": "glassdoor.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-16T15:48:06.303435+00:00"
   }
 ]
