@@ -1,0 +1,55 @@
+{
+  "ts": "2026-09-17T15:57:09.004233+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5462,
+    "completion_tokens": 578,
+    "model": "kimi-k2.6"
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 3
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Run completed: 8 evaluations processed today (5 SKIP, 0 APPLY, 0 REVIEW, 3 NOT_EVALUATED). No APPLY jobs, so no documents or alerts generated. 1 stale application remains eligible for follow-up (0 new drafts). Re-evaluated 1 borderline job (Coopers Group AG - AI Engineer, score 72, stayed REVIEW).",
+        "rationale": "Quiet day with zero APPLY-band jobs. Used remaining budget to reevaluate 1 recent REVIEW-band job and processed the single stale application through follow-up drafting. Nothing further to action."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 8, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 5, \"ERROR\": 0, \"NOT_EVALUATED\": 3}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"Coopers Group AG\", \"title\": \"AI Engineer\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 72, \"new_decision\": \"REVIEW\"}], \"cap\": 3}"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Run completed: 8 evaluations processed today (5 SKIP, 0 APPLY, 0 REVIEW, 3 NOT_EVALUATED). No APPLY jobs, so no documents or alerts generated. 1 stale application remains eligible for follow-up (0 new drafts). Re-evaluated 1 borderline job (Coopers Group AG - AI Engineer, score 72, stayed REVIEW).",
+  "agent_rationale": "Quiet day with zero APPLY-band jobs. Used remaining budget to reevaluate 1 recent REVIEW-band job and processed the single stale application through follow-up drafting. Nothing further to action."
+}
