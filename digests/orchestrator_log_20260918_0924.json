@@ -1,0 +1,55 @@
+{
+  "ts": "2026-09-18T09:24:52.153151+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5253,
+    "completion_tokens": 392,
+    "model": "kimi-k2.6"
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 3
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "No APPLY jobs today (0 APPLY, 1 REVIEW, 2 SKIP, 7 unevaluated). Drafted 0 follow-ups (1 stale application still eligible). Re-evaluated 3 borderline jobs: Coopers Group AG dropped from REVIEW to SKIP; DeepJudge and smino AG remain REVIEW.",
+        "rationale": "With no high-scoring matches, document generation and high-score alerts were unnecessary. Follow-up drafting was attempted for the one quiet application but produced no drafts (still eligible). Re-evaluation budget was used to re-score 3 recent REVIEW-band jobs, yielding one downgrade and two holds, improving pipeline clarity."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 10, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 1, \"SKIP\": 2, \"ERROR\": 0, \"NOT_EVALUATED\": 7}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 "
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"Coopers Group AG\", \"title\": \"AI Engineer\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 68, \"new_decision\": \"SKIP\"}, {\"company\": \"DeepJudge\", \"title\": \"Machine Learning Engineer\", \"old_score\": 73, \"old_decision\": \"REVIEW\", \"new_score\": 74, \"new_decision\": \"RE"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "No APPLY jobs today (0 APPLY, 1 REVIEW, 2 SKIP, 7 unevaluated). Drafted 0 follow-ups (1 stale application still eligible). Re-evaluated 3 borderline jobs: Coopers Group AG dropped from REVIEW to SKIP; DeepJudge and smino AG remain REVIEW.",
+  "agent_rationale": "With no high-scoring matches, document generation and high-score alerts were unnecessary. Follow-up drafting was attempted for the one quiet application but produced no drafts (still eligible). Re-evaluation budget was used to re-score 3 recent REVIEW-band jobs, yielding one downgrade and two holds, improving pipeline clarity."
+}
