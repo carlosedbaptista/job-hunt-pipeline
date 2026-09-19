@@ -1,0 +1,65 @@
+{
+  "ts": "2026-09-19T15:07:28.838630+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 5,
+  "usage": {
+    "prompt_tokens": 7637,
+    "completion_tokens": 868,
+    "model": "kimi-k2.6"
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run produced 12 fresh evaluations with 0 APPLY, 1 REVIEW, 7 SKIP, and 4 NOT_EVALUATED. No tailored documents or high-score alerts were needed. One stale application remains eligible for follow-up but no draft was generated at this time. One borderline job (isolutions - AI First Data Engineer) was reevaluated and remained in REVIEW band at 72. No further reevaluations were possible.",
+        "rationale": "With zero APPLY jobs today, there was no need to generate documents or send alerts. The single stale application was processed through follow-up drafting. A quiet day (only 1 REVIEW) warranted attempting borderline reevaluations, but only one job was eligible and it stayed in REVIEW. The remaining 4 NOT_EVALUATED jobs were not in the REVIEW-band eligibility window for reevaluation."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 12, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 1, \"SKIP\": 7, \"ERROR\": 0, \"NOT_EVALUATED\": 4}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 "
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"isolutions\", \"title\": \"AI First Data Engineer\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 72, \"new_decision\": \"REVIEW\"}], \"cap\": 5}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [], \"note\": \"no eligible REVIEW-band jobs in the last 14 days\"}"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run produced 12 fresh evaluations with 0 APPLY, 1 REVIEW, 7 SKIP, and 4 NOT_EVALUATED. No tailored documents or high-score alerts were needed. One stale application remains eligible for follow-up but no draft was generated at this time. One borderline job (isolutions - AI First Data Engineer) was reevaluated and remained in REVIEW band at 72. No further reevaluations were possible.",
+  "agent_rationale": "With zero APPLY jobs today, there was no need to generate documents or send alerts. The single stale application was processed through follow-up drafting. A quiet day (only 1 REVIEW) warranted attempting borderline reevaluations, but only one job was eligible and it stayed in REVIEW. The remaining 4 NOT_EVALUATED jobs were not in the REVIEW-band eligibility window for reevaluation."
+}
