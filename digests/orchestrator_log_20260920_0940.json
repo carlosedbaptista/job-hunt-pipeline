@@ -1,0 +1,55 @@
+{
+  "ts": "2026-09-20T09:40:53.135016+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5919,
+    "completion_tokens": 646,
+    "model": "kimi-k2.6"
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run evaluated 12 jobs with 5 SKIP, 0 APPLY, 0 REVIEW, and 7 NOT_EVALUATED. One stale application remains eligible for follow-up but no new draft was created. Re-evaluated 5 borderline REVIEW jobs; all stayed at score 72 and remained in REVIEW, producing no new APPLY jobs. No documents or alerts were needed.",
+        "rationale": "With zero APPLY jobs from today's evaluations and none promoted from reevaluation, the only actionable item was the stale application follow-up, which returned 0 drafts (still eligible). The run has completed all possible stages within budget."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 12, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 5, \"ERROR\": 0, \"NOT_EVALUATED\": 7}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 "
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"isolutions\", \"title\": \"AI First Data Engineer\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 72, \"new_decision\": \"REVIEW\"}, {\"company\": \"Job-Room\", \"title\": \"Applied AI Engineer (all genders)\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 72, \"new_"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run evaluated 12 jobs with 5 SKIP, 0 APPLY, 0 REVIEW, and 7 NOT_EVALUATED. One stale application remains eligible for follow-up but no new draft was created. Re-evaluated 5 borderline REVIEW jobs; all stayed at score 72 and remained in REVIEW, producing no new APPLY jobs. No documents or alerts were needed.",
+  "agent_rationale": "With zero APPLY jobs from today's evaluations and none promoted from reevaluation, the only actionable item was the stale application follow-up, which returned 0 drafts (still eligible). The run has completed all possible stages within budget."
+}
