@@ -1,0 +1,55 @@
+{
+  "ts": "2026-09-21T10:27:36.273997+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 5,
+  "usage": {
+    "prompt_tokens": 6766,
+    "completion_tokens": 355,
+    "model": "kimi-k2.6"
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 4
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run produced 9 evaluations (0 APPLY, 2 REVIEW, 3 SKIP, 4 NOT_EVALUATED). No high-score alerts or document generation needed since there were no APPLY jobs. Drafted 0 follow-ups (1 stale application still eligible). Re-evaluated 4 borderline REVIEW jobs from the last 14 days; all remained in REVIEW with stable scores. Run complete.",
+        "rationale": "With no APPLY jobs today, the pipeline's main deliverables (tailored docs and alerts) had no work. The only actionable item was the quiet-application follow-up, but the single stale application did not yet yield a draft. To use remaining budget productively, I re-scored 4 recent REVIEW-band jobs; none changed band, confirming the earlier assessments. The run is now properly finalized."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 9, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 2, \"SKIP\": 3, \"ERROR\": 0, \"NOT_EVALUATED\": 4}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"Coopers Group AG\", \"title\": \"Senior AI Engineer - Google ADK/GCP\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 72, \"new_decision\": \"REVIEW\"}, {\"company\": \"Jurata\", \"title\": \"Legal AI Engineer (100%)\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 7"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run produced 9 evaluations (0 APPLY, 2 REVIEW, 3 SKIP, 4 NOT_EVALUATED). No high-score alerts or document generation needed since there were no APPLY jobs. Drafted 0 follow-ups (1 stale application still eligible). Re-evaluated 4 borderline REVIEW jobs from the last 14 days; all remained in REVIEW with stable scores. Run complete.",
+  "agent_rationale": "With no APPLY jobs today, the pipeline's main deliverables (tailored docs and alerts) had no work. The only actionable item was the quiet-application follow-up, but the single stale application did not yet yield a draft. To use remaining budget productively, I re-scored 4 recent REVIEW-band jobs; none changed band, confirming the earlier assessments. The run is now properly finalized."
+}
