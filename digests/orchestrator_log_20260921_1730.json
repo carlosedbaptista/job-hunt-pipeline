@@ -1,0 +1,55 @@
+{
+  "ts": "2026-09-21T17:30:45.697632+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5260,
+    "completion_tokens": 351,
+    "model": "kimi-k2.6"
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 3
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "No APPLY jobs today (0/4 evaluations). Re-evaluated 3 REVIEW-band jobs from the last 14 days; all stayed at REVIEW (score 72). Checked 1 stale application for follow-up but 0 drafts were produced (still eligible, likely not yet past the 7-day threshold or already handled). No high-score alerts needed.",
+        "rationale": "With zero APPLY jobs, document generation and high-score alerts are unnecessary. The quiet day warranted re-evaluating recent borderline jobs to see if any should move to APPLY, but none did. Follow-ups were checked for the one stale application. Run is complete."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 4, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 1, \"SKIP\": 2, \"ERROR\": 0, \"NOT_EVALUATED\": 1}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"smino AG\", \"title\": \"Full Stack Engineer (AI-First) (m/w/d) 100%\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 72, \"new_decision\": \"REVIEW\"}, {\"company\": \"DeepJudge\", \"title\": \"Machine Learning Engineer\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "No APPLY jobs today (0/4 evaluations). Re-evaluated 3 REVIEW-band jobs from the last 14 days; all stayed at REVIEW (score 72). Checked 1 stale application for follow-up but 0 drafts were produced (still eligible, likely not yet past the 7-day threshold or already handled). No high-score alerts needed.",
+  "agent_rationale": "With zero APPLY jobs, document generation and high-score alerts are unnecessary. The quiet day warranted re-evaluating recent borderline jobs to see if any should move to APPLY, but none did. Follow-ups were checked for the one stale application. Run is complete."
+}
