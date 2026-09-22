@@ -1,0 +1,55 @@
+{
+  "ts": "2026-09-22T09:40:41.351671+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 6009,
+    "completion_tokens": 707,
+    "model": "kimi-k2.6"
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run evaluated 7 jobs (3 SKIP, 4 NOT_EVALUATED, 0 APPLY, 0 REVIEW). No APPLY jobs means no documents to generate and no high-score alerts to send. One stale application remains eligible for follow-up but no new draft was produced. Reevaluated 5 borderline REVIEW jobs from the last 14 days; all remained in REVIEW (scores 71-72). Run complete.",
+        "rationale": "With zero APPLY jobs and a quiet day, the run focused on maintenance: checked for follow-ups on stale applications and used remaining budget to re-score 5 recent REVIEW-band jobs. No promotions to APPLY occurred. Fresh evaluations confirmed, so no risk of stale document generation."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 7, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 0, \"SKIP\": 3, \"ERROR\": 0, \"NOT_EVALUATED\": 4}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"Job-Room\", \"title\": \"Applied AI Engineer (all genders)\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 71, \"new_decision\": \"REVIEW\"}, {\"company\": \"DeepJudge\", \"title\": \"Machine Learning Engineer\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_score\": 72, \"ne"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run evaluated 7 jobs (3 SKIP, 4 NOT_EVALUATED, 0 APPLY, 0 REVIEW). No APPLY jobs means no documents to generate and no high-score alerts to send. One stale application remains eligible for follow-up but no new draft was produced. Reevaluated 5 borderline REVIEW jobs from the last 14 days; all remained in REVIEW (scores 71-72). Run complete.",
+  "agent_rationale": "With zero APPLY jobs and a quiet day, the run focused on maintenance: checked for follow-ups on stale applications and used remaining budget to re-score 5 recent REVIEW-band jobs. No promotions to APPLY occurred. Fresh evaluations confirmed, so no risk of stale document generation."
+}
