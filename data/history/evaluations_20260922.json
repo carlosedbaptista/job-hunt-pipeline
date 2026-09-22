@@ -841,5 +841,1331 @@
     "decision": "REVIEW",
     "materials_needed": [],
     "evaluated_at": "2026-09-22T09:40:27.146587+00:00"
+  },
+  {
+    "score": 72,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [
+      "The posting is heavily truncated (500 chars, mid-sentence cut-off), so the full requirements section was never visible. What we can see: Artificialy is an AI company with offices in Lugano and Zurich, founded in 2020, building real-world AI solutions — this aligns well with the candidate's target of building and operating AI systems in production. The title \"AI Engineer\" is squarely on target. Location is Zurich, which is ideal. Language requirement is none (no German or other language requirements detected). Past evaluation for the same company+title scored 72/REVIEW. Given the truncated text, we cannot assess seniority expectations, specific tech stack requirements, or whether this is a junior-friendly role. The candidate would want to see the full JD before applying, but the role shape (AI Engineer at an AI company in Zurich) is exciting and on-target. Conservative REVIEW due to invisible requirements."
+    ],
+    "red_flags": [
+      "Posting text is truncated (500 chars, cut-off mid-sentence) — full requirements not visible",
+      "Cannot assess seniority level, specific tech stack, or whether role is junior-friendly",
+      "Only 1 application sent from pipeline so far with 0 responses — limited calibration data",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Artificialy",
+      "title": "AI Engineer",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5886853105",
+      "portal": "adzuna",
+      "description": "Artificialy is an AI company based in Switzerland, with offices in Lugano and Zurich. We design and deliver AI solutions that are impactful, transparent, and tailored to real-world industry needs. Founded in 2020 by pioneers with over 40 years of combined experience in the field, our team brings together talented engineers, physicists, and mathematicians from across Europe. We are driven by curiosity, technical excellence, and a shared ambition to build AI systems that make a tangible differenc…"
+    },
+    "technical_fit": "The posting is heavily truncated (500 chars, mid-sentence cut-off), so the full requirements section was never visible. What we can see: Artificialy is an AI company with offices in Lugano and Zurich, founded in 2020, building real-world AI solutions — this aligns well with the candidate's target of building and operating AI systems in production. The title \"AI Engineer\" is squarely on target. Location is Zurich, which is ideal. Language requirement is none (no German or other language requirements detected). Past evaluation for the same company+title scored 72/REVIEW. Given the truncated text, we cannot assess seniority expectations, specific tech stack requirements, or whether this is a junior-friendly role. The candidate would want to see the full JD before applying, but the role shape (AI Engineer at an AI company in Zurich) is exciting and on-target. Conservative REVIEW due to invisible requirements.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 4,
+      "prompt_tokens": 11421,
+      "completion_tokens": 525,
+      "cost_usd": null
+    },
+    "concerns": [
+      "Posting text is truncated (500 chars, cut-off mid-sentence) — full requirements not visible",
+      "Cannot assess seniority level, specific tech stack, or whether role is junior-friendly",
+      "Only 1 application sent from pipeline so far with 0 responses — limited calibration data"
+    ],
+    "agent_rationale": "The posting is heavily truncated (500 chars, mid-sentence cut-off), so the full requirements section was never visible. What we can see: Artificialy is an AI company with offices in Lugano and Zurich, founded in 2020, building real-world AI solutions — this aligns well with the candidate's target of building and operating AI systems in production. The title \"AI Engineer\" is squarely on target. Location is Zurich, which is ideal. Language requirement is none (no German or other language requirements detected). Past evaluation for the same company+title scored 72/REVIEW. Given the truncated text, we cannot assess seniority expectations, specific tech stack requirements, or whether this is a junior-friendly role. The candidate would want to see the full JD before applying, but the role shape (AI Engineer at an AI company in Zurich) is exciting and on-target. Conservative REVIEW due to invisible requirements.",
+    "agent_decision": "REVIEW",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Artificialy"
+        }
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 72,
+          "decision": "REVIEW",
+          "rationale": "The posting is heavily truncated (500 chars, mid-sentence cut-off), so the full requirements section was never visible. What we can see: Artificialy is an AI company with offices in Lugano and Zurich, founded in 2020, building real-world AI solutions — this aligns well with the candidate's target of building and operating AI systems in production. The title \"AI Engineer\" is squarely on target. Location is Zurich, which is ideal. Language requirement is none (no German or other language requirements detected). Past evaluation for the same company+title scored 72/REVIEW. Given the truncated text, we cannot assess seniority expectations, specific tech stack requirements, or whether this is a junior-friendly role. The candidate would want to see the full JD before applying, but the role shape (AI Engineer at an AI company in Zurich) is exciting and on-target. Conservative REVIEW due to invisible requirements.",
+          "concerns": [
+            "Posting text is truncated (500 chars, cut-off mid-sentence) — full requirements not visible",
+            "Cannot assess seniority level, specific tech stack, or whether role is junior-friendly",
+            "Only 1 application sent from pipeline so far with 0 responses — limited calibration data"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "REVIEW",
+    "decision": "REVIEW",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:00:28.844373+00:00"
+  },
+  {
+    "score": 58,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting is truncated - full requirements not visible",
+      "Title is Senior Data Engineer, well above candidate's current intern level",
+      "Role appears focused on data platform infrastructure rather than hands-on AI/LLM building",
+      "Private banking domain may have steep domain knowledge expectations for senior roles",
+      "Only 1 application sent historically with 0 responses - limited calibration data",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Swisslinx AG",
+      "title": "Senior Data Engineer – Data Analytics Platform",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/land/ad/5893813387",
+      "portal": "adzuna",
+      "description": "Senior Data Engineer – Data Analytics Platform For a leading Private Bank in Zurich, we are looking for an experienced Senior Data Engineer to support the development of a modern Data Platform for Analytics & AI. Senior Data Engineer – Data Analytics Platform Job description: Design, build and maintain scalable data pipelines and backend services Support real-time decisioning, analytics, reporting and data collection Translate business/data requirements into appropriate data models and technica…"
+    },
+    "technical_fit": "The posting is heavily truncated (500 chars, truncated=true), so the full requirements are not visible. What we can see: this is a Senior Data Engineer role at a Private Bank in Zurich, supporting a Data Platform for Analytics & AI. The visible text mentions \"scalable data pipelines and backend services,\" \"real-time decisioning, analytics, reporting,\" and translating business requirements into data models. The title is Senior Data Engineer, which is two levels above the candidate's current intern status and his target of Junior/Associate roles. While the platform has an AI component, the role appears focused on data engineering infrastructure rather than hands-on AI/LLM system building. The candidate has data pipeline experience but at a much smaller scale (dashboards, API integrations, reporting workflows). Given the seniority mismatch, the truncated requirements, and the data-engineering-heavy nature (vs. AI/LLM-centric work), this is below the threshold. No language blockers (none tier). Location is Zurich, permit is valid. The role shape is more about maintaining/building data infrastructure for analytics rather than owning AI projects from day one, which is what the candidate is seeking.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 4,
+      "prompt_tokens": 11670,
+      "completion_tokens": 641,
+      "cost_usd": null
+    },
+    "concerns": [
+      "Posting is truncated - full requirements not visible",
+      "Title is Senior Data Engineer, well above candidate's current intern level",
+      "Role appears focused on data platform infrastructure rather than hands-on AI/LLM building",
+      "Private banking domain may have steep domain knowledge expectations for senior roles",
+      "Only 1 application sent historically with 0 responses - limited calibration data"
+    ],
+    "agent_rationale": "The posting is heavily truncated (500 chars, truncated=true), so the full requirements are not visible. What we can see: this is a Senior Data Engineer role at a Private Bank in Zurich, supporting a Data Platform for Analytics & AI. The visible text mentions \"scalable data pipelines and backend services,\" \"real-time decisioning, analytics, reporting,\" and translating business requirements into data models. The title is Senior Data Engineer, which is two levels above the candidate's current intern status and his target of Junior/Associate roles. While the platform has an AI component, the role appears focused on data engineering infrastructure rather than hands-on AI/LLM system building. The candidate has data pipeline experience but at a much smaller scale (dashboards, API integrations, reporting workflows). Given the seniority mismatch, the truncated requirements, and the data-engineering-heavy nature (vs. AI/LLM-centric work), this is below the threshold. No language blockers (none tier). Location is Zurich, permit is valid. The role shape is more about maintaining/building data infrastructure for analytics rather than owning AI projects from day one, which is what the candidate is seeking.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Swisslinx"
+        }
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 58,
+          "decision": "SKIP",
+          "rationale": "The posting is heavily truncated (500 chars, truncated=true), so the full requirements are not visible. What we can see: this is a Senior Data Engineer role at a Private Bank in Zurich, supporting a Data Platform for Analytics & AI. The visible text mentions \"scalable data pipelines and backend services,\" \"real-time decisioning, analytics, reporting,\" and translating business requirements into data models. The title is Senior Data Engineer, which is two levels above the candidate's current intern status and his target of Junior/Associate roles. While the platform has an AI component, the role appears focused on data engineering infrastructure rather than hands-on AI/LLM system building. The candidate has data pipeline experience but at a much smaller scale (dashboards, API integrations, reporting workflows). Given the seniority mismatch, the truncated requirements, and the data-engineering-heavy nature (vs. AI/LLM-centric work), this is below the threshold. No language blockers (none tier). Location is Zurich, permit is valid. The role shape is more about maintaining/building data infrastructure for analytics rather than owning AI projects from day one, which is what the candidate is seeking.",
+          "concerns": [
+            "Posting is truncated - full requirements not visible",
+            "Title is Senior Data Engineer, well above candidate's current intern level",
+            "Role appears focused on data platform infrastructure rather than hands-on AI/LLM building",
+            "Private banking domain may have steep domain knowledge expectations for senior roles",
+            "Only 1 application sent historically with 0 responses - limited calibration data"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:00:28.844373+00:00"
+  },
+  {
+    "score": 65,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated - no visible requirements section",
+      "Title 'AI Scientist' may imply research/PhD-level expectations beyond candidate's current profile",
+      "Cannot assess whether role is junior-friendly or expects significant prior AI research experience",
+      "No visibility into day-to-day responsibilities or tech stack requirements",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Artificialy",
+      "title": "AI Scientist - LLM Systems",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5893998525",
+      "portal": "adzuna",
+      "description": "Artificialy is an AI company based in Switzerland, with offices in Lugano and Zurich. We design and deliver AI solutions that are impactful, transparent, and tailored to real-world industry needs. Founded in 2020 by pioneers with over 40 years of combined experience in the field, our team brings together talented engineers, physicists, and mathematicians from across Europe. We are driven by curiosity, technical excellence, and a shared ambition to build AI systems that make a tangible differenc…"
+    },
+    "technical_fit": "The posting text is severely truncated (500 chars, cut off mid-sentence) and does not show any job requirements, responsibilities, or qualifications. While the company (Artificialy) is an AI company in Zurich and the title 'AI Scientist - LLM Systems' sounds relevant, the 'Scientist' designation may imply a research-heavy role requiring advanced credentials that may exceed the candidate's current level (AI Software Engineer Intern, career changer from Law). Without visible requirements, I cannot assess experience level fit, technical prerequisites, or education expectations. A previous 'AI Engineer' role at this company scored 72 (REVIEW), but this 'Scientist' title suggests a different, potentially more senior profile. The conservative approach with truncated postings is to SKIP and wait for a complete posting.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 8,
+      "prompt_tokens": 21820,
+      "completion_tokens": 798,
+      "cost_usd": null
+    },
+    "concerns": [
+      "Posting text is truncated - no visible requirements section",
+      "Title 'AI Scientist' may imply research/PhD-level expectations beyond candidate's current profile",
+      "Cannot assess whether role is junior-friendly or expects significant prior AI research experience",
+      "No visibility into day-to-day responsibilities or tech stack requirements"
+    ],
+    "agent_rationale": "The posting text is severely truncated (500 chars, cut off mid-sentence) and does not show any job requirements, responsibilities, or qualifications. While the company (Artificialy) is an AI company in Zurich and the title 'AI Scientist - LLM Systems' sounds relevant, the 'Scientist' designation may imply a research-heavy role requiring advanced credentials that may exceed the candidate's current level (AI Software Engineer Intern, career changer from Law). Without visible requirements, I cannot assess experience level fit, technical prerequisites, or education expectations. A previous 'AI Engineer' role at this company scored 72 (REVIEW), but this 'Scientist' title suggests a different, potentially more senior profile. The conservative approach with truncated postings is to SKIP and wait for a complete posting.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Artificialy"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "AI Scientist"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "LLM Systems"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 65,
+          "decision": "SKIP",
+          "rationale": "The posting text is severely truncated (500 chars, cut off mid-sentence) and does not show any job requirements, responsibilities, or qualifications. While the company (Artificialy) is an AI company in Zurich and the title 'AI Scientist - LLM Systems' sounds relevant, the 'Scientist' designation may imply a research-heavy role requiring advanced credentials that may exceed the candidate's current level (AI Software Engineer Intern, career changer from Law). Without visible requirements, I cannot assess experience level fit, technical prerequisites, or education expectations. A previous 'AI Engineer' role at this company scored 72 (REVIEW), but this 'Scientist' title suggests a different, potentially more senior profile. The conservative approach with truncated postings is to SKIP and wait for a complete posting.",
+          "concerns": [
+            "Posting text is truncated - no visible requirements section",
+            "Title 'AI Scientist' may imply research/PhD-level expectations beyond candidate's current profile",
+            "Cannot assess whether role is junior-friendly or expects significant prior AI research experience",
+            "No visibility into day-to-day responsibilities or tech stack requirements"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:00:28.844373+00:00"
+  },
+  {
+    "score": 48,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting is severely truncated (500 chars) — requirements section not visible at all",
+      "Title emphasizes Site Reliability Engineering, not AI/LLM building or integration — candidate's skills are in AI application development, not infrastructure/SRE",
+      "Location is Winterthur, not Zurich/Zug",
+      "Past SRE role (DeepJudge) scored 58/SKIP",
+      "Cannot assess actual KI/AI component from visible text",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Rocken®",
+      "title": "Site Reliability Engineer KI-Plattform",
+      "location": "Winterthur",
+      "url": "https://www.adzuna.ch/land/ad/5893813042",
+      "portal": "adzuna",
+      "description": "Site Reliability Engineer KI-Plattform (m/w/d) Rocken® ist ein Schweizer Unternehmen mit dem Sitz in Zürich. Wir haben eine webbasierte Online- Plattform zur Jobsuche und Talentgewinnung entwickelt, die den Bewerbungsprozess digitalisiert und die Unternehmung dabei unterstützt, Talente am Markt rasch zu erkennen und langfristig für sich zu gewinnen. Mit einem digitalen Rocken Profil kann sich jeder Bewerber schnell und unkompliziert mit marktführenden Firmen verbinden und das Profil teilen. Uns…"
+    },
+    "technical_fit": "The posting text is severely truncated at only 500 characters, with the requirements section completely invisible. The title 'Site Reliability Engineer KI-Plattform' suggests a platform/SRE role that may touch AI infrastructure, but the visible text reveals almost nothing about the actual responsibilities, tech stack, or whether this involves building/integrating AI systems vs. pure infrastructure maintenance. The candidate's profile is heavily weighted toward AI/LLM application development (prompt engineering, LLM APIs, agentic systems), not SRE/platform engineering. Past evaluation of a similar 'Site Reliability Engineer' role at DeepJudge scored 58/SKIP. Without visible requirements, and given the title emphasizes SRE over AI engineering, this is too speculative. The role is in Winterthur (not Zurich/Zug), which is acceptable but not ideal. The German language requirement check returned 'none', but this is based on minimal visible text. Given the truncated posting and mismatch between SRE platform work and the candidate's AI application development focus, this is a SKIP.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 5,
+      "prompt_tokens": 15285,
+      "completion_tokens": 706,
+      "cost_usd": null
+    },
+    "concerns": [
+      "Posting is severely truncated (500 chars) — requirements section not visible at all",
+      "Title emphasizes Site Reliability Engineering, not AI/LLM building or integration — candidate's skills are in AI application development, not infrastructure/SRE",
+      "Location is Winterthur, not Zurich/Zug",
+      "Past SRE role (DeepJudge) scored 58/SKIP",
+      "Cannot assess actual KI/AI component from visible text"
+    ],
+    "agent_rationale": "The posting text is severely truncated at only 500 characters, with the requirements section completely invisible. The title 'Site Reliability Engineer KI-Plattform' suggests a platform/SRE role that may touch AI infrastructure, but the visible text reveals almost nothing about the actual responsibilities, tech stack, or whether this involves building/integrating AI systems vs. pure infrastructure maintenance. The candidate's profile is heavily weighted toward AI/LLM application development (prompt engineering, LLM APIs, agentic systems), not SRE/platform engineering. Past evaluation of a similar 'Site Reliability Engineer' role at DeepJudge scored 58/SKIP. Without visible requirements, and given the title emphasizes SRE over AI engineering, this is too speculative. The role is in Winterthur (not Zurich/Zug), which is acceptable but not ideal. The German language requirement check returned 'none', but this is based on minimal visible text. Given the truncated posting and mismatch between SRE platform work and the candidate's AI application development focus, this is a SKIP.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Rocken"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Site Reliability Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "KI-Plattform"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 48,
+          "decision": "SKIP",
+          "rationale": "The posting text is severely truncated at only 500 characters, with the requirements section completely invisible. The title 'Site Reliability Engineer KI-Plattform' suggests a platform/SRE role that may touch AI infrastructure, but the visible text reveals almost nothing about the actual responsibilities, tech stack, or whether this involves building/integrating AI systems vs. pure infrastructure maintenance. The candidate's profile is heavily weighted toward AI/LLM application development (prompt engineering, LLM APIs, agentic systems), not SRE/platform engineering. Past evaluation of a similar 'Site Reliability Engineer' role at DeepJudge scored 58/SKIP. Without visible requirements, and given the title emphasizes SRE over AI engineering, this is too speculative. The role is in Winterthur (not Zurich/Zug), which is acceptable but not ideal. The German language requirement check returned 'none', but this is based on minimal visible text. Given the truncated posting and mismatch between SRE platform work and the candidate's AI application development focus, this is a SKIP.",
+          "concerns": [
+            "Posting is severely truncated (500 chars) — requirements section not visible at all",
+            "Title emphasizes Site Reliability Engineering, not AI/LLM building or integration — candidate's skills are in AI application development, not infrastructure/SRE",
+            "Location is Winterthur, not Zurich/Zug",
+            "Past SRE role (DeepJudge) scored 58/SKIP",
+            "Cannot assess actual KI/AI component from visible text"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:00:28.844373+00:00"
+  },
+  {
+    "score": 10,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Role is purely financial product specialist with no technical or AI component",
+      "Posting truncated but visible content clearly indicates non-technical sales/marketing role",
+      "Candidate's skills in LLM engineering, Python, automation have no applicability here",
+      "Completely misaligned career direction - this is a finance role, not a tech role",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Bank J. Safra Sarasin",
+      "title": "Equity Product Specialist",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/land/ad/5893812814",
+      "portal": "adzuna",
+      "description": "Equity Product Specialist Your Role As Equity Product Specialist at Bank J. Safra Sarasin you are part of the JSS Equity team and are serving as a strategic link between portfolio managers, sales and clients to drive asset growth of our equity funds. Your Responsibilities Translate thematic, macroeconomic, single stock views and portfolio positioning into marketing materials promoting J. Safra Sarasin equity funds Present our equity funds to internal and external audiences Lead strategic produc…"
+    },
+    "technical_fit": "This is an Equity Product Specialist role in a private bank's asset management division. The posting describes a financial product/marketing role focused on translating investment views into marketing materials, presenting equity funds to clients, and driving asset growth. There is zero technical content, no AI/ML/LLM/data/automation component, and no software engineering work. This is a pure finance/sales role that is completely misaligned with the candidate's profile as an AI Software Engineer who builds LLM pipelines and automation systems. The posting is also truncated, but the visible content is sufficient to determine this is not a technical role. Past evaluation of an identically-titled role scored 15/SKIP.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 8,
+      "prompt_tokens": 21266,
+      "completion_tokens": 464,
+      "cost_usd": null
+    },
+    "concerns": [
+      "Role is purely financial product specialist with no technical or AI component",
+      "Posting truncated but visible content clearly indicates non-technical sales/marketing role",
+      "Candidate's skills in LLM engineering, Python, automation have no applicability here",
+      "Completely misaligned career direction - this is a finance role, not a tech role"
+    ],
+    "agent_rationale": "This is an Equity Product Specialist role in a private bank's asset management division. The posting describes a financial product/marketing role focused on translating investment views into marketing materials, presenting equity funds to clients, and driving asset growth. There is zero technical content, no AI/ML/LLM/data/automation component, and no software engineering work. This is a pure finance/sales role that is completely misaligned with the candidate's profile as an AI Software Engineer who builds LLM pipelines and automation systems. The posting is also truncated, but the visible content is sufficient to determine this is not a technical role. Past evaluation of an identically-titled role scored 15/SKIP.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Bank J. Safra Sarasin"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Equity Product Specialist"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 10,
+          "decision": "SKIP",
+          "rationale": "This is an Equity Product Specialist role in a private bank's asset management division. The posting describes a financial product/marketing role focused on translating investment views into marketing materials, presenting equity funds to clients, and driving asset growth. There is zero technical content, no AI/ML/LLM/data/automation component, and no software engineering work. This is a pure finance/sales role that is completely misaligned with the candidate's profile as an AI Software Engineer who builds LLM pipelines and automation systems. The posting is also truncated, but the visible content is sufficient to determine this is not a technical role. Past evaluation of an identically-titled role scored 15/SKIP.",
+          "concerns": [
+            "Role is purely financial product specialist with no technical or AI component",
+            "Posting truncated but visible content clearly indicates non-technical sales/marketing role",
+            "Candidate's skills in LLM engineering, Python, automation have no applicability here",
+            "Completely misaligned career direction - this is a finance role, not a tech role"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:00:28.844373+00:00"
+  },
+  {
+    "score": 55,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting truncated - full requirements not visible",
+      "Senior-level role - candidate is currently an intern",
+      "Private bank domain - no finance domain experience",
+      "Traditional data platform engineering may not leverage his LLM/AI strengths",
+      "Likely expects years of production data engineering experience",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Senior Data Engineer – Data Analytics Platform",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5893946476",
+      "portal": "adzuna",
+      "description": " base: / meta-keywords: meta-viewport: width=device-width, initial-scale=1.0  Senior Data Engineer – Data Analytics Platform  For a leading Private Bank in Zurich, we are looking for an experienced Senior Data Engineer to support the development of a modern Data Platform for Analytics \\\\& AI. Senior Data Engineer – Data Analytics Platform   Job description: * Design, build and maintain scalable data pipelines and backend services * Support real\\\\-time decisioning, analytics, reporting and data …"
+    },
+    "technical_fit": "The posting is heavily truncated (only 500 characters, truncated=true) so the full requirements were never visible. What we can see: it's a Senior Data Engineer role for a Private Bank in Zurich, focused on building a Data Platform for Analytics & AI. The 'Senior' level is a significant concern - the candidate is currently an intern with 2 weeks notice, targeting junior/associate roles. While the AI/analytics angle aligns with his interests, a senior-level position at a private bank typically expects years of production data engineering experience, deep knowledge of data architecture, and likely domain expertise in finance. The candidate's strengths are in LLM/AI application development, not traditional data platform engineering at senior level. The truncated text means we cannot assess the full scope, but what is visible points to a seniority mismatch. Past evaluations show Job-Room roles with 'Senior' in the title scored low (68, SKIP) and data engineer roles without explicit AI focus also scored below threshold. The candidate would likely not be competitive for a senior data engineer role at a private bank given his current experience level.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 8,
+      "prompt_tokens": 21947,
+      "completion_tokens": 149,
+      "cost_usd": null
+    },
+    "concerns": [
+      "Posting truncated - full requirements not visible",
+      "Senior-level role - candidate is currently an intern",
+      "Private bank domain - no finance domain experience",
+      "Traditional data platform engineering may not leverage his LLM/AI strengths",
+      "Likely expects years of production data engineering experience"
+    ],
+    "agent_rationale": "The posting is heavily truncated (only 500 characters, truncated=true) so the full requirements were never visible. What we can see: it's a Senior Data Engineer role for a Private Bank in Zurich, focused on building a Data Platform for Analytics & AI. The 'Senior' level is a significant concern - the candidate is currently an intern with 2 weeks notice, targeting junior/associate roles. While the AI/analytics angle aligns with his interests, a senior-level position at a private bank typically expects years of production data engineering experience, deep knowledge of data architecture, and likely domain expertise in finance. The candidate's strengths are in LLM/AI application development, not traditional data platform engineering at senior level. The truncated text means we cannot assess the full scope, but what is visible points to a seniority mismatch. Past evaluations show Job-Room roles with 'Senior' in the title scored low (68, SKIP) and data engineer roles without explicit AI focus also scored below threshold. The candidate would likely not be competitive for a senior data engineer role at a private bank given his current experience level.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Data Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Senior Data Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Private Bank"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 55,
+          "decision": "SKIP",
+          "rationale": "The posting is heavily truncated (only 500 characters, truncated=true) so the full requirements were never visible. What we can see: it's a Senior Data Engineer role for a Private Bank in Zurich, focused on building a Data Platform for Analytics & AI. The 'Senior' level is a significant concern - the candidate is currently an intern with 2 weeks notice, targeting junior/associate roles. While the AI/analytics angle aligns with his interests, a senior-level position at a private bank typically expects years of production data engineering experience, deep knowledge of data architecture, and likely domain expertise in finance. The candidate's strengths are in LLM/AI application development, not traditional data platform engineering at senior level. The truncated text means we cannot assess the full scope, but what is visible points to a seniority mismatch. Past evaluations show Job-Room roles with 'Senior' in the title scored low (68, SKIP) and data engineer roles without explicit AI focus also scored below threshold. The candidate would likely not be competitive for a senior data engineer role at a private bank given his current experience level.",
+          "concerns": [
+            "Posting truncated - full requirements not visible",
+            "Senior-level role - candidate is currently an intern",
+            "Private bank domain - no finance domain experience",
+            "Traditional data platform engineering may not leverage his LLM/AI strengths",
+            "Likely expects years of production data engineering experience"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:00:28.844373+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Assistant.e Play+ / Data & AI Business",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=0d560b5726c25b57&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QCT9OSFXfBnwK0fuipcxImL3jfiqOtaQ2u35TGdwf-wFg&rd=cv__WBhDSvE4qmpjGmxYvJXef5NkBUPQ3HkIyXCDpdM&tk=1k34pa6inh0ep800&alid=6a09beeefbc7370ae83f277c&bb=pvsuiKmafe9u3AFSpgGDy0IMdHQAF61-h73PP9iaZFqqFPxFASZGdG7iKw6f9dS2jEes_mm77V2xlEDBa_m57EkYd1lEzsRlL2cBPSrzsFLJ1PSE2vtEeem_-FxF7gaj9pqvh76uH6CP7cIzmqeBRQ%3D%3D&tmtk=1k34pa6inh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:00:28.844373+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Intern Junior Compliance Analyst",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=7fd4004d32edb463&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QCT9OSFXfBnwK0fuipcxImL3jfiqOtaQ2u35TGdwf-wFg&rd=cv__WBhDSvE4qmpjGmxYvJXef5NkBUPQ3HkIyXCDpdM&tk=1k34pa6inh0ep800&alid=6a09beeefbc7370ae83f277c&bb=CA6QpcNEbX4qiVBHDp2DPguClA85lGV29tw5-HiThj9xTWEuklHlyTbx0-QUx483P7n2FEfaWCxCi1s5P2JeqPLmzs9UtYooD1o2gwyX-76MSVBlBMXmFutyw874VBPI1W8k8YBQH3bJxX8YRj6rkw%3D%3D&tmtk=1k34pa6inh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:00:28.844373+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Cash Manager pour la clientèle des entreprises",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/pagead/clk/dl?mo=r&ad=-6NYlbfkN0D33htZv-Pk0YRZuCLVc9z6naZW47IvEt0h7ynX47M0-mdpUROvqu0e1Vb5L8xTKQsepyaWkcRpFYAYwSaMh6KSGnSa5oxx8UdaC0EcWQaW4-7kul5jnz3k49lHljwwGP--q1BLSTSLT9vn4YqjfZ9H11NIOslct6MDzZbnZzaSAazpycegexkaQ0d54xCz-en851uWfnX64qTzgrWorCCQIK8lwh5IaLSeWslgVeZAykMhUvwm6j2dyOsDMfU-DpRYevbBm0NggOEXnII8xS550mXGdM9Yj0rYHJkDR0oM5M1rWJEs36EXn8my0gfSkusNtfHHN5jxlKzY_X_xADO9mOIzETKs7BIL56bapOTTTv6Hs1P2lXws72b73N2GwqU9jSbP389C5Fr4SfBVE6pHLFrEYc1hi8siiDQs_7YPnVtLT7VPmGC52eAG-D3rvTRM73h9IHpHXox-nPVJTkP18zOEPI0_F2SdJ0jYCR-r0w7vR5HRahayIKGcM835NSjoJypum_D3NlNN2xPTAT3otbYnvkpZxETRh3mepcez4GieQAAS_0oiHM4rxKFD3w4wODSrEKko8bRXEHpiEW-iirEAXUGT8f_Ap_TT2qjVR5CkAzS8lYZqe5SdzaORrLXyhx3yZYuZG21oHXFFFF1lctIN-Dfn_8HV_VxZ7TqrVVV0htxbo_TeYWObsto-NrS5pAQulUcXZBBRBsmg3w9a7yopDVrErvTGU8808WZ2J-kqYnZ8D79Ycr3OYCr1t5f1U_keCJazViQJHbdjYy8X9S3Xvomtw9nwNXhu7s8xzGAnJ-ZR7Y_Rdoeuw4_MQkHxsLPEwC61OQ%3D%3D&rm=2&xkcb=SoB26_M2ek6nOExQgx0DbzkdCdPP&jsa=7683&camk=ethIe0s0hecmvG0iuC1fXg%3D%3D&tmtk=1k34pa6inh0ep800&gdfvj=1&plid=indeed-jobalert&alid=6a09beeefbc7370ae83f277c&fvj=1&g1tAS=true",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:00:28.844373+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "Category Manager Strategic Procurement",
+      "location": "Unknown",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=a87ea131f6471869&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QCT9OSFXfBnwK0fuipcxImL3jfiqOtaQ2u35TGdwf-wFg&rd=cv__WBhDSvE4qmpjGmxYvJXef5NkBUPQ3HkIyXCDpdM&tk=1k34pa6inh0ep800&alid=6a09beeefbc7370ae83f277c&bb=xrmkswluqPW_S5lkc3vuGFBDwS1gNPTPrbA900ehYxgawE_tLmk4zCmob9YE5QEGSMxFhzH9QezHeOo_Aj0Q_4XQ9NAZ0RglYLOoB1rD93T4iOdN4W880sl_OteX3ia9RwCuITZRhAYL2cjM0ifXJQ%3D%3D&tmtk=1k34pa6inh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:00:28.844373+00:00"
+  },
+  {
+    "score": 45,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [
+      "Posting text is truncated (500 chars) - full requirements not visible",
+      "Visible content describes traditional system operations for emergency communication software, with no AI/LLM/ML/data/automation component",
+      "Role appears to be IT infrastructure/operations focused, not AI engineering",
+      "German-language posting may imply German working requirements not visible in truncated text",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "System Engineer",
+      "location": "Zürich",
+      "url": "https://ch.indeed.com/rc/clk/dl?jk=3bf69fcc2153d40d&from=ja&qd=RnZhMybXSk4M3QtTVGXWoaTDiiT3xvgb2dS8WhJ-njjm7oy3OJOv3Yr5BR6B76QCT9OSFXfBnwK0fuipcxImL3jfiqOtaQ2u35TGdwf-wFg&rd=cv__WBhDSvE4qmpjGmxYvJXef5NkBUPQ3HkIyXCDpdM&tk=1k34pa6inh0ep800&alid=6a09beeefbc7370ae83f277c&bb=Prd_AFbEOsNPGsjORFA9c7ZnNvHNFCLaPzTZsQqNf2NHR6hOxKBltY01kuG6zcHimejUepBeSHC0GNp7p740G8jI1xo1LmOA-op1CmmDpA8yOf8E-ZrJHB3EYU317lBf5eF2t-lJYiU4J4-J98Atxw%3D%3D&tmtk=1k34pa6inh0ep800",
+      "portal": "jobalert.indeed.com",
+      "description": " Deine Zukunft beginnt hier  Du stellst den zuverlässigen Betrieb unserer Schweizer Einsatzleitsystem-Lösung für die Notfallkommunikation sicher und sorgst gemeinsam mit einem motivierten Team dafür, dass unsere AVANTI Softwarelösungen rund um die Uhr reibungslos funktionieren. Dabei arbeitest du eng mit Entwicklung und Projektleitung zusammen, setzt neue Ideen und Anforderungen um und bewegst dich in einem abwechslungsreichen, technischen Umfeld mit viel Gestaltungsspielraum. Dein Einsatz erfo…"
+    },
+    "technical_fit": "The posting text is heavily truncated (500 chars, truncated=true), so I only see a teaser. What is visible describes a traditional System Engineer role focused on \"reliable operation of Swiss dispatch systems for emergency communication\" and \"AVANTI software solutions running smoothly around the clock.\" This is IT operations/infrastructure work with no mention of AI, LLM, ML, data, or automation content. The role appears to be about maintaining emergency communication systems, not building or integrating AI systems. Since the candidate's target is explicitly AI/LLM-centered engineering, and this role shows no AI/LLM/ML/data/automation component in the visible text, this falls into the auto-SKIP category for pure SWE/ops with no AI component. Additionally, the text is in German and the role appears to involve emergency communication operations in Switzerland, which may require German proficiency beyond the candidate's A2 level, though no explicit language requirement is visible in the truncated text. Given the truncation, I keep the score conservative, but the visible content is enough to determine this is not an AI-focused role.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 8,
+      "prompt_tokens": 24845,
+      "completion_tokens": 697,
+      "cost_usd": null
+    },
+    "concerns": [
+      "Posting text is truncated (500 chars) - full requirements not visible",
+      "Visible content describes traditional system operations for emergency communication software, with no AI/LLM/ML/data/automation component",
+      "Role appears to be IT infrastructure/operations focused, not AI engineering",
+      "German-language posting may imply German working requirements not visible in truncated text"
+    ],
+    "agent_rationale": "The posting text is heavily truncated (500 chars, truncated=true), so I only see a teaser. What is visible describes a traditional System Engineer role focused on \"reliable operation of Swiss dispatch systems for emergency communication\" and \"AVANTI software solutions running smoothly around the clock.\" This is IT operations/infrastructure work with no mention of AI, LLM, ML, data, or automation content. The role appears to be about maintaining emergency communication systems, not building or integrating AI systems. Since the candidate's target is explicitly AI/LLM-centered engineering, and this role shows no AI/LLM/ML/data/automation component in the visible text, this falls into the auto-SKIP category for pure SWE/ops with no AI component. Additionally, the text is in German and the role appears to involve emergency communication operations in Switzerland, which may require German proficiency beyond the candidate's A2 level, though no explicit language requirement is visible in the truncated text. Given the truncation, I keep the score conservative, but the visible content is enough to determine this is not an AI-focused role.",
+    "agent_decision": "SKIP",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "System Engineer"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 45,
+          "decision": "SKIP",
+          "rationale": "The posting text is heavily truncated (500 chars, truncated=true), so I only see a teaser. What is visible describes a traditional System Engineer role focused on \"reliable operation of Swiss dispatch systems for emergency communication\" and \"AVANTI software solutions running smoothly around the clock.\" This is IT operations/infrastructure work with no mention of AI, LLM, ML, data, or automation content. The role appears to be about maintaining emergency communication systems, not building or integrating AI systems. Since the candidate's target is explicitly AI/LLM-centered engineering, and this role shows no AI/LLM/ML/data/automation component in the visible text, this falls into the auto-SKIP category for pure SWE/ops with no AI component. Additionally, the text is in German and the role appears to involve emergency communication operations in Switzerland, which may require German proficiency beyond the candidate's A2 level, though no explicit language requirement is visible in the truncated text. Given the truncation, I keep the score conservative, but the visible content is enough to determine this is not an AI-focused role.",
+          "concerns": [
+            "Posting text is truncated (500 chars) - full requirements not visible",
+            "Visible content describes traditional system operations for emergency communication software, with no AI/LLM/ML/data/automation component",
+            "Role appears to be IT infrastructure/operations focused, not AI engineering",
+            "German-language posting may imply German working requirements not visible in truncated text"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "SKIP",
+    "decision": "SKIP",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:00:28.844373+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Adcubum AG",
+      "title": "AI-Native Software Engineer (Java/DevOps)",
+      "location": "Wallisellen / Hof",
+      "url": "https://www.linkedin.com/comm/jobs/view/4462960752/?lipi=urn%3Ali%3Apage%3Aemail_email_career_insights_01%3BqkSHSxa5Qgqi%2B0qjo5h6fQ%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3pHrUsvOpZfIs1&trk=eml-email_career_insights_01-top~applicant~jobs~1-0-link&trkEmail=eml-email_career_insights_01-top~applicant~jobs~1-0-link-null-gbrmkn~mucuxkj6~yx-null-null&eid=gbrmkn-mucuxkj6-yx&otpToken=NDJmMzdkMmYzZmU1M2I5ODI0ODBkMzIwZTdiYTgzODZkNmY1Y2YzNjBhMzcyMWY3ZmQ3NTkwYjZhMWRiYjI1NWNlZDkxYTQ4MzM0MjJjY2FhYTBlYzI3MzRkM2U3MzJmMzhlMTdhODRmZjhkYzQwNzNmMTM2NTZjYWVkYjY1ZWYwNjMzN2EyNjk2ZjFhODRmLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:00:28.844373+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Solvex Solutions",
+      "title": "Generative AI Engineer",
+      "location": "Zurich",
+      "url": "https://www.linkedin.com/comm/jobs/view/4467366500/?trackingId=iZRHaAHTRF2XiiyynnArTQ%3D%3D&refId=m8y5PMJTRb%2B8LpH3MCgoaw%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BPzOSR9%2FlQN%2BivtRqcAEz6w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3mZ-DT4k45fIs1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting_3_jobid_4467366500_fmid_gbrmkn~mucqn9g8~kj&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting_3_jobid_4467366500_fmid_gbrmkn~mucqn9g8~kj-null-gbrmkn~mucqn9g8~kj-null-null&eid=gbrmkn-mucqn9g8-kj&otpToken=NTMzYjI3YzM3ZTRkOTE3ODhjYTY4NGEzNWRjNGFlMTI3MGYwNTI4MTBhZGQ5N2MzMzA5NDQzZjMxYTJlNWM0NjM5YWI4YzBjZWRiYjcxMzdhNzY2MzcwNjQwZDdmNTYwMjU2Zjg5YjAzMjAwYzBiZTBjNTE1NGYyNzZjN2Y5MGNmNWVlMzU1NTMxMzIwOGZkLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:00:28.844373+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Zenline AI",
+      "title": "Founding Engineer – AI Infra",
+      "location": "Zurich",
+      "url": "https://www.linkedin.com/comm/jobs/view/4443920620/?trackingId=0nNkt9uTQFWt8pC%2FkVZ31A%3D%3D&refId=nsJRB%2FyYQM2m5AOngFimkA%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BPzOSR9%2FlQN%2BivtRqcAEz6w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3mZ-DT4k45fIs1&trk=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting_6_jobid_4443920620_fmid_gbrmkn~mucqn9g8~kj&trkEmail=eml-email_jobs_viewed_job_reminder_01-job_card-0-job_posting_6_jobid_4443920620_fmid_gbrmkn~mucqn9g8~kj-null-gbrmkn~mucqn9g8~kj-null-null&eid=gbrmkn-mucqn9g8-kj&otpToken=NTMzYjI3YzM3ZTRkOTE3ODhjYTY4NGEzNWRjNGFlMTI3MGYwNTI4MTBhZGQ5N2MzMzA5NDQzZjMxYTJlNWM0NjM5YWI4YzBjZWRiYjcxMzdhNzY2MzcwNjQwZDdmNTYwMjU2Zjg5YjAzMjAwYzBiZTBjNTE1NGYyNzZjN2Y5MGNmNWVlMzU1NTMxMzIwOGZkLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:00:28.844373+00:00"
+  },
+  {
+    "score": null,
+    "recommendation": "NOT_EVALUATED",
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "no_posting_text": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [],
+    "red_flags": [],
+    "job": {
+      "company": "Unknown",
+      "title": "AI Systems Engineer - Agentic Systems & GenAI jobs",
+      "location": "Unknown",
+      "url": "https://www.linkedin.com/comm/jobs/search-results/?keywords=AI+Systems+Engineer+-+Agentic+Systems+%26+GenAI&geoId=117105732&origin=BYV_JOB_TITLE_JOBS_EMAIL&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_viewed_job_reminder_01%3BPzOSR9%2FlQN%2BivtRqcAEz6w%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=3mZ-DT4k45fIs1&trk=eml-email_jobs_viewed_job_reminder_01-null-0-null&trkEmail=eml-email_jobs_viewed_job_reminder_01-null-0-null-null-gbrmkn~mucqn9g8~kj-null-null&eid=gbrmkn-mucqn9g8-kj&otpToken=NTMzYjI3YzM3ZTRkOTE3ODhjYTY4NGEzNWRjNGFlMTI3MGYwNTI4MTBhZGQ5N2MzMzA5NDQzZjMxYTJlNWM0NjM5YWI4YzBjZWRiYjcxMzdhNzY2MzcwNjQwZDdmNTYwMjU2Zjg5YjAzMjAwYzBiZTBjNTE1NGYyNzZjN2Y5MGNmNWVlMzU1NTMxMzIwOGZkLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": ""
+    },
+    "technical_fit": "Not evaluated: the posting text was never captured.",
+    "contextual_fit": "Not evaluated",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "Not evaluated",
+    "concerns": [
+      "No posting text available (0 characters). Paste the description into the Add Job workflow for a real score."
+    ],
+    "decision": "NOT_EVALUATED",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:00:28.844373+00:00"
+  },
+  {
+    "score": 78,
+    "hard_blockers": [],
+    "insufficient_info": false,
+    "language_gap_intermediate": false,
+    "key_match_points": [
+      "This is a strong match for the candidate's target profile: a Founding AI Platform Engineer role explicitly at the intersection of backend engineering, MLOps, and AI/GenAI production systems. The role involves building infrastructure for LLM/agent workflows, model serving, observability, CI/CD, and platform reliability — all directly aligned with his stated goals of contributing to complex AI systems and owning real projects from day one. The role is fully remote in Switzerland, which counts as Zurich-area for permit purposes. English is the working language (no language requirement found). The candidate's skills in Python, Docker, GitHub Actions, REST APIs, LLM APIs, and agent systems provide a solid foundation, though the role expects deeper production MLOps and cloud infrastructure experience than he currently has (he has Google Cloud and Linux exposure but not extensive production backend/MLOps at scale). The 'founding' nature means broad ownership and high ambiguity tolerance, which matches his career-changer mindset and desire to shape systems. Past evaluations of this exact role have consistently scored 76-78 and landed in REVIEW, which feels right: strong alignment on role shape and domain, but a step up in infrastructure depth from his current internship level. He should review and decide whether to apply based on his confidence in the MLOps/platform gap."
+    ],
+    "red_flags": [
+      "Role expects proven experience building and operating production backend services and cloud infrastructure at a level likely above current internship experience",
+      "MLOps-specific depth (model lifecycle management, serving infrastructure, experimentation platforms) is a stretch from his current LLM pipeline and automation work",
+      "Founding engineer role implies high autonomy and ownership from day one — exciting but demanding for someone transitioning from intern to full-time",
+      "Only 1 application sent historically with 0 responses, so limited calibration data on what scores convert"
+    ],
+    "job": {
+      "company": "Jobgether",
+      "title": "Founding AI Platform Engineer (MLOps / Backend)",
+      "location": "Jobgether · Switzerland (Remote)",
+      "url": "https://www.linkedin.com/comm/jobs/view/4455415955/?trackingId=iON%2F1wP5whnz7fw8UWI5%2BA%3D%3D&refId=%2BoUBffOJ9coAsKAV6VYrng%3D%3D&lipi=urn%3Ali%3Apage%3Aemail_email_jobs_facet_suggestions%3BQHYTbqMHTFimXFFeNfuAXg%3D%3D&midToken=AQE1TXQIBZj6bQ&midSig=0l399I9BL3wYo1&trk=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_1-0-job_card_1_jobid_4455415955_sectionid_272001_fmid_gbrmkn~mt1fcka4~rj&trkEmail=eml-email_jobs_facet_suggestions-JOBS_POSTING_SECTION_1-0-job_card_1_jobid_4455415955_sectionid_272001_fmid_gbrmkn~mt1fcka4~rj-null-gbrmkn~mt1fcka4~rj-null-null&eid=gbrmkn-mt1fcka4-rj&otpToken=ZWExMzkwNWU4NjMzY2RkNmFmYzMzMWMwYWNjNDk0OWQ5MjU5NmEyY2Q3Mjk1NWZhNGNiODY0NjIwM2Y5YWMyNWI0OGZmYjE5YTVjMDIwMjA3Zjg5YjkxOTAyMWY5M2EyZjJlN2I4MGJlOTFiNzc0ODFjYTQyZWNjYzM4NWMyMzRhNDQ3ZjU1NTk3NjE5NTQzLDIsMQ%3D%3D",
+      "portal": "linkedin.com",
+      "description": "This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for a Founding AI Platform Engineer (MLOps / Backend) based in Switzerland.\nThis is a foundational engineering opportunity for someone who wants to shape the systems that turn ML and GenAI capabilities into reliable, production-ready products.\nYou will operate at the intersection of backend engineering, cloud infrastructure, MLOps, platform reliability, and product delivery.\nThe role offers broad ownership across model lifecycle management, deployment, serving, experimentation, observability, and CI/CD.\nYou will build the production infrastructure that enables AI systems to scale safely while remaining performant, maintainable, secure, and cost-efficient.\nWorking closely with ML and product teams, you will turn ambiguous technical challenges into practical, durable solutions.\nAs an early platform engineer, your decisions will directly influence engineering standards, tooling, reliability practices, and the future scalability of the platform.\nAccountabilities\nBuild and maintain infrastructure and tooling for training, evaluating, deploying, serving, and monitoring ML models and GenAI services.\nDevelop and operate production backend services, APIs, and pipelines supporting recommendations, agent workflows, and customer-facing integrations.\nImprove CI/CD pipelines, automated testing, release processes, rollback strategies, and environment management.\nEstablish comprehensive observability across application health, model behavior, agent quality, latency, costs, and operational failure modes.\nBuild reproducibility and lifecycle management practices for models, prompts, datasets, configurations, and software releases.\nSupport experimentation and measurement infrastructure that enables ML and product teams to evaluate changes reliably.\nStrengthen platform reliability, scalability, security, performance, and cost efficiency across the technology stack.\nTroubleshoot production issues end-to-end and convert recurring operational problems into long-term engineering improvements.\nCollaborate closely with ML, product, and engineering teams to move ambiguous initiatives from concept to completion.\nEstablish engineering standards and platform practices that can support future growth and increasing system complexity.\nIdentify platform, reliability, and scaling risks early and proactively address them before they affect customers or delivery.\nRequirements\nStrong software engineering background with experience building, deploying, and operating production systems.\nProven experience with backend services, cloud infr\n[... middle of the posting omitted ...]\ning process\nto ensure your application is reviewed quickly, objectively, and fairly against the role's core requirements. Our system identifies the top-fitting candidates, and this shortlist is then shared directly with the hiring company. The final decision and next steps (interviews, assessments) are managed by their internal team.\nWe appreciate your interest and wish you the best!\nWhy Apply Through Jobgether?\nData Privacy Notice:\nBy submitting your application, you acknowledge that Jobgether will process your personal data to evaluate your candidacy and share relevant information with the hiring employer. This processing is based on legitimate interest and pre-contractual measures under applicable data protection laws (including GDPR). You may exercise your rights (access, rectification, erasure, objection) at any time.\nWe may use artificial intelligence (AI) tools to support parts of the hiring process, such as reviewing applications, analyzing resumes, or assessing responses and identifying potential inconsistencies or verification signals in application materials based on available information. These tools assist our recruitment team but do not replace human judgment. Final hiring decisions are ultimately made by humans. If you would like more information about how your data is processed, please contact us."
+    },
+    "technical_fit": "This is a strong match for the candidate's target profile: a Founding AI Platform Engineer role explicitly at the intersection of backend engineering, MLOps, and AI/GenAI production systems. The role involves building infrastructure for LLM/agent workflows, model serving, observability, CI/CD, and platform reliability — all directly aligned with his stated goals of contributing to complex AI systems and owning real projects from day one. The role is fully remote in Switzerland, which counts as Zurich-area for permit purposes. English is the working language (no language requirement found). The candidate's skills in Python, Docker, GitHub Actions, REST APIs, LLM APIs, and agent systems provide a solid foundation, though the role expects deeper production MLOps and cloud infrastructure experience than he currently has (he has Google Cloud and Linux exposure but not extensive production backend/MLOps at scale). The 'founding' nature means broad ownership and high ambiguity tolerance, which matches his career-changer mindset and desire to shape systems. Past evaluations of this exact role have consistently scored 76-78 and landed in REVIEW, which feels right: strong alignment on role shape and domain, but a step up in infrastructure depth from his current internship level. He should review and decide whether to apply based on his confidence in the MLOps/platform gap.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 4,
+      "prompt_tokens": 15221,
+      "completion_tokens": 746,
+      "cost_usd": null
+    },
+    "concerns": [
+      "Role expects proven experience building and operating production backend services and cloud infrastructure at a level likely above current internship experience",
+      "MLOps-specific depth (model lifecycle management, serving infrastructure, experimentation platforms) is a stretch from his current LLM pipeline and automation work",
+      "Founding engineer role implies high autonomy and ownership from day one — exciting but demanding for someone transitioning from intern to full-time",
+      "Only 1 application sent historically with 0 responses, so limited calibration data on what scores convert"
+    ],
+    "agent_rationale": "This is a strong match for the candidate's target profile: a Founding AI Platform Engineer role explicitly at the intersection of backend engineering, MLOps, and AI/GenAI production systems. The role involves building infrastructure for LLM/agent workflows, model serving, observability, CI/CD, and platform reliability — all directly aligned with his stated goals of contributing to complex AI systems and owning real projects from day one. The role is fully remote in Switzerland, which counts as Zurich-area for permit purposes. English is the working language (no language requirement found). The candidate's skills in Python, Docker, GitHub Actions, REST APIs, LLM APIs, and agent systems provide a solid foundation, though the role expects deeper production MLOps and cloud infrastructure experience than he currently has (he has Google Cloud and Linux exposure but not extensive production backend/MLOps at scale). The 'founding' nature means broad ownership and high ambiguity tolerance, which matches his career-changer mindset and desire to shape systems. Past evaluations of this exact role have consistently scored 76-78 and landed in REVIEW, which feels right: strong alignment on role shape and domain, but a step up in infrastructure depth from his current internship level. He should review and decide whether to apply based on his confidence in the MLOps/platform gap.",
+    "agent_decision": "REVIEW",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Jobgether"
+        }
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 78,
+          "decision": "REVIEW",
+          "rationale": "This is a strong match for the candidate's target profile: a Founding AI Platform Engineer role explicitly at the intersection of backend engineering, MLOps, and AI/GenAI production systems. The role involves building infrastructure for LLM/agent workflows, model serving, observability, CI/CD, and platform reliability — all directly aligned with his stated goals of contributing to complex AI systems and owning real projects from day one. The role is fully remote in Switzerland, which counts as Zurich-area for permit purposes. English is the working language (no language requirement found). The candidate's skills in Python, Docker, GitHub Actions, REST APIs, LLM APIs, and agent systems provide a solid foundation, though the role expects deeper production MLOps and cloud infrastructure experience than he currently has (he has Google Cloud and Linux exposure but not extensive production backend/MLOps at scale). The 'founding' nature means broad ownership and high ambiguity tolerance, which matches his career-changer mindset and desire to shape systems. Past evaluations of this exact role have consistently scored 76-78 and landed in REVIEW, which feels right: strong alignment on role shape and domain, but a step up in infrastructure depth from his current internship level. He should review and decide whether to apply based on his confidence in the MLOps/platform gap.",
+          "concerns": [
+            "Role expects proven experience building and operating production backend services and cloud infrastructure at a level likely above current internship experience",
+            "MLOps-specific depth (model lifecycle management, serving infrastructure, experimentation platforms) is a stretch from his current LLM pipeline and automation work",
+            "Founding engineer role implies high autonomy and ownership from day one — exciting but demanding for someone transitioning from intern to full-time",
+            "Only 1 application sent historically with 0 responses, so limited calibration data on what scores convert"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "REVIEW",
+    "decision": "REVIEW",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:02:51.361563+00:00"
+  },
+  {
+    "score": 72,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [
+      "This is a Legal AI Engineer role at Jurata in Zürich, building AI systems for the legal domain. The posting text is heavily truncated (500 chars, cut off mid-sentence), so full requirements are not visible. However, from what is visible: Jurata builds \"Jurata AI, der ersten selbstkritischen juristischen KI\" (the first self-critical legal AI) and is an AI-powered one-stop-shop for legal, accounting, and tax services. This is clearly an AI/LLM-centered engineering role. The candidate's profile is uniquely compelling here: he studied Law in Brazil and worked at the High Court before pivoting to tech — this domain-background overlap is rare and valuable for a legal AI role. His technical skills (Python, LLM APIs, prompt engineering, tool-calling agents, retrieval, guardrails) align well with building legal AI systems. Location is Zürich, which matches his target area. Language requirement check returned \"none\" — no hard language blockers detected. The past evaluations for this exact role consistently scored 72 REVIEW, which suggests the pipeline has seen this before and found it promising but not a slam-dunk APPLY, likely due to the truncated text and some uncertainty about seniority/experience fit. Given the truncated requirements, I cannot confidently score above the REVIEW threshold, but the domain synergy (law + AI engineering) and Zurich location make this a strong candidate for the candidate's personal review."
+    ],
+    "red_flags": [
+      "Posting text is truncated (500 chars) — full requirements not visible, cannot assess complete fit",
+      "Past evaluations consistently scored 72 REVIEW for this exact role, suggesting moderate confidence",
+      "Unclear seniority level and specific technical stack requirements beyond what's visible",
+      "Only 1 application sent historically with 0 responses — limited calibration data",
+      "German workplace context (company name, posting partially in German) may imply some German usage, though no hard requirement detected",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Jurata",
+      "title": "Legal AI Engineer (100%)",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5863120882",
+      "portal": "adzuna",
+      "description": "Der Rechtsmarkt steht vor der grössten Transformation seiner Geschichte, getrieben durch Technologie, KI und neue Geschäftsmodelle. Jurata gestaltet diese Transformation an vorderster Front mit. Jurata ist der führende AI-gestützte One-Stop-Shop für Recht, Buchhaltung und Steuern für Unternehmen in der Schweiz. Mit unserem all-in-one Cockpit und Jurata AI, der ersten selbstkritischen juristischen KI, bauen wir eine ganze Branche neu. Tausende KMU, etablierte Anwaltskanzleien und namhafte Grossu…"
+    },
+    "technical_fit": "This is a Legal AI Engineer role at Jurata in Zürich, building AI systems for the legal domain. The posting text is heavily truncated (500 chars, cut off mid-sentence), so full requirements are not visible. However, from what is visible: Jurata builds \"Jurata AI, der ersten selbstkritischen juristischen KI\" (the first self-critical legal AI) and is an AI-powered one-stop-shop for legal, accounting, and tax services. This is clearly an AI/LLM-centered engineering role. The candidate's profile is uniquely compelling here: he studied Law in Brazil and worked at the High Court before pivoting to tech — this domain-background overlap is rare and valuable for a legal AI role. His technical skills (Python, LLM APIs, prompt engineering, tool-calling agents, retrieval, guardrails) align well with building legal AI systems. Location is Zürich, which matches his target area. Language requirement check returned \"none\" — no hard language blockers detected. The past evaluations for this exact role consistently scored 72 REVIEW, which suggests the pipeline has seen this before and found it promising but not a slam-dunk APPLY, likely due to the truncated text and some uncertainty about seniority/experience fit. Given the truncated requirements, I cannot confidently score above the REVIEW threshold, but the domain synergy (law + AI engineering) and Zurich location make this a strong candidate for the candidate's personal review.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 8,
+      "prompt_tokens": 22713,
+      "completion_tokens": 848,
+      "cost_usd": null
+    },
+    "concerns": [
+      "Posting text is truncated (500 chars) — full requirements not visible, cannot assess complete fit",
+      "Past evaluations consistently scored 72 REVIEW for this exact role, suggesting moderate confidence",
+      "Unclear seniority level and specific technical stack requirements beyond what's visible",
+      "Only 1 application sent historically with 0 responses — limited calibration data",
+      "German workplace context (company name, posting partially in German) may imply some German usage, though no hard requirement detected"
+    ],
+    "agent_rationale": "This is a Legal AI Engineer role at Jurata in Zürich, building AI systems for the legal domain. The posting text is heavily truncated (500 chars, cut off mid-sentence), so full requirements are not visible. However, from what is visible: Jurata builds \"Jurata AI, der ersten selbstkritischen juristischen KI\" (the first self-critical legal AI) and is an AI-powered one-stop-shop for legal, accounting, and tax services. This is clearly an AI/LLM-centered engineering role. The candidate's profile is uniquely compelling here: he studied Law in Brazil and worked at the High Court before pivoting to tech — this domain-background overlap is rare and valuable for a legal AI role. His technical skills (Python, LLM APIs, prompt engineering, tool-calling agents, retrieval, guardrails) align well with building legal AI systems. Location is Zürich, which matches his target area. Language requirement check returned \"none\" — no hard language blockers detected. The past evaluations for this exact role consistently scored 72 REVIEW, which suggests the pipeline has seen this before and found it promising but not a slam-dunk APPLY, likely due to the truncated text and some uncertainty about seniority/experience fit. Given the truncated requirements, I cannot confidently score above the REVIEW threshold, but the domain synergy (law + AI engineering) and Zurich location make this a strong candidate for the candidate's personal review.",
+    "agent_decision": "REVIEW",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Jurata"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Legal AI"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 72,
+          "decision": "REVIEW",
+          "rationale": "This is a Legal AI Engineer role at Jurata in Zürich, building AI systems for the legal domain. The posting text is heavily truncated (500 chars, cut off mid-sentence), so full requirements are not visible. However, from what is visible: Jurata builds \"Jurata AI, der ersten selbstkritischen juristischen KI\" (the first self-critical legal AI) and is an AI-powered one-stop-shop for legal, accounting, and tax services. This is clearly an AI/LLM-centered engineering role. The candidate's profile is uniquely compelling here: he studied Law in Brazil and worked at the High Court before pivoting to tech — this domain-background overlap is rare and valuable for a legal AI role. His technical skills (Python, LLM APIs, prompt engineering, tool-calling agents, retrieval, guardrails) align well with building legal AI systems. Location is Zürich, which matches his target area. Language requirement check returned \"none\" — no hard language blockers detected. The past evaluations for this exact role consistently scored 72 REVIEW, which suggests the pipeline has seen this before and found it promising but not a slam-dunk APPLY, likely due to the truncated text and some uncertainty about seniority/experience fit. Given the truncated requirements, I cannot confidently score above the REVIEW threshold, but the domain synergy (law + AI engineering) and Zurich location make this a strong candidate for the candidate's personal review.",
+          "concerns": [
+            "Posting text is truncated (500 chars) — full requirements not visible, cannot assess complete fit",
+            "Past evaluations consistently scored 72 REVIEW for this exact role, suggesting moderate confidence",
+            "Unclear seniority level and specific technical stack requirements beyond what's visible",
+            "Only 1 application sent historically with 0 responses — limited calibration data",
+            "German workplace context (company name, posting partially in German) may imply some German usage, though no hard requirement detected"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "REVIEW",
+    "decision": "REVIEW",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:02:51.361563+00:00"
+  },
+  {
+    "score": 72,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [
+      "The posting is truncated (500 chars, mid-sentence), so full requirements are not visible. What is visible is highly relevant: building a multi-agent chatbot solution using Google ADK and GCP, integrating APIs and document sources, and moving a prototype to production. This aligns directly with the candidate's target of building and operating agentic AI systems. The role is in Zürich (good location), no hard language requirement was detected (tier: none), and the candidate has relevant skills: Python, LLM APIs, tool-calling agents, REST APIs, Google Cloud, Docker, and prompt engineering. However, the \"Senior\" title suggests experience expectations above his current intern/junior level, and the truncated text means we cannot assess full requirements. Past evaluations of this exact role scored 72 (REVIEW) consistently. The candidate should review to see if the seniority gap is flexible or if there's a path to apply at a lower level."
+    ],
+    "red_flags": [
+      "Posting truncated - full requirements not visible",
+      "Role title says 'Senior' which may exceed current experience level",
+      "Google ADK is a specific framework the candidate has not explicitly used (though he has Google Cloud and agent experience)",
+      "Only 1 application sent historically with 0 responses - limited calibration data",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Coopers Group AG",
+      "title": "Senior AI Engineer - Google ADK/GCP",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5889756320",
+      "portal": "adzuna",
+      "description": " Für unseren Kunden in Winterthur suchen wir eine:n erfahrene:n AI Engineer / Conversational AI Developer , der/die beim Aufbau einer innovativen Multi-Agent-Chatbot-Lösung auf Basis von Google ADK und der Google Cloud Platform (GCP) mitwirkt. Deine Aufgaben: Weiterentwicklung eines bestehenden Prototyps zu einem produktionsreifen Sub-Agent Integration von Kundenportal-APIs sowie Dokumentenquellen (Documents API bzw. ECM-Systeme) Anbindung von nutzerspezifischen Dokumenten, Reglementen, Vorsorg…"
+    },
+    "technical_fit": "The posting is truncated (500 chars, mid-sentence), so full requirements are not visible. What is visible is highly relevant: building a multi-agent chatbot solution using Google ADK and GCP, integrating APIs and document sources, and moving a prototype to production. This aligns directly with the candidate's target of building and operating agentic AI systems. The role is in Zürich (good location), no hard language requirement was detected (tier: none), and the candidate has relevant skills: Python, LLM APIs, tool-calling agents, REST APIs, Google Cloud, Docker, and prompt engineering. However, the \"Senior\" title suggests experience expectations above his current intern/junior level, and the truncated text means we cannot assess full requirements. Past evaluations of this exact role scored 72 (REVIEW) consistently. The candidate should review to see if the seniority gap is flexible or if there's a path to apply at a lower level.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 8,
+      "prompt_tokens": 22446,
+      "completion_tokens": 703,
+      "cost_usd": null
+    },
+    "concerns": [
+      "Posting truncated - full requirements not visible",
+      "Role title says 'Senior' which may exceed current experience level",
+      "Google ADK is a specific framework the candidate has not explicitly used (though he has Google Cloud and agent experience)",
+      "Only 1 application sent historically with 0 responses - limited calibration data"
+    ],
+    "agent_rationale": "The posting is truncated (500 chars, mid-sentence), so full requirements are not visible. What is visible is highly relevant: building a multi-agent chatbot solution using Google ADK and GCP, integrating APIs and document sources, and moving a prototype to production. This aligns directly with the candidate's target of building and operating agentic AI systems. The role is in Zürich (good location), no hard language requirement was detected (tier: none), and the candidate has relevant skills: Python, LLM APIs, tool-calling agents, REST APIs, Google Cloud, Docker, and prompt engineering. However, the \"Senior\" title suggests experience expectations above his current intern/junior level, and the truncated text means we cannot assess full requirements. Past evaluations of this exact role scored 72 (REVIEW) consistently. The candidate should review to see if the seniority gap is flexible or if there's a path to apply at a lower level.",
+    "agent_decision": "REVIEW",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Coopers Group"
+        }
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Google ADK"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 72,
+          "decision": "REVIEW",
+          "rationale": "The posting is truncated (500 chars, mid-sentence), so full requirements are not visible. What is visible is highly relevant: building a multi-agent chatbot solution using Google ADK and GCP, integrating APIs and document sources, and moving a prototype to production. This aligns directly with the candidate's target of building and operating agentic AI systems. The role is in Zürich (good location), no hard language requirement was detected (tier: none), and the candidate has relevant skills: Python, LLM APIs, tool-calling agents, REST APIs, Google Cloud, Docker, and prompt engineering. However, the \"Senior\" title suggests experience expectations above his current intern/junior level, and the truncated text means we cannot assess full requirements. Past evaluations of this exact role scored 72 (REVIEW) consistently. The candidate should review to see if the seniority gap is flexible or if there's a path to apply at a lower level.",
+          "concerns": [
+            "Posting truncated - full requirements not visible",
+            "Role title says 'Senior' which may exceed current experience level",
+            "Google ADK is a specific framework the candidate has not explicitly used (though he has Google Cloud and agent experience)",
+            "Only 1 application sent historically with 0 responses - limited calibration data"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "REVIEW",
+    "decision": "REVIEW",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:02:51.361563+00:00"
+  },
+  {
+    "score": 71,
+    "hard_blockers": [],
+    "insufficient_info": true,
+    "language_gap_intermediate": false,
+    "key_match_points": [
+      "This is an Applied AI Engineer Agentic Systems role at Job-Room in Zurich — directly on target for the candidate's goals. The visible text describes exactly the kind of work he wants: designing and building production-grade agentic systems end-to-end, multi-agent orchestration, RAG pipelines, tool invocation, memory management, and observability. The location (Zurich) is ideal and he has a valid Swiss Work Permit B with no sponsorship required. Language requirement is none — no German requirement detected. However, the posting text is truncated at 500 characters, meaning the full requirements section (experience level, specific tech stack, education requirements, etc.) was never visible. Per pipeline rules, truncated postings must be capped at REVIEW because we cannot confidently assess eligibility against unseen requirements. A previous evaluation of this exact posting also scored 71/REVIEW. The candidate should review the full posting on the company site or contact the recruiter to understand seniority expectations and specific requirements before applying."
+    ],
+    "red_flags": [
+      "Posting text is truncated (500 chars) — full requirements section not visible, preventing confident eligibility assessment",
+      "Cannot verify exact experience level expected, full tech stack, or whether this is truly junior/associate-friendly",
+      "Previous identical evaluation scored 71/REVIEW — consistent signal that more information is needed",
+      "Low confidence: the posting text is CUT OFF (the source returns only the opening pitch). The requirements section was never seen, so any disqualifier in it is invisible -- open the original before trusting this score"
+    ],
+    "job": {
+      "company": "Job-Room",
+      "title": "Applied AI Engineer Agentic Systems (m/f)",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5891719606",
+      "portal": "adzuna",
+      "description": " Job Informationen  Location: Zurich (office, remote or on client site) Workload: Full-time Start: By agreement Your tasks: You design and build production-grade agentic systems end to end: multi-agent orchestration, RAG pipelines, policy-based routing, tool invocation, memory management and lifecycle observability. You build and own RAG pipelines covering embeddings, chunking strategy, vector search and context window engineering against real quality targets. You integrate and abstract across …"
+    },
+    "technical_fit": "This is an Applied AI Engineer Agentic Systems role at Job-Room in Zurich — directly on target for the candidate's goals. The visible text describes exactly the kind of work he wants: designing and building production-grade agentic systems end-to-end, multi-agent orchestration, RAG pipelines, tool invocation, memory management, and observability. The location (Zurich) is ideal and he has a valid Swiss Work Permit B with no sponsorship required. Language requirement is none — no German requirement detected. However, the posting text is truncated at 500 characters, meaning the full requirements section (experience level, specific tech stack, education requirements, etc.) was never visible. Per pipeline rules, truncated postings must be capped at REVIEW because we cannot confidently assess eligibility against unseen requirements. A previous evaluation of this exact posting also scored 71/REVIEW. The candidate should review the full posting on the company site or contact the recruiter to understand seniority expectations and specific requirements before applying.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 4,
+      "prompt_tokens": 11475,
+      "completion_tokens": 678,
+      "cost_usd": null
+    },
+    "concerns": [
+      "Posting text is truncated (500 chars) — full requirements section not visible, preventing confident eligibility assessment",
+      "Cannot verify exact experience level expected, full tech stack, or whether this is truly junior/associate-friendly",
+      "Previous identical evaluation scored 71/REVIEW — consistent signal that more information is needed"
+    ],
+    "agent_rationale": "This is an Applied AI Engineer Agentic Systems role at Job-Room in Zurich — directly on target for the candidate's goals. The visible text describes exactly the kind of work he wants: designing and building production-grade agentic systems end-to-end, multi-agent orchestration, RAG pipelines, tool invocation, memory management, and observability. The location (Zurich) is ideal and he has a valid Swiss Work Permit B with no sponsorship required. Language requirement is none — no German requirement detected. However, the posting text is truncated at 500 characters, meaning the full requirements section (experience level, specific tech stack, education requirements, etc.) was never visible. Per pipeline rules, truncated postings must be capped at REVIEW because we cannot confidently assess eligibility against unseen requirements. A previous evaluation of this exact posting also scored 71/REVIEW. The candidate should review the full posting on the company site or contact the recruiter to understand seniority expectations and specific requirements before applying.",
+    "agent_decision": "REVIEW",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Job-Room"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 71,
+          "decision": "REVIEW",
+          "rationale": "This is an Applied AI Engineer Agentic Systems role at Job-Room in Zurich — directly on target for the candidate's goals. The visible text describes exactly the kind of work he wants: designing and building production-grade agentic systems end-to-end, multi-agent orchestration, RAG pipelines, tool invocation, memory management, and observability. The location (Zurich) is ideal and he has a valid Swiss Work Permit B with no sponsorship required. Language requirement is none — no German requirement detected. However, the posting text is truncated at 500 characters, meaning the full requirements section (experience level, specific tech stack, education requirements, etc.) was never visible. Per pipeline rules, truncated postings must be capped at REVIEW because we cannot confidently assess eligibility against unseen requirements. A previous evaluation of this exact posting also scored 71/REVIEW. The candidate should review the full posting on the company site or contact the recruiter to understand seniority expectations and specific requirements before applying.",
+          "concerns": [
+            "Posting text is truncated (500 chars) — full requirements section not visible, preventing confident eligibility assessment",
+            "Cannot verify exact experience level expected, full tech stack, or whether this is truly junior/associate-friendly",
+            "Previous identical evaluation scored 71/REVIEW — consistent signal that more information is needed"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "none"
+        }
+      }
+    ],
+    "recommendation": "REVIEW",
+    "decision": "REVIEW",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:02:51.361563+00:00"
+  },
+  {
+    "score": 72,
+    "hard_blockers": [],
+    "insufficient_info": false,
+    "language_gap_intermediate": false,
+    "key_match_points": [
+      "Exact target role shape: Forward Deployed Engineer building agentic systems, RAG pipelines, and LLM integrations from idea to production in enterprise environments. Location (Zürich) is ideal. Candidate's skills in Python, LLM APIs, tool-calling agents, retrieval, guardrails, Docker, and CI/CD are directionally aligned. However, the role is explicitly senior-level, requiring proven experience shipping LLM systems to production and direct executive-level communication - both areas where the candidate's intern-level experience is a stretch. The German posting context also suggests client interactions may require more German than his A2 level. Past identical posting scored 72 (REVIEW). Worth a careful review to see if the 'senior' label is flexible or if his production pipeline experience qualifies."
+    ],
+    "red_flags": [
+      "Role is explicitly senior-level with expectations of proven production LLM experience and executive communication",
+      "German consultancy environment with DAX/Fortune 500 clients may require more German than A2",
+      "Candidate's experience is primarily intern-level; may not meet 'Founding Engineer' or senior bar",
+      "Posting emphasizes 'you've already done this' rather than growth trajectory"
+    ],
+    "job": {
+      "company": "Eraneos",
+      "title": "(Senior) Forward Deployed Data & AI Engineer 80-100%",
+      "location": "Zürich",
+      "url": "https://www.adzuna.ch/details/5892144513",
+      "portal": "adzuna",
+      "description": "Eraneos begleitet KI-Vorhaben von der Strategie bis in die Produktion. Bei den meisten KI-Projekten klafft eine Lücke zwischen der Strategie und dem, was am Ende wirklich in Produktion läuft und tatsächlich Wert schafft. Genau die schließen wir. \n\nBei uns hört die Arbeit nicht beim Konzept auf, und sie beginnt nicht erst beim fertigen Spec: Ein Vorhaben bleibt von der ersten Idee bis zum laufenden System in einer Hand. Wir arbeiten ergebnisorientiert und nicht nach dem klassischen Beratungsmodell. Unsere Kunden sind vor allem DAX- und Fortune-Global-500-Unternehmen. \n\nDu prägst entscheidend mit was gebaut wird - nicht nur, wie. Wir arbeiten immer mit den neuesten Modellen und Werkzeugen, um beim Kunden erfolgreich zu sein. Es gibt kein vorgeschriebenes Stack, sondern für jede Aufgabe das passende Werkzeug. Du gestaltest technische Lösungen von der ersten Idee bis zum produktiven Einsatz und arbeitest dabei eng mit Entscheidern auf Kunden- und Managementseite zusammen.   \n \n Das erwartet Dich. \n Du verantwortest Architektur und technische Umsetzung der KI-Lösung vollständig – von der Strategie bis in die Produktion\n Du baust agentische Systeme, RAG-Pipelines und LLM-Integrationen in echten Enterprise-Umgebungen\n Agentische Coding-Tools sind Dein tägliches Werkzeug: Damit entwickelst Du Lösungen, beschleunigst Reviews und baust Deployment-Pipelines auf\n Du bist von der ersten Idee an dabei, nicht erst beim fertigen Spec – und wächst so tiefer in die strategische und geschäftliche Seite hinein\n Du bleibst bis zum Schluss verantwortlich: Du gibst nicht ab, sondern ziehst die Lösung durch, bis sie läuft und wirkt\n Du vertrittst Deine technischen Entscheidungen direkt auf Executive-Ebene und führst diese Gespräche selbst, nicht über eine Zwischenebene Du stehst für das ganze Ergebnis gerade, nicht nur für einen Teil. Du bleibst dran, bis die Lösung in Produktion läuft und wirkt, und trägst die Verantwortung dafür mit – Gründer- und Produkt-Mentalität statt reinem Abarbeiten\n Du baust selbst, auf höchstem Niveau – und denkst über den Code hinaus. Von der Engineering-Seite heißt das: Du hast schon LLM-basierte Systeme in Produktion gebracht und verstehst auch den geschäftlichen Sinn dahinter, nicht nur die Architektur\n Du überzeugst auf Executive-Ebene. Du hast technische Entscheidungen schon direkt vor dem Top-Management verantwortet und vertreten. Das bringst Du mit – wir entwickeln Dich nicht erst dorthin\n Nachweisliche Erfahrung, LLM-basierte Systeme in Produktion gebracht zu haben – idealerweise als Forward-Deployed oder Founding Engineer\n Exzellente, produktionsreife Python-Kenntnisse (etwa FastAPI, Container, Git, CI/CD\n[... middle of the posting omitted ...]\nt flexiblen Arbeitsmodellen und – je nach Situation – der Möglichkeit zu Sabbaticals.\n Company Bike sowie ein Zuschuss zum EGYM Wellpass für Deine Gesundheit und Fitness.\n Moderne Büros in zentraler Lage in Hamburg, München und Düsseldorf sowie flexible Hub-Standorte in vielen deutschen Großstädten.\n Kostenlose Getränke, frisches Obst, Snacks sowie guter Kaffee – und natürlich ein gemeinsames Feierabendbier, wenn Dir danach ist.\n Ein Umfeld, das auf Vertrauen, Eigenverantwortung und persönliche Entwicklung setzt und in dem Deine Ideen gehört werden – unabhängig von Rolle oder Hierarchie. Paulina Krzeminski \n Lead Group Recruiting Consultant - Data & AI \n E:  paulina.krzeminski@eraneos.com \n M: +49 151 422 09 376 \n\nUnsere oberste Priorität ist, dass Du zu uns passt und wir zu Dir, unabhängig von Herkunft, Nationalität, sexueller Orientierung, Religion, Geschlechtsidentität, Alter, Handicap oder anderen Aspekten der Vielfalt.\n\nBewerbe Dich gerne über unser Unternehmensportal mit Deinem CV und / oder Deinem aktualisierten Xing bzw. LinkedIn Profil.\n\nInteressiert es dich, was unsere Mitarbeitenden und andere Bewerber/innen über uns sagen? Besuche uns auf Kununu und folge uns auf Social Media, um die aktuellsten News über uns nicht zu verpassen.\n Eraneos Germany als Arbeitgeber: Gehalt, Karriere, Benefits (kununu.com)"
+    },
+    "technical_fit": "Exact target role shape: Forward Deployed Engineer building agentic systems, RAG pipelines, and LLM integrations from idea to production in enterprise environments. Location (Zürich) is ideal. Candidate's skills in Python, LLM APIs, tool-calling agents, retrieval, guardrails, Docker, and CI/CD are directionally aligned. However, the role is explicitly senior-level, requiring proven experience shipping LLM systems to production and direct executive-level communication - both areas where the candidate's intern-level experience is a stretch. The German posting context also suggests client interactions may require more German than his A2 level. Past identical posting scored 72 (REVIEW). Worth a careful review to see if the 'senior' label is flexible or if his production pipeline experience qualifies.",
+    "contextual_fit": "",
+    "salary_estimate": "Not disclosed",
+    "culture_fit": "",
+    "usage": {
+      "model": "kimi-k2.6",
+      "calls": 7,
+      "prompt_tokens": 27220,
+      "completion_tokens": 1353,
+      "cost_usd": null
+    },
+    "concerns": [
+      "Role is explicitly senior-level with expectations of proven production LLM experience and executive communication",
+      "German consultancy environment with DAX/Fortune 500 clients may require more German than A2",
+      "Candidate's experience is primarily intern-level; may not meet 'Founding Engineer' or senior bar",
+      "Posting emphasizes 'you've already done this' rather than growth trajectory"
+    ],
+    "agent_rationale": "Exact target role shape: Forward Deployed Engineer building agentic systems, RAG pipelines, and LLM integrations from idea to production in enterprise environments. Location (Zürich) is ideal. Candidate's skills in Python, LLM APIs, tool-calling agents, retrieval, guardrails, Docker, and CI/CD are directionally aligned. However, the role is explicitly senior-level, requiring proven experience shipping LLM systems to production and direct executive-level communication - both areas where the candidate's intern-level experience is a stretch. The German posting context also suggests client interactions may require more German than his A2 level. Past identical posting scored 72 (REVIEW). Worth a careful review to see if the 'senior' label is flexible or if his production pipeline experience qualifies.",
+    "agent_decision": "REVIEW",
+    "agent_trace": [
+      {
+        "name": "get_posting_text",
+        "arguments": {}
+      },
+      {
+        "name": "check_language_requirement",
+        "arguments": {}
+      },
+      {
+        "name": "get_candidate_profile",
+        "arguments": {}
+      },
+      {
+        "name": "get_outcome_calibration",
+        "arguments": {}
+      },
+      {
+        "name": "search_past_evaluations",
+        "arguments": {
+          "query": "Eraneos"
+        }
+      },
+      {
+        "name": "record_decision",
+        "arguments": {
+          "score": 72,
+          "decision": "REVIEW",
+          "rationale": "Exact target role shape: Forward Deployed Engineer building agentic systems, RAG pipelines, and LLM integrations from idea to production in enterprise environments. Location (Zürich) is ideal. Candidate's skills in Python, LLM APIs, tool-calling agents, retrieval, guardrails, Docker, and CI/CD are directionally aligned. However, the role is explicitly senior-level, requiring proven experience shipping LLM systems to production and direct executive-level communication - both areas where the candidate's intern-level experience is a stretch. The German posting context also suggests client interactions may require more German than his A2 level. Past identical posting scored 72 (REVIEW). Worth a careful review to see if the 'senior' label is flexible or if his production pipeline experience qualifies.",
+          "concerns": [
+            "Role is explicitly senior-level with expectations of proven production LLM experience and executive communication",
+            "German consultancy environment with DAX/Fortune 500 clients may require more German than A2",
+            "Candidate's experience is primarily intern-level; may not meet 'Founding Engineer' or senior bar",
+            "Posting emphasizes 'you've already done this' rather than growth trajectory"
+          ],
+          "hard_blockers": [],
+          "language_requirement": "soft"
+        }
+      }
+    ],
+    "recommendation": "REVIEW",
+    "decision": "REVIEW",
+    "materials_needed": [],
+    "evaluated_at": "2026-09-22T16:02:51.361563+00:00"
   }
 ]

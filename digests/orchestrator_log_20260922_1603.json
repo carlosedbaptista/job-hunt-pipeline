@@ -1,0 +1,55 @@
+{
+  "ts": "2026-09-22T16:03:03.011814+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 4,
+  "usage": {
+    "prompt_tokens": 5498,
+    "completion_tokens": 334,
+    "model": "kimi-k2.6"
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 5
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Today's run: 15 evaluations (0 APPLY, 1 REVIEW, 6 SKIP, 8 not yet evaluated). No APPLY jobs, so no documents or high-score alerts needed. 1 stale application is still eligible for follow-up but no new drafts were produced. Re-evaluated 5 recent REVIEW-band jobs; all stayed in REVIEW with minor or no score changes.",
+        "rationale": "With zero APPLY jobs and no new top matches, the productive actions were limited to follow-up drafting (eligible but none drafted) and borderline re-evaluation to use remaining budget. All 5 re-evaluations remained REVIEW, so no new promotions to APPLY. Run is complete."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 15, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 1, \"SKIP\": 6, \"ERROR\": 0, \"NOT_EVALUATED\": 8}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 "
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"Jobgether\", \"title\": \"Founding AI Platform Engineer (MLOps / Backend)\", \"old_score\": 76, \"old_decision\": \"REVIEW\", \"new_score\": 78, \"new_decision\": \"REVIEW\"}, {\"company\": \"Jurata\", \"title\": \"Legal AI Engineer (100%)\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_scor"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Today's run: 15 evaluations (0 APPLY, 1 REVIEW, 6 SKIP, 8 not yet evaluated). No APPLY jobs, so no documents or high-score alerts needed. 1 stale application is still eligible for follow-up but no new drafts were produced. Re-evaluated 5 recent REVIEW-band jobs; all stayed in REVIEW with minor or no score changes.",
+  "agent_rationale": "With zero APPLY jobs and no new top matches, the productive actions were limited to follow-up drafting (eligible but none drafted) and borderline re-evaluation to use remaining budget. All 5 re-evaluations remained REVIEW, so no new promotions to APPLY. Run is complete."
+}
