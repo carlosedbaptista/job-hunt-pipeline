@@ -1,0 +1,55 @@
+{
+  "ts": "2026-09-24T16:12:41.149028+00:00",
+  "mode": "agent",
+  "stopped_reason": "final",
+  "iterations": 5,
+  "usage": {
+    "prompt_tokens": 6609,
+    "completion_tokens": 320,
+    "model": "kimi-k2.6"
+  },
+  "tool_calls_made": [
+    {
+      "name": "get_run_state",
+      "arguments": {}
+    },
+    {
+      "name": "draft_followups",
+      "arguments": {}
+    },
+    {
+      "name": "reevaluate_borderline",
+      "arguments": {
+        "max_jobs": 3
+      }
+    },
+    {
+      "name": "finish_run",
+      "arguments": {
+        "summary": "Run completed: 8 evaluations (0 APPLY, 1 REVIEW, 5 SKIP, 2 NOT_EVALUATED). No APPLY jobs, so no documents or high-score alerts. 1 stale application still eligible for follow-up but no drafts generated. Re-evaluated 3 borderline REVIEW jobs: 2 stayed REVIEW, 1 moved to SKIP.",
+        "rationale": "The run was quiet with zero APPLY jobs, so the main actions were limited. Follow-ups were checked but none drafted. Budget remained, so 3 recent REVIEW-band jobs were re-scored to improve decision quality. Run finalized cleanly."
+      }
+    }
+  ],
+  "tool_results_summary": [
+    {
+      "name": "get_run_state",
+      "result": "{\"mode\": \"agent\", \"fresh\": true, \"evaluations\": 8, \"decisions\": {\"APPLY\": 0, \"REVIEW\": 1, \"SKIP\": 5, \"ERROR\": 0, \"NOT_EVALUATED\": 2}, \"apply_jobs\": [], \"recent_errors\": [\"[2026-08-23 15:51 UTC] AI Software Engineer @ Avaloq: JSONDecodeError: Expecting value: line 1 column 1 (char 0)\", \"[2026-08-23 1"
+    },
+    {
+      "name": "draft_followups",
+      "result": "{\"drafts\": 0, \"still_eligible\": 1}"
+    },
+    {
+      "name": "reevaluate_borderline",
+      "result": "{\"reevaluated\": [{\"company\": \"Jobgether\", \"title\": \"Founding AI Platform Engineer (MLOps / Backend)\", \"old_score\": 76, \"old_decision\": \"REVIEW\", \"new_score\": 76, \"new_decision\": \"REVIEW\"}, {\"company\": \"Jurata\", \"title\": \"Legal AI Engineer (100%)\", \"old_score\": 72, \"old_decision\": \"REVIEW\", \"new_scor"
+    },
+    {
+      "name": "finish_run",
+      "result": "{\"ok\": true}"
+    }
+  ],
+  "fallback_used": false,
+  "agent_summary": "Run completed: 8 evaluations (0 APPLY, 1 REVIEW, 5 SKIP, 2 NOT_EVALUATED). No APPLY jobs, so no documents or high-score alerts. 1 stale application still eligible for follow-up but no drafts generated. Re-evaluated 3 borderline REVIEW jobs: 2 stayed REVIEW, 1 moved to SKIP.",
+  "agent_rationale": "The run was quiet with zero APPLY jobs, so the main actions were limited. Follow-ups were checked but none drafted. Budget remained, so 3 recent REVIEW-band jobs were re-scored to improve decision quality. Run finalized cleanly."
+}
